@@ -79,6 +79,7 @@ defmodule Uneebee.MixProject do
       "assets.setup": ["tailwind.install --if-missing", "esbuild.install --if-missing"],
       "assets.build": ["tailwind default", "esbuild default"],
       "assets.deploy": ["tailwind default --minify", "esbuild default --minify", "phx.digest"],
+      icons: ["icons"],
       ci: [
         "compile --all-warnings --warnings-as-errors",
         "format --check-formatted",
