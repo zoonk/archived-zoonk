@@ -1,0 +1,104 @@
+name: Test
+
+on: push
+
+env:
+  MIX_ENV: test
+  ELIXIR_VERSION: 1.15.5
+  OTP_VERSION: 26.0.2
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    services:
+      db:
+        image: postgres:15
+        ports: ['5432:5432']
+        env:
+          POSTGRES_PASSWORD: postgres
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    steps:
+      - name: Set up Elixir
+        id: beam
+        uses: erlef/setup-beam@v1
+        with:
+          elixir-version: ${{env.ELIXIR_VERSION}}
+          otp-version: ${{env.OTP_VERSION}}
+
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Restore dependencies cache
+        id: cache-deps
+        uses: actions/cache@v3
+        env:
+          cache-name: cache-elixir-deps
+        with:
+          path: deps
+          key: ${{ runner.os }}-mix-${{ env.cache-name }}-${{ hashFiles('**/mix.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-mix-${{ env.cache-name }}-
+
+      - name: Restore build cache
+        id: cache-build
+        uses: actions/cache@v3
+        env:
+          cache-name: cache-compiled-build
+        with:
+          path: _build
+          key: ${{ runner.os }}-mix-${{ env.cache-name }}-${{ hashFiles('**/mix.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-mix-${{ env.cache-name }}-
+            ${{ runner.os }}-mix-
+
+      # Don't cache PLTs based on mix.lock hash, as Dialyzer can incrementally update even old ones
+      # Cache key based on Elixir & Erlang version (also useful when running in matrix)
+      - name: Restore PLT cache
+        uses: actions/cache@v3
+        id: plt_cache
+        with:
+          key: |
+            ${{ runner.os }}-${{ env.ELIXIR_VERSION }}-${{ env.OTP_VERSION }}-plt
+          restore-keys: |
+            ${{ runner.os }}-${{ env.ELIXIR_VERSION }}-${{ env.OTP_VERSION }}-plt
+          path: |
+            priv/plts
+
+      - name: Install dependencies
+        run: mix deps.get
+        shell: bash
+
+      - name: Compile app
+        run: mix compile --all-warnings --warnings-as-errors
+
+      - name: Check formatter
+        run: mix format --check-formatted
+
+      - name: Lint
+        run: mix credo --strict
+
+      - name: Scan security vulnerabilities
+        run: mix sobelow --exit
+
+      - name: Audit dependencies
+        run: mix deps.audit
+
+      - name: Scan retired dependencies
+        run: mix hex.audit
+
+      # Create PLTs if no cache was found
+      - name: Create PLTs
+        if: steps.plt_cache.outputs.cache-hit != 'true'
+        run: mix dialyzer --plt
+
+      - name: Run dialyzer
+        run: mix dialyzer --format github
+
+      - name: Run tests
+        run: mix test
