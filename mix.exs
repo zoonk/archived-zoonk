@@ -54,6 +54,7 @@ defmodule Uneebee.MixProject do
       {:phoenix, "~> 1.7.7"},
       {:plug_cowboy, "~> 2.5"},
       {:postgrex, ">= 0.0.0"},
+      {:sobelow, "~> 0.13.0", only: [:dev, :test], runtime: false},
       {:swoosh, "~> 1.3"},
       {:tailwind, "~> 0.2.0", runtime: Mix.env() == :dev},
       {:telemetry_metrics, "~> 0.6"},
@@ -80,6 +81,7 @@ defmodule Uneebee.MixProject do
         "compile --all-warnings --warnings-as-errors",
         "format --check-formatted",
         "credo --strict",
+        "sobelow",
         "deps.audit",
         "dialyzer"
       ]
