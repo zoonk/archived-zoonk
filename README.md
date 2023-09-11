@@ -6,4 +6,5 @@ UneeBee is a white-label for creating interactive courses like Duolingo.
 
 ## Getting started
 
+- [Installation](./guides/introduction/installation.md)
 - [SSL for local development](./guides/introduction/ssl.md)
