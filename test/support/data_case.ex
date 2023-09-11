@@ -21,12 +21,12 @@ defmodule Uneebee.DataCase do
 
   using do
     quote do
-      alias Uneebee.Repo
-
       import Ecto
       import Ecto.Changeset
       import Ecto.Query
       import Uneebee.DataCase
+
+      alias Uneebee.Repo
     end
   end
 

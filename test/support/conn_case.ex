@@ -19,15 +19,16 @@ defmodule UneebeeWeb.ConnCase do
 
   using do
     quote do
-      # The default endpoint for testing
-      @endpoint UneebeeWeb.Endpoint
-
       use UneebeeWeb, :verified_routes
+
+      import Phoenix.ConnTest
 
       # Import conveniences for testing with connections
       import Plug.Conn
-      import Phoenix.ConnTest
       import UneebeeWeb.ConnCase
+
+      # The default endpoint for testing
+      @endpoint UneebeeWeb.Endpoint
     end
   end
 
