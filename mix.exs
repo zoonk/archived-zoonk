@@ -17,7 +17,7 @@ defmodule Uneebee.MixProject do
       ],
 
       # Docs
-      name: "Uneebee",
+      name: "UneeBee",
       source_url: "https://github.com/zoonk/uneebee",
       homepage_url: "https://uneebee.com",
       docs: docs()
@@ -102,6 +102,7 @@ defmodule Uneebee.MixProject do
   defp docs do
     [
       main: "overview",
+      logo: "priv/static/favicon/apple-touch-icon.png",
       extra_section: "GUIDES",
       formatters: ["html", "epub"],
       extras: extras(),

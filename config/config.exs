@@ -30,7 +30,7 @@ config :uneebee, UneebeeWeb.Endpoint,
 config :uneebee, Uneebee.Mailer, adapter: Swoosh.Adapters.Local
 
 # Configure translation
-config :zoonk, ZoonkWeb.Gettext, default_locale: "en", locales: ~w(en pt)
+config :uneebee, UneebeeWeb.Gettext, default_locale: "en", locales: ~w(en pt)
 
 # Configure esbuild (the version is required)
 config :esbuild,
