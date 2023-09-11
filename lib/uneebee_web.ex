@@ -84,10 +84,16 @@ defmodule UneebeeWeb do
     quote do
       # HTML escaping functionality
       import Phoenix.HTML
+
+      # UI components
+      import UneebeeWeb.Components.Flash
+
+      # i18n
       import UneebeeWeb.Gettext
 
-      # Shortcut for generating JS commands
       alias Phoenix.LiveView.JS
+
+      # Shortcut for generating JS commands
 
       # Routes generation with the ~p sigil
       unquote(verified_routes())
