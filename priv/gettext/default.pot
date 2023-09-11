@@ -1,0 +1,37 @@
+## This file is a PO Template file.
+##
+## "msgid"s here are often extracted from source code.
+## Add new messages manually only if they're dynamic
+## messages that can't be statically extracted.
+##
+## Run "mix gettext.extract" to bring this file up to
+## date. Leave "msgstr"s empty as changing them here has no
+## effect: edit them in PO (.po) files instead.
+#
+msgid ""
+msgstr ""
+
+#: lib/components/flash.ex:79
+#, elixir-autogen, elixir-format
+msgid "Attempting to reconnect"
+msgstr ""
+
+#: lib/components/flash.ex:70
+#, elixir-autogen, elixir-format
+msgid "Error!"
+msgstr ""
+
+#: lib/components/flash.ex:69
+#, elixir-autogen, elixir-format
+msgid "Success!"
+msgstr ""
+
+#: lib/components/flash.ex:74
+#, elixir-autogen, elixir-format
+msgid "We can't find the internet"
+msgstr ""
+
+#: lib/components/flash.ex:51
+#, elixir-autogen, elixir-format
+msgid "close"
+msgstr ""

@@ -1,0 +1,37 @@
+## "msgid"s in this file come from POT (.pot) files.
+###
+### Do not add, change, or remove "msgid"s manually here as
+### they're tied to the ones in the corresponding POT file
+### (with the same domain).
+###
+### Use "mix gettext.extract --merge" or "mix gettext.merge"
+### to merge POT files into PO files.
+msgid ""
+msgstr ""
+"Language: en\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: lib/components/flash.ex:79
+#, elixir-autogen, elixir-format
+msgid "Attempting to reconnect"
+msgstr ""
+
+#: lib/components/flash.ex:70
+#, elixir-autogen, elixir-format
+msgid "Error!"
+msgstr ""
+
+#: lib/components/flash.ex:69
+#, elixir-autogen, elixir-format
+msgid "Success!"
+msgstr ""
+
+#: lib/components/flash.ex:74
+#, elixir-autogen, elixir-format
+msgid "We can't find the internet"
+msgstr ""
+
+#: lib/components/flash.ex:51
+#, elixir-autogen, elixir-format
+msgid "close"
+msgstr ""

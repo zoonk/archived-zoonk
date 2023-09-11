@@ -87,6 +87,7 @@ defmodule Uneebee.MixProject do
       "assets.build": ["tailwind default", "esbuild default"],
       "assets.deploy": ["tailwind default --minify", "esbuild default --minify", "phx.digest"],
       icons: ["icons"],
+      locale: ["gettext.extract", "gettext.merge priv/gettext"],
       ci: [
         "compile --all-warnings --warnings-as-errors",
         "format --check-formatted",
