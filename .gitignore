@@ -21,9 +21,8 @@ erl_crash.dump
 
 # Temporary files, for example, from tests.
 /tmp/
-
-# Ignore package tarball (built via "mix hex.build").
-uneebee-*.tar
+.DS_Store
+.elixir_ls
 
 # Ignore assets that are produced by build tools.
 /priv/static/assets/
@@ -35,3 +34,13 @@ uneebee-*.tar
 npm-debug.log
 /assets/node_modules/
 
+# Private keys
+cert
+.env
+
+# Sobelow
+.sobelow
+
+# Dialyzer
+/priv/plts/*.plt
+/priv/plts/*.plt.hash

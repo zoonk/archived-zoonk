@@ -9,7 +9,12 @@ defmodule Uneebee.MixProject do
       elixirc_paths: elixirc_paths(Mix.env()),
       start_permanent: Mix.env() == :prod,
       aliases: aliases(),
-      deps: deps()
+      deps: deps(),
+      dialyzer: [
+        plt_add_apps: [:mix],
+        plt_file: {:no_warn, "priv/plts/dialyzer.plt"},
+        ignore_warnings: ".dialyzer_ignore.exs"
+      ]
     ]
   end
 
@@ -33,6 +38,7 @@ defmodule Uneebee.MixProject do
   defp deps do
     [
       {:credo, "~> 1.7.0", only: [:dev, :test], runtime: false},
+      {:dialyxir, "~> 1.4.1", only: [:dev, :test], runtime: false},
       {:ecto_sql, "~> 3.10"},
       {:esbuild, "~> 0.7", runtime: Mix.env() == :dev},
       {:finch, "~> 0.13"},
@@ -72,7 +78,8 @@ defmodule Uneebee.MixProject do
       ci: [
         "compile --all-warnings --warnings-as-errors",
         "format --check-formatted",
-        "credo --strict"
+        "credo --strict",
+        "dialyzer"
       ]
     ]
   end
