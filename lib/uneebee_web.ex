@@ -84,8 +84,6 @@ defmodule UneebeeWeb do
     quote do
       # HTML escaping functionality
       import Phoenix.HTML
-      # Core UI components and translation
-      import UneebeeWeb.CoreComponents
       import UneebeeWeb.Gettext
 
       # Shortcut for generating JS commands
