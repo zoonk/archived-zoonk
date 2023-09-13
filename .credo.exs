@@ -105,7 +105,6 @@
           {Credo.Check.Readability.TrailingBlankLine, []},
           {Credo.Check.Readability.TrailingWhiteSpace, []},
           {Credo.Check.Readability.VariableNames, []},
-          {Credo.Check.Readability.WithSingleClause, []},
 
           #
           ## Refactoring Opportunities
@@ -120,10 +119,8 @@
           {Credo.Check.Refactor.NegatedConditionsWithElse, []},
           {Credo.Check.Refactor.Nesting, []},
           {Credo.Check.Refactor.UnlessWithElse, []},
-          {Credo.Check.Refactor.WithClauses, []},
           {Credo.Check.Refactor.FilterFilter, []},
           {Credo.Check.Refactor.RejectReject, []},
-          {Credo.Check.Refactor.RedundantWithClauseResult, []},
 
           #
           ## Warnings
@@ -204,8 +201,11 @@
           {Credo.Check.Readability.SinglePipe, []},
           {Credo.Check.Readability.StrictModuleLayout, []},
           {Credo.Check.Readability.UnnecessaryAliasExpansion, []},
+          {Credo.Check.Readability.WithSingleClause, []},
           {Credo.Check.Refactor.MapJoin, []},
-          {Credo.Check.Refactor.PipeChainStart, []}
+          {Credo.Check.Refactor.PipeChainStart, []},
+          {Credo.Check.Refactor.RedundantWithClauseResult, []},
+          {Credo.Check.Refactor.WithClauses, []}
         ]
       }
     }
