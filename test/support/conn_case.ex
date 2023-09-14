@@ -17,6 +17,9 @@ defmodule UneebeeWeb.ConnCase do
 
   use ExUnit.CaseTemplate
 
+  alias Plug.Conn
+  alias Uneebee.Accounts.User
+
   using do
     quote do
       use UneebeeWeb, :verified_routes
@@ -35,5 +38,33 @@ defmodule UneebeeWeb.ConnCase do
   setup tags do
     Uneebee.DataCase.setup_sandbox(tags)
     {:ok, conn: Phoenix.ConnTest.build_conn()}
+  end
+
+  @doc """
+  Setup helper that registers and logs in users.
+
+      setup :register_and_log_in_user
+
+  It stores an updated connection and a registered user in the
+  test context.
+  """
+  @spec register_and_log_in_user(%{conn: Conn.t()}) :: %{conn: Conn.t(), user: User.t()}
+  def register_and_log_in_user(%{conn: conn}) do
+    user = Uneebee.AccountsFixtures.user_fixture()
+    %{conn: log_in_user(conn, user), user: user}
+  end
+
+  @doc """
+  Logs the given `user` into the `conn`.
+
+  It returns an updated `conn`.
+  """
+  @spec log_in_user(Conn.t(), User.t()) :: Conn.t()
+  def log_in_user(conn, user) do
+    token = Uneebee.Accounts.generate_user_session_token(user)
+
+    conn
+    |> Phoenix.ConnTest.init_test_session(%{})
+    |> Conn.put_session(:user_token, token)
   end
 end

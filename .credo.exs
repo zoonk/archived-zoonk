@@ -161,7 +161,6 @@
           {Credo.Check.Refactor.FilterReject, []},
           {Credo.Check.Refactor.IoPuts, []},
           {Credo.Check.Refactor.MapMap, []},
-          {Credo.Check.Refactor.NegatedIsNil, []},
           {Credo.Check.Refactor.RejectFilter, []},
           {Credo.Check.Refactor.VariableRebinding, []},
           {Credo.Check.Warning.LeakyEnvironment, []},
@@ -186,6 +185,7 @@
           {Credo.Check.Refactor.ModuleDependencies, []},
           {Credo.Check.Warning.LazyLogging, []},
           {Credo.Check.Refactor.AppendSingleItem, []},
+          {Credo.Check.Refactor.NegatedIsNil, []},
 
           # These checks are already done using Styler, so we can safely disable them:
           {Credo.Check.Consistency.MultiAliasImportRequireUse, []},
