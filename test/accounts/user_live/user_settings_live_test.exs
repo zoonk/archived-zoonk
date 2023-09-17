@@ -21,7 +21,7 @@ defmodule UneebeeWeb.UserSettingsLiveTest do
       assert {:error, redirect} = live(conn, ~p"/users/settings")
 
       assert {:redirect, %{to: path, flash: flash}} = redirect
-      assert path == ~p"/users/log_in"
+      assert path == ~p"/users/login"
       assert %{"error" => "You must log in to access this page."} = flash
     end
   end
@@ -203,7 +203,7 @@ defmodule UneebeeWeb.UserSettingsLiveTest do
       conn = build_conn()
       {:error, redirect} = live(conn, ~p"/users/settings/confirm_email/#{token}")
       assert {:redirect, %{to: path, flash: flash}} = redirect
-      assert path == ~p"/users/log_in"
+      assert path == ~p"/users/login"
       assert %{"error" => message} = flash
       assert message == "You must log in to access this page."
     end

@@ -13,7 +13,7 @@ defmodule UneebeeWeb.UserForgotPasswordLiveTest do
 
       assert html =~ "Forgot your password?"
       assert has_element?(lv, ~s|a[href="#{~p"/users/register"}"]|, "Register")
-      assert has_element?(lv, ~s|a[href="#{~p"/users/log_in"}"]|, "Log in")
+      assert has_element?(lv, ~s|a[href="#{~p"/users/login"}"]|, "Log in")
     end
 
     test "redirects if already logged in", %{conn: conn} do

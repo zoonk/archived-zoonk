@@ -30,7 +30,7 @@ defmodule UneebeeWeb.Router do
     live_session :redirect_if_user_is_authenticated,
       on_mount: [{UneebeeWeb.UserAuth, :redirect_if_user_is_authenticated}] do
       live "/users/register", Registration, :new
-      live "/users/log_in", Login, :new
+      live "/users/login", Login, :new
       live "/users/reset_password", ForgotPassword, :new
       live "/users/reset_password/:token", ResetPassword, :edit
     end
@@ -58,12 +58,12 @@ defmodule UneebeeWeb.Router do
 
   scope "/", UneebeeWeb.Controller.Accounts.User do
     pipe_through [:browser, :redirect_if_user_is_authenticated]
-    post "/users/log_in", Session, :create
+    post "/users/login", Session, :create
   end
 
   scope "/", UneebeeWeb.Controller.Accounts.User do
     pipe_through [:browser]
-    delete "/users/log_out", Session, :delete
+    delete "/users/logout", Session, :delete
   end
 
   # Other scopes may use custom stacks.
