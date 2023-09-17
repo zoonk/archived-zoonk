@@ -1,6 +1,7 @@
 defmodule UneebeeWeb.Router do
   use UneebeeWeb, :router
 
+  import UneebeeWeb.Plugs.Translate
   import UneebeeWeb.UserAuth
 
   pipeline :browser do
@@ -11,6 +12,7 @@ defmodule UneebeeWeb.Router do
     plug :protect_from_forgery
     plug :put_secure_browser_headers, %{"content-security-policy" => "default-src 'self'"}
     plug :fetch_current_user
+    plug :set_session_locale
   end
 
   pipeline :api do
@@ -28,7 +30,10 @@ defmodule UneebeeWeb.Router do
     pipe_through [:browser, :redirect_if_user_is_authenticated]
 
     live_session :redirect_if_user_is_authenticated,
-      on_mount: [{UneebeeWeb.UserAuth, :redirect_if_user_is_authenticated}] do
+      on_mount: [
+        {UneebeeWeb.UserAuth, :redirect_if_user_is_authenticated},
+        {UneebeeWeb.Plugs.Translate, :set_locale_from_session}
+      ] do
       live "/users/register", Registration, :new
       live "/users/login", Login, :new
       live "/users/reset_password", ForgotPassword, :new
@@ -40,7 +45,10 @@ defmodule UneebeeWeb.Router do
     pipe_through [:browser, :require_authenticated_user]
 
     live_session :require_authenticated_user,
-      on_mount: [{UneebeeWeb.UserAuth, :ensure_authenticated}] do
+      on_mount: [
+        {UneebeeWeb.UserAuth, :ensure_authenticated},
+        {UneebeeWeb.Plugs.Translate, :set_locale_from_session}
+      ] do
       live "/users/settings", Settings, :edit
       live "/users/settings/confirm_email/:token", Settings, :confirm_email
     end
@@ -50,7 +58,10 @@ defmodule UneebeeWeb.Router do
     pipe_through [:browser]
 
     live_session :current_user,
-      on_mount: [{UneebeeWeb.UserAuth, :mount_current_user}] do
+      on_mount: [
+        {UneebeeWeb.UserAuth, :mount_current_user},
+        {UneebeeWeb.Plugs.Translate, :set_locale_from_session}
+      ] do
       live "/users/confirm/:token", Confirmation, :edit
       live "/users/confirm", ConfirmationInstructions, :new
     end

@@ -5,6 +5,8 @@ defmodule Uneebee.Accounts.User do
   import Ecto.Changeset
   import UneebeeWeb.Shared.Validators
 
+  alias UneebeeWeb.Plugs.Translate
+
   @type t() :: %__MODULE__{}
 
   schema "users" do
@@ -14,7 +16,7 @@ defmodule Uneebee.Accounts.User do
     field :email, :string
     field :first_name, :string
     field :hashed_password, :string, redact: true
-    field :language, Ecto.Enum, values: [:en, :pt], default: :en
+    field :language, Ecto.Enum, values: Translate.supported_locales(), default: :en
     field :last_name, :string
     field :password, :string, virtual: true, redact: true
     field :username, :string
