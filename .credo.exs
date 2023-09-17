@@ -110,15 +110,11 @@
           ## Refactoring Opportunities
           #
           {Credo.Check.Refactor.Apply, []},
-          {Credo.Check.Refactor.CondStatements, []},
           {Credo.Check.Refactor.CyclomaticComplexity, []},
           {Credo.Check.Refactor.FunctionArity, []},
           {Credo.Check.Refactor.LongQuoteBlocks, []},
           {Credo.Check.Refactor.MatchInCondition, []},
-          {Credo.Check.Refactor.NegatedConditionsInUnless, []},
-          {Credo.Check.Refactor.NegatedConditionsWithElse, []},
           {Credo.Check.Refactor.Nesting, []},
-          {Credo.Check.Refactor.UnlessWithElse, []},
           {Credo.Check.Refactor.FilterFilter, []},
           {Credo.Check.Refactor.RejectReject, []},
 
@@ -202,9 +198,13 @@
           {Credo.Check.Readability.StrictModuleLayout, []},
           {Credo.Check.Readability.UnnecessaryAliasExpansion, []},
           {Credo.Check.Readability.WithSingleClause, []},
+          {Credo.Check.Refactor.CondStatements, []},
           {Credo.Check.Refactor.MapJoin, []},
+          {Credo.Check.Refactor.NegatedConditionsInUnless, []},
+          {Credo.Check.Refactor.NegatedConditionsWithElse, []},
           {Credo.Check.Refactor.PipeChainStart, []},
           {Credo.Check.Refactor.RedundantWithClauseResult, []},
+          {Credo.Check.Refactor.UnlessWithElse, []},
           {Credo.Check.Refactor.WithClauses, []}
         ]
       }

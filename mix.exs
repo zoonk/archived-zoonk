@@ -63,7 +63,7 @@ defmodule Uneebee.MixProject do
       {:plug_cowboy, "~> 2.5"},
       {:postgrex, ">= 0.0.0"},
       {:sobelow, "~> 0.13.0", only: [:dev, :test], runtime: false},
-      {:styler, "~> 0.9.0", only: [:dev, :test], runtime: false},
+      {:styler, "~> 0.9.3", only: [:dev, :test], runtime: false},
       {:swoosh, "~> 1.3"},
       {:tailwind, "~> 0.2.0", runtime: Mix.env() == :dev},
       {:tailwind_formatter, "~> 0.3.7", only: [:dev, :test], runtime: false},
