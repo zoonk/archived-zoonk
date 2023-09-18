@@ -36,6 +36,7 @@ msgstr "Não foi possível conectar à internet"
 msgid "close"
 msgstr "fechar"
 
+#: lib/accounts/user_live/login.html.heex:4
 #: lib/accounts/user_live/registration.html.heex:23
 #, elixir-autogen, elixir-format
 msgid "Email"

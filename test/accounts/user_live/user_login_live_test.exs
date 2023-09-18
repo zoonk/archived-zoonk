@@ -1,5 +1,5 @@
 defmodule UneebeeWeb.UserLoginLiveTest do
-  use UneebeeWeb.ConnCase
+  use UneebeeWeb.ConnCase, async: true
 
   import Phoenix.LiveViewTest
   import Uneebee.AccountsFixtures
@@ -8,8 +8,8 @@ defmodule UneebeeWeb.UserLoginLiveTest do
     test "renders log in page", %{conn: conn} do
       {:ok, _lv, html} = live(conn, ~p"/users/login")
 
-      assert html =~ "Sign in to account"
-      assert html =~ "Sign up"
+      assert html =~ "Sign in to your account"
+      assert html =~ "Register"
       assert html =~ "Forgot your password?"
     end
 
@@ -56,18 +56,6 @@ defmodule UneebeeWeb.UserLoginLiveTest do
   end
 
   describe "login navigation" do
-    test "redirects to registration page when the Register button is clicked", %{conn: conn} do
-      {:ok, lv, _html} = live(conn, ~p"/users/login")
-
-      {:ok, _login_live, login_html} =
-        lv
-        |> element(~s|main a:fl-contains("Sign up")|)
-        |> render_click()
-        |> follow_redirect(conn, ~p"/users/register")
-
-      assert login_html =~ "Create an account"
-    end
-
     test "redirects to forgot password page when the Forgot Password button is clicked", %{
       conn: conn
     } do

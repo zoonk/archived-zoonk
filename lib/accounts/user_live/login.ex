@@ -6,6 +6,7 @@ defmodule UneebeeWeb.Live.Accounts.User.Login do
   def mount(_params, _session, socket) do
     email = live_flash(socket.assigns.flash, :email)
     form = to_form(%{"email" => email}, as: "user")
-    {:ok, assign(socket, form: form), temporary_assigns: [form: form]}
+    socket = socket |> assign(form: form) |> assign(page_title: dgettext("auth", "Sign in"))
+    {:ok, socket, temporary_assigns: [form: form]}
   end
 end

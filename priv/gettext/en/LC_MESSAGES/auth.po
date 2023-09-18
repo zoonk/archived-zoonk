@@ -27,13 +27,41 @@ msgstr ""
 msgid "Create an account"
 msgstr ""
 
+#: lib/accounts/user_live/login.html.heex:5
 #: lib/accounts/user_live/registration.html.heex:30
 #, elixir-autogen, elixir-format
 msgid "Password"
 msgstr ""
 
+#: lib/accounts/user_live/login.ex:9
+#: lib/accounts/user_live/login.html.heex:13
 #: lib/accounts/user_live/registration.html.heex:45
 #: lib/layouts/templates/app.html.heex:7
 #, elixir-autogen, elixir-format
 msgid "Sign in"
+msgstr ""
+
+#: lib/accounts/user_live/login.html.heex:19
+#, elixir-autogen, elixir-format
+msgid "Forgot your password?"
+msgstr ""
+
+#: lib/accounts/user_live/login.html.heex:8
+#, elixir-autogen, elixir-format
+msgid "Keep me logged in"
+msgstr ""
+
+#: lib/accounts/user_live/login.html.heex:2
+#, elixir-autogen, elixir-format
+msgid "Sign in to your account"
+msgstr ""
+
+#: lib/accounts/user_live/login.html.heex:12
+#, elixir-autogen, elixir-format
+msgid "Signing in..."
+msgstr ""
+
+#: lib/accounts/user_live/login.html.heex:23
+#, elixir-autogen, elixir-format
+msgid "Register"
 msgstr ""

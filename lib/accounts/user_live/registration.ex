@@ -16,7 +16,7 @@ defmodule UneebeeWeb.Live.Accounts.User.Registration do
       |> assign_form(changeset)
       |> assign(page_title: dgettext("auth", "Create an account"))
 
-    {:ok, socket, temporary_assigns: [form: nil]}
+    {:ok, socket}
   end
 
   @impl Phoenix.LiveView

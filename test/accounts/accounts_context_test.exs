@@ -1,5 +1,5 @@
 defmodule Uneebee.AccountsTest do
-  use Uneebee.DataCase
+  use Uneebee.DataCase, async: true
 
   import Uneebee.AccountsFixtures
 

@@ -42,7 +42,7 @@ defmodule UneebeeWeb.Components.Form do
     >
       <%= render_slot(@inner_block, f) %>
 
-      <div :for={action <- @actions} class="mt-2 flex items-center gap-4">
+      <div :for={action <- @actions} class="mt-2 flex items-center justify-between gap-4">
         <%= render_slot(action, f) %>
       </div>
     </.form>

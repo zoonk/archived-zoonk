@@ -1,5 +1,5 @@
 defmodule UneebeeWeb.UserSettingsLiveTest do
-  use UneebeeWeb.ConnCase
+  use UneebeeWeb.ConnCase, async: true
 
   import Phoenix.LiveViewTest
   import Uneebee.AccountsFixtures

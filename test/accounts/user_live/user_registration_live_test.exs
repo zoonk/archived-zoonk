@@ -1,5 +1,5 @@
 defmodule UneebeeWeb.UserRegistrationLiveTest do
-  use UneebeeWeb.ConnCase
+  use UneebeeWeb.ConnCase, async: true
 
   import Phoenix.LiveViewTest
   import Uneebee.AccountsFixtures
@@ -95,7 +95,7 @@ defmodule UneebeeWeb.UserRegistrationLiveTest do
   end
 
   defp assert_field_error(lv, field, value, message) do
-    lv |> element("form") |> render_change(user: %{field => value})
+    lv |> element("#registration_form") |> render_change(user: %{field => value})
     assert has_element?(lv, ~s|div[phx-feedback-for="user[#{field}]"] p:fl-icontains("#{message}")|)
   end
 end

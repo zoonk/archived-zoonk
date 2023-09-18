@@ -60,7 +60,7 @@ defmodule UneebeeWeb.Components.Input do
 
     ~H"""
     <div phx-feedback-for={@name} hidden={@type == "hidden"}>
-      <label class="text-gray flex items-start gap-4 text-sm" for={@id}>
+      <label class="text-gray flex items-start gap-2 text-sm" for={@id}>
         <input type="hidden" name={@name} value="false" />
         <input
           type="checkbox"
