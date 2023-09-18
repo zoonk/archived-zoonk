@@ -19,17 +19,12 @@ defmodule UneebeeWeb.Router do
     plug :accepts, ["json"]
   end
 
-  scope "/", UneebeeWeb do
-    pipe_through :browser
-
-    get "/", PageController, :home
-  end
-
   ## Authentication routes
   scope "/", UneebeeWeb.Live.Accounts.User do
     pipe_through [:browser, :redirect_if_user_is_authenticated]
 
     live_session :redirect_if_user_is_authenticated,
+      layout: {UneebeeWeb.Layouts, :auth},
       on_mount: [
         {UneebeeWeb.UserAuth, :redirect_if_user_is_authenticated},
         {UneebeeWeb.Plugs.Translate, :set_locale_from_session}
@@ -47,23 +42,27 @@ defmodule UneebeeWeb.Router do
     live_session :require_authenticated_user,
       on_mount: [
         {UneebeeWeb.UserAuth, :ensure_authenticated},
-        {UneebeeWeb.Plugs.Translate, :set_locale_from_session}
+        {UneebeeWeb.Plugs.Translate, :set_locale_from_session},
+        UneebeeWeb.Plugs.ActivePage
       ] do
       live "/users/settings", Settings, :edit
       live "/users/settings/confirm_email/:token", Settings, :confirm_email
     end
   end
 
-  scope "/", UneebeeWeb.Live.Accounts.User do
+  scope "/", UneebeeWeb.Live do
     pipe_through [:browser]
 
-    live_session :current_user,
+    live_session :public_routes,
       on_mount: [
         {UneebeeWeb.UserAuth, :mount_current_user},
-        {UneebeeWeb.Plugs.Translate, :set_locale_from_session}
+        {UneebeeWeb.Plugs.Translate, :set_locale_from_session},
+        UneebeeWeb.Plugs.ActivePage
       ] do
-      live "/users/confirm/:token", Confirmation, :edit
-      live "/users/confirm", ConfirmationInstructions, :new
+      live "/", Home
+
+      live "/users/confirm/:token", Accounts.User.Confirmation, :edit
+      live "/users/confirm", Accounts.User.ConfirmationInstructions, :new
     end
   end
 

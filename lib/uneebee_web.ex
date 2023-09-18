@@ -87,12 +87,14 @@ defmodule UneebeeWeb do
 
       # UI components
       import UneebeeWeb.Components.Button
+      import UneebeeWeb.Components.Details
       import UneebeeWeb.Components.Flash
       import UneebeeWeb.Components.Form
       import UneebeeWeb.Components.Header
       import UneebeeWeb.Components.Icon
       import UneebeeWeb.Components.Input
       import UneebeeWeb.Components.Link
+      import UneebeeWeb.Components.Menu
 
       # i18n
       import UneebeeWeb.Gettext

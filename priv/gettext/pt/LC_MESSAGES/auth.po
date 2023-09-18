@@ -33,6 +33,7 @@ msgid "Password"
 msgstr "Senha"
 
 #: lib/accounts/user_live/registration.html.heex:45
+#: lib/layouts/templates/app.html.heex:7
 #, elixir-autogen, elixir-format
 msgid "Sign in"
 msgstr "Entrar"

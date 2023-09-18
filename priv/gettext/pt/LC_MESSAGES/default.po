@@ -60,3 +60,14 @@ msgstr "Salvando..."
 #, elixir-autogen, elixir-format
 msgid "Username"
 msgstr "Nome de usuário"
+
+#: lib/home/home.ex:7
+#: lib/layouts/templates/app.html.heex:10
+#, elixir-autogen, elixir-format
+msgid "Home"
+msgstr "Início"
+
+#: lib/layouts/templates/auth.html.heex:3
+#, elixir-autogen, elixir-format
+msgid "Logo"
+msgstr "Logo"
