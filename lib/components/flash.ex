@@ -36,7 +36,7 @@ defmodule UneebeeWeb.Components.Flash do
       phx-click={JS.push("lv:clear-flash", value: %{key: @kind}) |> hide("##{@id}")}
       role="alert"
       class={[
-        "fixed top-2 right-2 w-80 sm:w-96 z-50 rounded-lg p-3 ring-1",
+        "fixed top-2 right-2 mr-2 w-80 sm:w-96 z-50 rounded-lg p-3 ring-1",
         @kind == :info && "bg-success-light3x text-success-dark ring-success fill-info-dark",
         @kind == :error && "bg-alert-light3x text-alert-dark shadow-md ring-alert fill-alert-dark"
       ]}
