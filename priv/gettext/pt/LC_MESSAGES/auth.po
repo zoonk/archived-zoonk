@@ -11,7 +11,7 @@ msgstr ""
 "Language: pt\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: lib/accounts/user_live/registration.html.heex:44
+#: lib/accounts/user_live/registration.html.heex:43
 #, elixir-autogen, elixir-format
 msgid "Already registered?"
 msgstr "Já cadastrado?"
@@ -35,12 +35,13 @@ msgstr "Senha"
 
 #: lib/accounts/user_live/login.ex:9
 #: lib/accounts/user_live/login.html.heex:13
-#: lib/accounts/user_live/registration.html.heex:45
+#: lib/accounts/user_live/registration.html.heex:44
 #: lib/layouts/templates/app.html.heex:7
 #, elixir-autogen, elixir-format
 msgid "Sign in"
 msgstr "Entrar"
 
+#: lib/accounts/user_live/forgot_password.html.heex:3
 #: lib/accounts/user_live/login.html.heex:19
 #, elixir-autogen, elixir-format
 msgid "Forgot your password?"
@@ -61,7 +62,32 @@ msgstr "Entrar na sua conta"
 msgid "Signing in..."
 msgstr "Entrando..."
 
-#: lib/accounts/user_live/login.html.heex:23
+#: lib/accounts/user_live/login.html.heex:22
 #, elixir-autogen, elixir-format
 msgid "Register"
 msgstr "Cadastre-se"
+
+#: lib/accounts/user_live/forgot_password.html.heex:17
+#, elixir-autogen, elixir-format
+msgid "Back to the sign in form"
+msgstr "Voltar para o login"
+
+#: lib/accounts/user_live/forgot_password.ex:23
+#, elixir-autogen, elixir-format
+msgid "If your email is in our system, you will receive instructions to reset your password shortly."
+msgstr "Se o seu email estiver no sistema, você receberá instruções para redefinir sua senha em breve."
+
+#: lib/accounts/user_live/forgot_password.ex:9
+#, elixir-autogen, elixir-format, fuzzy
+msgid "Reset Password"
+msgstr "Redefinir senha"
+
+#: lib/accounts/user_live/forgot_password.html.heex:11
+#, elixir-autogen, elixir-format
+msgid "Send password reset instructions"
+msgstr "Enviar instruções para redefinir senha"
+
+#: lib/accounts/user_live/forgot_password.html.heex:4
+#, elixir-autogen, elixir-format
+msgid "We'll send a password reset link to your inbox"
+msgstr "Enviaremos um link para o seu email para redefinir a senha"

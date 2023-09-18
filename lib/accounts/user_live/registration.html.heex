@@ -39,11 +39,9 @@
   </:actions>
 
   <:actions>
-    <div class="w-full text-center">
-      <p class="text-gray-dark text-sm">
-        <%= dgettext("auth", "Already registered?") %>
-        <.link_styled navigate={~p"/users/login"}><%= dgettext("auth", "Sign in") %></.link_styled>
-      </p>
-    </div>
+    <p class="text-gray-dark mx-auto text-sm">
+      <%= dgettext("auth", "Already registered?") %>
+      <.link_styled navigate={~p"/users/login"}><%= dgettext("auth", "Sign in") %></.link_styled>
+    </p>
   </:actions>
 </.simple_form>

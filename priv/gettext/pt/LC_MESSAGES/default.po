@@ -36,6 +36,7 @@ msgstr "Não foi possível conectar à internet"
 msgid "close"
 msgstr "fechar"
 
+#: lib/accounts/user_live/forgot_password.html.heex:7
 #: lib/accounts/user_live/login.html.heex:4
 #: lib/accounts/user_live/registration.html.heex:23
 #, elixir-autogen, elixir-format
@@ -72,3 +73,8 @@ msgstr "Início"
 #, elixir-autogen, elixir-format
 msgid "Logo"
 msgstr "Logo"
+
+#: lib/accounts/user_live/forgot_password.html.heex:10
+#, elixir-autogen, elixir-format
+msgid "Sending..."
+msgstr ""
