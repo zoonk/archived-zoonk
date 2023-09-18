@@ -35,3 +35,28 @@ msgstr "Não foi possível conectar à internet"
 #, elixir-autogen, elixir-format
 msgid "close"
 msgstr "fechar"
+
+#: lib/accounts/user_live/registration.html.heex:23
+#, elixir-autogen, elixir-format
+msgid "Email"
+msgstr "E-mail"
+
+#: lib/accounts/user_live/registration.html.heex:18
+#, elixir-autogen, elixir-format
+msgid "Language"
+msgstr "Idioma"
+
+#: lib/accounts/user_live/registration.html.heex:13
+#, elixir-autogen, elixir-format
+msgid "Oops, something went wrong! Please check the errors below."
+msgstr "Oops, algo deu errado! Por favor, verifique os erros abaixo."
+
+#: lib/accounts/user_live/registration.html.heex:36
+#, elixir-autogen, elixir-format
+msgid "Saving..."
+msgstr "Salvando..."
+
+#: lib/accounts/user_live/registration.html.heex:25
+#, elixir-autogen, elixir-format
+msgid "Username"
+msgstr "Nome de usuário"

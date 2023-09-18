@@ -107,3 +107,8 @@ msgstr ""
 
 msgid "must be equal to %{number}"
 msgstr ""
+
+#: lib/shared/validators.ex:19
+#, elixir-autogen, elixir-format
+msgid "can only contain letters, numbers, dashes and underscores"
+msgstr ""

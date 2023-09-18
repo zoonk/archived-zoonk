@@ -1,34 +1,49 @@
-<div class="mx-auto max-w-sm">
-  <.header class="text-center">
-    Register for an account
-    <:subtitle>
-      Already registered?
-      <.link navigate={~p"/users/login"} class="text-brand font-semibold hover:underline">
-        Sign in
-      </.link>
-      to your account now.
-    </:subtitle>
-  </.header>
+<.simple_form
+  for={@form}
+  id="registration_form"
+  phx-submit="save"
+  phx-change="validate"
+  phx-trigger-action={@trigger_submit}
+  action={~p"/users/login?_action=registered"}
+  method="post"
+  class="mx-auto w-full max-w-sm"
+>
+  <.header icon="tabler-user-plus"><%= dgettext("auth", "Create an account") %></.header>
 
-  <.simple_form
-    for={@form}
-    id="registration_form"
-    phx-submit="save"
-    phx-change="validate"
-    phx-trigger-action={@trigger_submit}
-    action={~p"/users/login?_action=registered"}
-    method="post"
-  >
-    <.error :if={@check_errors}>
-      Oops, something went wrong! Please check the errors below.
-    </.error>
+  <.error :if={@check_errors}><%= gettext("Oops, something went wrong! Please check the errors below.") %></.error>
 
-    <.input field={@form[:email]} type="email" label="Email" required />
-    <.input field={@form[:password]} type="password" label="Password" required />
-    <.input field={@form[:username]} label="Username" required />
+  <.input
+    field={@form[:language]}
+    type="select"
+    label={gettext("Language")}
+    options={UneebeeWeb.Plugs.Translate.language_options()}
+    required
+  />
 
-    <:actions>
-      <.button phx-disable-with="Creating account..." class="w-full">Create an account</.button>
-    </:actions>
-  </.simple_form>
-</div>
+  <.input field={@form[:email]} type="email" label={gettext("Email")} autocomplete="email" required />
+
+  <.input field={@form[:username]} type="text" label={gettext("Username")} autocomplete="username" required />
+
+  <.input
+    field={@form[:password]}
+    type="password"
+    label={dgettext("auth", "Password")}
+    autocomplete="new-password"
+    required
+  />
+
+  <:actions>
+    <.button icon="tabler-user-plus" class="w-full" type="submit" phx-disable-with={gettext("Saving...")}>
+      <%= dgettext("auth", "Create account") %>
+    </.button>
+  </:actions>
+
+  <:actions>
+    <div class="w-full text-center">
+      <p class="text-gray-dark text-sm">
+        <%= dgettext("auth", "Already registered?") %>
+        <.link_styled navigate={~p"/users/login"}><%= dgettext("auth", "Sign in") %></.link_styled>
+      </p>
+    </div>
+  </:actions>
+</.simple_form>

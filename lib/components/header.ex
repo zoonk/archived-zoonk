@@ -22,8 +22,8 @@ defmodule UneebeeWeb.Components.Header do
     ~H"""
     <header class={[@actions != [] && "flex items-center justify-between gap-6", @class]}>
       <div>
-        <h1 class="text-lg font-semibold leading-8">
-          <.icon :if={@icon} name={@icon} class="mr-2 h-6 w-6" gradient />
+        <h1 class="text-lg font-semibold">
+          <.icon :if={@icon} name={@icon} class="mr-1 h-4 w-4" gradient />
           <span class="text-gradient"><%= render_slot(@inner_block) %></span>
         </h1>
 

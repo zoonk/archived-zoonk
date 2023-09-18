@@ -108,7 +108,7 @@ defmodule UneebeeWeb.UserResetPasswordLiveTest do
         |> render_click()
         |> follow_redirect(conn, ~p"/users/register")
 
-      assert conn.resp_body =~ "Register"
+      assert conn.resp_body =~ "Create an account"
     end
   end
 end

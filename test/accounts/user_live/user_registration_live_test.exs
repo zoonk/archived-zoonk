@@ -6,9 +6,10 @@ defmodule UneebeeWeb.UserRegistrationLiveTest do
 
   describe "Registration page" do
     test "renders registration page", %{conn: conn} do
-      {:ok, _lv, html} = live(conn, ~p"/users/register")
+      {:ok, lv, _html} = live(conn, ~p"/users/register")
 
-      assert html =~ "Register"
+      assert has_element?(lv, ~s|h1 span:fl-icontains("create an account")|)
+      assert has_element?(lv, ~s|a[href="/users/login"]:fl-icontains("sign in")|)
     end
 
     test "redirects if already logged in", %{conn: conn} do
@@ -29,13 +30,21 @@ defmodule UneebeeWeb.UserRegistrationLiveTest do
         |> element("#registration_form")
         |> render_change(user: %{"email" => "with spaces", "password" => "short"})
 
-      assert result =~ "Register"
       assert result =~ "must have the @ sign and no spaces"
       assert result =~ "should be at least 8 character"
     end
   end
 
   describe "register user" do
+    test "use the browser's language", %{conn: conn} do
+      conn = put_req_header(conn, "accept-language", "pt-BR")
+
+      {:ok, _lv, html} = live(conn, ~p"/users/register")
+
+      assert html =~ "Criar uma conta"
+      assert html =~ ~s'<html lang="pt"'
+    end
+
     test "creates account and logs the user in", %{conn: conn} do
       {:ok, lv, _html} = live(conn, ~p"/users/register")
 
@@ -51,19 +60,25 @@ defmodule UneebeeWeb.UserRegistrationLiveTest do
       assert response =~ email
     end
 
-    test "renders errors for duplicated email", %{conn: conn} do
+    test "renders errors", %{conn: conn} do
       {:ok, lv, _html} = live(conn, ~p"/users/register")
 
-      user = user_fixture(%{email: "test@email.com"})
+      existing_user = user_fixture()
 
-      result =
-        lv
-        |> form("#registration_form",
-          user: %{"email" => user.email, "password" => "valid_password"}
-        )
-        |> render_submit()
+      assert_field_error(lv, "email", "", "can't be blank")
+      assert_field_error(lv, "email", "marieatgmail.com", "must have the @ sign and no spaces")
+      assert_field_error(lv, "email", "marie@gmail .com", "must have the @ sign and no spaces")
+      assert_field_error(lv, "email", existing_user.email, "has already been taken")
 
-      assert result =~ "has already been taken"
+      assert_field_error(lv, "username", "", "can't be blank")
+      assert_field_error(lv, "username", "ab", "should be at least 3 character(s)")
+      assert_field_error(lv, "username", existing_user.username, "has already been taken")
+
+      assert_field_error(lv, "password", "", "can't be blank")
+      assert_field_error(lv, "password", "1@Aa", "should be at least 8 character(s)")
+      assert_field_error(lv, "password", "aaaaa1@aa", "at least one upper case character")
+      assert_field_error(lv, "password", "AAAAA1@AA", "at least one lower case character")
+      assert_field_error(lv, "password", "aaaaAaaa", "at least one digit or punctuation character")
     end
   end
 
@@ -77,5 +92,10 @@ defmodule UneebeeWeb.UserRegistrationLiveTest do
         |> render_click()
         |> follow_redirect(conn, ~p"/users/login")
     end
+  end
+
+  defp assert_field_error(lv, field, value, message) do
+    lv |> element("form") |> render_change(user: %{field => value})
+    assert has_element?(lv, ~s|div[phx-feedback-for="user[#{field}]"] p:fl-icontains("#{message}")|)
   end
 end

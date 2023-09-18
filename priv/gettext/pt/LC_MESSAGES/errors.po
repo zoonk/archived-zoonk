@@ -100,3 +100,8 @@ msgstr "deve ser maior ou igual a %{number}"
 
 msgid "must be equal to %{number}"
 msgstr "deve ser igual a %{number}"
+
+#: lib/shared/validators.ex:19
+#, elixir-autogen, elixir-format
+msgid "can only contain letters, numbers, dashes and underscores"
+msgstr "pode conter apenas letras, números, traços e sublinhados"

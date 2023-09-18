@@ -35,3 +35,28 @@ msgstr ""
 #, elixir-autogen, elixir-format
 msgid "close"
 msgstr ""
+
+#: lib/accounts/user_live/registration.html.heex:23
+#, elixir-autogen, elixir-format
+msgid "Email"
+msgstr ""
+
+#: lib/accounts/user_live/registration.html.heex:18
+#, elixir-autogen, elixir-format
+msgid "Language"
+msgstr ""
+
+#: lib/accounts/user_live/registration.html.heex:13
+#, elixir-autogen, elixir-format
+msgid "Oops, something went wrong! Please check the errors below."
+msgstr ""
+
+#: lib/accounts/user_live/registration.html.heex:36
+#, elixir-autogen, elixir-format
+msgid "Saving..."
+msgstr ""
+
+#: lib/accounts/user_live/registration.html.heex:25
+#, elixir-autogen, elixir-format
+msgid "Username"
+msgstr ""

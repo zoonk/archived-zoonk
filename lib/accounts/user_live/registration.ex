@@ -6,13 +6,15 @@ defmodule UneebeeWeb.Live.Accounts.User.Registration do
   alias Uneebee.Accounts.User
 
   @impl Phoenix.LiveView
-  def mount(_params, _session, socket) do
-    changeset = Accounts.change_user_registration(%User{})
+  def mount(_params, session, socket) do
+    locale = Map.get(session, "locale")
+    changeset = Accounts.change_user_registration(%User{language: locale})
 
     socket =
       socket
       |> assign(trigger_submit: false, check_errors: false)
       |> assign_form(changeset)
+      |> assign(page_title: dgettext("auth", "Create an account"))
 
     {:ok, socket, temporary_assigns: [form: nil]}
   end
@@ -21,11 +23,7 @@ defmodule UneebeeWeb.Live.Accounts.User.Registration do
   def handle_event("save", %{"user" => user_params}, socket) do
     case Accounts.register_user(user_params) do
       {:ok, user} ->
-        {:ok, _} =
-          Accounts.deliver_user_confirmation_instructions(
-            user,
-            &url(~p"/users/confirm/#{&1}")
-          )
+        {:ok, _} = Accounts.deliver_user_confirmation_instructions(user, &url(~p"/users/confirm/#{&1}"))
 
         changeset = Accounts.change_user_registration(user)
         {:noreply, socket |> assign(trigger_submit: true) |> assign_form(changeset)}

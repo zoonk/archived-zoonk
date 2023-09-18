@@ -6,8 +6,6 @@ defmodule UneebeeWeb.Components.Form do
   """
   use Phoenix.Component
 
-  import UneebeeWeb.Components.Header
-
   @doc """
   Renders a simple form.
 
@@ -23,8 +21,6 @@ defmodule UneebeeWeb.Components.Form do
   """
   attr :for, :any, required: true, doc: "the datastructure for the form"
   attr :as, :any, default: nil, doc: "the server side parameter to collect all input under"
-  attr :title, :string, default: nil, doc: "the form title displayed before the form"
-  attr :subtitle, :string, default: nil, doc: "the form subtitle displayed before the form"
   attr :class, :string, default: nil, doc: "the form class"
   attr :unstyled, :boolean, default: false, doc: "whether to remove the default styling to the form"
 
@@ -44,11 +40,6 @@ defmodule UneebeeWeb.Components.Form do
       class={["space-y-4", not @unstyled && "bg-white rounded-xl shadow p-4", @class]}
       {@rest}
     >
-      <.header :if={@title}>
-        <%= @title %>
-        <:subtitle :if={@subtitle}><%= @subtitle %></:subtitle>
-      </.header>
-
       <%= render_slot(@inner_block, f) %>
 
       <div :for={action <- @actions} class="mt-2 flex items-center gap-4">

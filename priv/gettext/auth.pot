@@ -1,0 +1,38 @@
+## This file is a PO Template file.
+##
+## "msgid"s here are often extracted from source code.
+## Add new messages manually only if they're dynamic
+## messages that can't be statically extracted.
+##
+## Run "mix gettext.extract" to bring this file up to
+## date. Leave "msgstr"s empty as changing them here has no
+## effect: edit them in PO (.po) files instead.
+#
+msgid ""
+msgstr ""
+
+#: lib/accounts/user_live/registration.html.heex:44
+#, elixir-autogen, elixir-format
+msgid "Already registered?"
+msgstr ""
+
+#: lib/accounts/user_live/registration.html.heex:37
+#, elixir-autogen, elixir-format
+msgid "Create account"
+msgstr ""
+
+#: lib/accounts/user_live/registration.ex:17
+#: lib/accounts/user_live/registration.html.heex:11
+#, elixir-autogen, elixir-format
+msgid "Create an account"
+msgstr ""
+
+#: lib/accounts/user_live/registration.html.heex:30
+#, elixir-autogen, elixir-format
+msgid "Password"
+msgstr ""
+
+#: lib/accounts/user_live/registration.html.heex:45
+#, elixir-autogen, elixir-format
+msgid "Sign in"
+msgstr ""

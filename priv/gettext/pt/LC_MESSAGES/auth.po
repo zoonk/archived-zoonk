@@ -1,0 +1,38 @@
+## "msgid"s in this file come from POT (.pot) files.
+###
+### Do not add, change, or remove "msgid"s manually here as
+### they're tied to the ones in the corresponding POT file
+### (with the same domain).
+###
+### Use "mix gettext.extract --merge" or "mix gettext.merge"
+### to merge POT files into PO files.
+msgid ""
+msgstr ""
+"Language: pt\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: lib/accounts/user_live/registration.html.heex:44
+#, elixir-autogen, elixir-format
+msgid "Already registered?"
+msgstr "Já cadastrado?"
+
+#: lib/accounts/user_live/registration.html.heex:37
+#, elixir-autogen, elixir-format
+msgid "Create account"
+msgstr "Criar conta"
+
+#: lib/accounts/user_live/registration.ex:17
+#: lib/accounts/user_live/registration.html.heex:11
+#, elixir-autogen, elixir-format
+msgid "Create an account"
+msgstr "Criar uma conta"
+
+#: lib/accounts/user_live/registration.html.heex:30
+#, elixir-autogen, elixir-format
+msgid "Password"
+msgstr "Senha"
+
+#: lib/accounts/user_live/registration.html.heex:45
+#, elixir-autogen, elixir-format
+msgid "Sign in"
+msgstr "Entrar"

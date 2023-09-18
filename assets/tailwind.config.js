@@ -7,7 +7,7 @@ const fs = require('fs');
 const path = require('path');
 
 module.exports = {
-  content: ['./js/**/*.js', '../lib/*_web.ex', '../lib/*_web/**/*.*ex'],
+  content: ['./js/**/*.js', '../lib/*.ex', '../lib/**/*.*ex'],
   theme: {
     colors: {
       transparent: 'transparent',
@@ -69,6 +69,7 @@ module.exports = {
   },
   plugins: [
     require('@tailwindcss/forms'),
+    require('@tailwindcss/container-queries'),
     // Allows prefixing tailwind classes with LiveView classes to add rules
     // only when LiveView classes are applied, for example:
     //
@@ -94,6 +95,12 @@ module.exports = {
         '.phx-change-loading&',
         '.phx-change-loading &',
       ])
+    ),
+    plugin(({ addVariant }) =>
+      addVariant('drag-item', ['.drag-item&', '.drag-item &'])
+    ),
+    plugin(({ addVariant }) =>
+      addVariant('drag-ghost', ['.drag-ghost&', '.drag-ghost &'])
     ),
 
     // Embeds Tabler Icons (https://tabler-icons.io/) into your app.css bundle

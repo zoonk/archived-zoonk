@@ -40,9 +40,10 @@ config :uneebee, UneebeeWeb.Endpoint,
 config :uneebee, UneebeeWeb.Endpoint,
   live_reload: [
     patterns: [
-      ~r"priv/static/.*(js|css|png|jpeg|jpg|gif|svg)$",
+      ## Ignore user uploads
+      ~r"priv/static/[^uploads].*(js|css|png|jpeg|jpg|gif|svg)$",
       ~r"priv/gettext/.*(po)$",
-      ~r"lib/uneebee_web/(controllers|live|components)/.*(ex|heex)$"
+      ~r"lib/(.*)/.*(ex|heex)$"
     ]
   ]
 
