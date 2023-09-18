@@ -49,7 +49,7 @@ defmodule UneebeeWeb.UserLoginLiveTest do
 
       conn = submit_form(form, conn)
 
-      assert Phoenix.Flash.get(conn.assigns.flash, :error) == "Invalid email or password"
+      assert Phoenix.Flash.get(conn.assigns.flash, :error) == "Invalid email or password."
 
       assert redirected_to(conn) == "/users/login"
     end

@@ -17,6 +17,8 @@ msgstr "não pode ficar em branco"
 msgid "has already been taken"
 msgstr "já está em uso"
 
+#: lib/accounts/user_schema.ex:178
+#, elixir-autogen
 msgid "is invalid"
 msgstr "é inválido"
 
@@ -105,3 +107,33 @@ msgstr "deve ser igual a %{number}"
 #, elixir-autogen, elixir-format
 msgid "can only contain letters, numbers, dashes and underscores"
 msgstr "pode conter apenas letras, números, traços e sublinhados"
+
+#: lib/accounts/user_schema.ex:76
+#, elixir-autogen, elixir-format
+msgid "at least one digit or punctuation character"
+msgstr "pelo menos um dígito ou sinal de pontuação"
+
+#: lib/accounts/user_schema.ex:73
+#, elixir-autogen, elixir-format
+msgid "at least one lower case character"
+msgstr "pelo menos uma letra minúsculo"
+
+#: lib/accounts/user_schema.ex:74
+#, elixir-autogen, elixir-format
+msgid "at least one upper case character"
+msgstr "pelo menos uma letra maiúscula"
+
+#: lib/accounts/user_schema.ex:120
+#, elixir-autogen, elixir-format
+msgid "did not change"
+msgstr "não foi alterado"
+
+#: lib/accounts/user_schema.ex:140
+#, elixir-autogen, elixir-format
+msgid "does not match password"
+msgstr "não é igual à senha"
+
+#: lib/accounts/user_schema.ex:64
+#, elixir-autogen, elixir-format
+msgid "must have the @ sign and no spaces"
+msgstr "deve ter arroba (@) e nenhum espaço"

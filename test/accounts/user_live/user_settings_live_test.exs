@@ -79,7 +79,7 @@ defmodule UneebeeWeb.UserSettingsLiveTest do
 
       assert result =~ "Change Email"
       assert result =~ "did not change"
-      assert result =~ "is not valid"
+      assert result =~ "is invalid"
     end
   end
 
@@ -155,7 +155,7 @@ defmodule UneebeeWeb.UserSettingsLiveTest do
       assert result =~ "Change Password"
       assert result =~ "should be at least 8 character(s)"
       assert result =~ "does not match password"
-      assert result =~ "is not valid"
+      assert result =~ "is invalid"
     end
   end
 

@@ -8,17 +8,17 @@ defmodule UneebeeWeb.Controller.Accounts.User.Session do
   @spec create(Plug.Conn.t(), map()) :: Plug.Conn.t()
   @spec create(Plug.Conn.t(), map(), String.t() | nil) :: Plug.Conn.t()
   def create(conn, %{"_action" => "registered"} = params) do
-    create(conn, params, "Account created successfully!")
+    create(conn, params, dgettext("auth", "Account created successfully!"))
   end
 
   def create(conn, %{"_action" => "password_updated"} = params) do
     conn
     |> put_session(:user_return_to, ~p"/users/settings")
-    |> create(params, "Password updated successfully!")
+    |> create(params, dgettext("auth", "Password updated successfully!"))
   end
 
   def create(conn, params) do
-    create(conn, params, "Welcome back!")
+    create(conn, params, nil)
   end
 
   defp create(conn, %{"user" => user_params}, info) do
@@ -31,7 +31,7 @@ defmodule UneebeeWeb.Controller.Accounts.User.Session do
     else
       # In order to prevent user enumeration attacks, don't disclose whether the email is registered.
       conn
-      |> put_flash(:error, "Invalid email or password")
+      |> put_flash(:error, dgettext("auth", "Invalid email or password."))
       |> put_flash(:email, String.slice(email, 0, 160))
       |> redirect(to: ~p"/users/login")
     end
@@ -39,8 +39,6 @@ defmodule UneebeeWeb.Controller.Accounts.User.Session do
 
   @spec delete(Plug.Conn.t(), map()) :: Plug.Conn.t()
   def delete(conn, _params) do
-    conn
-    |> put_flash(:info, "Logged out successfully.")
-    |> UserAuth.log_out_user()
+    UserAuth.log_out_user(conn)
   end
 end

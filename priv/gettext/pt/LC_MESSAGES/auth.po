@@ -91,3 +91,24 @@ msgstr "Enviar instruções para redefinir senha"
 #, elixir-autogen, elixir-format
 msgid "We'll send a password reset link to your inbox"
 msgstr "Enviaremos um link para o seu email para redefinir a senha"
+
+#: lib/accounts/user_session_controller.ex:11
+#, elixir-autogen, elixir-format
+msgid "Account created successfully!"
+msgstr "Conta criada com sucesso!"
+
+#: lib/accounts/user_session_controller.ex:34
+#, elixir-autogen, elixir-format
+msgid "Invalid email or password."
+msgstr "E-mail ou senha inválidos."
+
+#: lib/accounts/user_session_controller.ex:17
+#, elixir-autogen, elixir-format
+msgid "Password updated successfully!"
+msgstr "Senha atualizada com sucesso!"
+
+#: lib/accounts/user_auth_plug.ex:167
+#: lib/accounts/user_auth_plug.ex:218
+#, elixir-autogen, elixir-format
+msgid "You must log in to access this page."
+msgstr "É necessário estar logado para acessar esta página."

@@ -3,6 +3,7 @@ defmodule Uneebee.Accounts.User do
   use Ecto.Schema
 
   import Ecto.Changeset
+  import UneebeeWeb.Gettext
   import UneebeeWeb.Shared.Validators
 
   alias UneebeeWeb.Plugs.Translate
@@ -60,7 +61,7 @@ defmodule Uneebee.Accounts.User do
   defp validate_email(changeset, opts) do
     changeset
     |> validate_required([:email])
-    |> validate_format(:email, ~r/^[^\s]+@[^\s]+$/, message: "must have the @ sign and no spaces")
+    |> validate_format(:email, ~r/^[^\s]+@[^\s]+$/, message: dgettext("errors", "must have the @ sign and no spaces"))
     |> validate_length(:email, max: 160)
     |> maybe_validate_unique_email(opts)
   end
@@ -69,9 +70,11 @@ defmodule Uneebee.Accounts.User do
     changeset
     |> validate_required([:password])
     |> validate_length(:password, min: 8, max: 72)
-    |> validate_format(:password, ~r/[a-z]/, message: "at least one lower case character")
-    |> validate_format(:password, ~r/[A-Z]/, message: "at least one upper case character")
-    |> validate_format(:password, ~r/[!?@#$%^&*_0-9]/, message: "at least one digit or punctuation character")
+    |> validate_format(:password, ~r/[a-z]/, message: dgettext("errors", "at least one lower case character"))
+    |> validate_format(:password, ~r/[A-Z]/, message: dgettext("errors", "at least one upper case character"))
+    |> validate_format(:password, ~r/[!?@#$%^&*_0-9]/,
+      message: dgettext("errors", "at least one digit or punctuation character")
+    )
     |> maybe_hash_password(opts)
   end
 
@@ -114,7 +117,7 @@ defmodule Uneebee.Accounts.User do
     |> validate_email(opts)
     |> case do
       %{changes: %{email: _}} = changeset -> changeset
-      %{} = changeset -> add_error(changeset, :email, "did not change")
+      %{} = changeset -> add_error(changeset, :email, dgettext("errors", "did not change"))
     end
   end
 
@@ -134,7 +137,7 @@ defmodule Uneebee.Accounts.User do
   def password_changeset(user, attrs, opts \\ []) do
     user
     |> cast(attrs, [:password])
-    |> validate_confirmation(:password, message: "does not match password")
+    |> validate_confirmation(:password, message: dgettext("errors", "does not match password"))
     |> validate_password(opts)
   end
 
@@ -172,7 +175,7 @@ defmodule Uneebee.Accounts.User do
     if valid_password?(changeset.data, password) do
       changeset
     else
-      add_error(changeset, :current_password, "is not valid")
+      add_error(changeset, :current_password, dgettext("errors", "is invalid"))
     end
   end
 
