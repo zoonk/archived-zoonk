@@ -112,3 +112,39 @@ msgstr ""
 #, elixir-autogen, elixir-format
 msgid "You must log in to access this page."
 msgstr ""
+
+#: lib/accounts/user_live/settings.html.heex:3
+#, elixir-autogen, elixir-format
+msgid "Account settings"
+msgstr ""
+
+#: lib/accounts/user_live/settings.html.heex:21
+#, elixir-autogen, elixir-format
+msgid "Change Email"
+msgstr ""
+
+#: lib/accounts/user_live/settings.html.heex:53
+#, elixir-autogen, elixir-format
+msgid "Change Password"
+msgstr ""
+
+#: lib/accounts/user_live/settings.html.heex:40
+#, elixir-autogen, elixir-format
+msgid "Confirm new password"
+msgstr ""
+
+#: lib/accounts/user_live/settings.html.heex:15
+#: lib/accounts/user_live/settings.html.heex:47
+#, elixir-autogen, elixir-format
+msgid "Current password"
+msgstr ""
+
+#: lib/accounts/user_live/settings.html.heex:4
+#, elixir-autogen, elixir-format
+msgid "Manage your account email address and password settings"
+msgstr ""
+
+#: lib/accounts/user_live/settings.html.heex:35
+#, elixir-autogen, elixir-format
+msgid "New password"
+msgstr ""

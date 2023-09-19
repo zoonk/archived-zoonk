@@ -8,6 +8,19 @@
     />
 
     <.menu_item navigate={~p"/"} icon="tabler-ufo" active={@active_page == :live_home} title={gettext("Home")} />
+
+    <.menu_item
+      :if={@current_user}
+      navigate={~p"/users/settings"}
+      icon="tabler-settings"
+      title={gettext("Settings")}
+      active={user_settings?(@active_page)}
+    >
+      <:sub_menus>
+        <.sub_menu href={~p"/users/settings"} title={gettext("Update")} active={@active_page == :user_settings_edit} />
+        <.sub_menu href={~p"/users/logout"} method="delete" title={gettext("Logout")} />
+      </:sub_menus>
+    </.menu_item>
   </.menu>
 
   <%= @inner_content %>

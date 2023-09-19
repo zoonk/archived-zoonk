@@ -39,6 +39,7 @@ msgstr "fechar"
 #: lib/accounts/user_live/forgot_password.html.heex:7
 #: lib/accounts/user_live/login.html.heex:4
 #: lib/accounts/user_live/registration.html.heex:23
+#: lib/accounts/user_live/settings.html.heex:8
 #, elixir-autogen, elixir-format
 msgid "Email"
 msgstr "E-mail"
@@ -78,3 +79,29 @@ msgstr "Logo"
 #, elixir-autogen, elixir-format
 msgid "Sending..."
 msgstr ""
+
+#: lib/accounts/user_live/settings.html.heex:21
+#: lib/accounts/user_live/settings.html.heex:53
+#, elixir-autogen, elixir-format
+msgid "Changing..."
+msgstr "Alterando..."
+
+#: lib/layouts/templates/app.html.heex:21
+#, elixir-autogen, elixir-format, fuzzy
+msgid "Logout"
+msgstr "Sair"
+
+#: lib/layouts/templates/app.html.heex:16
+#, elixir-autogen, elixir-format
+msgid "Settings"
+msgstr "Configurações"
+
+#: lib/layouts/templates/app.html.heex:20
+#, elixir-autogen, elixir-format
+msgid "Update"
+msgstr "Atualizar"
+
+#: lib/accounts/user_live/settings.ex:35
+#, elixir-autogen, elixir-format
+msgid "Update settings"
+msgstr "Atualizar configurações"
