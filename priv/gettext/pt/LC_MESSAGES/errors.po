@@ -17,7 +17,7 @@ msgstr "não pode ficar em branco"
 msgid "has already been taken"
 msgstr "já está em uso"
 
-#: lib/accounts/user_schema.ex:178
+#: lib/accounts/user_schema.ex:189
 #, elixir-autogen
 msgid "is invalid"
 msgstr "é inválido"
@@ -128,7 +128,7 @@ msgstr "pelo menos uma letra maiúscula"
 msgid "did not change"
 msgstr "não foi alterado"
 
-#: lib/accounts/user_schema.ex:140
+#: lib/accounts/user_schema.ex:151
 #, elixir-autogen, elixir-format
 msgid "does not match password"
 msgstr "não é igual à senha"

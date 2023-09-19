@@ -19,7 +19,7 @@ msgid "has already been taken"
 msgstr ""
 
 ## From Ecto.Changeset.put_change/3
-#: lib/accounts/user_schema.ex:178
+#: lib/accounts/user_schema.ex:189
 #, elixir-autogen
 msgid "is invalid"
 msgstr ""
@@ -138,7 +138,7 @@ msgstr ""
 msgid "did not change"
 msgstr ""
 
-#: lib/accounts/user_schema.ex:140
+#: lib/accounts/user_schema.ex:151
 #, elixir-autogen, elixir-format
 msgid "does not match password"
 msgstr ""

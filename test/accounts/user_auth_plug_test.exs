@@ -1,7 +1,7 @@
 defmodule UneebeeWeb.UserAuthTest do
   use UneebeeWeb.ConnCase, async: true
 
-  import Uneebee.AccountsFixtures
+  import Uneebee.Fixtures.Accounts
 
   alias Phoenix.LiveView
   alias Uneebee.Accounts

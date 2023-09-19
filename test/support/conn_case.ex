@@ -17,6 +17,8 @@ defmodule UneebeeWeb.ConnCase do
 
   use ExUnit.CaseTemplate
 
+  import Uneebee.Fixtures.Accounts
+
   alias Plug.Conn
   alias Uneebee.Accounts.User
 
@@ -48,10 +50,11 @@ defmodule UneebeeWeb.ConnCase do
   It stores an updated connection and a registered user in the
   test context.
   """
-  @spec register_and_log_in_user(%{conn: Conn.t()}) :: %{conn: Conn.t(), user: User.t()}
+  @spec register_and_log_in_user(%{conn: Conn.t()}) :: %{conn: Conn.t(), user: User.t(), password: String.t()}
   def register_and_log_in_user(%{conn: conn}) do
-    user = Uneebee.AccountsFixtures.user_fixture()
-    %{conn: log_in_user(conn, user), user: user}
+    attrs = valid_user_attributes()
+    user = user_fixture(attrs)
+    %{conn: log_in_user(conn, user), user: user, password: attrs.password}
   end
 
   @doc """

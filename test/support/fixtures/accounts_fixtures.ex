@@ -1,4 +1,4 @@
-defmodule Uneebee.AccountsFixtures do
+defmodule Uneebee.Fixtures.Accounts do
   @moduledoc """
   This module defines test helpers for creating
   entities via the `Uneebee.Accounts` context.

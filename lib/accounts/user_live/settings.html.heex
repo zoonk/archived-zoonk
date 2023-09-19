@@ -1,56 +1,121 @@
-<article class="space-y-8">
-  <.header>
-    <%= dgettext("auth", "Account settings") %>
-    <:subtitle><%= dgettext("auth", "Manage your account email address and password settings") %></:subtitle>
-  </.header>
+<.simple_form
+  :if={@live_action not in [:email, :password]}
+  for={@settings_form}
+  id="settings-form"
+  phx-submit="update_settings"
+  phx-change="validate_settings"
+>
+  <.input
+    :if={@live_action == :language}
+    field={@settings_form[:language]}
+    type="select"
+    label={gettext("Language")}
+    options={UneebeeWeb.Plugs.Translate.language_options()}
+    value={@current_user.language}
+    required
+  />
 
-  <.simple_form for={@email_form} id="email_form" phx-submit="update_email" phx-change="validate_email">
-    <.input field={@email_form[:email]} type="email" label={gettext("Email")} required />
+  <.input
+    :if={@live_action == :username}
+    field={@settings_form[:username]}
+    type="text"
+    label={gettext("Username")}
+    autocomplete="username"
+    required
+    value={@current_user.username}
+  />
 
-    <.input
-      field={@email_form[:current_password]}
-      name="current_password"
-      id="current_password_for_email"
-      type="password"
-      label={dgettext("auth", "Current password")}
-      value={@email_form_current_password}
-      required
-    />
+  <.input
+    :if={@live_action == :name}
+    field={@settings_form[:first_name]}
+    type="text"
+    label={gettext("First Name")}
+    autocomplete="given-name"
+    required
+    value={@current_user.first_name}
+  />
 
-    <:actions>
-      <.button phx-disable-with={gettext("Changing...")}><%= dgettext("auth", "Change Email") %></.button>
-    </:actions>
-  </.simple_form>
+  <.input
+    :if={@live_action == :name}
+    field={@settings_form[:last_name]}
+    type="text"
+    label={gettext("Last Name")}
+    autocomplete="family-name"
+    required
+    value={@current_user.last_name}
+  />
 
-  <.simple_form
-    for={@password_form}
-    id="password_form"
-    action={~p"/users/login?_action=password_updated"}
-    method="post"
-    phx-change="validate_password"
-    phx-submit="update_password"
-    phx-trigger-action={@trigger_submit}
-  >
-    <.input field={@password_form[:email]} type="hidden" id="hidden_user_email" value={@current_email} />
-    <.input field={@password_form[:password]} type="password" label={dgettext("auth", "New password")} required />
+  <:actions>
+    <.button phx-disable-with={gettext("Saving...")}><%= gettext("Save") %></.button>
+  </:actions>
+</.simple_form>
 
-    <.input
-      field={@password_form[:password_confirmation]}
-      type="password"
-      label={dgettext("auth", "Confirm new password")}
-    />
+<.simple_form
+  :if={@live_action == :email}
+  for={@email_form}
+  id="email-form"
+  phx-submit="update_email"
+  phx-change="validate_email"
+>
+  <.input field={@email_form[:email]} type="email" label="Email" required />
 
-    <.input
-      field={@password_form[:current_password]}
-      name="current_password"
-      type="password"
-      label={dgettext("auth", "Current password")}
-      id="current_password_for_password"
-      value={@current_password}
-      required
-    />
-    <:actions>
-      <.button phx-disable-with={gettext("Changing...")}><%= dgettext("auth", "Change Password") %></.button>
-    </:actions>
-  </.simple_form>
-</article>
+  <.input
+    field={@email_form[:current_password]}
+    name="current_password"
+    id="current_password_for_email"
+    type="password"
+    label={dgettext("auth", "Current password")}
+    value={@email_form_current_password}
+    required
+  />
+
+  <:actions>
+    <.button icon="tabler-mail-check" phx-disable-with={gettext("Changing...")}>
+      <%= dgettext("auth", "Change Email") %>
+    </.button>
+  </:actions>
+</.simple_form>
+
+<.simple_form
+  :if={@live_action == :password}
+  for={@password_form}
+  id="password-form"
+  action={~p"/users/login?_action=password_updated"}
+  method="post"
+  phx-change="validate_password"
+  phx-submit="update_password"
+  phx-trigger-action={@trigger_submit}
+>
+  <.input field={@password_form[:email]} id="current_email_for_password" type="hidden" value={@current_user.email} />
+
+  <.input
+    field={@password_form[:current_password]}
+    name="current_password"
+    type="password"
+    label={dgettext("auth", "Current password")}
+    id="current_password_for_password"
+    value={@current_password}
+    required
+  />
+
+  <.input
+    field={@password_form[:password]}
+    type="password"
+    label={dgettext("auth", "New password")}
+    autocomplete="new-password"
+    required
+  />
+
+  <.input
+    field={@password_form[:password_confirmation]}
+    type="password"
+    label={dgettext("auth", "Confirm new password")}
+    autocomplete="new-password"
+  />
+
+  <:actions>
+    <.button icon="tabler-lock-check" phx-disable-with={gettext("Changing...")}>
+      <%= dgettext("auth", "Change Password") %>
+    </.button>
+  </:actions>
+</.simple_form>

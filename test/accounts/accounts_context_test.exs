@@ -1,7 +1,7 @@
 defmodule Uneebee.AccountsTest do
   use Uneebee.DataCase, async: true
 
-  import Uneebee.AccountsFixtures
+  import Uneebee.Fixtures.Accounts
 
   alias Uneebee.Accounts
   alias Uneebee.Accounts.User
@@ -98,7 +98,7 @@ defmodule Uneebee.AccountsTest do
   describe "change_user_registration/2" do
     test "returns a changeset" do
       assert %Ecto.Changeset{} = changeset = Accounts.change_user_registration(%User{})
-      assert changeset.required == [:username, :password, :email, :language]
+      assert changeset.required == [:language, :username, :password, :email]
     end
 
     test "allows fields to be set" do
@@ -122,6 +122,36 @@ defmodule Uneebee.AccountsTest do
     test "returns a user changeset" do
       assert %Ecto.Changeset{} = changeset = Accounts.change_user_email(%User{})
       assert changeset.required == [:email]
+    end
+  end
+
+  describe "change_user_settings/2" do
+    test "returns a user changeset" do
+      assert %Ecto.Changeset{} = changeset = Accounts.change_user_settings(%User{})
+      assert changeset.required == [:username, :language]
+    end
+  end
+
+  describe "update_user_settings/2" do
+    test "updates the username when valid" do
+      user = user_fixture()
+      {:ok, updated_user} = Accounts.update_user_settings(user, %{username: "newusername"})
+      assert updated_user.username == "newusername"
+    end
+
+    test "does not update the username when length is lower than 3 characters" do
+      user = user_fixture()
+      {:error, changeset} = Accounts.update_user_settings(user, %{username: "sh"})
+      assert "should be at least 3 character(s)" in errors_on(changeset).username
+    end
+
+    test "does not update the username when there's already another user with that same username" do
+      user1 = user_fixture(username: "user1")
+      user2 = user_fixture(username: "user2")
+
+      {:error, changeset} = Accounts.update_user_settings(user2, %{username: user1.username})
+
+      assert "has already been taken" in errors_on(changeset).username
     end
   end
 

@@ -2,7 +2,7 @@ defmodule UneebeeWeb.UserLoginLiveTest do
   use UneebeeWeb.ConnCase, async: true
 
   import Phoenix.LiveViewTest
-  import Uneebee.AccountsFixtures
+  import Uneebee.Fixtures.Accounts
 
   describe "Log in page" do
     test "renders log in page", %{conn: conn} do

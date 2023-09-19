@@ -45,7 +45,12 @@ defmodule UneebeeWeb.Router do
         {UneebeeWeb.Plugs.Translate, :set_locale_from_session},
         UneebeeWeb.Plugs.ActivePage
       ] do
-      live "/users/settings", Settings, :edit
+      live "/users/settings/email", Settings, :email
+      live "/users/settings/language", Settings, :language
+      live "/users/settings/name", Settings, :name
+      live "/users/settings/password", Settings, :password
+      live "/users/settings/username", Settings, :username
+
       live "/users/settings/confirm_email/:token", Settings, :confirm_email
     end
   end

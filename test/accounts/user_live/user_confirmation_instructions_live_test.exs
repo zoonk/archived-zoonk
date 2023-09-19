@@ -2,7 +2,7 @@ defmodule UneebeeWeb.UserConfirmationInstructionsLiveTest do
   use UneebeeWeb.ConnCase, async: true
 
   import Phoenix.LiveViewTest
-  import Uneebee.AccountsFixtures
+  import Uneebee.Fixtures.Accounts
 
   alias Uneebee.Accounts
   alias Uneebee.Repo

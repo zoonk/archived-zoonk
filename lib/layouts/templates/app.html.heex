@@ -11,18 +11,47 @@
 
     <.menu_item
       :if={@current_user}
-      navigate={~p"/users/settings"}
+      navigate={~p"/users/settings/language"}
       icon="tabler-settings"
-      title={gettext("Settings")}
       active={user_settings?(@active_page)}
+      title={gettext("Settings")}
     >
       <:sub_menus>
-        <.sub_menu href={~p"/users/settings"} title={gettext("Update")} active={@active_page == :user_settings_edit} />
+        <.sub_menu
+          navigate={~p"/users/settings/language"}
+          active={@active_page == :user_settings_language}
+          title={gettext("Language")}
+        />
+
+        <.sub_menu
+          navigate={~p"/users/settings/username"}
+          active={@active_page == :user_settings_username}
+          title={gettext("Username")}
+        />
+
+        <.sub_menu
+          navigate={~p"/users/settings/name"}
+          active={@active_page == :user_settings_name}
+          title={gettext("Name")}
+        />
+
+        <.sub_menu
+          navigate={~p"/users/settings/email"}
+          active={@active_page == :user_settings_email}
+          title={gettext("Email")}
+        />
+
+        <.sub_menu
+          navigate={~p"/users/settings/password"}
+          active={@active_page == :user_settings_password}
+          title={dgettext("auth", "Password")}
+        />
+
         <.sub_menu href={~p"/users/logout"} method="delete" title={gettext("Logout")} />
       </:sub_menus>
     </.menu_item>
   </.menu>
 
-  <%= @inner_content %>
+  <section class="w-full"><%= @inner_content %></section>
   <.flash_group flash={@flash} />
 </main>

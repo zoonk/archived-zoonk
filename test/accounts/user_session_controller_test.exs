@@ -1,7 +1,7 @@
 defmodule UneebeeWeb.UserSessionControllerTest do
   use UneebeeWeb.ConnCase, async: true
 
-  import Uneebee.AccountsFixtures
+  import Uneebee.Fixtures.Accounts
 
   setup do
     %{user: user_fixture()}
@@ -68,7 +68,7 @@ defmodule UneebeeWeb.UserSessionControllerTest do
           "user" => %{"email" => user.email, "password" => valid_user_password()}
         })
 
-      assert redirected_to(conn) == ~p"/users/settings"
+      assert redirected_to(conn) == ~p"/users/settings/password"
       assert Phoenix.Flash.get(conn.assigns.flash, :info) =~ "Password updated successfully"
     end
 

@@ -2,7 +2,7 @@ defmodule UneebeeWeb.UserRegistrationLiveTest do
   use UneebeeWeb.ConnCase, async: true
 
   import Phoenix.LiveViewTest
-  import Uneebee.AccountsFixtures
+  import Uneebee.Fixtures.Accounts
 
   describe "Registration page" do
     test "renders registration page", %{conn: conn} do

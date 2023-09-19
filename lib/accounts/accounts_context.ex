@@ -104,6 +104,37 @@ defmodule Uneebee.Accounts do
   ## Settings
 
   @doc """
+  Returns an `%Ecto.Changeset{}` for changing the user settings.
+
+  ## Examples
+
+      iex> change_user_settings(user)
+      %Ecto.Changeset{data: %User{}}
+
+  """
+  @spec change_user_settings(User.t(), map()) :: Ecto.Changeset.t()
+  def change_user_settings(user, attrs \\ %{}) do
+    User.settings_changeset(user, attrs)
+  end
+
+  @doc """
+  Updates the user settings.
+
+  ## Examples
+
+      iex> update_user_settings(user, %{username: ...})
+      {:ok, %User{}}
+
+      iex> update_user_settings(user, %{username: ...})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  @spec update_user_settings(User.t(), map()) :: user_changeset
+  def update_user_settings(user, attrs \\ %{}) do
+    user |> User.settings_changeset(attrs) |> Repo.update()
+  end
+
+  @doc """
   Returns an `%Ecto.Changeset{}` for changing the user email.
 
   ## Examples

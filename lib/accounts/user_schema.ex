@@ -52,10 +52,10 @@ defmodule Uneebee.Accounts.User do
   def registration_changeset(user, attrs, opts \\ []) do
     user
     |> cast(attrs, [:avatar, :date_of_birth, :email, :first_name, :language, :last_name, :password, :username])
-    |> validate_required([:language])
     |> validate_email(opts)
     |> validate_password(opts)
     |> validate_username(opts)
+    |> validate_settings()
   end
 
   defp validate_email(changeset, opts) do
@@ -119,6 +119,17 @@ defmodule Uneebee.Accounts.User do
       %{changes: %{email: _}} = changeset -> changeset
       %{} = changeset -> add_error(changeset, :email, dgettext("errors", "did not change"))
     end
+  end
+
+  @doc """
+  A user changeset for changing the username.
+  """
+  @spec settings_changeset(Ecto.Schema.t(), map(), Keyword.t()) :: Ecto.Changeset.t()
+  def settings_changeset(user, attrs, opts \\ []) do
+    user
+    |> cast(attrs, [:first_name, :last_name, :language, :username])
+    |> validate_settings()
+    |> validate_username(opts)
   end
 
   @doc """
@@ -193,5 +204,9 @@ defmodule Uneebee.Accounts.User do
     else
       changeset
     end
+  end
+
+  defp validate_settings(changeset) do
+    validate_required(changeset, [:language])
   end
 end

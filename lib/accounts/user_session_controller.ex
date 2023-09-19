@@ -13,7 +13,7 @@ defmodule UneebeeWeb.Controller.Accounts.User.Session do
 
   def create(conn, %{"_action" => "password_updated"} = params) do
     conn
-    |> put_session(:user_return_to, ~p"/users/settings")
+    |> put_session(:user_return_to, ~p"/users/settings/password")
     |> create(params, dgettext("auth", "Password updated successfully!"))
   end
 

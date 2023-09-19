@@ -39,12 +39,14 @@ msgstr ""
 #: lib/accounts/user_live/forgot_password.html.heex:7
 #: lib/accounts/user_live/login.html.heex:4
 #: lib/accounts/user_live/registration.html.heex:23
-#: lib/accounts/user_live/settings.html.heex:8
+#: lib/layouts/templates/app.html.heex:41
 #, elixir-autogen, elixir-format
 msgid "Email"
 msgstr ""
 
 #: lib/accounts/user_live/registration.html.heex:18
+#: lib/accounts/user_live/settings.html.heex:12
+#: lib/layouts/templates/app.html.heex:23
 #, elixir-autogen, elixir-format
 msgid "Language"
 msgstr ""
@@ -55,11 +57,14 @@ msgid "Oops, something went wrong! Please check the errors below."
 msgstr ""
 
 #: lib/accounts/user_live/registration.html.heex:36
+#: lib/accounts/user_live/settings.html.heex:49
 #, elixir-autogen, elixir-format
 msgid "Saving..."
 msgstr ""
 
 #: lib/accounts/user_live/registration.html.heex:25
+#: lib/accounts/user_live/settings.html.heex:22
+#: lib/layouts/templates/app.html.heex:29
 #, elixir-autogen, elixir-format
 msgid "Username"
 msgstr ""
@@ -80,28 +85,39 @@ msgstr ""
 msgid "Sending..."
 msgstr ""
 
-#: lib/accounts/user_live/settings.html.heex:21
-#: lib/accounts/user_live/settings.html.heex:53
+#: lib/accounts/user_live/settings.html.heex:73
+#: lib/accounts/user_live/settings.html.heex:117
 #, elixir-autogen, elixir-format
 msgid "Changing..."
 msgstr ""
 
-#: lib/layouts/templates/app.html.heex:21
+#: lib/layouts/templates/app.html.heex:50
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Logout"
 msgstr ""
 
-#: lib/layouts/templates/app.html.heex:16
+#: lib/accounts/user_live/settings.ex:32
+#: lib/layouts/templates/app.html.heex:17
 #, elixir-autogen, elixir-format
 msgid "Settings"
 msgstr ""
 
-#: lib/layouts/templates/app.html.heex:20
+#: lib/accounts/user_live/settings.html.heex:32
 #, elixir-autogen, elixir-format
-msgid "Update"
+msgid "First Name"
 msgstr ""
 
-#: lib/accounts/user_live/settings.ex:35
+#: lib/accounts/user_live/settings.html.heex:42
 #, elixir-autogen, elixir-format
-msgid "Update settings"
+msgid "Last Name"
+msgstr ""
+
+#: lib/accounts/user_live/settings.html.heex:49
+#, elixir-autogen, elixir-format
+msgid "Save"
+msgstr ""
+
+#: lib/layouts/templates/app.html.heex:35
+#, elixir-autogen, elixir-format
+msgid "Name"
 msgstr ""
