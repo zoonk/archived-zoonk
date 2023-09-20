@@ -52,4 +52,20 @@ defmodule Uneebee.Organizations do
   def update_school(%School{} = school, attrs \\ %{}) do
     school |> change_school(attrs) |> Repo.update()
   end
+
+  @doc """
+  Get a school by slug.
+
+  ## Examples
+
+      iex> get_school_by_slug!("slug")
+      %School{}
+
+      iex> get_school_by_slug!("invalid_slug")
+      ** (Ecto.NoResultsError)
+  """
+  @spec get_school_by_slug!(String.t()) :: School.t()
+  def get_school_by_slug!(slug) do
+    Repo.get_by!(School, slug: slug)
+  end
 end

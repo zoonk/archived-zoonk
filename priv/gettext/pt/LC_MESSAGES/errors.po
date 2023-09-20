@@ -139,11 +139,6 @@ msgstr "não é igual à senha"
 msgid "must have the @ sign and no spaces"
 msgstr "deve ter arroba (@) e nenhum espaço"
 
-#: lib/organizations/school_schema.ex:53
-#, elixir-autogen, elixir-format
-msgid "cannot be changed"
-msgstr "não pode ser alterado"
-
 #: lib/organizations/school_schema.ex:35
 #, elixir-autogen, elixir-format
 msgid "must start with / or https://"

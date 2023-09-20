@@ -146,11 +146,6 @@ msgstr ""
 msgid "must have the @ sign and no spaces"
 msgstr ""
 
-#: lib/organizations/school_schema.ex:53
-#, elixir-autogen, elixir-format
-msgid "cannot be changed"
-msgstr ""
-
 #: lib/organizations/school_schema.ex:35
 #, elixir-autogen, elixir-format
 msgid "must start with / or https://"

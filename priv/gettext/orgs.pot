@@ -1,0 +1,49 @@
+## This file is a PO Template file.
+##
+## "msgid"s here are often extracted from source code.
+## Add new messages manually only if they're dynamic
+## messages that can't be statically extracted.
+##
+## Run "mix gettext.extract" to bring this file up to
+## date. Leave "msgstr"s empty as changing them here has no
+## effect: edit them in PO (.po) files instead.
+#
+msgid ""
+msgstr ""
+
+#: lib/organizations/school_live/new.html.heex:11
+#, elixir-autogen, elixir-format
+msgid "Choose a nickname to acess your school profile"
+msgstr ""
+
+#: lib/organizations/school_live/new.ex:13
+#: lib/organizations/school_live/new.html.heex:2
+#: lib/organizations/school_live/new.html.heex:16
+#, elixir-autogen, elixir-format
+msgid "Create school"
+msgstr ""
+
+#: lib/organizations/school_live/new.html.heex:10
+#, elixir-autogen, elixir-format
+msgid "Nickname"
+msgstr ""
+
+#: lib/organizations/school_live/new.ex:46
+#, elixir-autogen, elixir-format
+msgid "School could not be created"
+msgstr ""
+
+#: lib/organizations/school_live/new.ex:40
+#, elixir-autogen, elixir-format
+msgid "School created successfully"
+msgstr ""
+
+#: lib/organizations/school_live/new.html.heex:5
+#, elixir-autogen, elixir-format
+msgid "School email"
+msgstr ""
+
+#: lib/organizations/school_live/new.html.heex:4
+#, elixir-autogen, elixir-format
+msgid "School name"
+msgstr ""

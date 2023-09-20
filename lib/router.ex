@@ -51,7 +51,8 @@ defmodule UneebeeWeb.Router do
     end
   end
 
-  scope "/", UneebeeWeb.Live.Accounts.User do
+  # Requires authentication
+  scope "/", UneebeeWeb.Live do
     pipe_through [:browser, :require_authenticated_user]
 
     live_session :require_authenticated_user,
@@ -60,13 +61,15 @@ defmodule UneebeeWeb.Router do
         {UneebeeWeb.Plugs.Translate, :set_locale_from_session},
         UneebeeWeb.Plugs.ActivePage
       ] do
-      live "/users/settings/email", Settings, :email
-      live "/users/settings/language", Settings, :language
-      live "/users/settings/name", Settings, :name
-      live "/users/settings/password", Settings, :password
-      live "/users/settings/username", Settings, :username
+      live "/schools/new", Organizations.School.New
 
-      live "/users/settings/confirm_email/:token", Settings, :confirm_email
+      live "/users/settings/email", Accounts.User.Settings, :email
+      live "/users/settings/language", Accounts.User.Settings, :language
+      live "/users/settings/name", Accounts.User.Settings, :name
+      live "/users/settings/password", Accounts.User.Settings, :password
+      live "/users/settings/username", Accounts.User.Settings, :username
+
+      live "/users/settings/confirm_email/:token", Accounts.User.Settings, :confirm_email
     end
   end
 

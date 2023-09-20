@@ -139,4 +139,15 @@ defmodule Uneebee.OrganizationsTest do
       assert {:error, %Ecto.Changeset{}} = Organizations.update_school(school, invalid_attrs)
     end
   end
+
+  describe "get_school_by_slug!/1" do
+    test "returns the school with given id" do
+      school = school_fixture()
+      assert Organizations.get_school_by_slug!(school.slug) == school
+    end
+
+    test "raises an error if the school doesn't exist" do
+      assert_raise Ecto.NoResultsError, fn -> Organizations.get_school_by_slug!("invalid") end
+    end
+  end
 end

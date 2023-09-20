@@ -58,6 +58,7 @@ msgstr ""
 
 #: lib/accounts/user_live/registration.html.heex:36
 #: lib/accounts/user_live/settings.html.heex:49
+#: lib/organizations/school_live/new.html.heex:15
 #, elixir-autogen, elixir-format
 msgid "Saving..."
 msgstr ""

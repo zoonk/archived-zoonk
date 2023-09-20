@@ -1,0 +1,49 @@
+## "msgid"s in this file come from POT (.pot) files.
+###
+### Do not add, change, or remove "msgid"s manually here as
+### they're tied to the ones in the corresponding POT file
+### (with the same domain).
+###
+### Use "mix gettext.extract --merge" or "mix gettext.merge"
+### to merge POT files into PO files.
+msgid ""
+msgstr ""
+"Language: en\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: lib/organizations/school_live/new.html.heex:11
+#, elixir-autogen, elixir-format
+msgid "Choose a nickname to acess your school profile"
+msgstr ""
+
+#: lib/organizations/school_live/new.ex:13
+#: lib/organizations/school_live/new.html.heex:2
+#: lib/organizations/school_live/new.html.heex:16
+#, elixir-autogen, elixir-format
+msgid "Create school"
+msgstr ""
+
+#: lib/organizations/school_live/new.html.heex:10
+#, elixir-autogen, elixir-format
+msgid "Nickname"
+msgstr ""
+
+#: lib/organizations/school_live/new.ex:46
+#, elixir-autogen, elixir-format
+msgid "School could not be created"
+msgstr ""
+
+#: lib/organizations/school_live/new.ex:40
+#, elixir-autogen, elixir-format
+msgid "School created successfully"
+msgstr ""
+
+#: lib/organizations/school_live/new.html.heex:5
+#, elixir-autogen, elixir-format
+msgid "School email"
+msgstr ""
+
+#: lib/organizations/school_live/new.html.heex:4
+#, elixir-autogen, elixir-format
+msgid "School name"
+msgstr ""
