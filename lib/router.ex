@@ -1,6 +1,7 @@
 defmodule UneebeeWeb.Router do
   use UneebeeWeb, :router
 
+  import UneebeeWeb.Plugs.School
   import UneebeeWeb.Plugs.Translate
   import UneebeeWeb.UserAuth
 
@@ -14,6 +15,7 @@ defmodule UneebeeWeb.Router do
     plug :protect_from_forgery
     plug :put_secure_browser_headers, %{"content-security-policy" => "default-src 'self'; img-src 'self' data: blob:;"}
     plug :fetch_current_user
+    plug :host_school_setup
     plug :set_session_locale
   end
 

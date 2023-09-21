@@ -29,10 +29,9 @@ defmodule UneebeeWeb.NewSchoolLiveTest do
       assert school.name == attrs.name
     end
 
-    test "renders error when slug is duplicated", %{conn: conn} do
-      existing_school = school_fixture()
-      {:ok, lv, _html} = live(conn, ~p"/schools/new")
-      assert field_change(lv, %{slug: existing_school.slug}) =~ "has already been taken"
+    test "renders an error if the school is configured", %{conn: conn} do
+      school_fixture()
+      assert_error_sent 403, fn -> get(conn, ~p"/schools/new") end
     end
   end
 
@@ -41,9 +40,5 @@ defmodule UneebeeWeb.NewSchoolLiveTest do
       result = get(conn, ~p"/schools/new")
       assert redirected_to(result) =~ "/login"
     end
-  end
-
-  defp field_change(lv, changes) do
-    lv |> element(@school_form) |> render_change(school: changes)
   end
 end

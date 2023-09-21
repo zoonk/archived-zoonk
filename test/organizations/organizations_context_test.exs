@@ -150,4 +150,15 @@ defmodule Uneebee.OrganizationsTest do
       assert_raise Ecto.NoResultsError, fn -> Organizations.get_school_by_slug!("invalid") end
     end
   end
+
+  describe "is_school_configured?/0" do
+    test "returns true if there's a school configured" do
+      school_fixture()
+      assert Organizations.school_configured?()
+    end
+
+    test "returns false if there's no school configured" do
+      assert !Organizations.school_configured?()
+    end
+  end
 end

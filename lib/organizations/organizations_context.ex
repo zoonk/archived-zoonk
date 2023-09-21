@@ -68,4 +68,20 @@ defmodule Uneebee.Organizations do
   def get_school_by_slug!(slug) do
     Repo.get_by!(School, slug: slug)
   end
+
+  @doc """
+  Checks if there's a school configured.
+
+  ## Examples
+
+      iex> school_configured?()
+      true
+
+      iex> school_configured?()
+      false
+  """
+  @spec school_configured?() :: boolean()
+  def school_configured? do
+    Repo.exists?(School)
+  end
 end
