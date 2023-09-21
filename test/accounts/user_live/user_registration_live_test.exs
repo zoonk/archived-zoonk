@@ -3,6 +3,7 @@ defmodule UneebeeWeb.UserRegistrationLiveTest do
 
   import Phoenix.LiveViewTest
   import Uneebee.Fixtures.Accounts
+  import Uneebee.Fixtures.Organizations
 
   describe "Registration page" do
     test "renders registration page", %{conn: conn} do
@@ -46,6 +47,8 @@ defmodule UneebeeWeb.UserRegistrationLiveTest do
     end
 
     test "creates account and logs the user in", %{conn: conn} do
+      school_fixture()
+
       {:ok, lv, _html} = live(conn, ~p"/users/register")
 
       email = unique_user_email()

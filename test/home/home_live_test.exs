@@ -2,9 +2,12 @@ defmodule UneebeeWeb.HomeLiveTest do
   use UneebeeWeb.ConnCase, async: true
 
   import Phoenix.LiveViewTest
+  import Uneebee.Fixtures.Organizations
 
   describe "home page (not authenticated)" do
     test "renders the page", %{conn: conn} do
+      school_fixture()
+
       {:ok, lv, _html} = live(conn, ~p"/")
 
       assert has_element?(lv, ~s|a span:fl-icontains("sign in")|)
@@ -15,7 +18,14 @@ defmodule UneebeeWeb.HomeLiveTest do
   describe "home page (authenticated)" do
     setup :register_and_log_in_user
 
+    test "redirects to the setup page when school isn't configured", %{conn: conn} do
+      result = get(conn, ~p"/")
+      assert redirected_to(result) == ~p"/schools/new"
+    end
+
     test "renders the page", %{conn: conn} do
+      school_fixture()
+
       {:ok, lv, _html} = live(conn, ~p"/")
 
       refute has_element?(lv, ~s|a span:fl-icontains("sign in")|)

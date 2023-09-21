@@ -15,7 +15,8 @@ defmodule UneebeeWeb.Router do
     plug :protect_from_forgery
     plug :put_secure_browser_headers, %{"content-security-policy" => "default-src 'self'; img-src 'self' data: blob:;"}
     plug :fetch_current_user
-    plug :host_school_setup
+    plug :check_school_setup
+    plug :setup_school
     plug :set_session_locale
   end
 

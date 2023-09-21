@@ -2,6 +2,7 @@ defmodule UneebeeWeb.UserSessionControllerTest do
   use UneebeeWeb.ConnCase, async: true
 
   import Uneebee.Fixtures.Accounts
+  import Uneebee.Fixtures.Organizations
 
   setup do
     %{user: user_fixture()}
@@ -9,6 +10,8 @@ defmodule UneebeeWeb.UserSessionControllerTest do
 
   describe "POST /users/login" do
     test "logs the user in", %{conn: conn, user: user} do
+      school_fixture()
+
       conn =
         post(conn, ~p"/users/login", %{
           "user" => %{"email" => user.email, "password" => valid_user_password()}
