@@ -1,10 +1,12 @@
 defmodule Uneebee.OrganizationsTest do
   use Uneebee.DataCase, async: true
 
+  import Uneebee.Fixtures.Accounts
   import Uneebee.Fixtures.Organizations
 
   alias Uneebee.Organizations
   alias Uneebee.Organizations.School
+  alias Uneebee.Organizations.SchoolUser
 
   describe "change_school/2" do
     test "returns a school changeset" do
@@ -159,6 +161,66 @@ defmodule Uneebee.OrganizationsTest do
 
     test "returns false if there's no school configured" do
       assert !Organizations.school_configured?()
+    end
+  end
+
+  test "add a school student" do
+    school = school_fixture()
+    user = user_fixture()
+
+    assert {:ok, %SchoolUser{} = school_user} = Organizations.create_school_user(school, user, %{role: :student})
+
+    assert school_user.role == :student
+    assert school_user.school_id == school.id
+    assert school_user.user_id == user.id
+  end
+
+  test "add a school teacher" do
+    school = school_fixture()
+    user = user_fixture()
+
+    assert {:ok, %SchoolUser{} = school_user} = Organizations.create_school_user(school, user, %{role: :teacher})
+
+    assert school_user.role == :teacher
+    assert school_user.school_id == school.id
+    assert school_user.user_id == user.id
+  end
+
+  test "add a school manager" do
+    school = school_fixture()
+    user = user_fixture()
+
+    assert {:ok, %SchoolUser{} = school_user} = Organizations.create_school_user(school, user, %{role: :manager})
+
+    assert school_user.role == :manager
+    assert school_user.school_id == school.id
+    assert school_user.user_id == user.id
+  end
+
+  test "returns an error if the role is invalid" do
+    school = school_fixture()
+    user = user_fixture()
+
+    assert {:error, %Ecto.Changeset{}} = Organizations.create_school_user(school, user, %{role: :invalid})
+  end
+
+  test "only adds a user if they haven't been added to the school yet" do
+    school = school_fixture(%{username: "user-#{System.unique_integer()}"})
+    %{user: user} = school_user_fixture(%{role: :teacher, school: school, preload: :user})
+
+    assert {:error, %Ecto.Changeset{}} = Organizations.create_school_user(school, user, %{role: :student})
+
+    school_user = Organizations.get_school_user_by_slug_and_username(school.slug, user.username)
+    assert school_user.role == :teacher
+  end
+
+  describe "get_school_user_by_slug_and_username/2" do
+    test "returns a school user" do
+      school = school_fixture()
+      user = user_fixture()
+      school_user = school_user_fixture(%{school: school, user: user})
+
+      assert Organizations.get_school_user_by_slug_and_username(school.slug, user.username) == school_user
     end
   end
 end
