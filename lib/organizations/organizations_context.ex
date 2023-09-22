@@ -154,4 +154,39 @@ defmodule Uneebee.Organizations do
     |> join(:inner, [su], u in assoc(su, :user), on: u.username == ^username)
     |> Repo.one()
   end
+
+  @doc """
+  Gets a single school based on the `host` value.
+
+  ## Examples
+
+      iex> get_school_by_host!("unisc.uneebee.com")
+      %School{}
+
+      iex> get_school_by_host!("interactive.rug.nl")
+      %School{}
+
+      iex> get_school_by_host!("nonexisting.com")
+      nil
+  """
+  @spec get_school_by_host!(String.t()) :: School.t() | nil
+  def get_school_by_host!(host) do
+    [subdomain | domain_parts] = String.split(host, ".")
+    domain = Enum.join(domain_parts, ".")
+
+    school =
+      School
+      # Try to find a match for either the full `host` value or the `domain` without the subdomain.
+      |> where([school], school.custom_domain in [^host, ^domain])
+      |> Repo.one()
+
+    # If it matches the `domain` value, we need to check if the subdomain is a valid slug.
+    # For example, the `slug` should exist but also belong to the school whose `custom_domain` is match.
+    # See the `get_school_by_host!/1` tests for examples.
+    if school && school.custom_domain == domain do
+      Repo.get_by!(School, slug: subdomain, school_id: school.id)
+    else
+      school
+    end
+  end
 end

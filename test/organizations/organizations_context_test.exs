@@ -277,4 +277,44 @@ defmodule Uneebee.OrganizationsTest do
       assert Organizations.get_school_user_by_slug_and_username(school.slug, user.username) == school_user
     end
   end
+
+  describe "get_school_by_host!/1" do
+    test "returns the school depending on the subdomain value" do
+      school1 = school_fixture(%{custom_domain: "uneebee.com"})
+      school2 = school_fixture(%{slug: "unisc", school_id: school1.id})
+
+      assert Organizations.get_school_by_host!("unisc.uneebee.com") == school2
+    end
+
+    test "raises if the slug doesn't match the parent school" do
+      school_fixture(%{custom_domain: "uneebee.com"})
+      school2 = school_fixture(%{custom_domain: "harvard.edu"})
+      school3 = school_fixture(%{slug: "unisc", school_id: school2.id})
+
+      assert_raise Ecto.NoResultsError, fn ->
+        Organizations.get_school_by_host!("unisc.uneebee.com")
+      end
+
+      assert Organizations.get_school_by_host!("unisc.harvard.edu") == school3
+    end
+
+    test "returns the school depending on the subdomain value of a custom domain" do
+      school1 = school_fixture(%{custom_domain: "interactive.harvard.edu"})
+      school2 = school_fixture(%{slug: "business", school_id: school1.id})
+
+      assert Organizations.get_school_by_host!("business.interactive.harvard.edu") == school2
+    end
+
+    test "returns the school depending on the custom domain value" do
+      custom_domain = "interactive.rug.nl"
+      school = school_fixture(%{custom_domain: custom_domain})
+
+      assert Organizations.get_school_by_host!(custom_domain) == school
+    end
+
+    test "returns nil when the custom domain doesn't exist but it matches a slug" do
+      school_fixture(%{slug: "uneebee", custom_domain: "uneebee.com"})
+      assert Organizations.get_school_by_host!("uneebee.test") == nil
+    end
+  end
 end
