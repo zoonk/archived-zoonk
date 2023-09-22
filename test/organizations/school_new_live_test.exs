@@ -27,6 +27,10 @@ defmodule UneebeeWeb.NewSchoolLiveTest do
       school = Organizations.get_school_by_slug!(attrs.slug)
       assert school.created_by_id == user.id
       assert school.name == attrs.name
+
+      school_user = Organizations.get_school_user_by_slug_and_username(school.slug, user.username)
+      assert school_user.role == :manager
+      assert school_user.approved? == true
     end
 
     test "renders an error if the school is configured", %{conn: conn} do

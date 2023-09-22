@@ -34,7 +34,7 @@ defmodule UneebeeWeb.Live.Organizations.School.New do
 
     attrs = Map.merge(school_params, %{"created_by_id" => user.id})
 
-    case Organizations.create_school(attrs) do
+    case Organizations.create_school_and_manager(user, attrs) do
       {:ok, _school} ->
         {:noreply,
          socket |> put_flash(:info, dgettext("orgs", "School created successfully")) |> push_navigate(to: ~p"/")}

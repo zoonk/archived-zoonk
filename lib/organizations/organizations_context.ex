@@ -43,6 +43,35 @@ defmodule Uneebee.Organizations do
   end
 
   @doc """
+  Creates a school and adds a user as school manager.
+
+  ## Examples
+
+      iex> create_school_and_manager(user, %{field: value})
+      {:ok, %School{}}
+
+      iex> create_school_and_manager(user, %{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  @spec create_school_and_manager(User.t(), map()) :: school_changeset()
+  def create_school_and_manager(%User{} = user, attrs \\ %{}) do
+    school_user_attrs = %{role: :manager, approved?: true, approved_by_id: user.id, approved_at: DateTime.utc_now()}
+
+    multi =
+      Ecto.Multi.new()
+      |> Ecto.Multi.insert(:school, School.changeset(%School{}, attrs))
+      |> Ecto.Multi.run(:school_user, fn _repo, %{school: school} ->
+        create_school_user(school, user, school_user_attrs)
+      end)
+
+    case Repo.transaction(multi) do
+      {:ok, %{school: school}} -> {:ok, school}
+      {:error, _failed_operation, changeset, _changes_so_far} -> {:error, changeset}
+    end
+  end
+
+  @doc """
   Updates a school.
 
   ## Examples

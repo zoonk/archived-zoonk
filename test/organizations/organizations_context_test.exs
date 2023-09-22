@@ -118,9 +118,44 @@ defmodule Uneebee.OrganizationsTest do
       assert {:error, %Ecto.Changeset{}} = Organizations.create_school(invalid_attrs)
     end
 
-    test "cannot create a school with the created_by_id field" do
+    test "cannot create a school without the created_by_id field" do
       valid_attrs = Map.delete(valid_school_attributes(), :created_by_id)
       assert {:error, %Ecto.Changeset{}} = Organizations.create_school(valid_attrs)
+    end
+  end
+
+  describe "create_school_and_manager/2" do
+    test "with valid data creates a school and a manager" do
+      user = user_fixture()
+      valid_attrs = valid_school_attributes(%{created_by_id: user.id})
+
+      assert {:ok, %School{} = school} = Organizations.create_school_and_manager(user, valid_attrs)
+
+      assert school.created_by_id == valid_attrs.created_by_id
+      assert school.email == valid_attrs.email
+      assert school.public? == valid_attrs.public?
+      assert school.name == valid_attrs.name
+      assert school.slug == valid_attrs.slug
+
+      school_user = Organizations.get_school_user_by_slug_and_username(school.slug, user.username)
+
+      assert school_user.role == :manager
+      assert school_user.approved? == true
+      assert school_user.approved_by_id == user.id
+      assert school_user.school_id == school.id
+      assert school_user.user_id == valid_attrs.created_by_id
+    end
+
+    test "with invalid data returns an error" do
+      user = user_fixture()
+      invalid_attrs = valid_school_attributes(%{email: "invalid", created_by_id: user.id})
+      assert {:error, %Ecto.Changeset{}} = Organizations.create_school_and_manager(user, invalid_attrs)
+    end
+
+    test "cannot create a school without the created_by_id field" do
+      user = user_fixture()
+      valid_attrs = Map.delete(valid_school_attributes(), :created_by_id)
+      assert {:error, %Ecto.Changeset{}} = Organizations.create_school_and_manager(user, valid_attrs)
     end
   end
 
