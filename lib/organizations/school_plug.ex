@@ -1,6 +1,14 @@
 defmodule UneebeeWeb.Plugs.School do
   @moduledoc """
-  School-related plugs.
+  This is a multi-tenant app where we assign schools depending on the `host` value.
+
+  ### Examples
+
+  - `uneebee.com` -> `uneebee` school
+  - `davinci.uneebee.com` -> `davinci` school using the slug as the subdomain
+  - `interactive.harvard.edu` -> `harvard` school using a custom domain
+
+  This means we need to fetch the app school's data when starting this application.
   """
   use UneebeeWeb, :verified_routes
 

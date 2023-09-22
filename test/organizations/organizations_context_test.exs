@@ -122,6 +122,25 @@ defmodule Uneebee.OrganizationsTest do
       valid_attrs = Map.delete(valid_school_attributes(), :created_by_id)
       assert {:error, %Ecto.Changeset{}} = Organizations.create_school(valid_attrs)
     end
+
+    test "allow creating multiple domains with the same extension" do
+      school_fixture(%{custom_domain: "uneebee.com"})
+      attrs = valid_school_attributes(%{custom_domain: "khan.org"})
+
+      assert {:ok, %School{} = school} = Organizations.create_school(attrs)
+      assert school.custom_domain == attrs.custom_domain
+    end
+
+    test "cannot use a custom domain with a subdomain from another organization" do
+      school_fixture(%{custom_domain: "uneebee.com"})
+      school_fixture(%{custom_domain: "learning.harvard.edu"})
+
+      attrs1 = valid_school_attributes(%{custom_domain: "nested.uneebee.com"})
+      attrs2 = valid_school_attributes(%{custom_domain: "science.learning.harvard.edu"})
+
+      assert {:error, %Ecto.Changeset{}} = Organizations.create_school(attrs1)
+      assert {:error, %Ecto.Changeset{}} = Organizations.create_school(attrs2)
+    end
   end
 
   describe "create_school_and_manager/2" do
