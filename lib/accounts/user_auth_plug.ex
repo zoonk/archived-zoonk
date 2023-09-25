@@ -1,4 +1,4 @@
-defmodule UneebeeWeb.UserAuth do
+defmodule UneebeeWeb.Plugs.UserAuth do
   @moduledoc false
   use UneebeeWeb, :verified_routes
 
@@ -141,13 +141,13 @@ defmodule UneebeeWeb.UserAuth do
       defmodule UneebeeWeb.PageLive do
         use UneebeeWeb, :live_view
 
-        on_mount {UneebeeWeb.UserAuth, :mount_current_user}
+        on_mount {UneebeeWeb.Plugs.UserAuth, :mount_current_user}
         ...
       end
 
   Or use the `live_session` of your router to invoke the on_mount callback:
 
-      live_session :authenticated, on_mount: [{UneebeeWeb.UserAuth, :ensure_authenticated}] do
+      live_session :authenticated, on_mount: [{UneebeeWeb.Plugs.UserAuth, :ensure_authenticated}] do
         live "/profile", ProfileLive, :index
       end
   """

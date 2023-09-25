@@ -1,11 +1,11 @@
-defmodule UneebeeWeb.UserAuthTest do
+defmodule UneebeeWeb.Plugs.UserAuthTest do
   use UneebeeWeb.ConnCase, async: true
 
   import Uneebee.Fixtures.Accounts
 
   alias Phoenix.LiveView
   alias Uneebee.Accounts
-  alias UneebeeWeb.UserAuth
+  alias UneebeeWeb.Plugs.UserAuth
 
   @remember_me_cookie "_uneebee_web_user_remember_me"
 

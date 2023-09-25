@@ -3,7 +3,7 @@ defmodule UneebeeWeb.Router do
 
   import UneebeeWeb.Plugs.School
   import UneebeeWeb.Plugs.Translate
-  import UneebeeWeb.UserAuth
+  import UneebeeWeb.Plugs.UserAuth
 
   @nonce 10 |> :crypto.strong_rand_bytes() |> Base.url_encode64(padding: false)
 
@@ -45,7 +45,7 @@ defmodule UneebeeWeb.Router do
     live_session :redirect_if_user_is_authenticated,
       layout: {UneebeeWeb.Layouts, :auth},
       on_mount: [
-        {UneebeeWeb.UserAuth, :redirect_if_user_is_authenticated},
+        {UneebeeWeb.Plugs.UserAuth, :redirect_if_user_is_authenticated},
         {UneebeeWeb.Plugs.School, :mount_school},
         {UneebeeWeb.Plugs.Translate, :set_locale_from_session}
       ] do
@@ -62,7 +62,7 @@ defmodule UneebeeWeb.Router do
 
     live_session :require_authenticated_user,
       on_mount: [
-        {UneebeeWeb.UserAuth, :ensure_authenticated},
+        {UneebeeWeb.Plugs.UserAuth, :ensure_authenticated},
         {UneebeeWeb.Plugs.School, :mount_school},
         {UneebeeWeb.Plugs.Translate, :set_locale_from_session},
         UneebeeWeb.Plugs.ActivePage
@@ -84,7 +84,7 @@ defmodule UneebeeWeb.Router do
 
     live_session :public_routes,
       on_mount: [
-        {UneebeeWeb.UserAuth, :mount_current_user},
+        {UneebeeWeb.Plugs.UserAuth, :mount_current_user},
         {UneebeeWeb.Plugs.School, :mount_school},
         {UneebeeWeb.Plugs.Translate, :set_locale_from_session},
         UneebeeWeb.Plugs.ActivePage
@@ -112,7 +112,7 @@ defmodule UneebeeWeb.Router do
 
     live_session :school_dashboard,
       on_mount: [
-        {UneebeeWeb.UserAuth, :ensure_authenticated},
+        {UneebeeWeb.Plugs.UserAuth, :ensure_authenticated},
         {UneebeeWeb.Plugs.School, :mount_school},
         {UneebeeWeb.Plugs.Translate, :set_locale_from_session},
         UneebeeWeb.Plugs.ActivePage

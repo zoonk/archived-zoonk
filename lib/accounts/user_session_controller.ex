@@ -3,7 +3,7 @@ defmodule UneebeeWeb.Controller.Accounts.User.Session do
   use UneebeeWeb, :controller
 
   alias Uneebee.Accounts
-  alias UneebeeWeb.UserAuth
+  alias UneebeeWeb.Plugs.UserAuth
 
   @spec create(Plug.Conn.t(), map()) :: Plug.Conn.t()
   @spec create(Plug.Conn.t(), map(), String.t() | nil) :: Plug.Conn.t()
