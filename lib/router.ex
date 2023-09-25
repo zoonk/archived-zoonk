@@ -45,8 +45,8 @@ defmodule UneebeeWeb.Router do
     live_session :redirect_if_user_is_authenticated,
       layout: {UneebeeWeb.Layouts, :auth},
       on_mount: [
-        {UneebeeWeb.Plugs.School, :mount_school},
         {UneebeeWeb.UserAuth, :redirect_if_user_is_authenticated},
+        {UneebeeWeb.Plugs.School, :mount_school},
         {UneebeeWeb.Plugs.Translate, :set_locale_from_session}
       ] do
       live "/users/register", Registration, :new
