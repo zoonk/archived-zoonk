@@ -84,7 +84,7 @@ jobs:
         run: mix credo --strict
 
       - name: Scan security vulnerabilities
-        run: mix sobelow --exit
+        run: mix sobelow --skip --exit
 
       - name: Audit dependencies
         run: mix deps.audit

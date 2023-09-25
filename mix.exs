@@ -93,7 +93,7 @@ defmodule Uneebee.MixProject do
         "compile --all-warnings --warnings-as-errors",
         "format --check-formatted",
         "credo --strict",
-        "sobelow",
+        "sobelow --skip --exit",
         "deps.audit",
         "dialyzer"
       ]
