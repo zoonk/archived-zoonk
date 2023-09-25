@@ -122,3 +122,8 @@ msgstr ""
 #, elixir-autogen, elixir-format
 msgid "Name"
 msgstr ""
+
+#: lib/dashboard/home.ex:17
+#, elixir-autogen, elixir-format
+msgid "Dashboard"
+msgstr ""

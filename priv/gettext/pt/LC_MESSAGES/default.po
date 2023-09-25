@@ -122,3 +122,8 @@ msgstr "Salvar"
 #, elixir-autogen, elixir-format
 msgid "Name"
 msgstr "Nome"
+
+#: lib/dashboard/home.ex:17
+#, elixir-autogen, elixir-format
+msgid "Dashboard"
+msgstr "Painel de controle"

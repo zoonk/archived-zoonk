@@ -86,6 +86,7 @@ defmodule UneebeeWeb do
       import Phoenix.HTML
 
       # UI components
+      import UneebeeWeb.Components.Avatar
       import UneebeeWeb.Components.Button
       import UneebeeWeb.Components.Details
       import UneebeeWeb.Components.Flash

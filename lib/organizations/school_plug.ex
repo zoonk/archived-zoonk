@@ -55,6 +55,23 @@ defmodule UneebeeWeb.Plugs.School do
   defp setup_school(conn, _opts, true), do: conn |> Controller.redirect(to: ~p"/schools/new") |> halt()
 
   @doc """
+  Requires `manager` permissions to access a certain route.
+  """
+  @spec require_manager(Plug.Conn.t(), Keyword.t()) :: Plug.Conn.t()
+  def require_manager(conn, opts) do
+    %{school_user: school_user} = conn.assigns
+    approved? = if school_user, do: school_user.approved?, else: false
+    role = if school_user, do: school_user.role, else: nil
+    require_manager(conn, opts, approved?, role)
+  end
+
+  # If the user is a manager, then they have access.
+  defp require_manager(conn, _opts, true, :manager), do: conn
+
+  # If the user is not a manager, then they don't have access.
+  defp require_manager(_conn, _opts, _approved?, _role), do: raise(UneebeeWeb.PermissionError, code: :require_manager)
+
+  @doc """
   Handles mounting the school data to a LiveView.
 
   ## `on_mount` options

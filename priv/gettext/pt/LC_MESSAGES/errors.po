@@ -14,6 +14,8 @@ msgstr ""
 msgid "can't be blank"
 msgstr "não pode ficar em branco"
 
+#: lib/organizations/school_schema.ex:58
+#, elixir-autogen
 msgid "has already been taken"
 msgstr "já está em uso"
 
@@ -134,12 +136,12 @@ msgid "does not match password"
 msgstr "não é igual à senha"
 
 #: lib/accounts/user_schema.ex:64
-#: lib/organizations/school_schema.ex:33
+#: lib/organizations/school_schema.ex:39
 #, elixir-autogen, elixir-format
 msgid "must have the @ sign and no spaces"
 msgstr "deve ter arroba (@) e nenhum espaço"
 
-#: lib/organizations/school_schema.ex:35
+#: lib/organizations/school_schema.ex:41
 #, elixir-autogen, elixir-format
 msgid "must start with / or https://"
 msgstr "devem começar com / ou https://"

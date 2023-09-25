@@ -6,5 +6,6 @@ defmodule UneebeeWeb.PermissionError do
 
   @impl Exception
   def exception(code: :school_already_configured), do: %__MODULE__{message: "School already configured"}
+  def exception(code: :require_manager), do: %__MODULE__{message: "Only managers can view this page"}
   def exception(message: message), do: %__MODULE__{message: message}
 end

@@ -1,0 +1,16 @@
+<header class="text-gray-dark flex flex-col gap-8 rounded-2xl bg-white p-4 shadow">
+  <div class="flex gap-4">
+    <.avatar src={@school.logo} alt={@school.name} />
+
+    <section>
+      <h1 class="font-bold leading-tight"><%= @school.name %></h1>
+      <h3 class="text-xs font-light">@<%= @school.slug %></h3>
+    </section>
+  </div>
+</header>
+
+<section class="mt-4 grid grid-cols-2 gap-4 sm:grid-cols-3">
+  <.item_stats_card title={gettext("Managers")} icon="tabler-puzzle" count={@manager_count} />
+  <.item_stats_card title={gettext("Teachers")} icon="tabler-apple" count={@teacher_count} />
+  <.item_stats_card title={gettext("Students")} icon="tabler-comet" count={@student_count} />
+</section>

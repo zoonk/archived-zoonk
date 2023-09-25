@@ -106,6 +106,21 @@ defmodule UneebeeWeb.Router do
     delete "/users/logout", Session, :delete
   end
 
+  # Routes visible to school managers only.
+  scope "/dashboard", UneebeeWeb.Live do
+    pipe_through [:browser, :require_authenticated_user, :require_manager]
+
+    live_session :school_dashboard,
+      on_mount: [
+        {UneebeeWeb.UserAuth, :ensure_authenticated},
+        {UneebeeWeb.Plugs.School, :mount_school},
+        {UneebeeWeb.Plugs.Translate, :set_locale_from_session},
+        UneebeeWeb.Plugs.ActivePage
+      ] do
+      live "/", Dashboard.Home
+    end
+  end
+
   # Other scopes may use custom stacks.
   # scope "/api", UneebeeWeb do
   #   pipe_through :api

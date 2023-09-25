@@ -21,7 +21,7 @@ msgstr ""
 msgid "Create account"
 msgstr ""
 
-#: lib/accounts/user_live/registration.ex:17
+#: lib/accounts/user_live/registration.ex:18
 #: lib/accounts/user_live/registration.html.heex:11
 #, elixir-autogen, elixir-format
 msgid "Create an account"

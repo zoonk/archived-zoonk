@@ -8,4 +8,9 @@ defmodule UneebeeWeb.Layouts do
   def user_settings?(active_page) do
     active_page |> Atom.to_string() |> String.starts_with?("user_settings")
   end
+
+  @spec dashboard?(atom()) :: boolean()
+  def dashboard?(active_page) do
+    active_page |> Atom.to_string() |> String.starts_with?("dashboard")
+  end
 end

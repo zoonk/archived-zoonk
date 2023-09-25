@@ -10,6 +10,18 @@
     <.menu_item navigate={~p"/"} icon="tabler-ufo" active={@active_page == :live_home} title={gettext("Home")} />
 
     <.menu_item
+      :if={@user_role == :manager}
+      navigate={~p"/dashboard"}
+      icon="tabler-beach"
+      active={dashboard?(@active_page)}
+      title={gettext("Manage school")}
+    >
+      <:sub_menus>
+        <.sub_menu navigate={~p"/dashboard"} active={@active_page == :dashboard_home} title={gettext("Dashboard")} />
+      </:sub_menus>
+    </.menu_item>
+
+    <.menu_item
       :if={@current_user}
       navigate={~p"/users/settings/language"}
       icon="tabler-settings"
