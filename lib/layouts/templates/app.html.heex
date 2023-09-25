@@ -18,6 +18,24 @@
     >
       <:sub_menus>
         <.sub_menu navigate={~p"/dashboard"} active={@active_page == :dashboard_home} title={gettext("Dashboard")} />
+
+        <.sub_menu
+          navigate={~p"/dashboard/edit/logo"}
+          active={@active_page == :dashboard_schooledit_logo}
+          title={gettext("Logo")}
+        />
+
+        <.sub_menu
+          navigate={~p"/dashboard/edit/slug"}
+          active={@active_page == :dashboard_schooledit_slug}
+          title={dgettext("orgs", "Nickname")}
+        />
+
+        <.sub_menu
+          navigate={~p"/dashboard/edit/info"}
+          active={@active_page == :dashboard_schooledit_info}
+          title={gettext("Profile")}
+        />
       </:sub_menus>
     </.menu_item>
 

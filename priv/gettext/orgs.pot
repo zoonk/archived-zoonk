@@ -23,6 +23,8 @@ msgstr ""
 msgid "Create school"
 msgstr ""
 
+#: lib/dashboard/schools/school_edit.html.heex:17
+#: lib/layouts/templates/app.html.heex:31
 #: lib/organizations/school_live/new.html.heex:10
 #, elixir-autogen, elixir-format
 msgid "Nickname"
@@ -38,12 +40,34 @@ msgstr ""
 msgid "School created successfully"
 msgstr ""
 
+#: lib/dashboard/schools/school_edit.html.heex:25
 #: lib/organizations/school_live/new.html.heex:5
 #, elixir-autogen, elixir-format
 msgid "School email"
 msgstr ""
 
+#: lib/dashboard/schools/school_edit.html.heex:19
 #: lib/organizations/school_live/new.html.heex:4
 #, elixir-autogen, elixir-format
 msgid "School name"
+msgstr ""
+
+#: lib/dashboard/schools/school_edit.ex:36
+#, elixir-autogen, elixir-format
+msgid "School updated successfully"
+msgstr ""
+
+#: lib/dashboard/schools/school_edit.ex:55
+#, elixir-autogen, elixir-format
+msgid "Could not update logo!"
+msgstr ""
+
+#: lib/dashboard/schools/school_edit.ex:51
+#, elixir-autogen, elixir-format
+msgid "Logo updated successfully!"
+msgstr ""
+
+#: lib/dashboard/schools/school_edit.ex:15
+#, elixir-autogen, elixir-format
+msgid "Edit %{name}"
 msgstr ""

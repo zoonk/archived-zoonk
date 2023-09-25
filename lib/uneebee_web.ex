@@ -18,7 +18,7 @@ defmodule UneebeeWeb do
   those modules here.
   """
 
-  def static_paths, do: ~w(assets fonts images favicon robots.txt)
+  def static_paths, do: ~w(assets fonts images favicon uploads robots.txt)
 
   def router do
     quote do

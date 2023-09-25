@@ -1,0 +1,32 @@
+<.live_component
+  :if={@live_action == :logo}
+  module={Upload}
+  id={:school_logo}
+  current_img={@school.logo}
+  label={gettext("Logo")}
+/>
+
+<.simple_form
+  :if={@live_action != :logo}
+  for={@form}
+  id="school-form"
+  phx-change="validate"
+  phx-submit="save"
+  class="lg:order-first"
+>
+  <.input :if={@live_action == :slug} field={@form[:slug]} type="text" label={dgettext("orgs", "Nickname")} required />
+
+  <.input :if={@live_action == :info} field={@form[:name]} type="text" label={dgettext("orgs", "School name")} required />
+
+  <.input
+    :if={@live_action == :info}
+    field={@form[:email]}
+    type="email"
+    label={dgettext("orgs", "School email")}
+    required
+  />
+
+  <:actions>
+    <.button icon="tabler-check" phx-disable-with={gettext("Saving...")}><%= gettext("Save") %></.button>
+  </:actions>
+</.simple_form>

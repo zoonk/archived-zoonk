@@ -145,3 +145,18 @@ msgstr "deve ter arroba (@) e nenhum espaço"
 #, elixir-autogen, elixir-format
 msgid "must start with / or https://"
 msgstr "devem começar com / ou https://"
+
+#: lib/components/upload.ex:105
+#, elixir-autogen, elixir-format
+msgid "Too large"
+msgstr "Muito grande"
+
+#: lib/components/upload.ex:109
+#, elixir-autogen, elixir-format
+msgid "You have selected an unacceptable file type"
+msgstr "Você selecionou um tipo de arquivo não aceito"
+
+#: lib/components/upload.ex:107
+#, elixir-autogen, elixir-format
+msgid "You have selected too many files"
+msgstr "Você selecionou muitos arquivos"

@@ -118,6 +118,9 @@ defmodule UneebeeWeb.Router do
         UneebeeWeb.Plugs.ActivePage
       ] do
       live "/", Dashboard.Home
+      live "/edit/logo", Dashboard.SchoolEdit, :logo
+      live "/edit/slug", Dashboard.SchoolEdit, :slug
+      live "/edit/info", Dashboard.SchoolEdit, :info
     end
   end
 
