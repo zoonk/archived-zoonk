@@ -306,4 +306,17 @@ defmodule Uneebee.OrganizationsTest do
       assert Organizations.get_school_by_host!("uneebee.test") == nil
     end
   end
+
+  describe "get_school_users_count/2" do
+    test "returns the number of users in a school" do
+      school = school_fixture()
+      Enum.each(1..4, fn _idx -> school_user_fixture(%{school: school, role: :student}) end)
+      Enum.each(1..3, fn _idx -> school_user_fixture(%{school: school, role: :teacher}) end)
+      school_user_fixture(%{school: school, role: :manager})
+
+      assert Organizations.get_school_users_count(school, :student) == 4
+      assert Organizations.get_school_users_count(school, :teacher) == 3
+      assert Organizations.get_school_users_count(school, :manager) == 1
+    end
+  end
 end
