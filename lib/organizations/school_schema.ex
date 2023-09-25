@@ -20,7 +20,7 @@ defmodule Uneebee.Organizations.School do
     field :email, :string
     field :logo, :string
     field :name, :string
-    field :public?, :boolean, default: false
+    field :public?, :boolean, default: true
     field :slug, :string
 
     belongs_to :created_by, User

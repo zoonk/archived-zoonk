@@ -3,7 +3,8 @@ defmodule UneebeeWeb.UserRegistrationLiveTest do
 
   import Phoenix.LiveViewTest
   import Uneebee.Fixtures.Accounts
-  import Uneebee.Fixtures.Organizations
+
+  alias Uneebee.Organizations
 
   describe "Registration page" do
     test "renders registration page", %{conn: conn} do
@@ -48,13 +49,11 @@ defmodule UneebeeWeb.UserRegistrationLiveTest do
       assert html =~ ~s'<html lang="pt"'
     end
 
-    test "creates account and logs the user in", %{conn: conn} do
-      school_fixture()
-
+    test "creates account and logs the user in", %{conn: conn, school: school} do
       {:ok, lv, _html} = live(conn, ~p"/users/register")
 
-      email = unique_user_email()
-      form = form(lv, "#registration_form", user: valid_user_attributes(email: email))
+      attrs = valid_user_attributes()
+      form = form(lv, "#registration_form", user: attrs)
       render_submit(form)
       conn = follow_trigger_action(form, conn)
 
@@ -62,7 +61,12 @@ defmodule UneebeeWeb.UserRegistrationLiveTest do
 
       # Now do a logged in request
       response = html_response(get(conn, "/"), 200)
-      assert response =~ email
+      assert response =~ attrs.email
+
+      # Check if the user was added as school user
+      school_user = Organizations.get_school_user_by_slug_and_username(school.slug, attrs.username)
+      assert school_user.approved?
+      assert school_user.role == :student
     end
 
     test "renders errors", %{conn: conn} do
