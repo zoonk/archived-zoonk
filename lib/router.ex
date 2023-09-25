@@ -15,6 +15,7 @@ defmodule UneebeeWeb.Router do
     plug :protect_from_forgery
     plug :put_secure_browser_headers, %{"content-security-policy" => "default-src 'self'; img-src 'self' data: blob:;"}
     plug :fetch_current_user
+    plug :fetch_school
     plug :check_school_setup
     plug :setup_school
     plug :set_session_locale
@@ -44,6 +45,7 @@ defmodule UneebeeWeb.Router do
     live_session :redirect_if_user_is_authenticated,
       layout: {UneebeeWeb.Layouts, :auth},
       on_mount: [
+        {UneebeeWeb.Plugs.School, :mount_school},
         {UneebeeWeb.UserAuth, :redirect_if_user_is_authenticated},
         {UneebeeWeb.Plugs.Translate, :set_locale_from_session}
       ] do
@@ -61,6 +63,7 @@ defmodule UneebeeWeb.Router do
     live_session :require_authenticated_user,
       on_mount: [
         {UneebeeWeb.UserAuth, :ensure_authenticated},
+        {UneebeeWeb.Plugs.School, :mount_school},
         {UneebeeWeb.Plugs.Translate, :set_locale_from_session},
         UneebeeWeb.Plugs.ActivePage
       ] do
@@ -82,6 +85,7 @@ defmodule UneebeeWeb.Router do
     live_session :public_routes,
       on_mount: [
         {UneebeeWeb.UserAuth, :mount_current_user},
+        {UneebeeWeb.Plugs.School, :mount_school},
         {UneebeeWeb.Plugs.Translate, :set_locale_from_session},
         UneebeeWeb.Plugs.ActivePage
       ] do

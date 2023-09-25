@@ -18,9 +18,11 @@ defmodule UneebeeWeb.ConnCase do
   use ExUnit.CaseTemplate
 
   import Uneebee.Fixtures.Accounts
+  import Uneebee.Fixtures.Organizations
 
   alias Plug.Conn
   alias Uneebee.Accounts.User
+  alias Uneebee.Organizations.School
 
   using do
     quote do
@@ -69,5 +71,55 @@ defmodule UneebeeWeb.ConnCase do
     conn
     |> Phoenix.ConnTest.init_test_session(%{})
     |> Conn.put_session(:user_token, token)
+  end
+
+  @doc """
+  Setup helper that creates a school and sets its `custom_domain` as the `conn.host` value.
+
+      setup :set_school
+  """
+  @spec set_school(%{conn: Conn.t()}, map()) :: %{conn: Conn.t(), school: School.t()}
+  def set_school(%{conn: conn}, attrs \\ %{}) do
+    school = school_fixture(attrs)
+    conn = conn |> Map.put(:host, school.custom_domain) |> Conn.assign(:school, school)
+    %{conn: conn, school: school}
+  end
+
+  @doc """
+  Setup helper that registers a user, logs them in, and add them to the app school.
+
+      setup :app_setup
+  """
+  @spec app_setup(%{conn: Conn.t()}, Keyword.t()) :: %{
+          conn: Conn.t(),
+          user: User.t(),
+          school: School.t(),
+          password: String.t()
+        }
+  def app_setup(%{conn: conn}, opts \\ []) do
+    public_school? = Keyword.get(opts, :public_school?, true)
+    school_id = Keyword.get(opts, :school_id, nil)
+
+    school_attrs = %{public?: public_school?, school_id: school_id}
+    school_user_attrs = opts |> Keyword.get(:school_user, :student) |> get_user_attrs()
+
+    %{conn: register_conn, user: user, password: password} = register_and_log_in_user(%{conn: conn})
+    %{conn: school_conn, school: school} = set_school(%{conn: register_conn}, school_attrs)
+
+    if school_user_attrs do
+      school_user_fixture(Map.merge(%{school: school, user: user}, school_user_attrs))
+    end
+
+    %{conn: school_conn, user: user, school: school, password: password}
+  end
+
+  defp get_user_attrs(user_kind) do
+    case user_kind do
+      :manager -> %{role: :manager, approved?: true}
+      :teacher -> %{role: :teacher, approved?: true}
+      :student -> %{role: :student, approved?: true}
+      :pending -> %{role: :student, approved?: false}
+      nil -> nil
+    end
   end
 end

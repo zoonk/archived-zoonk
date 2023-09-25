@@ -3,7 +3,6 @@ defmodule UneebeeWeb.UserConfirmationLiveTest do
 
   import Phoenix.LiveViewTest
   import Uneebee.Fixtures.Accounts
-  import Uneebee.Fixtures.Organizations
 
   alias Uneebee.Accounts
   alias Uneebee.Repo
@@ -13,14 +12,14 @@ defmodule UneebeeWeb.UserConfirmationLiveTest do
   end
 
   describe "Confirm user" do
+    setup :set_school
+
     test "renders confirmation page", %{conn: conn} do
       {:ok, _lv, html} = live(conn, ~p"/users/confirm/some-token")
       assert html =~ "Confirm Account"
     end
 
     test "confirms the given token once", %{conn: conn, user: user} do
-      school_fixture()
-
       token =
         extract_user_token(fn url ->
           Accounts.deliver_user_confirmation_instructions(user, url)

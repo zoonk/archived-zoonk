@@ -8,11 +8,12 @@ defmodule UneebeeWeb.NewSchoolLiveTest do
 
   @school_form "#school-form"
 
-  describe "New school page (authenticated users)" do
+  describe "New school page (authenticated users, school not configured)" do
     setup :register_and_log_in_user
 
     test "creates a school", %{conn: conn, user: user} do
       attrs = valid_school_attributes()
+      conn = Map.put(conn, :host, attrs.custom_domain)
 
       {:ok, lv, _html} = live(conn, ~p"/schools/new")
 
@@ -32,6 +33,10 @@ defmodule UneebeeWeb.NewSchoolLiveTest do
       assert school_user.role == :manager
       assert school_user.approved? == true
     end
+  end
+
+  describe "New school page (authenticated users, school configured)" do
+    setup :app_setup
 
     test "renders an error if the school is configured", %{conn: conn} do
       school_fixture()

@@ -36,7 +36,9 @@ defmodule UneebeeWeb.UserRegistrationLiveTest do
     end
   end
 
-  describe "register user" do
+  describe "register user (school configured)" do
+    setup :set_school
+
     test "use the browser's language", %{conn: conn} do
       conn = put_req_header(conn, "accept-language", "pt-BR")
 
@@ -58,7 +60,7 @@ defmodule UneebeeWeb.UserRegistrationLiveTest do
 
       assert redirected_to(conn) == ~p"/"
 
-      # Now do a logged in request and assert on the menu
+      # Now do a logged in request
       response = html_response(get(conn, "/"), 200)
       assert response =~ email
     end
@@ -82,6 +84,23 @@ defmodule UneebeeWeb.UserRegistrationLiveTest do
       assert_field_error(lv, "password", "aaaaa1@aa", "at least one upper case character")
       assert_field_error(lv, "password", "AAAAA1@AA", "at least one lower case character")
       assert_field_error(lv, "password", "aaaaAaaa", "at least one digit or punctuation character")
+    end
+  end
+
+  describe "register user (school not configured)" do
+    test "creates account and logs the user in", %{conn: conn} do
+      {:ok, lv, _html} = live(conn, ~p"/users/register")
+
+      email = unique_user_email()
+      form = form(lv, "#registration_form", user: valid_user_attributes(email: email))
+      render_submit(form)
+      conn = follow_trigger_action(form, conn)
+
+      assert redirected_to(conn) == ~p"/"
+
+      # Now do a logged in request and assert on the school setup redirect
+      response = get(conn, ~p"/")
+      assert redirected_to(response) == ~p"/schools/new"
     end
   end
 

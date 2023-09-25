@@ -10,6 +10,7 @@ defmodule Uneebee.Fixtures.Organizations do
   alias Uneebee.Repo
 
   defp unique_school_slug, do: "school-#{System.unique_integer()}"
+  defp unique_school_custom_domain, do: "custom_#{System.unique_integer()}.org"
 
   defp get_created_by_id do
     user = user_fixture()
@@ -23,6 +24,7 @@ defmodule Uneebee.Fixtures.Organizations do
   def valid_school_attributes(attrs \\ %{}) do
     Enum.into(attrs, %{
       created_by_id: get_created_by_id(),
+      custom_domain: unique_school_custom_domain(),
       email: "valid@email.com",
       public?: true,
       name: "some name",

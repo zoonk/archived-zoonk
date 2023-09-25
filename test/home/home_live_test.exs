@@ -5,9 +5,9 @@ defmodule UneebeeWeb.HomeLiveTest do
   import Uneebee.Fixtures.Organizations
 
   describe "home page (not authenticated)" do
-    test "renders the page", %{conn: conn} do
-      school_fixture()
+    setup :set_school
 
+    test "renders the page", %{conn: conn} do
       {:ok, lv, _html} = live(conn, ~p"/")
 
       assert has_element?(lv, ~s|a span:fl-icontains("sign in")|)
@@ -16,10 +16,10 @@ defmodule UneebeeWeb.HomeLiveTest do
   end
 
   describe "home page (authenticated)" do
-    setup :register_and_log_in_user
+    setup :app_setup
 
     test "redirects to the setup page when school isn't configured", %{conn: conn} do
-      result = get(conn, ~p"/")
+      result = conn |> Map.put(:host, "invalid.org") |> get(~p"/")
       assert redirected_to(result) == ~p"/schools/new"
     end
 

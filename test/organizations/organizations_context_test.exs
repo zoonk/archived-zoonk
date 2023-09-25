@@ -207,17 +207,6 @@ defmodule Uneebee.OrganizationsTest do
     end
   end
 
-  describe "is_school_configured?/0" do
-    test "returns true if there's a school configured" do
-      school_fixture()
-      assert Organizations.school_configured?()
-    end
-
-    test "returns false if there's no school configured" do
-      assert !Organizations.school_configured?()
-    end
-  end
-
   test "add a school student" do
     school = school_fixture()
     user = user_fixture()

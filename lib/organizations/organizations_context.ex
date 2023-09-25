@@ -104,22 +104,6 @@ defmodule Uneebee.Organizations do
   end
 
   @doc """
-  Checks if there's a school configured.
-
-  ## Examples
-
-      iex> school_configured?()
-      true
-
-      iex> school_configured?()
-      false
-  """
-  @spec school_configured?() :: boolean()
-  def school_configured? do
-    Repo.exists?(School)
-  end
-
-  @doc """
   Adds a user to a school.
 
   ## Examples

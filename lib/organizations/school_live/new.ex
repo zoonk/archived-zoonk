@@ -30,9 +30,9 @@ defmodule UneebeeWeb.Live.Organizations.School.New do
 
   @impl Phoenix.LiveView
   def handle_event("save", %{"school" => school_params}, socket) do
-    %{current_user: user} = socket.assigns
+    %{current_user: user, host: host} = socket.assigns
 
-    attrs = Map.merge(school_params, %{"created_by_id" => user.id})
+    attrs = Map.merge(school_params, %{"created_by_id" => user.id, "custom_domain" => host})
 
     case Organizations.create_school_and_manager(user, attrs) do
       {:ok, _school} ->
