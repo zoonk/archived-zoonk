@@ -39,14 +39,14 @@ msgstr "fechar"
 #: lib/accounts/user_live/forgot_password.html.heex:7
 #: lib/accounts/user_live/login.html.heex:4
 #: lib/accounts/user_live/registration.html.heex:23
-#: lib/layouts/templates/app.html.heex:41
+#: lib/layouts/templates/app.html.heex:53
 #, elixir-autogen, elixir-format
 msgid "Email"
 msgstr "E-mail"
 
 #: lib/accounts/user_live/registration.html.heex:18
 #: lib/accounts/user_live/settings.html.heex:12
-#: lib/layouts/templates/app.html.heex:23
+#: lib/layouts/templates/app.html.heex:35
 #, elixir-autogen, elixir-format
 msgid "Language"
 msgstr "Idioma"
@@ -65,7 +65,7 @@ msgstr "Salvando..."
 
 #: lib/accounts/user_live/registration.html.heex:25
 #: lib/accounts/user_live/settings.html.heex:22
-#: lib/layouts/templates/app.html.heex:29
+#: lib/layouts/templates/app.html.heex:41
 #, elixir-autogen, elixir-format
 msgid "Username"
 msgstr "Nome de usuário"
@@ -92,13 +92,13 @@ msgstr ""
 msgid "Changing..."
 msgstr "Alterando..."
 
-#: lib/layouts/templates/app.html.heex:50
+#: lib/layouts/templates/app.html.heex:62
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Logout"
 msgstr "Sair"
 
 #: lib/accounts/user_live/settings.ex:32
-#: lib/layouts/templates/app.html.heex:17
+#: lib/layouts/templates/app.html.heex:29
 #, elixir-autogen, elixir-format
 msgid "Settings"
 msgstr "Configurações"
@@ -118,12 +118,33 @@ msgstr "Sobrenome"
 msgid "Save"
 msgstr "Salvar"
 
-#: lib/layouts/templates/app.html.heex:35
+#: lib/layouts/templates/app.html.heex:47
 #, elixir-autogen, elixir-format
 msgid "Name"
 msgstr "Nome"
 
-#: lib/dashboard/home.ex:17
+#: lib/dashboard/home.ex:19
+#: lib/layouts/templates/app.html.heex:20
 #, elixir-autogen, elixir-format
 msgid "Dashboard"
 msgstr "Painel de controle"
+
+#: lib/layouts/templates/app.html.heex:17
+#, elixir-autogen, elixir-format
+msgid "Manage school"
+msgstr "Gerenciar escola"
+
+#: lib/dashboard/home.html.heex:13
+#, elixir-autogen, elixir-format
+msgid "Managers"
+msgstr "Gestores"
+
+#: lib/dashboard/home.html.heex:15
+#, elixir-autogen, elixir-format
+msgid "Students"
+msgstr "Alunos"
+
+#: lib/dashboard/home.html.heex:14
+#, elixir-autogen, elixir-format
+msgid "Teachers"
+msgstr "Professores"

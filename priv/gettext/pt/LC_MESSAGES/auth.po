@@ -29,7 +29,7 @@ msgstr "Criar uma conta"
 
 #: lib/accounts/user_live/login.html.heex:5
 #: lib/accounts/user_live/registration.html.heex:30
-#: lib/layouts/templates/app.html.heex:47
+#: lib/layouts/templates/app.html.heex:59
 #, elixir-autogen, elixir-format
 msgid "Password"
 msgstr "Senha"
