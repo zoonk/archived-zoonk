@@ -22,7 +22,7 @@
             role="status"
             class="bg-warning-light2x text-warning-dark rounded-full px-2 py-1 text-xs"
           >
-            <%= gettext("Pending") %>
+            <%= dgettext("orgs", "Pending") %>
           </span>
         </dt>
 
@@ -34,16 +34,16 @@
       :if={school_user.approved? && school_user.user.id != school_user.approved_by.id}
       class="text-gray mt-2 text-sm italic"
     >
-      <%= dgettext("manager", "Approved by: @%{username}", username: school_user.approved_by.username) %>
+      <%= dgettext("orgs", "Approved by: @%{username}", username: school_user.approved_by.username) %>
     </dd>
 
     <div :if={not school_user.approved?} class="mt-4 flex items-center gap-2">
       <.button phx-click="approve" phx-value-school-user-id={school_user.id} icon="tabler-checks" color={:success_light}>
-        <%= gettext("Approve") %>
+        <%= dgettext("orgs", "Approve") %>
       </.button>
 
       <.button phx-click="reject" phx-value-school-user-id={school_user.id} icon="tabler-ban" color={:alert_light}>
-        <%= gettext("Reject") %>
+        <%= dgettext("orgs", "Reject") %>
       </.button>
     </div>
 
@@ -51,13 +51,13 @@
       <.icon_button
         id="remove-user"
         icon="tabler-trash-x"
-        label={dgettext("manager", "Remove user")}
+        label={dgettext("orgs", "Remove user")}
         color={:alert_light}
         phx-click="remove"
         phx-value-school-user-id={school_user.id}
         data-confirm={
           dgettext(
-            "manager",
+            "orgs",
             "This will remove %{username} from your school. They won't be able to see your school anymore unless you approve them again.",
             username: school_user.user.username
           )
@@ -74,7 +74,7 @@
   <form phx-submit="add-user" id="add-user-form" class="mt-4">
     <.input
       type="text"
-      label={gettext("Username or email address")}
+      label={dgettext("orgs", "Username or email address")}
       name="email_or_username"
       id="email_or_username"
       required

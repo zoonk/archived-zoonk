@@ -30,13 +30,13 @@ defmodule UneebeeWeb.Live.Dashboard.UserList do
       {:ok, _school_user} ->
         socket =
           socket
-          |> put_flash(:info, gettext("User approved!"))
+          |> put_flash(:info, dgettext("orgs", "User approved!"))
           |> push_navigate(to: get_user_list_route(socket.assigns.live_action))
 
         {:noreply, socket}
 
       {:error, _changeset} ->
-        {:noreply, put_flash(socket, :error, gettext("Could not approve user!"))}
+        {:noreply, put_flash(socket, :error, dgettext("orgs", "Could not approve user!"))}
     end
   end
 
@@ -46,13 +46,13 @@ defmodule UneebeeWeb.Live.Dashboard.UserList do
       {:ok, _school_user} ->
         socket =
           socket
-          |> put_flash(:info, gettext("User rejected!"))
+          |> put_flash(:info, dgettext("orgs", "User rejected!"))
           |> push_navigate(to: get_user_list_route(socket.assigns.live_action))
 
         {:noreply, socket}
 
       {:error, _changeset} ->
-        {:noreply, put_flash(socket, :error, gettext("Could not reject user!"))}
+        {:noreply, put_flash(socket, :error, dgettext("orgs", "Could not reject user!"))}
     end
   end
 
@@ -62,13 +62,13 @@ defmodule UneebeeWeb.Live.Dashboard.UserList do
       {:ok, _school_user} ->
         socket =
           socket
-          |> put_flash(:info, gettext("User removed!"))
+          |> put_flash(:info, dgettext("orgs", "User removed!"))
           |> push_navigate(to: get_user_list_route(socket.assigns.live_action))
 
         {:noreply, socket}
 
       {:error, _changeset} ->
-        {:noreply, put_flash(socket, :error, gettext("Could not remove user!"))}
+        {:noreply, put_flash(socket, :error, dgettext("orgs", "Could not remove user!"))}
     end
   end
 

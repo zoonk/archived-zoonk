@@ -24,7 +24,7 @@ msgid "Create school"
 msgstr "Criar escola"
 
 #: lib/dashboard/schools/school_edit.html.heex:17
-#: lib/layouts/templates/app.html.heex:31
+#: lib/layouts/templates/app.html.heex:49
 #: lib/organizations/school_live/new.html.heex:10
 #, elixir-autogen, elixir-format
 msgid "Nickname"
@@ -71,3 +71,98 @@ msgstr "Logo atualizado!"
 #, elixir-autogen, elixir-format
 msgid "Edit %{name}"
 msgstr "Editar %{name}"
+
+#: lib/dashboard/schools/user_list.ex:112
+#, elixir-autogen, elixir-format
+msgid "Add manager"
+msgstr "Novo gestor"
+
+#: lib/dashboard/schools/user_list.ex:114
+#, elixir-autogen, elixir-format
+msgid "Add student"
+msgstr "Novo aluno"
+
+#: lib/dashboard/schools/user_list.ex:113
+#, elixir-autogen, elixir-format
+msgid "Add teacher"
+msgstr "Novo professor"
+
+#: lib/dashboard/schools/user_list.ex:96
+#, elixir-autogen, elixir-format, fuzzy
+msgid "Could not add user!"
+msgstr "Não foi possível cadastrar o usuário!"
+
+#: lib/dashboard/schools/user_list.ex:90
+#, elixir-autogen, elixir-format
+msgid "User added!"
+msgstr "Usuário cadastrado!"
+
+#: lib/dashboard/schools/user_list.ex:101
+#, elixir-autogen, elixir-format
+msgid "User not found!"
+msgstr "Usuário não encontrado!"
+
+#: lib/dashboard/schools/user_list.html.heex:37
+#, elixir-autogen, elixir-format
+msgid "Approved by: @%{username}"
+msgstr "Aprovado por: @%{username}"
+
+#: lib/dashboard/schools/user_list.html.heex:54
+#, elixir-autogen, elixir-format
+msgid "Remove user"
+msgstr "Remover usuário"
+
+#: lib/dashboard/schools/user_list.html.heex:42
+#, elixir-autogen, elixir-format
+msgid "Approve"
+msgstr "Aprovar"
+
+#: lib/dashboard/schools/user_list.ex:39
+#, elixir-autogen, elixir-format, fuzzy
+msgid "Could not approve user!"
+msgstr "Não foi possível aprovar o usuário!"
+
+#: lib/dashboard/schools/user_list.ex:55
+#, elixir-autogen, elixir-format, fuzzy
+msgid "Could not reject user!"
+msgstr "Não foi possível rejeitar o usuário!"
+
+#: lib/dashboard/schools/user_list.ex:71
+#, elixir-autogen, elixir-format, fuzzy
+msgid "Could not remove user!"
+msgstr "Não foi possível remover o usuário!"
+
+#: lib/dashboard/schools/user_list.html.heex:25
+#, elixir-autogen, elixir-format
+msgid "Pending"
+msgstr "Pedente"
+
+#: lib/dashboard/schools/user_list.html.heex:46
+#, elixir-autogen, elixir-format
+msgid "Reject"
+msgstr "Rejeitar"
+
+#: lib/dashboard/schools/user_list.ex:33
+#, elixir-autogen, elixir-format
+msgid "User approved!"
+msgstr "Usuário aprovado!"
+
+#: lib/dashboard/schools/user_list.ex:49
+#, elixir-autogen, elixir-format
+msgid "User rejected!"
+msgstr "Usuário rejeitado!"
+
+#: lib/dashboard/schools/user_list.ex:65
+#, elixir-autogen, elixir-format
+msgid "User removed!"
+msgstr "Usuário removido!"
+
+#: lib/dashboard/schools/user_list.html.heex:77
+#, elixir-autogen, elixir-format
+msgid "Username or email address"
+msgstr "Nome de usuário ou endereço de e-mail"
+
+#: lib/dashboard/schools/user_list.html.heex:59
+#, elixir-autogen, elixir-format
+msgid "This will remove %{username} from your school. They won't be able to see your school anymore unless you approve them again."
+msgstr "Você está prestes a remover %{username} da sua escola. Eles não poderão mais ver sua escola a menos que você os aprove novamente."

@@ -15,7 +15,7 @@ msgid "can't be blank"
 msgstr ""
 
 ## From Ecto.Changeset.unique_constraint/3
-#: lib/organizations/school_schema.ex:58
+#: lib/organizations/school_schema.ex:61
 #, elixir-autogen
 msgid "has already been taken"
 msgstr ""
@@ -146,12 +146,12 @@ msgid "does not match password"
 msgstr ""
 
 #: lib/accounts/user_schema.ex:64
-#: lib/organizations/school_schema.ex:39
+#: lib/organizations/school_schema.ex:42
 #, elixir-autogen, elixir-format
 msgid "must have the @ sign and no spaces"
 msgstr ""
 
-#: lib/organizations/school_schema.ex:41
+#: lib/organizations/school_schema.ex:44
 #, elixir-autogen, elixir-format
 msgid "must start with / or https://"
 msgstr ""

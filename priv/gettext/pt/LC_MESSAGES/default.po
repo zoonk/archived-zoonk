@@ -32,6 +32,7 @@ msgid "We can't find the internet"
 msgstr "Não foi possível conectar à internet"
 
 #: lib/components/flash.ex:51
+#: lib/components/modal.ex:70
 #, elixir-autogen, elixir-format
 msgid "close"
 msgstr "fechar"
@@ -39,14 +40,14 @@ msgstr "fechar"
 #: lib/accounts/user_live/forgot_password.html.heex:7
 #: lib/accounts/user_live/login.html.heex:4
 #: lib/accounts/user_live/registration.html.heex:23
-#: lib/layouts/templates/app.html.heex:71
+#: lib/layouts/templates/app.html.heex:89
 #, elixir-autogen, elixir-format
 msgid "Email"
 msgstr "E-mail"
 
 #: lib/accounts/user_live/registration.html.heex:18
 #: lib/accounts/user_live/settings.html.heex:12
-#: lib/layouts/templates/app.html.heex:53
+#: lib/layouts/templates/app.html.heex:71
 #, elixir-autogen, elixir-format
 msgid "Language"
 msgstr "Idioma"
@@ -66,7 +67,7 @@ msgstr "Salvando..."
 
 #: lib/accounts/user_live/registration.html.heex:25
 #: lib/accounts/user_live/settings.html.heex:22
-#: lib/layouts/templates/app.html.heex:59
+#: lib/layouts/templates/app.html.heex:77
 #, elixir-autogen, elixir-format
 msgid "Username"
 msgstr "Nome de usuário"
@@ -78,7 +79,7 @@ msgid "Home"
 msgstr "Início"
 
 #: lib/dashboard/schools/school_edit.html.heex:6
-#: lib/layouts/templates/app.html.heex:25
+#: lib/layouts/templates/app.html.heex:43
 #: lib/layouts/templates/auth.html.heex:3
 #, elixir-autogen, elixir-format
 msgid "Logo"
@@ -95,13 +96,13 @@ msgstr ""
 msgid "Changing..."
 msgstr "Alterando..."
 
-#: lib/layouts/templates/app.html.heex:80
+#: lib/layouts/templates/app.html.heex:98
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Logout"
 msgstr "Sair"
 
 #: lib/accounts/user_live/settings.ex:32
-#: lib/layouts/templates/app.html.heex:47
+#: lib/layouts/templates/app.html.heex:65
 #, elixir-autogen, elixir-format
 msgid "Settings"
 msgstr "Configurações"
@@ -123,7 +124,7 @@ msgstr "Sobrenome"
 msgid "Save"
 msgstr "Salvar"
 
-#: lib/layouts/templates/app.html.heex:65
+#: lib/layouts/templates/app.html.heex:83
 #, elixir-autogen, elixir-format
 msgid "Name"
 msgstr "Nome"
@@ -140,16 +141,22 @@ msgid "Manage school"
 msgstr "Gerenciar escola"
 
 #: lib/dashboard/home.html.heex:13
+#: lib/dashboard/schools/user_list.ex:108
+#: lib/layouts/templates/app.html.heex:25
 #, elixir-autogen, elixir-format
 msgid "Managers"
 msgstr "Gestores"
 
 #: lib/dashboard/home.html.heex:15
+#: lib/dashboard/schools/user_list.ex:110
+#: lib/layouts/templates/app.html.heex:37
 #, elixir-autogen, elixir-format
 msgid "Students"
 msgstr "Alunos"
 
 #: lib/dashboard/home.html.heex:14
+#: lib/dashboard/schools/user_list.ex:109
+#: lib/layouts/templates/app.html.heex:31
 #, elixir-autogen, elixir-format
 msgid "Teachers"
 msgstr "Professores"
@@ -159,7 +166,7 @@ msgstr "Professores"
 msgid "Click on the save button to upload your file."
 msgstr "Clique no botão salvar para enviar seu arquivo."
 
-#: lib/layouts/templates/app.html.heex:37
+#: lib/layouts/templates/app.html.heex:55
 #, elixir-autogen, elixir-format
 msgid "Profile"
 msgstr "Perfil"
