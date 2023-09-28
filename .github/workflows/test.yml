@@ -32,7 +32,7 @@ jobs:
           otp-version: ${{env.OTP_VERSION}}
 
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Restore dependencies cache
         id: cache-deps
