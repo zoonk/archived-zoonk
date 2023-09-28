@@ -29,7 +29,7 @@ defmodule UneebeeWeb.NewSchoolLiveTest do
       assert school.created_by_id == user.id
       assert school.name == attrs.name
 
-      school_user = Organizations.get_school_user_by_slug_and_username(school.slug, user.username)
+      school_user = Organizations.get_school_user(school.slug, user.username)
       assert school_user.role == :manager
       assert school_user.approved? == true
     end

@@ -156,7 +156,7 @@ defmodule Uneebee.OrganizationsTest do
       assert school.name == valid_attrs.name
       assert school.slug == valid_attrs.slug
 
-      school_user = Organizations.get_school_user_by_slug_and_username(school.slug, user.username)
+      school_user = Organizations.get_school_user(school.slug, user.username)
 
       assert school_user.role == :manager
       assert school_user.approved? == true
@@ -248,22 +248,24 @@ defmodule Uneebee.OrganizationsTest do
   end
 
   test "only adds a user if they haven't been added to the school yet" do
-    school = school_fixture(%{username: "user-#{System.unique_integer()}"})
+    school = school_fixture(%{slug: "user-#{System.unique_integer()}"})
     %{user: user} = school_user_fixture(%{role: :teacher, school: school, preload: :user})
 
     assert {:error, %Ecto.Changeset{}} = Organizations.create_school_user(school, user, %{role: :student})
 
-    school_user = Organizations.get_school_user_by_slug_and_username(school.slug, user.username)
+    school_user = Organizations.get_school_user(school.slug, user.username)
     assert school_user.role == :teacher
   end
 
-  describe "get_school_user_by_slug_and_username/2" do
+  describe "get_school_user/2" do
     test "returns a school user" do
-      school = school_fixture()
-      user = user_fixture()
-      school_user = school_user_fixture(%{school: school, user: user})
+      school = school_fixture(%{slug: "user-#{System.unique_integer()}"})
+      %{user: user} = school_user_fixture(%{school: school, preload: :user})
 
-      assert Organizations.get_school_user_by_slug_and_username(school.slug, user.username) == school_user
+      school_user = Organizations.get_school_user(school.slug, user.username)
+
+      assert school_user.user.first_name == user.first_name
+      assert school_user.school.name == school.name
     end
   end
 
@@ -317,6 +319,93 @@ defmodule Uneebee.OrganizationsTest do
       assert Organizations.get_school_users_count(school, :student) == 4
       assert Organizations.get_school_users_count(school, :teacher) == 3
       assert Organizations.get_school_users_count(school, :manager) == 1
+    end
+  end
+
+  describe "list_school_users_by_role/2" do
+    test "list all managers from a school" do
+      user = user_fixture()
+      school = school_fixture()
+      school_user = school_user_fixture(%{user: user, school: school, role: :manager, preload: [:approved_by, :user]})
+      school_user_fixture(%{school: school, role: :teacher})
+
+      assert Organizations.list_school_users_by_role(school, :manager) == [school_user]
+    end
+
+    test "shows managers pending approval first" do
+      user1 = user_fixture()
+      user2 = user_fixture()
+      school = school_fixture()
+
+      approved_user =
+        school_user_fixture(%{user: user1, school: school, role: :manager, preload: [:user, :approved_by]})
+
+      not_approved_user =
+        school_user_fixture(%{
+          user: user2,
+          school: school,
+          role: :manager,
+          approved?: false,
+          preload: [:user, :approved_by]
+        })
+
+      assert Organizations.list_school_users_by_role(school, :manager) == [not_approved_user, approved_user]
+    end
+
+    test "list all teachers from a school" do
+      school = school_fixture()
+      teacher_user = user_fixture()
+
+      teacher_school_user =
+        school_user_fixture(%{user: teacher_user, school: school, role: :teacher, preload: [:user, :approved_by]})
+
+      school_user_fixture(%{school: school})
+
+      assert Organizations.list_school_users_by_role(school, :teacher) == [teacher_school_user]
+    end
+
+    test "shows teachers pending approval first" do
+      school = school_fixture()
+      user1 = user_fixture()
+      user2 = user_fixture()
+
+      approved_user =
+        school_user_fixture(%{user: user1, school: school, role: :teacher, preload: [:user, :approved_by]})
+
+      not_approved_user =
+        school_user_fixture(%{
+          user: user2,
+          school: school,
+          role: :teacher,
+          approved?: false,
+          preload: [:user, :approved_by]
+        })
+
+      assert Organizations.list_school_users_by_role(school, :teacher) == [not_approved_user, approved_user]
+    end
+  end
+
+  describe "approve_school_user/2" do
+    test "approves a school user" do
+      manager_user = user_fixture()
+      school = school_fixture()
+      school_user_fixture(%{user: manager_user, school: school, role: :manager})
+      school_user = school_user_fixture(%{school: school, approved?: false})
+
+      assert {:ok, %SchoolUser{} = school_user} = Organizations.approve_school_user(school_user.id, manager_user.id)
+
+      assert school_user.approved?
+    end
+  end
+
+  describe "delete_school_user/1" do
+    test "deletes the school user" do
+      school = school_fixture()
+      user = user_fixture()
+      school_user = school_user_fixture(%{school: school, user: user})
+
+      assert {:ok, %SchoolUser{}} = Organizations.delete_school_user(school_user.id)
+      assert Organizations.get_school_user(school.slug, user.username) == nil
     end
   end
 end

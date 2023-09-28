@@ -50,6 +50,44 @@ defmodule Uneebee.Accounts do
   end
 
   @doc """
+  Gets a user by username.
+
+  ## Examples
+
+      iex> get_user_by_username("mariecurie")
+      %User{}
+
+      iex> get_user_by_username("unknown")
+      nil
+
+  """
+  @spec get_user_by_username(String.t()) :: User.t() | nil
+  def get_user_by_username(username) when is_binary(username) do
+    Repo.get_by(User, username: username)
+  end
+
+  @doc """
+  Gets a user by either their email address or username.
+
+  ## Examples
+
+      iex> get_user_by_email_or_username("foo@example.com")
+      %User{}
+
+      iex> get_user_by_username("davinci")
+      %User{}
+
+  """
+  @spec get_user_by_email_or_username(String.t()) :: User.t() | nil
+  def get_user_by_email_or_username(email_or_username) do
+    if String.contains?(email_or_username, "@") do
+      get_user_by_email(email_or_username)
+    else
+      get_user_by_username(email_or_username)
+    end
+  end
+
+  @doc """
   Gets a single user.
 
   Raises `Ecto.NoResultsError` if the User does not exist.

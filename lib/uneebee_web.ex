@@ -96,6 +96,7 @@ defmodule UneebeeWeb do
       import UneebeeWeb.Components.Input
       import UneebeeWeb.Components.Link
       import UneebeeWeb.Components.Menu
+      import UneebeeWeb.Components.Modal
 
       # i18n
       import UneebeeWeb.Gettext

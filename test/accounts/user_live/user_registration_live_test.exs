@@ -64,7 +64,7 @@ defmodule UneebeeWeb.UserRegistrationLiveTest do
       assert response =~ attrs.email
 
       # Check if the user was added as school user
-      school_user = Organizations.get_school_user_by_slug_and_username(school.slug, attrs.username)
+      school_user = Organizations.get_school_user(school.slug, attrs.username)
       assert school_user.approved?
       assert school_user.role == :student
     end

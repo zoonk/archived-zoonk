@@ -20,6 +20,24 @@
         <.sub_menu navigate={~p"/dashboard"} active={@active_page == :dashboard_home} title={gettext("Dashboard")} />
 
         <.sub_menu
+          navigate={~p"/dashboard/managers"}
+          active={@active_page == :dashboard_userlist_manager}
+          title={gettext("Managers")}
+        />
+
+        <.sub_menu
+          navigate={~p"/dashboard/teachers"}
+          active={@active_page == :dashboard_userlist_teacher}
+          title={gettext("Teachers")}
+        />
+
+        <.sub_menu
+          navigate={~p"/dashboard/students"}
+          active={@active_page == :dashboard_userlist_student}
+          title={gettext("Students")}
+        />
+
+        <.sub_menu
           navigate={~p"/dashboard/edit/logo"}
           active={@active_page == :dashboard_schooledit_logo}
           title={gettext("Logo")}

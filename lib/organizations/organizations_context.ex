@@ -121,22 +121,30 @@ defmodule Uneebee.Organizations do
   end
 
   @doc """
-  Get a school user given a school slug and a user username.
+  Get a user from a school given their usernames.
 
   ## Examples
 
-      iex> get_school_user_by_slug_and_username("slug", "username")
+      iex> get_school_user("uneebee", "will")
       %SchoolUser{}
 
-      iex> get_school_user_by_slug_and_username("invalid_slug", "invalid_username")
+      iex> get_school_user("uneebee", "invalid")
       nil
   """
-  @spec get_school_user_by_slug_and_username(String.t(), String.t()) :: SchoolUser.t() | nil
-  def get_school_user_by_slug_and_username(slug, username) do
-    SchoolUser
-    |> join(:inner, [su], s in assoc(su, :school), on: s.slug == ^slug)
-    |> join(:inner, [su], u in assoc(su, :user), on: u.username == ^username)
-    |> Repo.one()
+  @spec get_school_user(String.t(), String.t(), list()) :: SchoolUser.t() | nil
+  def get_school_user(school_slug, user_username, opts \\ []) do
+    preload = Keyword.get(opts, :preload, [:school, :user])
+
+    query =
+      from(school_user in SchoolUser,
+        join: school in assoc(school_user, :school),
+        join: user in assoc(school_user, :user),
+        where: school.slug == ^school_slug,
+        where: user.username == ^user_username,
+        preload: ^preload
+      )
+
+    Repo.one(query)
   end
 
   @doc """
@@ -185,5 +193,57 @@ defmodule Uneebee.Organizations do
   @spec get_school_users_count(School.t(), atom()) :: non_neg_integer()
   def get_school_users_count(school, role) do
     SchoolUser |> where([su], su.school_id == ^school.id and su.role == ^role) |> Repo.aggregate(:count)
+  end
+
+  @doc """
+  List all users for a school according to their role.
+
+  ## Examples
+
+      iex> list_school_users_by_role(school, :manager)
+      [%SchoolUser{}, ...]
+  """
+  @spec list_school_users_by_role(School.t(), atom()) :: [SchoolUser.t()]
+  def list_school_users_by_role(%School{} = school, role) do
+    query =
+      from school_user in SchoolUser,
+        where: school_user.role == ^role,
+        order_by: [asc: school_user.approved?],
+        preload: [:approved_by, :user]
+
+    school |> Repo.preload(users: query) |> Map.get(:users)
+  end
+
+  @doc """
+  Approves a school user.
+
+  ## Examples
+
+      iex> approve_school_user(school_user_id)
+      {:ok, %SchoolUser{}}
+
+      iex> approve_school_user(school_user_id)
+      {:error, %Ecto.Changeset{}}
+  """
+  @spec approve_school_user(integer(), integer()) :: school_user_changeset()
+  def approve_school_user(school_user_id, approved_by_id) do
+    attrs = %{approved?: true, approved_by_id: approved_by_id, approved_at: DateTime.utc_now()}
+    SchoolUser |> Repo.get(school_user_id) |> SchoolUser.changeset(attrs) |> Repo.update()
+  end
+
+  @doc """
+  Deletes a school user.
+
+  ## Examples
+
+      iex> delete_school_user(school_user_id)
+      {:ok, %SchoolUser{}}
+
+      iex> delete_school_user(school_user_id)
+      {:error, %Ecto.Changeset{}}
+  """
+  @spec delete_school_user(integer()) :: school_user_changeset()
+  def delete_school_user(school_user_id) do
+    SchoolUser |> Repo.get(school_user_id) |> Repo.delete()
   end
 end

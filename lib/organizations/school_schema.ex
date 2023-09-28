@@ -11,6 +11,7 @@ defmodule Uneebee.Organizations.School do
 
   alias Uneebee.Accounts.User
   alias Uneebee.Organizations.School
+  alias Uneebee.Organizations.SchoolUser
   alias Uneebee.Repo
 
   @type t :: %__MODULE__{}
@@ -25,6 +26,8 @@ defmodule Uneebee.Organizations.School do
 
     belongs_to :created_by, User
     belongs_to :school, School
+
+    has_many :users, SchoolUser
 
     timestamps(type: :utc_datetime_usec)
   end

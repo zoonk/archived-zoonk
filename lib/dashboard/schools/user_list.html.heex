@@ -1,0 +1,86 @@
+<nav class="mb-4 flex justify-end">
+  <.button phx-click={show_modal("add-user-modal")} icon="tabler-user-plus">
+    <%= get_add_link_label(@live_action) %>
+  </.button>
+</nav>
+
+<dl id="user-list" phx-update="stream" class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+  <div
+    :for={{dom_id, school_user} <- @streams.users}
+    id={dom_id}
+    class="text-gray-dark flex h-full flex-col rounded-2xl bg-white p-4 shadow"
+  >
+    <div class="flex gap-2" id={"user-#{school_user.user.id}"}>
+      <.avatar src={school_user.user.avatar} alt={get_avatar_label(school_user.user)} />
+
+      <header>
+        <dt class="flex items-center justify-between font-semibold">
+          <span class="truncate"><%= school_user.user.first_name %> <%= school_user.user.last_name %></span>
+
+          <span
+            :if={not school_user.approved?}
+            role="status"
+            class="bg-warning-light2x text-warning-dark rounded-full px-2 py-1 text-xs"
+          >
+            <%= gettext("Pending") %>
+          </span>
+        </dt>
+
+        <dd class="text-gray flex-1 text-sm">@<%= school_user.user.username %> - <%= school_user.user.email %></dd>
+      </header>
+    </div>
+
+    <dd
+      :if={school_user.approved? && school_user.user.id != school_user.approved_by.id}
+      class="text-gray mt-2 text-sm italic"
+    >
+      <%= dgettext("manager", "Approved by: @%{username}", username: school_user.approved_by.username) %>
+    </dd>
+
+    <div :if={not school_user.approved?} class="mt-4 flex items-center gap-2">
+      <.button phx-click="approve" phx-value-school-user-id={school_user.id} icon="tabler-checks" color={:success_light}>
+        <%= gettext("Approve") %>
+      </.button>
+
+      <.button phx-click="reject" phx-value-school-user-id={school_user.id} icon="tabler-ban" color={:alert_light}>
+        <%= gettext("Reject") %>
+      </.button>
+    </div>
+
+    <div :if={school_user.approved?} class="mt-4 flex items-end justify-end">
+      <.icon_button
+        id="remove-user"
+        icon="tabler-trash-x"
+        label={dgettext("manager", "Remove user")}
+        color={:alert_light}
+        phx-click="remove"
+        phx-value-school-user-id={school_user.id}
+        data-confirm={
+          dgettext(
+            "manager",
+            "This will remove %{username} from your school. They won't be able to see your school anymore unless you approve them again.",
+            username: school_user.user.username
+          )
+        }
+        size={:md}
+      />
+    </div>
+  </div>
+</dl>
+
+<.modal id="add-user-modal" on_cancel={hide_modal("add-user-modal")}>
+  <.header><%= get_add_link_label(@live_action) %></.header>
+
+  <form phx-submit="add-user" id="add-user-form" class="mt-4">
+    <.input
+      type="text"
+      label={gettext("Username or email address")}
+      name="email_or_username"
+      id="email_or_username"
+      required
+      value=""
+    />
+
+    <.button type="submit" icon="tabler-user-plus" class="mt-4"><%= get_add_link_label(@live_action) %></.button>
+  </form>
+</.modal>

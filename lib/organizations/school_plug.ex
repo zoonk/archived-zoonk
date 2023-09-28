@@ -103,7 +103,7 @@ defmodule UneebeeWeb.Plugs.School do
   defp get_school_user(_school, nil), do: nil
   defp get_school_user(nil, _user), do: nil
 
-  defp get_school_user(school, user), do: Organizations.get_school_user_by_slug_and_username(school.slug, user.username)
+  defp get_school_user(school, user), do: Organizations.get_school_user(school.slug, user.username)
 
   defp get_school(%{params: %{"school_slug" => slug}}) do
     Organizations.get_school_by_slug!(slug)
