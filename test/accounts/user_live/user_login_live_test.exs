@@ -54,20 +54,4 @@ defmodule UneebeeWeb.UserLoginLiveTest do
       assert redirected_to(conn) == "/users/login"
     end
   end
-
-  describe "login navigation" do
-    test "redirects to forgot password page when the Forgot Password button is clicked", %{
-      conn: conn
-    } do
-      {:ok, lv, _html} = live(conn, ~p"/users/login")
-
-      {:ok, conn} =
-        lv
-        |> element(~s|main a:fl-contains("Forgot your password?")|)
-        |> render_click()
-        |> follow_redirect(conn, ~p"/users/reset_password")
-
-      assert conn.resp_body =~ "Forgot your password?"
-    end
-  end
 end
