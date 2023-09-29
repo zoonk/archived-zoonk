@@ -55,6 +55,44 @@ defmodule UneebeeWeb.Plugs.School do
   defp setup_school(conn, _opts, true), do: conn |> Controller.redirect(to: ~p"/schools/new") |> halt()
 
   @doc """
+  Requires authentication for private schools.
+  Some schools set their visibility to `false` through `school.public?`.
+  In those cases none of the school pages should be publicly visible.
+  """
+  @spec require_auth_for_private_schools(Plug.Conn.t(), Keyword.t()) :: Plug.Conn.t()
+  def require_auth_for_private_schools(conn, opts) do
+    %{current_user: current_user, school: school} = conn.assigns
+    require_auth_for_private_schools(conn, opts, current_user, school)
+  end
+
+  # Redirect users when they aren't logged in and the school is private.
+  defp require_auth_for_private_schools(conn, _opts, nil, %{public?: false}) do
+    conn |> Phoenix.Controller.redirect(to: ~p"/users/login") |> halt()
+  end
+
+  defp require_auth_for_private_schools(conn, _opts, _user, _school), do: conn
+
+  @doc """
+  Requires a subscription for private schools.
+  """
+  @spec require_subscription_for_private_schools(Plug.Conn.t(), Keyword.t()) :: Plug.Conn.t()
+  @spec require_subscription_for_private_schools(Plug.Conn.t(), boolean(), map()) :: Plug.Conn.t()
+  def require_subscription_for_private_schools(conn, _opts) do
+    %{school: school, school_user: school_user} = conn.assigns
+    require_subscription_for_private_schools(conn, school.public?, school_user)
+  end
+
+  # If the school is public, then we don't need to check for a subscription.
+  defp require_subscription_for_private_schools(conn, true, _school_user), do: conn
+
+  # If the user is approved? (has subscription), then they have access.
+  defp require_subscription_for_private_schools(conn, false, school_user) when school_user.approved?, do: conn
+
+  # If the user is not approved? (doesn't have subscription) and school is private, then they don't have access.
+  defp require_subscription_for_private_schools(_conn, false, _school_user),
+    do: raise(UneebeeWeb.PermissionError, code: :pending_approval)
+
+  @doc """
   Requires `manager` permissions to access a certain route.
   """
   @spec require_manager(Plug.Conn.t(), Keyword.t()) :: Plug.Conn.t()
@@ -70,6 +108,23 @@ defmodule UneebeeWeb.Plugs.School do
 
   # If the user is not a manager, then they don't have access.
   defp require_manager(_conn, _opts, _approved?, _role), do: raise(UneebeeWeb.PermissionError, code: :require_manager)
+
+  @doc """
+  Requires `manager` or `teacher` permissions to access a certain route.
+  """
+  @spec require_manager_or_teacher(Plug.Conn.t(), Keyword.t()) :: Plug.Conn.t()
+  def require_manager_or_teacher(conn, opts) do
+    %{school_user: school_user} = conn.assigns
+    require_manager_or_teacher(conn, opts, school_user.approved?, school_user.role)
+  end
+
+  # If the user is a manager or teacher, then they have access.
+  defp require_manager_or_teacher(conn, _opts, true, :manager), do: conn
+  defp require_manager_or_teacher(conn, _opts, true, :teacher), do: conn
+
+  # If the user is not a manager or teacher, then they don't have access.
+  defp require_manager_or_teacher(_conn, _opts, _approved?, _role),
+    do: raise(UneebeeWeb.PermissionError, code: :require_manager_or_teacher)
 
   @doc """
   Handles mounting the school data to a LiveView.

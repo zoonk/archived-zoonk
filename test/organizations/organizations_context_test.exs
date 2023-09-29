@@ -2,8 +2,10 @@ defmodule Uneebee.OrganizationsTest do
   use Uneebee.DataCase, async: true
 
   import Uneebee.Fixtures.Accounts
+  import Uneebee.Fixtures.Content
   import Uneebee.Fixtures.Organizations
 
+  alias Uneebee.Content
   alias Uneebee.Organizations
   alias Uneebee.Organizations.School
   alias Uneebee.Organizations.SchoolUser
@@ -196,6 +198,13 @@ defmodule Uneebee.OrganizationsTest do
     end
   end
 
+  describe "get_school!/1" do
+    test "returns the school with given id" do
+      school = school_fixture()
+      assert Organizations.get_school!(school.id) == school
+    end
+  end
+
   describe "get_school_by_slug!/1" do
     test "returns the school with given id" do
       school = school_fixture()
@@ -207,54 +216,79 @@ defmodule Uneebee.OrganizationsTest do
     end
   end
 
-  test "add a school student" do
-    school = school_fixture()
-    user = user_fixture()
+  describe "create_school_user/3" do
+    test "add a school student" do
+      school = school_fixture()
+      user = user_fixture()
 
-    assert {:ok, %SchoolUser{} = school_user} = Organizations.create_school_user(school, user, %{role: :student})
+      assert {:ok, %SchoolUser{} = school_user} = Organizations.create_school_user(school, user, %{role: :student})
 
-    assert school_user.role == :student
-    assert school_user.school_id == school.id
-    assert school_user.user_id == user.id
+      assert school_user.role == :student
+      assert school_user.school_id == school.id
+      assert school_user.user_id == user.id
+    end
+
+    test "add a school teacher" do
+      school = school_fixture()
+      user = user_fixture()
+
+      assert {:ok, %SchoolUser{} = school_user} = Organizations.create_school_user(school, user, %{role: :teacher})
+
+      assert school_user.role == :teacher
+      assert school_user.school_id == school.id
+      assert school_user.user_id == user.id
+    end
+
+    test "add a school manager" do
+      school = school_fixture()
+      user = user_fixture()
+
+      assert {:ok, %SchoolUser{} = school_user} = Organizations.create_school_user(school, user, %{role: :manager})
+
+      assert school_user.role == :manager
+      assert school_user.school_id == school.id
+      assert school_user.user_id == user.id
+    end
+
+    test "returns an error if the role is invalid" do
+      school = school_fixture()
+      user = user_fixture()
+
+      assert {:error, %Ecto.Changeset{}} = Organizations.create_school_user(school, user, %{role: :invalid})
+    end
+
+    test "only adds a user if they haven't been added to the school yet" do
+      school = school_fixture(%{slug: "user-#{System.unique_integer()}"})
+      %{user: user} = school_user_fixture(%{role: :teacher, school: school, preload: :user})
+
+      assert {:error, %Ecto.Changeset{}} = Organizations.create_school_user(school, user, %{role: :student})
+
+      school_user = Organizations.get_school_user(school.slug, user.username)
+      assert school_user.role == :teacher
+    end
   end
 
-  test "add a school teacher" do
-    school = school_fixture()
-    user = user_fixture()
+  describe "update_school_user/2" do
+    test "update a school user" do
+      school = school_fixture()
+      user = user_fixture()
+      school_user = school_user_fixture(%{school: school, user: user, role: :teacher})
 
-    assert {:ok, %SchoolUser{} = school_user} = Organizations.create_school_user(school, user, %{role: :teacher})
+      assert {:ok, %SchoolUser{} = updated_school_user} =
+               Organizations.update_school_user(school_user, %{role: :manager})
 
-    assert school_user.role == :teacher
-    assert school_user.school_id == school.id
-    assert school_user.user_id == user.id
-  end
+      assert updated_school_user.role == :manager
+      assert updated_school_user.school_id == school.id
+      assert updated_school_user.user_id == user.id
+    end
 
-  test "add a school manager" do
-    school = school_fixture()
-    user = user_fixture()
+    test "returns an error if the role is invalid" do
+      school = school_fixture()
+      user = user_fixture()
+      school_user = school_user_fixture(%{school: school, user: user})
 
-    assert {:ok, %SchoolUser{} = school_user} = Organizations.create_school_user(school, user, %{role: :manager})
-
-    assert school_user.role == :manager
-    assert school_user.school_id == school.id
-    assert school_user.user_id == user.id
-  end
-
-  test "returns an error if the role is invalid" do
-    school = school_fixture()
-    user = user_fixture()
-
-    assert {:error, %Ecto.Changeset{}} = Organizations.create_school_user(school, user, %{role: :invalid})
-  end
-
-  test "only adds a user if they haven't been added to the school yet" do
-    school = school_fixture(%{slug: "user-#{System.unique_integer()}"})
-    %{user: user} = school_user_fixture(%{role: :teacher, school: school, preload: :user})
-
-    assert {:error, %Ecto.Changeset{}} = Organizations.create_school_user(school, user, %{role: :student})
-
-    school_user = Organizations.get_school_user(school.slug, user.username)
-    assert school_user.role == :teacher
+      assert {:error, %Ecto.Changeset{}} = Organizations.update_school_user(school_user, %{role: :invalid})
+    end
   end
 
   describe "get_school_user/2" do
@@ -399,13 +433,44 @@ defmodule Uneebee.OrganizationsTest do
   end
 
   describe "delete_school_user/1" do
-    test "deletes the school user" do
-      school = school_fixture()
-      user = user_fixture()
-      school_user = school_user_fixture(%{school: school, user: user})
+    test "deletes the school user and all course users" do
+      school1 = school_fixture()
+      school2 = school_fixture()
 
-      assert {:ok, %SchoolUser{}} = Organizations.delete_school_user(school_user.id)
-      assert Organizations.get_school_user(school.slug, user.username) == nil
+      user1 = user_fixture()
+      user2 = user_fixture()
+
+      school_user_fixture(%{user: user2, school: school1})
+      school_user_fixture(%{user: user1, school: school2})
+
+      course1 = course_fixture(%{school_id: school1.id, user: user1})
+      course_user1 = course_user_fixture(%{course_id: course1.id, user: user2})
+
+      course2 = course_fixture(%{school_id: school2.id, user: user1})
+
+      # Makes sure the course user actually exists to avoid false positives.
+      assert Content.get_course_user_by_id(course1.id, user1.id) != nil
+      assert Content.get_course_user_by_id(course1.id, user2.id) != nil
+
+      school_user = Organizations.get_school_user(school1.slug, user1.username)
+
+      assert {:ok, _deleted} = Organizations.delete_school_user(school_user.id)
+      assert Organizations.get_school_user(school1.slug, user1.username) == nil
+      assert Content.get_course_user_by_id(course1.id, user1.id) == nil
+
+      # Other course users should not be deleted.
+      assert Content.get_course_user_by_id(course1.id, user2.id) == course_user1
+
+      # Should not delete course users from other schools.
+      assert Content.get_course_user_by_id(course2.id, user1.id) != nil
+    end
+  end
+
+  describe "get_courses_count/1" do
+    test "returns the number of courses" do
+      school = school_fixture()
+      Enum.each(1..4, fn _idx -> course_fixture(%{school_id: school.id}) end)
+      assert Organizations.get_courses_count(school) == 4
     end
   end
 end

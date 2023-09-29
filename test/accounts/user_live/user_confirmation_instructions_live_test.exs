@@ -12,6 +12,8 @@ defmodule UneebeeWeb.UserConfirmationInstructionsLiveTest do
   end
 
   describe "Resend confirmation" do
+    setup :set_school
+
     test "renders the resend confirmation page", %{conn: conn} do
       {:ok, _lv, html} = live(conn, ~p"/users/confirm")
       assert html =~ "Resend confirmation instructions"

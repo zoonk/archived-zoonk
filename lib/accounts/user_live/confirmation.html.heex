@@ -1,14 +1,17 @@
 <div class="mx-auto max-w-sm">
-  <.header class="text-center">Confirm Account</.header>
+  <.header class="text-center"><%= dgettext("auth", "Confirm Account") %></.header>
 
   <.simple_form for={@form} id="confirmation_form" phx-submit="confirm_account">
     <.input field={@form[:token]} type="hidden" />
     <:actions>
-      <.button phx-disable-with="Confirming..." class="w-full">Confirm my account</.button>
+      <.button phx-disable-with={dgettext("auth", "Confirming...")} class="w-full">
+        <%= dgettext("auth", "Confirm my account") %>
+      </.button>
     </:actions>
   </.simple_form>
 
   <p class="mt-4 text-center">
-    <.link navigate={~p"/users/register"}>Register</.link> | <.link navigate={~p"/users/login"}>Log in</.link>
+    <.link navigate={~p"/users/register"}><%= dgettext("auth", "Register") %></.link>
+    | <.link navigate={~p"/users/login"}><%= dgettext("auth", "Sign in") %></.link>
   </p>
 </div>

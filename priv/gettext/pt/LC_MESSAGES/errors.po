@@ -160,3 +160,28 @@ msgstr "Você selecionou um tipo de arquivo não aceito"
 #, elixir-autogen, elixir-format
 msgid "You have selected too many files"
 msgstr "Você selecionou muitos arquivos"
+
+#: lib/error/permission_error.ex:17
+#, elixir-autogen, elixir-format
+msgid "Only managers and teachers can view this page"
+msgstr "Apenas gestores e professores podem ver esta página"
+
+#: lib/error/permission_error.ex:14
+#, elixir-autogen, elixir-format
+msgid "Only managers can view this page"
+msgstr "Apens gestores podem ver esta página"
+
+#: lib/error/permission_error.ex:11
+#, elixir-autogen, elixir-format
+msgid "School already configured"
+msgstr "Escola já configurada"
+
+#: lib/error/permission_error.ex:20
+#, elixir-autogen, elixir-format
+msgid "You are not enrolled in this course"
+msgstr "Você não está matriculado neste curso"
+
+#: lib/error/permission_error.ex:23
+#, elixir-autogen, elixir-format
+msgid "Your enrollment is pending approval"
+msgstr "A sua matrícula está pendente de aprovação"

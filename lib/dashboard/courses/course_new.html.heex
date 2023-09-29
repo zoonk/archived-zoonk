@@ -1,0 +1,27 @@
+<.simple_form for={@form} id="course-form" phx-change="validate" phx-submit="save">
+  <.header>
+    <%= dgettext("courses", "Create a course") %>
+
+    <:subtitle>
+      <%= dgettext("courses", "You'll be able to edit this information and add content to your course later.") %>
+    </:subtitle>
+  </.header>
+
+  <.input field={@form[:name]} type="text" label={dgettext("courses", "Course title")} required />
+
+  <.input field={@form[:description]} type="textarea" label={dgettext("courses", "Course description")} required />
+
+  <.input
+    field={@form[:slug]}
+    type="text"
+    label={dgettext("courses", "Course slug")}
+    helper={dgettext("courses", "Friendly identifier used to access your course. I.e. my-course-name")}
+    required
+  />
+
+  <:actions>
+    <.button icon="tabler-table-plus" type="submit" phx-disable-with={gettext("Saving...")}>
+      <%= dgettext("orgs", "Create course") %>
+    </.button>
+  </:actions>
+</.simple_form>

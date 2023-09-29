@@ -167,3 +167,28 @@ msgstr ""
 #, elixir-autogen, elixir-format
 msgid "You have selected too many files"
 msgstr ""
+
+#: lib/error/permission_error.ex:17
+#, elixir-autogen, elixir-format
+msgid "Only managers and teachers can view this page"
+msgstr ""
+
+#: lib/error/permission_error.ex:14
+#, elixir-autogen, elixir-format
+msgid "Only managers can view this page"
+msgstr ""
+
+#: lib/error/permission_error.ex:11
+#, elixir-autogen, elixir-format
+msgid "School already configured"
+msgstr ""
+
+#: lib/error/permission_error.ex:20
+#, elixir-autogen, elixir-format
+msgid "You are not enrolled in this course"
+msgstr ""
+
+#: lib/error/permission_error.ex:23
+#, elixir-autogen, elixir-format
+msgid "Your enrollment is pending approval"
+msgstr ""

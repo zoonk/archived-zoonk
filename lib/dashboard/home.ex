@@ -16,7 +16,7 @@ defmodule UneebeeWeb.Live.Dashboard.Home do
 
     socket =
       socket
-      |> assign(:page_title, gettext("Dashboard"))
+      |> assign(:page_title, dgettext("orgs", "Dashboard"))
       |> assign(:manager_count, manager_count)
       |> assign(:teacher_count, teacher_count)
       |> assign(:student_count, student_count)

@@ -1,0 +1,52 @@
+<article class="m-auto max-w-sm space-y-4">
+  <% current_step = hd(@steps) %>
+
+  <.lesson_progress total={length(@steps) + length(@completed_steps)} current={current_step.order} />
+
+  <section :if={@completed_steps != []} class="space-y-4">
+    <.lesson_step
+      :for={{step, index} <- Enum.with_index(@completed_steps)}
+      step={step}
+      selected={Enum.at(@selected_options, index)}
+    />
+  </section>
+
+  <.lesson_step step={current_step} />
+
+  <form
+    :if={current_step.options != []}
+    id="select-option"
+    phx-submit="select-option"
+    class="space-y-2"
+    phx-hook="LessonSoundEffect"
+  >
+    <secion class="grid grid-cols-2 gap-2">
+      <div :for={option <- current_step.options} class="relative">
+        <input
+          id={"select-option-#{option.id}"}
+          type="radio"
+          name="selected_option"
+          value={option.id}
+          class="peer absolute opacity-0"
+          required
+        />
+
+        <label
+          for={"select-option-#{option.id}"}
+          class="border-gray-light text-gray flex h-full cursor-pointer flex-col items-center justify-center gap-4 rounded-2xl border bg-white p-4 text-sm peer-checked:bg-info-light3x peer-checked:text-info-dark2x peer-checked:border-info-dark2x"
+        >
+          <img :if={option.image} src={option.image} alt={option.title} class="w-1/3" />
+          <%= option.title %>
+        </label>
+      </div>
+    </secion>
+
+    <.button type="submit" color={:success} icon="tabler-checks" phx-disable-with={dgettext("courses", "Confirming...")}>
+      <%= gettext("Confirm") %>
+    </.button>
+  </form>
+
+  <.button :if={current_step.options == []} phx-click="next-step" color={:success} icon="tabler-chevrons-right">
+    <%= dgettext("courses", "Next step") %>
+  </.button>
+</article>

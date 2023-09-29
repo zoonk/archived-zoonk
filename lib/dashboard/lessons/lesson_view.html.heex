@@ -1,0 +1,179 @@
+<nav class="flex justify-end">
+  <.button :if={not @lesson.published?} phx-click="toggle-status" icon="tabler-eye" color={:success_light}>
+    <%= dgettext("courses", "Publish") %>
+  </.button>
+
+  <.button :if={@lesson.published?} phx-click="toggle-status" icon="tabler-eye-off" color={:alert_light}>
+    <%= dgettext("courses", "Unpublish") %>
+  </.button>
+</nav>
+
+<dl
+  class="my-4 space-y-2"
+  id="lesson-steps"
+  data-group="lesson-steps"
+  phx-hook={if @lesson.kind == :story, do: "Sortable", else: nil}
+>
+  <div
+    :for={lesson_step <- @lesson_steps}
+    class={[
+      "flex items-center justify-between text-gray-dark rounded-lg bg-white p-2 text-sm shadow",
+      @lesson.kind == :story &&
+        "cursor-grab drag-ghost:bg-gray-light drag-ghost:cursor-grabbing drag-ghost:border-0 drag-ghost:ring-0 focus-within:drag-item:ring-0 focus-within:drag-item:ring-offset-0"
+    ]}
+  >
+    <div>
+      <dt :if={lesson_step.kind == :text}><%= lesson_step.content %></dt>
+      <img :if={lesson_step.kind == :image} src={lesson_step.content} class="w-10" />
+
+      <ul class="mt-4 space-y-2">
+        <li :for={option <- lesson_step.options} class="flex items-center gap-2">
+          <.link
+            id={"option-#{option.id}-image-link"}
+            navigate={~p"/dashboard/c/#{@course.slug}/l/#{@lesson.id}/o/#{option.id}/image"}
+          >
+            <.avatar src={option.image} alt={option.title} />
+          </.link>
+
+          <.link
+            navigate={~p"/dashboard/c/#{@course.slug}/l/#{@lesson.id}/o/#{option.id}"}
+            class={[
+              "w-max truncate rounded-2xl border px-2 py-1",
+              option.correct? && "bg-success-light3x text-success-dark2x border-success-dark2x",
+              not option.correct? && "border-gray-light"
+            ]}
+          >
+            <%= option.title %>
+          </.link>
+
+          <.icon_button
+            icon="tabler-x"
+            color={:alert_light}
+            size={:sm}
+            role="button"
+            label={dgettext("courses", "Delete option")}
+            data-confirm={dgettext("courses", "Are you sure?")}
+            phx-click="delete-option"
+            phx-value-option-id={option.id}
+          />
+        </li>
+      </ul>
+
+      <.button
+        phx-click="add-option"
+        phx-value-step-id={lesson_step.id}
+        icon="tabler-layout-grid-add"
+        color={:info_light}
+        class="mt-4"
+      >
+        <%= dgettext("courses", "Add option") %>
+      </.button>
+    </div>
+
+    <.icon_button
+      phx-click="delete-step"
+      phx-value-step-id={lesson_step.id}
+      label={dgettext("courses", "Remove step")}
+      icon="tabler-trash-x"
+      color={:alert_light}
+      size={:sm}
+      data-confirm={dgettext("courses", "Are you sure?")}
+    />
+  </div>
+</dl>
+
+<.form for={@step_form} id="step-form" phx-change="validate-step" phx-submit="create-step" class="flex items-end gap-2">
+  <.input type="hidden" field={@step_form[:kind]} value={:text} />
+  <.input type="hidden" field={@step_form[:order]} value={length(@lesson_steps) + 1} />
+
+  <.input
+    type="text"
+    field={@step_form[:content]}
+    label={dgettext("courses", "Add step")}
+    helper={
+      dgettext(
+        "courses",
+        "A story has multiple steps. Use them to tell a story, explain a concept or ask a question. Keep them short and simple."
+      )
+    }
+    required
+  />
+
+  <.icon_button
+    type="button"
+    phx-click={show_modal("img-step-modal")}
+    icon="tabler-photo-plus"
+    size={:lg}
+    label={dgettext("courses", "Add image step")}
+  />
+</.form>
+
+<.modal id="img-step-modal" on_cancel={hide_modal("img-step-modal")}>
+  <.live_component
+    module={Upload}
+    id={:step_img}
+    current_img={nil}
+    unstyled
+    label={dgettext("courses", "Add image step")}
+  />
+</.modal>
+
+<.modal
+  :if={@live_action == :option_img}
+  show
+  id="option-img-modal"
+  on_cancel={JS.patch(~p"/dashboard/c/#{@course.slug}/l/#{@lesson.id}")}
+>
+  <.live_component
+    module={Upload}
+    id={:option_img}
+    current_img={@selected_option.image}
+    label={dgettext("courses", "Add image to option")}
+    unstyled
+  />
+</.modal>
+
+<.modal
+  :if={@live_action == :option}
+  show
+  id="edit-option-modal"
+  on_cancel={JS.patch(~p"/dashboard/c/#{@course.slug}/l/#{@lesson.id}")}
+>
+  <.simple_form
+    for={@option_form}
+    title={dgettext("courses", "Update option")}
+    id="option-form"
+    phx-change="validate-option"
+    phx-submit="update-option"
+    unstyled
+  >
+    <.input type="text" field={@option_form[:title]} label={dgettext("courses", "Option title")} required />
+
+    <.input
+      type="text"
+      field={@option_form[:feedback]}
+      label={dgettext("courses", "Option feedback")}
+      helper={
+        dgettext(
+          "courses",
+          "Feedback message displayed after a user answers this question. You can provide some additional context on why this is wrong or correct."
+        )
+      }
+    />
+
+    <.input
+      type="checkbox"
+      field={@option_form[:correct?]}
+      label={dgettext("courses", "Is correct?")}
+      helper={dgettext("courses", "Check this option if this is the correct answer.")}
+    />
+
+    <:actions>
+      <.button type="submit"><%= gettext("Save") %></.button>
+
+      <.link_button navigate={~p"/dashboard/c/#{@course.slug}/l/#{@lesson.id}"} color={:alert_light}>
+        <%= gettext("Cancel") %>
+      </.link_button>
+    </:actions>
+  </.simple_form>
+</.modal>

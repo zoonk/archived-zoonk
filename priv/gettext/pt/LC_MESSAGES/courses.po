@@ -1,0 +1,547 @@
+## "msgid"s in this file come from POT (.pot) files.
+###
+### Do not add, change, or remove "msgid"s manually here as
+### they're tied to the ones in the corresponding POT file
+### (with the same domain).
+###
+### Use "mix gettext.extract --merge" or "mix gettext.merge"
+### to merge POT files into PO files.
+msgid ""
+msgstr ""
+"Language: pt\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: lib/dashboard/courses/course_view.html.heex:10
+#, elixir-autogen, elixir-format
+msgid "+ Lesson"
+msgstr "+ Aula"
+
+#: lib/content/course_live/view.ex:57
+#, elixir-autogen, elixir-format
+msgid "A request to enroll has been sent to the course teacher."
+msgstr "Uma solicitação de matrícula foi enviada ao professor do curso."
+
+#: lib/dashboard/lessons/lesson_view.html.heex:94
+#, elixir-autogen, elixir-format
+msgid "A story has multiple steps. Use them to tell a story, explain a concept or ask a question. Keep them short and simple."
+msgstr "Uma história tem várias etapas. Use-as para contar uma história, explicar um conceito ou fazer uma pergunta. Mantenha-as curtas e simples."
+
+#: lib/dashboard/lessons/lesson_view.html.heex:107
+#: lib/dashboard/lessons/lesson_view.html.heex:117
+#, elixir-autogen, elixir-format
+msgid "Add image step"
+msgstr "Nova etapa de imagem"
+
+#: lib/dashboard/lessons/lesson_view.html.heex:131
+#, elixir-autogen, elixir-format
+msgid "Add image to option"
+msgstr "Adicionar imagem à alternativa"
+
+#: lib/dashboard/lessons/lesson_view.html.heex:69
+#, elixir-autogen, elixir-format
+msgid "Add option"
+msgstr "Nova alternativa"
+
+#: lib/dashboard/lessons/lesson_view.html.heex:92
+#, elixir-autogen, elixir-format
+msgid "Add step"
+msgstr "Nova etapa"
+
+#: lib/content/course_config.ex:20
+#, elixir-autogen, elixir-format
+msgid "Advanced"
+msgstr "Avançado"
+
+#: lib/dashboard/courses/course_student_view.html.heex:43
+#, elixir-autogen, elixir-format
+msgid "All answers were correct."
+msgstr "Todos as respostas estavam corretas."
+
+#: lib/layouts/templates/app.html.heex:143
+#, elixir-autogen, elixir-format
+msgid "All lessons"
+msgstr "Todas as aulas"
+
+#: lib/dashboard/lessons/lesson_view.html.heex:55
+#: lib/dashboard/lessons/lesson_view.html.heex:80
+#, elixir-autogen, elixir-format
+msgid "Are you sure?"
+msgstr "Tem certeza?"
+
+#: lib/content/course_live/lesson_completed.html.heex:24
+#, elixir-autogen, elixir-format
+msgid "Back to the course"
+msgstr "Voltar ao curso"
+
+#: lib/content/course_config.ex:18
+#, elixir-autogen, elixir-format
+msgid "Beginner"
+msgstr "Iniciante"
+
+#: lib/dashboard/lessons/lesson_view.html.heex:168
+#, elixir-autogen, elixir-format
+msgid "Check this option if this is the correct answer."
+msgstr "Marque esta alternativa se ela for a resposta correta."
+
+#: lib/content/course_live/play.html.heex:44
+#, elixir-autogen, elixir-format
+msgid "Confirming..."
+msgstr "Confirmando..."
+
+#: lib/layouts/templates/app.html.heex:150
+#, elixir-autogen, elixir-format
+msgid "Content"
+msgstr "Conteúdo"
+
+#: lib/content/course_live/components/lesson_step.ex:48
+#, elixir-autogen, elixir-format
+msgid "Correct answer: %{title}."
+msgstr "Respota correta: %{title}."
+
+#: lib/dashboard/lessons/lesson_view.ex:157
+#, elixir-autogen, elixir-format
+msgid "Could not add option!"
+msgstr "Não foi possível adicionar a alternativa!"
+
+#: lib/dashboard/courses/course_view.ex:58
+#, elixir-autogen, elixir-format
+msgid "Could not change the lesson order!"
+msgstr "Não foi possível alterar a ordem das aulas!"
+
+#: lib/dashboard/lessons/lesson_view.ex:85
+#, elixir-autogen, elixir-format
+msgid "Could not change the step order!"
+msgstr "Não foi possível alterar a ordem das etapas!"
+
+#: lib/dashboard/courses/course_view.ex:42
+#, elixir-autogen, elixir-format
+msgid "Could not create lesson!"
+msgstr "Não foi possível criar a aula!"
+
+#: lib/dashboard/lessons/lesson_view.ex:239
+#, elixir-autogen, elixir-format
+msgid "Could not create step!"
+msgstr "Não foi possível criar a etapa!"
+
+#: lib/dashboard/courses/course_edit.ex:67
+#, elixir-autogen, elixir-format
+msgid "Could not delete course!"
+msgstr "Não foi possível excluir o curso!"
+
+#: lib/dashboard/lessons/lesson_delete.ex:28
+#, elixir-autogen, elixir-format
+msgid "Could not delete lesson!"
+msgstr "Não foi possível excluir a aula!"
+
+#: lib/dashboard/lessons/lesson_view.ex:137
+#, elixir-autogen, elixir-format
+msgid "Could not delete option!"
+msgstr "Não foi possível excluir a alternativa!"
+
+#: lib/dashboard/lessons/lesson_view.ex:111
+#, elixir-autogen, elixir-format
+msgid "Could not delete step!"
+msgstr "Não foi possível excluir a etapa!"
+
+#: lib/dashboard/courses/course_edit.ex:81
+#: lib/dashboard/lessons/lesson_cover.ex:28
+#, elixir-autogen, elixir-format
+msgid "Could not update cover!"
+msgstr "Não foi possível atualizar a capa!"
+
+#: lib/dashboard/lessons/lesson_edit.ex:41
+#: lib/dashboard/lessons/lesson_view.ex:69
+#, elixir-autogen, elixir-format
+msgid "Could not update lesson!"
+msgstr "Não foi possível atualizar a aula!"
+
+#: lib/dashboard/lessons/lesson_view.ex:175
+#: lib/dashboard/lessons/lesson_view.ex:195
+#: lib/dashboard/lessons/lesson_view.ex:215
+#, elixir-autogen, elixir-format
+msgid "Could not update option!"
+msgstr "Não foi possível atualizar a alternativa!"
+
+#: lib/dashboard/courses/course_new.ex:41
+#, elixir-autogen, elixir-format
+msgid "Course created successfully"
+msgstr "Curso criado com sucesso"
+
+#: lib/dashboard/courses/course_edit.ex:61
+#, elixir-autogen, elixir-format
+msgid "Course deleted successfully!"
+msgstr "Curso excluído com sucesso!"
+
+#: lib/dashboard/courses/course_edit.html.heex:55
+#: lib/dashboard/courses/course_new.html.heex:12
+#, elixir-autogen, elixir-format
+msgid "Course description"
+msgstr "Descrição do curso"
+
+#: lib/dashboard/courses/course_edit.html.heex:37
+#: lib/dashboard/courses/course_new.html.heex:17
+#, elixir-autogen, elixir-format
+msgid "Course slug"
+msgstr "URL do curso"
+
+#: lib/dashboard/courses/course_edit.html.heex:29
+#: lib/dashboard/courses/course_new.html.heex:10
+#, elixir-autogen, elixir-format
+msgid "Course title"
+msgstr "Título do curso"
+
+#: lib/dashboard/courses/course_edit.ex:43
+#, elixir-autogen, elixir-format
+msgid "Course updated successfully!"
+msgstr "Curso atualizado com sucesso!"
+
+#: lib/dashboard/courses/course_edit.ex:77
+#: lib/dashboard/lessons/lesson_cover.ex:22
+#, elixir-autogen, elixir-format
+msgid "Cover updated successfully!"
+msgstr "Capa atualizada com sucesso!"
+
+#: lib/dashboard/courses/course_new.html.heex:3
+#, elixir-autogen, elixir-format
+msgid "Create a course"
+msgstr "Criar um curso"
+
+#: lib/layouts/templates/app.html.heex:126
+#, elixir-autogen, elixir-format
+msgid "Delete course"
+msgstr "Apagar curso"
+
+#: lib/dashboard/lessons/lesson_delete.ex:10
+#: lib/layouts/templates/app.html.heex:171
+#, elixir-autogen, elixir-format
+msgid "Delete lesson"
+msgstr "Apagar aula"
+
+#: lib/dashboard/lessons/lesson_view.html.heex:54
+#, elixir-autogen, elixir-format
+msgid "Delete option"
+msgstr "Apagar alternativa"
+
+#: lib/dashboard/courses/course_view.ex:29
+#, elixir-autogen, elixir-format
+msgid "Description for lesson %{order}. You should update this."
+msgstr "Descrição da aula %{order}. Você deve atualizar isso."
+
+#: lib/dashboard/courses/course_view.html.heex:13
+#, elixir-autogen, elixir-format
+msgid "Drag the lessons to change their order"
+msgstr "Arraste as aulas para alterar a ordem delas"
+
+#: lib/dashboard/courses/course_edit.ex:17
+#, elixir-autogen, elixir-format
+msgid "Edit course"
+msgstr "Editar curso"
+
+#: lib/content/course_live/view.ex:56
+#, elixir-autogen, elixir-format
+msgid "Enrolled successfully!"
+msgstr "Matriculado com sucesso!"
+
+#: lib/content/course_live/lesson_completed.ex:22
+#, elixir-autogen, elixir-format
+msgid "Excellent!"
+msgstr "Excelente!"
+
+#: lib/content/course_config.ex:21
+#, elixir-autogen, elixir-format
+msgid "Expert"
+msgstr "Especialista"
+
+#: lib/content/course_live/view.ex:42
+#, elixir-autogen, elixir-format
+msgid "Failed to enroll"
+msgstr "Falha ao se matricular"
+
+#: lib/dashboard/lessons/lesson_view.html.heex:157
+#, elixir-autogen, elixir-format
+msgid "Feedback message displayed after a user answers this question. You can provide some additional context on why this is wrong or correct."
+msgstr "A mensagem de feedback exibida após um usuário responder a esta pergunta. Você pode fornecer algum contexto adicional sobre o motivo pelo qual isso está errado ou correto."
+
+#: lib/content/course_live/view.html.heex:9
+#, elixir-autogen, elixir-format
+msgid "Free Enroll"
+msgstr "Matrícula gratuita"
+
+#: lib/dashboard/courses/course_edit.html.heex:38
+#: lib/dashboard/courses/course_new.html.heex:18
+#, elixir-autogen, elixir-format
+msgid "Friendly identifier used to access your course. I.e. my-course-name"
+msgstr "Identificador amigável usado para acessar seu curso. Ex: meu-nome-de-curso"
+
+#: lib/content/course_live/lesson_completed.ex:24
+#, elixir-autogen, elixir-format
+msgid "Good!"
+msgstr "Bom!"
+
+#: lib/content/course_live/lesson_completed.html.heex:4
+#, elixir-autogen, elixir-format
+msgid "Illustration of a green alien"
+msgstr "Ilustração de um alienígena verde"
+
+#: lib/layouts/templates/app.html.heex:157
+#, elixir-autogen, elixir-format
+msgid "Information"
+msgstr "Informações"
+
+#: lib/content/course_config.ex:19
+#, elixir-autogen, elixir-format
+msgid "Intermediate"
+msgstr "Intermediário"
+
+#: lib/dashboard/lessons/lesson_view.html.heex:167
+#, elixir-autogen, elixir-format
+msgid "Is correct?"
+msgstr "Está correto?"
+
+#: lib/dashboard/courses/course_view.ex:28
+#, elixir-autogen, elixir-format
+msgid "Lesson %{order}"
+msgstr "Aula %{order}"
+
+#: lib/dashboard/courses/course_view.ex:36
+#, elixir-autogen, elixir-format
+msgid "Lesson created!"
+msgstr "Aula criada!"
+
+#: lib/dashboard/lessons/lesson_delete.ex:22
+#, elixir-autogen, elixir-format
+msgid "Lesson deleted successfully!"
+msgstr "Aula excluída com sucesso!"
+
+#: lib/dashboard/lessons/lesson_edit.html.heex:3
+#, elixir-autogen, elixir-format
+msgid "Lesson description"
+msgstr "Descrição da aula"
+
+#: lib/dashboard/lessons/lesson_edit.html.heex:2
+#, elixir-autogen, elixir-format
+msgid "Lesson name"
+msgstr "Nome da aula"
+
+#: lib/dashboard/courses/course_view.ex:52
+#, elixir-autogen, elixir-format
+msgid "Lesson order changed!"
+msgstr "Ordem da aula alterada!"
+
+#: lib/dashboard/lessons/lesson_view.ex:246
+#, elixir-autogen, elixir-format
+msgid "Lesson published!"
+msgstr "Aula publicada!"
+
+#: lib/dashboard/lessons/lesson_view.ex:247
+#, elixir-autogen, elixir-format
+msgid "Lesson unpublished!"
+msgstr "Aula despublicada!"
+
+#: lib/dashboard/lessons/lesson_edit.ex:35
+#, elixir-autogen, elixir-format
+msgid "Lesson updated successfully!"
+msgstr "Aucla atualizada com sucesso!"
+
+#: lib/layouts/templates/app.html.heex:136
+#, elixir-autogen, elixir-format
+msgid "Manage lesson"
+msgstr "Gereciar aula"
+
+#: lib/content/course_live/play.html.heex:50
+#, elixir-autogen, elixir-format
+msgid "Next step"
+msgstr "Próxima etapa"
+
+#: lib/content/course_live/lesson_completed.ex:25
+#, elixir-autogen, elixir-format
+msgid "Not bad!"
+msgstr "Nada mal!"
+
+#: lib/dashboard/lessons/lesson_view.ex:151
+#, elixir-autogen, elixir-format
+msgid "Option added!"
+msgstr "Alternativa adicionada!"
+
+#: lib/dashboard/lessons/lesson_view.ex:131
+#, elixir-autogen, elixir-format
+msgid "Option deleted!"
+msgstr "Alternativa excluída!"
+
+#: lib/dashboard/lessons/lesson_view.html.heex:155
+#, elixir-autogen, elixir-format
+msgid "Option feedback"
+msgstr "Feedback da alternativa"
+
+#: lib/dashboard/lessons/lesson_view.html.heex:150
+#, elixir-autogen, elixir-format
+msgid "Option title"
+msgstr "Título da alternativa"
+
+#: lib/dashboard/lessons/lesson_view.ex:169
+#: lib/dashboard/lessons/lesson_view.ex:209
+#, elixir-autogen, elixir-format
+msgid "Option updated!"
+msgstr "Alternativa atualizada!"
+
+#: lib/content/course_live/view.html.heex:13
+#, elixir-autogen, elixir-format
+msgid "Pending Approval"
+msgstr "Aprovação pendente"
+
+#: lib/content/course_live/lesson_completed.ex:21
+#, elixir-autogen, elixir-format
+msgid "Perfect!"
+msgstr "Perfeito!"
+
+#: lib/dashboard/lessons/lesson_view.html.heex:3
+#, elixir-autogen, elixir-format
+msgid "Publish"
+msgstr "Publicar"
+
+#: lib/dashboard/lessons/lesson_view.html.heex:76
+#, elixir-autogen, elixir-format
+msgid "Remove step"
+msgstr "Excluir etapa"
+
+#: lib/content/course_live/view.html.heex:9
+#, elixir-autogen, elixir-format
+msgid "Request to join"
+msgstr "Pedir para participar"
+
+#: lib/dashboard/lessons/lesson_view.ex:189
+#: lib/dashboard/lessons/lesson_view.ex:230
+#, elixir-autogen, elixir-format
+msgid "Step created!"
+msgstr "Etapa criada!"
+
+#: lib/dashboard/lessons/lesson_view.ex:105
+#, elixir-autogen, elixir-format
+msgid "Step deleted!"
+msgstr "Etapa excluída!"
+
+#: lib/dashboard/lessons/lesson_view.ex:79
+#, elixir-autogen, elixir-format
+msgid "Step order changed!"
+msgstr "Ordem da etapa alterada!"
+
+#: lib/content/course_live/components/lesson_step.ex:40
+#, elixir-autogen, elixir-format
+msgid "That's incorrect."
+msgstr "Está incorreto."
+
+#: lib/content/course_live/lesson_completed.ex:26
+#, elixir-autogen, elixir-format
+msgid "There's room for improvement"
+msgstr "Tem espaço para melhorar"
+
+#: lib/content/course_live/play.ex:78
+#, elixir-autogen, elixir-format
+msgid "Unable to complete lesson"
+msgstr "Não foi possível concluir a aula"
+
+#: lib/content/course_live/play.ex:51
+#, elixir-autogen, elixir-format
+msgid "Unable to select option"
+msgstr "Não foi possível selecionar a alternativa"
+
+#: lib/dashboard/lessons/lesson_view.html.heex:7
+#, elixir-autogen, elixir-format
+msgid "Unpublish"
+msgstr "Despublicar"
+
+#: lib/dashboard/lessons/lesson_view.ex:145
+#, elixir-autogen, elixir-format
+msgid "Untitled option"
+msgstr "Alternativa sem título"
+
+#: lib/dashboard/courses/course_edit.html.heex:87
+#, elixir-autogen, elixir-format
+msgid "Update course"
+msgstr "Atualizar curso"
+
+#: lib/dashboard/lessons/lesson_view.html.heex:144
+#, elixir-autogen, elixir-format
+msgid "Update option"
+msgstr "Atualizar alternativa"
+
+#: lib/content/course_live/lesson_completed.ex:23
+#, elixir-autogen, elixir-format
+msgid "Very good!"
+msgstr "Muito bem!"
+
+#: lib/content/course_live/components/lesson_step.ex:40
+#, elixir-autogen, elixir-format
+msgid "Well done!"
+msgstr "Boa!"
+
+#: lib/dashboard/courses/course_edit.html.heex:65
+#, elixir-autogen, elixir-format
+msgid "When checked this course will be visible to all students from your school. Keep it unchecked if you want this course to be visible only to invited students."
+msgstr "Ao marcar esta opção, este curso será visível para todos os alunos da sua escola. Mantenha desmarcado se você quiser que este curso seja visível apenas para os alunos convidados."
+
+#: lib/dashboard/courses/course_edit.html.heex:78
+#, elixir-autogen, elixir-format
+msgid "When checked, this course will be visible to students. Keep it unchecked if this is a draft course that shouldn't be available yet."
+msgstr "Ao marcar esta opção, este curso será visível para os alunos. Mantenha desmarcado se este for um curso rascunho que ainda não deve estar disponível."
+
+#: lib/dashboard/lessons/lesson_view.ex:220
+#, elixir-autogen, elixir-format
+msgid "You cannot have more than 20 steps in a lesson"
+msgstr "Não é possível ter mais de 20 etapas em uma aula"
+
+#: lib/content/course_live/lesson_completed.html.heex:9
+#, elixir-autogen, elixir-format
+msgid "You got %{correct} out of %{total} answers right."
+msgstr "Você acertou %{correct} de %{total} respostas."
+
+#: lib/content/course_live/components/lesson_step.ex:44
+#, elixir-autogen, elixir-format
+msgid "You selected: %{title}. %{feedback}"
+msgstr "Você selecionou: %{title}. %{feedback}"
+
+#: lib/dashboard/courses/course_new.html.heex:6
+#, elixir-autogen, elixir-format
+msgid "You'll be able to edit this information and add content to your course later."
+msgstr "Você poderá editar essas informações e adicionar conteúdo ao seu curso mais tarde."
+
+#: lib/layouts/templates/app.html.heex:84
+#, elixir-autogen, elixir-format, fuzzy
+msgid "Course page"
+msgstr "Página do curso"
+
+#: lib/dashboard/courses/course_edit.html.heex:63
+#, elixir-autogen, elixir-format
+msgid "Is public?"
+msgstr "É público?"
+
+#: lib/dashboard/courses/course_edit.html.heex:76
+#, elixir-autogen, elixir-format, fuzzy
+msgid "Is published?"
+msgstr "Está publicado?"
+
+#: lib/content/course_live/view.html.heex:37
+#: lib/dashboard/courses/course_view.html.heex:24
+#, elixir-autogen, elixir-format, fuzzy
+msgid "Lesson cover"
+msgstr "Capa da aula"
+
+#: lib/layouts/templates/app.html.heex:65
+#, elixir-autogen, elixir-format, fuzzy
+msgid "Manage courses"
+msgstr "Gerenciar cursos"
+
+#: lib/dashboard/courses/course_user_list.html.heex:57
+#, elixir-autogen, elixir-format, fuzzy
+msgid "Remove user"
+msgstr "Excluir etapa"
+
+#: lib/dashboard/courses/course_user_list.html.heex:51
+#, elixir-autogen, elixir-format
+msgid "Stats"
+msgstr "Estatísticas"
+
+#: lib/dashboard/courses/course_user_list.html.heex:62
+#, elixir-autogen, elixir-format
+msgid "This will remove %{username} from your course. They won't be able to see your course anymore unless you approve them again."
+msgstr "Você está prestes a remover %{username} do seu curso. Eles não poderão mais ver seu curso, a menos que você os aprove novamente."

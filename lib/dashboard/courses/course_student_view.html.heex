@@ -1,0 +1,46 @@
+<header class="flex gap-2 rounded-2xl bg-white p-4 shadow">
+  <% score = course_score(@lessons) %>
+  <.avatar src={@student.avatar} alt={get_avatar_label(@student)} />
+
+  <div class="w-full">
+    <h1 class="text-gray-dark font-semibold">
+      <%= @student.first_name %> <%= @student.last_name %>, <%= age(@student.date_of_birth) %>
+    </h1>
+
+    <h2 class="text-gray flex-1 text-sm">@<%= @student.username %> - <%= @student.email %></h2>
+
+    <div class="mt-4">
+      <.badge icon="tabler-progress" color={:success_light}><%= course_progress(@lessons, @student) %>%</.badge>
+      <.badge :if={score} icon="tabler-check" color={score_color(score)}><%= score %></.badge>
+    </div>
+  </div>
+</header>
+
+<article class="mt-4 space-y-4">
+  <details
+    :for={lesson <- @lessons}
+    id={"lessons-#{lesson.id}"}
+    class="group text-gray-dark w-full min-w-0 cursor-pointer rounded-lg bg-white p-4 text-sm shadow"
+  >
+    <% score = lesson_score(@student, lesson.user_lessons) %>
+
+    <summary class="flex gap-2 font-semibold">
+      <.icon name="tabler-chevrons-down" class="group-open:hidden" />
+      <.icon name="tabler-chevrons-up" class="hidden group-open:inline" />
+
+      <h3 class="flex-1 truncate"><%= lesson.name %></h3>
+      <.badge :if={score} icon="tabler-check" color={score_color(score)}><%= score %></.badge>
+    </summary>
+
+    <div :for={selection <- lesson.user_selections} class="mt-4">
+      <% step = selection.option.lesson_step %>
+      <img :if={step.kind == :image} src={step.content} class="w-20" />
+      <p :if={step.kind == :text}><%= step.content %></p>
+      <p class="mt-2 font-semibold"><%= selection.option.title %></p>
+    </div>
+
+    <h4 :if={lesson.user_selections == []} class="text-gray-dark mt-4 text-sm">
+      <%= dgettext("courses", "All answers were correct.") %>
+    </h4>
+  </details>
+</article>

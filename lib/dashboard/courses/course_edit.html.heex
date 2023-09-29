@@ -1,0 +1,102 @@
+<.live_component
+  :if={@live_action == :cover}
+  module={Upload}
+  id={:course_cover}
+  current_img={@course.cover}
+  label={dgettext("orgs", "Cover")}
+/>
+
+<.simple_form
+  :if={@live_action not in [:cover, :delete]}
+  for={@form}
+  id="course-form"
+  phx-change="validate"
+  phx-submit="save"
+>
+  <.input
+    :if={@live_action == :info}
+    field={@form[:language]}
+    type="select"
+    label={gettext("Language")}
+    options={UneebeeWeb.Plugs.Translate.language_options()}
+    required
+  />
+
+  <.input
+    :if={@live_action == :info}
+    field={@form[:name]}
+    type="text"
+    label={dgettext("courses", "Course title")}
+    required
+  />
+
+  <.input
+    :if={@live_action == :info}
+    field={@form[:slug]}
+    type="text"
+    label={dgettext("courses", "Course slug")}
+    helper={dgettext("courses", "Friendly identifier used to access your course. I.e. my-course-name")}
+    required
+  />
+
+  <.input
+    :if={@live_action == :info}
+    field={@form[:level]}
+    type="select"
+    label={dgettext("orgs", "Level")}
+    options={Uneebee.Content.Course.Config.level_options()}
+    required
+  />
+
+  <.input
+    :if={@live_action == :info}
+    field={@form[:description]}
+    type="textarea"
+    label={dgettext("courses", "Course description")}
+    required
+  />
+
+  <.input
+    :if={@live_action == :privacy}
+    field={@form[:public?]}
+    type="checkbox"
+    label={dgettext("courses", "Is public?")}
+    helper={
+      dgettext(
+        "courses",
+        "When checked this course will be visible to all students from your school. Keep it unchecked if you want this course to be visible only to invited students."
+      )
+    }
+  />
+
+  <.input
+    :if={@live_action == :privacy}
+    field={@form[:published?]}
+    type="checkbox"
+    label={dgettext("courses", "Is published?")}
+    helper={
+      dgettext(
+        "courses",
+        "When checked, this course will be visible to students. Keep it unchecked if this is a draft course that shouldn't be available yet."
+      )
+    }
+  />
+
+  <:actions>
+    <.button icon="tabler-table-export" type="submit" phx-disable-with={gettext("Saving...")}>
+      <%= dgettext("courses", "Update course") %>
+    </.button>
+
+    <.link_button icon="tabler-x" color={:alert_light} navigate={~p"/dashboard/c/#{@course.slug}"}>
+      <%= gettext("Cancel") %>
+    </.link_button>
+  </:actions>
+</.simple_form>
+
+<.live_component
+  :if={@live_action == :delete}
+  id={:delete_course}
+  module={DeleteItem}
+  cancel_link={~p"/dashboard/c/#{@course.slug}"}
+  name={@course.name}
+/>

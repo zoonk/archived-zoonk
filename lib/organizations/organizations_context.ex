@@ -5,6 +5,8 @@ defmodule Uneebee.Organizations do
   import Ecto.Query, warn: false
 
   alias Uneebee.Accounts.User
+  alias Uneebee.Content.Course
+  alias Uneebee.Content.CourseUser
   alias Uneebee.Organizations.School
   alias Uneebee.Organizations.SchoolUser
   alias Uneebee.Repo
@@ -88,6 +90,23 @@ defmodule Uneebee.Organizations do
   end
 
   @doc """
+  Gets a single school.
+
+  Raises `Ecto.NoResultsError` if the School does not exist.
+
+  ## Examples
+
+      iex> get_school!(123)
+      %School{}
+
+      iex> get_school!(456)
+      ** (Ecto.NoResultsError)
+
+  """
+  @spec get_school!(non_neg_integer()) :: School.t()
+  def get_school!(id), do: Repo.get!(School, id)
+
+  @doc """
   Get a school by slug.
 
   ## Examples
@@ -118,6 +137,22 @@ defmodule Uneebee.Organizations do
   def create_school_user(%School{} = school, %User{} = user, attrs \\ %{}) do
     school_user_attrs = Enum.into(attrs, %{user_id: user.id, school_id: school.id})
     %SchoolUser{} |> SchoolUser.changeset(school_user_attrs) |> Repo.insert()
+  end
+
+  @doc """
+  Update a school user.
+
+  ## Examples
+
+      iex> update_school_user(school_user, %{role: :student})
+      {:ok, %SchoolUser{}}
+
+      iex> update_school_user(school_user, %{role: :invalid})
+      {:error, %Ecto.Changeset{}}
+  """
+  @spec update_school_user(SchoolUser.t(), map()) :: school_user_changeset()
+  def update_school_user(%SchoolUser{} = school_user, attrs \\ %{}) do
+    school_user |> SchoolUser.changeset(attrs) |> Repo.update()
   end
 
   @doc """
@@ -244,6 +279,31 @@ defmodule Uneebee.Organizations do
   """
   @spec delete_school_user(integer()) :: school_user_changeset()
   def delete_school_user(school_user_id) do
-    SchoolUser |> Repo.get(school_user_id) |> Repo.delete()
+    school_user = Repo.get(SchoolUser, school_user_id)
+
+    Repo.transaction(fn ->
+      Repo.delete(school_user)
+      delete_course_users(school_user.user_id, school_user.school_id)
+    end)
+  end
+
+  defp delete_course_users(user_id, school_id) do
+    CourseUser
+    |> where([cu], cu.user_id == ^user_id)
+    |> join(:inner, [cu], c in assoc(cu, :course), on: c.school_id == ^school_id)
+    |> Repo.delete_all()
+  end
+
+  @doc """
+  Gets the number of courses a school has.
+
+  ## Examples
+
+      iex> get_courses_count(school)
+      10
+  """
+  @spec get_courses_count(School.t()) :: non_neg_integer()
+  def get_courses_count(school) do
+    Course |> where([c], c.school_id == ^school.id) |> Repo.aggregate(:count)
   end
 end

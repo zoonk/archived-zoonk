@@ -18,10 +18,12 @@ defmodule UneebeeWeb.ConnCase do
   use ExUnit.CaseTemplate
 
   import Uneebee.Fixtures.Accounts
+  import Uneebee.Fixtures.Content
   import Uneebee.Fixtures.Organizations
 
   alias Plug.Conn
   alias Uneebee.Accounts.User
+  alias Uneebee.Content.Course
   alias Uneebee.Organizations.School
 
   using do
@@ -111,6 +113,38 @@ defmodule UneebeeWeb.ConnCase do
     end
 
     %{conn: school_conn, user: user, school: school, password: password}
+  end
+
+  @doc """
+  Setup helper for course pages.
+
+  Here's what it does:
+
+  - Registers a user and logs them in.
+  - Creates a school and sets its `custom_domain` as the `conn.host` value.
+  - Creates a course and sets it as the `conn.assigns.course` value.
+  - Handles `school_user` and `course_user` permissions.
+  """
+  @spec course_setup(%{conn: Conn.t()}, Keyword.t()) :: %{
+          conn: Conn.t(),
+          user: User.t(),
+          school: School.t(),
+          course: Course.t()
+        }
+  def course_setup(%{conn: conn}, opts \\ []) do
+    %{conn: app_conn, school: school, user: user} = app_setup(%{conn: conn}, opts)
+
+    public_course? = Keyword.get(opts, :public_course?, true)
+    published_course? = Keyword.get(opts, :published_course?, true)
+    course_user_attrs = opts |> Keyword.get(:course_user, :student) |> get_user_attrs()
+
+    course = course_fixture(%{school_id: school.id, public?: public_course?, published?: published_course?})
+
+    if course_user_attrs do
+      %{course: course, user: user} |> Map.merge(course_user_attrs) |> course_user_fixture()
+    end
+
+    %{conn: app_conn, user: user, school: school, course: course}
   end
 
   defp get_user_attrs(user_kind) do

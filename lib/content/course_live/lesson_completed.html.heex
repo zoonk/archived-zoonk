@@ -1,0 +1,28 @@
+<article class="m-auto flex max-w-sm flex-col items-center justify-center rounded-2xl bg-white p-4 shadow">
+  <% score = get_score(@user_lesson) %>
+
+  <img src={score_image(score)} alt={dgettext("courses", "Illustration of a green alien")} class="w-1/4" />
+
+  <h1 class="text-gray-dark mt-4 text-lg font-semibold"><%= score_title(score) %></h1>
+
+  <p class="text-gray-dark mt-2">
+    <%= dgettext("courses", "You got %{correct} out of %{total} answers right.",
+      correct: @user_lesson.correct,
+      total: @user_lesson.total
+    ) %>
+  </p>
+
+  <div class={[
+    "w-10 h-10 my-8 rounded-full flex flex-col text-white font-bold items-center justify-center",
+    score >= 8 && "bg-success-dark",
+    score >= 6 && score < 8 && "bg-warning",
+    score < 6 && "bg-alert-dark"
+  ]}>
+    <%= score %>
+  </div>
+
+  <.link_button navigate={~p"/c/#{@course.slug}"}><%= dgettext("courses", "Back to the course") %></.link_button>
+</article>
+
+<audio :if={win?(score)} src={~p"/audios/win.mp3"} autoplay class="hidden" />
+<audio :if={not win?(score)} src={~p"/audios/loss.mp3"} autoplay class="hidden" />

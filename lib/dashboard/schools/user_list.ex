@@ -2,6 +2,8 @@ defmodule UneebeeWeb.Live.Dashboard.UserList do
   @moduledoc false
   use UneebeeWeb, :live_view
 
+  import UneebeeWeb.Shared.Accounts
+
   alias Uneebee.Accounts
   alias Uneebee.Accounts.User
   alias Uneebee.Organizations
@@ -112,7 +114,4 @@ defmodule UneebeeWeb.Live.Dashboard.UserList do
   defp get_add_link_label(:manager), do: dgettext("orgs", "Add manager")
   defp get_add_link_label(:teacher), do: dgettext("orgs", "Add teacher")
   defp get_add_link_label(:student), do: dgettext("orgs", "Add student")
-
-  defp get_avatar_label(%User{first_name: nil, username: username}), do: username
-  defp get_avatar_label(%User{first_name: first_name}), do: first_name
 end

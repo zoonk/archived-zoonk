@@ -1,6 +1,7 @@
 defmodule UneebeeWeb.Router do
   use UneebeeWeb, :router
 
+  import UneebeeWeb.Plugs.Course
   import UneebeeWeb.Plugs.School
   import UneebeeWeb.Plugs.Translate
   import UneebeeWeb.Plugs.UserAuth
@@ -21,7 +22,7 @@ defmodule UneebeeWeb.Router do
     plug :set_session_locale
   end
 
-  pipeline :dashboard do
+  pipeline :dev_dashboard do
     plug :accepts, ["html"]
     plug :fetch_session
     plug :protect_from_forgery
@@ -80,7 +81,7 @@ defmodule UneebeeWeb.Router do
   end
 
   scope "/", UneebeeWeb.Live do
-    pipe_through [:browser]
+    pipe_through [:browser, :require_auth_for_private_schools, :require_subscription_for_private_schools]
 
     live_session :public_routes,
       on_mount: [
@@ -93,6 +94,8 @@ defmodule UneebeeWeb.Router do
 
       live "/users/confirm/:token", Accounts.User.Confirmation, :edit
       live "/users/confirm", Accounts.User.ConfirmationInstructions, :new
+
+      live "/courses", Content.Course.List
     end
   end
 
@@ -104,6 +107,44 @@ defmodule UneebeeWeb.Router do
   scope "/", UneebeeWeb.Controller.Accounts.User do
     pipe_through [:browser]
     delete "/users/logout", Session, :delete
+  end
+
+  # Course routes.
+  scope "/c/:course_slug", UneebeeWeb.Live do
+    pipe_through [
+      :browser,
+      :require_auth_for_private_schools,
+      :require_subscription_for_private_schools,
+      :fetch_course
+    ]
+
+    live_session :course_routes,
+      on_mount: [
+        {UneebeeWeb.Plugs.UserAuth, :mount_current_user},
+        {UneebeeWeb.Plugs.School, :mount_school},
+        {UneebeeWeb.Plugs.Translate, :set_locale_from_session},
+        {UneebeeWeb.Plugs.Course, :mount_course},
+        UneebeeWeb.Plugs.ActivePage
+      ] do
+      live "/", Content.Course.View
+    end
+  end
+
+  scope "/c/:course_slug/:lesson_id", UneebeeWeb.Live do
+    pipe_through [:browser, :require_authenticated_user, :fetch_course, :require_course_user]
+
+    live_session :lesson_play,
+      on_mount: [
+        {UneebeeWeb.Plugs.UserAuth, :ensure_authenticated},
+        {UneebeeWeb.Plugs.School, :mount_school},
+        {UneebeeWeb.Plugs.Translate, :set_locale_from_session},
+        {UneebeeWeb.Plugs.Course, :mount_course},
+        {UneebeeWeb.Plugs.Course, :mount_lesson},
+        UneebeeWeb.Plugs.ActivePage
+      ] do
+      live "/", Content.Course.Play
+      live "/completed", Content.Course.LessonCompleted
+    end
   end
 
   # Routes visible to school managers only.
@@ -128,6 +169,68 @@ defmodule UneebeeWeb.Router do
     end
   end
 
+  # These routes are only available to managers and teachers.
+  scope "/dashboard", UneebeeWeb.Live do
+    pipe_through [:browser, :require_authenticated_user, :require_manager_or_teacher]
+
+    live_session :manager_or_teacher_view,
+      on_mount: [
+        {UneebeeWeb.Plugs.UserAuth, :ensure_authenticated},
+        {UneebeeWeb.Plugs.School, :mount_school},
+        {UneebeeWeb.Plugs.Translate, :set_locale_from_session},
+        UneebeeWeb.Plugs.ActivePage
+      ] do
+      live "/courses", Dashboard.CourseList
+      live "/courses/new", Dashboard.CourseNew
+    end
+  end
+
+  scope "/dashboard/c/:course_slug", UneebeeWeb.Live do
+    pipe_through [:browser, :require_authenticated_user, :fetch_course, :require_manager_or_course_teacher]
+
+    live_session :dashboard_manager_or_course_teacher,
+      on_mount: [
+        {UneebeeWeb.Plugs.UserAuth, :ensure_authenticated},
+        {UneebeeWeb.Plugs.School, :mount_school},
+        {UneebeeWeb.Plugs.Translate, :set_locale_from_session},
+        {UneebeeWeb.Plugs.Course, :mount_course},
+        UneebeeWeb.Plugs.ActivePage
+      ] do
+      live "/", Dashboard.CourseView
+
+      live "/edit/cover", Dashboard.CourseEdit, :cover
+      live "/edit/info", Dashboard.CourseEdit, :info
+      live "/edit/privacy", Dashboard.CourseEdit, :privacy
+      live "/edit/delete", Dashboard.CourseEdit, :delete
+
+      live "/teachers", Dashboard.CourseUserList, :teacher
+      live "/students", Dashboard.CourseUserList, :student
+      live "/s/:username", Dashboard.CourseStudentView
+    end
+  end
+
+  scope "/dashboard/c/:course_slug/l/:lesson_id", UneebeeWeb.Live do
+    pipe_through [:browser, :require_authenticated_user, :fetch_course, :require_manager_or_course_teacher]
+
+    live_session :dashboard_lesson,
+      on_mount: [
+        {UneebeeWeb.Plugs.UserAuth, :ensure_authenticated},
+        {UneebeeWeb.Plugs.School, :mount_school},
+        {UneebeeWeb.Plugs.Translate, :set_locale_from_session},
+        {UneebeeWeb.Plugs.Course, :mount_course},
+        {UneebeeWeb.Plugs.Course, :mount_lesson},
+        UneebeeWeb.Plugs.ActivePage
+      ] do
+      live "/", Dashboard.LessonView, :view
+      live "/o/:option_id", Dashboard.LessonView, :option
+      live "/o/:option_id/image", Dashboard.LessonView, :option_img
+
+      live "/info", Dashboard.LessonEdit
+      live "/cover", Dashboard.LessonCover
+      live "/delete", Dashboard.LessonDelete
+    end
+  end
+
   # Other scopes may use custom stacks.
   # scope "/api", UneebeeWeb do
   #   pipe_through :api
@@ -143,7 +246,7 @@ defmodule UneebeeWeb.Router do
     import Phoenix.LiveDashboard.Router
 
     scope "/dev/dashboard" do
-      pipe_through :dashboard
+      pipe_through :dev_dashboard
       live_dashboard "/", metrics: UneebeeWeb.Telemetry, csp_nonce_assign_key: :csp_nonce_value
     end
 

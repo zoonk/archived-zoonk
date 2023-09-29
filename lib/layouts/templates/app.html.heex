@@ -13,7 +13,7 @@
       :if={@user_role == :manager}
       navigate={~p"/dashboard"}
       icon="tabler-beach"
-      active={dashboard?(@active_page)}
+      active={dashboard?(@active_page) and not course?(@active_page) and not lesson_view?(@active_page)}
       title={gettext("Manage school")}
     >
       <:sub_menus>
@@ -53,6 +53,122 @@
           navigate={~p"/dashboard/edit/info"}
           active={@active_page == :dashboard_schooledit_info}
           title={gettext("Profile")}
+        />
+      </:sub_menus>
+    </.menu_item>
+
+    <.menu_item
+      :if={@user_role in [:manager, :teacher]}
+      navigate={~p"/dashboard/courses"}
+      icon="tabler-bulb"
+      active={course?(@active_page)}
+      title={dgettext("courses", "Manage courses")}
+    >
+      <:sub_menus>
+        <.sub_menu
+          navigate={~p"/dashboard/courses"}
+          active={@active_page == :dashboard_courselist}
+          title={gettext("All courses")}
+        />
+
+        <.sub_menu
+          navigate={~p"/dashboard/courses/new"}
+          active={@active_page == :dashboard_coursenew}
+          title={gettext("Create a course")}
+        />
+
+        <.sub_menu
+          :if={course_view?(@active_page)}
+          navigate={~p"/dashboard/c/#{@course.slug}"}
+          active={@active_page == :dashboard_courseview}
+          title={dgettext("courses", "Course page")}
+        />
+
+        <.sub_menu
+          :if={course_view?(@active_page)}
+          navigate={~p"/dashboard/c/#{@course.slug}/students"}
+          active={@active_page in [:dashboard_courseuserlist_student, :dashboard_coursestudentview]}
+          title={gettext("Students")}
+        />
+
+        <.sub_menu
+          :if={course_view?(@active_page)}
+          navigate={~p"/dashboard/c/#{@course.slug}/teachers"}
+          active={@active_page == :dashboard_courseuserlist_teacher}
+          title={gettext("Teachers")}
+        />
+
+        <.sub_menu
+          :if={course_view?(@active_page)}
+          navigate={~p"/dashboard/c/#{@course.slug}/edit/info"}
+          active={@active_page == :dashboard_courseedit_info}
+          title={gettext("Information")}
+        />
+
+        <.sub_menu
+          :if={course_view?(@active_page)}
+          navigate={~p"/dashboard/c/#{@course.slug}/edit/cover"}
+          active={@active_page == :dashboard_courseedit_cover}
+          title={gettext("Cover")}
+        />
+
+        <.sub_menu
+          :if={course_view?(@active_page)}
+          navigate={~p"/dashboard/c/#{@course.slug}/edit/privacy"}
+          active={@active_page == :dashboard_courseedit_privacy}
+          title={gettext("Privacy")}
+        />
+
+        <.sub_menu
+          :if={course_view?(@active_page)}
+          navigate={~p"/dashboard/c/#{@course.slug}/edit/delete"}
+          active={@active_page == :dashboard_courseedit_delete}
+          title={dgettext("courses", "Delete course")}
+        />
+      </:sub_menus>
+    </.menu_item>
+
+    <.menu_item
+      :if={lesson_view?(@active_page)}
+      navigate={~p"/dashboard/c/#{@course.slug}/l/#{@lesson.id}"}
+      icon="tabler-notes"
+      active={lesson_view?(@active_page)}
+      title={dgettext("courses", "Manage lesson")}
+    >
+      <:sub_menus>
+        <.sub_menu
+          :if={lesson_view?(@active_page)}
+          navigate={~p"/dashboard/c/#{@course.slug}"}
+          active={false}
+          title={dgettext("courses", "All lessons")}
+        />
+
+        <.sub_menu
+          :if={lesson_view?(@active_page)}
+          navigate={~p"/dashboard/c/#{@course.slug}/l/#{@lesson.id}"}
+          active={@active_page == :dashboard_lessonview_view}
+          title={dgettext("courses", "Content")}
+        />
+
+        <.sub_menu
+          :if={lesson_view?(@active_page)}
+          navigate={~p"/dashboard/c/#{@course.slug}/l/#{@lesson.id}/info"}
+          active={@active_page == :dashboard_lessonedit}
+          title={dgettext("courses", "Information")}
+        />
+
+        <.sub_menu
+          :if={lesson_view?(@active_page)}
+          navigate={~p"/dashboard/c/#{@course.slug}/l/#{@lesson.id}/cover"}
+          active={@active_page == :dashboard_lessoncover}
+          title={gettext("Cover")}
+        />
+
+        <.sub_menu
+          :if={lesson_view?(@active_page)}
+          navigate={~p"/dashboard/c/#{@course.slug}/l/#{@lesson.id}/delete"}
+          active={@active_page == :dashboard_lessondelete}
+          title={dgettext("courses", "Delete lesson")}
         />
       </:sub_menus>
     </.menu_item>

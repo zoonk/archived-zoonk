@@ -1,0 +1,14 @@
+<.simple_form for={@form} id="lesson-form" phx-change="validate" phx-submit="save">
+  <.input type="text" field={@form[:name]} label={dgettext("courses", "Lesson name")} required />
+  <.input type="text" field={@form[:description]} label={dgettext("courses", "Lesson description")} required />
+
+  <:actions>
+    <.button type="submit" icon="tabler-check" phx-disable-with={gettext("Saving...")}>
+      <%= gettext("Save") %>
+    </.button>
+
+    <.link_button icon="tabler-x" color={:alert_light} navigate={~p"/dashboard/c/#{@course.slug}"}>
+      <%= gettext("Cancel") %>
+    </.link_button>
+  </:actions>
+</.simple_form>

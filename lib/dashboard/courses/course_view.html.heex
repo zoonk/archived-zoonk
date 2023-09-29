@@ -1,0 +1,43 @@
+<header class="rounded-2xl bg-white shadow">
+  <div class="p-4">
+    <h1 class="text-gray-dark text-xl font-bold"><%= @course.name %></h1>
+    <h2 class="text-gray"><%= @course.description %></h2>
+  </div>
+</header>
+
+<section class="my-4 flex flex-col justify-between gap-2 sm:flex-row sm:items-center">
+  <nav class="flex gap-2">
+    <.button icon="tabler-vocabulary" phx-click="add-lesson"><%= dgettext("courses", "+ Lesson") %></.button>
+  </nav>
+
+  <span class="text-gray text-sm italic"><%= dgettext("courses", "Drag the lessons to change their order") %></span>
+</section>
+
+<dl class="mt-4 space-y-4" id="lesson-list" data-group="lessons" phx-hook="Sortable">
+  <.link
+    :for={{lesson, index} <- Enum.with_index(@lessons)}
+    navigate={~p"/dashboard/c/#{@course.slug}/l/#{lesson.id}"}
+    class="text-gray-dark flex cursor-grab gap-2 rounded-2xl bg-white p-4 shadow drag-ghost:bg-gray-light drag-ghost:cursor-grabbing drag-ghost:border-0 drag-ghost:ring-0 focus-within:drag-item:ring-0 focus-within:drag-item:ring-offset-0"
+  >
+    <.avatar
+      src={lesson.cover}
+      alt={if is_nil(lesson.cover), do: index + 1, else: dgettext("courses", "Lesson cover")}
+      class="mt-1"
+    />
+
+    <div>
+      <dt class="font-semibold"><%= lesson.name %></dt>
+      <dd class="text-gray text-sm"><%= lesson.description %></dd>
+
+      <div class="mt-4">
+        <.badge :if={lesson.published?} color={:success_light} icon="tabler-eye">
+          <%= dgettext("orgs", "Published") %>
+        </.badge>
+
+        <.badge :if={not lesson.published?} color={:alert_light} icon="tabler-eye-off">
+          <%= dgettext("orgs", "Unpublished") %>
+        </.badge>
+      </div>
+    </div>
+  </.link>
+</dl>

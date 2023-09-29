@@ -18,7 +18,7 @@ defmodule UneebeeWeb do
   those modules here.
   """
 
-  def static_paths, do: ~w(assets fonts images favicon uploads robots.txt)
+  def static_paths, do: ~w(assets audios fonts images favicon uploads robots.txt)
 
   def router do
     quote do
@@ -87,7 +87,9 @@ defmodule UneebeeWeb do
 
       # UI components
       import UneebeeWeb.Components.Avatar
+      import UneebeeWeb.Components.Badge
       import UneebeeWeb.Components.Button
+      import UneebeeWeb.Components.Card
       import UneebeeWeb.Components.Details
       import UneebeeWeb.Components.Flash
       import UneebeeWeb.Components.Form

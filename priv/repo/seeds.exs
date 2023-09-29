@@ -1,11 +1,7 @@
-# Script for populating the database. You can run it as:
-#
-#     mix run priv/repo/seeds.exs
-#
-# Inside the script, you can read and write to any of your
-# repositories directly:
-#
-#     Uneebee.Repo.insert!(%Uneebee.SomeSchema{})
-#
-# We recommend using the bang functions (`insert!`, `update!`
-# and so on) as they will fail if something goes wrong.
+Code.require_file("priv/repo/seed/users.ex")
+Code.require_file("priv/repo/seed/schools.ex")
+Code.require_file("priv/repo/seed/courses.ex")
+
+UserSeed.seed()
+SchoolSeed.seed()
+CourseSeed.seed()

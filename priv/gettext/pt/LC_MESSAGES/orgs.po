@@ -72,32 +72,37 @@ msgstr "Logo atualizado!"
 msgid "Edit %{name}"
 msgstr "Editar %{name}"
 
-#: lib/dashboard/schools/user_list.ex:112
+#: lib/dashboard/schools/user_list.ex:114
 #, elixir-autogen, elixir-format
 msgid "Add manager"
 msgstr "Novo gestor"
 
-#: lib/dashboard/schools/user_list.ex:114
+#: lib/dashboard/courses/course_user_list.ex:110
+#: lib/dashboard/schools/user_list.ex:116
 #, elixir-autogen, elixir-format
 msgid "Add student"
 msgstr "Novo aluno"
 
-#: lib/dashboard/schools/user_list.ex:113
+#: lib/dashboard/courses/course_user_list.ex:109
+#: lib/dashboard/schools/user_list.ex:115
 #, elixir-autogen, elixir-format
 msgid "Add teacher"
 msgstr "Novo professor"
 
-#: lib/dashboard/schools/user_list.ex:96
+#: lib/dashboard/courses/course_user_list.ex:95
+#: lib/dashboard/schools/user_list.ex:98
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Could not add user!"
 msgstr "Não foi possível cadastrar o usuário!"
 
-#: lib/dashboard/schools/user_list.ex:90
+#: lib/dashboard/courses/course_user_list.ex:89
+#: lib/dashboard/schools/user_list.ex:92
 #, elixir-autogen, elixir-format
 msgid "User added!"
 msgstr "Usuário cadastrado!"
 
-#: lib/dashboard/schools/user_list.ex:101
+#: lib/dashboard/courses/course_user_list.ex:100
+#: lib/dashboard/schools/user_list.ex:103
 #, elixir-autogen, elixir-format
 msgid "User not found!"
 msgstr "Usuário não encontrado!"
@@ -112,57 +117,135 @@ msgstr "Aprovado por: @%{username}"
 msgid "Remove user"
 msgstr "Remover usuário"
 
+#: lib/dashboard/courses/course_user_list.html.heex:37
 #: lib/dashboard/schools/user_list.html.heex:42
 #, elixir-autogen, elixir-format
 msgid "Approve"
 msgstr "Aprovar"
 
-#: lib/dashboard/schools/user_list.ex:39
+#: lib/dashboard/courses/course_user_list.ex:34
+#: lib/dashboard/schools/user_list.ex:41
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Could not approve user!"
 msgstr "Não foi possível aprovar o usuário!"
 
-#: lib/dashboard/schools/user_list.ex:55
+#: lib/dashboard/courses/course_user_list.ex:52
+#: lib/dashboard/schools/user_list.ex:57
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Could not reject user!"
 msgstr "Não foi possível rejeitar o usuário!"
 
-#: lib/dashboard/schools/user_list.ex:71
+#: lib/dashboard/courses/course_user_list.ex:70
+#: lib/dashboard/schools/user_list.ex:73
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Could not remove user!"
 msgstr "Não foi possível remover o usuário!"
 
+#: lib/dashboard/courses/course_user_list.html.heex:24
 #: lib/dashboard/schools/user_list.html.heex:25
 #, elixir-autogen, elixir-format
 msgid "Pending"
 msgstr "Pedente"
 
+#: lib/dashboard/courses/course_user_list.html.heex:41
 #: lib/dashboard/schools/user_list.html.heex:46
 #, elixir-autogen, elixir-format
 msgid "Reject"
 msgstr "Rejeitar"
 
-#: lib/dashboard/schools/user_list.ex:33
+#: lib/dashboard/courses/course_user_list.ex:28
+#: lib/dashboard/schools/user_list.ex:35
 #, elixir-autogen, elixir-format
 msgid "User approved!"
 msgstr "Usuário aprovado!"
 
-#: lib/dashboard/schools/user_list.ex:49
+#: lib/dashboard/courses/course_user_list.ex:46
+#: lib/dashboard/schools/user_list.ex:51
 #, elixir-autogen, elixir-format
 msgid "User rejected!"
 msgstr "Usuário rejeitado!"
 
-#: lib/dashboard/schools/user_list.ex:65
+#: lib/dashboard/courses/course_user_list.ex:64
+#: lib/dashboard/schools/user_list.ex:67
 #, elixir-autogen, elixir-format
 msgid "User removed!"
 msgstr "Usuário removido!"
-
-#: lib/dashboard/schools/user_list.html.heex:77
-#, elixir-autogen, elixir-format
-msgid "Username or email address"
-msgstr "Nome de usuário ou endereço de e-mail"
 
 #: lib/dashboard/schools/user_list.html.heex:59
 #, elixir-autogen, elixir-format
 msgid "This will remove %{username} from your school. They won't be able to see your school anymore unless you approve them again."
 msgstr "Você está prestes a remover %{username} da sua escola. Eles não poderão mais ver sua escola a menos que você os aprove novamente."
+
+#: lib/components/delete_item.ex:21
+#: lib/components/delete_item.ex:40
+#, elixir-autogen, elixir-format
+msgid "Delete item"
+msgstr "Apagar item"
+
+#: lib/components/delete_item.ex:23
+#, elixir-autogen, elixir-format
+msgid "Deleting this item will remove all of its content. This action cannot be undone."
+msgstr "Apagar este item removerá todo o seu conteúdo. Esta ação não pode ser desfeita."
+
+#: lib/components/delete_item.ex:58
+#: lib/components/delete_item.ex:74
+#, elixir-autogen, elixir-format
+msgid "CONFIRM"
+msgstr "CONFIRMAR"
+
+#: lib/components/delete_item.ex:72
+#, elixir-autogen, elixir-format
+msgid "Confirmation message does not match. You typed: %{confirmation} but you need to type %{message}."
+msgstr "A mensagem de confirmação não corresponde. Você digitou: %{confirmation} mas precisa digitar %{message}."
+
+#: lib/dashboard/courses/course_edit.html.heex:6
+#: lib/dashboard/lessons/lesson_cover.ex:10
+#: lib/dashboard/lessons/lesson_cover.html.heex:1
+#, elixir-autogen, elixir-format
+msgid "Cover"
+msgstr "Capa"
+
+#: lib/dashboard/courses/course_new.ex:11
+#, elixir-autogen, elixir-format
+msgid "Create a course"
+msgstr "Criar um curso"
+
+#: lib/dashboard/courses/course_new.html.heex:24
+#, elixir-autogen, elixir-format, fuzzy
+msgid "Create course"
+msgstr "Criar curso"
+
+#: lib/dashboard/home.ex:19
+#, elixir-autogen, elixir-format
+msgid "Dashboard"
+msgstr "Painel de controle"
+
+#: lib/dashboard/components/course_list.ex:34
+#, elixir-autogen, elixir-format
+msgid "Draft"
+msgstr "Rascunho"
+
+#: lib/dashboard/courses/course_edit.html.heex:46
+#, elixir-autogen, elixir-format
+msgid "Level"
+msgstr "Nível"
+
+#: lib/dashboard/components/course_list.ex:38
+#, elixir-autogen, elixir-format
+msgid "Private"
+msgstr "Privado"
+
+#: lib/dashboard/courses/course_view.html.heex:34
+#, elixir-autogen, elixir-format
+msgid "Published"
+msgstr "Publicado"
+
+#: lib/components/delete_item.ex:30
+#, elixir-autogen, elixir-format
+msgid "Type CONFIRM to delete %{name}."
+msgstr "Digite CONFIRMAR para apagar %{name}."
+
+#: lib/dashboard/courses/course_view.html.heex:38
+#, elixir-autogen, elixir-format
+msgid "Unpublished"
+msgstr "Despublicado"

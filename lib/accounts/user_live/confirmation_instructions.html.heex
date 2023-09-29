@@ -1,19 +1,21 @@
 <div class="mx-auto max-w-sm">
   <.header class="text-center">
-    No confirmation instructions received?
-    <:subtitle>We'll send a new confirmation link to your inbox</:subtitle>
+    <%= dgettext("auth", "No confirmation instructions received?") %>
+    <:subtitle><%= dgettext("auth", "We'll send a new confirmation link to your inbox") %></:subtitle>
   </.header>
 
   <.simple_form for={@form} id="resend_confirmation_form" phx-submit="send_instructions">
-    <.input field={@form[:email]} type="email" placeholder="Email" required />
+    <.input field={@form[:email]} type="email" placeholder={gettext("Email")} required />
+
     <:actions>
-      <.button phx-disable-with="Sending..." class="w-full">
-        Resend confirmation instructions
+      <.button phx-disable-with={gettext("Sending...")} class="w-full">
+        <%= dgettext("auth", "Resend confirmation instructions") %>
       </.button>
     </:actions>
   </.simple_form>
 
   <p class="mt-4 text-center">
-    <.link navigate={~p"/users/register"}>Register</.link> | <.link navigate={~p"/users/login"}>Log in</.link>
+    <.link navigate={~p"/users/register"}><%= dgettext("auth", "Register") %></.link>
+    | <.link navigate={~p"/users/login"}><%= dgettext("auth", "Sign in") %></.link>
   </p>
 </div>
