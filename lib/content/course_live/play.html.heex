@@ -1,7 +1,18 @@
 <article class="m-auto max-w-sm space-y-4">
   <% current_step = hd(@steps) %>
 
-  <.lesson_progress total={length(@steps) + length(@completed_steps)} current={current_step.order} />
+  <header class="flex items-center gap-4">
+    <.lesson_progress total={length(@steps) + length(@completed_steps)} current={current_step.order} />
+
+    <.link_button
+      icon="tabler-x"
+      navigate={~p"/c/#{@course.slug}"}
+      data-confirm={dgettext("courses", "Your progress in this lesson will be lost. Would you like to quit?")}
+      color={:alert}
+    >
+      <span class="sr-only"><%= gettext("Close") %></span>
+    </.link_button>
+  </header>
 
   <section :if={@completed_steps != []} class="space-y-4">
     <.lesson_step

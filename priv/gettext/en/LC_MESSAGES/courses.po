@@ -83,7 +83,7 @@ msgstr ""
 msgid "Check this option if this is the correct answer."
 msgstr ""
 
-#: lib/content/course_live/play.html.heex:44
+#: lib/content/course_live/play.html.heex:55
 #, elixir-autogen, elixir-format
 msgid "Confirming..."
 msgstr ""
@@ -348,7 +348,7 @@ msgstr ""
 msgid "Manage lesson"
 msgstr ""
 
-#: lib/content/course_live/play.html.heex:50
+#: lib/content/course_live/play.html.heex:61
 #, elixir-autogen, elixir-format
 msgid "Next step"
 msgstr ""
@@ -544,4 +544,9 @@ msgstr ""
 #: lib/dashboard/courses/course_user_list.html.heex:62
 #, elixir-autogen, elixir-format
 msgid "This will remove %{username} from your course. They won't be able to see your course anymore unless you approve them again."
+msgstr ""
+
+#: lib/content/course_live/play.html.heex:10
+#, elixir-autogen, elixir-format
+msgid "Your progress in this lesson will be lost. Would you like to quit?"
 msgstr ""

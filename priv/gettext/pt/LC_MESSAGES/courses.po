@@ -83,7 +83,7 @@ msgstr "Iniciante"
 msgid "Check this option if this is the correct answer."
 msgstr "Marque esta alternativa se ela for a resposta correta."
 
-#: lib/content/course_live/play.html.heex:44
+#: lib/content/course_live/play.html.heex:55
 #, elixir-autogen, elixir-format
 msgid "Confirming..."
 msgstr "Confirmando..."
@@ -348,7 +348,7 @@ msgstr "Aucla atualizada com sucesso!"
 msgid "Manage lesson"
 msgstr "Gereciar aula"
 
-#: lib/content/course_live/play.html.heex:50
+#: lib/content/course_live/play.html.heex:61
 #, elixir-autogen, elixir-format
 msgid "Next step"
 msgstr "Próxima etapa"
@@ -545,3 +545,8 @@ msgstr "Estatísticas"
 #, elixir-autogen, elixir-format
 msgid "This will remove %{username} from your course. They won't be able to see your course anymore unless you approve them again."
 msgstr "Você está prestes a remover %{username} do seu curso. Eles não poderão mais ver seu curso, a menos que você os aprove novamente."
+
+#: lib/content/course_live/play.html.heex:10
+#, elixir-autogen, elixir-format
+msgid "Your progress in this lesson will be lost. Would you like to quit?"
+msgstr "O seu progresso nesta aula será perdido. Você gostaria de sair?"

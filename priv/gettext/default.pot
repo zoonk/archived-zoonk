@@ -200,7 +200,7 @@ msgstr ""
 msgid "Cancel"
 msgstr ""
 
-#: lib/content/course_live/play.html.heex:45
+#: lib/content/course_live/play.html.heex:56
 #, elixir-autogen, elixir-format
 msgid "Confirm"
 msgstr ""
@@ -260,4 +260,9 @@ msgstr ""
 #: lib/home/home.html.heex:10
 #, elixir-autogen, elixir-format
 msgid "Most popular courses"
+msgstr ""
+
+#: lib/content/course_live/play.html.heex:13
+#, elixir-autogen, elixir-format
+msgid "Close"
 msgstr ""

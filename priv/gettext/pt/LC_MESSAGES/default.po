@@ -200,7 +200,7 @@ msgstr "Todos os cursos"
 msgid "Cancel"
 msgstr "Cancelar"
 
-#: lib/content/course_live/play.html.heex:45
+#: lib/content/course_live/play.html.heex:56
 #, elixir-autogen, elixir-format
 msgid "Confirm"
 msgstr "Confirmar"
@@ -261,3 +261,8 @@ msgstr "Nome de usuário ou endereço de e-mail"
 #, elixir-autogen, elixir-format
 msgid "Most popular courses"
 msgstr "Curso mais populares"
+
+#: lib/content/course_live/play.html.heex:13
+#, elixir-autogen, elixir-format, fuzzy
+msgid "Close"
+msgstr "fechar"
