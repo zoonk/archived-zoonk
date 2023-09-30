@@ -39,7 +39,6 @@ msgstr ""
 
 #: lib/accounts/user_live/confirmation_instructions.html.heex:8
 #: lib/accounts/user_live/forgot_password.html.heex:7
-#: lib/accounts/user_live/login.html.heex:4
 #: lib/accounts/user_live/registration.html.heex:23
 #: lib/layouts/templates/app.html.heex:205
 #, elixir-autogen, elixir-format

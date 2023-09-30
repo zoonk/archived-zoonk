@@ -27,7 +27,7 @@ msgstr "Criar conta"
 msgid "Create an account"
 msgstr "Criar uma conta"
 
-#: lib/accounts/user_live/login.html.heex:5
+#: lib/accounts/user_live/login.html.heex:12
 #: lib/accounts/user_live/registration.html.heex:30
 #: lib/layouts/templates/app.html.heex:211
 #, elixir-autogen, elixir-format
@@ -37,7 +37,7 @@ msgstr "Senha"
 #: lib/accounts/user_live/confirmation.html.heex:15
 #: lib/accounts/user_live/confirmation_instructions.html.heex:19
 #: lib/accounts/user_live/login.ex:9
-#: lib/accounts/user_live/login.html.heex:13
+#: lib/accounts/user_live/login.html.heex:20
 #: lib/accounts/user_live/registration.html.heex:44
 #: lib/accounts/user_live/reset_password.html.heex:34
 #: lib/layouts/templates/app.html.heex:7
@@ -46,12 +46,12 @@ msgid "Sign in"
 msgstr "Entrar"
 
 #: lib/accounts/user_live/forgot_password.html.heex:3
-#: lib/accounts/user_live/login.html.heex:19
+#: lib/accounts/user_live/login.html.heex:26
 #, elixir-autogen, elixir-format
 msgid "Forgot your password?"
 msgstr "Esqueceu a senha?"
 
-#: lib/accounts/user_live/login.html.heex:8
+#: lib/accounts/user_live/login.html.heex:15
 #, elixir-autogen, elixir-format
 msgid "Keep me logged in"
 msgstr "Manter logado"
@@ -61,14 +61,14 @@ msgstr "Manter logado"
 msgid "Sign in to your account"
 msgstr "Entrar na sua conta"
 
-#: lib/accounts/user_live/login.html.heex:12
+#: lib/accounts/user_live/login.html.heex:19
 #, elixir-autogen, elixir-format
 msgid "Signing in..."
 msgstr "Entrando..."
 
 #: lib/accounts/user_live/confirmation.html.heex:14
 #: lib/accounts/user_live/confirmation_instructions.html.heex:18
-#: lib/accounts/user_live/login.html.heex:22
+#: lib/accounts/user_live/login.html.heex:29
 #: lib/accounts/user_live/reset_password.html.heex:33
 #, elixir-autogen, elixir-format
 msgid "Register"
@@ -204,3 +204,8 @@ msgstr "Reenviar instruções de confirmação"
 #, elixir-autogen, elixir-format, fuzzy
 msgid "We'll send a new confirmation link to your inbox"
 msgstr "Enviaremos um novo link de confirmação para o seu e-mail"
+
+#: lib/accounts/user_live/login.html.heex:7
+#, elixir-autogen, elixir-format
+msgid "Email or username"
+msgstr "E-mail ou nome de usuário"

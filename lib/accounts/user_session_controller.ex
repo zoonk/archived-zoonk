@@ -22,9 +22,15 @@ defmodule UneebeeWeb.Controller.Accounts.User.Session do
   end
 
   defp create(conn, %{"user" => user_params}, info) do
-    %{"email" => email, "password" => password} = user_params
+    email_or_username =
+      case user_params do
+        %{"email_or_username" => email_or_username} -> email_or_username
+        %{"email" => email} -> email
+      end
 
-    if user = Accounts.get_user_by_email_and_password(email, password) do
+    password = user_params["password"]
+
+    if user = Accounts.get_user_by_email_or_username_and_password(email_or_username, password) do
       conn
       |> put_flash(:info, info)
       |> UserAuth.log_in_user(user, user_params)
@@ -32,7 +38,7 @@ defmodule UneebeeWeb.Controller.Accounts.User.Session do
       # In order to prevent user enumeration attacks, don't disclose whether the email is registered.
       conn
       |> put_flash(:error, dgettext("auth", "Invalid email or password."))
-      |> put_flash(:email, String.slice(email, 0, 160))
+      |> put_flash(:email, String.slice(email_or_username, 0, 160))
       |> redirect(to: ~p"/users/login")
     end
   end

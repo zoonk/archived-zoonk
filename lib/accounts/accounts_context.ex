@@ -88,6 +88,28 @@ defmodule Uneebee.Accounts do
   end
 
   @doc """
+  Gets a user by email and password.
+
+  ## Examples
+
+      iex> get_user_by_email_or_username_and_password("foo@example.com", "correct_password")
+      %User{}
+
+      iex> get_user_by_email_or_username_and_password("adalovelace", "correct_password")
+      %User{}
+
+      iex> get_user_by_email_or_username_and_password("foo@example.com", "invalid_password")
+      nil
+
+  """
+  @spec get_user_by_email_or_username_and_password(String.t(), String.t()) :: User.t() | nil
+  def get_user_by_email_or_username_and_password(email_or_username, password)
+      when is_binary(email_or_username) and is_binary(password) do
+    user = get_user_by_email_or_username(email_or_username)
+    if User.valid_password?(user, password), do: user
+  end
+
+  @doc """
   Gets a single user.
 
   Raises `Ecto.NoResultsError` if the User does not exist.

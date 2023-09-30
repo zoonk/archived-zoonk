@@ -27,7 +27,7 @@ msgstr ""
 msgid "Create an account"
 msgstr ""
 
-#: lib/accounts/user_live/login.html.heex:5
+#: lib/accounts/user_live/login.html.heex:12
 #: lib/accounts/user_live/registration.html.heex:30
 #: lib/layouts/templates/app.html.heex:211
 #, elixir-autogen, elixir-format
@@ -37,7 +37,7 @@ msgstr ""
 #: lib/accounts/user_live/confirmation.html.heex:15
 #: lib/accounts/user_live/confirmation_instructions.html.heex:19
 #: lib/accounts/user_live/login.ex:9
-#: lib/accounts/user_live/login.html.heex:13
+#: lib/accounts/user_live/login.html.heex:20
 #: lib/accounts/user_live/registration.html.heex:44
 #: lib/accounts/user_live/reset_password.html.heex:34
 #: lib/layouts/templates/app.html.heex:7
@@ -46,12 +46,12 @@ msgid "Sign in"
 msgstr ""
 
 #: lib/accounts/user_live/forgot_password.html.heex:3
-#: lib/accounts/user_live/login.html.heex:19
+#: lib/accounts/user_live/login.html.heex:26
 #, elixir-autogen, elixir-format
 msgid "Forgot your password?"
 msgstr ""
 
-#: lib/accounts/user_live/login.html.heex:8
+#: lib/accounts/user_live/login.html.heex:15
 #, elixir-autogen, elixir-format
 msgid "Keep me logged in"
 msgstr ""
@@ -61,14 +61,14 @@ msgstr ""
 msgid "Sign in to your account"
 msgstr ""
 
-#: lib/accounts/user_live/login.html.heex:12
+#: lib/accounts/user_live/login.html.heex:19
 #, elixir-autogen, elixir-format
 msgid "Signing in..."
 msgstr ""
 
 #: lib/accounts/user_live/confirmation.html.heex:14
 #: lib/accounts/user_live/confirmation_instructions.html.heex:18
-#: lib/accounts/user_live/login.html.heex:22
+#: lib/accounts/user_live/login.html.heex:29
 #: lib/accounts/user_live/reset_password.html.heex:33
 #, elixir-autogen, elixir-format
 msgid "Register"
@@ -203,4 +203,9 @@ msgstr ""
 #: lib/accounts/user_live/confirmation_instructions.html.heex:4
 #, elixir-autogen, elixir-format
 msgid "We'll send a new confirmation link to your inbox"
+msgstr ""
+
+#: lib/accounts/user_live/login.html.heex:7
+#, elixir-autogen, elixir-format
+msgid "Email or username"
 msgstr ""
