@@ -21,7 +21,7 @@ defmodule UneebeeWeb.UserSessionControllerTest do
 
       # Now do a logged in request and assert on the menu
       response = html_response(get(conn, ~p"/"), 200)
-      assert response =~ user.email
+      assert response =~ "Settings"
     end
 
     test "logs the user in with remember me", %{conn: conn, user: user} do

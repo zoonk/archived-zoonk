@@ -40,7 +40,7 @@ msgstr "fechar"
 #: lib/accounts/user_live/confirmation_instructions.html.heex:8
 #: lib/accounts/user_live/forgot_password.html.heex:7
 #: lib/accounts/user_live/registration.html.heex:23
-#: lib/layouts/templates/app.html.heex:205
+#: lib/layouts/templates/app.html.heex:212
 #, elixir-autogen, elixir-format
 msgid "Email"
 msgstr "E-mail"
@@ -48,7 +48,7 @@ msgstr "E-mail"
 #: lib/accounts/user_live/registration.html.heex:18
 #: lib/accounts/user_live/settings.html.heex:12
 #: lib/dashboard/courses/course_edit.html.heex:20
-#: lib/layouts/templates/app.html.heex:187
+#: lib/layouts/templates/app.html.heex:194
 #, elixir-autogen, elixir-format
 msgid "Language"
 msgstr "Idioma"
@@ -72,12 +72,12 @@ msgstr "Salvando..."
 
 #: lib/accounts/user_live/registration.html.heex:25
 #: lib/accounts/user_live/settings.html.heex:22
-#: lib/layouts/templates/app.html.heex:193
+#: lib/layouts/templates/app.html.heex:200
 #, elixir-autogen, elixir-format
 msgid "Username"
 msgstr "Nome de usuário"
 
-#: lib/home/home.ex:7
+#: lib/home/home.ex:18
 #: lib/layouts/templates/app.html.heex:10
 #, elixir-autogen, elixir-format
 msgid "Home"
@@ -102,13 +102,13 @@ msgstr ""
 msgid "Changing..."
 msgstr "Alterando..."
 
-#: lib/layouts/templates/app.html.heex:214
+#: lib/layouts/templates/app.html.heex:221
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Logout"
 msgstr "Sair"
 
 #: lib/accounts/user_live/settings.ex:32
-#: lib/layouts/templates/app.html.heex:181
+#: lib/layouts/templates/app.html.heex:188
 #, elixir-autogen, elixir-format
 msgid "Settings"
 msgstr "Configurações"
@@ -132,7 +132,7 @@ msgstr "Sobrenome"
 msgid "Save"
 msgstr "Salvar"
 
-#: lib/layouts/templates/app.html.heex:199
+#: lib/layouts/templates/app.html.heex:206
 #, elixir-autogen, elixir-format
 msgid "Name"
 msgstr "Nome"
@@ -208,6 +208,7 @@ msgstr "Confirmar"
 #: lib/content/course_live/list.ex:18
 #: lib/content/course_live/list.html.heex:9
 #: lib/dashboard/courses/course_list.ex:15
+#: lib/layouts/templates/app.html.heex:180
 #, elixir-autogen, elixir-format
 msgid "Courses"
 msgstr "Cursos"
@@ -235,6 +236,7 @@ msgid "Locked"
 msgstr "Bloqueado"
 
 #: lib/content/course_live/list.html.heex:3
+#: lib/home/home.html.heex:4
 #, elixir-autogen, elixir-format
 msgid "My courses"
 msgstr "Meus cursos"
@@ -254,3 +256,8 @@ msgstr "Redefinindo..."
 #, elixir-autogen, elixir-format
 msgid "Username or email address"
 msgstr "Nome de usuário ou endereço de e-mail"
+
+#: lib/home/home.html.heex:10
+#, elixir-autogen, elixir-format
+msgid "Most popular courses"
+msgstr "Curso mais populares"

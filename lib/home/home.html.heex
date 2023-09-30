@@ -1,1 +1,11 @@
-<p :if={@current_user}><%= @current_user.email %></p>
+<article class="space-y-4">
+  <.course_list
+    id="my-courses"
+    title={gettext("My courses")}
+    courses={@streams.courses_learning}
+    my_courses
+    empty={@courses_learning_empty?}
+  />
+
+  <.course_list id="courses-list" title={gettext("Most popular courses")} courses={@streams.courses} />
+</article>

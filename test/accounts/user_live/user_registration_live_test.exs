@@ -61,7 +61,7 @@ defmodule UneebeeWeb.UserRegistrationLiveTest do
 
       # Now do a logged in request
       response = html_response(get(conn, "/"), 200)
-      assert response =~ attrs.email
+      assert response =~ "Settings"
 
       # Check if the user was added as school user
       school_user = Organizations.get_school_user(school.slug, attrs.username)
