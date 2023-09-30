@@ -21,11 +21,13 @@ defmodule UneebeeWeb.Components.Icon do
   attr :class, :string, default: nil, doc: "the optional additional classes to add to the icon element"
   attr :gradient, :boolean, default: false, doc: "whether to add a gradient color to the icon"
   attr :rest, :global, doc: "the arbitrary HTML attributes to add to the icon element"
+  attr :title, :string, default: nil, doc: "the optional title to add to the icon element"
 
   def icon(%{name: "tabler-" <> _} = assigns) do
     ~H"""
     <span
       {@rest}
+      title={@title}
       class={[
         "shrink-0",
         @name,
@@ -33,7 +35,9 @@ defmodule UneebeeWeb.Components.Icon do
           "relative before:content-['*'] before:absolute before:top-0 before:left-0 before:w-full before:h-full before:bg-gradient-to-br before:from-info before:via-primary before:to-alert",
         @class
       ]}
-    />
+    >
+      <span :if={@title} class="sr-only"><%= @title %></span>
+    </span>
     """
   end
 end

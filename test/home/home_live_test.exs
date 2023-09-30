@@ -29,6 +29,12 @@ defmodule UneebeeWeb.HomeControllerTest do
 
       Enum.each(2..4, fn idx -> assert has_element?(lv, ~s|#my-courses dt:fl-icontains("course #{idx}")|) end)
     end
+
+    test "shows how many learning days a user has", %{conn: conn, user: user} do
+      Enum.each(1..3, fn idx -> generate_user_lesson(user.id, -idx) end)
+      {:ok, lv, _html} = live(conn, ~p"/")
+      assert has_element?(lv, ~s|#learning-days:fl-contains("3")|)
+    end
   end
 
   describe "GET / (public school, not logged in)" do
@@ -60,6 +66,11 @@ defmodule UneebeeWeb.HomeControllerTest do
       refute has_element?(lv, ~s|#courses-list dt:fl-icontains("course 1!")|)
 
       Enum.each(2..21, fn idx -> assert has_element?(lv, ~s|#courses-list dt:fl-icontains("course #{idx}!")|) end)
+    end
+
+    test "doesn't show the learning days count", %{conn: conn} do
+      {:ok, lv, _html} = live(conn, ~p"/")
+      refute has_element?(lv, ~s|#learning-days|)
     end
   end
 

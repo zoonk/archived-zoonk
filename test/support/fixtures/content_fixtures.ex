@@ -10,6 +10,7 @@ defmodule Uneebee.Fixtures.Content do
   alias Uneebee.Content.Course
   alias Uneebee.Content.CourseUser
   alias Uneebee.Content.Lesson
+  alias Uneebee.Content.UserLesson
   alias Uneebee.Repo
   alias UneebeeWeb.Plugs.Translate
 
@@ -138,5 +139,29 @@ defmodule Uneebee.Fixtures.Content do
     preload = Map.get(attrs, :preload, [])
     {:ok, step_option} = attrs |> valid_step_option_attributes() |> Content.create_step_option()
     Repo.preload(step_option, preload)
+  end
+
+  @doc """
+  Generate multiple user lessons.
+
+  This is useful when testing completed lessons by a user because we need to test
+  a user has completed lessons for multiple days.
+  """
+  @spec generate_user_lesson(integer(), integer()) :: :ok
+  def generate_user_lesson(user_id, days) do
+    today = DateTime.utc_now()
+    days_ago = DateTime.add(today, days, :day)
+    lessons = Enum.map(1..3, fn _idx -> lesson_fixture() end)
+
+    Enum.each(lessons, fn lesson ->
+      Repo.insert!(%UserLesson{
+        attempts: 1,
+        correct: 1,
+        total: 1,
+        user_id: user_id,
+        lesson_id: lesson.id,
+        inserted_at: days_ago
+      })
+    end)
   end
 end

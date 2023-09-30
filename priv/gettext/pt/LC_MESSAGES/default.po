@@ -77,7 +77,7 @@ msgstr "Salvando..."
 msgid "Username"
 msgstr "Nome de usuário"
 
-#: lib/home/home.ex:18
+#: lib/home/home.ex:20
 #: lib/layouts/templates/app.html.heex:10
 #, elixir-autogen, elixir-format
 msgid "Home"
@@ -236,7 +236,7 @@ msgid "Locked"
 msgstr "Bloqueado"
 
 #: lib/content/course_live/list.html.heex:3
-#: lib/home/home.html.heex:4
+#: lib/home/home.html.heex:10
 #, elixir-autogen, elixir-format
 msgid "My courses"
 msgstr "Meus cursos"
@@ -257,7 +257,7 @@ msgstr "Redefinindo..."
 msgid "Username or email address"
 msgstr "Nome de usuário ou endereço de e-mail"
 
-#: lib/home/home.html.heex:10
+#: lib/home/home.html.heex:16
 #, elixir-autogen, elixir-format
 msgid "Most popular courses"
 msgstr "Curso mais populares"
