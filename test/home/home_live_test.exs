@@ -5,6 +5,7 @@ defmodule UneebeeWeb.HomeControllerTest do
   import Phoenix.LiveViewTest
   import Uneebee.Fixtures.Accounts
   import Uneebee.Fixtures.Content
+  import Uneebee.Fixtures.Gamification
   import Uneebee.Fixtures.Organizations
 
   describe "GET / (public school, logged in)" do
@@ -34,6 +35,12 @@ defmodule UneebeeWeb.HomeControllerTest do
       Enum.each(1..3, fn idx -> generate_user_lesson(user.id, -idx) end)
       {:ok, lv, _html} = live(conn, ~p"/")
       assert has_element?(lv, ~s|#learning-days:fl-contains("3")|)
+    end
+
+    test "shows how many medals a user has", %{conn: conn, user: user} do
+      Enum.each(1..3, fn _idx -> user_medal_fixture(%{user: user}) end)
+      {:ok, lv, _html} = live(conn, ~p"/")
+      assert has_element?(lv, ~s|#medals:fl-contains("3")|)
     end
   end
 
@@ -71,6 +78,11 @@ defmodule UneebeeWeb.HomeControllerTest do
     test "doesn't show the learning days count", %{conn: conn} do
       {:ok, lv, _html} = live(conn, ~p"/")
       refute has_element?(lv, ~s|#learning-days|)
+    end
+
+    test "doesn't show the medals count", %{conn: conn} do
+      {:ok, lv, _html} = live(conn, ~p"/")
+      refute has_element?(lv, ~s|#medals|)
     end
   end
 

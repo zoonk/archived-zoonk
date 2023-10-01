@@ -1,7 +1,12 @@
-<header :if={@current_user} class="bg-primary-light3x mb-4 rounded-2xl p-4">
-  <span class="text-primary-dark2x flex items-center gap-1 font-black" id="learning-days">
-    <.icon name="tabler-calendar-heart" title={dgettext("gamification", "Learning days")} /> <%= @learning_days %>
-  </span>
+<header :if={@current_user} class="bg-primary-light3x mb-4 flex items-center gap-4 rounded-2xl p-4">
+  <.gamification_item
+    id="learning-days"
+    icon="tabler-calendar-heart"
+    title={dgettext("gamification", "Learning days")}
+    count={@learning_days}
+  />
+
+  <.gamification_item id="medals" icon="tabler-medal" title={dgettext("gamification", "Medals")} count={@medals} />
 </header>
 
 <article class="space-y-4">

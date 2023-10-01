@@ -15,6 +15,7 @@ defmodule Uneebee.ContentTest do
   alias Uneebee.Content.StepOption
   alias Uneebee.Content.UserLesson
   alias Uneebee.Content.UserSelection
+  alias Uneebee.Gamification
   alias Uneebee.Organizations
   alias Uneebee.Repo
 
@@ -839,6 +840,60 @@ defmodule Uneebee.ContentTest do
       assert user_lesson.attempts == 2
       assert user_lesson.correct == 5
       assert user_lesson.total == 10
+    end
+
+    test "awards a gold medal when a lesson is completed without errors on the first try" do
+      user = user_fixture()
+      lesson = lesson_fixture()
+      attrs = %{user_id: user.id, lesson_id: lesson.id, attempts: 1, correct: 4, total: 4}
+
+      assert Gamification.count_user_medals(user.id, :gold) == 0
+
+      Content.add_user_lesson(attrs)
+
+      assert Gamification.count_user_medals(user.id, :gold) == 1
+    end
+
+    test "awards a silver medal when a lesson is completed without errors on a second try" do
+      user = user_fixture()
+      lesson = lesson_fixture()
+      attrs = %{user_id: user.id, lesson_id: lesson.id, attempts: 1, correct: 4, total: 4}
+
+      Content.add_user_lesson(attrs)
+
+      assert Gamification.count_user_medals(user.id, :gold) == 1
+      assert Gamification.count_user_medals(user.id, :silver) == 0
+
+      Content.add_user_lesson(attrs)
+
+      assert Gamification.count_user_medals(user.id, :gold) == 1
+      assert Gamification.count_user_medals(user.id, :silver) == 1
+    end
+
+    test "awards a bronze medal when a lesson has errors on first try" do
+      user = user_fixture()
+      lesson = lesson_fixture()
+      attrs = %{user_id: user.id, lesson_id: lesson.id, attempts: 1, correct: 3, total: 4}
+
+      assert Gamification.count_user_medals(user.id, :bronze) == 0
+
+      Content.add_user_lesson(attrs)
+
+      assert Gamification.count_user_medals(user.id, :bronze) == 1
+    end
+
+    test "awards a bronze medal when a lesson has errors on second try" do
+      user = user_fixture()
+      lesson = lesson_fixture()
+      attrs = %{user_id: user.id, lesson_id: lesson.id, attempts: 1, correct: 3, total: 4}
+
+      Content.add_user_lesson(attrs)
+
+      assert Gamification.count_user_medals(user.id, :bronze) == 1
+
+      Content.add_user_lesson(attrs)
+
+      assert Gamification.count_user_medals(user.id, :bronze) == 2
     end
   end
 

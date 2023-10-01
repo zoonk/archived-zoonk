@@ -3,6 +3,7 @@ defmodule UneebeeWeb.Live.Home do
   use UneebeeWeb, :live_view
 
   import UneebeeWeb.Components.Content.CourseList
+  import UneebeeWeb.Components.Home.GamificationItem
 
   alias Uneebee.Content
   alias Uneebee.Gamification
@@ -14,6 +15,7 @@ defmodule UneebeeWeb.Live.Home do
     courses_learning = list_courses_by_user(user, :student)
     courses = Content.list_public_courses_by_school(school, limit: 20)
     learning_days = get_learning_days(user)
+    medals = get_user_medals(user)
 
     socket =
       socket
@@ -22,6 +24,7 @@ defmodule UneebeeWeb.Live.Home do
       |> stream(:courses, courses)
       |> assign(:courses_learning_empty?, courses_learning == [])
       |> assign(:learning_days, learning_days)
+      |> assign(:medals, medals)
 
     {:ok, socket}
   end
@@ -31,4 +34,7 @@ defmodule UneebeeWeb.Live.Home do
 
   defp get_learning_days(nil), do: nil
   defp get_learning_days(user), do: Gamification.learning_days_count(user.id)
+
+  defp get_user_medals(nil), do: nil
+  defp get_user_medals(user), do: Gamification.count_user_medals(user.id)
 end

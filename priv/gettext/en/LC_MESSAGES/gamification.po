@@ -11,7 +11,48 @@ msgstr ""
 "Language: en\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: lib/home/home.html.heex:3
+#: lib/home/home.html.heex:5
 #, elixir-autogen, elixir-format
 msgid "Learning days"
+msgstr ""
+
+#: lib/gamification/user_medals_config.ex:32
+#, elixir-autogen, elixir-format
+msgid "Lesson completed"
+msgstr ""
+
+#: lib/gamification/user_medals_config.ex:38
+#, elixir-autogen, elixir-format
+msgid "Lesson practiced"
+msgstr ""
+
+#: lib/home/home.html.heex:9
+#, elixir-autogen, elixir-format
+msgid "Medals"
+msgstr ""
+
+#: lib/gamification/user_medals_config.ex:20
+#: lib/gamification/user_medals_config.ex:26
+#, elixir-autogen, elixir-format
+msgid "Perfect lesson"
+msgstr ""
+
+#: lib/gamification/user_medals_config.ex:33
+#, elixir-autogen, elixir-format
+msgid "You completed a lesson with some errors on your first try."
+msgstr ""
+
+#: lib/gamification/user_medals_config.ex:27
+#, elixir-autogen, elixir-format
+msgid "You completed a lesson without any errors after practicing it."
+msgstr ""
+
+#: lib/gamification/user_medals_config.ex:21
+#, elixir-autogen, elixir-format
+msgid "You completed a lesson without any errors on your first try."
+msgstr ""
+
+#: lib/gamification/user_medals_config.ex:39
+#, elixir-autogen, elixir-format
+msgid "You practiced a lesson you had completed before."
 msgstr ""

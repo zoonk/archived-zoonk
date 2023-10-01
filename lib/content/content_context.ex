@@ -13,6 +13,7 @@ defmodule Uneebee.Content do
   alias Uneebee.Content.StepOption
   alias Uneebee.Content.UserLesson
   alias Uneebee.Content.UserSelection
+  alias Uneebee.Gamification
   alias Uneebee.Organizations
   alias Uneebee.Organizations.School
   alias Uneebee.Organizations.SchoolUser
@@ -751,7 +752,25 @@ defmodule Uneebee.Content do
     user_id = Map.get(attrs, :user_id)
     lesson_id = Map.get(attrs, :lesson_id)
     user_lesson = get_user_lesson(user_id, lesson_id)
-    add_user_lesson(attrs, user_lesson)
+
+    correct = Map.get(attrs, :correct)
+    total = Map.get(attrs, :total)
+    perfect? = correct == total
+    first_try? = is_nil(user_lesson)
+
+    case Repo.transaction(fn ->
+           Gamification.award_medal_for_lesson(%{
+             user_id: user_id,
+             lesson_id: lesson_id,
+             perfect?: perfect?,
+             first_try?: first_try?
+           })
+
+           add_user_lesson(attrs, user_lesson)
+         end) do
+      {:ok, user_lesson} -> user_lesson
+      {:error, error} -> error
+    end
   end
 
   defp add_user_lesson(attrs, nil) do
