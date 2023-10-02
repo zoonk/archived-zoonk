@@ -26,7 +26,7 @@ msgstr ""
 msgid "All lessons"
 msgstr ""
 
-#: lib/content/course_live/lesson_completed.html.heex:27
+#: lib/content/course_live/lesson_completed.html.heex:41
 #, elixir-autogen, elixir-format
 msgid "Back to the course"
 msgstr ""
@@ -66,7 +66,7 @@ msgstr ""
 msgid "Enrolled successfully!"
 msgstr ""
 
-#: lib/content/course_live/lesson_completed.ex:22
+#: lib/content/course_live/lesson_completed.ex:30
 #, elixir-autogen, elixir-format
 msgid "Excellent!"
 msgstr ""
@@ -86,7 +86,7 @@ msgstr ""
 msgid "Free Enroll"
 msgstr ""
 
-#: lib/content/course_live/lesson_completed.ex:24
+#: lib/content/course_live/lesson_completed.ex:32
 #, elixir-autogen, elixir-format
 msgid "Good!"
 msgstr ""
@@ -116,7 +116,7 @@ msgstr ""
 msgid "Next step"
 msgstr ""
 
-#: lib/content/course_live/lesson_completed.ex:25
+#: lib/content/course_live/lesson_completed.ex:33
 #, elixir-autogen, elixir-format
 msgid "Not bad!"
 msgstr ""
@@ -126,7 +126,7 @@ msgstr ""
 msgid "Pending Approval"
 msgstr ""
 
-#: lib/content/course_live/lesson_completed.ex:21
+#: lib/content/course_live/lesson_completed.ex:29
 #, elixir-autogen, elixir-format
 msgid "Perfect!"
 msgstr ""
@@ -141,7 +141,7 @@ msgstr ""
 msgid "That's incorrect."
 msgstr ""
 
-#: lib/content/course_live/lesson_completed.ex:26
+#: lib/content/course_live/lesson_completed.ex:34
 #, elixir-autogen, elixir-format
 msgid "There's room for improvement"
 msgstr ""
@@ -156,7 +156,7 @@ msgstr ""
 msgid "Unable to select option"
 msgstr ""
 
-#: lib/content/course_live/lesson_completed.ex:23
+#: lib/content/course_live/lesson_completed.ex:31
 #, elixir-autogen, elixir-format
 msgid "Very good!"
 msgstr ""
@@ -166,7 +166,7 @@ msgstr ""
 msgid "Well done!"
 msgstr ""
 
-#: lib/content/course_live/lesson_completed.html.heex:10
+#: lib/content/course_live/lesson_completed.html.heex:12
 #, elixir-autogen, elixir-format
 msgid "You got %{correct} out of %{total} answers right."
 msgstr ""

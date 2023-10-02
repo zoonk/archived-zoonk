@@ -119,4 +119,23 @@ defmodule Uneebee.Gamification do
     medal = medal_type(reason)
     create_user_medal(%{user_id: user_id, lesson_id: lesson_id, medal: medal, reason: reason})
   end
+
+  @doc """
+  Checks if this is the first lesson a user has completed today.
+
+  ## Examples
+
+      iex> first_lesson_today?(user_id)
+      true
+  """
+  @spec first_lesson_today?(integer()) :: boolean()
+  def first_lesson_today?(user_id) do
+    UserLesson
+    |> where([ul], ul.user_id == ^user_id)
+    |> where([ul], fragment("date(?)", ul.updated_at) == ^Date.utc_today())
+    |> limit(2)
+    |> Repo.all()
+    |> length()
+    |> Kernel.==(1)
+  end
 end

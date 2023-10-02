@@ -1,25 +1,39 @@
 <article class="card m-auto max-w-sm rounded-2xl bg-white">
-  <div class="flex flex-col items-center p-8">
+  <div class="p-8">
     <% score = get_score(@user_lesson) %>
 
     <img src={score_image(score)} alt={dgettext("courses", "Illustration of a green alien")} class="w-1/4" />
 
-    <h1 class="text-gray-dark mt-4 text-lg font-semibold"><%= score_title(score) %></h1>
+    <div class="my-4 flex items-center justify-between gap-4">
+      <div>
+        <h1 class="text-gray-dark2x font-semibold"><%= score_title(score) %></h1>
 
-    <p class="text-gray-dark mt-2">
-      <%= dgettext("courses", "You got %{correct} out of %{total} answers right.",
-        correct: @user_lesson.correct,
-        total: @user_lesson.total
-      ) %>
-    </p>
+        <p class="text-gray text-sm">
+          <%= dgettext("courses", "You got %{correct} out of %{total} answers right.",
+            correct: @user_lesson.correct,
+            total: @user_lesson.total
+          ) %>
+        </p>
+      </div>
 
-    <div class={[
-      "w-10 h-10 mt-8 p-8 rounded-full flex flex-col font-bold items-center justify-center",
-      score >= 8 && "bg-success-light3x text-success-dark2x",
-      score >= 6 && score < 8 && "bg-warning-light3x text-warning-dark2x",
-      score < 6 && "bg-alert-light3x text-alert-dark2x"
-    ]}>
-      <%= score %>
+      <div class={[
+        "w-10 h-10 p-6 rounded-full flex flex-col font-bold items-center justify-center",
+        score >= 8 && "bg-success-light3x text-success-dark2x",
+        score >= 6 && score < 8 && "bg-warning-light3x text-warning-dark2x",
+        score < 6 && "bg-alert-light3x text-alert-dark2x"
+      ]}>
+        <%= score %>
+      </div>
+    </div>
+
+    <div class="pt-4">
+      <div class="bg-primary-light2x text-primary-dark2x flex w-32 flex-col items-center justify-center gap-1 rounded-2xl p-4 text-center">
+        <.icon name="tabler-calendar-heart" />
+        <span class="font-black"><%= @learning_days %></span>
+        <span class="text-xs font-light">
+          <%= dngettext("gamification", "Learning day", "Learning days", @learning_days) %>
+        </span>
+      </div>
     </div>
   </div>
 

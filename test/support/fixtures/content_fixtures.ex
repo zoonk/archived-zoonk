@@ -147,11 +147,12 @@ defmodule Uneebee.Fixtures.Content do
   This is useful when testing completed lessons by a user because we need to test
   a user has completed lessons for multiple days.
   """
-  @spec generate_user_lesson(integer(), integer()) :: :ok
-  def generate_user_lesson(user_id, days) do
+  @spec generate_user_lesson(integer(), integer(), list()) :: :ok
+  def generate_user_lesson(user_id, days, opts \\ []) do
+    number_of_lessons = Keyword.get(opts, :number_of_lessons, 3)
     today = DateTime.utc_now()
     days_ago = DateTime.add(today, days, :day)
-    lessons = Enum.map(1..3, fn _idx -> lesson_fixture() end)
+    lessons = Enum.map(1..number_of_lessons, fn _idx -> lesson_fixture() end)
 
     Enum.each(lessons, fn lesson ->
       Repo.insert!(%UserLesson{
@@ -160,7 +161,8 @@ defmodule Uneebee.Fixtures.Content do
         total: 1,
         user_id: user_id,
         lesson_id: lesson.id,
-        inserted_at: days_ago
+        inserted_at: days_ago,
+        updated_at: days_ago
       })
     end)
   end

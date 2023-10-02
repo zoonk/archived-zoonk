@@ -26,7 +26,7 @@ msgstr "Avançado"
 msgid "All lessons"
 msgstr "Todas as aulas"
 
-#: lib/content/course_live/lesson_completed.html.heex:27
+#: lib/content/course_live/lesson_completed.html.heex:41
 #, elixir-autogen, elixir-format
 msgid "Back to the course"
 msgstr "Voltar ao curso"
@@ -66,7 +66,7 @@ msgstr "Apagar aula"
 msgid "Enrolled successfully!"
 msgstr "Matriculado com sucesso!"
 
-#: lib/content/course_live/lesson_completed.ex:22
+#: lib/content/course_live/lesson_completed.ex:30
 #, elixir-autogen, elixir-format
 msgid "Excellent!"
 msgstr "Excelente!"
@@ -86,7 +86,7 @@ msgstr "Falha ao se matricular"
 msgid "Free Enroll"
 msgstr "Matrícula gratuita"
 
-#: lib/content/course_live/lesson_completed.ex:24
+#: lib/content/course_live/lesson_completed.ex:32
 #, elixir-autogen, elixir-format
 msgid "Good!"
 msgstr "Bom!"
@@ -116,7 +116,7 @@ msgstr "Gereciar aula"
 msgid "Next step"
 msgstr "Próxima etapa"
 
-#: lib/content/course_live/lesson_completed.ex:25
+#: lib/content/course_live/lesson_completed.ex:33
 #, elixir-autogen, elixir-format
 msgid "Not bad!"
 msgstr "Nada mal!"
@@ -126,7 +126,7 @@ msgstr "Nada mal!"
 msgid "Pending Approval"
 msgstr "Aprovação pendente"
 
-#: lib/content/course_live/lesson_completed.ex:21
+#: lib/content/course_live/lesson_completed.ex:29
 #, elixir-autogen, elixir-format
 msgid "Perfect!"
 msgstr "Perfeito!"
@@ -141,7 +141,7 @@ msgstr "Pedir para participar"
 msgid "That's incorrect."
 msgstr "Está incorreto."
 
-#: lib/content/course_live/lesson_completed.ex:26
+#: lib/content/course_live/lesson_completed.ex:34
 #, elixir-autogen, elixir-format
 msgid "There's room for improvement"
 msgstr "Tem espaço para melhorar"
@@ -156,7 +156,7 @@ msgstr "Não foi possível concluir a aula"
 msgid "Unable to select option"
 msgstr "Não foi possível selecionar a alternativa"
 
-#: lib/content/course_live/lesson_completed.ex:23
+#: lib/content/course_live/lesson_completed.ex:31
 #, elixir-autogen, elixir-format
 msgid "Very good!"
 msgstr "Muito bem!"
@@ -166,7 +166,7 @@ msgstr "Muito bem!"
 msgid "Well done!"
 msgstr "Boa!"
 
-#: lib/content/course_live/lesson_completed.html.heex:10
+#: lib/content/course_live/lesson_completed.html.heex:12
 #, elixir-autogen, elixir-format
 msgid "You got %{correct} out of %{total} answers right."
 msgstr "Você acertou %{correct} de %{total} respostas."

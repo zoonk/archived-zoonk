@@ -46,7 +46,7 @@ msgid "Sign in"
 msgstr ""
 
 #: lib/accounts/user_live/forgot_password.html.heex:3
-#: lib/accounts/user_live/login.html.heex:26
+#: lib/accounts/user_live/login.html.heex:27
 #, elixir-autogen, elixir-format
 msgid "Forgot your password?"
 msgstr ""
@@ -68,7 +68,7 @@ msgstr ""
 
 #: lib/accounts/user_live/confirmation.html.heex:14
 #: lib/accounts/user_live/confirmation_instructions.html.heex:18
-#: lib/accounts/user_live/login.html.heex:29
+#: lib/accounts/user_live/login.html.heex:30
 #: lib/accounts/user_live/reset_password.html.heex:33
 #, elixir-autogen, elixir-format
 msgid "Register"

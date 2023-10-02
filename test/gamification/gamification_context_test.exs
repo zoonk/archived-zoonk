@@ -82,4 +82,21 @@ defmodule Uneebee.GamificationTest do
       assert Gamification.count_user_medals(user.id, :bronze) == 1
     end
   end
+
+  describe "first_lesson_today?/1" do
+    test "returns true if the user has completed only one lesson today" do
+      user = user_fixture()
+      generate_user_lesson(user.id, -1)
+      generate_user_lesson(user.id, 0, number_of_lessons: 1)
+
+      assert Gamification.first_lesson_today?(user.id)
+    end
+
+    test "returns false if the user has completed more than one lesson today" do
+      user = user_fixture()
+      generate_user_lesson(user.id, 0)
+
+      refute Gamification.first_lesson_today?(user.id)
+    end
+  end
 end

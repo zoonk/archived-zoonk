@@ -4,14 +4,22 @@ defmodule UneebeeWeb.Live.Content.Course.LessonCompleted do
 
   alias Uneebee.Content
   alias Uneebee.Content.UserLesson
+  alias Uneebee.Gamification
 
   @impl Phoenix.LiveView
   def mount(_params, _session, socket) do
     %{lesson: lesson, current_user: user} = socket.assigns
 
     user_lesson = Content.get_user_lesson(user.id, lesson.id)
+    first_lesson_today? = Gamification.first_lesson_today?(user.id)
+    learning_days = Gamification.learning_days_count(user.id)
 
-    socket = socket |> assign(:page_title, lesson.name) |> assign(:user_lesson, user_lesson)
+    socket =
+      socket
+      |> assign(:page_title, lesson.name)
+      |> assign(:user_lesson, user_lesson)
+      |> assign(:first_lesson_today?, first_lesson_today?)
+      |> assign(:learning_days, learning_days)
 
     {:ok, socket}
   end
