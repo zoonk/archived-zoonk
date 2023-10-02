@@ -114,11 +114,7 @@ defmodule Uneebee.Gamification do
     create_user_medal(%{user_id: user_id, lesson_id: lesson_id, medal: medal, reason: reason})
   end
 
-  def award_medal_for_lesson(%{user_id: user_id, lesson_id: lesson_id}) do
-    reason = :lesson_practiced
-    medal = medal_type(reason)
-    create_user_medal(%{user_id: user_id, lesson_id: lesson_id, medal: medal, reason: reason})
-  end
+  def award_medal_for_lesson(_attrs), do: nil
 
   @doc """
   Checks if this is the first lesson a user has completed today.

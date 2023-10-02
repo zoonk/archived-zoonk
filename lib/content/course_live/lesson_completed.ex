@@ -2,6 +2,8 @@ defmodule UneebeeWeb.Live.Content.Course.LessonCompleted do
   @moduledoc false
   use UneebeeWeb, :live_view
 
+  import Uneebee.Gamification.UserMedal.Config
+
   alias Uneebee.Content
   alias Uneebee.Content.UserLesson
   alias Uneebee.Gamification
@@ -13,6 +15,7 @@ defmodule UneebeeWeb.Live.Content.Course.LessonCompleted do
     user_lesson = Content.get_user_lesson(user.id, lesson.id)
     first_lesson_today? = Gamification.first_lesson_today?(user.id)
     learning_days = Gamification.learning_days_count(user.id)
+    medal = get_medal(user_lesson)
 
     socket =
       socket
@@ -20,6 +23,7 @@ defmodule UneebeeWeb.Live.Content.Course.LessonCompleted do
       |> assign(:user_lesson, user_lesson)
       |> assign(:first_lesson_today?, first_lesson_today?)
       |> assign(:learning_days, learning_days)
+      |> assign(:medal, medal)
 
     {:ok, socket}
   end
@@ -38,4 +42,14 @@ defmodule UneebeeWeb.Live.Content.Course.LessonCompleted do
   defp score_image(_score), do: ~p"/images/lessons/improve.svg"
 
   defp win?(score), do: score >= 6.0
+
+  defp get_medal(%UserLesson{attempts: 1, correct: correct, total: total}) when correct == total,
+    do: medal(:perfect_lesson_first_try)
+
+  defp get_medal(%UserLesson{attempts: 1}), do: medal(:lesson_completed_with_errors)
+
+  defp get_medal(%UserLesson{correct: correct, total: total}) when correct == total,
+    do: medal(:perfect_lesson_practiced)
+
+  defp get_medal(_user_lesson), do: nil
 end

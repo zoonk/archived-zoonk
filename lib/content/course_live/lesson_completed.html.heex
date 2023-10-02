@@ -26,17 +26,9 @@
       </div>
     </div>
 
-    <div class="pt-4">
-      <div
-        :if={@first_lesson_today?}
-        class="bg-primary-light2x text-primary-dark2x flex w-32 flex-col items-center justify-center gap-1 rounded-2xl p-4 text-center"
-      >
-        <.icon name="tabler-calendar-heart" />
-        <span class="font-black"><%= @learning_days %></span>
-        <span class="text-xs font-light">
-          <%= dngettext("gamification", "Learning day", "Learning days", @learning_days) %>
-        </span>
-      </div>
+    <div class="flex gap-4 pt-4">
+      <.learning_days_badge :if={@first_lesson_today?} days={@learning_days} />
+      <.medal_badge :if={@medal} medal={@medal} />
     </div>
   </div>
 

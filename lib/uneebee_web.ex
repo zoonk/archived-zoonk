@@ -87,6 +87,7 @@ defmodule UneebeeWeb do
 
       # UI components
       import UneebeeWeb.Components.Avatar
+      import UneebeeWeb.Components.AwardBadge
       import UneebeeWeb.Components.Badge
       import UneebeeWeb.Components.Button
       import UneebeeWeb.Components.Details

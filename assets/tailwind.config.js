@@ -60,6 +60,14 @@ module.exports = {
         dark: colors.slate[700],
         dark2x: colors.slate[900],
       },
+      bronze: {
+        light3x: colors.orange[50],
+        light2x: colors.orange[100],
+        light: colors.orange[300],
+        DEFAULT: colors.orange[500],
+        dark: colors.orange[700],
+        dark2x: colors.orange[900],
+      },
       white: {
         DEFAULT: colors.white,
         dark: colors.slate[100],

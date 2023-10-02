@@ -21,11 +21,6 @@ msgstr ""
 msgid "Lesson completed"
 msgstr ""
 
-#: lib/gamification/user_medals_config.ex:38
-#, elixir-autogen, elixir-format
-msgid "Lesson practiced"
-msgstr ""
-
 #: lib/home/home.html.heex:9
 #, elixir-autogen, elixir-format
 msgid "Medals"
@@ -52,12 +47,7 @@ msgstr ""
 msgid "You completed a lesson without any errors on your first try."
 msgstr ""
 
-#: lib/gamification/user_medals_config.ex:39
-#, elixir-autogen, elixir-format
-msgid "You practiced a lesson you had completed before."
-msgstr ""
-
-#: lib/content/course_live/lesson_completed.html.heex:34
+#: lib/components/award_badge.ex:31
 #, elixir-autogen, elixir-format
 msgid "Learning day"
 msgid_plural "Learning days"

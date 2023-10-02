@@ -882,18 +882,18 @@ defmodule Uneebee.ContentTest do
       assert Gamification.count_user_medals(user.id, :bronze) == 1
     end
 
-    test "awards a bronze medal when a lesson has errors on second try" do
+    test "doesn't award a medal when a lesson has errors on second try" do
       user = user_fixture()
       lesson = lesson_fixture()
       attrs = %{user_id: user.id, lesson_id: lesson.id, attempts: 1, correct: 3, total: 4}
 
       Content.add_user_lesson(attrs)
 
-      assert Gamification.count_user_medals(user.id, :bronze) == 1
+      assert Gamification.count_user_medals(user.id) == 1
 
       Content.add_user_lesson(attrs)
 
-      assert Gamification.count_user_medals(user.id, :bronze) == 2
+      assert Gamification.count_user_medals(user.id) == 1
     end
   end
 

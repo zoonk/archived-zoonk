@@ -47,5 +47,43 @@ defmodule UneebeeWeb.LessonCompletedLiveTest do
       assert has_element?(lv, ~s|div:fl-icontains("7.0")|)
       assert has_element?(lv, ~s|a[href="/c/#{course.slug}"]:fl-icontains("back to the course")|)
     end
+
+    test "display a gold medal for a perfect score on the first try", %{conn: conn, course: course, user: user} do
+      lesson = lesson_fixture(%{course_id: course.id})
+      Content.add_user_lesson(%{user_id: user.id, lesson_id: lesson.id, attempts: 1, correct: 10, total: 10})
+
+      {:ok, lv, _html} = live(conn, ~p"/c/#{course.slug}/#{lesson.id}/completed")
+
+      assert has_element?(lv, ~s|span:fl-icontains("You completed a lesson without any errors on your first try.")|)
+    end
+
+    test "display a silver medal for a perfect score after practicing", %{conn: conn, course: course, user: user} do
+      lesson = lesson_fixture(%{course_id: course.id})
+      Content.add_user_lesson(%{user_id: user.id, lesson_id: lesson.id, attempts: 2, correct: 10, total: 10})
+
+      {:ok, lv, _html} = live(conn, ~p"/c/#{course.slug}/#{lesson.id}/completed")
+
+      assert has_element?(lv, "#medal-badge")
+      assert has_element?(lv, ~s|span:fl-icontains("You completed a lesson without any errors after practicing it.")|)
+    end
+
+    test "display a bronze medal for a lesson with errors on the first try", %{conn: conn, course: course, user: user} do
+      lesson = lesson_fixture(%{course_id: course.id})
+      Content.add_user_lesson(%{user_id: user.id, lesson_id: lesson.id, attempts: 1, correct: 7, total: 10})
+
+      {:ok, lv, _html} = live(conn, ~p"/c/#{course.slug}/#{lesson.id}/completed")
+
+      assert has_element?(lv, "#medal-badge")
+      assert has_element?(lv, ~s|span:fl-icontains("You completed a lesson with some errors on your first try.")|)
+    end
+
+    test "don't display a medal for a lesson with errors after practicing", %{conn: conn, course: course, user: user} do
+      lesson = lesson_fixture(%{course_id: course.id})
+      Content.add_user_lesson(%{user_id: user.id, lesson_id: lesson.id, attempts: 2, correct: 7, total: 10})
+
+      {:ok, lv, _html} = live(conn, ~p"/c/#{course.slug}/#{lesson.id}/completed")
+
+      refute has_element?(lv, "#medal-badge")
+    end
   end
 end
