@@ -99,7 +99,7 @@ defmodule UneebeeWeb.Plugs.School do
   def require_manager(conn, opts) do
     %{school_user: school_user} = conn.assigns
     approved? = if school_user, do: school_user.approved?, else: false
-    role = if school_user, do: school_user.role, else: nil
+    role = if school_user, do: school_user.role
     require_manager(conn, opts, approved?, role)
   end
 
@@ -142,7 +142,7 @@ defmodule UneebeeWeb.Plugs.School do
     school_user = get_school_user(school, user)
 
     user_approved? = if is_map(school_user), do: school_user.approved?, else: false
-    user_role = if user_approved?, do: school_user.role, else: nil
+    user_role = if user_approved?, do: school_user.role
 
     socket =
       socket

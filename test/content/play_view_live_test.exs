@@ -157,8 +157,8 @@ defmodule UneebeeWeb.PlayViewLiveTest do
 
   defp generate_options(step, _step_order) do
     Enum.each(1..3, fn order ->
-      image = if order == 2, do: "/uploads/img.png", else: nil
-      feedback = if order != 1, do: "feedback #{order}!", else: nil
+      image = if order == 2, do: "/uploads/img.png"
+      feedback = if order != 1, do: "feedback #{order}!"
 
       step_option_fixture(%{
         lesson_step_id: step.id,
