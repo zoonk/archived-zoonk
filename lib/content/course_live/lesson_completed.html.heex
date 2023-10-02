@@ -27,7 +27,10 @@
     </div>
 
     <div class="pt-4">
-      <div class="bg-primary-light2x text-primary-dark2x flex w-32 flex-col items-center justify-center gap-1 rounded-2xl p-4 text-center">
+      <div
+        :if={@first_lesson_today?}
+        class="bg-primary-light2x text-primary-dark2x flex w-32 flex-col items-center justify-center gap-1 rounded-2xl p-4 text-center"
+      >
         <.icon name="tabler-calendar-heart" />
         <span class="font-black"><%= @learning_days %></span>
         <span class="text-xs font-light">
