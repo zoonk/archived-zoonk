@@ -110,7 +110,7 @@ defmodule UneebeeWeb.Components.Button do
         @color == :success && "bg-success text-white active:text-white/80 hover:bg-success-dark focus:outline-success",
         @color == :info && "bg-info text-white active:text-white/80 hover:bg-info-dark focus:outline-info",
         @color == :warning && "bg-warning text-white active:text-white/80 hover:bg-warning-dark focus:outline-warning",
-        @color == :black_light && "bg-gray-light3x text-gray-dark2x hover:bg-gray-light3x focus:outline-gray-light3x",
+        @color == :black_light && "bg-gray-light3x text-gray-dark2x hover:bg-gray-light2x focus:outline-gray-light3x",
         @color == :alert_light && "bg-alert-light3x text-alert-dark2x hover:bg-alert-light2x focus:outline-alert-light3x",
         @color == :info_light && "bg-info-light3x text-info-dark2x hover:bg-info-light2x focus:outline-info-light3x",
         @color == :success_light &&
@@ -125,36 +125,6 @@ defmodule UneebeeWeb.Components.Button do
       {@rest}
     >
       <span class="sr-only"><%= @label %></span> <.icon name={@icon} />
-    </button>
-    """
-  end
-
-  @doc """
-  Renders a button with a transparent background.
-
-  ## Examples
-
-      <.transparent_button icon="tabler-x" color={:alert} phx-click="remove">Remove</.transparent_button>
-  """
-  attr :icon, :string, required: true, doc: "name of the icon to add to the button"
-  attr :color, :atom, default: :info, values: [:info, :alert, :success, :warning], doc: "the background color"
-  attr :rest, :global, include: ~w(disabled form name type value)
-
-  slot :inner_block, required: true, doc: "the inner block that renders the button content"
-
-  def transparent_button(assigns) do
-    ~H"""
-    <button
-      class={[
-        "flex items-center gap-1 bg-transparent focus:outline-offset-2 text-sm disabled:cursor-not-allowed disabled:text-gray-light",
-        @color == :info && "text-info hover:text-info-dark focus:outline-info",
-        @color == :alert && "text-alert hover:text-alert-dark focus:outline-alert",
-        @color == :success && "text-success hover:text-success-dark focus:outline-success",
-        @color == :warning && "text-warning hover:text-warning-dark focus:outline-warning"
-      ]}
-      {@rest}
-    >
-      <.icon name={@icon} class="h-4 w-4" /> <%= render_slot(@inner_block) %>
     </button>
     """
   end

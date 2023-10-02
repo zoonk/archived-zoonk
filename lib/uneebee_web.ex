@@ -89,7 +89,6 @@ defmodule UneebeeWeb do
       import UneebeeWeb.Components.Avatar
       import UneebeeWeb.Components.Badge
       import UneebeeWeb.Components.Button
-      import UneebeeWeb.Components.Card
       import UneebeeWeb.Components.Details
       import UneebeeWeb.Components.Flash
       import UneebeeWeb.Components.Form

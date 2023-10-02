@@ -4,7 +4,6 @@ defmodule UneebeeWeb.Components.DeleteItem do
   """
   use UneebeeWeb, :live_component
 
-  import UneebeeWeb.Components.Card
   import UneebeeWeb.Components.Header
   import UneebeeWeb.Components.Input
 
@@ -15,35 +14,33 @@ defmodule UneebeeWeb.Components.DeleteItem do
   @impl Phoenix.LiveComponent
   def render(assigns) do
     ~H"""
-    <div>
-      <.card>
-        <.header>
-          <%= dgettext("orgs", "Delete item") %>
-          <:subtitle>
-            <%= dgettext("orgs", "Deleting this item will remove all of its content. This action cannot be undone.") %>
-          </:subtitle>
-        </.header>
+    <div class="card p-4">
+      <.header>
+        <%= dgettext("orgs", "Delete item") %>
+        <:subtitle>
+          <%= dgettext("orgs", "Deleting this item will remove all of its content. This action cannot be undone.") %>
+        </:subtitle>
+      </.header>
 
-        <form phx-submit="delete" phx-target={@myself} id="delete-form" class="mt-4">
-          <.input
-            type="text"
-            label={dgettext("orgs", "Type CONFIRM to delete %{name}.", name: @name)}
-            name="confirmation"
-            id="confirmation"
-            required
-            value=""
-          />
+      <form phx-submit="delete" phx-target={@myself} id="delete-form" class="mt-4">
+        <.input
+          type="text"
+          label={dgettext("orgs", "Type CONFIRM to delete %{name}.", name: @name)}
+          name="confirmation"
+          id="confirmation"
+          required
+          value=""
+        />
 
-          <span :if={@error_msg} class="text-alert text-sm"><%= @error_msg %></span>
+        <span :if={@error_msg} class="text-alert text-sm"><%= @error_msg %></span>
 
-          <div class="mt-4 flex items-center gap-2">
-            <.button type="submit" icon="tabler-trash-x" color={:alert}><%= dgettext("orgs", "Delete item") %></.button>
-            <.link_button navigate={@cancel_link} icon="tabler-x" color={:black_light}>
-              <%= gettext("Cancel") %>
-            </.link_button>
-          </div>
-        </form>
-      </.card>
+        <div class="mt-4 flex items-center gap-2">
+          <.button type="submit" icon="tabler-trash-x" color={:alert}><%= dgettext("orgs", "Delete item") %></.button>
+          <.link_button navigate={@cancel_link} icon="tabler-x" color={:black_light}>
+            <%= gettext("Cancel") %>
+          </.link_button>
+        </div>
+      </form>
     </div>
     """
   end

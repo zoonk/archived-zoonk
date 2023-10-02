@@ -20,7 +20,7 @@
   <details
     :for={lesson <- @lessons}
     id={"lessons-#{lesson.id}"}
-    class="group text-gray-dark card-with-link w-full min-w-0 cursor-pointer rounded-lg bg-white p-4 text-sm"
+    class="group text-gray-dark card-with-link w-full min-w-0 cursor-pointer bg-white p-4 text-sm"
   >
     <% score = lesson_score(@student, lesson.user_lessons) %>
 

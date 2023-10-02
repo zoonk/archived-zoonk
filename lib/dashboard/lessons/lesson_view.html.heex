@@ -17,7 +17,7 @@
   <div
     :for={lesson_step <- @lesson_steps}
     class={[
-      "flex items-center justify-between text-gray-dark-2x rounded-2xl bg-white p-4 text-sm border border-gray-dark2x",
+      "flex items-center justify-between text-gray-dark-2x bg-white p-4 text-sm card",
       @lesson.kind == :story &&
         "cursor-grab drag-ghost:bg-gray-light drag-ghost:cursor-grabbing drag-ghost:border-0 drag-ghost:ring-0 focus-within:drag-item:ring-0 focus-within:drag-item:ring-offset-0"
     ]}

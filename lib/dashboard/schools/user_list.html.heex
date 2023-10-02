@@ -8,7 +8,7 @@
   <div
     :for={{dom_id, school_user} <- @streams.users}
     id={dom_id}
-    class="text-gray-dark2x card flex h-full flex-col rounded-2xl bg-white p-4"
+    class="text-gray-dark2x card flex h-full flex-col bg-white p-4"
   >
     <div class="flex gap-2" id={"user-#{school_user.user.id}"}>
       <.avatar src={school_user.user.avatar} alt={get_avatar_label(school_user.user)} />

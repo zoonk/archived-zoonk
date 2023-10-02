@@ -68,7 +68,7 @@ defmodule UneebeeWeb.Components.Input do
           name={@name}
           value="true"
           checked={@checked}
-          class="border-gray-dark2x text-gray-dark rounded focus:ring-0"
+          class="border-gray-light2x text-gray-dark rounded focus:ring-0"
           {@rest}
         />
         <span class="flex flex-col gap-2"><span class="font-semibold"><%= @label %></span>
@@ -87,7 +87,7 @@ defmodule UneebeeWeb.Components.Input do
       <select
         id={@id}
         name={@name}
-        class="border-gray-dark2x text-gray-dark2x mt-1 block w-full rounded-md border bg-white focus:border-primary focus:ring-0 sm:text-sm"
+        class="border-gray-light2x text-gray-dark2x mt-1 block w-full rounded-md border bg-white focus:border-primary focus:ring-0 sm:text-sm"
         multiple={@multiple}
         {@rest}
       >
@@ -110,7 +110,7 @@ defmodule UneebeeWeb.Components.Input do
         class={[
           "mt-2 block min-h-[6rem] w-full rounded-lg py-[7px] px-[11px]",
           "text-gray-dark focus:border-primary focus:outline-none focus:ring-4 focus:ring-gray-dark/5 sm:text-sm sm:leading-6",
-          @errors == [] && "border-gray-dark2x focus:border-primary focus:ring-gray-dark/5",
+          @errors == [] && "border-gray-light2x focus:border-primary focus:ring-gray-dark/5",
           @errors != [] && "border-alert focus:border-alert focus:ring-alert/10"
         ]}
         {@rest}
@@ -134,7 +134,7 @@ defmodule UneebeeWeb.Components.Input do
         class={[
           "mt-2 block w-full rounded-lg py-[7px] px-[11px]",
           "text-gray-dark2x focus:outline-none focus:ring-4 sm:text-sm sm:leading-6",
-          @errors == [] && "border-gray-dark2x focus:border-primary focus:ring-gray-dark/5",
+          @errors == [] && "border-gray-light2x focus:border-primary focus:ring-gray-dark/5",
           @errors != [] && "border-alert focus:border-alert focus:ring-alert/10"
         ]}
         {@rest}

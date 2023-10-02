@@ -11,7 +11,7 @@ defmodule UneebeeWeb.Components.Upload do
   @impl Phoenix.LiveComponent
   def render(assigns) do
     ~H"""
-    <section class={["h-max space-y-4", not @unstyled && "rounded-xl bg-white p-4 card"]}>
+    <section class={["h-max space-y-4", not @unstyled && "bg-white p-4 card"]}>
       <% entry = List.first(@uploads.file.entries) %>
 
       <.header :if={@label}><%= @label %></.header>
@@ -25,7 +25,7 @@ defmodule UneebeeWeb.Components.Upload do
         class="flex flex-col space-y-8"
       >
         <div class="flex items-center space-x-6">
-          <.live_img_preview :if={entry} entry={entry} class="h-16 rounded-xl object-cover" />
+          <.live_img_preview :if={entry} entry={entry} class="h-16 rounded-2xl object-cover" />
 
           <img
             :if={is_binary(@current_img) and is_nil(entry)}

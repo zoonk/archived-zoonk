@@ -37,7 +37,7 @@ defmodule UneebeeWeb.Components.Form do
       :let={f}
       for={@for}
       as={@as}
-      class={["space-y-4", not @unstyled && "bg-white rounded-xl border border-gray-dark2x p-4", @class]}
+      class={["space-y-4", not @unstyled && "bg-white rounded-xl border border-gray-light2x p-4", @class]}
       {@rest}
     >
       <%= render_slot(@inner_block, f) %>
