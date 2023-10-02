@@ -957,4 +957,23 @@ defmodule Uneebee.ContentTest do
       assert user_lesson.total == 3
     end
   end
+
+  describe "course_completed?/2" do
+    test "returns true if the course is completed" do
+      user = user_fixture()
+      course = course_fixture()
+      generate_user_lesson(user.id, 0, course: course)
+
+      assert Content.course_completed?(user, course) == true
+    end
+
+    test "returns false if the course is not completed" do
+      user = user_fixture()
+      course = course_fixture()
+      generate_user_lesson(user.id, 0, course: course)
+      lesson_fixture(%{course: course, published?: true})
+
+      assert Content.course_completed?(user, course) == false
+    end
+  end
 end

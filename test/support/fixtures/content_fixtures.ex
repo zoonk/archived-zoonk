@@ -152,7 +152,9 @@ defmodule Uneebee.Fixtures.Content do
     number_of_lessons = Keyword.get(opts, :number_of_lessons, 3)
     today = DateTime.utc_now()
     days_ago = DateTime.add(today, days, :day)
-    lessons = Enum.map(1..number_of_lessons, fn _idx -> lesson_fixture() end)
+    course = Keyword.get(opts, :course, course_fixture())
+    attrs = %{course: course, published?: true}
+    lessons = Enum.map(1..number_of_lessons, fn _idx -> lesson_fixture(attrs) end)
 
     Enum.each(lessons, fn lesson ->
       Repo.insert!(%UserLesson{

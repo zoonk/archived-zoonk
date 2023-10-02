@@ -3,6 +3,7 @@ defmodule Uneebee.Content do
   Content context.
   """
   import Ecto.Query, warn: false
+  import Uneebee.Content.Course.Config
 
   alias Uneebee.Accounts.User
   alias Uneebee.Content.Course
@@ -839,5 +840,20 @@ defmodule Uneebee.Content do
 
   defp get_correct_selections(selections) do
     Enum.count(selections, fn selection -> selection.option.correct? end)
+  end
+
+  @doc """
+  Returns `true` if a course is completed.
+
+  ## Examples
+
+      iex> course_completed?(user, course)
+      true
+  """
+  @spec course_completed?(User.t(), Course.t()) :: boolean()
+  def course_completed?(%User{} = user, %Course{} = course) do
+    lessons = list_published_lessons(course, user)
+    progress = course_progress(lessons, user)
+    progress == 100
   end
 end
