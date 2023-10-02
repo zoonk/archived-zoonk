@@ -8,11 +8,11 @@
 <section class="my-4 flex flex-col justify-between gap-2 sm:flex-row sm:items-center">
   <nav class="flex gap-2">
     <.button icon="tabler-vocabulary" color={:info_light} phx-click="add-lesson">
-      <%= dgettext("courses", "+ Lesson") %>
+      <%= dgettext("orgs", "+ Lesson") %>
     </.button>
   </nav>
 
-  <span class="text-gray text-sm italic"><%= dgettext("courses", "Drag the lessons to change their order") %></span>
+  <span class="text-gray text-sm italic"><%= dgettext("orgs", "Drag the lessons to change their order") %></span>
 </section>
 
 <dl class="mt-4 space-y-4" id="lesson-list" data-group="lessons" phx-hook="Sortable">
@@ -23,7 +23,7 @@
   >
     <.avatar
       src={lesson.cover}
-      alt={if is_nil(lesson.cover), do: index + 1, else: dgettext("courses", "Lesson cover")}
+      alt={if is_nil(lesson.cover), do: index + 1, else: dgettext("orgs", "Lesson cover")}
       class="mt-1"
     />
 

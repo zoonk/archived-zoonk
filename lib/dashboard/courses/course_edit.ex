@@ -14,7 +14,7 @@ defmodule UneebeeWeb.Live.Dashboard.CourseEdit do
 
     socket =
       socket
-      |> assign(:page_title, dgettext("courses", "Edit course"))
+      |> assign(:page_title, dgettext("orgs", "Edit course"))
       |> assign(:form, to_form(changeset))
 
     {:ok, socket}
@@ -40,7 +40,7 @@ defmodule UneebeeWeb.Live.Dashboard.CourseEdit do
       {:ok, updated_course} ->
         socket =
           socket
-          |> put_flash(:info, dgettext("courses", "Course updated successfully!"))
+          |> put_flash(:info, dgettext("orgs", "Course updated successfully!"))
           |> assign(course: updated_course)
 
         {:noreply, socket}
@@ -58,13 +58,13 @@ defmodule UneebeeWeb.Live.Dashboard.CourseEdit do
       {:ok, _course} ->
         socket =
           socket
-          |> put_flash(:info, dgettext("courses", "Course deleted successfully!"))
+          |> put_flash(:info, dgettext("orgs", "Course deleted successfully!"))
           |> push_navigate(to: ~p"/dashboard")
 
         {:noreply, socket}
 
       {:error, _changeset} ->
-        {:noreply, put_flash(socket, :error, dgettext("courses", "Could not delete course!"))}
+        {:noreply, put_flash(socket, :error, dgettext("orgs", "Could not delete course!"))}
     end
   end
 
@@ -74,11 +74,11 @@ defmodule UneebeeWeb.Live.Dashboard.CourseEdit do
       {:ok, course} ->
         {:noreply,
          socket
-         |> put_flash(:info, dgettext("courses", "Cover updated successfully!"))
+         |> put_flash(:info, dgettext("orgs", "Cover updated successfully!"))
          |> assign(course: course)}
 
       {:error, _changeset} ->
-        {:noreply, put_flash(socket, :error, dgettext("courses", "Could not update cover!"))}
+        {:noreply, put_flash(socket, :error, dgettext("orgs", "Could not update cover!"))}
     end
   end
 end

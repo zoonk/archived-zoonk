@@ -25,21 +25,21 @@ defmodule UneebeeWeb.Live.Dashboard.CourseView do
       course_id: course.id,
       kind: :story,
       order: order,
-      name: dgettext("courses", "Lesson %{order}", order: order),
-      description: dgettext("courses", "Description for lesson %{order}. You should update this.", order: order)
+      name: dgettext("orgs", "Lesson %{order}", order: order),
+      description: dgettext("orgs", "Description for lesson %{order}. You should update this.", order: order)
     }
 
     case Content.create_lesson(attrs) do
       {:ok, _lesson} ->
         socket =
           socket
-          |> put_flash(:info, dgettext("courses", "Lesson created!"))
+          |> put_flash(:info, dgettext("orgs", "Lesson created!"))
           |> push_redirect(to: ~p"/dashboard/c/#{course.slug}")
 
         {:noreply, socket}
 
       {:error, _changeset} ->
-        {:noreply, put_flash(socket, :error, dgettext("courses", "Could not create lesson!"))}
+        {:noreply, put_flash(socket, :error, dgettext("orgs", "Could not create lesson!"))}
     end
   end
 
@@ -49,13 +49,13 @@ defmodule UneebeeWeb.Live.Dashboard.CourseView do
       {:ok, lessons} ->
         socket =
           socket
-          |> put_flash(:info, dgettext("courses", "Lesson order changed!"))
+          |> put_flash(:info, dgettext("orgs", "Lesson order changed!"))
           |> assign(:lessons, lessons)
 
         {:noreply, socket}
 
       {:error, _changeset} ->
-        {:noreply, put_flash(socket, :error, dgettext("courses", "Could not change the lesson order!"))}
+        {:noreply, put_flash(socket, :error, dgettext("orgs", "Could not change the lesson order!"))}
     end
   end
 

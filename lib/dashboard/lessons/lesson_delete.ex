@@ -7,7 +7,7 @@ defmodule UneebeeWeb.Live.Dashboard.LessonDelete do
 
   @impl Phoenix.LiveView
   def mount(_params, _session, socket) do
-    socket = assign(socket, :page_title, dgettext("courses", "Delete lesson"))
+    socket = assign(socket, :page_title, dgettext("orgs", "Delete lesson"))
     {:ok, socket}
   end
 
@@ -19,13 +19,13 @@ defmodule UneebeeWeb.Live.Dashboard.LessonDelete do
       {:ok, _lesson} ->
         socket =
           socket
-          |> put_flash(:info, dgettext("courses", "Lesson deleted successfully!"))
+          |> put_flash(:info, dgettext("orgs", "Lesson deleted successfully!"))
           |> push_navigate(to: ~p"/dashboard/c/#{course.slug}")
 
         {:noreply, socket}
 
       {:error, _changeset} ->
-        {:noreply, put_flash(socket, :error, dgettext("courses", "Could not delete lesson!"))}
+        {:noreply, put_flash(socket, :error, dgettext("orgs", "Could not delete lesson!"))}
     end
   end
 end

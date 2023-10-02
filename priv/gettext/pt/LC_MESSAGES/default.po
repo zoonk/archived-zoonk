@@ -126,7 +126,7 @@ msgstr "Sobrenome"
 #: lib/accounts/user_live/settings.html.heex:49
 #: lib/components/upload.ex:59
 #: lib/dashboard/lessons/lesson_edit.html.heex:7
-#: lib/dashboard/lessons/lesson_view.html.heex:172
+#: lib/dashboard/lessons/lesson_view.html.heex:166
 #: lib/dashboard/schools/school_edit.html.heex:30
 #, elixir-autogen, elixir-format
 msgid "Save"
@@ -192,15 +192,15 @@ msgstr "Enviando arquivo: %{progress}% concluído."
 msgid "All courses"
 msgstr "Todos os cursos"
 
-#: lib/components/delete_item.ex:42
+#: lib/components/delete_item.ex:40
 #: lib/dashboard/courses/course_edit.html.heex:91
 #: lib/dashboard/lessons/lesson_edit.html.heex:11
-#: lib/dashboard/lessons/lesson_view.html.heex:175
+#: lib/dashboard/lessons/lesson_view.html.heex:169
 #, elixir-autogen, elixir-format
 msgid "Cancel"
 msgstr "Cancelar"
 
-#: lib/content/course_live/play.html.heex:56
+#: lib/content/course_live/play.html.heex:61
 #, elixir-autogen, elixir-format
 msgid "Confirm"
 msgstr "Confirmar"
@@ -230,7 +230,7 @@ msgstr "Criar um curso"
 msgid "Information"
 msgstr "Informações"
 
-#: lib/content/course_live/view.html.heex:49
+#: lib/content/course_live/view.html.heex:51
 #, elixir-autogen, elixir-format
 msgid "Locked"
 msgstr "Bloqueado"
@@ -251,8 +251,8 @@ msgstr "Privacidade"
 msgid "Resetting..."
 msgstr "Redefinindo..."
 
-#: lib/dashboard/courses/course_user_list.html.heex:81
-#: lib/dashboard/schools/user_list.html.heex:77
+#: lib/dashboard/courses/course_user_list.html.heex:82
+#: lib/dashboard/schools/user_list.html.heex:79
 #, elixir-autogen, elixir-format
 msgid "Username or email address"
 msgstr "Nome de usuário ou endereço de e-mail"

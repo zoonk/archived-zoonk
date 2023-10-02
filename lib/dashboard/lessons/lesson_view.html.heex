@@ -1,10 +1,10 @@
 <nav class="flex justify-end">
   <.button :if={not @lesson.published?} phx-click="toggle-status" icon="tabler-eye" color={:success_light}>
-    <%= dgettext("courses", "Publish") %>
+    <%= dgettext("orgs", "Publish") %>
   </.button>
 
   <.button :if={@lesson.published?} phx-click="toggle-status" icon="tabler-eye-off" color={:alert_light}>
-    <%= dgettext("courses", "Unpublish") %>
+    <%= dgettext("orgs", "Unpublish") %>
   </.button>
 </nav>
 
@@ -51,8 +51,8 @@
             color={:alert_light}
             size={:sm}
             role="button"
-            label={dgettext("courses", "Delete option")}
-            data-confirm={dgettext("courses", "Are you sure?")}
+            label={dgettext("orgs", "Delete option")}
+            data-confirm={dgettext("orgs", "Are you sure?")}
             phx-click="delete-option"
             phx-value-option-id={option.id}
           />
@@ -66,18 +66,18 @@
         color={:info_light}
         class="mt-4"
       >
-        <%= dgettext("courses", "Add option") %>
+        <%= dgettext("orgs", "Add option") %>
       </.button>
     </div>
 
     <.icon_button
       phx-click="delete-step"
       phx-value-step-id={lesson_step.id}
-      label={dgettext("courses", "Remove step")}
+      label={dgettext("orgs", "Remove step")}
       icon="tabler-trash-x"
       color={:alert_light}
       size={:sm}
-      data-confirm={dgettext("courses", "Are you sure?")}
+      data-confirm={dgettext("orgs", "Are you sure?")}
     />
   </div>
 </dl>
@@ -89,10 +89,10 @@
   <.input
     type="text"
     field={@step_form[:content]}
-    label={dgettext("courses", "Add step")}
+    label={dgettext("orgs", "Add step")}
     helper={
       dgettext(
-        "courses",
+        "orgs",
         "A story has multiple steps. Use them to tell a story, explain a concept or ask a question. Keep them short and simple."
       )
     }
@@ -104,18 +104,12 @@
     phx-click={show_modal("img-step-modal")}
     icon="tabler-photo-plus"
     size={:lg}
-    label={dgettext("courses", "Add image step")}
+    label={dgettext("orgs", "Add image step")}
   />
 </.form>
 
 <.modal id="img-step-modal" on_cancel={hide_modal("img-step-modal")}>
-  <.live_component
-    module={Upload}
-    id={:step_img}
-    current_img={nil}
-    unstyled
-    label={dgettext("courses", "Add image step")}
-  />
+  <.live_component module={Upload} id={:step_img} current_img={nil} unstyled label={dgettext("orgs", "Add image step")} />
 </.modal>
 
 <.modal
@@ -128,7 +122,7 @@
     module={Upload}
     id={:option_img}
     current_img={@selected_option.image}
-    label={dgettext("courses", "Add image to option")}
+    label={dgettext("orgs", "Add image to option")}
     unstyled
   />
 </.modal>
@@ -141,21 +135,21 @@
 >
   <.simple_form
     for={@option_form}
-    title={dgettext("courses", "Update option")}
+    title={dgettext("orgs", "Update option")}
     id="option-form"
     phx-change="validate-option"
     phx-submit="update-option"
     unstyled
   >
-    <.input type="text" field={@option_form[:title]} label={dgettext("courses", "Option title")} required />
+    <.input type="text" field={@option_form[:title]} label={dgettext("orgs", "Option title")} required />
 
     <.input
       type="text"
       field={@option_form[:feedback]}
-      label={dgettext("courses", "Option feedback")}
+      label={dgettext("orgs", "Option feedback")}
       helper={
         dgettext(
-          "courses",
+          "orgs",
           "Feedback message displayed after a user answers this question. You can provide some additional context on why this is wrong or correct."
         )
       }
@@ -164,8 +158,8 @@
     <.input
       type="checkbox"
       field={@option_form[:correct?]}
-      label={dgettext("courses", "Is correct?")}
-      helper={dgettext("courses", "Check this option if this is the correct answer.")}
+      label={dgettext("orgs", "Is correct?")}
+      helper={dgettext("orgs", "Check this option if this is the correct answer.")}
     />
 
     <:actions>

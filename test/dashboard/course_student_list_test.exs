@@ -147,7 +147,7 @@ defmodule UneebeeWeb.DashboardCourseStudentListLiveTest do
 
     assert has_element?(lv, ~s|li[aria-current="page"] span:fl-icontains("students")|)
 
-    assert has_element?(lv, ~s|a:fl-icontains("stats")|)
+    assert has_element?(lv, ~s|a:fl-icontains("details")|)
 
     assert has_element?(lv, ~s|dt span:fl-icontains("#{user2.first_name}")|)
     assert has_element?(lv, ~s|dt span:fl-icontains("#{user3.first_name}")|)

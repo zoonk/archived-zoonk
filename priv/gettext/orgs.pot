@@ -107,18 +107,19 @@ msgstr ""
 msgid "User not found!"
 msgstr ""
 
-#: lib/dashboard/schools/user_list.html.heex:37
+#: lib/dashboard/schools/user_list.html.heex:39
 #, elixir-autogen, elixir-format
 msgid "Approved by: @%{username}"
 msgstr ""
 
-#: lib/dashboard/schools/user_list.html.heex:54
+#: lib/dashboard/courses/course_user_list.html.heex:58
+#: lib/dashboard/schools/user_list.html.heex:56
 #, elixir-autogen, elixir-format
 msgid "Remove user"
 msgstr ""
 
 #: lib/dashboard/courses/course_user_list.html.heex:37
-#: lib/dashboard/schools/user_list.html.heex:42
+#: lib/dashboard/schools/user_list.html.heex:44
 #, elixir-autogen, elixir-format
 msgid "Approve"
 msgstr ""
@@ -148,7 +149,7 @@ msgid "Pending"
 msgstr ""
 
 #: lib/dashboard/courses/course_user_list.html.heex:41
-#: lib/dashboard/schools/user_list.html.heex:46
+#: lib/dashboard/schools/user_list.html.heex:48
 #, elixir-autogen, elixir-format
 msgid "Reject"
 msgstr ""
@@ -171,29 +172,29 @@ msgstr ""
 msgid "User removed!"
 msgstr ""
 
-#: lib/dashboard/schools/user_list.html.heex:59
+#: lib/dashboard/schools/user_list.html.heex:61
 #, elixir-autogen, elixir-format
 msgid "This will remove %{username} from your school. They won't be able to see your school anymore unless you approve them again."
 msgstr ""
 
-#: lib/components/delete_item.ex:21
-#: lib/components/delete_item.ex:40
+#: lib/components/delete_item.ex:19
+#: lib/components/delete_item.ex:38
 #, elixir-autogen, elixir-format
 msgid "Delete item"
 msgstr ""
 
-#: lib/components/delete_item.ex:23
+#: lib/components/delete_item.ex:21
 #, elixir-autogen, elixir-format
 msgid "Deleting this item will remove all of its content. This action cannot be undone."
 msgstr ""
 
-#: lib/components/delete_item.ex:58
-#: lib/components/delete_item.ex:74
+#: lib/components/delete_item.ex:55
+#: lib/components/delete_item.ex:71
 #, elixir-autogen, elixir-format
 msgid "CONFIRM"
 msgstr ""
 
-#: lib/components/delete_item.ex:72
+#: lib/components/delete_item.ex:69
 #, elixir-autogen, elixir-format
 msgid "Confirmation message does not match. You typed: %{confirmation} but you need to type %{message}."
 msgstr ""
@@ -206,6 +207,7 @@ msgid "Cover"
 msgstr ""
 
 #: lib/dashboard/courses/course_new.ex:11
+#: lib/dashboard/courses/course_new.html.heex:3
 #, elixir-autogen, elixir-format
 msgid "Create a course"
 msgstr ""
@@ -235,17 +237,370 @@ msgstr ""
 msgid "Private"
 msgstr ""
 
-#: lib/dashboard/courses/course_view.html.heex:34
+#: lib/dashboard/courses/course_view.html.heex:36
 #, elixir-autogen, elixir-format
 msgid "Published"
 msgstr ""
 
-#: lib/components/delete_item.ex:30
+#: lib/components/delete_item.ex:28
 #, elixir-autogen, elixir-format
 msgid "Type CONFIRM to delete %{name}."
 msgstr ""
 
-#: lib/dashboard/courses/course_view.html.heex:38
+#: lib/dashboard/courses/course_view.html.heex:40
 #, elixir-autogen, elixir-format
 msgid "Unpublished"
+msgstr ""
+
+#: lib/dashboard/courses/course_view.html.heex:11
+#, elixir-autogen, elixir-format
+msgid "+ Lesson"
+msgstr ""
+
+#: lib/dashboard/lessons/lesson_view.html.heex:107
+#: lib/dashboard/lessons/lesson_view.html.heex:112
+#, elixir-autogen, elixir-format
+msgid "Add image step"
+msgstr ""
+
+#: lib/dashboard/lessons/lesson_view.html.heex:125
+#, elixir-autogen, elixir-format
+msgid "Add image to option"
+msgstr ""
+
+#: lib/dashboard/lessons/lesson_view.html.heex:69
+#, elixir-autogen, elixir-format
+msgid "Add option"
+msgstr ""
+
+#: lib/dashboard/lessons/lesson_view.html.heex:92
+#, elixir-autogen, elixir-format
+msgid "Add step"
+msgstr ""
+
+#: lib/dashboard/courses/course_student_view.html.heex:43
+#, elixir-autogen, elixir-format
+msgid "All answers were correct."
+msgstr ""
+
+#: lib/dashboard/lessons/lesson_view.html.heex:55
+#: lib/dashboard/lessons/lesson_view.html.heex:80
+#, elixir-autogen, elixir-format
+msgid "Are you sure?"
+msgstr ""
+
+#: lib/dashboard/lessons/lesson_view.html.heex:162
+#, elixir-autogen, elixir-format
+msgid "Check this option if this is the correct answer."
+msgstr ""
+
+#: lib/dashboard/lessons/lesson_view.ex:157
+#, elixir-autogen, elixir-format
+msgid "Could not add option!"
+msgstr ""
+
+#: lib/dashboard/courses/course_view.ex:58
+#, elixir-autogen, elixir-format
+msgid "Could not change the lesson order!"
+msgstr ""
+
+#: lib/dashboard/lessons/lesson_view.ex:85
+#, elixir-autogen, elixir-format
+msgid "Could not change the step order!"
+msgstr ""
+
+#: lib/dashboard/courses/course_view.ex:42
+#, elixir-autogen, elixir-format
+msgid "Could not create lesson!"
+msgstr ""
+
+#: lib/dashboard/lessons/lesson_view.ex:239
+#, elixir-autogen, elixir-format
+msgid "Could not create step!"
+msgstr ""
+
+#: lib/dashboard/courses/course_edit.ex:67
+#, elixir-autogen, elixir-format
+msgid "Could not delete course!"
+msgstr ""
+
+#: lib/dashboard/lessons/lesson_delete.ex:28
+#, elixir-autogen, elixir-format
+msgid "Could not delete lesson!"
+msgstr ""
+
+#: lib/dashboard/lessons/lesson_view.ex:137
+#, elixir-autogen, elixir-format
+msgid "Could not delete option!"
+msgstr ""
+
+#: lib/dashboard/lessons/lesson_view.ex:111
+#, elixir-autogen, elixir-format
+msgid "Could not delete step!"
+msgstr ""
+
+#: lib/dashboard/courses/course_edit.ex:81
+#: lib/dashboard/lessons/lesson_cover.ex:28
+#, elixir-autogen, elixir-format
+msgid "Could not update cover!"
+msgstr ""
+
+#: lib/dashboard/lessons/lesson_edit.ex:41
+#: lib/dashboard/lessons/lesson_view.ex:69
+#, elixir-autogen, elixir-format
+msgid "Could not update lesson!"
+msgstr ""
+
+#: lib/dashboard/lessons/lesson_view.ex:175
+#: lib/dashboard/lessons/lesson_view.ex:195
+#: lib/dashboard/lessons/lesson_view.ex:215
+#, elixir-autogen, elixir-format
+msgid "Could not update option!"
+msgstr ""
+
+#: lib/dashboard/courses/course_new.ex:41
+#, elixir-autogen, elixir-format
+msgid "Course created successfully"
+msgstr ""
+
+#: lib/dashboard/courses/course_edit.ex:61
+#, elixir-autogen, elixir-format
+msgid "Course deleted successfully!"
+msgstr ""
+
+#: lib/dashboard/courses/course_edit.html.heex:55
+#: lib/dashboard/courses/course_new.html.heex:12
+#, elixir-autogen, elixir-format
+msgid "Course description"
+msgstr ""
+
+#: lib/dashboard/courses/course_edit.html.heex:37
+#: lib/dashboard/courses/course_new.html.heex:17
+#, elixir-autogen, elixir-format
+msgid "Course slug"
+msgstr ""
+
+#: lib/dashboard/courses/course_edit.html.heex:29
+#: lib/dashboard/courses/course_new.html.heex:10
+#, elixir-autogen, elixir-format
+msgid "Course title"
+msgstr ""
+
+#: lib/dashboard/courses/course_edit.ex:43
+#, elixir-autogen, elixir-format
+msgid "Course updated successfully!"
+msgstr ""
+
+#: lib/dashboard/courses/course_edit.ex:77
+#: lib/dashboard/lessons/lesson_cover.ex:22
+#, elixir-autogen, elixir-format
+msgid "Cover updated successfully!"
+msgstr ""
+
+#: lib/dashboard/lessons/lesson_delete.ex:10
+#, elixir-autogen, elixir-format
+msgid "Delete lesson"
+msgstr ""
+
+#: lib/dashboard/lessons/lesson_view.html.heex:54
+#, elixir-autogen, elixir-format
+msgid "Delete option"
+msgstr ""
+
+#: lib/dashboard/courses/course_view.ex:29
+#, elixir-autogen, elixir-format
+msgid "Description for lesson %{order}. You should update this."
+msgstr ""
+
+#: lib/dashboard/courses/course_user_list.html.heex:52
+#, elixir-autogen, elixir-format
+msgid "Details"
+msgstr ""
+
+#: lib/dashboard/courses/course_view.html.heex:15
+#, elixir-autogen, elixir-format
+msgid "Drag the lessons to change their order"
+msgstr ""
+
+#: lib/dashboard/courses/course_edit.ex:17
+#, elixir-autogen, elixir-format
+msgid "Edit course"
+msgstr ""
+
+#: lib/dashboard/courses/course_edit.html.heex:38
+#: lib/dashboard/courses/course_new.html.heex:18
+#, elixir-autogen, elixir-format
+msgid "Friendly identifier used to access your course. I.e. my-course-name"
+msgstr ""
+
+#: lib/dashboard/lessons/lesson_view.html.heex:161
+#, elixir-autogen, elixir-format
+msgid "Is correct?"
+msgstr ""
+
+#: lib/dashboard/courses/course_edit.html.heex:63
+#, elixir-autogen, elixir-format
+msgid "Is public?"
+msgstr ""
+
+#: lib/dashboard/courses/course_edit.html.heex:76
+#, elixir-autogen, elixir-format
+msgid "Is published?"
+msgstr ""
+
+#: lib/dashboard/courses/course_view.ex:28
+#, elixir-autogen, elixir-format
+msgid "Lesson %{order}"
+msgstr ""
+
+#: lib/dashboard/courses/course_view.html.heex:26
+#, elixir-autogen, elixir-format
+msgid "Lesson cover"
+msgstr ""
+
+#: lib/dashboard/courses/course_view.ex:36
+#, elixir-autogen, elixir-format
+msgid "Lesson created!"
+msgstr ""
+
+#: lib/dashboard/lessons/lesson_delete.ex:22
+#, elixir-autogen, elixir-format
+msgid "Lesson deleted successfully!"
+msgstr ""
+
+#: lib/dashboard/lessons/lesson_edit.html.heex:3
+#, elixir-autogen, elixir-format
+msgid "Lesson description"
+msgstr ""
+
+#: lib/dashboard/lessons/lesson_edit.html.heex:2
+#, elixir-autogen, elixir-format
+msgid "Lesson name"
+msgstr ""
+
+#: lib/dashboard/courses/course_view.ex:52
+#, elixir-autogen, elixir-format
+msgid "Lesson order changed!"
+msgstr ""
+
+#: lib/dashboard/lessons/lesson_view.ex:246
+#, elixir-autogen, elixir-format
+msgid "Lesson published!"
+msgstr ""
+
+#: lib/dashboard/lessons/lesson_view.ex:247
+#, elixir-autogen, elixir-format
+msgid "Lesson unpublished!"
+msgstr ""
+
+#: lib/dashboard/lessons/lesson_edit.ex:35
+#, elixir-autogen, elixir-format
+msgid "Lesson updated successfully!"
+msgstr ""
+
+#: lib/dashboard/lessons/lesson_view.ex:151
+#, elixir-autogen, elixir-format
+msgid "Option added!"
+msgstr ""
+
+#: lib/dashboard/lessons/lesson_view.ex:131
+#, elixir-autogen, elixir-format
+msgid "Option deleted!"
+msgstr ""
+
+#: lib/dashboard/lessons/lesson_view.html.heex:149
+#, elixir-autogen, elixir-format
+msgid "Option feedback"
+msgstr ""
+
+#: lib/dashboard/lessons/lesson_view.html.heex:144
+#, elixir-autogen, elixir-format
+msgid "Option title"
+msgstr ""
+
+#: lib/dashboard/lessons/lesson_view.ex:169
+#: lib/dashboard/lessons/lesson_view.ex:209
+#, elixir-autogen, elixir-format
+msgid "Option updated!"
+msgstr ""
+
+#: lib/dashboard/lessons/lesson_view.html.heex:3
+#, elixir-autogen, elixir-format
+msgid "Publish"
+msgstr ""
+
+#: lib/dashboard/lessons/lesson_view.html.heex:76
+#, elixir-autogen, elixir-format
+msgid "Remove step"
+msgstr ""
+
+#: lib/dashboard/lessons/lesson_view.ex:189
+#: lib/dashboard/lessons/lesson_view.ex:230
+#, elixir-autogen, elixir-format
+msgid "Step created!"
+msgstr ""
+
+#: lib/dashboard/lessons/lesson_view.ex:105
+#, elixir-autogen, elixir-format
+msgid "Step deleted!"
+msgstr ""
+
+#: lib/dashboard/lessons/lesson_view.ex:79
+#, elixir-autogen, elixir-format
+msgid "Step order changed!"
+msgstr ""
+
+#: lib/dashboard/lessons/lesson_view.html.heex:7
+#, elixir-autogen, elixir-format
+msgid "Unpublish"
+msgstr ""
+
+#: lib/dashboard/lessons/lesson_view.ex:145
+#, elixir-autogen, elixir-format
+msgid "Untitled option"
+msgstr ""
+
+#: lib/dashboard/courses/course_edit.html.heex:87
+#, elixir-autogen, elixir-format
+msgid "Update course"
+msgstr ""
+
+#: lib/dashboard/lessons/lesson_view.html.heex:138
+#, elixir-autogen, elixir-format
+msgid "Update option"
+msgstr ""
+
+#: lib/dashboard/lessons/lesson_view.ex:220
+#, elixir-autogen, elixir-format
+msgid "You cannot have more than 20 steps in a lesson"
+msgstr ""
+
+#: lib/dashboard/courses/course_new.html.heex:6
+#, elixir-autogen, elixir-format
+msgid "You'll be able to edit this information and add content to your course later."
+msgstr ""
+
+#: lib/dashboard/lessons/lesson_view.html.heex:94
+#, elixir-autogen, elixir-format
+msgid "A story has multiple steps. Use them to tell a story, explain a concept or ask a question. Keep them short and simple."
+msgstr ""
+
+#: lib/dashboard/lessons/lesson_view.html.heex:151
+#, elixir-autogen, elixir-format
+msgid "Feedback message displayed after a user answers this question. You can provide some additional context on why this is wrong or correct."
+msgstr ""
+
+#: lib/dashboard/courses/course_user_list.html.heex:63
+#, elixir-autogen, elixir-format
+msgid "This will remove %{username} from your course. They won't be able to see your course anymore unless you approve them again."
+msgstr ""
+
+#: lib/dashboard/courses/course_edit.html.heex:65
+#, elixir-autogen, elixir-format
+msgid "When checked this course will be visible to all students from your school. Keep it unchecked if you want this course to be visible only to invited students."
+msgstr ""
+
+#: lib/dashboard/courses/course_edit.html.heex:78
+#, elixir-autogen, elixir-format
+msgid "When checked, this course will be visible to students. Keep it unchecked if this is a draft course that shouldn't be available yet."
 msgstr ""

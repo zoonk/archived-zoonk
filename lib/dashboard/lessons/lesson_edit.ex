@@ -32,13 +32,13 @@ defmodule UneebeeWeb.Live.Dashboard.LessonEdit do
       {:ok, updated_lesson} ->
         socket =
           socket
-          |> put_flash(:info, dgettext("courses", "Lesson updated successfully!"))
+          |> put_flash(:info, dgettext("orgs", "Lesson updated successfully!"))
           |> assign(lesson: updated_lesson)
 
         {:noreply, socket}
 
       {:error, _changeset} ->
-        {:noreply, put_flash(socket, :error, dgettext("courses", "Could not update lesson!"))}
+        {:noreply, put_flash(socket, :error, dgettext("orgs", "Could not update lesson!"))}
     end
   end
 end

@@ -49,19 +49,19 @@
           color={:info_light}
           icon="tabler-chart-radar"
         >
-          <%= dgettext("courses", "Stats") %>
+          <%= dgettext("orgs", "Details") %>
         </.link_button>
 
         <.icon_button
           :if={course_user.approved?}
           icon="tabler-trash-x"
-          label={dgettext("courses", "Remove user")}
+          label={dgettext("orgs", "Remove user")}
           color={:alert_light}
           phx-click="remove"
           phx-value-course-user-id={course_user.id}
           data-confirm={
             dgettext(
-              "courses",
+              "orgs",
               "This will remove %{username} from your course. They won't be able to see your course anymore unless you approve them again.",
               username: course_user.user.username
             )

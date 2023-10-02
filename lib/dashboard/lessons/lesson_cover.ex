@@ -19,13 +19,13 @@ defmodule UneebeeWeb.Live.Dashboard.LessonCover do
       {:ok, updated_lesson} ->
         socket =
           socket
-          |> put_flash(:info, dgettext("courses", "Cover updated successfully!"))
+          |> put_flash(:info, dgettext("orgs", "Cover updated successfully!"))
           |> assign(lesson: updated_lesson)
 
         {:noreply, socket}
 
       {:error, _changeset} ->
-        {:noreply, put_flash(socket, :error, dgettext("courses", "Could not update cover!"))}
+        {:noreply, put_flash(socket, :error, dgettext("orgs", "Could not update cover!"))}
     end
   end
 end

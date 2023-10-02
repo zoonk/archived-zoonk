@@ -26,7 +26,7 @@
     :if={@live_action == :info}
     field={@form[:name]}
     type="text"
-    label={dgettext("courses", "Course title")}
+    label={dgettext("orgs", "Course title")}
     required
   />
 
@@ -34,8 +34,8 @@
     :if={@live_action == :info}
     field={@form[:slug]}
     type="text"
-    label={dgettext("courses", "Course slug")}
-    helper={dgettext("courses", "Friendly identifier used to access your course. I.e. my-course-name")}
+    label={dgettext("orgs", "Course slug")}
+    helper={dgettext("orgs", "Friendly identifier used to access your course. I.e. my-course-name")}
     required
   />
 
@@ -52,7 +52,7 @@
     :if={@live_action == :info}
     field={@form[:description]}
     type="textarea"
-    label={dgettext("courses", "Course description")}
+    label={dgettext("orgs", "Course description")}
     required
   />
 
@@ -60,10 +60,10 @@
     :if={@live_action == :privacy}
     field={@form[:public?]}
     type="checkbox"
-    label={dgettext("courses", "Is public?")}
+    label={dgettext("orgs", "Is public?")}
     helper={
       dgettext(
-        "courses",
+        "orgs",
         "When checked this course will be visible to all students from your school. Keep it unchecked if you want this course to be visible only to invited students."
       )
     }
@@ -73,10 +73,10 @@
     :if={@live_action == :privacy}
     field={@form[:published?]}
     type="checkbox"
-    label={dgettext("courses", "Is published?")}
+    label={dgettext("orgs", "Is published?")}
     helper={
       dgettext(
-        "courses",
+        "orgs",
         "When checked, this course will be visible to students. Keep it unchecked if this is a draft course that shouldn't be available yet."
       )
     }
@@ -84,7 +84,7 @@
 
   <:actions>
     <.button icon="tabler-table-export" type="submit" phx-disable-with={gettext("Saving...")}>
-      <%= dgettext("courses", "Update course") %>
+      <%= dgettext("orgs", "Update course") %>
     </.button>
 
     <.link_button icon="tabler-x" color={:alert_light} navigate={~p"/dashboard/c/#{@course.slug}"}>

@@ -38,7 +38,7 @@ defmodule UneebeeWeb.Live.Dashboard.CourseNew do
       {:ok, course} ->
         socket =
           socket
-          |> put_flash(:info, dgettext("courses", "Course created successfully"))
+          |> put_flash(:info, dgettext("orgs", "Course created successfully"))
           |> push_navigate(to: ~p"/dashboard/c/#{course.slug}")
 
         {:noreply, socket}
