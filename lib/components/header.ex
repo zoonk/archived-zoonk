@@ -22,9 +22,9 @@ defmodule UneebeeWeb.Components.Header do
     ~H"""
     <header class={[@actions != [] && "flex items-center justify-between gap-6", @class]}>
       <div>
-        <h1 class="text-lg font-semibold">
-          <.icon :if={@icon} name={@icon} class="mr-1 h-4 w-4" gradient />
-          <span class="text-gradient"><%= render_slot(@inner_block) %></span>
+        <h1 class="text-primary text-lg font-semibold">
+          <.icon :if={@icon} name={@icon} class="mr-1 h-4 w-4" />
+          <span><%= render_slot(@inner_block) %></span>
         </h1>
 
         <p :if={@subtitle != []} class="text-gray mt-2 text-sm leading-6"><%= render_slot(@subtitle) %></p>

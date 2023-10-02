@@ -21,7 +21,7 @@ defmodule UneebeeWeb.Components.Card do
 
   def card(assigns) do
     ~H"""
-    <div class={["bg-white rounded-xl shadow p-4", @class]}>
+    <div class={["bg-white rounded-xl card p-4", @class]}>
       <%= render_slot(@inner_block) %>
     </div>
     """

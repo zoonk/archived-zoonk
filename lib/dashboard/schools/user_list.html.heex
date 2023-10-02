@@ -1,5 +1,5 @@
 <nav class="mb-4 flex justify-end">
-  <.button phx-click={show_modal("add-user-modal")} icon="tabler-user-plus">
+  <.button phx-click={show_modal("add-user-modal")} color={:info_light} icon="tabler-user-plus">
     <%= get_add_link_label(@live_action) %>
   </.button>
 </nav>
@@ -8,7 +8,7 @@
   <div
     :for={{dom_id, school_user} <- @streams.users}
     id={dom_id}
-    class="text-gray-dark flex h-full flex-col rounded-2xl bg-white p-4 shadow"
+    class="text-gray-dark2x card flex h-full flex-col rounded-2xl bg-white p-4"
   >
     <div class="flex gap-2" id={"user-#{school_user.user.id}"}>
       <.avatar src={school_user.user.avatar} alt={get_avatar_label(school_user.user)} />
@@ -26,7 +26,9 @@
           </span>
         </dt>
 
-        <dd class="text-gray flex-1 text-sm">@<%= school_user.user.username %> - <%= school_user.user.email %></dd>
+        <dd class="flex-1 truncate text-xs font-light">
+          @<%= school_user.user.username %> - <%= school_user.user.email %>
+        </dd>
       </header>
     </div>
 

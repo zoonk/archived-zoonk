@@ -1,4 +1,4 @@
-<header class="rounded-2xl bg-white shadow">
+<header class="bg-gray-light3x rounded-2xl">
   <div class="p-4">
     <h1 class="text-gray-dark text-xl font-bold"><%= @course.name %></h1>
     <h2 class="text-gray"><%= @course.description %></h2>
@@ -7,7 +7,9 @@
 
 <section class="my-4 flex flex-col justify-between gap-2 sm:flex-row sm:items-center">
   <nav class="flex gap-2">
-    <.button icon="tabler-vocabulary" phx-click="add-lesson"><%= dgettext("courses", "+ Lesson") %></.button>
+    <.button icon="tabler-vocabulary" color={:info_light} phx-click="add-lesson">
+      <%= dgettext("courses", "+ Lesson") %>
+    </.button>
   </nav>
 
   <span class="text-gray text-sm italic"><%= dgettext("courses", "Drag the lessons to change their order") %></span>
@@ -17,7 +19,7 @@
   <.link
     :for={{lesson, index} <- Enum.with_index(@lessons)}
     navigate={~p"/dashboard/c/#{@course.slug}/l/#{lesson.id}"}
-    class="text-gray-dark flex cursor-grab gap-2 rounded-2xl bg-white p-4 shadow drag-ghost:bg-gray-light drag-ghost:cursor-grabbing drag-ghost:border-0 drag-ghost:ring-0 focus-within:drag-item:ring-0 focus-within:drag-item:ring-offset-0"
+    class="text-gray-dark card-with-link flex cursor-grab gap-2 rounded-2xl bg-white p-4 drag-ghost:bg-gray-light drag-ghost:cursor-grabbing drag-ghost:border-0 drag-ghost:ring-0 focus-within:drag-item:ring-0 focus-within:drag-item:ring-offset-0"
   >
     <.avatar
       src={lesson.cover}

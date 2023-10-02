@@ -22,10 +22,10 @@ defmodule UneebeeWeb.Components.Content.CourseList do
           :for={{dom_id, course_data} <- @courses}
           id={dom_id}
           navigate={course_link(course_data, @my_courses)}
-          class="rounded-2xl bg-white shadow hover:shadow-md focus:outline-offset-6 focus:outline-primary"
+          class="card-with-link rounded-2xl border bg-white"
         >
           <% course = if @my_courses, do: course_data, else: course_data.data %>
-          <img :if={course.cover} src={course.cover} class="aspect-video w-full rounded-t-2xl object-cover" />
+          <img :if={course.cover} src={course.cover} class="aspect-video w-full rounded-2xl object-cover p-1" />
 
           <div class="p-4">
             <div class="min-w-0">

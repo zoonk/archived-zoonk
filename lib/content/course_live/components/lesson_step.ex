@@ -12,7 +12,7 @@ defmodule UneebeeWeb.Components.Content.LessonStep do
   def lesson_step(%{step: %{kind: :text}} = assigns) do
     ~H"""
     <section>
-      <p class="text-gray-dark rounded-2xl bg-white p-4 shadow"><%= @step.content %></p>
+      <p class="text-gray-dark py-4"><%= @step.content %></p>
       <.option_list :if={@selected && @step.options != []} options={@step.options} selected={@selected} />
     </section>
     """
@@ -21,7 +21,7 @@ defmodule UneebeeWeb.Components.Content.LessonStep do
   def lesson_step(%{step: %{kind: :image}} = assigns) do
     ~H"""
     <section>
-      <div class="text-gray-dark flex justify-center rounded-2xl bg-white p-4 shadow">
+      <div class="text-gray-dark py-4">
         <img src={@step.content} class="w-1/3" />
       </div>
 
@@ -32,7 +32,7 @@ defmodule UneebeeWeb.Components.Content.LessonStep do
 
   defp option_list(assigns) do
     ~H"""
-    <div class="mt-2">
+    <div>
       <% selected = selected_option(@options, @selected) %>
       <% color = if selected.correct?, do: :success_light, else: :alert_light %>
       <% icon = if selected.correct?, do: "tabler-checks", else: "tabler-alert-square-rounded" %>
@@ -40,7 +40,7 @@ defmodule UneebeeWeb.Components.Content.LessonStep do
         if selected.correct?, do: dgettext("courses", "Well done!"), else: dgettext("courses", "That's incorrect.") %>
       <% feedback = if selected.feedback, do: selected.feedback, else: default_feedback %>
 
-      <.badge color={color} icon={icon} class="mt-2">
+      <.badge color={color} icon={icon}>
         <%= dgettext("courses", "You selected: %{title}. %{feedback}", title: selected.title, feedback: feedback) %>
       </.badge>
 

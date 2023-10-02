@@ -9,7 +9,7 @@
 </nav>
 
 <dl
-  class="my-4 space-y-2"
+  class="my-4 space-y-4"
   id="lesson-steps"
   data-group="lesson-steps"
   phx-hook={if @lesson.kind == :story, do: "Sortable", else: nil}
@@ -17,7 +17,7 @@
   <div
     :for={lesson_step <- @lesson_steps}
     class={[
-      "flex items-center justify-between text-gray-dark rounded-lg bg-white p-2 text-sm shadow",
+      "flex items-center justify-between text-gray-dark-2x rounded-2xl bg-white p-4 text-sm border border-gray-dark2x",
       @lesson.kind == :story &&
         "cursor-grab drag-ghost:bg-gray-light drag-ghost:cursor-grabbing drag-ghost:border-0 drag-ghost:ring-0 focus-within:drag-item:ring-0 focus-within:drag-item:ring-offset-0"
     ]}

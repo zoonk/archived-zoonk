@@ -18,9 +18,9 @@ defmodule UneebeeWeb.Components.Dashboard.CourseList do
           :for={{dom_id, course} <- @courses}
           id={dom_id}
           navigate={~p"/dashboard/c/#{course.slug}"}
-          class="flex flex-col rounded-2xl bg-white shadow hover:shadow-md focus:outline-offset-6 focus:outline-primary"
+          class="card-with-link flex flex-col rounded-2xl bg-white"
         >
-          <img :if={course.cover} src={course.cover} class="aspect-video w-full rounded-t-2xl object-cover" />
+          <img :if={course.cover} src={course.cover} class="aspect-video w-full rounded-2xl object-cover p-1" />
 
           <div class="flex flex-1 flex-col gap-4 p-4">
             <div class="min-w-0 flex-1">

@@ -1,13 +1,13 @@
-<header class="flex gap-2 rounded-2xl bg-white p-4 shadow">
+<header class="bg-gray-light3x flex gap-2 rounded-2xl p-4">
   <% score = course_score(@lessons) %>
   <.avatar src={@student.avatar} alt={get_avatar_label(@student)} />
 
   <div class="w-full">
-    <h1 class="text-gray-dark font-semibold">
+    <h1 class="text-gray-dark2x font-semibold">
       <%= @student.first_name %> <%= @student.last_name %>, <%= age(@student.date_of_birth) %>
     </h1>
 
-    <h2 class="text-gray flex-1 text-sm">@<%= @student.username %> - <%= @student.email %></h2>
+    <h2 class="flex-1 text-xs font-light">@<%= @student.username %> - <%= @student.email %></h2>
 
     <div class="mt-4">
       <.badge icon="tabler-progress" color={:success_light}><%= course_progress(@lessons, @student) %>%</.badge>
@@ -20,7 +20,7 @@
   <details
     :for={lesson <- @lessons}
     id={"lessons-#{lesson.id}"}
-    class="group text-gray-dark w-full min-w-0 cursor-pointer rounded-lg bg-white p-4 text-sm shadow"
+    class="group text-gray-dark card-with-link w-full min-w-0 cursor-pointer rounded-lg bg-white p-4 text-sm"
   >
     <% score = lesson_score(@student, lesson.user_lessons) %>
 

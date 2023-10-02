@@ -9,7 +9,7 @@ defmodule UneebeeWeb.Components.Content.LessonProgress do
 
   def lesson_progress(assigns) do
     ~H"""
-    <div class="bg-white/90 sticky top-4 flex w-full gap-1 rounded-2xl p-2 shadow backdrop-blur-md">
+    <div class="bg-white/90 border-gray-light2x sticky top-4 flex w-full gap-1 rounded-2xl border p-2 backdrop-blur-md">
       <% steps = Enum.map(1..@total, fn order -> order end) %>
       <div
         :for={step <- steps}

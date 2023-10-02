@@ -1,9 +1,9 @@
-<header class="rounded-2xl bg-white shadow">
-  <img :if={@course.cover} src={@course.cover} alt={gettext("Cover")} class="aspect-[4/1] rounded-t-2xl object-cover" />
+<header class="bg-gray-light3x text-gray-dark rounded-2xl">
+  <img :if={@course.cover} src={@course.cover} alt={gettext("Cover")} class="aspect-[4/1] rounded-2xl object-cover p-1" />
 
   <div class="p-4">
-    <h1 class="text-gray-dark text-xl font-bold"><%= @course.name %></h1>
-    <h2 class="text-gray"><%= @course.description %></h2>
+    <h1 class="text-xl font-bold"><%= @course.name %></h1>
+    <h2 class="text-sm font-light"><%= @course.description %></h2>
 
     <.button :if={is_nil(@course_user)} icon="tabler-book-download" phx-click="enroll" class="mt-4 w-max">
       <%= if @course.public?, do: dgettext("courses", "Free Enroll"), else: dgettext("courses", "Request to join") %>
@@ -15,7 +15,7 @@
 
     <.badge icon="tabler-chart-arrows-vertical" class="mt-4"><%= level_label(@course.level) %></.badge>
     <.badge icon="tabler-progress" color={:success_light}><%= course_progress(@lessons, @current_user) %>%</.badge>
-    <.badge icon="tabler-user" color={:black_light}><%= @student_count %></.badge>
+    <.badge icon="tabler-user" color={:info_light}><%= @student_count %></.badge>
   </div>
 </header>
 
@@ -24,10 +24,12 @@
     :for={{lesson, index} <- Enum.with_index(@lessons)}
     navigate={lesson_link(lesson_locked?(@course_user), @course, lesson)}
     class={[
-      "text-gray-dark flex gap-2 rounded-2xl p-4 shadow",
+      "text-gray-dark flex gap-2 border rounded-2xl p-4",
       lesson_locked?(@course_user) && "cursor-not-allowed opacity-50",
-      lesson_completed?(@current_user, lesson.user_lessons) && "bg-success-light3x",
-      not lesson_completed?(@current_user, lesson.user_lessons) && "bg-white"
+      lesson_completed?(@current_user, lesson.user_lessons) &&
+        "bg-success-light3x border-success-dark2x hover:outline hover:outline-1 hover:outline-offset-2 hover:outline-success-dark2x focus:outline-1 focus:outline-offset-4 focus:outline-success-dark2x",
+      not lesson_completed?(@current_user, lesson.user_lessons) &&
+        "bg-white card-with-link"
     ]}
   >
     <% score = lesson_score(@current_user, lesson.user_lessons) %>

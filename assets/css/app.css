@@ -7,4 +7,12 @@
   .text-gradient {
     @apply text-transparent bg-clip-text bg-gradient-to-br from-info via-primary to-alert;
   }
+
+  .card {
+    @apply border border-gray-dark2x;
+  }
+
+  .card-with-link {
+    @apply card hover:outline hover:outline-1 hover:outline-offset-2 hover:outline-gray-dark2x focus:outline-1 focus:outline-offset-4 focus:outline-gray-dark2x;
+  }
 }

@@ -51,7 +51,7 @@ defmodule UneebeeWeb.Components.Button do
         @color == :success && "bg-success text-white active:text-white/80 hover:bg-success-dark focus:outline-success",
         @color == :info && "bg-info text-white active:text-white/80 hover:bg-info-dark focus:outline-info",
         @color == :warning && "bg-warning text-white active:text-white/80 hover:bg-warning-dark focus:outline-warning",
-        @color == :black_light && "bg-gray-light3x text-gray-dark2x hover:bg-gray-light3x focus:outline-gray-light3x",
+        @color == :black_light && "bg-gray-light3x text-gray-dark2x hover:bg-gray-light2x focus:outline-gray-light3x",
         @color == :alert_light && "bg-alert-light3x text-alert-dark2x hover:bg-alert-light2x focus:outline-alert-light3x",
         @color == :info_light && "bg-info-light3x text-info-dark2x hover:bg-info-light2x focus:outline-info-light3x",
         @color == :success_light &&

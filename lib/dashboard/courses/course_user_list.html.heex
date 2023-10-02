@@ -1,5 +1,5 @@
 <nav class="mb-4 flex justify-end">
-  <.button phx-click={show_modal("add-user-modal")} icon="tabler-user-plus">
+  <.button phx-click={show_modal("add-user-modal")} color={:info_light} icon="tabler-user-plus">
     <%= get_add_link_label(@live_action) %>
   </.button>
 </nav>
@@ -8,7 +8,7 @@
   <div
     :for={{dom_id, course_user} <- @streams.users}
     id={dom_id}
-    class="text-gray-dark flex h-full gap-2 rounded-2xl bg-white p-4 shadow"
+    class="text-gray-dark2x card flex h-full gap-2 rounded-2xl bg-white p-4"
   >
     <.avatar src={course_user.user.avatar} alt={get_avatar_label(course_user.user)} />
 
@@ -25,7 +25,7 @@
         </span>
       </dt>
 
-      <dd class="text-gray flex-1 text-sm">@<%= course_user.user.username %> - <%= course_user.user.email %></dd>
+      <dd class="flex-1 text-xs font-light">@<%= course_user.user.username %> - <%= course_user.user.email %></dd>
 
       <div :if={not course_user.approved?} class="mt-4 flex items-center gap-2">
         <.button
@@ -47,6 +47,7 @@
           :if={@live_action == :student}
           navigate={~p"/dashboard/c/#{@course.slug}/s/#{course_user.user.username}"}
           color={:info_light}
+          icon="tabler-chart-radar"
         >
           <%= dgettext("courses", "Stats") %>
         </.link_button>

@@ -21,7 +21,7 @@ defmodule UneebeeWeb.Components.Menu do
       </nav>
     </.details>
     <!-- Desktop menu menu -->
-    <nav class="min-w-[200px] hidden rounded-2xl bg-white shadow lg:flex">
+    <nav class="min-w-[200px] border-gray-light2x hidden rounded-2xl border bg-white lg:flex">
       <ul class="divide-gray-light2x flex w-full flex-col divide-y"><%= render_slot(@inner_block) %></ul>
     </nav>
     """
