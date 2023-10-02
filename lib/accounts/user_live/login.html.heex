@@ -22,10 +22,12 @@
   </:actions>
 
   <:actions>
-    <.link_styled navigate={~p"/users/reset_password"} color={:black} class="text-sm">
-      <%= dgettext("auth", "Forgot your password?") %>
-    </.link_styled>
+    <div class="flex w-full items-center justify-between">
+      <.link_styled navigate={~p"/users/reset_password"} color={:black} class="text-sm">
+        <%= dgettext("auth", "Forgot your password?") %>
+      </.link_styled>
 
-    <.link_styled navigate={~p"/users/register"} class="text-sm"><%= dgettext("auth", "Register") %></.link_styled>
+      <.link_styled navigate={~p"/users/register"} class="text-sm"><%= dgettext("auth", "Register") %></.link_styled>
+    </div>
   </:actions>
 </.simple_form>
