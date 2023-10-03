@@ -8,11 +8,14 @@ defmodule Uneebee.Gamification do
   import Ecto.Query, warn: false
   import Uneebee.Gamification.UserMedal.Config
 
+  alias Uneebee.Content
   alias Uneebee.Content.UserLesson
   alias Uneebee.Gamification.UserMedal
+  alias Uneebee.Gamification.UserTrophy
   alias Uneebee.Repo
 
   @type user_medal_changeset :: {:ok, UserMedal.t()} | {:error, Ecto.Changeset.t()}
+  @type user_trophy_changeset :: {:ok, UserTrophy.t()} | {:error, Ecto.Changeset.t()}
 
   @doc """
   Calculates the learning days for a given user.
@@ -133,5 +136,84 @@ defmodule Uneebee.Gamification do
     |> Repo.all()
     |> length()
     |> Kernel.==(1)
+  end
+
+  @doc """
+  Returns an `%Ecto.Changeset{}` for tracking user trophy changes.
+
+  ## Examples
+
+      iex> change_user_trophy(%UserTrophy{})
+      %Ecto.Changeset{data: %UserTrophy{}}
+  """
+  @spec change_user_trophy(UserTrophy.t(), map()) :: Ecto.Changeset.t()
+  def change_user_trophy(user_trophy, attrs) do
+    UserTrophy.changeset(user_trophy, attrs)
+  end
+
+  @doc """
+  Creates a user trophy.
+
+  ## Examples
+
+      iex> create_user_trophy(%{field: value})
+      {:ok, %UserTrophy{}}
+  """
+  @spec create_user_trophy(map()) :: user_trophy_changeset()
+  def create_user_trophy(attrs) do
+    %UserTrophy{} |> change_user_trophy(attrs) |> Repo.insert(on_conflict: :nothing)
+  end
+
+  @doc """
+  Maybe a award a trophy based on some parameters.
+
+  ## Examples
+
+      iex> maybe_award_trophy(%{})
+      {:ok, %UserTrophy{}}
+  """
+  @spec maybe_award_trophy(map()) :: user_trophy_changeset()
+
+  def maybe_award_trophy(%{user: user, course: course, course_completed?: true}) do
+    create_user_trophy(%{user_id: user.id, course_id: course.id, reason: :course_completed})
+  end
+
+  def maybe_award_trophy(%{course_completed?: false}), do: {:ok, %UserTrophy{}}
+
+  def maybe_award_trophy(%{user: user, course: course}) do
+    maybe_award_trophy(%{user: user, course: course, course_completed?: Content.course_completed?(user, course)})
+  end
+
+  def maybe_award_trophy(_attrs), do: {:ok, %UserTrophy{}}
+
+  @doc """
+  Returns the count of trophies for a given user.
+
+  ## Examples
+
+      iex> count_user_trophies(user_id)
+      3
+  """
+  @spec count_user_trophies(integer()) :: integer()
+  def count_user_trophies(user_id) do
+    UserTrophy |> where([ut], ut.user_id == ^user_id) |> Repo.aggregate(:count)
+  end
+
+  @doc """
+  Get course completed trophy for a given user.
+
+  ## Examples
+
+      iex> get_course_completed_trophy(user_id, course_id)
+      %UserTrophy{}
+
+      iex> get_course_completed_trophy(user_id, course_id)
+      nil
+  """
+  @spec get_course_completed_trophy(integer(), integer()) :: UserTrophy.t() | nil
+  def get_course_completed_trophy(user_id, course_id) do
+    UserTrophy
+    |> where([ut], ut.user_id == ^user_id and ut.reason == :course_completed and ut.course_id == ^course_id)
+    |> Repo.one()
   end
 end

@@ -3,9 +3,11 @@ defmodule Uneebee.GamificationTest do
 
   import Uneebee.Fixtures.Accounts
   import Uneebee.Fixtures.Content
+  import Uneebee.Fixtures.Gamification
 
   alias Uneebee.Gamification
   alias Uneebee.Gamification.UserMedal
+  alias Uneebee.Gamification.UserTrophy
 
   describe "learning_days_count/1" do
     test "calculates how many learning days a user has completed" do
@@ -97,6 +99,86 @@ defmodule Uneebee.GamificationTest do
       generate_user_lesson(user.id, 0)
 
       refute Gamification.first_lesson_today?(user.id)
+    end
+  end
+
+  describe "create_user_trophy/1" do
+    test "creates a user trophy" do
+      user = user_fixture()
+      course = course_fixture()
+      attrs = %{user_id: user.id, course_id: course.id, reason: :course_completed}
+
+      assert {:ok, %UserTrophy{} = user_trophy} = Gamification.create_user_trophy(attrs)
+      assert user_trophy.user_id == attrs.user_id
+      assert user_trophy.course_id == attrs.course_id
+      assert user_trophy.reason == attrs.reason
+    end
+
+    test "returns an error if the reason is missing" do
+      user = user_fixture()
+      course = course_fixture()
+      attrs = %{user_id: user.id, course_id: course.id}
+
+      assert {:error, %Ecto.Changeset{} = changeset} = Gamification.create_user_trophy(attrs)
+      assert "can't be blank" in errors_on(changeset).reason
+    end
+
+    test "don't duplicate trophies with the same course, user and reason" do
+      user = user_fixture()
+      course = course_fixture()
+      attrs = %{user_id: user.id, course_id: course.id, reason: :course_completed}
+      user_trophy_fixture(%{course: course, user: user, reason: :course_completed})
+
+      assert {:ok, %UserTrophy{} = _user_trophy} = Gamification.create_user_trophy(attrs)
+
+      assert Gamification.count_user_trophies(user.id) == 1
+    end
+  end
+
+  describe "count_user_trophies/1" do
+    test "returns the count of trophies for a given user" do
+      user = user_fixture()
+      Enum.each(1..3, fn _idx -> user_trophy_fixture(%{user: user}) end)
+      assert Gamification.count_user_trophies(user.id) == 3
+    end
+  end
+
+  describe "maybe_award_trophy/1" do
+    test "awards a trophy if the user has completed a course" do
+      user = user_fixture()
+      course = course_fixture()
+      generate_user_lesson(user.id, 0, course: course)
+
+      assert {:ok, %UserTrophy{} = _user_trophy} = Gamification.maybe_award_trophy(%{user: user, course: course})
+      assert Gamification.count_user_trophies(user.id) == 1
+    end
+
+    test "doesn't award a trophy if the user hasn't completed a course" do
+      user = user_fixture()
+      course = course_fixture()
+
+      assert {:ok, %UserTrophy{} = _user_trophy} = Gamification.maybe_award_trophy(%{user: user, course: course})
+      assert Gamification.count_user_trophies(user.id) == 0
+    end
+  end
+
+  describe "get_course_completed_trophy/1" do
+    test "returns a trophy if the user has completed a course" do
+      user = user_fixture()
+      course = course_fixture()
+      user_trophy_fixture(%{user: user, course: course, reason: :course_completed})
+
+      assert Gamification.get_course_completed_trophy(user.id, course.id)
+    end
+
+    test "doesn't return a trophy if the user hasn't completed a course" do
+      user = user_fixture()
+      course = course_fixture()
+      other_course = course_fixture()
+
+      user_trophy_fixture(%{user: user, course: other_course, reason: :course_completed})
+
+      assert Gamification.get_course_completed_trophy(user.id, course.id) == nil
     end
   end
 end

@@ -3,10 +3,12 @@ defmodule UneebeeWeb.Live.Content.Course.LessonCompleted do
   use UneebeeWeb, :live_view
 
   import Uneebee.Gamification.UserMedal.Config
+  import Uneebee.Gamification.UserTrophy.Config
 
   alias Uneebee.Content
   alias Uneebee.Content.UserLesson
   alias Uneebee.Gamification
+  alias Uneebee.Gamification.UserTrophy
 
   @impl Phoenix.LiveView
   def mount(_params, _session, socket) do
@@ -16,6 +18,7 @@ defmodule UneebeeWeb.Live.Content.Course.LessonCompleted do
     first_lesson_today? = Gamification.first_lesson_today?(user.id)
     learning_days = Gamification.learning_days_count(user.id)
     medal = get_medal(user_lesson)
+    course_completed_trophy = Gamification.get_course_completed_trophy(user.id, lesson.course_id)
 
     socket =
       socket
@@ -24,6 +27,7 @@ defmodule UneebeeWeb.Live.Content.Course.LessonCompleted do
       |> assign(:first_lesson_today?, first_lesson_today?)
       |> assign(:learning_days, learning_days)
       |> assign(:medal, medal)
+      |> assign(:course_completed_trophy, course_completed_trophy)
 
     {:ok, socket}
   end
@@ -52,4 +56,10 @@ defmodule UneebeeWeb.Live.Content.Course.LessonCompleted do
     do: medal(:perfect_lesson_practiced)
 
   defp get_medal(_user_lesson), do: nil
+
+  defp completed_course_recently?(nil), do: false
+
+  defp completed_course_recently?(%UserTrophy{} = user_trophy) do
+    DateTime.utc_now() |> DateTime.diff(user_trophy.updated_at, :minute) |> Kernel.<(3)
+  end
 end

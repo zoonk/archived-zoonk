@@ -16,6 +16,7 @@ defmodule UneebeeWeb.Live.Home do
     courses = Content.list_public_courses_by_school(school, limit: 20)
     learning_days = get_learning_days(user)
     medals = get_user_medals(user)
+    trophies = get_user_trophies(user)
 
     socket =
       socket
@@ -25,6 +26,7 @@ defmodule UneebeeWeb.Live.Home do
       |> assign(:courses_learning_empty?, courses_learning == [])
       |> assign(:learning_days, learning_days)
       |> assign(:medals, medals)
+      |> assign(:trophies, trophies)
 
     {:ok, socket}
   end
@@ -37,4 +39,7 @@ defmodule UneebeeWeb.Live.Home do
 
   defp get_user_medals(nil), do: nil
   defp get_user_medals(user), do: Gamification.count_user_medals(user.id)
+
+  defp get_user_trophies(nil), do: nil
+  defp get_user_trophies(user), do: Gamification.count_user_trophies(user.id)
 end

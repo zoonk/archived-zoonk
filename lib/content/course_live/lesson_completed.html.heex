@@ -26,7 +26,12 @@
       </div>
     </div>
 
-    <div class="flex gap-4 pt-4">
+    <div class="grid grid-cols-1 gap-4 pt-4 sm:grid-cols-2">
+      <.trophy_badge
+        :if={completed_course_recently?(@course_completed_trophy)}
+        trophy={trophy(@course_completed_trophy.reason)}
+      />
+
       <.learning_days_badge :if={@first_lesson_today?} days={@learning_days} />
       <.medal_badge :if={@medal} medal={@medal} />
     </div>

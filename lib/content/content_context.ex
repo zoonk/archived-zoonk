@@ -5,6 +5,7 @@ defmodule Uneebee.Content do
   import Ecto.Query, warn: false
   import Uneebee.Content.Course.Config
 
+  alias Uneebee.Accounts
   alias Uneebee.Accounts.User
   alias Uneebee.Content.Course
   alias Uneebee.Content.CourseData
@@ -750,26 +751,8 @@ defmodule Uneebee.Content do
   """
   @spec add_user_lesson(map()) :: user_lesson_changeset()
   def add_user_lesson(attrs \\ %{}) do
-    user_id = Map.get(attrs, :user_id)
-    lesson_id = Map.get(attrs, :lesson_id)
-    user_lesson = get_user_lesson(user_id, lesson_id)
-
-    correct = Map.get(attrs, :correct)
-    total = Map.get(attrs, :total)
-    perfect? = correct == total
-    first_try? = is_nil(user_lesson)
-
-    case Repo.transaction(fn ->
-           Gamification.award_medal_for_lesson(%{
-             user_id: user_id,
-             lesson_id: lesson_id,
-             perfect?: perfect?,
-             first_try?: first_try?
-           })
-
-           add_user_lesson(attrs, user_lesson)
-         end) do
-      {:ok, user_lesson} -> user_lesson
+    case Repo.transaction(fn -> save_lesson(attrs) end) do
+      {:ok, user_lesson} -> add_awards_after_lesson(user_lesson)
       {:error, error} -> error
     end
   end
@@ -781,6 +764,33 @@ defmodule Uneebee.Content do
   defp add_user_lesson(attrs, %UserLesson{} = user_lesson) do
     attrs = Map.merge(attrs, %{attempts: user_lesson.attempts + 1})
     update_user_lesson(user_lesson, attrs)
+  end
+
+  defp save_lesson(attrs) do
+    user_id = Map.get(attrs, :user_id)
+    lesson_id = Map.get(attrs, :lesson_id)
+    user_lesson = get_user_lesson(user_id, lesson_id)
+
+    correct = Map.get(attrs, :correct)
+    total = Map.get(attrs, :total)
+    perfect? = correct == total
+    first_try? = is_nil(user_lesson)
+
+    Gamification.award_medal_for_lesson(%{
+      user_id: user_id,
+      lesson_id: lesson_id,
+      perfect?: perfect?,
+      first_try?: first_try?
+    })
+
+    add_user_lesson(attrs, user_lesson)
+  end
+
+  defp add_awards_after_lesson({:ok, user_lesson} = attrs) do
+    user = Accounts.get_user!(user_lesson.user_id)
+    lesson = Lesson |> Repo.get!(user_lesson.lesson_id) |> Repo.preload(:course)
+    {:ok, _user_trophy} = Gamification.maybe_award_trophy(%{user: user, course: lesson.course})
+    attrs
   end
 
   @doc """

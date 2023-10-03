@@ -21,7 +21,7 @@ msgstr "Dias de aprendizado"
 msgid "Lesson completed"
 msgstr "Aula concluída"
 
-#: lib/home/home.html.heex:9
+#: lib/home/home.html.heex:11
 #, elixir-autogen, elixir-format
 msgid "Medals"
 msgstr "Medalhas"
@@ -47,9 +47,24 @@ msgstr "Você concluiu uma aula sem erros após praticá-la."
 msgid "You completed a lesson without any errors on your first try."
 msgstr "Você concluiu uma aula sem erros na primeira tentativa."
 
-#: lib/components/award_badge.ex:31
+#: lib/components/award_badge.ex:32
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Learning day"
 msgid_plural "Learning days"
 msgstr[0] "Dia de aprendizado"
 msgstr[1] "Dias de aprendizado"
+
+#: lib/gamification/user_trophy_config.ex:19
+#, elixir-autogen, elixir-format, fuzzy
+msgid "Course completed"
+msgstr "Curso concluído"
+
+#: lib/home/home.html.heex:9
+#, elixir-autogen, elixir-format
+msgid "Trophies"
+msgstr "Troféus"
+
+#: lib/gamification/user_trophy_config.ex:20
+#, elixir-autogen, elixir-format
+msgid "You completed a course."
+msgstr "Você concluiu um curso."

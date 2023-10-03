@@ -7,6 +7,7 @@ defmodule Uneebee.Fixtures.Gamification do
 
   alias Uneebee.Gamification
   alias Uneebee.Gamification.UserMedal
+  alias Uneebee.Gamification.UserTrophy
 
   @doc """
   Generates a user medal.
@@ -22,5 +23,20 @@ defmodule Uneebee.Fixtures.Gamification do
 
     {:ok, %UserMedal{} = user_medal} = Gamification.create_user_medal(attrs)
     user_medal
+  end
+
+  @doc """
+  Generates a user trophy.
+  """
+  @spec user_trophy_fixture(map()) :: UserTrophy.t()
+  def user_trophy_fixture(attrs \\ %{}) do
+    user = Map.get(attrs, :user, user_fixture())
+    course = Map.get(attrs, :course, course_fixture())
+    reason = Map.get(attrs, :reason, :course_completed)
+
+    attrs = %{user_id: user.id, course_id: course.id, reason: reason}
+
+    {:ok, %UserTrophy{} = user_trophy} = Gamification.create_user_trophy(attrs)
+    user_trophy
   end
 end

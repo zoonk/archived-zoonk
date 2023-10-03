@@ -44,7 +44,8 @@ defmodule Uneebee.Fixtures.Content do
       description: "random lesson description",
       kind: :story,
       name: "lesson title #{System.unique_integer()}",
-      order: 1
+      order: 1,
+      published?: true
     })
   end
 

@@ -12,6 +12,7 @@ defmodule UneebeeWeb.Components.AwardBadge do
   import UneebeeWeb.Gettext
 
   alias Uneebee.Gamification.Medal
+  alias Uneebee.Gamification.Trophy
 
   @doc """
   Renders a badge for learning days.
@@ -53,6 +54,17 @@ defmodule UneebeeWeb.Components.AwardBadge do
   defp medal_color(:gold), do: :warning
   defp medal_color(:silver), do: :gray
   defp medal_color(:bronze), do: :bronze
+
+  @doc """
+  Completed course trophy.
+  """
+  attr :trophy, Trophy, required: true
+
+  def trophy_badge(assigns) do
+    ~H"""
+    <.award_badge id="trophy-badge" color={:warning} icon="tabler-trophy" value={@trophy.label} label={@trophy.description} />
+    """
+  end
 
   attr :id, :string, required: true
   attr :color, :atom, default: :primary, values: [:primary, :warning, :alert, :gray, :bronze]

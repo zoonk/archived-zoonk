@@ -895,6 +895,27 @@ defmodule Uneebee.ContentTest do
 
       assert Gamification.count_user_medals(user.id) == 1
     end
+
+    test "awards a trophy if the course is completed" do
+      user = user_fixture()
+      lesson = lesson_fixture()
+      attrs = %{user_id: user.id, lesson_id: lesson.id, attempts: 1, correct: 4, total: 4}
+
+      assert {:ok, %UserLesson{}} = Content.add_user_lesson(attrs)
+
+      assert Gamification.count_user_trophies(user.id) == 1
+    end
+
+    test "doesn't award a trophy if the course is not completed" do
+      user = user_fixture()
+      course = course_fixture()
+      lessons = Enum.map(1..3, fn _idx -> lesson_fixture(%{course_id: course.id}) end)
+      attrs = %{user_id: user.id, lesson_id: Enum.at(lessons, 0).id, attempts: 1, correct: 3, total: 4}
+
+      assert {:ok, %UserLesson{}} = Content.add_user_lesson(attrs)
+
+      assert Gamification.count_user_trophies(user.id) == 0
+    end
   end
 
   describe "update_user_lesson/2" do

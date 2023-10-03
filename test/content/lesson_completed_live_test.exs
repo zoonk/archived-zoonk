@@ -5,6 +5,9 @@ defmodule UneebeeWeb.LessonCompletedLiveTest do
   import Uneebee.Fixtures.Content
 
   alias Uneebee.Content
+  alias Uneebee.Gamification
+  alias Uneebee.Gamification.UserTrophy
+  alias Uneebee.Repo
 
   describe "completed view (non-authenticated user)" do
     setup :set_school
@@ -84,6 +87,46 @@ defmodule UneebeeWeb.LessonCompletedLiveTest do
       {:ok, lv, _html} = live(conn, ~p"/c/#{course.slug}/#{lesson.id}/completed")
 
       refute has_element?(lv, "#medal-badge")
+    end
+
+    test "display a trophy for completing a course", %{conn: conn, course: course, user: user} do
+      lesson = lesson_fixture(%{course_id: course.id})
+      Content.add_user_lesson(%{user_id: user.id, lesson_id: lesson.id, attempts: 1, correct: 7, total: 10})
+
+      {:ok, lv, _html} = live(conn, ~p"/c/#{course.slug}/#{lesson.id}/completed")
+
+      assert has_element?(lv, "#trophy-badge")
+      assert has_element?(lv, ~s|span:fl-icontains("You completed a course.")|)
+    end
+
+    test "doesn't display a trophy if the course wasn't completed", %{conn: conn, course: course, user: user} do
+      lesson = lesson_fixture(%{course_id: course.id})
+      lesson_fixture(%{course_id: course.id})
+      Content.add_user_lesson(%{user_id: user.id, lesson_id: lesson.id, attempts: 1, correct: 7, total: 10})
+
+      {:ok, lv, _html} = live(conn, ~p"/c/#{course.slug}/#{lesson.id}/completed")
+
+      refute has_element?(lv, "#trophy-badge")
+    end
+
+    test "doesn't display a trophy when completed more than 3 minutes ago", %{conn: conn, school: school, user: user} do
+      course = course_fixture(%{school_id: school.id})
+      course_user_fixture(%{course: course, user: user})
+      lesson = lesson_fixture(%{course_id: course.id})
+      lesson_fixture(%{course: course})
+
+      Content.add_user_lesson(%{user_id: user.id, lesson_id: lesson.id, attempts: 1, correct: 7, total: 10})
+
+      now = DateTime.utc_now()
+      updated_at = DateTime.add(now, -4, :minute)
+
+      Repo.insert(%UserTrophy{user_id: user.id, course_id: course.id, reason: :course_completed, updated_at: updated_at})
+
+      assert Gamification.count_user_trophies(user.id) == 1
+
+      {:ok, lv, _html} = live(conn, ~p"/c/#{course.slug}/#{lesson.id}/completed")
+
+      refute has_element?(lv, "#trophy-badge")
     end
   end
 end
