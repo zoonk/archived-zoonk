@@ -9,8 +9,8 @@ defmodule Uneebee.Gamification do
 
   alias Uneebee.Content
   alias Uneebee.Content.UserLesson
+  alias Uneebee.Gamification.MedalUtils
   alias Uneebee.Gamification.UserMedal
-  alias Uneebee.Gamification.UserMedalUtils
   alias Uneebee.Gamification.UserTrophy
   alias Uneebee.Repo
 
@@ -101,19 +101,19 @@ defmodule Uneebee.Gamification do
   @spec award_medal_for_lesson(map()) :: user_medal_changeset()
   def award_medal_for_lesson(%{user_id: user_id, lesson_id: lesson_id, perfect?: true, first_try?: true}) do
     reason = :perfect_lesson_first_try
-    medal = UserMedalUtils.medal_type(reason)
+    medal = MedalUtils.medal_type(reason)
     create_user_medal(%{user_id: user_id, lesson_id: lesson_id, medal: medal, reason: reason})
   end
 
   def award_medal_for_lesson(%{user_id: user_id, lesson_id: lesson_id, perfect?: true, first_try?: false}) do
     reason = :perfect_lesson_practiced
-    medal = UserMedalUtils.medal_type(reason)
+    medal = MedalUtils.medal_type(reason)
     create_user_medal(%{user_id: user_id, lesson_id: lesson_id, medal: medal, reason: reason})
   end
 
   def award_medal_for_lesson(%{user_id: user_id, lesson_id: lesson_id, perfect?: false, first_try?: true}) do
     reason = :lesson_completed_with_errors
-    medal = UserMedalUtils.medal_type(reason)
+    medal = MedalUtils.medal_type(reason)
     create_user_medal(%{user_id: user_id, lesson_id: lesson_id, medal: medal, reason: reason})
   end
 

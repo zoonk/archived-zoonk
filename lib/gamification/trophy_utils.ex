@@ -1,6 +1,6 @@
-defmodule Uneebee.Gamification.UserTrophyUtils do
+defmodule Uneebee.Gamification.TrophyUtils do
   @moduledoc """
-  UserTrophy configuration and utilities.
+  Trophy configuration and utilities.
   """
   import UneebeeWeb.Gettext
 

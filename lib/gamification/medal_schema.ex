@@ -11,13 +11,13 @@ defmodule Uneebee.Gamification.UserMedal do
 
   alias Uneebee.Accounts.User
   alias Uneebee.Content.Lesson
-  alias Uneebee.Gamification.UserMedalUtils
+  alias Uneebee.Gamification.MedalUtils
 
   @type t :: %__MODULE__{}
 
   schema "user_medals" do
     field :medal, Ecto.Enum, values: [:bronze, :silver, :gold]
-    field :reason, Ecto.Enum, values: UserMedalUtils.medal_keys()
+    field :reason, Ecto.Enum, values: MedalUtils.medal_keys()
 
     belongs_to :lesson, Lesson
     belongs_to :user, User

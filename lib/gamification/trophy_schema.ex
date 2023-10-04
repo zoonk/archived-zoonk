@@ -10,12 +10,12 @@ defmodule Uneebee.Gamification.UserTrophy do
 
   alias Uneebee.Accounts.User
   alias Uneebee.Content.Course
-  alias Uneebee.Gamification.UserTrophyUtils
+  alias Uneebee.Gamification.TrophyUtils
 
   @type t :: %__MODULE__{}
 
   schema "user_trophies" do
-    field :reason, Ecto.Enum, values: UserTrophyUtils.trophy_keys()
+    field :reason, Ecto.Enum, values: TrophyUtils.trophy_keys()
 
     belongs_to :course, Course
     belongs_to :user, User
