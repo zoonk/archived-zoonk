@@ -2,10 +2,9 @@ defmodule UneebeeWeb.Live.Dashboard.CourseUserList do
   @moduledoc false
   use UneebeeWeb, :live_view
 
-  import UneebeeWeb.Shared.Accounts
-
   alias Uneebee.Accounts
   alias Uneebee.Accounts.User
+  alias Uneebee.Accounts.UserUtils
   alias Uneebee.Content
 
   @impl Phoenix.LiveView

@@ -2,10 +2,8 @@ defmodule UneebeeWeb.Live.Dashboard.CourseStudentView do
   @moduledoc false
   use UneebeeWeb, :live_view
 
-  import UneebeeWeb.Shared.Accounts
-  import UneebeeWeb.Shared.Age
-
   alias Uneebee.Accounts
+  alias Uneebee.Accounts.UserUtils
   alias Uneebee.Content
   alias Uneebee.Content.CourseUtils
 
@@ -14,7 +12,7 @@ defmodule UneebeeWeb.Live.Dashboard.CourseStudentView do
     %{course: course} = socket.assigns
 
     student = Accounts.get_user_by_username(params["username"])
-    full_name = "#{student.first_name} #{student.last_name}"
+    full_name = UserUtils.full_name(student)
 
     lessons = Content.list_published_lessons(course, student, selections?: true)
 

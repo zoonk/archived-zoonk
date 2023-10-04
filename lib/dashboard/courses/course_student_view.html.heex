@@ -1,11 +1,9 @@
 <header class="bg-gray-light3x flex gap-2 rounded-2xl p-4">
   <% score = CourseUtils.course_score(@lessons) %>
-  <.avatar src={@student.avatar} alt={get_avatar_label(@student)} />
+  <.avatar src={@student.avatar} alt={UserUtils.full_name(@student)} />
 
   <div class="w-full">
-    <h1 class="text-gray-dark2x font-semibold">
-      <%= @student.first_name %> <%= @student.last_name %>, <%= age(@student.date_of_birth) %>
-    </h1>
+    <h1 class="text-gray-dark2x font-semibold"><%= UserUtils.full_name(@student) %></h1>
 
     <h2 class="flex-1 text-xs font-light">@<%= @student.username %> - <%= @student.email %></h2>
 

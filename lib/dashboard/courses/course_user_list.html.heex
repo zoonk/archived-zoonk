@@ -10,11 +10,11 @@
     id={dom_id}
     class="text-gray-dark2x card flex h-full gap-2 bg-white p-4"
   >
-    <.avatar src={course_user.user.avatar} alt={get_avatar_label(course_user.user)} />
+    <.avatar src={course_user.user.avatar} alt={UserUtils.full_name(course_user.user)} />
 
     <header class="w-full">
       <dt class="flex items-center justify-between font-semibold">
-        <span class="truncate"><%= course_user.user.first_name %> <%= course_user.user.last_name %></span>
+        <span class="truncate"><%= UserUtils.full_name(course_user.user) %></span>
 
         <span
           :if={not course_user.approved?}

@@ -58,16 +58,12 @@ defmodule UneebeeWeb.DashboardCourseStudentViewLiveTest do
   end
 
   defp assert_page_render(conn, course) do
-    today = Date.utc_today()
-    age = 20
-    {:ok, date_of_birth} = Date.new(today.year - age, today.month, today.day)
-
-    user = user_fixture(%{date_of_birth: date_of_birth})
+    user = user_fixture()
     [lesson1, lesson2] = setup_data(user, course)
 
     {:ok, lv, _html} = live(conn, "/dashboard/c/#{course.slug}/s/#{user.username}")
 
-    assert has_element?(lv, ~s|h1:fl-contains("#{user.first_name} #{user.last_name}, #{age}")|)
+    assert has_element?(lv, ~s|h1:fl-contains("#{user.username}")|)
     assert has_element?(lv, ~s|h2:fl-contains("@#{user.username} - #{user.email}")|)
 
     assert_lesson_render(lv)
