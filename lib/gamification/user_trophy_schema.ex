@@ -7,15 +7,15 @@ defmodule Uneebee.Gamification.UserTrophy do
   use Ecto.Schema
 
   import Ecto.Changeset
-  import Uneebee.Gamification.UserTrophy.Config
 
   alias Uneebee.Accounts.User
   alias Uneebee.Content.Course
+  alias Uneebee.Gamification.UserTrophyUtils
 
   @type t :: %__MODULE__{}
 
   schema "user_trophies" do
-    field :reason, Ecto.Enum, values: trophy_keys()
+    field :reason, Ecto.Enum, values: UserTrophyUtils.trophy_keys()
 
     belongs_to :course, Course
     belongs_to :user, User

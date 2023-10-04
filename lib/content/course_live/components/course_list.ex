@@ -4,7 +4,7 @@ defmodule UneebeeWeb.Components.Content.CourseList do
   @moduledoc false
   use UneebeeWeb, :html
 
-  import Uneebee.Content.Course.Config
+  alias Uneebee.Content.CourseUtils
 
   attr :id, :string, required: true
   attr :title, :string, default: nil
@@ -35,7 +35,7 @@ defmodule UneebeeWeb.Components.Content.CourseList do
             </div>
 
             <div>
-              <.badge icon="tabler-chart-arrows-vertical" class="mt-4"><%= level_label(course.level) %></.badge>
+              <.badge icon="tabler-chart-arrows-vertical" class="mt-4"><%= CourseUtils.level_label(course.level) %></.badge>
 
               <.badge :if={course.published? and course.public? and not @my_courses} icon="tabler-user" color={:black_light}>
                 <%= course_data.student_count %>

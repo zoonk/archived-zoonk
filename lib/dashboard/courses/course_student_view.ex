@@ -2,12 +2,12 @@ defmodule UneebeeWeb.Live.Dashboard.CourseStudentView do
   @moduledoc false
   use UneebeeWeb, :live_view
 
-  import Uneebee.Content.Course.Config
   import UneebeeWeb.Shared.Accounts
   import UneebeeWeb.Shared.Age
 
   alias Uneebee.Accounts
   alias Uneebee.Content
+  alias Uneebee.Content.CourseUtils
 
   @impl Phoenix.LiveView
   def mount(params, _session, socket) do

@@ -1,5 +1,5 @@
 <header class="bg-gray-light3x flex gap-2 rounded-2xl p-4">
-  <% score = course_score(@lessons) %>
+  <% score = CourseUtils.course_score(@lessons) %>
   <.avatar src={@student.avatar} alt={get_avatar_label(@student)} />
 
   <div class="w-full">
@@ -10,8 +10,11 @@
     <h2 class="flex-1 text-xs font-light">@<%= @student.username %> - <%= @student.email %></h2>
 
     <div class="mt-4">
-      <.badge icon="tabler-progress" color={:success_light}><%= course_progress(@lessons, @student) %>%</.badge>
-      <.badge :if={score} icon="tabler-check" color={score_color(score)}><%= score %></.badge>
+      <.badge icon="tabler-progress" color={:success_light}>
+        <%= CourseUtils.course_progress(@lessons, @student) %>%
+      </.badge>
+
+      <.badge :if={score} icon="tabler-check" color={CourseUtils.score_color(score)}><%= score %></.badge>
     </div>
   </div>
 </header>
@@ -22,14 +25,14 @@
     id={"lessons-#{lesson.id}"}
     class="group text-gray-dark card-with-link w-full min-w-0 cursor-pointer bg-white p-4 text-sm"
   >
-    <% score = lesson_score(@student, lesson.user_lessons) %>
+    <% score = CourseUtils.lesson_score(@student, lesson.user_lessons) %>
 
     <summary class="flex gap-2 font-semibold">
       <.icon name="tabler-chevrons-down" class="group-open:hidden" />
       <.icon name="tabler-chevrons-up" class="hidden group-open:inline" />
 
       <h3 class="flex-1 truncate"><%= lesson.name %></h3>
-      <.badge :if={score} icon="tabler-check" color={score_color(score)}><%= score %></.badge>
+      <.badge :if={score} icon="tabler-check" color={CourseUtils.score_color(score)}><%= score %></.badge>
     </summary>
 
     <div :for={selection <- lesson.user_selections} class="mt-4">

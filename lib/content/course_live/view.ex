@@ -2,9 +2,8 @@ defmodule UneebeeWeb.Live.Content.Course.View do
   @moduledoc false
   use UneebeeWeb, :live_view
 
-  import Uneebee.Content.Course.Config
-
   alias Uneebee.Content
+  alias Uneebee.Content.CourseUtils
 
   @impl Phoenix.LiveView
   def mount(_params, _session, socket) do

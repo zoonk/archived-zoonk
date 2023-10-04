@@ -1,6 +1,6 @@
-defmodule Uneebee.Gamification.UserMedal.Config do
+defmodule Uneebee.Gamification.UserMedalUtils do
   @moduledoc """
-  UserMedal configuration.
+  UserMedal configuration and utilities.
   """
   import UneebeeWeb.Gettext
 

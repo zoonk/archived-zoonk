@@ -2,12 +2,12 @@ defmodule UneebeeWeb.Live.Content.Course.LessonCompleted do
   @moduledoc false
   use UneebeeWeb, :live_view
 
-  import Uneebee.Gamification.UserMedal.Config
-  import Uneebee.Gamification.UserTrophy.Config
+  import Uneebee.Gamification.UserTrophyUtils
 
   alias Uneebee.Content
   alias Uneebee.Content.UserLesson
   alias Uneebee.Gamification
+  alias Uneebee.Gamification.UserMedalUtils
   alias Uneebee.Gamification.UserTrophy
 
   @impl Phoenix.LiveView
@@ -48,12 +48,12 @@ defmodule UneebeeWeb.Live.Content.Course.LessonCompleted do
   defp win?(score), do: score >= 6.0
 
   defp get_medal(%UserLesson{attempts: 1, correct: correct, total: total}) when correct == total,
-    do: medal(:perfect_lesson_first_try)
+    do: UserMedalUtils.medal(:perfect_lesson_first_try)
 
-  defp get_medal(%UserLesson{attempts: 1}), do: medal(:lesson_completed_with_errors)
+  defp get_medal(%UserLesson{attempts: 1}), do: UserMedalUtils.medal(:lesson_completed_with_errors)
 
   defp get_medal(%UserLesson{correct: correct, total: total}) when correct == total,
-    do: medal(:perfect_lesson_practiced)
+    do: UserMedalUtils.medal(:perfect_lesson_practiced)
 
   defp get_medal(_user_lesson), do: nil
 

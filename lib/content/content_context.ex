@@ -3,13 +3,13 @@ defmodule Uneebee.Content do
   Content context.
   """
   import Ecto.Query, warn: false
-  import Uneebee.Content.Course.Config
 
   alias Uneebee.Accounts
   alias Uneebee.Accounts.User
   alias Uneebee.Content.Course
   alias Uneebee.Content.CourseData
   alias Uneebee.Content.CourseUser
+  alias Uneebee.Content.CourseUtils
   alias Uneebee.Content.Lesson
   alias Uneebee.Content.LessonStep
   alias Uneebee.Content.StepOption
@@ -863,7 +863,7 @@ defmodule Uneebee.Content do
   @spec course_completed?(User.t(), Course.t()) :: boolean()
   def course_completed?(%User{} = user, %Course{} = course) do
     lessons = list_published_lessons(course, user)
-    progress = course_progress(lessons, user)
+    progress = CourseUtils.course_progress(lessons, user)
     progress == 100
   end
 end

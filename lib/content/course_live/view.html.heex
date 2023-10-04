@@ -13,8 +13,10 @@
       <%= dgettext("courses", "Pending Approval") %>
     </.badge>
 
-    <.badge icon="tabler-chart-arrows-vertical" class="mt-4"><%= level_label(@course.level) %></.badge>
-    <.badge icon="tabler-progress" color={:success_light}><%= course_progress(@lessons, @current_user) %>%</.badge>
+    <.badge icon="tabler-chart-arrows-vertical" class="mt-4"><%= CourseUtils.level_label(@course.level) %></.badge>
+    <.badge icon="tabler-progress" color={:success_light}>
+      <%= CourseUtils.course_progress(@lessons, @current_user) %>%
+    </.badge>
     <.badge icon="tabler-user" color={:info_light}><%= @student_count %></.badge>
   </div>
 </header>
@@ -26,13 +28,13 @@
     class={[
       "text-gray-dark flex gap-2 border p-4 rounded-2xl",
       lesson_locked?(@course_user) && "cursor-not-allowed opacity-50",
-      lesson_completed?(@current_user, lesson.user_lessons) &&
+      CourseUtils.lesson_completed?(@current_user, lesson.user_lessons) &&
         "bg-success-light3x border-success-light2x hover:outline hover:outline-1 hover:outline-offset-2 hover:outline-success-light2x focus:outline-1 focus:outline-offset-4 focus:outline-success-light2x",
-      not lesson_completed?(@current_user, lesson.user_lessons) &&
+      not CourseUtils.lesson_completed?(@current_user, lesson.user_lessons) &&
         "bg-white card-with-link"
     ]}
   >
-    <% score = lesson_score(@current_user, lesson.user_lessons) %>
+    <% score = CourseUtils.lesson_score(@current_user, lesson.user_lessons) %>
 
     <.avatar
       src={lesson.cover}
@@ -45,7 +47,7 @@
       <dd class="text-gray text-sm"><%= lesson.description %></dd>
 
       <div class="mt-4">
-        <.badge :if={score} icon="tabler-check" color={score_color(score)}><%= score %></.badge>
+        <.badge :if={score} icon="tabler-check" color={CourseUtils.score_color(score)}><%= score %></.badge>
 
         <.badge :if={lesson_locked?(@course_user)} color={:black_light} icon="tabler-lock">
           <%= gettext("Locked") %>

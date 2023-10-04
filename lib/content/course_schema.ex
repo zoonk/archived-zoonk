@@ -7,8 +7,8 @@ defmodule Uneebee.Content.Course do
   import Ecto.Changeset
   import UneebeeWeb.Shared.Validators
 
-  alias Uneebee.Content.Course
   alias Uneebee.Content.CourseUser
+  alias Uneebee.Content.CourseUtils
   alias Uneebee.Content.Lesson
   alias Uneebee.Organizations.School
   alias UneebeeWeb.Plugs.Translate
@@ -19,7 +19,7 @@ defmodule Uneebee.Content.Course do
     field :cover, :string
     field :description, :string
     field :language, Ecto.Enum, values: Translate.supported_locales()
-    field :level, Ecto.Enum, values: Course.Config.level_keys(), default: :beginner
+    field :level, Ecto.Enum, values: CourseUtils.level_keys(), default: :beginner
     field :name, :string
     field :public?, :boolean, default: false
     field :published?, :boolean, default: false

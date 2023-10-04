@@ -1,4 +1,4 @@
-defmodule Uneebee.Content.Course.Config do
+defmodule Uneebee.Content.CourseUtils do
   @moduledoc """
   Reusable configuration and utilities for courses.
   """

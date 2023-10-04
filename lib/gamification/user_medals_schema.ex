@@ -8,16 +8,16 @@ defmodule Uneebee.Gamification.UserMedal do
   use Ecto.Schema
 
   import Ecto.Changeset
-  import Uneebee.Gamification.UserMedal.Config
 
   alias Uneebee.Accounts.User
   alias Uneebee.Content.Lesson
+  alias Uneebee.Gamification.UserMedalUtils
 
   @type t :: %__MODULE__{}
 
   schema "user_medals" do
     field :medal, Ecto.Enum, values: [:bronze, :silver, :gold]
-    field :reason, Ecto.Enum, values: medal_keys()
+    field :reason, Ecto.Enum, values: UserMedalUtils.medal_keys()
 
     belongs_to :lesson, Lesson
     belongs_to :user, User
