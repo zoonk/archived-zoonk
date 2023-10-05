@@ -7,6 +7,7 @@ defmodule Uneebee.Gamification do
   """
   import Ecto.Query, warn: false
 
+  alias Uneebee.Accounts.User
   alias Uneebee.Content
   alias Uneebee.Content.UserLesson
   alias Uneebee.Gamification.MedalUtils
@@ -242,6 +243,78 @@ defmodule Uneebee.Gamification do
   """
   @spec create_user_mission(map()) :: user_mission_changeset()
   def create_user_mission(attrs) do
-    %UserMission{} |> change_user_mission(attrs) |> Repo.insert()
+    changeset = change_user_mission(%UserMission{}, attrs)
+
+    Ecto.Multi.new()
+    |> Ecto.Multi.insert(:mission, changeset, on_conflict: :nothing)
+    |> Ecto.Multi.run(:prize, fn _repo, %{mission: mission} -> add_prize_for_mission(mission.id, attrs) end)
+    |> Repo.transaction()
+    |> case do
+      {:ok, %{mission: mission}} -> {:ok, mission}
+      {:error, _failed_operation, changeset, _changes_so_far} -> {:error, changeset}
+    end
+  end
+
+  defp add_prize_for_mission(mission_id, attrs) do
+    create_user_trophy(%{user_id: attrs.user_id, reason: :mission_completed, mission_id: mission_id})
+  end
+
+  @doc """
+  Delete a user mission.
+
+  ## Examples
+
+      iex> delete_user_mission(user_mission_id)
+      {:ok, %UserMission{}}
+  """
+  @spec delete_user_mission(integer()) :: user_mission_changeset()
+  def delete_user_mission(user_mission_id) do
+    UserMission |> Repo.get(user_mission_id) |> Repo.delete()
+  end
+
+  @doc """
+  Get a user mission by its reason and user id.
+
+  ## Examples
+
+      iex> get_user_mission(:profile_name, user_id)
+      %UserMission{}
+  """
+  @spec get_user_mission(atom(), integer()) :: UserMission.t() | nil
+  def get_user_mission(reason, user_id) do
+    UserMission |> where([um], um.user_id == ^user_id and um.reason == ^reason) |> Repo.one()
+  end
+
+  @doc """
+  Creates a user mission when a mission is completed.
+
+  ## Examples
+
+      iex> complete_user_mission(%User{}, :profile)
+      {:ok, %UserMission{}}
+  """
+  @spec complete_user_mission(User.t(), atom()) :: user_mission_changeset()
+  def complete_user_mission(%User{} = user, :profile) when is_binary(user.first_name) or is_binary(user.last_name) do
+    create_user_mission(%{user_id: user.id, reason: :profile_name})
+  end
+
+  def complete_user_mission(%User{} = user, :profile) do
+    complete_user_mission(user, :profile, get_user_mission(:profile_name, user.id))
+  end
+
+  defp complete_user_mission(_user, :profile, nil), do: {:ok, %UserMission{}}
+  defp complete_user_mission(_user, :profile, %UserMission{} = mission), do: delete_user_mission(mission.id)
+
+  @doc """
+  List all missions a user has completed.
+
+  ## Examples
+
+      iex> completed_missions(user_id)
+      [%UserMission{}]
+  """
+  @spec completed_missions(integer()) :: [UserMission.t()]
+  def completed_missions(user_id) do
+    UserMission |> where([um], um.user_id == ^user_id) |> order_by(desc: :inserted_at) |> Repo.all()
   end
 end

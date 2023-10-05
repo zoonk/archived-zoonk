@@ -228,10 +228,88 @@ defmodule Uneebee.GamificationTest do
     test "don't duplicate missions with the same user and reason" do
       user = user_fixture()
       attrs = %{user_id: user.id, reason: :profile_name}
+      mission = user_mission_fixture(%{user: user, reason: :profile_name})
+
+      assert {:ok, %UserMission{} = _mission} = Gamification.create_user_mission(attrs)
+      assert Gamification.completed_missions(user.id) == [mission]
+    end
+
+    test "earns a trophy when a user completes the profile_name mission" do
+      user = user_fixture()
+      attrs = %{user_id: user.id, reason: :profile_name}
+
+      assert Gamification.count_user_trophies(user.id) == 0
+      assert {:ok, %UserMission{} = _mission} = Gamification.create_user_mission(attrs)
+      assert Gamification.count_user_trophies(user.id) == 1
+    end
+  end
+
+  describe "delete_user_mission/1" do
+    test "deletes a user mission" do
+      user = user_fixture()
+      mission = user_mission_fixture(%{user: user, reason: :profile_name})
+
+      assert {:ok, %UserMission{} = _mission} = Gamification.delete_user_mission(mission.id)
+      assert Gamification.completed_missions(user.id) == []
+      assert Gamification.get_user_mission(:profile_name, user.id) == nil
+    end
+
+    test "deletes the trophy associated with this mission" do
+      user = user_fixture()
+      mission = user_mission_fixture(%{user: user, reason: :profile_name})
+
+      assert Gamification.count_user_trophies(user.id) == 1
+      assert {:ok, %UserMission{} = _mission} = Gamification.delete_user_mission(mission.id)
+      assert Gamification.count_user_trophies(user.id) == 0
+    end
+  end
+
+  describe "get_user_mission/2" do
+    test "returns a mission if the user has completed it" do
+      user = user_fixture()
+      mission = user_mission_fixture(%{user: user, reason: :profile_name})
+
+      assert Gamification.get_user_mission(:profile_name, user.id) == mission
+    end
+
+    test "returns nil if the user hasn't completed it" do
+      user = user_fixture()
       user_mission_fixture(%{user: user, reason: :profile_name})
 
-      assert {:error, %Ecto.Changeset{} = changeset} = Gamification.create_user_mission(attrs)
-      assert "has already been taken" in errors_on(changeset).reason
+      assert Gamification.get_user_mission(:lesson_first, user.id) == nil
+    end
+  end
+
+  describe "completed_missions/1" do
+    test "returns a list of completed missions for a given user" do
+      user = user_fixture()
+      mission1 = user_mission_fixture(%{user: user, reason: :profile_name})
+      mission2 = user_mission_fixture(%{user: user, reason: :lesson_first})
+
+      assert Gamification.completed_missions(user.id) == [mission2, mission1]
+    end
+  end
+
+  describe "complete_user_mission/2" do
+    test "creates a mission when the first name exists" do
+      user = user_fixture(%{first_name: "Albert", last_name: nil})
+      assert {:ok, %UserMission{} = mission} = Gamification.complete_user_mission(user, :profile)
+      assert Gamification.completed_missions(user.id) == [mission]
+    end
+
+    test "creates a mission when the last name exists" do
+      user = user_fixture(%{first_name: nil, last_name: "Einstein"})
+      assert {:ok, %UserMission{} = mission} = Gamification.complete_user_mission(user, :profile)
+      assert Gamification.completed_missions(user.id) == [mission]
+    end
+
+    test "deletes a mission when neither the first name nor the last exist" do
+      user = user_fixture(%{first_name: nil, last_name: nil})
+      user_mission_fixture(%{user: user, reason: :profile_name})
+
+      assert {:ok, %UserMission{} = _mission} = Gamification.complete_user_mission(user, :profile)
+      assert Gamification.completed_missions(user.id) == []
+      assert Gamification.get_user_mission(:profile_name, user.id) == nil
     end
   end
 end

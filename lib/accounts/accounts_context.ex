@@ -8,6 +8,7 @@ defmodule Uneebee.Accounts do
   alias Uneebee.Accounts.User
   alias Uneebee.Accounts.UserNotifier
   alias Uneebee.Accounts.UserToken
+  alias Uneebee.Gamification
   alias Uneebee.Repo
 
   @type user_changeset :: {:ok, User.t()} | {:error, Ecto.Changeset.t()}
@@ -190,8 +191,17 @@ defmodule Uneebee.Accounts do
 
   """
   @spec update_user_settings(User.t(), map()) :: user_changeset
-  def update_user_settings(user, attrs \\ %{}) do
-    user |> User.settings_changeset(attrs) |> Repo.update()
+  def update_user_settings(%User{} = user, attrs \\ %{}) do
+    changeset = change_user_settings(user, attrs)
+
+    Ecto.Multi.new()
+    |> Ecto.Multi.update(:user, changeset)
+    |> Ecto.Multi.run(:mission, fn _repo, %{user: user} -> Gamification.complete_user_mission(user, :profile) end)
+    |> Repo.transaction()
+    |> case do
+      {:ok, %{user: user}} -> {:ok, user}
+      {:error, :user, changeset, _error} -> {:error, changeset}
+    end
   end
 
   @doc """

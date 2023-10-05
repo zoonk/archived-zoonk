@@ -3,8 +3,10 @@ defmodule UneebeeWeb.UserSettingsLiveTest do
 
   import Phoenix.LiveViewTest
   import Uneebee.Fixtures.Accounts
+  import Uneebee.Fixtures.Gamification
 
   alias Uneebee.Accounts
+  alias Uneebee.Gamification
 
   @settings_form "#settings-form"
   @email_form "#email-form"
@@ -79,6 +81,50 @@ defmodule UneebeeWeb.UserSettingsLiveTest do
 
       assert user.first_name == new_first_name
       assert user.last_name == new_last_name
+    end
+
+    test "completes a mission when the first name is added", %{conn: conn, user: user} do
+      Accounts.update_user_settings(user, %{first_name: nil, last_name: nil})
+
+      assert Gamification.get_user_mission(:profile_name, user.id) == nil
+
+      {:ok, lv, _html} = live(conn, ~p"/users/settings/name")
+
+      new_first_name = "New first name"
+
+      assert lv
+             |> form(@settings_form, user: %{first_name: new_first_name, last_name: nil})
+             |> render_submit() =~ "Settings updated successfully"
+
+      assert Gamification.get_user_mission(:profile_name, user.id) != nil
+    end
+
+    test "completes a mission when the last name is added", %{conn: conn, user: user} do
+      Accounts.update_user_settings(user, %{first_name: nil, last_name: nil})
+
+      assert Gamification.get_user_mission(:profile_name, user.id) == nil
+
+      {:ok, lv, _html} = live(conn, ~p"/users/settings/name")
+
+      new_last_name = "New last name"
+
+      assert lv
+             |> form(@settings_form, user: %{first_name: nil, last_name: new_last_name})
+             |> render_submit() =~ "Settings updated successfully"
+
+      assert Gamification.get_user_mission(:profile_name, user.id) != nil
+    end
+
+    test "removes a mission if both the first and last name are removed", %{conn: conn, user: user} do
+      user_mission_fixture(%{user: user, reason: :profile_name})
+
+      {:ok, lv, _html} = live(conn, ~p"/users/settings/name")
+
+      assert lv
+             |> form(@settings_form, user: %{first_name: nil, last_name: nil})
+             |> render_submit() =~ "Settings updated successfully"
+
+      assert Gamification.get_user_mission(:profile_name, user.id) == nil
     end
   end
 

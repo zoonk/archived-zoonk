@@ -18,6 +18,11 @@ defmodule Uneebee.Gamification.TrophyUtils do
         key: :course_completed,
         label: dgettext("gamification", "Course completed"),
         description: dgettext("gamification", "You completed a course.")
+      },
+      %Trophy{
+        key: :mission_completed,
+        label: dgettext("gamification", "Mission completed"),
+        description: dgettext("gamification", "You completed a mission.")
       }
     ]
   end
