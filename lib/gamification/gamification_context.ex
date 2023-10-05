@@ -11,10 +11,12 @@ defmodule Uneebee.Gamification do
   alias Uneebee.Content.UserLesson
   alias Uneebee.Gamification.MedalUtils
   alias Uneebee.Gamification.UserMedal
+  alias Uneebee.Gamification.UserMission
   alias Uneebee.Gamification.UserTrophy
   alias Uneebee.Repo
 
   @type user_medal_changeset :: {:ok, UserMedal.t()} | {:error, Ecto.Changeset.t()}
+  @type user_mission_changeset :: {:ok, UserMission.t()} | {:error, Ecto.Changeset.t()}
   @type user_trophy_changeset :: {:ok, UserTrophy.t()} | {:error, Ecto.Changeset.t()}
 
   @doc """
@@ -215,5 +217,31 @@ defmodule Uneebee.Gamification do
     UserTrophy
     |> where([ut], ut.user_id == ^user_id and ut.reason == :course_completed and ut.course_id == ^course_id)
     |> Repo.one()
+  end
+
+  @doc """
+  Returns an `%Ecto.Changeset{}` for tracking user mission changes.
+
+  ## Examples
+
+      iex> change_user_mission(%UserMission{})
+      %Ecto.Changeset{data: %UserMission{}}
+  """
+  @spec change_user_mission(UserMission.t(), map()) :: Ecto.Changeset.t()
+  def change_user_mission(user_mission, attrs) do
+    UserMission.changeset(user_mission, attrs)
+  end
+
+  @doc """
+  Creates a user mission.
+
+  ## Examples
+
+      iex> create_user_mission(%{field: value})
+      {:ok, %UserMission{}}
+  """
+  @spec create_user_mission(map()) :: user_mission_changeset()
+  def create_user_mission(attrs) do
+    %UserMission{} |> change_user_mission(attrs) |> Repo.insert()
   end
 end

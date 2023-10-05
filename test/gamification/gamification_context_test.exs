@@ -7,6 +7,7 @@ defmodule Uneebee.GamificationTest do
 
   alias Uneebee.Gamification
   alias Uneebee.Gamification.UserMedal
+  alias Uneebee.Gamification.UserMission
   alias Uneebee.Gamification.UserTrophy
 
   describe "learning_days_count/1" do
@@ -179,6 +180,58 @@ defmodule Uneebee.GamificationTest do
       user_trophy_fixture(%{user: user, course: other_course, reason: :course_completed})
 
       assert Gamification.get_course_completed_trophy(user.id, course.id) == nil
+    end
+  end
+
+  describe "change_user_mission/2" do
+    test "returns an `%Ecto.Changeset{}` for tracking user mission changes" do
+      user = user_fixture()
+      attrs = %{user_id: user.id, reason: :profile_name}
+
+      assert %Ecto.Changeset{} = Gamification.change_user_mission(%UserMission{}, attrs)
+    end
+
+    test "returns an error if the reason is missing" do
+      user = user_fixture()
+      attrs = %{user_id: user.id}
+
+      changeset = Gamification.change_user_mission(%UserMission{}, attrs)
+      assert "can't be blank" in errors_on(changeset).reason
+    end
+
+    test "returns an error if the user_id is missing" do
+      attrs = %{reason: :profile_name}
+
+      changeset = Gamification.change_user_mission(%UserMission{}, attrs)
+      assert "can't be blank" in errors_on(changeset).user_id
+    end
+  end
+
+  describe "create_user_mission/1" do
+    test "creates a user mission" do
+      user = user_fixture()
+      attrs = %{user_id: user.id, reason: :profile_name}
+
+      assert {:ok, %UserMission{} = user_mission} = Gamification.create_user_mission(attrs)
+      assert user_mission.user_id == attrs.user_id
+      assert user_mission.reason == attrs.reason
+    end
+
+    test "returns an error if the reason is missing" do
+      user = user_fixture()
+      attrs = %{user_id: user.id}
+
+      assert {:error, %Ecto.Changeset{} = changeset} = Gamification.create_user_mission(attrs)
+      assert "can't be blank" in errors_on(changeset).reason
+    end
+
+    test "don't duplicate missions with the same user and reason" do
+      user = user_fixture()
+      attrs = %{user_id: user.id, reason: :profile_name}
+      user_mission_fixture(%{user: user, reason: :profile_name})
+
+      assert {:error, %Ecto.Changeset{} = changeset} = Gamification.create_user_mission(attrs)
+      assert "has already been taken" in errors_on(changeset).reason
     end
   end
 end
