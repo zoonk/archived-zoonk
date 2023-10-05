@@ -5,7 +5,6 @@ defmodule UneebeeWeb.LessonCompletedLiveTest do
   import Uneebee.Fixtures.Content
 
   alias Uneebee.Content
-  alias Uneebee.Gamification
   alias Uneebee.Gamification.UserTrophy
   alias Uneebee.Repo
 
@@ -121,8 +120,6 @@ defmodule UneebeeWeb.LessonCompletedLiveTest do
       updated_at = DateTime.add(now, -4, :minute)
 
       Repo.insert(%UserTrophy{user_id: user.id, course_id: course.id, reason: :course_completed, updated_at: updated_at})
-
-      assert Gamification.count_user_trophies(user.id) == 1
 
       {:ok, lv, _html} = live(conn, ~p"/c/#{course.slug}/#{lesson.id}/completed")
 

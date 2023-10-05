@@ -789,7 +789,13 @@ defmodule Uneebee.Content do
   defp add_awards_after_lesson({:ok, user_lesson} = attrs) do
     user = Accounts.get_user!(user_lesson.user_id)
     lesson = Lesson |> Repo.get!(user_lesson.lesson_id) |> Repo.preload(:course)
-    {:ok, _user_trophy} = Gamification.maybe_award_trophy(%{user: user, course: lesson.course})
+    lesson_count = count_user_lessons(user.id)
+
+    Repo.transaction(fn ->
+      Gamification.maybe_award_trophy(%{user: user, course: lesson.course})
+      Gamification.complete_lesson_mission(user, lesson_count)
+    end)
+
     attrs
   end
 

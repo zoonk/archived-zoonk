@@ -902,8 +902,7 @@ defmodule Uneebee.ContentTest do
       attrs = %{user_id: user.id, lesson_id: lesson.id, attempts: 1, correct: 4, total: 4}
 
       assert {:ok, %UserLesson{}} = Content.add_user_lesson(attrs)
-
-      assert Gamification.count_user_trophies(user.id) == 1
+      assert Gamification.get_course_completed_trophy(user.id, lesson.course_id) != nil
     end
 
     test "doesn't award a trophy if the course is not completed" do
@@ -913,8 +912,28 @@ defmodule Uneebee.ContentTest do
       attrs = %{user_id: user.id, lesson_id: Enum.at(lessons, 0).id, attempts: 1, correct: 3, total: 4}
 
       assert {:ok, %UserLesson{}} = Content.add_user_lesson(attrs)
+      assert Gamification.get_course_completed_trophy(user.id, course.id) == nil
+    end
 
-      assert Gamification.count_user_trophies(user.id) == 0
+    test "adds a mission when the first lesson is completed" do
+      user = user_fixture()
+      course = course_fixture()
+      lesson = lesson_fixture(%{course_id: course.id})
+      attrs = %{user_id: user.id, lesson_id: lesson.id, attempts: 1, correct: 3, total: 4}
+
+      assert {:ok, %UserLesson{}} = Content.add_user_lesson(attrs)
+      assert Gamification.get_user_mission(:lesson_first, user.id) != nil
+    end
+
+    test "adds a mission when 5 lessons are completed" do
+      user = user_fixture()
+      course = course_fixture()
+      generate_user_lesson(user.id, 0, number_of_lessons: 4)
+      lesson = lesson_fixture(%{course_id: course.id})
+      attrs = %{user_id: user.id, lesson_id: lesson.id, attempts: 1, correct: 3, total: 4}
+
+      assert {:ok, %UserLesson{}} = Content.add_user_lesson(attrs)
+      assert Gamification.get_user_mission(:lesson_5, user.id) != nil
     end
   end
 
