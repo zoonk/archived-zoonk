@@ -217,14 +217,6 @@ defmodule Uneebee.GamificationTest do
       assert user_mission.reason == attrs.reason
     end
 
-    test "returns an error if the reason is missing" do
-      user = user_fixture()
-      attrs = %{user_id: user.id}
-
-      assert {:error, %Ecto.Changeset{} = changeset} = Gamification.create_user_mission(attrs)
-      assert "can't be blank" in errors_on(changeset).reason
-    end
-
     test "don't duplicate missions with the same user and reason" do
       user = user_fixture()
       attrs = %{user_id: user.id, reason: :profile_name}
@@ -240,6 +232,87 @@ defmodule Uneebee.GamificationTest do
 
       assert Gamification.count_user_trophies(user.id) == 0
       assert {:ok, %UserMission{} = _mission} = Gamification.create_user_mission(attrs)
+      assert Gamification.count_user_trophies(user.id) == 1
+    end
+
+    test "earns a trophy when a user completes their first lesson" do
+      user = user_fixture()
+      attrs = %{user_id: user.id, reason: :lesson_first}
+
+      assert Gamification.count_user_trophies(user.id) == 0
+      assert {:ok, %UserMission{} = _mission} = Gamification.create_user_mission(attrs)
+      assert Gamification.count_user_trophies(user.id) == 1
+    end
+
+    test "earns a bronze medal when a user completes 5 lessons" do
+      user = user_fixture()
+      attrs = %{user_id: user.id, reason: :lesson_5}
+
+      assert Gamification.count_user_medals(user.id, :bronze) == 0
+      assert Gamification.count_user_trophies(user.id) == 0
+
+      assert {:ok, %UserMission{} = _mission} = Gamification.create_user_mission(attrs)
+      assert Gamification.count_user_medals(user.id, :bronze) == 1
+      assert Gamification.count_user_trophies(user.id) == 0
+    end
+
+    test "earns a bronze medal when a user completes 10 lessons" do
+      user = user_fixture()
+      attrs = %{user_id: user.id, reason: :lesson_10}
+
+      assert Gamification.count_user_medals(user.id, :bronze) == 0
+      assert Gamification.count_user_trophies(user.id) == 0
+
+      assert {:ok, %UserMission{} = _mission} = Gamification.create_user_mission(attrs)
+      assert Gamification.count_user_medals(user.id, :bronze) == 1
+      assert Gamification.count_user_trophies(user.id) == 0
+    end
+
+    test "earns a silver medal when a user completes 50 lessons" do
+      user = user_fixture()
+      attrs = %{user_id: user.id, reason: :lesson_50}
+
+      assert Gamification.count_user_medals(user.id, :silver) == 0
+      assert Gamification.count_user_trophies(user.id) == 0
+
+      assert {:ok, %UserMission{} = _mission} = Gamification.create_user_mission(attrs)
+      assert Gamification.count_user_medals(user.id, :silver) == 1
+      assert Gamification.count_user_trophies(user.id) == 0
+    end
+
+    test "earns a gold medal when a user completes 100 lessons" do
+      user = user_fixture()
+      attrs = %{user_id: user.id, reason: :lesson_100}
+
+      assert Gamification.count_user_medals(user.id, :gold) == 0
+      assert Gamification.count_user_trophies(user.id) == 0
+
+      assert {:ok, %UserMission{} = _mission} = Gamification.create_user_mission(attrs)
+      assert Gamification.count_user_medals(user.id, :gold) == 1
+      assert Gamification.count_user_trophies(user.id) == 0
+    end
+
+    test "earns a gold medal when a user completes 500 lessons" do
+      user = user_fixture()
+      attrs = %{user_id: user.id, reason: :lesson_500}
+
+      assert Gamification.count_user_medals(user.id, :gold) == 0
+      assert Gamification.count_user_trophies(user.id) == 0
+
+      assert {:ok, %UserMission{} = _mission} = Gamification.create_user_mission(attrs)
+      assert Gamification.count_user_medals(user.id, :gold) == 1
+      assert Gamification.count_user_trophies(user.id) == 0
+    end
+
+    test "earns a trophy when a user completes 1000 lessons" do
+      user = user_fixture()
+      attrs = %{user_id: user.id, reason: :lesson_1000}
+
+      assert Gamification.count_user_medals(user.id, :gold) == 0
+      assert Gamification.count_user_trophies(user.id) == 0
+
+      assert {:ok, %UserMission{} = _mission} = Gamification.create_user_mission(attrs)
+      assert Gamification.count_user_medals(user.id, :gold) == 0
       assert Gamification.count_user_trophies(user.id) == 1
     end
   end

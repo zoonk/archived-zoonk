@@ -12,6 +12,7 @@ defmodule Uneebee.Gamification.UserMedal do
   alias Uneebee.Accounts.User
   alias Uneebee.Content.Lesson
   alias Uneebee.Gamification.MedalUtils
+  alias Uneebee.Gamification.UserMission
 
   @type t :: %__MODULE__{}
 
@@ -20,6 +21,7 @@ defmodule Uneebee.Gamification.UserMedal do
     field :reason, Ecto.Enum, values: MedalUtils.medal_keys()
 
     belongs_to :lesson, Lesson
+    belongs_to :mission, UserMission
     belongs_to :user, User
 
     timestamps(type: :utc_datetime_usec)
@@ -29,7 +31,8 @@ defmodule Uneebee.Gamification.UserMedal do
   @spec changeset(Ecto.Schema.t(), map()) :: Ecto.Changeset.t()
   def changeset(user_medal, attrs) do
     user_medal
-    |> cast(attrs, [:medal, :reason, :lesson_id, :user_id])
+    |> cast(attrs, [:medal, :reason, :lesson_id, :mission_id, :user_id])
     |> validate_required([:medal, :reason, :user_id])
+    |> unique_constraint([:user_id, :mission_id])
   end
 end

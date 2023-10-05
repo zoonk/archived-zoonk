@@ -11,12 +11,12 @@
 msgid ""
 msgstr ""
 
-#: lib/content/course_live/view.ex:57
+#: lib/content/course_live/view.ex:56
 #, elixir-autogen, elixir-format
 msgid "A request to enroll has been sent to the course teacher."
 msgstr ""
 
-#: lib/content/course_config.ex:20
+#: lib/content/course_utils.ex:20
 #, elixir-autogen, elixir-format
 msgid "Advanced"
 msgstr ""
@@ -31,7 +31,7 @@ msgstr ""
 msgid "Back to the course"
 msgstr ""
 
-#: lib/content/course_config.ex:18
+#: lib/content/course_utils.ex:18
 #, elixir-autogen, elixir-format
 msgid "Beginner"
 msgstr ""
@@ -61,7 +61,7 @@ msgstr ""
 msgid "Delete lesson"
 msgstr ""
 
-#: lib/content/course_live/view.ex:56
+#: lib/content/course_live/view.ex:55
 #, elixir-autogen, elixir-format
 msgid "Enrolled successfully!"
 msgstr ""
@@ -71,12 +71,12 @@ msgstr ""
 msgid "Excellent!"
 msgstr ""
 
-#: lib/content/course_config.ex:21
+#: lib/content/course_utils.ex:21
 #, elixir-autogen, elixir-format
 msgid "Expert"
 msgstr ""
 
-#: lib/content/course_live/view.ex:42
+#: lib/content/course_live/view.ex:41
 #, elixir-autogen, elixir-format
 msgid "Failed to enroll"
 msgstr ""
@@ -101,7 +101,7 @@ msgstr ""
 msgid "Information"
 msgstr ""
 
-#: lib/content/course_config.ex:19
+#: lib/content/course_utils.ex:19
 #, elixir-autogen, elixir-format
 msgid "Intermediate"
 msgstr ""
@@ -181,7 +181,7 @@ msgstr ""
 msgid "Course page"
 msgstr ""
 
-#: lib/content/course_live/view.html.heex:39
+#: lib/content/course_live/view.html.heex:41
 #, elixir-autogen, elixir-format
 msgid "Lesson cover"
 msgstr ""

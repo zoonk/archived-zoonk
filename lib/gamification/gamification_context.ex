@@ -11,6 +11,7 @@ defmodule Uneebee.Gamification do
   alias Uneebee.Content
   alias Uneebee.Content.UserLesson
   alias Uneebee.Gamification.MedalUtils
+  alias Uneebee.Gamification.MissionUtils
   alias Uneebee.Gamification.UserMedal
   alias Uneebee.Gamification.UserMission
   alias Uneebee.Gamification.UserTrophy
@@ -244,10 +245,11 @@ defmodule Uneebee.Gamification do
   @spec create_user_mission(map()) :: user_mission_changeset()
   def create_user_mission(attrs) do
     changeset = change_user_mission(%UserMission{}, attrs)
+    prize = MissionUtils.mission(attrs.reason).prize
 
     Ecto.Multi.new()
     |> Ecto.Multi.insert(:mission, changeset, on_conflict: :nothing)
-    |> Ecto.Multi.run(:prize, fn _repo, %{mission: mission} -> add_prize_for_mission(mission.id, attrs) end)
+    |> Ecto.Multi.run(:prize, fn _repo, %{mission: mission} -> add_prize_for_mission(mission.id, attrs, prize) end)
     |> Repo.transaction()
     |> case do
       {:ok, %{mission: mission}} -> {:ok, mission}
@@ -255,8 +257,12 @@ defmodule Uneebee.Gamification do
     end
   end
 
-  defp add_prize_for_mission(mission_id, attrs) do
+  defp add_prize_for_mission(mission_id, attrs, :trophy) do
     create_user_trophy(%{user_id: attrs.user_id, reason: :mission_completed, mission_id: mission_id})
+  end
+
+  defp add_prize_for_mission(mission_id, attrs, medal) do
+    create_user_medal(%{user_id: attrs.user_id, reason: :mission_completed, mission_id: mission_id, medal: medal})
   end
 
   @doc """

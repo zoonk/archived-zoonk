@@ -31,6 +31,12 @@ defmodule Uneebee.Gamification.MedalUtils do
         medal: :bronze,
         label: dgettext("gamification", "Lesson completed"),
         description: dgettext("gamification", "You completed a lesson with some errors on your first try.")
+      },
+      %Medal{
+        key: :mission_completed,
+        medal: :dynamic,
+        label: dgettext("gamification", "Mission completed"),
+        description: dgettext("gamification", "You completed a mission.")
       }
     ]
   end

@@ -37,16 +37,16 @@ defmodule Uneebee.Gamification.MissionUtils do
       %Mission{
         key: :lesson_5,
         prize: :bronze,
-        label: dgettext("gamification", "5 lessons"),
-        description: dgettext("gamification", "Complete 5 lessons."),
-        success_message: dgettext("gamification", "You completed 5 lessons.")
+        label: dgettext("gamification", "%{count} lessons", count: 5),
+        description: dgettext("gamification", "Complete %{count} lessons.", count: 5),
+        success_message: dgettext("gamification", "You completed %{count} lessons.", count: 5)
       },
       %Mission{
         key: :lesson_10,
         prize: :bronze,
-        label: dgettext("gamification", "10 lessons"),
-        description: dgettext("gamification", "Complete 10 lessons."),
-        success_message: dgettext("gamification", "You completed 10 lessons.")
+        label: dgettext("gamification", "%{count} lessons", count: 10),
+        description: dgettext("gamification", "Complete %{count} lessons.", count: 10),
+        success_message: dgettext("gamification", "You completed %{count} lessons.", count: 10)
       },
       %Mission{
         key: :course_first,
@@ -66,74 +66,74 @@ defmodule Uneebee.Gamification.MissionUtils do
         key: :course_2,
         prize: :trophy,
         label: dgettext("gamification", "Second course"),
-        description: dgettext("gamification", "Complete 2 courses."),
-        success_message: dgettext("gamification", "You completed 2 courses.")
+        description: dgettext("gamification", "Complete %{count} courses.", count: 2),
+        success_message: dgettext("gamification", "You completed %{count} courses.", count: 2)
       },
       %Mission{
         key: :lesson_50,
         prize: :silver,
-        label: dgettext("gamification", "50 lessons"),
-        description: dgettext("gamification", "Complete 50 lessons."),
-        success_message: dgettext("gamification", "You completed 50 lessons.")
+        label: dgettext("gamification", "%{count} lessons", count: 50),
+        description: dgettext("gamification", "Complete %{count} lessons.", count: 50),
+        success_message: dgettext("gamification", "You completed %{count} lessons.", count: 50)
       },
       %Mission{
         key: :lesson_100,
         prize: :gold,
-        label: dgettext("gamification", "100 lessons"),
-        description: dgettext("gamification", "Complete 100 lessons."),
-        success_message: dgettext("gamification", "You completed 100 lessons.")
+        label: dgettext("gamification", "%{count} lessons", count: 100),
+        description: dgettext("gamification", "Complete %{count} lessons.", count: 100),
+        success_message: dgettext("gamification", "You completed %{count} lessons.", count: 100)
       },
       %Mission{
         key: :lesson_500,
         prize: :gold,
-        label: dgettext("gamification", "500 lessons"),
-        description: dgettext("gamification", "Complete 500 lessons."),
-        success_message: dgettext("gamification", "You completed 500 lessons.")
+        label: dgettext("gamification", "%{count} lessons", count: 500),
+        description: dgettext("gamification", "Complete %{count} lessons.", count: 500),
+        success_message: dgettext("gamification", "You completed %{count} lessons.", count: 500)
       },
       %Mission{
         key: :lesson_1000,
         prize: :trophy,
-        label: dgettext("gamification", "1000 lessons"),
-        description: dgettext("gamification", "Complete 1000 lessons."),
-        success_message: dgettext("gamification", "You completed 1000 lessons.")
+        label: dgettext("gamification", "%{count} lessons", count: 1000),
+        description: dgettext("gamification", "Complete %{count} lessons.", count: 1000),
+        success_message: dgettext("gamification", "You completed %{count} lessons.", count: 1000)
       },
       %Mission{
         key: :lesson_without_error_10,
         prize: :bronze,
-        label: dgettext("gamification", "10 perfect lessons"),
-        description: dgettext("gamification", "Complete 10 lessons without errors.")
+        label: dgettext("gamification", "%{count} perfect lessons", count: 10),
+        description: dgettext("gamification", "Complete %{count} lessons without errors.", count: 10)
       },
       %Mission{
         key: :lesson_without_error_50,
         prize: :silver,
-        label: dgettext("gamification", "50 perfect lessons"),
-        description: dgettext("gamification", "Complete 50 lessons without errors.")
+        label: dgettext("gamification", "%{count} perfect lessons", count: 50),
+        description: dgettext("gamification", "Complete %{count} lessons without errors.", count: 50)
       },
       %Mission{
         key: :lesson_without_error_100,
         prize: :gold,
-        label: dgettext("gamification", "100 perfect lessons"),
-        description: dgettext("gamification", "Complete 100 lessons without errors.")
+        label: dgettext("gamification", "%{count} perfect lessons", count: 100),
+        description: dgettext("gamification", "Complete %{count} lessons without errors.", count: 100)
       },
       %Mission{
         key: :lesson_without_error_500,
         prize: :trophy,
-        label: dgettext("gamification", "500 perfect lessons"),
-        description: dgettext("gamification", "Complete 500 lessons without errors.")
+        label: dgettext("gamification", "%{count} perfect lessons", count: 500),
+        description: dgettext("gamification", "Complete %{count} lessons without errors.", count: 500)
       },
       %Mission{
         key: :course_5,
         prize: :trophy,
-        label: dgettext("gamification", "5 courses"),
-        description: dgettext("gamification", "Complete 5 courses."),
-        success_message: dgettext("gamification", "You completed 5 courses.")
+        label: dgettext("gamification", "%{count} courses", count: 5),
+        description: dgettext("gamification", "Complete %{count} courses.", count: 5),
+        success_message: dgettext("gamification", "You completed %{count} courses.", count: 5)
       },
       %Mission{
         key: :course_10,
         prize: :trophy,
-        label: dgettext("gamification", "10 courses"),
-        description: dgettext("gamification", "Complete 10 courses."),
-        success_message: dgettext("gamification", "You completed 10 courses.")
+        label: dgettext("gamification", "%{count} courses", count: 10),
+        description: dgettext("gamification", "Complete %{count} courses.", count: 10),
+        success_message: dgettext("gamification", "You completed %{count} courses.", count: 10)
       }
     ]
   end
@@ -149,8 +149,8 @@ defmodule Uneebee.Gamification.MissionUtils do
   @doc """
   Get a mission by its key.
   """
-  @spec get_mission(atom()) :: Mission.t()
-  def get_mission(key) do
+  @spec mission(atom()) :: Mission.t()
+  def mission(key) do
     Enum.find(supported_missions(), fn mission -> mission.key == key end)
   end
 end

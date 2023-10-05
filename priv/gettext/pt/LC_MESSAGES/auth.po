@@ -122,30 +122,30 @@ msgstr "Senha atualizada com sucesso!"
 msgid "You must log in to access this page."
 msgstr "É necessário estar logado para acessar esta página."
 
-#: lib/accounts/user_live/settings.html.heex:74
+#: lib/accounts/user_live/settings.html.heex:72
 #, elixir-autogen, elixir-format
 msgid "Change Email"
 msgstr "Alterar e-mail"
 
-#: lib/accounts/user_live/settings.html.heex:118
+#: lib/accounts/user_live/settings.html.heex:116
 #, elixir-autogen, elixir-format
 msgid "Change Password"
 msgstr "Alterar senha"
 
 #: lib/accounts/user_live/reset_password.html.heex:20
-#: lib/accounts/user_live/settings.html.heex:112
+#: lib/accounts/user_live/settings.html.heex:110
 #, elixir-autogen, elixir-format
 msgid "Confirm new password"
 msgstr "Confirmar nova senha"
 
-#: lib/accounts/user_live/settings.html.heex:67
-#: lib/accounts/user_live/settings.html.heex:95
+#: lib/accounts/user_live/settings.html.heex:65
+#: lib/accounts/user_live/settings.html.heex:93
 #, elixir-autogen, elixir-format
 msgid "Current password"
 msgstr "Senha atual"
 
 #: lib/accounts/user_live/reset_password.html.heex:12
-#: lib/accounts/user_live/settings.html.heex:104
+#: lib/accounts/user_live/settings.html.heex:102
 #, elixir-autogen, elixir-format
 msgid "New password"
 msgstr "Nova senha"
