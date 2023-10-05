@@ -312,4 +312,54 @@ defmodule Uneebee.GamificationTest do
       assert Gamification.get_user_mission(:profile_name, user.id) == nil
     end
   end
+
+  describe "complete_lesson_mission/2" do
+    test "creates a mission when the user has completed their first lesson" do
+      user = user_fixture()
+      assert {:ok, %UserMission{} = mission} = Gamification.complete_lesson_mission(user, 1)
+      assert Gamification.completed_missions(user.id) == [mission]
+    end
+
+    test "creates a mission when the user has completed their fifth lesson" do
+      user = user_fixture()
+      assert {:ok, %UserMission{} = mission} = Gamification.complete_lesson_mission(user, 5)
+      assert Gamification.completed_missions(user.id) == [mission]
+    end
+
+    test "creates a mission when the user has completed their tenth lesson" do
+      user = user_fixture()
+      assert {:ok, %UserMission{} = mission} = Gamification.complete_lesson_mission(user, 10)
+      assert Gamification.completed_missions(user.id) == [mission]
+    end
+
+    test "creates a mission when the user has completed their 50th lesson" do
+      user = user_fixture()
+      assert {:ok, %UserMission{} = mission} = Gamification.complete_lesson_mission(user, 50)
+      assert Gamification.completed_missions(user.id) == [mission]
+    end
+
+    test "creates a mission when the user has completed their 100th lesson" do
+      user = user_fixture()
+      assert {:ok, %UserMission{} = mission} = Gamification.complete_lesson_mission(user, 100)
+      assert Gamification.completed_missions(user.id) == [mission]
+    end
+
+    test "creates a mission when the user has completed their 500th lesson" do
+      user = user_fixture()
+      assert {:ok, %UserMission{} = mission} = Gamification.complete_lesson_mission(user, 500)
+      assert Gamification.completed_missions(user.id) == [mission]
+    end
+
+    test "creates a mission when the user has completed their 1000th lesson" do
+      user = user_fixture()
+      assert {:ok, %UserMission{} = mission} = Gamification.complete_lesson_mission(user, 1000)
+      assert Gamification.completed_missions(user.id) == [mission]
+    end
+
+    test "doesn't create a mission when the user has completed a random number of lessons" do
+      user = user_fixture()
+      assert {:ok, %UserMission{} = _mission} = Gamification.complete_lesson_mission(user, 42)
+      assert Gamification.completed_missions(user.id) == []
+    end
+  end
 end

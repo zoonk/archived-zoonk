@@ -306,6 +306,24 @@ defmodule Uneebee.Gamification do
   defp complete_user_mission(_user, :profile, %UserMission{} = mission), do: delete_user_mission(mission.id)
 
   @doc """
+  Creates a mission when a lesson is completed.
+
+  ## Examples
+
+      iex> complete_lesson_mission(%User{}, 1)
+      {:ok, %UserMission{}}
+  """
+  @spec complete_lesson_mission(User.t(), integer()) :: user_mission_changeset()
+  def complete_lesson_mission(%User{} = user, 1), do: create_user_mission(%{user_id: user.id, reason: :lesson_first})
+  def complete_lesson_mission(%User{} = user, 5), do: create_user_mission(%{user_id: user.id, reason: :lesson_5})
+  def complete_lesson_mission(%User{} = user, 10), do: create_user_mission(%{user_id: user.id, reason: :lesson_10})
+  def complete_lesson_mission(%User{} = user, 50), do: create_user_mission(%{user_id: user.id, reason: :lesson_50})
+  def complete_lesson_mission(%User{} = user, 100), do: create_user_mission(%{user_id: user.id, reason: :lesson_100})
+  def complete_lesson_mission(%User{} = user, 500), do: create_user_mission(%{user_id: user.id, reason: :lesson_500})
+  def complete_lesson_mission(%User{} = user, 1000), do: create_user_mission(%{user_id: user.id, reason: :lesson_1000})
+  def complete_lesson_mission(_user, _lesson_count), do: {:ok, %UserMission{}}
+
+  @doc """
   List all missions a user has completed.
 
   ## Examples
