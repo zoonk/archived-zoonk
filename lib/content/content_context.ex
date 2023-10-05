@@ -866,4 +866,17 @@ defmodule Uneebee.Content do
     progress = CourseUtils.course_progress(lessons, user)
     progress == 100
   end
+
+  @doc """
+  Count how many lessons a user has completed.
+
+  ## Examples
+
+      iex> count_user_lessons(user_id)
+      1
+  """
+  @spec count_user_lessons(non_neg_integer()) :: non_neg_integer()
+  def count_user_lessons(user_id) do
+    UserLesson |> where([ul], ul.user_id == ^user_id) |> Repo.aggregate(:count)
+  end
 end
