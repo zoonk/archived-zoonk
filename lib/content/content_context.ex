@@ -790,10 +790,12 @@ defmodule Uneebee.Content do
     user = Accounts.get_user!(user_lesson.user_id)
     lesson = Lesson |> Repo.get!(user_lesson.lesson_id) |> Repo.preload(:course)
     lesson_count = count_user_lessons(user.id)
+    perfect_lesson_count = count_user_perfect_lessons(user.id)
 
     Repo.transaction(fn ->
       Gamification.maybe_award_trophy(%{user: user, course: lesson.course})
       Gamification.complete_lesson_mission(user, lesson_count)
+      Gamification.complete_perfect_lesson_mission(user, perfect_lesson_count)
     end)
 
     attrs

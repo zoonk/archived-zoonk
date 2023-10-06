@@ -935,6 +935,27 @@ defmodule Uneebee.ContentTest do
       assert {:ok, %UserLesson{}} = Content.add_user_lesson(attrs)
       assert Gamification.get_user_mission(:lesson_5, user.id) != nil
     end
+
+    test "adds a mission when a user completes their first perfect lesson" do
+      user = user_fixture()
+      course = course_fixture()
+      lesson = lesson_fixture(%{course_id: course.id})
+      attrs = %{user_id: user.id, lesson_id: lesson.id, attempts: 1, correct: 4, total: 4}
+
+      assert {:ok, %UserLesson{}} = Content.add_user_lesson(attrs)
+      assert Gamification.get_user_mission(:perfect_lesson_1, user.id) != nil
+    end
+
+    test "adds a mission when a user completes their 10th perfect lesson" do
+      user = user_fixture()
+      course = course_fixture()
+      generate_user_lesson(user.id, 0, number_of_lessons: 9, correct: 4, total: 4)
+      lesson = lesson_fixture(%{course_id: course.id})
+      attrs = %{user_id: user.id, lesson_id: lesson.id, attempts: 1, correct: 4, total: 4}
+
+      assert {:ok, %UserLesson{}} = Content.add_user_lesson(attrs)
+      assert Gamification.get_user_mission(:perfect_lesson_10, user.id) != nil
+    end
   end
 
   describe "update_user_lesson/2" do
