@@ -237,7 +237,7 @@ defmodule Uneebee.GamificationTest do
 
     test "earns a trophy when a user completes their first lesson" do
       user = user_fixture()
-      attrs = %{user_id: user.id, reason: :lesson_first}
+      attrs = %{user_id: user.id, reason: :lesson_1}
 
       assert Gamification.count_user_trophies(user.id) == 0
       assert {:ok, %UserMission{} = _mission} = Gamification.create_user_mission(attrs)
@@ -349,7 +349,7 @@ defmodule Uneebee.GamificationTest do
       user = user_fixture()
       user_mission_fixture(%{user: user, reason: :profile_name})
 
-      assert Gamification.get_user_mission(:lesson_first, user.id) == nil
+      assert Gamification.get_user_mission(:lesson_1, user.id) == nil
     end
   end
 
@@ -357,7 +357,7 @@ defmodule Uneebee.GamificationTest do
     test "returns a list of completed missions for a given user" do
       user = user_fixture()
       mission1 = user_mission_fixture(%{user: user, reason: :profile_name})
-      mission2 = user_mission_fixture(%{user: user, reason: :lesson_first})
+      mission2 = user_mission_fixture(%{user: user, reason: :lesson_1})
 
       assert Gamification.completed_missions(user.id) == [mission2, mission1]
     end

@@ -320,7 +320,7 @@ defmodule Uneebee.Gamification do
       {:ok, %UserMission{}}
   """
   @spec complete_lesson_mission(User.t(), integer()) :: user_mission_changeset()
-  def complete_lesson_mission(%User{} = user, 1), do: create_user_mission(%{user_id: user.id, reason: :lesson_first})
+  def complete_lesson_mission(%User{} = user, 1), do: create_user_mission(%{user_id: user.id, reason: :lesson_1})
   def complete_lesson_mission(%User{} = user, 5), do: create_user_mission(%{user_id: user.id, reason: :lesson_5})
   def complete_lesson_mission(%User{} = user, 10), do: create_user_mission(%{user_id: user.id, reason: :lesson_10})
   def complete_lesson_mission(%User{} = user, 50), do: create_user_mission(%{user_id: user.id, reason: :lesson_50})

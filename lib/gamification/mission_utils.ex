@@ -21,7 +21,7 @@ defmodule Uneebee.Gamification.MissionUtils do
         success_message: dgettext("gamification", "You added your name to your profile.")
       },
       %Mission{
-        key: :lesson_first,
+        key: :lesson_1,
         prize: :trophy,
         label: dgettext("gamification", "First lesson"),
         description: dgettext("gamification", "Complete your first lesson."),

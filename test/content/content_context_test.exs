@@ -922,7 +922,7 @@ defmodule Uneebee.ContentTest do
       attrs = %{user_id: user.id, lesson_id: lesson.id, attempts: 1, correct: 3, total: 4}
 
       assert {:ok, %UserLesson{}} = Content.add_user_lesson(attrs)
-      assert Gamification.get_user_mission(:lesson_first, user.id) != nil
+      assert Gamification.get_user_mission(:lesson_1, user.id) != nil
     end
 
     test "adds a mission when 5 lessons are completed" do
