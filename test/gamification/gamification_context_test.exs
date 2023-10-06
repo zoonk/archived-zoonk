@@ -435,4 +435,42 @@ defmodule Uneebee.GamificationTest do
       assert Gamification.completed_missions(user.id) == []
     end
   end
+
+  describe "complete_perfect_lesson_mission/2" do
+    test "creates a mission when the user has completed their first perfect lesson" do
+      user = user_fixture()
+      assert {:ok, %UserMission{} = mission} = Gamification.complete_perfect_lesson_mission(user, 1)
+      assert Gamification.completed_missions(user.id) == [mission]
+    end
+
+    test "creates a mission when the user has completed 10 perfect lessons" do
+      user = user_fixture()
+      assert {:ok, %UserMission{} = mission} = Gamification.complete_perfect_lesson_mission(user, 10)
+      assert Gamification.completed_missions(user.id) == [mission]
+    end
+
+    test "creates a mission when the user has completed 50 perfect lessons" do
+      user = user_fixture()
+      assert {:ok, %UserMission{} = mission} = Gamification.complete_perfect_lesson_mission(user, 50)
+      assert Gamification.completed_missions(user.id) == [mission]
+    end
+
+    test "creates a mission when the user has completed 100 perfect lessons" do
+      user = user_fixture()
+      assert {:ok, %UserMission{} = mission} = Gamification.complete_perfect_lesson_mission(user, 100)
+      assert Gamification.completed_missions(user.id) == [mission]
+    end
+
+    test "creates a mission when the user has completed 500 perfect lessons" do
+      user = user_fixture()
+      assert {:ok, %UserMission{} = mission} = Gamification.complete_perfect_lesson_mission(user, 500)
+      assert Gamification.completed_missions(user.id) == [mission]
+    end
+
+    test "doesn't create a mission when the user has completed a random number of perfect lessons" do
+      user = user_fixture()
+      assert {:ok, %UserMission{} = _mission} = Gamification.complete_perfect_lesson_mission(user, 42)
+      assert Gamification.completed_missions(user.id) == []
+    end
+  end
 end

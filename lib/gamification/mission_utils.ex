@@ -28,7 +28,7 @@ defmodule Uneebee.Gamification.MissionUtils do
         success_message: dgettext("gamification", "You completed your first lesson.")
       },
       %Mission{
-        key: :lesson_without_error,
+        key: :perfect_lesson_1,
         prize: :trophy,
         label: dgettext("gamification", "Perfect lesson"),
         description: dgettext("gamification", "Complete a lesson without errors."),
@@ -98,25 +98,25 @@ defmodule Uneebee.Gamification.MissionUtils do
         success_message: dgettext("gamification", "You completed %{count} lessons.", count: 1000)
       },
       %Mission{
-        key: :lesson_without_error_10,
+        key: :perfect_lesson_10,
         prize: :bronze,
         label: dgettext("gamification", "%{count} perfect lessons", count: 10),
         description: dgettext("gamification", "Complete %{count} lessons without errors.", count: 10)
       },
       %Mission{
-        key: :lesson_without_error_50,
+        key: :perfect_lesson_50,
         prize: :silver,
         label: dgettext("gamification", "%{count} perfect lessons", count: 50),
         description: dgettext("gamification", "Complete %{count} lessons without errors.", count: 50)
       },
       %Mission{
-        key: :lesson_without_error_100,
+        key: :perfect_lesson_100,
         prize: :gold,
         label: dgettext("gamification", "%{count} perfect lessons", count: 100),
         description: dgettext("gamification", "Complete %{count} lessons without errors.", count: 100)
       },
       %Mission{
-        key: :lesson_without_error_500,
+        key: :perfect_lesson_500,
         prize: :trophy,
         label: dgettext("gamification", "%{count} perfect lessons", count: 500),
         description: dgettext("gamification", "Complete %{count} lessons without errors.", count: 500)
