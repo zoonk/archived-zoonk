@@ -75,29 +75,14 @@ msgstr ""
 msgid "Add your name to your profile."
 msgstr ""
 
-#: lib/gamification/mission_utils.ex:62
-#, elixir-autogen, elixir-format
-msgid "Complete a course without errors."
-msgstr ""
-
 #: lib/gamification/mission_utils.ex:34
 #, elixir-autogen, elixir-format
 msgid "Complete a lesson without errors."
 msgstr ""
 
-#: lib/gamification/mission_utils.ex:55
-#, elixir-autogen, elixir-format
-msgid "Complete your first course."
-msgstr ""
-
 #: lib/gamification/mission_utils.ex:27
 #, elixir-autogen, elixir-format
 msgid "Complete your first lesson."
-msgstr ""
-
-#: lib/gamification/mission_utils.ex:54
-#, elixir-autogen, elixir-format
-msgid "First course"
 msgstr ""
 
 #: lib/gamification/mission_utils.ex:26
@@ -111,29 +96,14 @@ msgstr ""
 msgid "Mission completed"
 msgstr ""
 
-#: lib/gamification/mission_utils.ex:61
-#, elixir-autogen, elixir-format
-msgid "Perfect course"
-msgstr ""
-
 #: lib/gamification/mission_utils.ex:19
 #, elixir-autogen, elixir-format
 msgid "Profile name"
 msgstr ""
 
-#: lib/gamification/mission_utils.ex:68
-#, elixir-autogen, elixir-format
-msgid "Second course"
-msgstr ""
-
 #: lib/gamification/mission_utils.ex:21
 #, elixir-autogen, elixir-format
 msgid "You added your name to your profile."
-msgstr ""
-
-#: lib/gamification/mission_utils.ex:63
-#, elixir-autogen, elixir-format
-msgid "You completed a course without errors."
 msgstr ""
 
 #: lib/gamification/mission_utils.ex:35
@@ -147,78 +117,53 @@ msgstr ""
 msgid "You completed a mission."
 msgstr ""
 
-#: lib/gamification/mission_utils.ex:56
-#, elixir-autogen, elixir-format
-msgid "You completed your first course."
-msgstr ""
-
 #: lib/gamification/mission_utils.ex:28
 #, elixir-autogen, elixir-format
 msgid "You completed your first lesson."
 msgstr ""
 
-#: lib/gamification/mission_utils.ex:127
-#: lib/gamification/mission_utils.ex:134
-#, elixir-autogen, elixir-format
-msgid "%{count} courses"
-msgstr ""
-
 #: lib/gamification/mission_utils.ex:40
 #: lib/gamification/mission_utils.ex:47
+#: lib/gamification/mission_utils.ex:54
+#: lib/gamification/mission_utils.ex:61
+#: lib/gamification/mission_utils.ex:68
 #: lib/gamification/mission_utils.ex:75
-#: lib/gamification/mission_utils.ex:82
-#: lib/gamification/mission_utils.ex:89
-#: lib/gamification/mission_utils.ex:96
 #, elixir-autogen, elixir-format
 msgid "%{count} lessons"
 msgstr ""
 
-#: lib/gamification/mission_utils.ex:103
-#: lib/gamification/mission_utils.ex:109
-#: lib/gamification/mission_utils.ex:115
-#: lib/gamification/mission_utils.ex:121
+#: lib/gamification/mission_utils.ex:82
+#: lib/gamification/mission_utils.ex:88
+#: lib/gamification/mission_utils.ex:94
+#: lib/gamification/mission_utils.ex:100
 #, elixir-autogen, elixir-format
 msgid "%{count} perfect lessons"
 msgstr ""
 
-#: lib/gamification/mission_utils.ex:69
-#: lib/gamification/mission_utils.ex:128
-#: lib/gamification/mission_utils.ex:135
-#, elixir-autogen, elixir-format
-msgid "Complete %{count} courses."
-msgstr ""
-
-#: lib/gamification/mission_utils.ex:104
-#: lib/gamification/mission_utils.ex:110
-#: lib/gamification/mission_utils.ex:116
-#: lib/gamification/mission_utils.ex:122
+#: lib/gamification/mission_utils.ex:83
+#: lib/gamification/mission_utils.ex:89
+#: lib/gamification/mission_utils.ex:95
+#: lib/gamification/mission_utils.ex:101
 #, elixir-autogen, elixir-format
 msgid "Complete %{count} lessons without errors."
 msgstr ""
 
 #: lib/gamification/mission_utils.ex:41
 #: lib/gamification/mission_utils.ex:48
+#: lib/gamification/mission_utils.ex:55
+#: lib/gamification/mission_utils.ex:62
+#: lib/gamification/mission_utils.ex:69
 #: lib/gamification/mission_utils.ex:76
-#: lib/gamification/mission_utils.ex:83
-#: lib/gamification/mission_utils.ex:90
-#: lib/gamification/mission_utils.ex:97
 #, elixir-autogen, elixir-format
 msgid "Complete %{count} lessons."
 msgstr ""
 
-#: lib/gamification/mission_utils.ex:70
-#: lib/gamification/mission_utils.ex:129
-#: lib/gamification/mission_utils.ex:136
-#, elixir-autogen, elixir-format
-msgid "You completed %{count} courses."
-msgstr ""
-
 #: lib/gamification/mission_utils.ex:42
 #: lib/gamification/mission_utils.ex:49
+#: lib/gamification/mission_utils.ex:56
+#: lib/gamification/mission_utils.ex:63
+#: lib/gamification/mission_utils.ex:70
 #: lib/gamification/mission_utils.ex:77
-#: lib/gamification/mission_utils.ex:84
-#: lib/gamification/mission_utils.ex:91
-#: lib/gamification/mission_utils.ex:98
 #, elixir-autogen, elixir-format
 msgid "You completed %{count} lessons."
 msgstr ""

@@ -49,27 +49,6 @@ defmodule Uneebee.Gamification.MissionUtils do
         success_message: dgettext("gamification", "You completed %{count} lessons.", count: 10)
       },
       %Mission{
-        key: :course_first,
-        prize: :trophy,
-        label: dgettext("gamification", "First course"),
-        description: dgettext("gamification", "Complete your first course."),
-        success_message: dgettext("gamification", "You completed your first course.")
-      },
-      %Mission{
-        key: :course_without_error,
-        prize: :trophy,
-        label: dgettext("gamification", "Perfect course"),
-        description: dgettext("gamification", "Complete a course without errors."),
-        success_message: dgettext("gamification", "You completed a course without errors.")
-      },
-      %Mission{
-        key: :course_2,
-        prize: :trophy,
-        label: dgettext("gamification", "Second course"),
-        description: dgettext("gamification", "Complete %{count} courses.", count: 2),
-        success_message: dgettext("gamification", "You completed %{count} courses.", count: 2)
-      },
-      %Mission{
         key: :lesson_50,
         prize: :silver,
         label: dgettext("gamification", "%{count} lessons", count: 50),
@@ -120,20 +99,6 @@ defmodule Uneebee.Gamification.MissionUtils do
         prize: :trophy,
         label: dgettext("gamification", "%{count} perfect lessons", count: 500),
         description: dgettext("gamification", "Complete %{count} lessons without errors.", count: 500)
-      },
-      %Mission{
-        key: :course_5,
-        prize: :trophy,
-        label: dgettext("gamification", "%{count} courses", count: 5),
-        description: dgettext("gamification", "Complete %{count} courses.", count: 5),
-        success_message: dgettext("gamification", "You completed %{count} courses.", count: 5)
-      },
-      %Mission{
-        key: :course_10,
-        prize: :trophy,
-        label: dgettext("gamification", "%{count} courses", count: 10),
-        description: dgettext("gamification", "Complete %{count} courses.", count: 10),
-        success_message: dgettext("gamification", "You completed %{count} courses.", count: 10)
       }
     ]
   end
