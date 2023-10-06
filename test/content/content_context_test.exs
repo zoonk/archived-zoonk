@@ -1025,4 +1025,14 @@ defmodule Uneebee.ContentTest do
       assert Content.count_user_lessons(user.id) == 5
     end
   end
+
+  describe "count_user_perfect_lessons/1" do
+    test "returns the number of user lessons" do
+      user = user_fixture()
+      generate_user_lesson(user.id, 0, number_of_lessons: 5, correct: 4, total: 4)
+      generate_user_lesson(user.id, 0, correct: 3, total: 4)
+
+      assert Content.count_user_perfect_lessons(user.id) == 5
+    end
+  end
 end
