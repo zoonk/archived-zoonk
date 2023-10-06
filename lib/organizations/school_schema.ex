@@ -21,8 +21,10 @@ defmodule Uneebee.Organizations.School do
     field :email, :string
     field :logo, :string
     field :name, :string
+    field :privacy_policy, :string
     field :public?, :boolean, default: true
     field :slug, :string
+    field :terms_of_use, :string
 
     belongs_to :created_by, User
     belongs_to :school, School
@@ -36,12 +38,25 @@ defmodule Uneebee.Organizations.School do
   @spec changeset(Ecto.Schema.t(), map()) :: Ecto.Changeset.t()
   def changeset(school, attrs) do
     school
-    |> cast(attrs, [:created_by_id, :custom_domain, :email, :logo, :name, :public?, :school_id, :slug])
+    |> cast(attrs, [
+      :created_by_id,
+      :custom_domain,
+      :email,
+      :logo,
+      :name,
+      :privacy_policy,
+      :public?,
+      :terms_of_use,
+      :school_id,
+      :slug
+    ])
     |> validate_required([:created_by_id, :email, :name, :public?, :slug])
     |> unique_constraint(:custom_domain)
     |> validate_format(:email, ~r/^[^\s]+@[^\s]+$/, message: dgettext("errors", "must have the @ sign and no spaces"))
     |> validate_length(:email, max: 160)
     |> validate_format(:logo, ~r/^(\/|https:\/\/)/, message: dgettext("errors", "must start with / or https://"))
+    |> validate_format(:privacy_policy, ~r/^https:\/\//, message: dgettext("errors", "must start with https://"))
+    |> validate_format(:terms_of_use, ~r/^https:\/\//, message: dgettext("errors", "must start with https://"))
     |> validate_slug(:slug)
     |> validate_unique_slug()
     |> validate_custom_domain()

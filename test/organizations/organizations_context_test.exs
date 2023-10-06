@@ -100,6 +100,42 @@ defmodule Uneebee.OrganizationsTest do
       changeset = Organizations.change_school(school, %{slug: nil})
       assert "can't be blank" in errors_on(changeset).slug
     end
+
+    test "privacy policy cannot start with http" do
+      school = school_fixture()
+      changeset = Organizations.change_school(school, %{privacy_policy: "http://privacy_policy.com"})
+      assert "must start with https://" in errors_on(changeset).privacy_policy
+    end
+
+    test "privacy policy cannot start with /" do
+      school = school_fixture()
+      changeset = Organizations.change_school(school, %{privacy_policy: "/privacy_policy.com"})
+      assert "must start with https://" in errors_on(changeset).privacy_policy
+    end
+
+    test "privacy policy can start with https://" do
+      school = school_fixture()
+      changeset = Organizations.change_school(school, %{privacy_policy: "https://privacy_policy.com"})
+      assert changeset.valid?
+    end
+
+    test "terms of use cannot start with http" do
+      school = school_fixture()
+      changeset = Organizations.change_school(school, %{terms_of_use: "http://terms_of_use.com"})
+      assert "must start with https://" in errors_on(changeset).terms_of_use
+    end
+
+    test "terms of use cannot start with /" do
+      school = school_fixture()
+      changeset = Organizations.change_school(school, %{terms_of_use: "/terms_of_use.com"})
+      assert "must start with https://" in errors_on(changeset).terms_of_use
+    end
+
+    test "terms of use can start with https://" do
+      school = school_fixture()
+      changeset = Organizations.change_school(school, %{terms_of_use: "https://terms_of_use.com"})
+      assert changeset.valid?
+    end
   end
 
   describe "create_school/1" do

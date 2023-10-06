@@ -14,7 +14,7 @@ msgstr ""
 msgid "can't be blank"
 msgstr "não pode ficar em branco"
 
-#: lib/organizations/school_schema.ex:61
+#: lib/organizations/school_schema.ex:76
 #, elixir-autogen
 msgid "has already been taken"
 msgstr "já está em uso"
@@ -136,12 +136,12 @@ msgid "does not match password"
 msgstr "não é igual à senha"
 
 #: lib/accounts/user_schema.ex:64
-#: lib/organizations/school_schema.ex:42
+#: lib/organizations/school_schema.ex:55
 #, elixir-autogen, elixir-format
 msgid "must have the @ sign and no spaces"
 msgstr "deve ter arroba (@) e nenhum espaço"
 
-#: lib/organizations/school_schema.ex:44
+#: lib/organizations/school_schema.ex:57
 #, elixir-autogen, elixir-format
 msgid "must start with / or https://"
 msgstr "devem começar com / ou https://"
@@ -185,3 +185,9 @@ msgstr "Você não está matriculado neste curso"
 #, elixir-autogen, elixir-format
 msgid "Your enrollment is pending approval"
 msgstr "A sua matrícula está pendente de aprovação"
+
+#: lib/organizations/school_schema.ex:58
+#: lib/organizations/school_schema.ex:59
+#, elixir-autogen, elixir-format, fuzzy
+msgid "must start with https://"
+msgstr "deve começar com https://"

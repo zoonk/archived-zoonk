@@ -21,7 +21,7 @@ msgstr ""
 msgid "Advanced"
 msgstr ""
 
-#: lib/layouts/templates/app.html.heex:143
+#: lib/layouts/templates/app.html.heex:149
 #, elixir-autogen, elixir-format
 msgid "All lessons"
 msgstr ""
@@ -41,7 +41,7 @@ msgstr ""
 msgid "Confirming..."
 msgstr ""
 
-#: lib/layouts/templates/app.html.heex:150
+#: lib/layouts/templates/app.html.heex:156
 #, elixir-autogen, elixir-format
 msgid "Content"
 msgstr ""
@@ -51,12 +51,12 @@ msgstr ""
 msgid "Correct answer: %{title}."
 msgstr ""
 
-#: lib/layouts/templates/app.html.heex:126
+#: lib/layouts/templates/app.html.heex:132
 #, elixir-autogen, elixir-format
 msgid "Delete course"
 msgstr ""
 
-#: lib/layouts/templates/app.html.heex:171
+#: lib/layouts/templates/app.html.heex:177
 #, elixir-autogen, elixir-format
 msgid "Delete lesson"
 msgstr ""
@@ -96,7 +96,7 @@ msgstr ""
 msgid "Illustration of a green alien"
 msgstr ""
 
-#: lib/layouts/templates/app.html.heex:157
+#: lib/layouts/templates/app.html.heex:163
 #, elixir-autogen, elixir-format
 msgid "Information"
 msgstr ""
@@ -106,7 +106,7 @@ msgstr ""
 msgid "Intermediate"
 msgstr ""
 
-#: lib/layouts/templates/app.html.heex:136
+#: lib/layouts/templates/app.html.heex:142
 #, elixir-autogen, elixir-format
 msgid "Manage lesson"
 msgstr ""
@@ -176,7 +176,7 @@ msgstr ""
 msgid "You selected: %{title}. %{feedback}"
 msgstr ""
 
-#: lib/layouts/templates/app.html.heex:84
+#: lib/layouts/templates/app.html.heex:90
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Course page"
 msgstr ""
@@ -186,7 +186,7 @@ msgstr ""
 msgid "Lesson cover"
 msgstr ""
 
-#: lib/layouts/templates/app.html.heex:65
+#: lib/layouts/templates/app.html.heex:71
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Manage courses"
 msgstr ""

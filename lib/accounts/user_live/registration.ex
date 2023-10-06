@@ -2,9 +2,11 @@ defmodule UneebeeWeb.Live.Accounts.User.Registration do
   @moduledoc false
   use UneebeeWeb, :live_view
 
+  alias Phoenix.HTML
   alias Uneebee.Accounts
   alias Uneebee.Accounts.User
   alias Uneebee.Organizations
+  alias Uneebee.Organizations.School
 
   @impl Phoenix.LiveView
   def mount(_params, session, socket) do
@@ -68,4 +70,34 @@ defmodule UneebeeWeb.Live.Accounts.User.Registration do
   end
 
   defp get_school_user_attrs(_user, false), do: %{role: :student}
+
+  defp get_terms(terms_of_use) do
+    "auth" |> dgettext("terms of use") |> get_terms_link(terms_of_use) |> HTML.safe_to_string()
+  end
+
+  defp get_privacy(privacy_policy) do
+    "auth" |> dgettext("privacy policy") |> get_terms_link(privacy_policy) |> HTML.safe_to_string()
+  end
+
+  defp get_terms_link(label, link),
+    do: HTML.Link.link(label, to: URI.parse(link), class: "text-primary hover:underline")
+
+  defp terms_label(%School{terms_of_use: nil, privacy_policy: nil}), do: nil
+
+  defp terms_label(%School{terms_of_use: terms_of_use, privacy_policy: nil}) do
+    dgettext("auth", "By signing up, you agree to our %{terms}.", terms: get_terms(terms_of_use))
+  end
+
+  defp terms_label(%School{terms_of_use: nil, privacy_policy: privacy_policy}) do
+    dgettext("auth", "By signing up, you agree to our %{privacy}.", privacy: get_privacy(privacy_policy))
+  end
+
+  defp terms_label(%School{terms_of_use: terms_of_use, privacy_policy: privacy_policy}) do
+    dgettext("auth", "By signing up, you agree to our %{terms} and %{privacy}.",
+      terms: get_terms(terms_of_use),
+      privacy: get_privacy(privacy_policy)
+    )
+  end
+
+  defp terms_label(_school), do: nil
 end

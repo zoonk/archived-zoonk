@@ -32,6 +32,8 @@
     required
   />
 
+  <p :if={not is_nil(terms_label(@school))} class="text-gray text-xs"><%= terms_label(@school) |> HTML.raw() %></p>
+
   <:actions>
     <.button icon="tabler-user-plus" class="w-full" type="submit" phx-disable-with={gettext("Saving...")}>
       <%= dgettext("auth", "Create account") %>

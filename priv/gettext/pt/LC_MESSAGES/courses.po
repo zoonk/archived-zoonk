@@ -21,7 +21,7 @@ msgstr "Uma solicitação de matrícula foi enviada ao professor do curso."
 msgid "Advanced"
 msgstr "Avançado"
 
-#: lib/layouts/templates/app.html.heex:143
+#: lib/layouts/templates/app.html.heex:149
 #, elixir-autogen, elixir-format
 msgid "All lessons"
 msgstr "Todas as aulas"
@@ -41,7 +41,7 @@ msgstr "Iniciante"
 msgid "Confirming..."
 msgstr "Confirmando..."
 
-#: lib/layouts/templates/app.html.heex:150
+#: lib/layouts/templates/app.html.heex:156
 #, elixir-autogen, elixir-format
 msgid "Content"
 msgstr "Conteúdo"
@@ -51,12 +51,12 @@ msgstr "Conteúdo"
 msgid "Correct answer: %{title}."
 msgstr "Respota correta: %{title}."
 
-#: lib/layouts/templates/app.html.heex:126
+#: lib/layouts/templates/app.html.heex:132
 #, elixir-autogen, elixir-format
 msgid "Delete course"
 msgstr "Apagar curso"
 
-#: lib/layouts/templates/app.html.heex:171
+#: lib/layouts/templates/app.html.heex:177
 #, elixir-autogen, elixir-format
 msgid "Delete lesson"
 msgstr "Apagar aula"
@@ -96,7 +96,7 @@ msgstr "Bom!"
 msgid "Illustration of a green alien"
 msgstr "Ilustração de um alienígena verde"
 
-#: lib/layouts/templates/app.html.heex:157
+#: lib/layouts/templates/app.html.heex:163
 #, elixir-autogen, elixir-format
 msgid "Information"
 msgstr "Informações"
@@ -106,7 +106,7 @@ msgstr "Informações"
 msgid "Intermediate"
 msgstr "Intermediário"
 
-#: lib/layouts/templates/app.html.heex:136
+#: lib/layouts/templates/app.html.heex:142
 #, elixir-autogen, elixir-format
 msgid "Manage lesson"
 msgstr "Gereciar aula"
@@ -176,7 +176,7 @@ msgstr "Você acertou %{correct} de %{total} respostas."
 msgid "You selected: %{title}. %{feedback}"
 msgstr "Você selecionou: %{title}. %{feedback}"
 
-#: lib/layouts/templates/app.html.heex:84
+#: lib/layouts/templates/app.html.heex:90
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Course page"
 msgstr "Página do curso"
@@ -186,7 +186,7 @@ msgstr "Página do curso"
 msgid "Lesson cover"
 msgstr "Capa da aula"
 
-#: lib/layouts/templates/app.html.heex:65
+#: lib/layouts/templates/app.html.heex:71
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Manage courses"
 msgstr "Gerenciar cursos"

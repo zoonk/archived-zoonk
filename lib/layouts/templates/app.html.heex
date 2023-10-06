@@ -54,6 +54,12 @@
           active={@active_page == :dashboard_schooledit_info}
           title={gettext("Profile")}
         />
+
+        <.sub_menu
+          navigate={~p"/dashboard/edit/terms"}
+          active={@active_page == :dashboard_schooledit_terms}
+          title={dgettext("orgs", "Terms of use")}
+        />
       </:sub_menus>
     </.menu_item>
 

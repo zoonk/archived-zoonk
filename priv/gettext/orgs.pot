@@ -604,3 +604,18 @@ msgstr ""
 #, elixir-autogen, elixir-format
 msgid "When checked, this course will be visible to students. Keep it unchecked if this is a draft course that shouldn't be available yet."
 msgstr ""
+
+#: lib/dashboard/schools/school_edit.html.heex:40
+#, elixir-autogen, elixir-format
+msgid "Privacy policy URL"
+msgstr ""
+
+#: lib/layouts/templates/app.html.heex:61
+#, elixir-autogen, elixir-format
+msgid "Terms of use"
+msgstr ""
+
+#: lib/dashboard/schools/school_edit.html.heex:33
+#, elixir-autogen, elixir-format
+msgid "Terms of use URL"
+msgstr ""

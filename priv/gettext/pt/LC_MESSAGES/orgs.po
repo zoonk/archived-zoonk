@@ -604,3 +604,18 @@ msgstr "Ao marcar esta opção, este curso será visível para todos os alunos d
 #, elixir-autogen, elixir-format
 msgid "When checked, this course will be visible to students. Keep it unchecked if this is a draft course that shouldn't be available yet."
 msgstr "Ao marcar esta opção, este curso será visível para os alunos. Mantenha desmarcada se este for um curso rascunho que ainda não deve estar disponível."
+
+#: lib/dashboard/schools/school_edit.html.heex:40
+#, elixir-autogen, elixir-format
+msgid "Privacy policy URL"
+msgstr "Link da política de privacidade"
+
+#: lib/layouts/templates/app.html.heex:61
+#, elixir-autogen, elixir-format
+msgid "Terms of use"
+msgstr "Termos de uso"
+
+#: lib/dashboard/schools/school_edit.html.heex:33
+#, elixir-autogen, elixir-format
+msgid "Terms of use URL"
+msgstr "Link dos termos de uso"

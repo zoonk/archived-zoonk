@@ -89,6 +89,44 @@ defmodule UneebeeWeb.UserRegistrationLiveTest do
       assert_field_error(lv, "password", "AAAAA1@AA", "at least one lower case character")
       assert_field_error(lv, "password", "aaaaAaaa", "at least one digit or punctuation character")
     end
+
+    test "displays terms of use link", %{conn: conn, school: school} do
+      link = "https://example.com/terms"
+      Organizations.update_school(school, %{terms_of_use: link})
+
+      {:ok, lv, _html} = live(conn, ~p"/users/register")
+
+      assert has_element?(lv, ~s|a[href="#{link}"]:fl-icontains("terms of use")|)
+      refute has_element?(lv, ~s|a:fl-icontains("privacy policy")|)
+    end
+
+    test "displays privacy policy link", %{conn: conn, school: school} do
+      link = "https://example.com/privacy"
+      Organizations.update_school(school, %{privacy_policy: link})
+
+      {:ok, lv, _html} = live(conn, ~p"/users/register")
+
+      assert has_element?(lv, ~s|a[href="#{link}"]:fl-icontains("privacy policy")|)
+      refute has_element?(lv, ~s|a:fl-icontains("terms of use")|)
+    end
+
+    test "displays terms of use and privacy policy links", %{conn: conn, school: school} do
+      terms_link = "https://example.com/terms"
+      privacy_link = "https://example.com/privacy"
+      Organizations.update_school(school, %{terms_of_use: terms_link, privacy_policy: privacy_link})
+
+      {:ok, lv, _html} = live(conn, ~p"/users/register")
+
+      assert has_element?(lv, ~s|a[href="#{terms_link}"]:fl-icontains("terms of use")|)
+      assert has_element?(lv, ~s|a[href="#{privacy_link}"]:fl-icontains("privacy policy")|)
+    end
+
+    test "displays neither terms of use nor privacy policy links", %{conn: conn} do
+      {:ok, lv, _html} = live(conn, ~p"/users/register")
+
+      refute has_element?(lv, ~s|a:fl-icontains("terms of use")|)
+      refute has_element?(lv, ~s|a:fl-icontains("privacy policy")|)
+    end
   end
 
   describe "register user (school not configured)" do

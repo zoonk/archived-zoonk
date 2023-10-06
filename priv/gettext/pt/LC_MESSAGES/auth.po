@@ -11,17 +11,17 @@ msgstr ""
 "Language: pt\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: lib/accounts/user_live/registration.html.heex:43
+#: lib/accounts/user_live/registration.html.heex:45
 #, elixir-autogen, elixir-format
 msgid "Already registered?"
 msgstr "Já cadastrado?"
 
-#: lib/accounts/user_live/registration.html.heex:37
+#: lib/accounts/user_live/registration.html.heex:39
 #, elixir-autogen, elixir-format
 msgid "Create account"
 msgstr "Criar conta"
 
-#: lib/accounts/user_live/registration.ex:18
+#: lib/accounts/user_live/registration.ex:20
 #: lib/accounts/user_live/registration.html.heex:11
 #, elixir-autogen, elixir-format
 msgid "Create an account"
@@ -29,7 +29,7 @@ msgstr "Criar uma conta"
 
 #: lib/accounts/user_live/login.html.heex:12
 #: lib/accounts/user_live/registration.html.heex:30
-#: lib/layouts/templates/app.html.heex:225
+#: lib/layouts/templates/app.html.heex:231
 #, elixir-autogen, elixir-format
 msgid "Password"
 msgstr "Senha"
@@ -38,7 +38,7 @@ msgstr "Senha"
 #: lib/accounts/user_live/confirmation_instructions.html.heex:19
 #: lib/accounts/user_live/login.ex:9
 #: lib/accounts/user_live/login.html.heex:20
-#: lib/accounts/user_live/registration.html.heex:44
+#: lib/accounts/user_live/registration.html.heex:46
 #: lib/accounts/user_live/reset_password.html.heex:34
 #: lib/layouts/templates/app.html.heex:7
 #, elixir-autogen, elixir-format
@@ -209,3 +209,28 @@ msgstr "Enviaremos um novo link de confirmação para o seu e-mail"
 #, elixir-autogen, elixir-format
 msgid "Email or username"
 msgstr "E-mail ou nome de usuário"
+
+#: lib/accounts/user_live/registration.ex:91
+#, elixir-autogen, elixir-format
+msgid "By signing up, you agree to our %{privacy}."
+msgstr "Ao se cadastrar, você concorda com a %{privacy}."
+
+#: lib/accounts/user_live/registration.ex:97
+#, elixir-autogen, elixir-format
+msgid "By signing up, you agree to our %{terms} and %{privacy}."
+msgstr "Ao se cadastrar, você concorda com os %{terms} e a %{privacy}."
+
+#: lib/accounts/user_live/registration.ex:86
+#, elixir-autogen, elixir-format
+msgid "By signing up, you agree to our %{terms}."
+msgstr "Ao se cadastrar, você concorda com os %{terms}."
+
+#: lib/accounts/user_live/registration.ex:79
+#, elixir-autogen, elixir-format
+msgid "privacy policy"
+msgstr "política de privacidade"
+
+#: lib/accounts/user_live/registration.ex:75
+#, elixir-autogen, elixir-format
+msgid "terms of use"
+msgstr "termos de uso"

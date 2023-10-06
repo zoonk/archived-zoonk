@@ -169,7 +169,7 @@ msgid "You completed %{count} lessons."
 msgstr "Você concluiu %{count} aulas."
 
 #: lib/gamification/mission_live/list.ex:18
-#: lib/layouts/templates/app.html.heex:187
+#: lib/layouts/templates/app.html.heex:193
 #, elixir-autogen, elixir-format
 msgid "Missions"
 msgstr "Missões"
