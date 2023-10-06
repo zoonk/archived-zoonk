@@ -12,6 +12,7 @@ defmodule UneebeeWeb.Components.AwardBadge do
   import UneebeeWeb.Gettext
 
   alias Uneebee.Gamification.Medal
+  alias Uneebee.Gamification.Mission
   alias Uneebee.Gamification.Trophy
 
   @doc """
@@ -54,6 +55,7 @@ defmodule UneebeeWeb.Components.AwardBadge do
   defp medal_color(:gold), do: :warning
   defp medal_color(:silver), do: :gray
   defp medal_color(:bronze), do: :bronze
+  defp medal_color(_prize), do: :primary
 
   @doc """
   Completed course trophy.
@@ -63,6 +65,24 @@ defmodule UneebeeWeb.Components.AwardBadge do
   def trophy_badge(assigns) do
     ~H"""
     <.award_badge id="trophy-badge" color={:warning} icon="tabler-trophy" value={@trophy.label} label={@trophy.description} />
+    """
+  end
+
+  @doc """
+  Badge for a completed mission.
+  """
+  attr :mission, Mission, required: true
+  attr :completed, :boolean, default: false
+
+  def mission_badge(assigns) do
+    ~H"""
+    <.award_badge
+      id={"mission-badge-#{@mission.key}"}
+      color={medal_color(@mission.prize)}
+      icon={if @mission.prize == :trophy, do: "tabler-trophy", else: "tabler-medal"}
+      value={@mission.label}
+      label={if @completed, do: @mission.success_message, else: @mission.description}
+    />
     """
   end
 

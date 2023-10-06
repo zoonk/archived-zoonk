@@ -181,6 +181,13 @@
     />
 
     <.menu_item
+      navigate={~p"/missions"}
+      icon="tabler-target-arrow"
+      active={@active_page == :mission_list}
+      title={dgettext("gamification", "Missions")}
+    />
+
+    <.menu_item
       :if={@current_user}
       navigate={~p"/users/settings/language"}
       icon="tabler-settings"

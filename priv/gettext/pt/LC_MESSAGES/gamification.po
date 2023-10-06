@@ -48,7 +48,7 @@ msgstr "Você concluiu uma aula sem erros após praticá-la."
 msgid "You completed a lesson without any errors on your first try."
 msgstr "Você concluiu uma aula sem erros na primeira tentativa."
 
-#: lib/components/award_badge.ex:32
+#: lib/components/award_badge.ex:33
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Learning day"
 msgid_plural "Learning days"
@@ -78,12 +78,12 @@ msgstr "Insira seu nome no perfil."
 #: lib/gamification/mission_utils.ex:34
 #, elixir-autogen, elixir-format
 msgid "Complete a lesson without errors."
-msgstr "Complete uma aula sem erros."
+msgstr "Conclua uma aula sem erros."
 
 #: lib/gamification/mission_utils.ex:27
 #, elixir-autogen, elixir-format
 msgid "Complete your first lesson."
-msgstr "Complete sua primeira aula."
+msgstr "Conclua sua primeira aula."
 
 #: lib/gamification/mission_utils.ex:26
 #, elixir-autogen, elixir-format
@@ -109,18 +109,18 @@ msgstr "Você adicionou seu nome ao perfil."
 #: lib/gamification/mission_utils.ex:35
 #, elixir-autogen, elixir-format, fuzzy
 msgid "You completed a lesson without errors."
-msgstr "Você completou uma aula sem erros."
+msgstr "Você concluiu uma aula sem erros."
 
 #: lib/gamification/medal_utils.ex:39
 #: lib/gamification/trophy_utils.ex:25
 #, elixir-autogen, elixir-format, fuzzy
 msgid "You completed a mission."
-msgstr "Você completou uma missão."
+msgstr "Você concluiu uma missão."
 
 #: lib/gamification/mission_utils.ex:28
 #, elixir-autogen, elixir-format, fuzzy
 msgid "You completed your first lesson."
-msgstr "Você completou a sua primeira aula."
+msgstr "Você concluiu a sua primeira aula."
 
 #: lib/gamification/mission_utils.ex:40
 #: lib/gamification/mission_utils.ex:47
@@ -146,7 +146,7 @@ msgstr "%{count} aulas perfeitas"
 #: lib/gamification/mission_utils.ex:101
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Complete %{count} lessons without errors."
-msgstr "Complete %{count} aulas sem erros."
+msgstr "Conclua %{count} aulas sem erros."
 
 #: lib/gamification/mission_utils.ex:41
 #: lib/gamification/mission_utils.ex:48
@@ -156,7 +156,7 @@ msgstr "Complete %{count} aulas sem erros."
 #: lib/gamification/mission_utils.ex:76
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Complete %{count} lessons."
-msgstr "Complete %{count} aulas."
+msgstr "Conclua %{count} aulas."
 
 #: lib/gamification/mission_utils.ex:42
 #: lib/gamification/mission_utils.ex:49
@@ -166,4 +166,30 @@ msgstr "Complete %{count} aulas."
 #: lib/gamification/mission_utils.ex:77
 #, elixir-autogen, elixir-format, fuzzy
 msgid "You completed %{count} lessons."
-msgstr "Você completou %{count} aulas."
+msgstr "Você concluiu %{count} aulas."
+
+#: lib/gamification/mission_live/list.ex:18
+#: lib/layouts/templates/app.html.heex:187
+#, elixir-autogen, elixir-format
+msgid "Missions"
+msgstr "Missões"
+
+#: lib/gamification/mission_live/list.html.heex:1
+#, elixir-autogen, elixir-format, fuzzy
+msgid "Completed missions"
+msgstr "Missões concluídas"
+
+#: lib/gamification/mission_live/list.html.heex:14
+#, elixir-autogen, elixir-format
+msgid "Congrats! You completed all missions."
+msgstr "Parabéns! Você concluiu todas as missões."
+
+#: lib/gamification/mission_live/list.html.heex:11
+#, elixir-autogen, elixir-format, fuzzy
+msgid "Next missions"
+msgstr "Próximas missões"
+
+#: lib/gamification/mission_live/list.html.heex:4
+#, elixir-autogen, elixir-format
+msgid "You didn't complete any missions yet."
+msgstr "Você ainda não concluiu nenhuma missão."

@@ -40,7 +40,7 @@ msgstr "fechar"
 #: lib/accounts/user_live/confirmation_instructions.html.heex:8
 #: lib/accounts/user_live/forgot_password.html.heex:7
 #: lib/accounts/user_live/registration.html.heex:23
-#: lib/layouts/templates/app.html.heex:212
+#: lib/layouts/templates/app.html.heex:219
 #, elixir-autogen, elixir-format
 msgid "Email"
 msgstr "E-mail"
@@ -48,7 +48,7 @@ msgstr "E-mail"
 #: lib/accounts/user_live/registration.html.heex:18
 #: lib/accounts/user_live/settings.html.heex:12
 #: lib/dashboard/courses/course_edit.html.heex:20
-#: lib/layouts/templates/app.html.heex:194
+#: lib/layouts/templates/app.html.heex:201
 #, elixir-autogen, elixir-format
 msgid "Language"
 msgstr "Idioma"
@@ -72,7 +72,7 @@ msgstr "Salvando..."
 
 #: lib/accounts/user_live/registration.html.heex:25
 #: lib/accounts/user_live/settings.html.heex:22
-#: lib/layouts/templates/app.html.heex:200
+#: lib/layouts/templates/app.html.heex:207
 #, elixir-autogen, elixir-format
 msgid "Username"
 msgstr "Nome de usuário"
@@ -102,13 +102,13 @@ msgstr ""
 msgid "Changing..."
 msgstr "Alterando..."
 
-#: lib/layouts/templates/app.html.heex:221
+#: lib/layouts/templates/app.html.heex:228
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Logout"
 msgstr "Sair"
 
 #: lib/accounts/user_live/settings.ex:32
-#: lib/layouts/templates/app.html.heex:188
+#: lib/layouts/templates/app.html.heex:195
 #, elixir-autogen, elixir-format
 msgid "Settings"
 msgstr "Configurações"
@@ -132,7 +132,7 @@ msgstr "Sobrenome"
 msgid "Save"
 msgstr "Salvar"
 
-#: lib/layouts/templates/app.html.heex:206
+#: lib/layouts/templates/app.html.heex:213
 #, elixir-autogen, elixir-format
 msgid "Name"
 msgstr "Nome"

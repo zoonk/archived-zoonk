@@ -70,6 +70,8 @@ defmodule UneebeeWeb.Router do
       ] do
       live "/schools/new", Organizations.School.New
 
+      live "/missions", Gamification.Mission.List
+
       live "/users/settings/email", Accounts.User.Settings, :email
       live "/users/settings/language", Accounts.User.Settings, :language
       live "/users/settings/name", Accounts.User.Settings, :name
