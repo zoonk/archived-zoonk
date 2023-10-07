@@ -4,6 +4,8 @@ defmodule UneebeeWeb.Components.Upload do
   """
   use UneebeeWeb, :live_component
 
+  alias UneebeeWeb.Shared.CloudStorage
+
   attr :current_img, :string, default: nil
   attr :label, :string, default: nil
   attr :unstyled, :boolean, default: false
@@ -65,7 +67,7 @@ defmodule UneebeeWeb.Components.Upload do
 
   @impl Phoenix.LiveComponent
   def mount(socket) do
-    {:ok, allow_upload(socket, :file, accept: ~w(.jpg .jpeg .png .avif .gif .webp), max_entries: 1)}
+    {:ok, upload_opts(socket, internal_storage?())}
   end
 
   @impl Phoenix.LiveComponent
@@ -102,9 +104,48 @@ defmodule UneebeeWeb.Components.Upload do
     {:ok, ~p"/uploads/#{file_name}"}
   end
 
+  defp consume_entry(%{key: key}, _entry) do
+    {:ok, CloudStorage.cdn_url() <> "/" <> key}
+  end
+
+  defp presign_upload(entry, socket) do
+    %{uploads: uploads} = socket.assigns
+    current_timestamp = DateTime.to_unix(DateTime.utc_now(), :second)
+    key = "#{current_timestamp}_#{entry.client_name}"
+
+    config = %{
+      region: "auto",
+      access_key_id: CloudStorage.access_key_id(),
+      secret_access_key: CloudStorage.secret_access_key(),
+      url: CloudStorage.bucket_url()
+    }
+
+    {:ok, presigned_url} =
+      CloudStorage.presigned_put(config,
+        key: key,
+        content_type: entry.client_type,
+        max_file_size: uploads[entry.upload_config].max_file_size
+      )
+
+    meta = %{
+      uploader: "S3",
+      key: key,
+      url: presigned_url
+    }
+
+    {:ok, meta, socket}
+  end
+
   defp error_to_string(:too_large), do: dgettext("errors", "Too large")
-
   defp error_to_string(:too_many_files), do: dgettext("errors", "You have selected too many files")
-
   defp error_to_string(:not_accepted), do: dgettext("errors", "You have selected an unacceptable file type")
+
+  defp internal_storage?, do: is_nil(CloudStorage.bucket())
+
+  defp upload_opts(socket, true), do: allow_upload(socket, :file, accept: accept_files(), max_entries: 1)
+
+  defp upload_opts(socket, false),
+    do: allow_upload(socket, :file, accept: accept_files(), max_entries: 1, external: &presign_upload/2)
+
+  defp accept_files, do: ~w(.jpg .jpeg .png .avif .gif .webp)
 end

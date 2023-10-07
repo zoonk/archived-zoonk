@@ -43,6 +43,7 @@ defmodule Uneebee.MixProject do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
+      {:aws_signature, "~> 0.3.1"},
       {:bcrypt_elixir, "~> 3.0"},
       {:credo, "~> 1.7.1", only: [:dev, :test], runtime: false},
       {:dialyxir, "~> 1.4.1", only: [:dev, :test], runtime: false},

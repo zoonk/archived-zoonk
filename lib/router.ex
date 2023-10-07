@@ -6,6 +6,8 @@ defmodule UneebeeWeb.Router do
   import UneebeeWeb.Plugs.Translate
   import UneebeeWeb.Plugs.UserAuth
 
+  alias UneebeeWeb.Shared.CloudStorage
+
   @nonce 10 |> :crypto.strong_rand_bytes() |> Base.url_encode64(padding: false)
 
   pipeline :browser do
@@ -14,7 +16,12 @@ defmodule UneebeeWeb.Router do
     plug :fetch_live_flash
     plug :put_root_layout, html: {UneebeeWeb.Layouts, :root}
     plug :protect_from_forgery
-    plug :put_secure_browser_headers, %{"content-security-policy" => "default-src 'self'; img-src 'self' data: blob:;"}
+
+    plug :put_secure_browser_headers, %{
+      "content-security-policy" =>
+        "default-src 'self'; connect-src 'self' #{CloudStorage.csp_connect_src()}; img-src 'self' #{CloudStorage.cdn_url()} data: blob:;"
+    }
+
     plug :fetch_current_user
     plug :fetch_school
     plug :check_school_setup

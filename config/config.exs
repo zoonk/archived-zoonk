@@ -20,6 +20,15 @@ config :uneebee, UneebeeWeb.Endpoint,
   pubsub_server: Uneebee.PubSub,
   live_view: [signing_salt: "18a5Hr6d"]
 
+# Cloud storage configuration
+config :uneebee, :storage,
+  bucket: System.get_env("STORAGE_BUCKET"),
+  access_key_id: System.get_env("STORAGE_ACCESS_KEY_ID"),
+  secret_access_key: System.get_env("STORAGE_SECRET_ACCESS_KEY"),
+  bucket_url: System.get_env("STORAGE_BUCKET_URL"),
+  cdn_url: System.get_env("STORAGE_CDN_URL"),
+  csp_connect_src: System.get_env("STORAGE_CSP_CONNECT_SRC")
+
 # Configures the mailer
 #
 # By default it uses the "Local" adapter which stores the emails
