@@ -30,5 +30,10 @@ config :swoosh, local: false
 # Do not print debug messages in production
 config :logger, level: :info
 
+# PostHog configuration
+config :posthog,
+  api_url: System.get_env("POSTHOG_API_URL"),
+  api_key: System.get_env("POSTHOG_API_KEY")
+
 # Runtime production configuration, including reading
 # of environment variables, is done on config/runtime.exs.

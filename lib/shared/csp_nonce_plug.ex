@@ -9,6 +9,6 @@ defmodule UneebeeWeb.Plugs.CspNonce do
   @spec call(Plug.Conn.t(), Keyword.t()) :: Plug.Conn.t()
   def call(conn, opts) do
     nonce = Keyword.get(opts, :nonce)
-    Plug.Conn.assign(conn, :csp_nonce_value, nonce)
+    Plug.Conn.assign(conn, :csp_nonce, nonce)
   end
 end

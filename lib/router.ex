@@ -16,10 +16,11 @@ defmodule UneebeeWeb.Router do
     plug :fetch_live_flash
     plug :put_root_layout, html: {UneebeeWeb.Layouts, :root}
     plug :protect_from_forgery
+    plug UneebeeWeb.Plugs.CspNonce, nonce: @nonce
 
     plug :put_secure_browser_headers, %{
       "content-security-policy" =>
-        "default-src 'self'; connect-src 'self' #{CloudStorage.csp_connect_src()}; img-src 'self' #{CloudStorage.cdn_url()} data: blob:;"
+        "default-src 'self'; script-src 'nonce-#{@nonce}' https://app.posthog.com; connect-src 'self' #{CloudStorage.csp_connect_src()} https://app.posthog.com; img-src 'self' #{CloudStorage.cdn_url()} data: blob:;"
     }
 
     plug :fetch_current_user
@@ -257,7 +258,7 @@ defmodule UneebeeWeb.Router do
 
     scope "/dev/dashboard" do
       pipe_through :dev_dashboard
-      live_dashboard "/", metrics: UneebeeWeb.Telemetry, csp_nonce_assign_key: :csp_nonce_value
+      live_dashboard "/", metrics: UneebeeWeb.Telemetry, csp_nonce_assign_key: :csp_nonce
     end
 
     scope "/dev/mailbox" do
