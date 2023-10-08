@@ -1,0 +1,42 @@
+## "msgid"s in this file come from POT (.pot) files.
+###
+### Do not add, change, or remove "msgid"s manually here as
+### they're tied to the ones in the corresponding POT file
+### (with the same domain).
+###
+### Use "mix gettext.extract --merge" or "mix gettext.merge"
+### to merge POT files into PO files.
+msgid ""
+msgstr ""
+"Language: en\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: lib/accounts/user_notifier.ex:36
+#, elixir-autogen, elixir-format
+msgid "Confirmation instructions"
+msgstr ""
+
+#: lib/accounts/user_notifier.ex:91
+#, elixir-autogen, elixir-format
+msgid "Hi %{name},\n\nYou can change your email by visiting the URL below:\n\n%{url}\n\nIf you didn't request this change, please ignore this.\n"
+msgstr ""
+
+#: lib/accounts/user_notifier.ex:39
+#, elixir-autogen, elixir-format
+msgid "Hi %{name},\n\nYou can confirm your account by visiting the URL below:\n\n%{url}\n\nIf you didn't create an account with us, please ignore this.\n"
+msgstr ""
+
+#: lib/accounts/user_notifier.ex:65
+#, elixir-autogen, elixir-format
+msgid "Hi %{name},\n\nYou can reset your password by visiting the URL below:\n\n%{url}\n\nIf you didn't request this change, please ignore this.\n"
+msgstr ""
+
+#: lib/accounts/user_notifier.ex:62
+#, elixir-autogen, elixir-format
+msgid "Reset password instructions"
+msgstr ""
+
+#: lib/accounts/user_notifier.ex:88
+#, elixir-autogen, elixir-format
+msgid "Update email instructions"
+msgstr ""

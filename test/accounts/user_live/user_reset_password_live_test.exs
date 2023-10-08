@@ -11,7 +11,7 @@ defmodule UneebeeWeb.UserResetPasswordLiveTest do
 
     token =
       extract_user_token(fn url ->
-        Accounts.deliver_user_reset_password_instructions(user, url)
+        Accounts.deliver_user_reset_password_instructions(user, nil, url)
       end)
 
     %{token: token, user: user}

@@ -98,6 +98,7 @@ defmodule UneebeeWeb.Live.Accounts.User.Settings do
       {:ok, applied_user} ->
         Accounts.deliver_user_update_email_instructions(
           applied_user,
+          socket.assigns.host_school,
           user.email,
           &url(~p"/users/settings/confirm_email/#{&1}")
         )

@@ -124,7 +124,7 @@ msgid "Last Name"
 msgstr ""
 
 #: lib/accounts/user_live/settings.html.heex:47
-#: lib/components/upload.ex:59
+#: lib/components/upload.ex:61
 #: lib/dashboard/lessons/lesson_edit.html.heex:7
 #: lib/dashboard/lessons/lesson_view.html.heex:166
 #: lib/dashboard/schools/school_edit.html.heex:44
@@ -172,7 +172,7 @@ msgstr ""
 msgid "Teachers"
 msgstr ""
 
-#: lib/components/upload.ex:53
+#: lib/components/upload.ex:55
 #, elixir-autogen, elixir-format
 msgid "Click on the save button to upload your file."
 msgstr ""
@@ -182,7 +182,7 @@ msgstr ""
 msgid "Profile"
 msgstr ""
 
-#: lib/components/upload.ex:52
+#: lib/components/upload.ex:54
 #, elixir-autogen, elixir-format
 msgid "Uploading file: %{progress}% concluded."
 msgstr ""

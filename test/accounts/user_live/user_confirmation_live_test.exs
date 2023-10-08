@@ -29,7 +29,7 @@ defmodule UneebeeWeb.UserConfirmationLiveTest do
 
     test "confirms the given token once", %{conn: conn} do
       user = user_fixture()
-      token = extract_user_token(fn url -> Accounts.deliver_user_confirmation_instructions(user, url) end)
+      token = extract_user_token(fn url -> Accounts.deliver_user_confirmation_instructions(user, nil, url) end)
 
       {:ok, lv, _html} = live(conn, ~p"/users/confirm/#{token}")
 

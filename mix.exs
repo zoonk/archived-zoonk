@@ -52,6 +52,7 @@ defmodule Uneebee.MixProject do
       {:ex_doc, "~> 0.30.6", only: :dev, runtime: false},
       {:finch, "~> 0.13"},
       {:floki, ">= 0.30.0", only: :test},
+      {:gen_smtp, "~> 1.2.0"},
       {:gettext, "~> 0.20"},
       {:jason, "~> 1.2"},
       {:mix_audit, "~> 2.1.1", only: [:dev, :test], runtime: false},

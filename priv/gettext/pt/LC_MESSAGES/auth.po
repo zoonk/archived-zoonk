@@ -79,7 +79,7 @@ msgstr "Cadastre-se"
 msgid "Back to the sign in form"
 msgstr "Voltar para o login"
 
-#: lib/accounts/user_live/forgot_password.ex:23
+#: lib/accounts/user_live/forgot_password.ex:27
 #, elixir-autogen, elixir-format
 msgid "If your email is in our system, you will receive instructions to reset your password shortly."
 msgstr "Se o seu email estiver no sistema, você receberá instruções para redefinir sua senha em breve."
@@ -150,7 +150,7 @@ msgstr "Senha atual"
 msgid "New password"
 msgstr "Nova senha"
 
-#: lib/accounts/user_live/settings.ex:105
+#: lib/accounts/user_live/settings.ex:106
 #, elixir-autogen, elixir-format
 msgid "A link to confirm your email change has been sent to the new address."
 msgstr "Enviamos um link para confirmar a alteração do seu e-mail para o novo endereço."
@@ -210,27 +210,27 @@ msgstr "Enviaremos um novo link de confirmação para o seu e-mail"
 msgid "Email or username"
 msgstr "E-mail ou nome de usuário"
 
-#: lib/accounts/user_live/registration.ex:91
+#: lib/accounts/user_live/registration.ex:97
 #, elixir-autogen, elixir-format
 msgid "By signing up, you agree to our %{privacy}."
 msgstr "Ao se cadastrar, você concorda com a %{privacy}."
 
-#: lib/accounts/user_live/registration.ex:97
+#: lib/accounts/user_live/registration.ex:101
 #, elixir-autogen, elixir-format
 msgid "By signing up, you agree to our %{terms} and %{privacy}."
 msgstr "Ao se cadastrar, você concorda com os %{terms} e a %{privacy}."
 
-#: lib/accounts/user_live/registration.ex:86
+#: lib/accounts/user_live/registration.ex:93
 #, elixir-autogen, elixir-format
 msgid "By signing up, you agree to our %{terms}."
 msgstr "Ao se cadastrar, você concorda com os %{terms}."
 
-#: lib/accounts/user_live/registration.ex:79
+#: lib/accounts/user_live/registration.ex:84
 #, elixir-autogen, elixir-format
 msgid "privacy policy"
 msgstr "política de privacidade"
 
-#: lib/accounts/user_live/registration.ex:75
+#: lib/accounts/user_live/registration.ex:80
 #, elixir-autogen, elixir-format
 msgid "terms of use"
 msgstr "termos de uso"

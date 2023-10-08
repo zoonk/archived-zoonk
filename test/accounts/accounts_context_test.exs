@@ -261,7 +261,7 @@ defmodule Uneebee.AccountsTest do
     test "sends token through notification", %{user: user} do
       token =
         extract_user_token(fn url ->
-          Accounts.deliver_user_update_email_instructions(user, "current@example.com", url)
+          Accounts.deliver_user_update_email_instructions(user, nil, "current@example.com", url)
         end)
 
       assert {:ok, token} = Base.url_decode64(token, padding: false)
@@ -279,7 +279,7 @@ defmodule Uneebee.AccountsTest do
 
       token =
         extract_user_token(fn url ->
-          Accounts.deliver_user_update_email_instructions(%{user | email: email}, user.email, url)
+          Accounts.deliver_user_update_email_instructions(%{user | email: email}, nil, user.email, url)
         end)
 
       %{user: user, token: token, email: email}
@@ -447,7 +447,7 @@ defmodule Uneebee.AccountsTest do
     test "sends token through notification", %{user: user} do
       token =
         extract_user_token(fn url ->
-          Accounts.deliver_user_confirmation_instructions(user, url)
+          Accounts.deliver_user_confirmation_instructions(user, nil, url)
         end)
 
       assert {:ok, token} = Base.url_decode64(token, padding: false)
@@ -464,7 +464,7 @@ defmodule Uneebee.AccountsTest do
 
       token =
         extract_user_token(fn url ->
-          Accounts.deliver_user_confirmation_instructions(user, url)
+          Accounts.deliver_user_confirmation_instructions(user, nil, url)
         end)
 
       %{user: user, token: token}
@@ -500,7 +500,7 @@ defmodule Uneebee.AccountsTest do
     test "sends token through notification", %{user: user} do
       token =
         extract_user_token(fn url ->
-          Accounts.deliver_user_reset_password_instructions(user, url)
+          Accounts.deliver_user_reset_password_instructions(user, nil, url)
         end)
 
       assert {:ok, token} = Base.url_decode64(token, padding: false)
@@ -517,7 +517,7 @@ defmodule Uneebee.AccountsTest do
 
       token =
         extract_user_token(fn url ->
-          Accounts.deliver_user_reset_password_instructions(user, url)
+          Accounts.deliver_user_reset_password_instructions(user, nil, url)
         end)
 
       %{user: user, token: token}

@@ -79,7 +79,7 @@ msgstr ""
 msgid "Back to the sign in form"
 msgstr ""
 
-#: lib/accounts/user_live/forgot_password.ex:23
+#: lib/accounts/user_live/forgot_password.ex:27
 #, elixir-autogen, elixir-format
 msgid "If your email is in our system, you will receive instructions to reset your password shortly."
 msgstr ""
@@ -150,7 +150,7 @@ msgstr ""
 msgid "New password"
 msgstr ""
 
-#: lib/accounts/user_live/settings.ex:105
+#: lib/accounts/user_live/settings.ex:106
 #, elixir-autogen, elixir-format
 msgid "A link to confirm your email change has been sent to the new address."
 msgstr ""
@@ -210,27 +210,27 @@ msgstr ""
 msgid "Email or username"
 msgstr ""
 
-#: lib/accounts/user_live/registration.ex:91
+#: lib/accounts/user_live/registration.ex:97
 #, elixir-autogen, elixir-format
 msgid "By signing up, you agree to our %{privacy}."
 msgstr ""
 
-#: lib/accounts/user_live/registration.ex:97
+#: lib/accounts/user_live/registration.ex:101
 #, elixir-autogen, elixir-format
 msgid "By signing up, you agree to our %{terms} and %{privacy}."
 msgstr ""
 
-#: lib/accounts/user_live/registration.ex:86
+#: lib/accounts/user_live/registration.ex:93
 #, elixir-autogen, elixir-format
 msgid "By signing up, you agree to our %{terms}."
 msgstr ""
 
-#: lib/accounts/user_live/registration.ex:79
+#: lib/accounts/user_live/registration.ex:84
 #, elixir-autogen, elixir-format
 msgid "privacy policy"
 msgstr ""
 
-#: lib/accounts/user_live/registration.ex:75
+#: lib/accounts/user_live/registration.ex:80
 #, elixir-autogen, elixir-format
 msgid "terms of use"
 msgstr ""
