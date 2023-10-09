@@ -41,6 +41,7 @@ msgstr ""
 #: lib/accounts/user_live/forgot_password.html.heex:7
 #: lib/accounts/user_live/registration.html.heex:23
 #: lib/layouts/templates/app.html.heex:225
+#: lib/support/feedback_live/feedback.html.heex:12
 #, elixir-autogen, elixir-format
 msgid "Email"
 msgstr ""
@@ -133,6 +134,7 @@ msgid "Save"
 msgstr ""
 
 #: lib/layouts/templates/app.html.heex:219
+#: lib/support/feedback_live/feedback.html.heex:11
 #, elixir-autogen, elixir-format
 msgid "Name"
 msgstr ""
@@ -265,4 +267,40 @@ msgstr ""
 #: lib/content/course_live/play.html.heex:13
 #, elixir-autogen, elixir-format
 msgid "Close"
+msgstr ""
+
+#: lib/layouts/templates/app.html.heex:242
+#: lib/support/feedback_live/feedback.ex:15
+#, elixir-autogen, elixir-format
+msgid "Feedback"
+msgstr ""
+
+#: lib/support/feedback_live/feedback.ex:26
+#, elixir-autogen, elixir-format
+msgid "Feedback sent!"
+msgstr ""
+
+#: lib/support/feedback_live/feedback.html.heex:13
+#, elixir-autogen, elixir-format
+msgid "Message"
+msgstr ""
+
+#: lib/support/feedback_live/feedback.html.heex:15
+#, elixir-autogen, elixir-format
+msgid "Send"
+msgstr ""
+
+#: lib/support/feedback_live/feedback.html.heex:3
+#, elixir-autogen, elixir-format
+msgid "Send your feedback"
+msgstr ""
+
+#: lib/support/feedback_live/feedback.ex:29
+#, elixir-autogen, elixir-format
+msgid "There was an error sending your feedback. Please try again."
+msgstr ""
+
+#: lib/support/feedback_live/feedback.html.heex:6
+#, elixir-autogen, elixir-format
+msgid "We are always looking for ways to improve our app. Please send us your feedback."
 msgstr ""

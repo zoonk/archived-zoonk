@@ -11,32 +11,42 @@
 msgid ""
 msgstr ""
 
-#: lib/accounts/user_notifier.ex:36
+#: lib/accounts/user_notifier.ex:15
 #, elixir-autogen, elixir-format
 msgid "Confirmation instructions"
 msgstr ""
 
-#: lib/accounts/user_notifier.ex:91
+#: lib/accounts/user_notifier.ex:70
 #, elixir-autogen, elixir-format
 msgid "Hi %{name},\n\nYou can change your email by visiting the URL below:\n\n%{url}\n\nIf you didn't request this change, please ignore this.\n"
 msgstr ""
 
-#: lib/accounts/user_notifier.ex:39
+#: lib/accounts/user_notifier.ex:18
 #, elixir-autogen, elixir-format
 msgid "Hi %{name},\n\nYou can confirm your account by visiting the URL below:\n\n%{url}\n\nIf you didn't create an account with us, please ignore this.\n"
 msgstr ""
 
-#: lib/accounts/user_notifier.ex:65
+#: lib/accounts/user_notifier.ex:44
 #, elixir-autogen, elixir-format
 msgid "Hi %{name},\n\nYou can reset your password by visiting the URL below:\n\n%{url}\n\nIf you didn't request this change, please ignore this.\n"
 msgstr ""
 
-#: lib/accounts/user_notifier.ex:62
+#: lib/accounts/user_notifier.ex:41
 #, elixir-autogen, elixir-format
 msgid "Reset password instructions"
 msgstr ""
 
-#: lib/accounts/user_notifier.ex:88
+#: lib/accounts/user_notifier.ex:67
 #, elixir-autogen, elixir-format
 msgid "Update email instructions"
+msgstr ""
+
+#: lib/support/support_context.ex:22
+#, elixir-autogen, elixir-format
+msgid "Feedback from %{name}"
+msgstr ""
+
+#: lib/support/support_context.ex:25
+#, elixir-autogen, elixir-format
+msgid "Name: %{name}\nEmail: %{email}\n\n%{message}\n"
 msgstr ""

@@ -11,32 +11,42 @@ msgstr ""
 "Language: pt\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: lib/accounts/user_notifier.ex:36
+#: lib/accounts/user_notifier.ex:15
 #, elixir-autogen, elixir-format
 msgid "Confirmation instructions"
 msgstr "Instruções de confirmação"
 
-#: lib/accounts/user_notifier.ex:91
+#: lib/accounts/user_notifier.ex:70
 #, elixir-autogen, elixir-format
 msgid "Hi %{name},\n\nYou can change your email by visiting the URL below:\n\n%{url}\n\nIf you didn't request this change, please ignore this.\n"
 msgstr "Olá %{name},\n\nVocê pode alterar seu e-mail visitando o link abaixo:\n\n%{url}\n\nCaso não tenha solicitado a alteração, pode ignorar esta mensagem.\n"
 
-#: lib/accounts/user_notifier.ex:39
+#: lib/accounts/user_notifier.ex:18
 #, elixir-autogen, elixir-format
 msgid "Hi %{name},\n\nYou can confirm your account by visiting the URL below:\n\n%{url}\n\nIf you didn't create an account with us, please ignore this.\n"
 msgstr "Olá %{name},\n\nVocê pode confirmar sua conta visitando o link abaixo:\n\n%{url}\n\nCaso não tenha criado uma conta conosco, pode ignorar esta mensagem.\n"
 
-#: lib/accounts/user_notifier.ex:65
+#: lib/accounts/user_notifier.ex:44
 #, elixir-autogen, elixir-format
 msgid "Hi %{name},\n\nYou can reset your password by visiting the URL below:\n\n%{url}\n\nIf you didn't request this change, please ignore this.\n"
 msgstr "Olá %{name},\n\nVocê pode redefinir sua senha visitando o link abaixo:\n\n%{url}\n\nCaso não tenha solicitado a alteração, pode ignorar esta mensagem.\n"
 
-#: lib/accounts/user_notifier.ex:62
+#: lib/accounts/user_notifier.ex:41
 #, elixir-autogen, elixir-format
 msgid "Reset password instructions"
 msgstr "Instruções para redefinir a senha"
 
-#: lib/accounts/user_notifier.ex:88
+#: lib/accounts/user_notifier.ex:67
 #, elixir-autogen, elixir-format
 msgid "Update email instructions"
 msgstr "Instruções para atualizar o e-mail"
+
+#: lib/support/support_context.ex:22
+#, elixir-autogen, elixir-format
+msgid "Feedback from %{name}"
+msgstr "Opinião de %{name}"
+
+#: lib/support/support_context.ex:25
+#, elixir-autogen, elixir-format
+msgid "Name: %{name}\nEmail: %{email}\n\n%{message}\n"
+msgstr "Nome: %{name}\nE-mail: %{email}\n\n%{message}\n"

@@ -1,0 +1,17 @@
+<div class="card p-4">
+  <.header>
+    <%= gettext("Send your feedback") %>
+
+    <:subtitle>
+      <%= gettext("We are always looking for ways to improve our app. Please send us your feedback.") %>
+    </:subtitle>
+  </.header>
+
+  <form phx-submit="send" class="mt-4">
+    <.input type="text" label={gettext("Name")} name="name" required value={@name} />
+    <.input type="email" label={gettext("Email")} name="email" required value={@email} />
+    <.input type="textarea" label={gettext("Message")} name="message" required value="" />
+
+    <.button type="submit" icon="tabler-send" class="mt-4"><%= gettext("Send") %></.button>
+  </form>
+</div>

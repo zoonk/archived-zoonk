@@ -234,6 +234,13 @@
         <.sub_menu href={~p"/users/logout"} method="delete" title={gettext("Logout")} />
       </:sub_menus>
     </.menu_item>
+
+    <.menu_item
+      navigate={~p"/feedback"}
+      icon="tabler-message-circle-2"
+      active={@active_page == :support_feedback}
+      title={gettext("Feedback")}
+    />
   </.menu>
 
   <section class="w-full"><%= @inner_content %></section>

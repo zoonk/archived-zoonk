@@ -101,6 +101,7 @@ defmodule UneebeeWeb.Router do
         UneebeeWeb.Plugs.ActivePage
       ] do
       live "/", Home
+      live "/feedback", Support.Feedback
 
       live "/users/confirm/:token", Accounts.User.Confirmation, :edit
       live "/users/confirm", Accounts.User.ConfirmationInstructions, :new
