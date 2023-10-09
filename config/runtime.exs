@@ -97,8 +97,6 @@ if config_env() == :prod do
 
   ## Configuring the mailer
   config :uneebee, Uneebee.Mailer,
-    adapter: Swoosh.Adapters.AmazonSES,
-    region: System.get_env("MAILER_REGION"),
-    access_key: System.get_env("MAILER_ACCESS_KEY"),
-    secret: System.get_env("MAILER_SECRET")
+    adapter: Resend.Swoosh.Adapter,
+    api_key: System.fetch_env!("RESEND_API_KEY")
 end
