@@ -21,20 +21,22 @@ if System.get_env("PHX_SERVER") do
 end
 
 if config_env() == :prod do
-  database_url =
-    System.get_env("DATABASE_URL") ||
+  database_host =
+    System.get_env("DATABASE_HOST") ||
       raise """
-      environment variable DATABASE_URL is missing.
-      For example: ecto://USER:PASS@HOST/DATABASE
+      environment variable DATABASE_HOST is missing.
       """
 
-  maybe_ipv6 = if System.get_env("ECTO_IPV6") in ~w(true 1), do: [:inet6], else: []
-
   config :uneebee, Uneebee.Repo,
-    # ssl: true,
-    url: database_url,
-    pool_size: String.to_integer(System.get_env("POOL_SIZE") || "10"),
-    socket_options: maybe_ipv6
+    database: System.fetch_env!("DATABASE_NAME"),
+    username: System.fetch_env!("DATABASE_USERNAME"),
+    password: System.fetch_env!("DATABASE_PASSWORD"),
+    hostname: database_host,
+    ssl: true,
+    ssl_opts: [
+      server_name_indication: to_charlist(database_host),
+      verify: :verify_none
+    ]
 
   # The secret key base is used to sign/encrypt cookies and other secrets.
   # A default value is used in config/dev.exs and config/test.exs but you
@@ -47,21 +49,6 @@ if config_env() == :prod do
       environment variable SECRET_KEY_BASE is missing.
       You can generate one by calling: mix phx.gen.secret
       """
-
-  host = System.get_env("PHX_HOST") || "example.com"
-  port = String.to_integer(System.get_env("PORT") || "4000")
-
-  config :uneebee, UneebeeWeb.Endpoint,
-    url: [host: host, port: 443, scheme: "https"],
-    http: [
-      # Enable IPv6 and bind on all interfaces.
-      # Set it to  {0, 0, 0, 0, 0, 0, 0, 1} for local network only access.
-      # See the documentation on https://hexdocs.pm/plug_cowboy/Plug.Cowboy.html
-      # for details about using IPv6 vs IPv4 and loopback vs public addresses.
-      ip: {0, 0, 0, 0, 0, 0, 0, 0},
-      port: port
-    ],
-    secret_key_base: secret_key_base
 
   # ## SSL Support
   #
@@ -94,9 +81,37 @@ if config_env() == :prod do
   #       force_ssl: [hsts: true]
   #
   # Check `Plug.SSL` for all available options in `force_ssl`.
+  host = System.get_env("PHX_HOST") || "app.uneebee.com"
+  port = String.to_integer(System.get_env("PORT") || "8080")
+
+  config :uneebee, UneebeeWeb.Endpoint,
+    url: [host: host, port: port, scheme: "https"],
+    http: [
+      # Enable IPv6 and bind on all interfaces.
+      # Set it to  {0, 0, 0, 0, 0, 0, 0, 1} for local network only access.
+      # See the documentation on https://hexdocs.pm/plug_cowboy/Plug.Cowboy.html
+      # for details about using IPv6 vs IPv4 and loopback vs public addresses.
+      ip: {0, 0, 0, 0, 0, 0, 0, 0},
+      port: port
+    ],
+    secret_key_base: secret_key_base
 
   ## Configuring the mailer
   config :uneebee, Uneebee.Mailer,
     adapter: Resend.Swoosh.Adapter,
-    api_key: System.fetch_env!("RESEND_API_KEY")
+    api_key: System.get_env("RESEND_API_KEY")
+
+  # PostHog configuration
+  config :posthog,
+    api_url: System.get_env("POSTHOG_API_URL"),
+    api_key: System.get_env("POSTHOG_API_KEY")
+
+  # Cloud storage configuration
+  config :uneebee, :storage,
+    bucket: System.get_env("STORAGE_BUCKET"),
+    access_key_id: System.get_env("STORAGE_ACCESS_KEY_ID"),
+    secret_access_key: System.get_env("STORAGE_SECRET_ACCESS_KEY"),
+    bucket_url: System.get_env("STORAGE_BUCKET_URL"),
+    cdn_url: System.get_env("STORAGE_CDN_URL"),
+    csp_connect_src: System.get_env("STORAGE_CSP_CONNECT_SRC")
 end
