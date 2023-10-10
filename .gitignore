@@ -37,6 +37,7 @@ npm-debug.log
 # Private keys
 cert
 .env
+.env.*
 
 # Sobelow
 .sobelow
