@@ -16,11 +16,10 @@ defmodule UneebeeWeb.Router do
     plug :fetch_live_flash
     plug :put_root_layout, html: {UneebeeWeb.Layouts, :root}
     plug :protect_from_forgery
-    plug UneebeeWeb.Plugs.CspNonce, nonce: @nonce
 
     plug :put_secure_browser_headers, %{
       "content-security-policy" =>
-        "default-src 'self'; script-src 'nonce-#{@nonce}' https://app.posthog.com; connect-src 'self' #{CloudStorage.csp_connect_src()} https://app.posthog.com; img-src 'self' #{CloudStorage.cdn_url()} data: blob:;"
+        "default-src 'self'; connect-src 'self' #{CloudStorage.csp_connect_src()}; img-src 'self' #{CloudStorage.cdn_url()} data: blob:;"
     }
 
     plug :fetch_current_user

@@ -101,11 +101,6 @@ if config_env() == :prod do
     adapter: Resend.Swoosh.Adapter,
     api_key: System.get_env("RESEND_API_KEY")
 
-  # PostHog configuration
-  config :posthog,
-    api_url: System.get_env("POSTHOG_API_URL"),
-    api_key: System.get_env("POSTHOG_API_KEY")
-
   # Cloud storage configuration
   config :uneebee, :storage,
     bucket: System.get_env("STORAGE_BUCKET"),
