@@ -34,8 +34,13 @@ if config_env() == :prod do
     hostname: database_host,
     ssl: true,
     ssl_opts: [
+      cacertfile: System.fetch_env!("CERT_PATH"),
       server_name_indication: to_charlist(database_host),
-      verify: :verify_none
+      verify: :verify_peer,
+      customize_hostname_check: [
+        # By default, Erlang does not support wildcard certificates. This function supports validating wildcard hosts
+        match_fun: :public_key.pkix_verify_hostname_match_fun(:https)
+      ]
     ]
 
   # The secret key base is used to sign/encrypt cookies and other secrets.
