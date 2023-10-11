@@ -4,7 +4,7 @@ on: push
 
 env:
   MIX_ENV: test
-  ELIXIR_VERSION: 1.15.5
+  ELIXIR_VERSION: 1.15.6
   OTP_VERSION: 26.0.2
 
 jobs:

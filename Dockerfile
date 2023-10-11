@@ -9,9 +9,9 @@
 #   - https://hub.docker.com/r/hexpm/elixir/tags - for the build image
 #   - https://hub.docker.com/_/debian?tab=tags&page=1&name=bullseye-20230612-slim - for the release image
 #   - https://pkgs.org/ - resource for finding needed packages
-#   - Ex: hexpm/elixir:1.15.5-erlang-26.0.2-debian-bullseye-20230612-slim
+#   - Ex: hexpm/elixir:1.15.6-erlang-26.0.2-debian-bullseye-20230612-slim
 #
-ARG ELIXIR_VERSION=1.15.5
+ARG ELIXIR_VERSION=1.15.6
 ARG OTP_VERSION=26.0.2
 ARG DEBIAN_VERSION=bullseye-20230612-slim
 
@@ -80,13 +80,9 @@ ENV LC_ALL en_US.UTF-8
 WORKDIR "/app"
 RUN chown nobody /app
 
-# Use root CA for the database connection
-RUN cp /etc/ssl/certs/ca-certificates.crt /app/ca-certificates.crt
-RUN chmod 644 /app/ca-certificates.crt
-
 # set runner ENV
 ENV MIX_ENV="prod"
-ENV CERT_PATH="/app/ca-certificates.crt"
+ENV CERT_PATH="/etc/ssl/certs/ca-certificates.crt"
 
 # Only copy the final release from the build stage
 COPY --from=builder --chown=nobody:root /app/_build/${MIX_ENV}/rel/uneebee ./
