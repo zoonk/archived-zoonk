@@ -105,7 +105,7 @@ defmodule UneebeeWeb.Components.Upload do
   end
 
   defp consume_entry(%{key: key}, _entry) do
-    {:ok, CloudStorage.cdn_url() <> "/" <> key}
+    {:ok, Application.get_env(:uneebee, :cdn)[:url] <> "/" <> key}
   end
 
   defp presign_upload(entry, socket) do

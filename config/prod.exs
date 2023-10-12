@@ -13,5 +13,8 @@ config :uneebee, UneebeeWeb.Endpoint,
   url: [host: System.get_env("PHX_HOST"), port: System.get_env("PORT")],
   cache_static_manifest: "priv/static/cache_manifest.json"
 
+config :uneebee, :csp, connect_src: System.get_env("CSP_CONNECT_SRC")
+config :uneebee, :cdn, url: System.get_env("CDN_URL")
+
 # Runtime production configuration, including reading
 # of environment variables, is done on config/runtime.exs.

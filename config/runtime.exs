@@ -111,7 +111,5 @@ if config_env() == :prod do
     bucket: System.get_env("STORAGE_BUCKET"),
     access_key_id: System.get_env("STORAGE_ACCESS_KEY_ID"),
     secret_access_key: System.get_env("STORAGE_SECRET_ACCESS_KEY"),
-    bucket_url: System.get_env("STORAGE_BUCKET_URL"),
-    cdn_url: System.get_env("STORAGE_CDN_URL"),
-    csp_connect_src: System.get_env("STORAGE_CSP_CONNECT_SRC")
+    bucket_url: System.get_env("STORAGE_BUCKET_URL")
 end

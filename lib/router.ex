@@ -6,9 +6,9 @@ defmodule UneebeeWeb.Router do
   import UneebeeWeb.Plugs.Translate
   import UneebeeWeb.Plugs.UserAuth
 
-  alias UneebeeWeb.Shared.CloudStorage
-
   @nonce 10 |> :crypto.strong_rand_bytes() |> Base.url_encode64(padding: false)
+  @csp_connect_src Application.compile_env(:uneebee, :csp)[:connect_src]
+  @cdn_url Application.compile_env(:uneebee, :cdn)[:url]
 
   pipeline :browser do
     plug :accepts, ["html"]
@@ -19,7 +19,7 @@ defmodule UneebeeWeb.Router do
 
     plug :put_secure_browser_headers, %{
       "content-security-policy" =>
-        "default-src 'self'; connect-src 'self' #{CloudStorage.csp_connect_src()}; img-src 'self' #{CloudStorage.cdn_url()} data: blob:;"
+        "default-src 'self'; connect-src 'self' #{@csp_connect_src}; img-src 'self' #{@cdn_url} data: blob:;"
     }
 
     plug :fetch_current_user

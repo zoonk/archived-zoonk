@@ -17,6 +17,10 @@ swap_size_mb = 512
   PHX_HOST = "app.uneebee.com"
   PORT = "8080"
 
+[build.args]
+  CDN_URL = "https://cdn.uneebee.com"
+  CSP_CONNECT_SRC = "https://*.r2.cloudflarestorage.com"
+
 [http_service]
   internal_port = 8080
   force_https = true

@@ -68,8 +68,6 @@ defmodule UneebeeWeb.Shared.CloudStorage do
 
   def bucket, do: storage()[:bucket]
   def bucket_url, do: storage()[:bucket_url]
-  def cdn_url, do: storage()[:cdn_url]
-  def csp_connect_src, do: storage()[:csp_connect_src]
   def access_key_id, do: storage()[:access_key_id]
   def secret_access_key, do: storage()[:secret_access_key]
 
