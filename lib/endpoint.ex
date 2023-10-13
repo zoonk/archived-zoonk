@@ -20,7 +20,7 @@ defmodule UneebeeWeb.Endpoint do
   plug Plug.Static,
     at: "/",
     from: :uneebee,
-    gzip: false,
+    gzip: true,
     only: UneebeeWeb.static_paths()
 
   # Code reloading can be explicitly enabled under the
