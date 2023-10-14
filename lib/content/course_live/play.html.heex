@@ -15,32 +15,15 @@
   </header>
 
   <section :if={@completed_steps != []} class="space-y-4">
-    <.lesson_step
-      :for={{step, index} <- Enum.with_index(@completed_steps)}
-      step={step}
-      selected={Enum.at(@selected_options, index)}
-    />
+    <.lesson_step :for={{step, index} <- Enum.with_index(@completed_steps)} step={step} selected={Enum.at(@selected_options, index)} />
   </section>
 
   <.lesson_step step={current_step} />
 
-  <form
-    :if={current_step.options != []}
-    id="select-option"
-    phx-submit="select-option"
-    class="space-y-4"
-    phx-hook="LessonSoundEffect"
-  >
+  <form :if={current_step.options != []} id="select-option" phx-submit="select-option" class="space-y-4" phx-hook="LessonSoundEffect">
     <secion class="grid grid-cols-2 gap-2">
       <div :for={option <- current_step.options} class="relative">
-        <input
-          id={"select-option-#{option.id}"}
-          type="radio"
-          name="selected_option"
-          value={option.id}
-          class="peer absolute opacity-0"
-          required
-        />
+        <input id={"select-option-#{option.id}"} type="radio" name="selected_option" value={option.id} class="peer absolute opacity-0" required />
 
         <label
           for={"select-option-#{option.id}"}
@@ -52,12 +35,7 @@
       </div>
     </secion>
 
-    <.button
-      type="submit"
-      color={:success_light}
-      icon="tabler-checks"
-      phx-disable-with={dgettext("courses", "Confirming...")}
-    >
+    <.button type="submit" color={:success_light} icon="tabler-checks" phx-disable-with={dgettext("courses", "Confirming...")}>
       <%= gettext("Confirm") %>
     </.button>
   </form>

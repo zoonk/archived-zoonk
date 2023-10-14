@@ -30,9 +30,7 @@ defmodule Uneebee.AccountsTest do
 
     test "returns the user if the email and password are valid" do
       %{id: id} = user = user_fixture()
-
-      assert %User{id: ^id} =
-               Accounts.get_user_by_email_and_password(user.email, valid_user_password())
+      assert %User{id: ^id} = Accounts.get_user_by_email_and_password(user.email, valid_user_password())
     end
   end
 
@@ -86,9 +84,7 @@ defmodule Uneebee.AccountsTest do
 
   describe "get_user!/1" do
     test "raises if id is invalid" do
-      assert_raise Ecto.NoResultsError, fn ->
-        Accounts.get_user!(-1)
-      end
+      assert_raise Ecto.NoResultsError, fn -> Accounts.get_user!(-1) end
     end
 
     test "returns the user with the given id" do
@@ -100,20 +96,14 @@ defmodule Uneebee.AccountsTest do
   describe "register_user/1" do
     test "requires email and password to be set" do
       {:error, changeset} = Accounts.register_user(%{})
-
-      assert %{
-               password: ["can't be blank"],
-               email: ["can't be blank"]
-             } = errors_on(changeset)
+      assert %{password: ["can't be blank"], email: ["can't be blank"]} = errors_on(changeset)
     end
 
     test "validates email and password when given" do
       {:error, changeset} = Accounts.register_user(%{email: "not valid", password: "not valid"})
 
-      assert %{
-               email: ["must have the @ sign and no spaces"],
-               password: ["at least one digit or punctuation character", "at least one upper case character"]
-             } = errors_on(changeset)
+      assert %{email: ["must have the @ sign and no spaces"], password: ["at least one digit or punctuation character", "at least one upper case character"]} =
+               errors_on(changeset)
     end
 
     test "validates maximum values for email and password for security" do
@@ -152,12 +142,7 @@ defmodule Uneebee.AccountsTest do
     test "allows fields to be set" do
       email = unique_user_email()
       password = valid_user_password()
-
-      changeset =
-        Accounts.change_user_registration(
-          %User{},
-          valid_user_attributes(email: email, password: password)
-        )
+      changeset = Accounts.change_user_registration(%User{}, valid_user_attributes(email: email, password: password))
 
       assert changeset.valid?
       assert get_change(changeset, :email) == email
@@ -214,17 +199,13 @@ defmodule Uneebee.AccountsTest do
     end
 
     test "validates email", %{user: user} do
-      {:error, changeset} =
-        Accounts.apply_user_email(user, valid_user_password(), %{email: "not valid"})
-
+      {:error, changeset} = Accounts.apply_user_email(user, valid_user_password(), %{email: "not valid"})
       assert %{email: ["must have the @ sign and no spaces"]} = errors_on(changeset)
     end
 
     test "validates maximum value for email for security", %{user: user} do
       too_long = String.duplicate("db", 100)
-
-      {:error, changeset} =
-        Accounts.apply_user_email(user, valid_user_password(), %{email: too_long})
+      {:error, changeset} = Accounts.apply_user_email(user, valid_user_password(), %{email: too_long})
 
       assert "should be at most 160 character(s)" in errors_on(changeset).email
     end
@@ -239,9 +220,7 @@ defmodule Uneebee.AccountsTest do
     end
 
     test "validates current password", %{user: user} do
-      {:error, changeset} =
-        Accounts.apply_user_email(user, "invalid", %{email: unique_user_email()})
-
+      {:error, changeset} = Accounts.apply_user_email(user, "invalid", %{email: unique_user_email()})
       assert %{current_password: ["is invalid"]} = errors_on(changeset)
     end
 
@@ -259,10 +238,7 @@ defmodule Uneebee.AccountsTest do
     end
 
     test "sends token through notification", %{user: user} do
-      token =
-        extract_user_token(fn url ->
-          Accounts.deliver_user_update_email_instructions(user, nil, "current@example.com", url)
-        end)
+      token = extract_user_token(fn url -> Accounts.deliver_user_update_email_instructions(user, nil, "current@example.com", url) end)
 
       assert {:ok, token} = Base.url_decode64(token, padding: false)
       assert user_token = Repo.get_by(UserToken, token: :crypto.hash(:sha256, token))
@@ -276,11 +252,7 @@ defmodule Uneebee.AccountsTest do
     setup do
       user = user_fixture()
       email = unique_user_email()
-
-      token =
-        extract_user_token(fn url ->
-          Accounts.deliver_user_update_email_instructions(%{user | email: email}, nil, user.email, url)
-        end)
+      token = extract_user_token(fn url -> Accounts.deliver_user_update_email_instructions(%{user | email: email}, nil, user.email, url) end)
 
       %{user: user, token: token, email: email}
     end
@@ -322,10 +294,7 @@ defmodule Uneebee.AccountsTest do
     end
 
     test "allows fields to be set" do
-      changeset =
-        Accounts.change_user_password(%User{}, %{
-          "password" => "ValidPassword123"
-        })
+      changeset = Accounts.change_user_password(%User{}, %{"password" => "ValidPassword123"})
 
       assert changeset.valid?
       assert get_change(changeset, :password) == "ValidPassword123"
@@ -339,11 +308,7 @@ defmodule Uneebee.AccountsTest do
     end
 
     test "validates password", %{user: user} do
-      {:error, changeset} =
-        Accounts.update_user_password(user, valid_user_password(), %{
-          password: "not valid",
-          password_confirmation: "another"
-        })
+      {:error, changeset} = Accounts.update_user_password(user, valid_user_password(), %{password: "not valid", password_confirmation: "another"})
 
       assert %{
                password: ["at least one digit or punctuation character", "at least one upper case character"],
@@ -353,25 +318,18 @@ defmodule Uneebee.AccountsTest do
 
     test "validates maximum values for password for security", %{user: user} do
       too_long = String.duplicate("db", 100)
-
-      {:error, changeset} =
-        Accounts.update_user_password(user, valid_user_password(), %{password: too_long})
+      {:error, changeset} = Accounts.update_user_password(user, valid_user_password(), %{password: too_long})
 
       assert "should be at most 72 character(s)" in errors_on(changeset).password
     end
 
     test "validates current password", %{user: user} do
-      {:error, changeset} =
-        Accounts.update_user_password(user, "invalid", %{password: valid_user_password()})
-
+      {:error, changeset} = Accounts.update_user_password(user, "invalid", %{password: valid_user_password()})
       assert %{current_password: ["is invalid"]} = errors_on(changeset)
     end
 
     test "updates the password", %{user: user} do
-      {:ok, user} =
-        Accounts.update_user_password(user, valid_user_password(), %{
-          password: "ValidPassword123"
-        })
+      {:ok, user} = Accounts.update_user_password(user, valid_user_password(), %{password: "ValidPassword123"})
 
       assert is_nil(user.password)
       assert Accounts.get_user_by_email_and_password(user.email, "ValidPassword123")
@@ -379,9 +337,7 @@ defmodule Uneebee.AccountsTest do
 
     test "deletes all tokens for the given user", %{user: user} do
       Accounts.generate_user_session_token(user)
-
-      {:ok, _} =
-        Accounts.update_user_password(user, valid_user_password(), %{password: "NewPassword123"})
+      {:ok, _} = Accounts.update_user_password(user, valid_user_password(), %{password: "NewPassword123"})
 
       refute Repo.get_by(UserToken, user_id: user.id)
     end
@@ -399,11 +355,7 @@ defmodule Uneebee.AccountsTest do
 
       # Creating the same token for another user should fail
       assert_raise Ecto.ConstraintError, fn ->
-        Repo.insert!(%UserToken{
-          token: user_token.token,
-          user_id: user_fixture().id,
-          context: "session"
-        })
+        Repo.insert!(%UserToken{token: user_token.token, user_id: user_fixture().id, context: "session"})
       end
     end
   end
@@ -445,10 +397,7 @@ defmodule Uneebee.AccountsTest do
     end
 
     test "sends token through notification", %{user: user} do
-      token =
-        extract_user_token(fn url ->
-          Accounts.deliver_user_confirmation_instructions(user, nil, url)
-        end)
+      token = extract_user_token(fn url -> Accounts.deliver_user_confirmation_instructions(user, nil, url) end)
 
       assert {:ok, token} = Base.url_decode64(token, padding: false)
       assert user_token = Repo.get_by(UserToken, token: :crypto.hash(:sha256, token))
@@ -461,11 +410,7 @@ defmodule Uneebee.AccountsTest do
   describe "confirm_user/1" do
     setup do
       user = user_fixture()
-
-      token =
-        extract_user_token(fn url ->
-          Accounts.deliver_user_confirmation_instructions(user, nil, url)
-        end)
+      token = extract_user_token(fn url -> Accounts.deliver_user_confirmation_instructions(user, nil, url) end)
 
       %{user: user, token: token}
     end
@@ -498,10 +443,7 @@ defmodule Uneebee.AccountsTest do
     end
 
     test "sends token through notification", %{user: user} do
-      token =
-        extract_user_token(fn url ->
-          Accounts.deliver_user_reset_password_instructions(user, nil, url)
-        end)
+      token = extract_user_token(fn url -> Accounts.deliver_user_reset_password_instructions(user, nil, url) end)
 
       assert {:ok, token} = Base.url_decode64(token, padding: false)
       assert user_token = Repo.get_by(UserToken, token: :crypto.hash(:sha256, token))
@@ -514,12 +456,7 @@ defmodule Uneebee.AccountsTest do
   describe "get_user_by_reset_password_token/1" do
     setup do
       user = user_fixture()
-
-      token =
-        extract_user_token(fn url ->
-          Accounts.deliver_user_reset_password_instructions(user, nil, url)
-        end)
-
+      token = extract_user_token(fn url -> Accounts.deliver_user_reset_password_instructions(user, nil, url) end)
       %{user: user, token: token}
     end
 
@@ -546,11 +483,7 @@ defmodule Uneebee.AccountsTest do
     end
 
     test "validates password", %{user: user} do
-      {:error, changeset} =
-        Accounts.reset_user_password(user, %{
-          password: "not valid",
-          password_confirmation: "another"
-        })
+      {:error, changeset} = Accounts.reset_user_password(user, %{password: "not valid", password_confirmation: "another"})
 
       assert %{
                password: ["at least one digit or punctuation character", "at least one upper case character"],

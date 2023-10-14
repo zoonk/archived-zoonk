@@ -13,7 +13,6 @@ defmodule UneebeeWeb.Live.Dashboard.CourseStudentView do
 
     student = Accounts.get_user_by_username(params["username"])
     full_name = UserUtils.full_name(student)
-
     lessons = Content.list_published_lessons(course, student, selections?: true)
 
     socket = socket |> assign(:page_title, full_name) |> assign(:student, student) |> assign(:lessons, lessons)

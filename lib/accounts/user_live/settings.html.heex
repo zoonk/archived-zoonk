@@ -1,10 +1,4 @@
-<.simple_form
-  :if={@live_action not in [:email, :password]}
-  for={@settings_form}
-  id="settings-form"
-  phx-submit="update_settings"
-  phx-change="validate_settings"
->
+<.simple_form :if={@live_action not in [:email, :password]} for={@settings_form} id="settings-form" phx-submit="update_settings" phx-change="validate_settings">
   <.input
     :if={@live_action == :language}
     field={@settings_form[:language]}
@@ -25,36 +19,15 @@
     value={@current_user.username}
   />
 
-  <.input
-    :if={@live_action == :name}
-    field={@settings_form[:first_name]}
-    type="text"
-    label={gettext("First Name")}
-    autocomplete="given-name"
-    value={@current_user.first_name}
-  />
-
-  <.input
-    :if={@live_action == :name}
-    field={@settings_form[:last_name]}
-    type="text"
-    label={gettext("Last Name")}
-    autocomplete="family-name"
-    value={@current_user.last_name}
-  />
+  <.input :if={@live_action == :name} field={@settings_form[:first_name]} type="text" label={gettext("First Name")} autocomplete="given-name" value={@current_user.first_name} />
+  <.input :if={@live_action == :name} field={@settings_form[:last_name]} type="text" label={gettext("Last Name")} autocomplete="family-name" value={@current_user.last_name} />
 
   <:actions>
     <.button phx-disable-with={gettext("Saving...")}><%= gettext("Save") %></.button>
   </:actions>
 </.simple_form>
 
-<.simple_form
-  :if={@live_action == :email}
-  for={@email_form}
-  id="email-form"
-  phx-submit="update_email"
-  phx-change="validate_email"
->
+<.simple_form :if={@live_action == :email} for={@email_form} id="email-form" phx-submit="update_email" phx-change="validate_email">
   <.input field={@email_form[:email]} type="email" label="Email" required />
 
   <.input
@@ -96,20 +69,8 @@
     required
   />
 
-  <.input
-    field={@password_form[:password]}
-    type="password"
-    label={dgettext("auth", "New password")}
-    autocomplete="new-password"
-    required
-  />
-
-  <.input
-    field={@password_form[:password_confirmation]}
-    type="password"
-    label={dgettext("auth", "Confirm new password")}
-    autocomplete="new-password"
-  />
+  <.input field={@password_form[:password]} type="password" label={dgettext("auth", "New password")} autocomplete="new-password" required />
+  <.input field={@password_form[:password_confirmation]} type="password" label={dgettext("auth", "Confirm new password")} autocomplete="new-password" />
 
   <:actions>
     <.button icon="tabler-lock-check" phx-disable-with={gettext("Changing...")}>

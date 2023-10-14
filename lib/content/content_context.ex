@@ -59,12 +59,7 @@ defmodule Uneebee.Content do
       Ecto.Multi.new()
       |> Ecto.Multi.insert(:course, Course.changeset(%Course{}, attrs))
       |> Ecto.Multi.run(:course_user, fn _repo, %{course: course} ->
-        create_course_user(course, user, %{
-          role: :teacher,
-          approved?: true,
-          approved_at: DateTime.utc_now(),
-          approved_by_id: user.id
-        })
+        create_course_user(course, user, %{role: :teacher, approved?: true, approved_at: DateTime.utc_now(), approved_by_id: user.id})
       end)
 
     case Repo.transaction(multi) do
@@ -164,9 +159,7 @@ defmodule Uneebee.Content do
       |> select([c, u], {c, count(u.id)})
       |> Repo.all()
 
-    Enum.map(courses, fn {course, student_count} ->
-      %CourseData{id: course.id, data: course, student_count: student_count}
-    end)
+    Enum.map(courses, fn {course, student_count} -> %CourseData{id: course.id, data: course, student_count: student_count} end)
   end
 
   @doc """
@@ -441,7 +434,6 @@ defmodule Uneebee.Content do
 
   def list_published_lessons(%Course{} = course, %User{} = user, opts \\ []) do
     preload_selections? = Keyword.get(opts, :selections?, false)
-
     user_lessons_query = where(UserLesson, [ul], ul.user_id == ^user.id)
 
     Lesson
@@ -579,8 +571,7 @@ defmodule Uneebee.Content do
       iex> update_lesson_step_order(%Lesson{}, 1, 3)
       {:ok, [%LessonStep{}, ...]}
   """
-  @spec update_lesson_step_order(Lesson.t(), non_neg_integer(), non_neg_integer()) ::
-          {:ok, [LessonStep.t()]} | {:error, [Ecto.Changeset.t()]}
+  @spec update_lesson_step_order(Lesson.t(), non_neg_integer(), non_neg_integer()) :: {:ok, [LessonStep.t()]} | {:error, [Ecto.Changeset.t()]}
   def update_lesson_step_order(%Lesson{} = lesson, from_index, to_index) do
     lesson_steps = list_lesson_steps(lesson)
 
@@ -776,12 +767,7 @@ defmodule Uneebee.Content do
     perfect? = correct == total
     first_try? = is_nil(user_lesson)
 
-    Gamification.award_medal_for_lesson(%{
-      user_id: user_id,
-      lesson_id: lesson_id,
-      perfect?: perfect?,
-      first_try?: first_try?
-    })
+    Gamification.award_medal_for_lesson(%{user_id: user_id, lesson_id: lesson_id, perfect?: perfect?, first_try?: first_try?})
 
     add_user_lesson(attrs, user_lesson)
   end

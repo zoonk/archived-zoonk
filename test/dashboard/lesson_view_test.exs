@@ -73,12 +73,7 @@ defmodule UneebeeWeb.DashboardLessonViewLiveTest do
 
     test "renders the step list", %{conn: conn, course: course} do
       lesson = lesson_fixture(%{course_id: course.id})
-
-      text_steps =
-        Enum.map(1..3, fn i ->
-          lesson_step_fixture(%{lesson_id: lesson.id, kind: :text, order: i, content: "Text step #{i}"})
-        end)
-
+      text_steps = Enum.map(1..3, fn i -> lesson_step_fixture(%{lesson_id: lesson.id, kind: :text, order: i, content: "Text step #{i}"}) end)
       image_step = lesson_step_fixture(%{lesson_id: lesson.id, kind: :image, content: "/uploads/image.png", order: 4})
 
       {:ok, lv, _html} = live(conn, ~p"/dashboard/c/#{course.slug}/l/#{lesson.id}")
@@ -98,16 +93,13 @@ defmodule UneebeeWeb.DashboardLessonViewLiveTest do
       lv |> element("button", "Remove step") |> render_click()
 
       refute has_element?(lv, ~s|dt:fl-contains("Text step 1")|)
-
       assert_raise Ecto.NoResultsError, fn -> Uneebee.Repo.get!(LessonStep, lesson_step.id) end
     end
 
     test "adds a text step", %{conn: conn, course: course} do
       lesson = lesson_fixture(%{course_id: course.id})
 
-      Enum.each(1..3, fn i ->
-        lesson_step_fixture(%{lesson_id: lesson.id, kind: :text, order: i, content: "Text step #{i}"})
-      end)
+      Enum.each(1..3, fn i -> lesson_step_fixture(%{lesson_id: lesson.id, kind: :text, order: i, content: "Text step #{i}"}) end)
 
       {:ok, lv, _html} = live(conn, ~p"/dashboard/c/#{course.slug}/l/#{lesson.id}")
 
@@ -120,9 +112,7 @@ defmodule UneebeeWeb.DashboardLessonViewLiveTest do
     test "cannot have more than 20 steps", %{conn: conn, course: course} do
       lesson = lesson_fixture(%{course_id: course.id})
 
-      Enum.each(1..20, fn i ->
-        lesson_step_fixture(%{lesson_id: lesson.id, kind: :text, order: i, content: "Text step #{i}"})
-      end)
+      Enum.each(1..20, fn i -> lesson_step_fixture(%{lesson_id: lesson.id, kind: :text, order: i, content: "Text step #{i}"}) end)
 
       {:ok, lv, _html} = live(conn, ~p"/dashboard/c/#{course.slug}/l/#{lesson.id}")
 

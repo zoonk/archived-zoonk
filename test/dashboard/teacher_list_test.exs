@@ -128,10 +128,7 @@ defmodule UneebeeWeb.SchoolTeacherListLiveTest do
     test "displays an error when trying to add an unexisting user", %{conn: conn} do
       {:ok, lv, _html} = live(conn, ~p"/dashboard/teachers")
 
-      result =
-        lv
-        |> form("#add-user-form", %{email_or_username: "unexisting"})
-        |> render_submit()
+      result = lv |> form("#add-user-form", %{email_or_username: "unexisting"}) |> render_submit()
 
       assert result =~ "User not found!"
     end

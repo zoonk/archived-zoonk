@@ -52,8 +52,7 @@ defmodule UneebeeWeb do
 
   def live_view do
     quote do
-      use Phoenix.LiveView,
-        layout: {UneebeeWeb.Layouts, :app}
+      use Phoenix.LiveView, layout: {UneebeeWeb.Layouts, :app}
 
       unquote(html_helpers())
     end

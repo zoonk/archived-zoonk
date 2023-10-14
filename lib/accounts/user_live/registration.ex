@@ -27,11 +27,7 @@ defmodule UneebeeWeb.Live.Accounts.User.Registration do
     case Accounts.register_user(user_params) do
       {:ok, user} ->
         {:ok, _} =
-          Accounts.deliver_user_confirmation_instructions(
-            user,
-            socket.assigns.host_school,
-            &url(~p"/users/confirm/#{&1}")
-          )
+          Accounts.deliver_user_confirmation_instructions(user, socket.assigns.host_school, &url(~p"/users/confirm/#{&1}"))
 
         maybe_create_school_user(user, socket.assigns.school)
 
@@ -84,8 +80,7 @@ defmodule UneebeeWeb.Live.Accounts.User.Registration do
     "auth" |> dgettext("privacy policy") |> get_terms_link(privacy_policy) |> HTML.safe_to_string()
   end
 
-  defp get_terms_link(label, link),
-    do: HTML.Link.link(label, to: URI.parse(link), class: "text-primary hover:underline")
+  defp get_terms_link(label, link), do: HTML.Link.link(label, to: URI.parse(link), class: "text-primary hover:underline")
 
   defp terms_label(%School{terms_of_use: nil, privacy_policy: nil}), do: nil
 

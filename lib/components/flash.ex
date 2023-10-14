@@ -68,14 +68,7 @@ defmodule UneebeeWeb.Components.Flash do
     ~H"""
     <.flash kind={:info} title={gettext("Success!")} flash={@flash} />
     <.flash kind={:error} title={gettext("Error!")} flash={@flash} />
-    <.flash
-      id="disconnected"
-      kind={:error}
-      title={gettext("We can't find the internet")}
-      phx-disconnected={show("#disconnected")}
-      phx-connected={hide("#disconnected")}
-      hidden
-    >
+    <.flash id="disconnected" kind={:error} title={gettext("We can't find the internet")} phx-disconnected={show("#disconnected")} phx-connected={hide("#disconnected")} hidden>
       <%= gettext("Attempting to reconnect") %> <.icon name="tabler-refresh" class="ml-1 h-3 w-3 animate-spin" />
     </.flash>
     """

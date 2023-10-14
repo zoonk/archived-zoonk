@@ -32,8 +32,7 @@ defmodule UneebeeWeb.Live.Dashboard.SchoolEdit do
   def handle_event("save", %{"school" => school_params}, socket) do
     case Organizations.update_school(socket.assigns.school, school_params) do
       {:ok, _school} ->
-        socket =
-          put_flash(socket, :info, dgettext("orgs", "School updated successfully"))
+        socket = put_flash(socket, :info, dgettext("orgs", "School updated successfully"))
 
         {:noreply, socket}
 

@@ -9,10 +9,7 @@
         <h1 class="text-gray-dark2x font-semibold"><%= score_title(score) %></h1>
 
         <p class="text-gray text-sm">
-          <%= dgettext("courses", "You got %{correct} out of %{total} answers right.",
-            correct: @user_lesson.correct,
-            total: @user_lesson.total
-          ) %>
+          <%= dgettext("courses", "You got %{correct} out of %{total} answers right.", correct: @user_lesson.correct, total: @user_lesson.total) %>
         </p>
       </div>
 
@@ -27,11 +24,7 @@
     </div>
 
     <div class="grid grid-cols-1 gap-4 pt-4 sm:grid-cols-2">
-      <.trophy_badge
-        :if={completed_course_recently?(@course_completed_trophy)}
-        trophy={trophy(@course_completed_trophy.reason)}
-      />
-
+      <.trophy_badge :if={completed_course_recently?(@course_completed_trophy)} trophy={trophy(@course_completed_trophy.reason)} />
       <.learning_days_badge :if={@first_lesson_today?} days={@learning_days} />
       <.medal_badge :if={@medal} medal={@medal} />
     </div>

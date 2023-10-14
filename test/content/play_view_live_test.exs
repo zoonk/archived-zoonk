@@ -65,10 +65,7 @@ defmodule UneebeeWeb.PlayViewLiveTest do
 
   defp assert_403(conn, course) do
     lesson = lesson_fixture(%{course_id: course.id})
-
-    assert_error_sent 403, fn ->
-      get(conn, ~p"/c/#{course.slug}/#{lesson.id}")
-    end
+    assert_error_sent 403, fn -> get(conn, ~p"/c/#{course.slug}/#{lesson.id}") end
   end
 
   defp assert_first_step(lv, lessons) do
@@ -137,10 +134,7 @@ defmodule UneebeeWeb.PlayViewLiveTest do
              lv
              |> form(@select_form, %{selected_option: first_option.id})
              |> render_submit()
-             |> follow_redirect(
-               conn,
-               ~p"/c/#{course.slug}/#{step.lesson_id}/completed"
-             )
+             |> follow_redirect(conn, ~p"/c/#{course.slug}/#{step.lesson_id}/completed")
   end
 
   defp generate_steps(lesson) do
@@ -160,13 +154,7 @@ defmodule UneebeeWeb.PlayViewLiveTest do
       image = if order == 2, do: "/uploads/img.png"
       feedback = if order != 1, do: "feedback #{order}!"
 
-      step_option_fixture(%{
-        lesson_step_id: step.id,
-        correct?: order == 1,
-        image: image,
-        feedback: feedback,
-        title: "option #{order}!"
-      })
+      step_option_fixture(%{lesson_step_id: step.id, correct?: order == 1, image: image, feedback: feedback, title: "option #{order}!"})
     end)
   end
 

@@ -92,12 +92,7 @@ defmodule UneebeeWeb.ConnCase do
 
       setup :app_setup
   """
-  @spec app_setup(%{conn: Conn.t()}, Keyword.t()) :: %{
-          conn: Conn.t(),
-          user: User.t(),
-          school: School.t(),
-          password: String.t()
-        }
+  @spec app_setup(%{conn: Conn.t()}, Keyword.t()) :: %{conn: Conn.t(), user: User.t(), school: School.t(), password: String.t()}
   def app_setup(%{conn: conn}, opts \\ []) do
     public_school? = Keyword.get(opts, :public_school?, true)
     school_id = Keyword.get(opts, :school_id, nil)
@@ -125,12 +120,7 @@ defmodule UneebeeWeb.ConnCase do
   - Creates a course and sets it as the `conn.assigns.course` value.
   - Handles `school_user` and `course_user` permissions.
   """
-  @spec course_setup(%{conn: Conn.t()}, Keyword.t()) :: %{
-          conn: Conn.t(),
-          user: User.t(),
-          school: School.t(),
-          course: Course.t()
-        }
+  @spec course_setup(%{conn: Conn.t()}, Keyword.t()) :: %{conn: Conn.t(), user: User.t(), school: School.t(), course: Course.t()}
   def course_setup(%{conn: conn}, opts \\ []) do
     %{conn: app_conn, school: school, user: user} = app_setup(%{conn: conn}, opts)
 

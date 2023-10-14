@@ -50,13 +50,7 @@ defmodule Uneebee.Fixtures.Organizations do
     user = Map.get(attrs, :user, user_fixture())
     preload = Map.get(attrs, :preload, [])
 
-    school_user_attrs =
-      Enum.into(attrs, %{
-        approved?: true,
-        approved_at: DateTime.utc_now(),
-        approved_by_id: user.id,
-        role: :student
-      })
+    school_user_attrs = Enum.into(attrs, %{approved?: true, approved_at: DateTime.utc_now(), approved_by_id: user.id, role: :student})
 
     {:ok, school_user} = Uneebee.Organizations.create_school_user(school, user, school_user_attrs)
 

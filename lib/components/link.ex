@@ -39,18 +39,7 @@ defmodule UneebeeWeb.Components.Link do
   """
   attr :color, :atom,
     default: :black,
-    values: [
-      :black,
-      :alert,
-      :info,
-      :success,
-      :warning,
-      :black_light,
-      :alert_light,
-      :info_light,
-      :success_light,
-      :warning_light
-    ]
+    values: [:black, :alert, :info, :success, :warning, :black_light, :alert_light, :info_light, :success_light, :warning_light]
 
   attr :class, :string, default: nil
   attr :icon, :string, default: nil

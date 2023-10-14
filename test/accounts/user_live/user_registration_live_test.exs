@@ -15,22 +15,14 @@ defmodule UneebeeWeb.UserRegistrationLiveTest do
     end
 
     test "redirects if already logged in", %{conn: conn} do
-      result =
-        conn
-        |> log_in_user(user_fixture())
-        |> live(~p"/users/register")
-        |> follow_redirect(conn, "/")
-
+      result = conn |> log_in_user(user_fixture()) |> live(~p"/users/register") |> follow_redirect(conn, "/")
       assert {:ok, _conn} = result
     end
 
     test "renders errors for invalid data", %{conn: conn} do
       {:ok, lv, _html} = live(conn, ~p"/users/register")
 
-      result =
-        lv
-        |> element("#registration_form")
-        |> render_change(user: %{"email" => "with spaces", "password" => "short"})
+      result = lv |> element("#registration_form") |> render_change(user: %{"email" => "with spaces", "password" => "short"})
 
       assert result =~ "must have the @ sign and no spaces"
       assert result =~ "should be at least 8 character"

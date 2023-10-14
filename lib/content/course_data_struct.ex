@@ -7,11 +7,7 @@ defmodule Uneebee.Content.CourseData do
   alias Uneebee.Content.Course
   alias Uneebee.Content.CourseUser
 
-  @type t :: %__MODULE__{
-          id: integer(),
-          data: Course.t() | CourseUser.t(),
-          student_count: integer()
-        }
+  @type t :: %__MODULE__{id: integer(), data: Course.t() | CourseUser.t(), student_count: integer()}
 
   defstruct id: 0, data: %{}, student_count: 0
 end

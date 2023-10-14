@@ -23,14 +23,7 @@ defmodule UneebeeWeb.Components.DeleteItem do
       </.header>
 
       <form phx-submit="delete" phx-target={@myself} id="delete-form" class="mt-4">
-        <.input
-          type="text"
-          label={dgettext("orgs", "Type CONFIRM to delete %{name}.", name: @name)}
-          name="confirmation"
-          id="confirmation"
-          required
-          value=""
-        />
+        <.input type="text" label={dgettext("orgs", "Type CONFIRM to delete %{name}.", name: @name)} name="confirmation" id="confirmation" required value="" />
 
         <span :if={@error_msg} class="text-alert text-sm"><%= @error_msg %></span>
 

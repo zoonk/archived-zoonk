@@ -14,10 +14,7 @@ defmodule UneebeeWeb.CourseListLiveTest do
       refute has_element?(lv, ~s"#courses-learning")
     end
 
-    test "lists public courses from the host school", %{
-      conn: conn,
-      school: school
-    } do
+    test "lists public courses from the host school", %{conn: conn, school: school} do
       assert_course_list(conn, school, nil)
     end
   end
@@ -36,11 +33,7 @@ defmodule UneebeeWeb.CourseListLiveTest do
   describe "/courses (public school, students, approved)" do
     setup :app_setup
 
-    test "lists public courses from the host school", %{
-      conn: conn,
-      school: school,
-      user: user
-    } do
+    test "lists public courses from the host school", %{conn: conn, school: school, user: user} do
       assert_course_list(conn, school, user)
     end
   end
@@ -50,11 +43,7 @@ defmodule UneebeeWeb.CourseListLiveTest do
       app_setup(%{conn: build_conn()}, public_school?: false)
     end
 
-    test "lists public courses from the host school", %{
-      conn: conn,
-      school: school,
-      user: user
-    } do
+    test "lists public courses from the host school", %{conn: conn, school: school, user: user} do
       assert_course_list(conn, school, user)
     end
   end

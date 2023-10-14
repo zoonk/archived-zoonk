@@ -310,8 +310,7 @@ defmodule Uneebee.OrganizationsTest do
       user = user_fixture()
       school_user = school_user_fixture(%{school: school, user: user, role: :teacher})
 
-      assert {:ok, %SchoolUser{} = updated_school_user} =
-               Organizations.update_school_user(school_user, %{role: :manager})
+      assert {:ok, %SchoolUser{} = updated_school_user} = Organizations.update_school_user(school_user, %{role: :manager})
 
       assert updated_school_user.role == :manager
       assert updated_school_user.school_id == school.id
@@ -352,10 +351,7 @@ defmodule Uneebee.OrganizationsTest do
       school2 = school_fixture(%{custom_domain: "harvard.edu"})
       school3 = school_fixture(%{slug: "unisc", school_id: school2.id})
 
-      assert_raise Ecto.NoResultsError, fn ->
-        Organizations.get_school_by_host!("unisc.uneebee.com")
-      end
-
+      assert_raise Ecto.NoResultsError, fn -> Organizations.get_school_by_host!("unisc.uneebee.com") end
       assert Organizations.get_school_by_host!("unisc.harvard.edu") == school3
     end
 
@@ -407,17 +403,8 @@ defmodule Uneebee.OrganizationsTest do
       user2 = user_fixture()
       school = school_fixture()
 
-      approved_user =
-        school_user_fixture(%{user: user1, school: school, role: :manager, preload: [:user, :approved_by]})
-
-      not_approved_user =
-        school_user_fixture(%{
-          user: user2,
-          school: school,
-          role: :manager,
-          approved?: false,
-          preload: [:user, :approved_by]
-        })
+      approved_user = school_user_fixture(%{user: user1, school: school, role: :manager, preload: [:user, :approved_by]})
+      not_approved_user = school_user_fixture(%{user: user2, school: school, role: :manager, approved?: false, preload: [:user, :approved_by]})
 
       assert Organizations.list_school_users_by_role(school, :manager) == [not_approved_user, approved_user]
     end
@@ -425,10 +412,7 @@ defmodule Uneebee.OrganizationsTest do
     test "list all teachers from a school" do
       school = school_fixture()
       teacher_user = user_fixture()
-
-      teacher_school_user =
-        school_user_fixture(%{user: teacher_user, school: school, role: :teacher, preload: [:user, :approved_by]})
-
+      teacher_school_user = school_user_fixture(%{user: teacher_user, school: school, role: :teacher, preload: [:user, :approved_by]})
       school_user_fixture(%{school: school})
 
       assert Organizations.list_school_users_by_role(school, :teacher) == [teacher_school_user]
@@ -439,17 +423,8 @@ defmodule Uneebee.OrganizationsTest do
       user1 = user_fixture()
       user2 = user_fixture()
 
-      approved_user =
-        school_user_fixture(%{user: user1, school: school, role: :teacher, preload: [:user, :approved_by]})
-
-      not_approved_user =
-        school_user_fixture(%{
-          user: user2,
-          school: school,
-          role: :teacher,
-          approved?: false,
-          preload: [:user, :approved_by]
-        })
+      approved_user = school_user_fixture(%{user: user1, school: school, role: :teacher, preload: [:user, :approved_by]})
+      not_approved_user = school_user_fixture(%{user: user2, school: school, role: :teacher, approved?: false, preload: [:user, :approved_by]})
 
       assert Organizations.list_school_users_by_role(school, :teacher) == [not_approved_user, approved_user]
     end
@@ -463,7 +438,6 @@ defmodule Uneebee.OrganizationsTest do
       school_user = school_user_fixture(%{school: school, approved?: false})
 
       assert {:ok, %SchoolUser{} = school_user} = Organizations.approve_school_user(school_user.id, manager_user.id)
-
       assert school_user.approved?
     end
   end

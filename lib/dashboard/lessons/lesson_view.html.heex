@@ -8,12 +8,7 @@
   </.button>
 </nav>
 
-<dl
-  class="my-4 space-y-4"
-  id="lesson-steps"
-  data-group="lesson-steps"
-  phx-hook={if @lesson.kind == :story, do: "Sortable", else: nil}
->
+<dl class="my-4 space-y-4" id="lesson-steps" data-group="lesson-steps" phx-hook={if @lesson.kind == :story, do: "Sortable", else: nil}>
   <div
     :for={lesson_step <- @lesson_steps}
     class={[
@@ -28,10 +23,7 @@
 
       <ul class="mt-4 space-y-2">
         <li :for={option <- lesson_step.options} class="flex items-center gap-2">
-          <.link
-            id={"option-#{option.id}-image-link"}
-            navigate={~p"/dashboard/c/#{@course.slug}/l/#{@lesson.id}/o/#{option.id}/image"}
-          >
+          <.link id={"option-#{option.id}-image-link"} navigate={~p"/dashboard/c/#{@course.slug}/l/#{@lesson.id}/o/#{option.id}/image"}>
             <.avatar src={option.image} alt={option.title} />
           </.link>
 
@@ -59,13 +51,7 @@
         </li>
       </ul>
 
-      <.button
-        phx-click="add-option"
-        phx-value-step-id={lesson_step.id}
-        icon="tabler-layout-grid-add"
-        color={:info_light}
-        class="mt-4"
-      >
+      <.button phx-click="add-option" phx-value-step-id={lesson_step.id} icon="tabler-layout-grid-add" color={:info_light} class="mt-4">
         <%= dgettext("orgs", "Add option") %>
       </.button>
     </div>
@@ -99,60 +85,26 @@
     required
   />
 
-  <.icon_button
-    type="button"
-    phx-click={show_modal("img-step-modal")}
-    icon="tabler-photo-plus"
-    size={:lg}
-    label={dgettext("orgs", "Add image step")}
-  />
+  <.icon_button type="button" phx-click={show_modal("img-step-modal")} icon="tabler-photo-plus" size={:lg} label={dgettext("orgs", "Add image step")} />
 </.form>
 
 <.modal id="img-step-modal" on_cancel={hide_modal("img-step-modal")}>
   <.live_component module={Upload} id={:step_img} current_img={nil} unstyled label={dgettext("orgs", "Add image step")} />
 </.modal>
 
-<.modal
-  :if={@live_action == :option_img}
-  show
-  id="option-img-modal"
-  on_cancel={JS.patch(~p"/dashboard/c/#{@course.slug}/l/#{@lesson.id}")}
->
-  <.live_component
-    module={Upload}
-    id={:option_img}
-    current_img={@selected_option.image}
-    label={dgettext("orgs", "Add image to option")}
-    unstyled
-  />
+<.modal :if={@live_action == :option_img} show id="option-img-modal" on_cancel={JS.patch(~p"/dashboard/c/#{@course.slug}/l/#{@lesson.id}")}>
+  <.live_component module={Upload} id={:option_img} current_img={@selected_option.image} label={dgettext("orgs", "Add image to option")} unstyled />
 </.modal>
 
-<.modal
-  :if={@live_action == :option}
-  show
-  id="edit-option-modal"
-  on_cancel={JS.patch(~p"/dashboard/c/#{@course.slug}/l/#{@lesson.id}")}
->
-  <.simple_form
-    for={@option_form}
-    title={dgettext("orgs", "Update option")}
-    id="option-form"
-    phx-change="validate-option"
-    phx-submit="update-option"
-    unstyled
-  >
+<.modal :if={@live_action == :option} show id="edit-option-modal" on_cancel={JS.patch(~p"/dashboard/c/#{@course.slug}/l/#{@lesson.id}")}>
+  <.simple_form for={@option_form} title={dgettext("orgs", "Update option")} id="option-form" phx-change="validate-option" phx-submit="update-option" unstyled>
     <.input type="text" field={@option_form[:title]} label={dgettext("orgs", "Option title")} required />
 
     <.input
       type="text"
       field={@option_form[:feedback]}
       label={dgettext("orgs", "Option feedback")}
-      helper={
-        dgettext(
-          "orgs",
-          "Feedback message displayed after a user answers this question. You can provide some additional context on why this is wrong or correct."
-        )
-      }
+      helper={dgettext("orgs", "Feedback message displayed after a user answers this question. You can provide some additional context on why this is wrong or correct.")}
     />
 
     <.input

@@ -5,22 +5,14 @@
 </nav>
 
 <dl id="user-list" phx-update="stream" class="grid grid-cols-1 gap-4 sm:grid-cols-2">
-  <div
-    :for={{dom_id, course_user} <- @streams.users}
-    id={dom_id}
-    class="text-gray-dark2x card flex h-full gap-2 bg-white p-4"
-  >
+  <div :for={{dom_id, course_user} <- @streams.users} id={dom_id} class="text-gray-dark2x card flex h-full gap-2 bg-white p-4">
     <.avatar src={course_user.user.avatar} alt={UserUtils.full_name(course_user.user)} />
 
     <header class="w-full">
       <dt class="flex items-center justify-between font-semibold">
         <span class="truncate"><%= UserUtils.full_name(course_user.user) %></span>
 
-        <span
-          :if={not course_user.approved?}
-          role="status"
-          class="bg-warning-light2x text-warning-dark rounded-full px-2 py-1 text-xs"
-        >
+        <span :if={not course_user.approved?} role="status" class="bg-warning-light2x text-warning-dark rounded-full px-2 py-1 text-xs">
           <%= dgettext("orgs", "Pending") %>
         </span>
       </dt>
@@ -28,12 +20,7 @@
       <dd class="flex-1 text-xs font-light">@<%= course_user.user.username %> - <%= course_user.user.email %></dd>
 
       <div :if={not course_user.approved?} class="mt-4 flex items-center gap-2">
-        <.button
-          phx-click="approve"
-          phx-value-course-user-id={course_user.id}
-          icon="tabler-checks"
-          color={:success_light}
-        >
+        <.button phx-click="approve" phx-value-course-user-id={course_user.id} icon="tabler-checks" color={:success_light}>
           <%= dgettext("orgs", "Approve") %>
         </.button>
 
@@ -43,12 +30,7 @@
       </div>
 
       <div :if={course_user.approved?} class="mt-4 flex items-center justify-between">
-        <.link_button
-          :if={@live_action == :student}
-          navigate={~p"/dashboard/c/#{@course.slug}/s/#{course_user.user.username}"}
-          color={:info_light}
-          icon="tabler-chart-radar"
-        >
+        <.link_button :if={@live_action == :student} navigate={~p"/dashboard/c/#{@course.slug}/s/#{course_user.user.username}"} color={:info_light} icon="tabler-chart-radar">
           <%= dgettext("orgs", "Details") %>
         </.link_button>
 
@@ -60,9 +42,7 @@
           phx-click="remove"
           phx-value-course-user-id={course_user.id}
           data-confirm={
-            dgettext(
-              "orgs",
-              "This will remove %{username} from your course. They won't be able to see your course anymore unless you approve them again.",
+            dgettext("orgs", "This will remove %{username} from your course. They won't be able to see your course anymore unless you approve them again.",
               username: course_user.user.username
             )
           }
@@ -77,14 +57,7 @@
   <.header><%= get_add_link_label(@live_action) %></.header>
 
   <form phx-submit="add-user" id="add-user-form" class="mt-4">
-    <.input
-      type="text"
-      label={gettext("Username or email address")}
-      name="email_or_username"
-      id="email_or_username"
-      required
-      value=""
-    />
+    <.input type="text" label={gettext("Username or email address")} name="email_or_username" id="email_or_username" required value="" />
 
     <.button type="submit" icon="tabler-user-plus" class="mt-4"><%= get_add_link_label(@live_action) %></.button>
   </form>

@@ -6,7 +6,6 @@ defmodule UneebeeWeb.ErrorJSONTest do
   end
 
   test "renders 500" do
-    assert UneebeeWeb.ErrorJSON.render("500.json", %{}) ==
-             %{errors: %{detail: "Internal Server Error"}}
+    assert UneebeeWeb.ErrorJSON.render("500.json", %{}) == %{errors: %{detail: "Internal Server Error"}}
   end
 end

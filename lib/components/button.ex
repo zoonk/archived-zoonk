@@ -18,18 +18,7 @@ defmodule UneebeeWeb.Components.Button do
   """
   attr :color, :atom,
     default: :black,
-    values: [
-      :black,
-      :alert,
-      :info,
-      :success,
-      :warning,
-      :black_light,
-      :alert_light,
-      :info_light,
-      :success_light,
-      :warning_light
-    ],
+    values: [:black, :alert, :info, :success, :warning, :black_light, :alert_light, :info_light, :success_light, :warning_light],
     doc: "the background color"
 
   attr :icon, :string, default: nil, doc: "name of the icon to add to the button"
@@ -81,18 +70,7 @@ defmodule UneebeeWeb.Components.Button do
 
   attr :color, :atom,
     default: :black,
-    values: [
-      :black,
-      :alert,
-      :info,
-      :success,
-      :warning,
-      :black_light,
-      :alert_light,
-      :info_light,
-      :success_light,
-      :warning_light
-    ],
+    values: [:black, :alert, :info, :success, :warning, :black_light, :alert_light, :info_light, :success_light, :warning_light],
     doc: "the background color"
 
   attr :size, :atom, default: :lg, values: [:sm, :md, :lg], doc: "the button size"

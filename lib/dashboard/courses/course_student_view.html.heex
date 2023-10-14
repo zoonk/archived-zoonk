@@ -18,11 +18,7 @@
 </header>
 
 <article class="mt-4 space-y-4">
-  <details
-    :for={lesson <- @lessons}
-    id={"lessons-#{lesson.id}"}
-    class="group text-gray-dark card-with-link w-full min-w-0 cursor-pointer bg-white p-4 text-sm"
-  >
+  <details :for={lesson <- @lessons} id={"lessons-#{lesson.id}"} class="group text-gray-dark card-with-link w-full min-w-0 cursor-pointer bg-white p-4 text-sm">
     <% score = CourseUtils.lesson_score(@student, lesson.user_lessons) %>
 
     <summary class="flex gap-2 font-semibold">

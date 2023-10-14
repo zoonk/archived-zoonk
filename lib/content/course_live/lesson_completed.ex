@@ -47,14 +47,9 @@ defmodule UneebeeWeb.Live.Content.Course.LessonCompleted do
 
   defp win?(score), do: score >= 6.0
 
-  defp get_medal(%UserLesson{attempts: 1, correct: correct, total: total}) when correct == total,
-    do: MedalUtils.medal(:perfect_lesson_first_try)
-
+  defp get_medal(%UserLesson{attempts: 1, correct: correct, total: total}) when correct == total, do: MedalUtils.medal(:perfect_lesson_first_try)
   defp get_medal(%UserLesson{attempts: 1}), do: MedalUtils.medal(:lesson_completed_with_errors)
-
-  defp get_medal(%UserLesson{correct: correct, total: total}) when correct == total,
-    do: MedalUtils.medal(:perfect_lesson_practiced)
-
+  defp get_medal(%UserLesson{correct: correct, total: total}) when correct == total, do: MedalUtils.medal(:perfect_lesson_practiced)
   defp get_medal(_user_lesson), do: nil
 
   defp completed_course_recently?(nil), do: false

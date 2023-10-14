@@ -14,12 +14,7 @@ defmodule UneebeeWeb.Components.Dashboard.CourseList do
       <h1 :if={@title} class="text-gray-dark mb-2 font-semibold"><%= @title %></h1>
 
       <dl id={@id} phx-update="stream" class="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
-        <.link
-          :for={{dom_id, course} <- @courses}
-          id={dom_id}
-          navigate={~p"/dashboard/c/#{course.slug}"}
-          class="card-with-link flex flex-col rounded-2xl bg-white"
-        >
+        <.link :for={{dom_id, course} <- @courses} id={dom_id} navigate={~p"/dashboard/c/#{course.slug}"} class="card-with-link flex flex-col rounded-2xl bg-white">
           <img :if={course.cover} src={course.cover} class="aspect-video w-full rounded-2xl object-cover p-1" />
 
           <div class="flex flex-1 flex-col gap-4 p-4">

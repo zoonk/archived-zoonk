@@ -106,8 +106,7 @@ defmodule Uneebee.Accounts do
 
   """
   @spec get_user_by_email_or_username_and_password(String.t(), String.t()) :: User.t() | nil
-  def get_user_by_email_or_username_and_password(email_or_username, password)
-      when is_binary(email_or_username) and is_binary(password) do
+  def get_user_by_email_or_username_and_password(email_or_username, password) when is_binary(email_or_username) and is_binary(password) do
     user = get_user_by_email_or_username(email_or_username)
     if User.valid_password?(user, password), do: user
   end
@@ -145,9 +144,7 @@ defmodule Uneebee.Accounts do
   """
   @spec register_user(map()) :: user_changeset()
   def register_user(attrs) do
-    %User{}
-    |> User.registration_changeset(attrs)
-    |> Repo.insert()
+    %User{} |> User.registration_changeset(attrs) |> Repo.insert()
   end
 
   @doc """
@@ -282,8 +279,7 @@ defmodule Uneebee.Accounts do
   """
   @spec deliver_user_update_email_instructions(User.t(), School.t() | nil, String.t(), (String.t() -> String.t())) ::
           Mailer.t()
-  def deliver_user_update_email_instructions(%User{} = user, school, current_email, update_email_url_fun)
-      when is_function(update_email_url_fun, 1) do
+  def deliver_user_update_email_instructions(%User{} = user, school, current_email, update_email_url_fun) when is_function(update_email_url_fun, 1) do
     {encoded_token, user_token} = UserToken.build_email_token(user, "change:#{current_email}")
 
     Repo.insert!(user_token)
@@ -377,10 +373,8 @@ defmodule Uneebee.Accounts do
       {:error, :already_confirmed}
 
   """
-  @spec deliver_user_confirmation_instructions(User.t(), School.t() | nil, (String.t() -> String.t())) ::
-          Mailer.t() | {:error, :already_confirmed}
-  def deliver_user_confirmation_instructions(%User{} = user, school, confirmation_url_fun)
-      when is_function(confirmation_url_fun, 1) do
+  @spec deliver_user_confirmation_instructions(User.t(), School.t() | nil, (String.t() -> String.t())) :: Mailer.t() | {:error, :already_confirmed}
+  def deliver_user_confirmation_instructions(%User{} = user, school, confirmation_url_fun) when is_function(confirmation_url_fun, 1) do
     if user.confirmed_at do
       {:error, :already_confirmed}
     else
@@ -425,10 +419,8 @@ defmodule Uneebee.Accounts do
       {:ok, %{to: ..., body: ...}}
 
   """
-  @spec deliver_user_reset_password_instructions(User.t(), School.t() | nil, (String.t() -> String.t())) ::
-          Mailer.t()
-  def deliver_user_reset_password_instructions(%User{} = user, school, reset_password_url_fun)
-      when is_function(reset_password_url_fun, 1) do
+  @spec deliver_user_reset_password_instructions(User.t(), School.t() | nil, (String.t() -> String.t())) :: Mailer.t()
+  def deliver_user_reset_password_instructions(%User{} = user, school, reset_password_url_fun) when is_function(reset_password_url_fun, 1) do
     {encoded_token, user_token} = UserToken.build_email_token(user, "reset_password")
     Repo.insert!(user_token)
     UserNotifier.deliver_reset_password_instructions(school, user, reset_password_url_fun.(encoded_token))

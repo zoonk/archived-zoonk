@@ -75,7 +75,6 @@ defmodule Uneebee.ContentTest do
       user = user_fixture()
 
       assert {:error, %Ecto.Changeset{} = changeset} = Content.create_course(attrs, user)
-
       assert "can only contain letters, numbers, dashes and underscores" in errors_on(changeset).slug
     end
 
@@ -84,7 +83,6 @@ defmodule Uneebee.ContentTest do
       user = user_fixture()
 
       assert {:error, %Ecto.Changeset{} = changeset} = Content.create_course(attrs, user)
-
       assert "can only contain letters, numbers, dashes and underscores" in errors_on(changeset).slug
     end
   end
@@ -93,14 +91,7 @@ defmodule Uneebee.ContentTest do
     test "with valid data updates the course" do
       course = course_fixture()
 
-      attrs = %{
-        description: "new description",
-        language: :pt,
-        level: :advanced,
-        public?: true,
-        published?: false,
-        slug: "new-slug"
-      }
+      attrs = %{description: "new description", language: :pt, level: :advanced, public?: true, published?: false, slug: "new-slug"}
 
       assert {:ok, %Course{} = course} = Content.update_course(course, attrs)
       assert course.description == attrs.description
@@ -131,10 +122,7 @@ defmodule Uneebee.ContentTest do
 
     test "raises if the course does not exist" do
       school = school_fixture()
-
-      assert_raise Ecto.NoResultsError, fn ->
-        Content.get_course_by_slug!("bad-slug", school.id)
-      end
+      assert_raise Ecto.NoResultsError, fn -> Content.get_course_by_slug!("bad-slug", school.id) end
     end
   end
 
@@ -154,9 +142,7 @@ defmodule Uneebee.ContentTest do
   describe "list_public_courses_by_school/2" do
     test "returns all public courses for a given school" do
       school = school_fixture()
-
       course1 = course_fixture(%{school_id: school.id, published?: true, public?: true, preload: :school})
-
       course2 = course_fixture(%{school_id: school.id, published?: true, public?: true, preload: :school})
 
       course_fixture(%{school_id: school.id, published?: false, public?: true})
@@ -174,9 +160,7 @@ defmodule Uneebee.ContentTest do
 
     test "limits how many courses are returned" do
       school = school_fixture()
-
       course1 = course_fixture(%{school_id: school.id, published?: true, public?: true, preload: :school})
-
       course2 = course_fixture(%{school_id: school.id, published?: true, public?: true, preload: :school})
 
       course_fixture(%{school_id: school.id, published?: true, public?: true, preload: :school})
@@ -248,10 +232,7 @@ defmodule Uneebee.ContentTest do
       course = course_fixture(%{user: user})
 
       assert {:ok, %Course{}} = Content.delete_course(course)
-
-      assert_raise Ecto.NoResultsError, fn ->
-        Content.get_course_by_slug!(course.slug, course.school_id)
-      end
+      assert_raise Ecto.NoResultsError, fn -> Content.get_course_by_slug!(course.slug, course.school_id) end
     end
   end
 
@@ -262,12 +243,7 @@ defmodule Uneebee.ContentTest do
       user = user_fixture()
       manager = user_fixture()
 
-      assert {:ok, %CourseUser{} = course_user} =
-               Content.create_course_user(course, user, %{
-                 role: :student,
-                 approved?: true,
-                 approved_by_id: manager.id
-               })
+      assert {:ok, %CourseUser{} = course_user} = Content.create_course_user(course, user, %{role: :student, approved?: true, approved_by_id: manager.id})
 
       assert course_user.course_id == course.id
       assert course_user.user_id == user.id
@@ -285,12 +261,7 @@ defmodule Uneebee.ContentTest do
       user = user_fixture()
       manager = user_fixture()
 
-      assert {:ok, %CourseUser{} = course_user} =
-               Content.create_course_user(course, user, %{
-                 role: :teacher,
-                 approved?: true,
-                 approved_by_id: manager.id
-               })
+      assert {:ok, %CourseUser{} = course_user} = Content.create_course_user(course, user, %{role: :teacher, approved?: true, approved_by_id: manager.id})
 
       assert course_user.course_id == course.id
       assert course_user.user_id == user.id
@@ -307,7 +278,6 @@ defmodule Uneebee.ContentTest do
       user = user_fixture()
 
       assert {:error, %Ecto.Changeset{} = changeset} = Content.create_course_user(course, user, %{role: :bad})
-
       assert "is invalid" in errors_on(changeset).role
     end
 
@@ -318,8 +288,7 @@ defmodule Uneebee.ContentTest do
       manager = user_fixture()
       school_user_fixture(%{school_id: school.id, user_id: user.id, role: :student})
 
-      assert {:ok, %CourseUser{} = _cu} =
-               Content.create_course_user(course, user, %{role: :teacher, approved?: true, approved_by_id: manager.id})
+      assert {:ok, %CourseUser{} = _cu} = Content.create_course_user(course, user, %{role: :teacher, approved?: true, approved_by_id: manager.id})
 
       school_user = Organizations.get_school_user(school.slug, user.username)
       assert school_user.role == :teacher
@@ -331,7 +300,6 @@ defmodule Uneebee.ContentTest do
   describe "get_course_user_by_id/2" do
     test "returns an existing course user" do
       course_user = course_user_fixture()
-
       assert %CourseUser{} = Content.get_course_user_by_id(course_user.course_id, course_user.user_id)
     end
 
@@ -350,36 +318,18 @@ defmodule Uneebee.ContentTest do
       course_user3 = course_user_fixture(%{role: :teacher, course: course, preload: :user})
       course_user_fixture(%{role: :student, course: course})
 
-      assert Content.list_course_users_by_role(course, :teacher) == [
-               course_user3,
-               course_user2,
-               course_user1
-             ]
+      assert Content.list_course_users_by_role(course, :teacher) == [course_user3, course_user2, course_user1]
     end
 
     test "list course students" do
       course = course_fixture()
 
       course_user1 = course_user_fixture(%{role: :student, course: course, preload: :user})
-
-      course_user2 =
-        course_user_fixture(%{
-          role: :student,
-          approved?: false,
-          approved_by_id: nil,
-          approved_at: nil,
-          course: course,
-          preload: :user
-        })
-
+      course_user2 = course_user_fixture(%{role: :student, approved?: false, approved_by_id: nil, approved_at: nil, course: course, preload: :user})
       course_user3 = course_user_fixture(%{role: :student, course: course, preload: :user})
       course_user_fixture(%{role: :teacher, course: course})
 
-      assert Content.list_course_users_by_role(course, :student) == [
-               course_user2,
-               course_user3,
-               course_user1
-             ]
+      assert Content.list_course_users_by_role(course, :student) == [course_user2, course_user3, course_user1]
     end
   end
 
@@ -388,7 +338,6 @@ defmodule Uneebee.ContentTest do
       course_user = course_user_fixture()
 
       assert {:ok, %CourseUser{} = updated} = Content.update_course_user(course_user, %{role: :teacher})
-
       assert updated.role == :teacher
     end
 
@@ -396,7 +345,6 @@ defmodule Uneebee.ContentTest do
       course_user = course_user_fixture()
 
       assert {:error, %Ecto.Changeset{} = changeset} = Content.update_course_user(course_user, %{role: :manager})
-
       assert "is invalid" in errors_on(changeset).role
     end
   end
@@ -404,17 +352,9 @@ defmodule Uneebee.ContentTest do
   describe "approve_course_user/2" do
     test "approves a course user" do
       teacher = user_fixture()
-
-      course_user =
-        course_user_fixture(%{
-          role: :student,
-          approved?: false,
-          approved_by_id: nil,
-          approved_at: nil
-        })
+      course_user = course_user_fixture(%{role: :student, approved?: false, approved_by_id: nil, approved_at: nil})
 
       assert {:ok, %CourseUser{} = updated} = Content.approve_course_user(course_user.id, teacher.id)
-
       assert updated.approved? == true
       assert updated.approved_by_id == teacher.id
     end
@@ -512,11 +452,8 @@ defmodule Uneebee.ContentTest do
 
       lesson = lesson_fixture(%{course_id: course.id, order: 1, published?: true})
 
-      {:ok, _ul} =
-        Content.add_user_lesson(%{user_id: user1.id, lesson_id: lesson.id, attempts: 1, correct: 3, total: 5})
-
-      {:ok, _ul} =
-        Content.add_user_lesson(%{user_id: user2.id, lesson_id: lesson.id, attempts: 1, correct: 3, total: 5})
+      {:ok, _ul} = Content.add_user_lesson(%{user_id: user1.id, lesson_id: lesson.id, attempts: 1, correct: 3, total: 5})
+      {:ok, _ul} = Content.add_user_lesson(%{user_id: user2.id, lesson_id: lesson.id, attempts: 1, correct: 3, total: 5})
 
       published_lessons = Content.list_published_lessons(course, user1)
       first_lesson = Enum.at(published_lessons, 0)
@@ -581,9 +518,7 @@ defmodule Uneebee.ContentTest do
     test "move a lesson up" do
       course = course_fixture()
 
-      Enum.each(1..6, fn order ->
-        lesson_fixture(%{course_id: course.id, name: "Lesson #{order}", order: order})
-      end)
+      Enum.each(1..6, fn order -> lesson_fixture(%{course_id: course.id, name: "Lesson #{order}", order: order}) end)
 
       {:ok, lessons} = Content.update_lesson_order(course, 4, 1)
 
@@ -598,9 +533,7 @@ defmodule Uneebee.ContentTest do
     test "move a lesson down" do
       course = course_fixture()
 
-      Enum.each(1..6, fn order ->
-        lesson_fixture(%{course_id: course.id, name: "Lesson #{order}", order: order})
-      end)
+      Enum.each(1..6, fn order -> lesson_fixture(%{course_id: course.id, name: "Lesson #{order}", order: order}) end)
 
       {:ok, lessons} = Content.update_lesson_order(course, 1, 4)
 
@@ -667,9 +600,7 @@ defmodule Uneebee.ContentTest do
     test "move a lesson step up" do
       lesson = lesson_fixture()
 
-      Enum.each(1..6, fn order ->
-        lesson_step_fixture(%{lesson_id: lesson.id, content: "Lesson step #{order}", order: order})
-      end)
+      Enum.each(1..6, fn order -> lesson_step_fixture(%{lesson_id: lesson.id, content: "Lesson step #{order}", order: order}) end)
 
       {:ok, lesson_steps} = Content.update_lesson_step_order(lesson, 4, 1)
 
@@ -684,9 +615,7 @@ defmodule Uneebee.ContentTest do
     test "move a lesson step down" do
       lesson = lesson_fixture()
 
-      Enum.each(1..6, fn order ->
-        lesson_step_fixture(%{lesson_id: lesson.id, content: "Lesson step #{order}", order: order})
-      end)
+      Enum.each(1..6, fn order -> lesson_step_fixture(%{lesson_id: lesson.id, content: "Lesson step #{order}", order: order}) end)
 
       {:ok, lesson_steps} = Content.update_lesson_step_order(lesson, 1, 4)
 
@@ -742,7 +671,6 @@ defmodule Uneebee.ContentTest do
       attrs = %{title: ""}
 
       assert {:error, %Ecto.Changeset{} = changeset} = Content.update_step_option(step_option, attrs)
-
       assert "can't be blank" in errors_on(changeset).title
     end
   end
@@ -781,14 +709,9 @@ defmodule Uneebee.ContentTest do
       Content.add_user_selection(%{user_id: user.id, option_id: Enum.at(options1, 1).id, lesson_id: lesson1.id})
       Content.add_user_selection(%{user_id: user.id, option_id: Enum.at(options1, 2).id, lesson_id: lesson1.id})
 
-      {:ok, us1} =
-        Content.add_user_selection(%{user_id: user.id, option_id: Enum.at(options1, 0).id, lesson_id: lesson1.id})
-
-      {:ok, us2} =
-        Content.add_user_selection(%{user_id: user.id, option_id: Enum.at(options1, 1).id, lesson_id: lesson1.id})
-
-      {:ok, us3} =
-        Content.add_user_selection(%{user_id: user.id, option_id: Enum.at(options1, 2).id, lesson_id: lesson1.id})
+      {:ok, us1} = Content.add_user_selection(%{user_id: user.id, option_id: Enum.at(options1, 0).id, lesson_id: lesson1.id})
+      {:ok, us2} = Content.add_user_selection(%{user_id: user.id, option_id: Enum.at(options1, 1).id, lesson_id: lesson1.id})
+      {:ok, us3} = Content.add_user_selection(%{user_id: user.id, option_id: Enum.at(options1, 2).id, lesson_id: lesson1.id})
 
       lesson2 = lesson_fixture()
       lesson_steps2 = Enum.map(1..3, fn idx -> lesson_step_fixture(%{lesson_id: lesson2.id, order: idx}) end)
@@ -802,11 +725,7 @@ defmodule Uneebee.ContentTest do
       user_selection2 = UserSelection |> Repo.get(us2.id) |> Repo.preload(:option)
       user_selection3 = UserSelection |> Repo.get(us3.id) |> Repo.preload(:option)
 
-      assert Content.list_user_selections_by_lesson(user.id, lesson1.id, 3) == [
-               user_selection3,
-               user_selection2,
-               user_selection1
-             ]
+      assert Content.list_user_selections_by_lesson(user.id, lesson1.id, 3) == [user_selection3, user_selection2, user_selection1]
     end
   end
 
@@ -963,8 +882,7 @@ defmodule Uneebee.ContentTest do
       user = user_fixture()
       lesson = lesson_fixture()
 
-      {:ok, user_lesson} =
-        Content.add_user_lesson(%{user_id: user.id, lesson_id: lesson.id, attempts: 1, correct: 4, total: 10})
+      {:ok, user_lesson} = Content.add_user_lesson(%{user_id: user.id, lesson_id: lesson.id, attempts: 1, correct: 4, total: 10})
 
       attrs = %{attempts: 2, correct: 5, total: 10}
       assert {:ok, %UserLesson{} = updated} = Content.update_user_lesson(user_lesson, attrs)
@@ -979,8 +897,7 @@ defmodule Uneebee.ContentTest do
       user = user_fixture()
       lesson = lesson_fixture()
 
-      {:ok, user_lesson} =
-        Content.add_user_lesson(%{user_id: user.id, lesson_id: lesson.id, attempts: 1, correct: 4, total: 10})
+      {:ok, user_lesson} = Content.add_user_lesson(%{user_id: user.id, lesson_id: lesson.id, attempts: 1, correct: 4, total: 10})
 
       assert Content.get_user_lesson(user.id, lesson.id) == user_lesson
     end
@@ -996,15 +913,8 @@ defmodule Uneebee.ContentTest do
       lesson1 = lesson_fixture()
       lesson_steps1 = Enum.map(1..3, fn idx -> lesson_step_fixture(%{lesson_id: lesson1.id, order: idx}) end)
 
-      options1 =
-        Enum.map(0..2, fn idx ->
-          step_option_fixture(%{correct?: false, lesson_step_id: Enum.at(lesson_steps1, idx).id})
-        end)
-
-      options2 =
-        Enum.map(0..2, fn idx ->
-          step_option_fixture(%{correct?: true, lesson_step_id: Enum.at(lesson_steps1, idx).id})
-        end)
+      options1 = Enum.map(0..2, fn idx -> step_option_fixture(%{correct?: false, lesson_step_id: Enum.at(lesson_steps1, idx).id}) end)
+      options2 = Enum.map(0..2, fn idx -> step_option_fixture(%{correct?: true, lesson_step_id: Enum.at(lesson_steps1, idx).id}) end)
 
       Content.add_user_selection(%{user_id: user.id, option_id: Enum.at(options2, 0).id, lesson_id: lesson1.id})
       Content.add_user_selection(%{user_id: user.id, option_id: Enum.at(options1, 1).id, lesson_id: lesson1.id})

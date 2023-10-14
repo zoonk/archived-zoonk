@@ -26,8 +26,7 @@ defmodule UneebeeWeb.Live.Content.Course.Play do
 
   @impl Phoenix.LiveView
   def handle_event("select-option", %{"selected_option" => selected_option}, socket) do
-    %{current_user: user, lesson: lesson, completed_steps: completed, steps: steps, selected_options: selected_options} =
-      socket.assigns
+    %{current_user: user, lesson: lesson, completed_steps: completed, steps: steps, selected_options: selected_options} = socket.assigns
 
     option_id = String.to_integer(selected_option)
     attrs = %{user_id: user.id, option_id: option_id, lesson_id: lesson.id}
@@ -64,7 +63,7 @@ defmodule UneebeeWeb.Live.Content.Course.Play do
       |> assign(:completed_steps, completed ++ [current])
       |> assign(:selected_options, selected_options ++ [nil])
 
-    {:noreply, socket}
+    {:noreply, handle_lesson_completed(socket, remaining)}
   end
 
   defp handle_lesson_completed(socket, []) do

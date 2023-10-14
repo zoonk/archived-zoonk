@@ -18,23 +18,11 @@ defmodule UneebeeWeb.Components.Upload do
 
       <.header :if={@label}><%= @label %></.header>
 
-      <form
-        id={"upload-form-#{@id}"}
-        phx-submit="save"
-        phx-change="validate"
-        phx-drop-target={@uploads.file.ref}
-        phx-target={@myself}
-        class="flex flex-col space-y-8"
-      >
+      <form id={"upload-form-#{@id}"} phx-submit="save" phx-change="validate" phx-drop-target={@uploads.file.ref} phx-target={@myself} class="flex flex-col space-y-8">
         <div class="flex items-center space-x-6">
           <.live_img_preview :if={entry} entry={entry} class="h-16 rounded-2xl object-cover" />
 
-          <img
-            :if={is_binary(@current_img) and is_nil(entry)}
-            alt={@label}
-            src={@current_img}
-            class="w-16 rounded-xl object-cover"
-          />
+          <img :if={is_binary(@current_img) and is_nil(entry)} alt={@label} src={@current_img} class="w-16 rounded-xl object-cover" />
 
           <.live_file_input
             upload={@uploads.file}
@@ -113,25 +101,11 @@ defmodule UneebeeWeb.Components.Upload do
     current_timestamp = DateTime.to_unix(DateTime.utc_now(), :second)
     key = "#{current_timestamp}_#{entry.client_name}"
 
-    config = %{
-      region: "auto",
-      access_key_id: CloudStorage.access_key_id(),
-      secret_access_key: CloudStorage.secret_access_key(),
-      url: CloudStorage.bucket_url()
-    }
+    config = %{region: "auto", access_key_id: CloudStorage.access_key_id(), secret_access_key: CloudStorage.secret_access_key(), url: CloudStorage.bucket_url()}
 
-    {:ok, presigned_url} =
-      CloudStorage.presigned_put(config,
-        key: key,
-        content_type: entry.client_type,
-        max_file_size: uploads[entry.upload_config].max_file_size
-      )
+    {:ok, presigned_url} = CloudStorage.presigned_put(config, key: key, content_type: entry.client_type, max_file_size: uploads[entry.upload_config].max_file_size)
 
-    meta = %{
-      uploader: "S3",
-      key: key,
-      url: presigned_url
-    }
+    meta = %{uploader: "S3", key: key, url: presigned_url}
 
     {:ok, meta, socket}
   end
@@ -143,9 +117,7 @@ defmodule UneebeeWeb.Components.Upload do
   defp internal_storage?, do: is_nil(CloudStorage.bucket())
 
   defp upload_opts(socket, true), do: allow_upload(socket, :file, accept: accept_files(), max_entries: 1)
-
-  defp upload_opts(socket, false),
-    do: allow_upload(socket, :file, accept: accept_files(), max_entries: 1, external: &presign_upload/2)
+  defp upload_opts(socket, false), do: allow_upload(socket, :file, accept: accept_files(), max_entries: 1, external: &presign_upload/2)
 
   defp accept_files, do: ~w(.jpg .jpeg .png .avif .gif .webp)
 end

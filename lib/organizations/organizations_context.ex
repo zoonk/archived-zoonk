@@ -63,9 +63,7 @@ defmodule Uneebee.Organizations do
     multi =
       Ecto.Multi.new()
       |> Ecto.Multi.insert(:school, School.changeset(%School{}, attrs))
-      |> Ecto.Multi.run(:school_user, fn _repo, %{school: school} ->
-        create_school_user(school, user, school_user_attrs)
-      end)
+      |> Ecto.Multi.run(:school_user, fn _repo, %{school: school} -> create_school_user(school, user, school_user_attrs) end)
 
     case Repo.transaction(multi) do
       {:ok, %{school: school}} -> {:ok, school}

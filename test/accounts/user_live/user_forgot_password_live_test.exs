@@ -41,9 +41,7 @@ defmodule UneebeeWeb.UserForgotPasswordLiveTest do
         |> follow_redirect(conn, "/")
 
       assert Phoenix.Flash.get(conn.assigns.flash, :info) =~ "If your email is in our system"
-
-      assert Repo.get_by!(Accounts.UserToken, user_id: user.id).context ==
-               "reset_password"
+      assert Repo.get_by!(Accounts.UserToken, user_id: user.id).context == "reset_password"
     end
 
     test "does not send reset password token if email is invalid", %{conn: conn} do

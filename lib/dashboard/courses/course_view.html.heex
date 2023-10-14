@@ -21,11 +21,7 @@
     navigate={~p"/dashboard/c/#{@course.slug}/l/#{lesson.id}"}
     class="text-gray-dark card-with-link flex cursor-grab gap-2 bg-white p-4 drag-ghost:bg-gray-light drag-ghost:cursor-grabbing drag-ghost:border-0 drag-ghost:ring-0 focus-within:drag-item:ring-0 focus-within:drag-item:ring-offset-0"
   >
-    <.avatar
-      src={lesson.cover}
-      alt={if is_nil(lesson.cover), do: index + 1, else: dgettext("orgs", "Lesson cover")}
-      class="mt-1"
-    />
+    <.avatar src={lesson.cover} alt={if is_nil(lesson.cover), do: index + 1, else: dgettext("orgs", "Lesson cover")} class="mt-1" />
 
     <div>
       <dt class="font-semibold"><%= lesson.name %></dt>

@@ -59,13 +59,9 @@ defmodule UneebeeWeb.DashboardLessonDeleteLiveTest do
 
       assert has_element?(lv, ~s|li[aria-current="page"] span:fl-icontains("delete lesson")|)
 
-      result =
-        lv
-        |> form("#delete-form", %{confirmation: "WRONG"})
-        |> render_submit()
+      result = lv |> form("#delete-form", %{confirmation: "WRONG"}) |> render_submit()
 
       assert result =~ "Confirmation message does not match."
-
       assert Content.get_lesson!(lesson.id).name == lesson.name
     end
   end

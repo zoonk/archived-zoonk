@@ -1,12 +1,6 @@
 <main class="m-auto flex max-w-5xl flex-col items-start gap-4 p-4 lg:flex-row">
   <.menu :if={@active_page} title={@page_title}>
-    <.menu_item
-      :if={is_nil(@current_user)}
-      navigate={~p"/users/login"}
-      icon="tabler-login"
-      title={dgettext("auth", "Sign in")}
-    />
-
+    <.menu_item :if={is_nil(@current_user)} navigate={~p"/users/login"} icon="tabler-login" title={dgettext("auth", "Sign in")} />
     <.menu_item navigate={~p"/"} icon="tabler-ufo" active={@active_page == :live_home} title={gettext("Home")} />
 
     <.menu_item
@@ -18,48 +12,13 @@
     >
       <:sub_menus>
         <.sub_menu navigate={~p"/dashboard"} active={@active_page == :dashboard_home} title={gettext("Dashboard")} />
-
-        <.sub_menu
-          navigate={~p"/dashboard/managers"}
-          active={@active_page == :dashboard_userlist_manager}
-          title={gettext("Managers")}
-        />
-
-        <.sub_menu
-          navigate={~p"/dashboard/teachers"}
-          active={@active_page == :dashboard_userlist_teacher}
-          title={gettext("Teachers")}
-        />
-
-        <.sub_menu
-          navigate={~p"/dashboard/students"}
-          active={@active_page == :dashboard_userlist_student}
-          title={gettext("Students")}
-        />
-
-        <.sub_menu
-          navigate={~p"/dashboard/edit/logo"}
-          active={@active_page == :dashboard_schooledit_logo}
-          title={gettext("Logo")}
-        />
-
-        <.sub_menu
-          navigate={~p"/dashboard/edit/slug"}
-          active={@active_page == :dashboard_schooledit_slug}
-          title={dgettext("orgs", "Nickname")}
-        />
-
-        <.sub_menu
-          navigate={~p"/dashboard/edit/info"}
-          active={@active_page == :dashboard_schooledit_info}
-          title={gettext("Profile")}
-        />
-
-        <.sub_menu
-          navigate={~p"/dashboard/edit/terms"}
-          active={@active_page == :dashboard_schooledit_terms}
-          title={dgettext("orgs", "Terms of use")}
-        />
+        <.sub_menu navigate={~p"/dashboard/managers"} active={@active_page == :dashboard_userlist_manager} title={gettext("Managers")} />
+        <.sub_menu navigate={~p"/dashboard/teachers"} active={@active_page == :dashboard_userlist_teacher} title={gettext("Teachers")} />
+        <.sub_menu navigate={~p"/dashboard/students"} active={@active_page == :dashboard_userlist_student} title={gettext("Students")} />
+        <.sub_menu navigate={~p"/dashboard/edit/logo"} active={@active_page == :dashboard_schooledit_logo} title={gettext("Logo")} />
+        <.sub_menu navigate={~p"/dashboard/edit/slug"} active={@active_page == :dashboard_schooledit_slug} title={dgettext("orgs", "Nickname")} />
+        <.sub_menu navigate={~p"/dashboard/edit/info"} active={@active_page == :dashboard_schooledit_info} title={gettext("Profile")} />
+        <.sub_menu navigate={~p"/dashboard/edit/terms"} active={@active_page == :dashboard_schooledit_terms} title={dgettext("orgs", "Terms of use")} />
       </:sub_menus>
     </.menu_item>
 
@@ -71,17 +30,8 @@
       title={dgettext("courses", "Manage courses")}
     >
       <:sub_menus>
-        <.sub_menu
-          navigate={~p"/dashboard/courses"}
-          active={@active_page == :dashboard_courselist}
-          title={gettext("All courses")}
-        />
-
-        <.sub_menu
-          navigate={~p"/dashboard/courses/new"}
-          active={@active_page == :dashboard_coursenew}
-          title={gettext("Create a course")}
-        />
+        <.sub_menu navigate={~p"/dashboard/courses"} active={@active_page == :dashboard_courselist} title={gettext("All courses")} />
+        <.sub_menu navigate={~p"/dashboard/courses/new"} active={@active_page == :dashboard_coursenew} title={gettext("Create a course")} />
 
         <.sub_menu
           :if={course_view?(@active_page)}
@@ -142,12 +92,7 @@
       title={dgettext("courses", "Manage lesson")}
     >
       <:sub_menus>
-        <.sub_menu
-          :if={lesson_view?(@active_page)}
-          navigate={~p"/dashboard/c/#{@course.slug}"}
-          active={false}
-          title={dgettext("courses", "All lessons")}
-        />
+        <.sub_menu :if={lesson_view?(@active_page)} navigate={~p"/dashboard/c/#{@course.slug}"} active={false} title={dgettext("courses", "All lessons")} />
 
         <.sub_menu
           :if={lesson_view?(@active_page)}
@@ -179,68 +124,21 @@
       </:sub_menus>
     </.menu_item>
 
-    <.menu_item
-      navigate={~p"/courses"}
-      icon="tabler-bulb"
-      active={@active_page in [:course_list, :course_view]}
-      title={gettext("Courses")}
-    />
+    <.menu_item navigate={~p"/courses"} icon="tabler-bulb" active={@active_page in [:course_list, :course_view]} title={gettext("Courses")} />
+    <.menu_item navigate={~p"/missions"} icon="tabler-target-arrow" active={@active_page == :mission_list} title={dgettext("gamification", "Missions")} />
 
-    <.menu_item
-      navigate={~p"/missions"}
-      icon="tabler-target-arrow"
-      active={@active_page == :mission_list}
-      title={dgettext("gamification", "Missions")}
-    />
-
-    <.menu_item
-      :if={@current_user}
-      navigate={~p"/users/settings/language"}
-      icon="tabler-settings"
-      active={user_settings?(@active_page)}
-      title={gettext("Settings")}
-    >
+    <.menu_item :if={@current_user} navigate={~p"/users/settings/language"} icon="tabler-settings" active={user_settings?(@active_page)} title={gettext("Settings")}>
       <:sub_menus>
-        <.sub_menu
-          navigate={~p"/users/settings/language"}
-          active={@active_page == :user_settings_language}
-          title={gettext("Language")}
-        />
-
-        <.sub_menu
-          navigate={~p"/users/settings/username"}
-          active={@active_page == :user_settings_username}
-          title={gettext("Username")}
-        />
-
-        <.sub_menu
-          navigate={~p"/users/settings/name"}
-          active={@active_page == :user_settings_name}
-          title={gettext("Name")}
-        />
-
-        <.sub_menu
-          navigate={~p"/users/settings/email"}
-          active={@active_page == :user_settings_email}
-          title={gettext("Email")}
-        />
-
-        <.sub_menu
-          navigate={~p"/users/settings/password"}
-          active={@active_page == :user_settings_password}
-          title={dgettext("auth", "Password")}
-        />
-
+        <.sub_menu navigate={~p"/users/settings/language"} active={@active_page == :user_settings_language} title={gettext("Language")} />
+        <.sub_menu navigate={~p"/users/settings/username"} active={@active_page == :user_settings_username} title={gettext("Username")} />
+        <.sub_menu navigate={~p"/users/settings/name"} active={@active_page == :user_settings_name} title={gettext("Name")} />
+        <.sub_menu navigate={~p"/users/settings/email"} active={@active_page == :user_settings_email} title={gettext("Email")} />
+        <.sub_menu navigate={~p"/users/settings/password"} active={@active_page == :user_settings_password} title={dgettext("auth", "Password")} />
         <.sub_menu href={~p"/users/logout"} method="delete" title={gettext("Logout")} />
       </:sub_menus>
     </.menu_item>
 
-    <.menu_item
-      navigate={~p"/feedback"}
-      icon="tabler-message-circle-2"
-      active={@active_page == :support_feedback}
-      title={gettext("Feedback")}
-    />
+    <.menu_item navigate={~p"/feedback"} icon="tabler-message-circle-2" active={@active_page == :support_feedback} title={gettext("Feedback")} />
   </.menu>
 
   <section class="w-full"><%= @inner_content %></section>

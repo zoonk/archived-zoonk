@@ -36,8 +36,7 @@ config :uneebee, UneebeeWeb.Gettext, default_locale: "en", locales: ~w(en pt)
 config :esbuild,
   version: "0.17.11",
   default: [
-    args:
-      ~w(js/app.js --bundle --target=es2017 --outdir=../priv/static/assets --external:/fonts/* --external:/audios/* --external:/images/* --external:/uploads/*),
+    args: ~w(js/app.js --bundle --target=es2017 --outdir=../priv/static/assets --external:/fonts/* --external:/audios/* --external:/images/* --external:/uploads/*),
     cd: Path.expand("../assets", __DIR__),
     env: %{"NODE_PATH" => Path.expand("../deps", __DIR__)}
   ]
@@ -68,9 +67,7 @@ config :sentry,
   environment_name: Mix.env(),
   enable_source_code_context: true,
   root_source_code_paths: [File.cwd!()],
-  tags: %{
-    env: "production"
-  },
+  tags: %{env: "production"},
   included_environments: [:prod]
 
 # Import environment specific config. This must remain at the bottom

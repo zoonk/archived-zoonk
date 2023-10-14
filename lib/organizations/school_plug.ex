@@ -35,9 +35,7 @@ defmodule UneebeeWeb.Plugs.School do
   If so, then we don't want to show the configuration page.
   """
   @spec check_school_setup(Plug.Conn.t(), Keyword.t()) :: Plug.Conn.t()
-  def check_school_setup(%{request_path: "/schools/new"} = conn, opts),
-    do: check_school_setup(conn, opts, is_nil(conn.assigns.school))
-
+  def check_school_setup(%{request_path: "/schools/new"} = conn, opts), do: check_school_setup(conn, opts, is_nil(conn.assigns.school))
   def check_school_setup(conn, _opts), do: conn
 
   # If the school is already configured, we don't want to show the configuration page.
@@ -89,8 +87,7 @@ defmodule UneebeeWeb.Plugs.School do
   defp require_subscription_for_private_schools(conn, false, school_user) when school_user.approved?, do: conn
 
   # If the user is not approved? (doesn't have subscription) and school is private, then they don't have access.
-  defp require_subscription_for_private_schools(_conn, false, _school_user),
-    do: raise(UneebeeWeb.PermissionError, code: :pending_approval)
+  defp require_subscription_for_private_schools(_conn, false, _school_user), do: raise(UneebeeWeb.PermissionError, code: :pending_approval)
 
   @doc """
   Requires `manager` permissions to access a certain route.
@@ -123,8 +120,7 @@ defmodule UneebeeWeb.Plugs.School do
   defp require_manager_or_teacher(conn, _opts, true, :teacher), do: conn
 
   # If the user is not a manager or teacher, then they don't have access.
-  defp require_manager_or_teacher(_conn, _opts, _approved?, _role),
-    do: raise(UneebeeWeb.PermissionError, code: :require_manager_or_teacher)
+  defp require_manager_or_teacher(_conn, _opts, _approved?, _role), do: raise(UneebeeWeb.PermissionError, code: :require_manager_or_teacher)
 
   @doc """
   Handles mounting the school data to a LiveView.
@@ -157,16 +153,11 @@ defmodule UneebeeWeb.Plugs.School do
 
   defp get_school_user(_school, nil), do: nil
   defp get_school_user(nil, _user), do: nil
-
   defp get_school_user(school, user), do: Organizations.get_school_user(school.slug, user.username)
 
-  defp get_school(%{params: %{"school_slug" => slug}}) do
-    Organizations.get_school_by_slug!(slug)
-  end
-
+  defp get_school(%{params: %{"school_slug" => slug}}), do: Organizations.get_school_by_slug!(slug)
   defp get_school(conn), do: Organizations.get_school_by_host!(conn.host)
 
   defp get_school_from_socket(%{"school_slug" => slug}, _host), do: Organizations.get_school_by_slug!(slug)
-
   defp get_school_from_socket(_params, host), do: Organizations.get_school_by_host!(host)
 end

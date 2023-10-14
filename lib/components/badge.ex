@@ -21,18 +21,7 @@ defmodule UneebeeWeb.Components.Badge do
   """
   attr :color, :atom,
     default: :info_light,
-    values: [
-      :black,
-      :alert,
-      :info,
-      :success,
-      :warning,
-      :black_light,
-      :alert_light,
-      :info_light,
-      :success_light,
-      :warning_light
-    ],
+    values: [:black, :alert, :info, :success, :warning, :black_light, :alert_light, :info_light, :success_light, :warning_light],
     doc: "the background color"
 
   attr :icon, :string, required: true, doc: "name of the icon to add to the badge"

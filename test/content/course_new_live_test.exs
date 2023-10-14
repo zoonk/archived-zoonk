@@ -59,9 +59,7 @@ defmodule UneebeeWeb.CourseNewLiveTest do
 
     {:ok, _lv, _html} =
       lv
-      |> form(@course_form,
-        course: %{name: attrs.name, description: attrs.description, slug: slug}
-      )
+      |> form(@course_form, course: %{name: attrs.name, description: attrs.description, slug: slug})
       |> render_submit()
       |> follow_redirect(conn, ~p"/dashboard/c/#{slug}")
 

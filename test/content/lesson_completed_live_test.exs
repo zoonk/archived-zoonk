@@ -27,10 +27,7 @@ defmodule UneebeeWeb.LessonCompletedLiveTest do
 
     test "returns 403", %{conn: conn, course: course} do
       lesson = lesson_fixture(%{course_id: course.id})
-
-      assert_error_sent 403, fn ->
-        get(conn, ~p"/c/#{course.slug}/#{lesson.id}/completed")
-      end
+      assert_error_sent 403, fn -> get(conn, ~p"/c/#{course.slug}/#{lesson.id}/completed") end
     end
   end
 

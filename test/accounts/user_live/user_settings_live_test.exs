@@ -39,9 +39,7 @@ defmodule UneebeeWeb.UserSettingsLiveTest do
       assert field_change(lv, %{username: "ab"}) =~ "should be at least 3 character(s)"
       assert field_change(lv, %{username: existing_user.username}) =~ "has already been taken"
 
-      assert lv
-             |> form(@settings_form, user: %{username: new_username})
-             |> render_submit() =~ "Settings updated successfully"
+      assert lv |> form(@settings_form, user: %{username: new_username}) |> render_submit() =~ "Settings updated successfully"
 
       assert Accounts.get_user!(user.id).username == new_username
     end
@@ -154,11 +152,7 @@ defmodule UneebeeWeb.UserSettingsLiveTest do
       result =
         lv
         |> element(@email_form)
-        |> render_change(%{
-          "action" => "update_email",
-          "current_password" => "invalid",
-          "user" => %{"email" => "with spaces"}
-        })
+        |> render_change(%{"action" => "update_email", "current_password" => "invalid", "user" => %{"email" => "with spaces"}})
 
       assert result =~ "Change Email"
       assert result =~ "must have the @ sign and no spaces"
@@ -190,10 +184,7 @@ defmodule UneebeeWeb.UserSettingsLiveTest do
       refute has_element?(lv, @email_form)
 
       form =
-        form(lv, @password_form, %{
-          "current_password" => password,
-          "user" => %{"email" => user.email, "password" => new_password, "password_confirmation" => new_password}
-        })
+        form(lv, @password_form, %{"current_password" => password, "user" => %{"email" => user.email, "password" => new_password, "password_confirmation" => new_password}})
 
       render_submit(form)
       new_password_conn = follow_trigger_action(form, conn)
@@ -210,10 +201,7 @@ defmodule UneebeeWeb.UserSettingsLiveTest do
       result =
         lv
         |> element(@password_form)
-        |> render_change(%{
-          "current_password" => "invalid",
-          "user" => %{"password" => "short", "password_confirmation" => "does not match"}
-        })
+        |> render_change(%{"current_password" => "invalid", "user" => %{"password" => "short", "password_confirmation" => "does not match"}})
 
       assert result =~ "Change Password"
       assert result =~ "at least one digit or punctuation character"
@@ -227,10 +215,7 @@ defmodule UneebeeWeb.UserSettingsLiveTest do
 
       result =
         lv
-        |> form(@password_form, %{
-          "current_password" => "invalid",
-          "user" => %{"password" => "short", "password_confirmation" => "does not match"}
-        })
+        |> form(@password_form, %{"current_password" => "invalid", "user" => %{"password" => "short", "password_confirmation" => "does not match"}})
         |> render_submit()
 
       assert result =~ "Change Password"
@@ -246,11 +231,7 @@ defmodule UneebeeWeb.UserSettingsLiveTest do
     setup %{conn: conn} do
       user = user_fixture()
       email = unique_user_email()
-
-      token =
-        extract_user_token(fn url ->
-          Accounts.deliver_user_update_email_instructions(%{user | email: email}, nil, user.email, url)
-        end)
+      token = extract_user_token(fn url -> Accounts.deliver_user_update_email_instructions(%{user | email: email}, nil, user.email, url) end)
 
       %{conn: log_in_user(conn, user), token: token, email: email, user: user}
     end

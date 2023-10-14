@@ -72,9 +72,7 @@ defmodule Uneebee.Accounts.User do
     |> validate_length(:password, min: 8, max: 72)
     |> validate_format(:password, ~r/[a-z]/, message: dgettext("errors", "at least one lower case character"))
     |> validate_format(:password, ~r/[A-Z]/, message: dgettext("errors", "at least one upper case character"))
-    |> validate_format(:password, ~r/[!?@#$%^&*_0-9]/,
-      message: dgettext("errors", "at least one digit or punctuation character")
-    )
+    |> validate_format(:password, ~r/[!?@#$%^&*_0-9]/, message: dgettext("errors", "at least one digit or punctuation character"))
     |> maybe_hash_password(opts)
   end
 
@@ -168,8 +166,7 @@ defmodule Uneebee.Accounts.User do
   `Bcrypt.no_user_verify/0` to avoid timing attacks.
   """
   @spec valid_password?(Ecto.Schema.t(), String.t()) :: boolean()
-  def valid_password?(%Uneebee.Accounts.User{hashed_password: hashed_password}, password)
-      when is_binary(hashed_password) and byte_size(password) > 0 do
+  def valid_password?(%Uneebee.Accounts.User{hashed_password: hashed_password}, password) when is_binary(hashed_password) and byte_size(password) > 0 do
     Bcrypt.verify_pass(password, hashed_password)
   end
 

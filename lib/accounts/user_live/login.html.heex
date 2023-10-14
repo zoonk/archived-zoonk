@@ -1,14 +1,7 @@
 <.simple_form for={@form} id="login_form" action={~p"/users/login"} phx-update="ignore" class="mx-auto w-full max-w-sm">
   <.header icon="tabler-login-2"><%= dgettext("auth", "Sign in to your account") %></.header>
 
-  <.input
-    field={@form[:email_or_username]}
-    type="text"
-    label={dgettext("auth", "Email or username")}
-    autocomplete="username"
-    required
-  />
-
+  <.input field={@form[:email_or_username]} type="text" label={dgettext("auth", "Email or username")} autocomplete="username" required />
   <.input field={@form[:password]} type="password" label={dgettext("auth", "Password")} required />
 
   <:actions>

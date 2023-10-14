@@ -100,13 +100,7 @@ defmodule Uneebee.Fixtures.Content do
     user = Map.get(attrs, :user, user_fixture())
     preload = Map.get(attrs, :preload, [])
 
-    course_user_attrs =
-      Enum.into(attrs, %{
-        approved?: true,
-        approved_at: DateTime.utc_now(),
-        approved_by_id: user.id,
-        role: :student
-      })
+    course_user_attrs = Enum.into(attrs, %{approved?: true, approved_at: DateTime.utc_now(), approved_by_id: user.id, role: :student})
 
     {:ok, course_user} = Content.create_course_user(course, user, course_user_attrs)
     Repo.preload(course_user, preload)
@@ -160,15 +154,7 @@ defmodule Uneebee.Fixtures.Content do
     lessons = Enum.map(1..number_of_lessons, fn _idx -> lesson_fixture(attrs) end)
 
     Enum.each(lessons, fn lesson ->
-      Repo.insert!(%UserLesson{
-        attempts: 1,
-        correct: correct,
-        total: total,
-        user_id: user_id,
-        lesson_id: lesson.id,
-        inserted_at: days_ago,
-        updated_at: days_ago
-      })
+      Repo.insert!(%UserLesson{attempts: 1, correct: correct, total: total, user_id: user_id, lesson_id: lesson.id, inserted_at: days_ago, updated_at: days_ago})
     end)
   end
 end

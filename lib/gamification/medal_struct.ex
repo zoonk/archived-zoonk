@@ -4,12 +4,7 @@ defmodule Uneebee.Gamification.Medal do
 
   This is used to track supported medals.
   """
-  @type t :: %__MODULE__{
-          key: atom(),
-          medal: atom(),
-          label: String.t(),
-          description: String.t()
-        }
+  @type t :: %__MODULE__{key: atom(), medal: atom(), label: String.t(), description: String.t()}
 
   defstruct key: nil, medal: :bronze, label: "", description: ""
 end

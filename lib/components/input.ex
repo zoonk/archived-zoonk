@@ -29,9 +29,7 @@ defmodule UneebeeWeb.Components.Input do
   attr :value, :any, doc: "the value of the input"
   attr :helper, :string, default: nil, doc: "a helper text to be displayed with the input"
 
-  attr :type, :string,
-    default: "text",
-    values: ~w(checkbox color date datetime-local email file hidden month number password
+  attr :type, :string, default: "text", values: ~w(checkbox color date datetime-local email file hidden month number password
                range radio search select tel text textarea time url week)
 
   attr :field, FormField, doc: "a form field struct retrieved from the form, for example: @form[:email]"
@@ -62,15 +60,7 @@ defmodule UneebeeWeb.Components.Input do
     <div phx-feedback-for={@name} hidden={@type == "hidden"}>
       <label class="text-gray-dark flex items-start gap-2 text-sm" for={@id}>
         <input type="hidden" name={@name} value="false" />
-        <input
-          type="checkbox"
-          id={@id}
-          name={@name}
-          value="true"
-          checked={@checked}
-          class="border-gray-light2x text-gray-dark rounded focus:ring-0"
-          {@rest}
-        />
+        <input type="checkbox" id={@id} name={@name} value="true" checked={@checked} class="border-gray-light2x text-gray-dark rounded focus:ring-0" {@rest} />
         <span class="flex flex-col gap-2"><span class="font-semibold"><%= @label %></span>
           <span class="text-gray"><%= @helper %></span></span>
       </label>

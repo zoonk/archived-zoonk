@@ -66,9 +66,7 @@ defmodule UneebeeWeb.Plugs.UserAuth do
   #     end
   #
   defp renew_session(conn) do
-    conn
-    |> configure_session(renew: true)
-    |> clear_session()
+    conn |> configure_session(renew: true) |> clear_session()
   end
 
   @doc """
@@ -195,9 +193,7 @@ defmodule UneebeeWeb.Plugs.UserAuth do
   @spec redirect_if_user_is_authenticated(Plug.Conn.t(), Keyword.t()) :: Plug.Conn.t()
   def redirect_if_user_is_authenticated(conn, _opts) do
     if conn.assigns[:current_user] do
-      conn
-      |> redirect(to: signed_in_path(conn))
-      |> halt()
+      conn |> redirect(to: signed_in_path(conn)) |> halt()
     else
       conn
     end

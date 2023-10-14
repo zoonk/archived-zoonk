@@ -1,34 +1,8 @@
-<.live_component
-  :if={@live_action == :cover}
-  module={Upload}
-  id={:course_cover}
-  current_img={@course.cover}
-  label={dgettext("orgs", "Cover")}
-/>
+<.live_component :if={@live_action == :cover} module={Upload} id={:course_cover} current_img={@course.cover} label={dgettext("orgs", "Cover")} />
 
-<.simple_form
-  :if={@live_action not in [:cover, :delete]}
-  for={@form}
-  id="course-form"
-  phx-change="validate"
-  phx-submit="save"
->
-  <.input
-    :if={@live_action == :info}
-    field={@form[:language]}
-    type="select"
-    label={gettext("Language")}
-    options={UneebeeWeb.Plugs.Translate.language_options()}
-    required
-  />
-
-  <.input
-    :if={@live_action == :info}
-    field={@form[:name]}
-    type="text"
-    label={dgettext("orgs", "Course title")}
-    required
-  />
+<.simple_form :if={@live_action not in [:cover, :delete]} for={@form} id="course-form" phx-change="validate" phx-submit="save">
+  <.input :if={@live_action == :info} field={@form[:language]} type="select" label={gettext("Language")} options={UneebeeWeb.Plugs.Translate.language_options()} required />
+  <.input :if={@live_action == :info} field={@form[:name]} type="text" label={dgettext("orgs", "Course title")} required />
 
   <.input
     :if={@live_action == :info}
@@ -39,22 +13,8 @@
     required
   />
 
-  <.input
-    :if={@live_action == :info}
-    field={@form[:level]}
-    type="select"
-    label={dgettext("orgs", "Level")}
-    options={Uneebee.Content.CourseUtils.level_options()}
-    required
-  />
-
-  <.input
-    :if={@live_action == :info}
-    field={@form[:description]}
-    type="textarea"
-    label={dgettext("orgs", "Course description")}
-    required
-  />
+  <.input :if={@live_action == :info} field={@form[:level]} type="select" label={dgettext("orgs", "Level")} options={Uneebee.Content.CourseUtils.level_options()} required />
+  <.input :if={@live_action == :info} field={@form[:description]} type="textarea" label={dgettext("orgs", "Course description")} required />
 
   <.input
     :if={@live_action == :privacy}
@@ -74,12 +34,7 @@
     field={@form[:published?]}
     type="checkbox"
     label={dgettext("orgs", "Is published?")}
-    helper={
-      dgettext(
-        "orgs",
-        "When checked, this course will be visible to students. Keep it unchecked if this is a draft course that shouldn't be available yet."
-      )
-    }
+    helper={dgettext("orgs", "When checked, this course will be visible to students. Keep it unchecked if this is a draft course that shouldn't be available yet.")}
   />
 
   <:actions>
@@ -93,10 +48,4 @@
   </:actions>
 </.simple_form>
 
-<.live_component
-  :if={@live_action == :delete}
-  id={:delete_course}
-  module={DeleteItem}
-  cancel_link={~p"/dashboard/c/#{@course.slug}"}
-  name={@course.name}
-/>
+<.live_component :if={@live_action == :delete} id={:delete_course} module={DeleteItem} cancel_link={~p"/dashboard/c/#{@course.slug}"} name={@course.name} />

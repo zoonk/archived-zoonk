@@ -131,7 +131,6 @@ defmodule Uneebee.GamificationTest do
       user_trophy_fixture(%{course: course, user: user, reason: :course_completed})
 
       assert {:ok, %UserTrophy{} = _user_trophy} = Gamification.create_user_trophy(attrs)
-
       assert Gamification.count_user_trophies(user.id) == 1
     end
   end

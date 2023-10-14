@@ -19,8 +19,7 @@ defmodule UneebeeWeb.CourseViewLiveTest do
       course = course_fixture(%{school_id: school.id})
       {:ok, lv, _html} = live(conn, ~p"/c/#{course.slug}")
 
-      assert {:ok, _conn} =
-               lv |> element("button", "Free Enroll") |> render_click() |> follow_redirect(conn, "/users/login")
+      assert {:ok, _conn} = lv |> element("button", "Free Enroll") |> render_click() |> follow_redirect(conn, "/users/login")
     end
   end
 

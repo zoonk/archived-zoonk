@@ -13,19 +13,12 @@ defmodule UneebeeWeb.Live.Accounts.User.ForgotPassword do
   @impl Phoenix.LiveView
   def handle_event("send_email", %{"user" => %{"email" => email}}, socket) do
     if user = Accounts.get_user_by_email(email) do
-      Accounts.deliver_user_reset_password_instructions(
-        user,
-        socket.assigns.host_school,
-        &url(~p"/users/reset_password/#{&1}")
-      )
+      Accounts.deliver_user_reset_password_instructions(user, socket.assigns.host_school, &url(~p"/users/reset_password/#{&1}"))
     end
 
     {:noreply,
      socket
-     |> put_flash(
-       :info,
-       dgettext("auth", "If your email is in our system, you will receive instructions to reset your password shortly.")
-     )
+     |> put_flash(:info, dgettext("auth", "If your email is in our system, you will receive instructions to reset your password shortly."))
      |> redirect(to: ~p"/")}
   end
 end

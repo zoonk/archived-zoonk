@@ -15,16 +15,8 @@ defmodule UneebeeWeb.Components.Avatar do
       <.avatar alt="John Doe" src="https://example.com/image.jpg" />
   """
   attr :src, :string, default: nil, doc: "the image source"
-
-  attr :alt, :string,
-    required: true,
-    doc: "the image alt text. It can be used as a fallback if the image is not available."
-
-  attr :size, :atom,
-    values: [:small, :medium, :large],
-    default: :medium,
-    doc: "the size of the avatar"
-
+  attr :alt, :string, required: true, doc: "the image alt text. It can be used as a fallback if the image is not available."
+  attr :size, :atom, values: [:small, :medium, :large], default: :medium, doc: "the size of the avatar"
   attr :class, :string, default: nil, doc: "the class of the avatar"
 
   # Handle the case where the image is not available.

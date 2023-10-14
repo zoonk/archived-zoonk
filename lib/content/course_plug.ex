@@ -38,10 +38,7 @@ defmodule UneebeeWeb.Plugs.Course do
   @spec require_course_user(Plug.Conn.t(), Keyword.t()) :: Plug.Conn.t()
   def require_course_user(conn, opts), do: require_course_user(conn, opts, conn.assigns.course_user)
   defp require_course_user(_conn, _opts, nil), do: raise(UneebeeWeb.PermissionError, code: :not_enrolled)
-
-  defp require_course_user(_conn, _opts, %{approved?: false}),
-    do: raise(UneebeeWeb.PermissionError, code: :pending_approval)
-
+  defp require_course_user(_conn, _opts, %{approved?: false}), do: raise(UneebeeWeb.PermissionError, code: :pending_approval)
   defp require_course_user(conn, _opts, _cu), do: conn
 
   @doc """
@@ -76,9 +73,7 @@ defmodule UneebeeWeb.Plugs.Course do
 
   defp require_manager_or_course_teacher(conn, %{role: :manager}, _cu), do: conn
   defp require_manager_or_course_teacher(conn, _su, %{role: :teacher}), do: conn
-
-  defp require_manager_or_course_teacher(_conn, _su, _cu),
-    do: raise(UneebeeWeb.PermissionError, code: :require_manager_or_teacher)
+  defp require_manager_or_course_teacher(_conn, _su, _cu), do: raise(UneebeeWeb.PermissionError, code: :require_manager_or_teacher)
 
   defp get_course_user(_course, nil), do: nil
   defp get_course_user(course, user), do: Content.get_course_user_by_id(course.id, user.id)

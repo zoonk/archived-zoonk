@@ -338,26 +338,11 @@ defmodule Uneebee.Gamification do
       {:ok, %UserMission{}}
   """
   @spec complete_perfect_lesson_mission(User.t(), integer()) :: user_mission_changeset()
-  def complete_perfect_lesson_mission(%User{} = user, 1) do
-    create_user_mission(%{user_id: user.id, reason: :perfect_lesson_1})
-  end
-
-  def complete_perfect_lesson_mission(%User{} = user, 10) do
-    create_user_mission(%{user_id: user.id, reason: :perfect_lesson_10})
-  end
-
-  def complete_perfect_lesson_mission(%User{} = user, 50) do
-    create_user_mission(%{user_id: user.id, reason: :perfect_lesson_50})
-  end
-
-  def complete_perfect_lesson_mission(%User{} = user, 100) do
-    create_user_mission(%{user_id: user.id, reason: :perfect_lesson_100})
-  end
-
-  def complete_perfect_lesson_mission(%User{} = user, 500) do
-    create_user_mission(%{user_id: user.id, reason: :perfect_lesson_500})
-  end
-
+  def complete_perfect_lesson_mission(%User{} = user, 1), do: create_user_mission(%{user_id: user.id, reason: :perfect_lesson_1})
+  def complete_perfect_lesson_mission(%User{} = user, 10), do: create_user_mission(%{user_id: user.id, reason: :perfect_lesson_10})
+  def complete_perfect_lesson_mission(%User{} = user, 50), do: create_user_mission(%{user_id: user.id, reason: :perfect_lesson_50})
+  def complete_perfect_lesson_mission(%User{} = user, 100), do: create_user_mission(%{user_id: user.id, reason: :perfect_lesson_100})
+  def complete_perfect_lesson_mission(%User{} = user, 500), do: create_user_mission(%{user_id: user.id, reason: :perfect_lesson_500})
   def complete_perfect_lesson_mission(_user, _lesson_count), do: {:ok, %UserMission{}}
 
   @doc """

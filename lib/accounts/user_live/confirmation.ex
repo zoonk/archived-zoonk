@@ -16,10 +16,7 @@ defmodule UneebeeWeb.Live.Accounts.User.Confirmation do
   def handle_event("confirm_account", %{"user" => %{"token" => token}}, socket) do
     case Accounts.confirm_user(token) do
       {:ok, _} ->
-        {:noreply,
-         socket
-         |> put_flash(:info, "User confirmed successfully.")
-         |> redirect(to: ~p"/")}
+        {:noreply, socket |> put_flash(:info, "User confirmed successfully.") |> redirect(to: ~p"/")}
 
       :error ->
         # If there is a current user and the account was already confirmed,
@@ -31,10 +28,7 @@ defmodule UneebeeWeb.Live.Accounts.User.Confirmation do
             {:noreply, redirect(socket, to: ~p"/")}
 
           %{} ->
-            {:noreply,
-             socket
-             |> put_flash(:error, "User confirmation link is invalid or it has expired.")
-             |> redirect(to: ~p"/")}
+            {:noreply, socket |> put_flash(:error, "User confirmation link is invalid or it has expired.") |> redirect(to: ~p"/")}
         end
     end
   end

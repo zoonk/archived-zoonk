@@ -26,12 +26,7 @@ defmodule UneebeeWeb.Components.AwardBadge do
 
   def learning_days_badge(assigns) do
     ~H"""
-    <.award_badge
-      id="learning-days-badge"
-      icon="tabler-calendar-heart"
-      value={@days}
-      label={dngettext("gamification", "Learning day", "Learning days", @days)}
-    />
+    <.award_badge id="learning-days-badge" icon="tabler-calendar-heart" value={@days} label={dngettext("gamification", "Learning day", "Learning days", @days)} />
     """
   end
 
@@ -42,13 +37,7 @@ defmodule UneebeeWeb.Components.AwardBadge do
 
   def medal_badge(assigns) do
     ~H"""
-    <.award_badge
-      id="medal-badge"
-      color={medal_color(@medal.medal)}
-      icon="tabler-medal"
-      value={@medal.label}
-      label={@medal.description}
-    />
+    <.award_badge id="medal-badge" color={medal_color(@medal.medal)} icon="tabler-medal" value={@medal.label} label={@medal.description} />
     """
   end
 

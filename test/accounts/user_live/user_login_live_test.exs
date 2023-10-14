@@ -14,12 +14,7 @@ defmodule UneebeeWeb.UserLoginLiveTest do
     end
 
     test "redirects if already logged in", %{conn: conn} do
-      result =
-        conn
-        |> log_in_user(user_fixture())
-        |> live(~p"/users/login")
-        |> follow_redirect(conn, "/")
-
+      result = conn |> log_in_user(user_fixture()) |> live(~p"/users/login") |> follow_redirect(conn, "/")
       assert {:ok, _conn} = result
     end
   end
@@ -31,26 +26,18 @@ defmodule UneebeeWeb.UserLoginLiveTest do
 
       {:ok, lv, _html} = live(conn, ~p"/users/login")
 
-      form =
-        form(lv, "#login_form", user: %{email_or_username: user.email, password: password, remember_me: true})
-
+      form = form(lv, "#login_form", user: %{email_or_username: user.email, password: password, remember_me: true})
       conn = submit_form(form, conn)
-
       assert redirected_to(conn) == ~p"/"
     end
 
-    test "redirects to login page with a flash error if there are no valid credentials", %{
-      conn: conn
-    } do
+    test "redirects to login page with a flash error if there are no valid credentials", %{conn: conn} do
       {:ok, lv, _html} = live(conn, ~p"/users/login")
 
-      form =
-        form(lv, "#login_form", user: %{email_or_username: "test@email.com", password: "123456", remember_me: true})
-
+      form = form(lv, "#login_form", user: %{email_or_username: "test@email.com", password: "123456", remember_me: true})
       conn = submit_form(form, conn)
 
       assert Phoenix.Flash.get(conn.assigns.flash, :error) == "Invalid email or password."
-
       assert redirected_to(conn) == "/users/login"
     end
 

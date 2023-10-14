@@ -9,8 +9,7 @@ defmodule UneebeeWeb.Live.Organizations.School.New do
   def mount(_params, _session, socket) do
     changeset = Organizations.change_school(%School{})
 
-    socket =
-      socket |> assign(page_title: dgettext("orgs", "Create school")) |> assign(form: to_form(changeset))
+    socket = socket |> assign(page_title: dgettext("orgs", "Create school")) |> assign(form: to_form(changeset))
 
     {:ok, socket}
   end
@@ -36,8 +35,7 @@ defmodule UneebeeWeb.Live.Organizations.School.New do
 
     case Organizations.create_school_and_manager(user, attrs) do
       {:ok, _school} ->
-        {:noreply,
-         socket |> put_flash(:info, dgettext("orgs", "School created successfully")) |> push_navigate(to: ~p"/")}
+        {:noreply, socket |> put_flash(:info, dgettext("orgs", "School created successfully")) |> push_navigate(to: ~p"/")}
 
       {:error, %Ecto.Changeset{} = changeset} ->
         {:noreply,
