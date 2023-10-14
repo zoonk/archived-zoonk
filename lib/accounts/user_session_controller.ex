@@ -7,19 +7,13 @@ defmodule UneebeeWeb.Controller.Accounts.User.Session do
 
   @spec create(Plug.Conn.t(), map()) :: Plug.Conn.t()
   @spec create(Plug.Conn.t(), map(), String.t() | nil) :: Plug.Conn.t()
-  def create(conn, %{"_action" => "registered"} = params) do
-    create(conn, params, dgettext("auth", "Account created successfully!"))
-  end
-
   def create(conn, %{"_action" => "password_updated"} = params) do
     conn
     |> put_session(:user_return_to, ~p"/users/settings/password")
     |> create(params, dgettext("auth", "Password updated successfully!"))
   end
 
-  def create(conn, params) do
-    create(conn, params, nil)
-  end
+  def create(conn, params), do: create(conn, params, nil)
 
   defp create(conn, %{"user" => user_params}, info) do
     email_or_username =

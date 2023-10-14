@@ -50,7 +50,6 @@ defmodule UneebeeWeb.DashboardLessonViewLiveTest do
       assert has_element?(lv, ~s|li[aria-current=page] span:fl-icontains("content")|)
 
       result = lv |> element("button", "Publish") |> render_click()
-      assert result =~ "Lesson published!"
       assert result =~ "Unpublish"
 
       updated_lesson = Content.get_lesson!(lesson.id)
@@ -64,7 +63,6 @@ defmodule UneebeeWeb.DashboardLessonViewLiveTest do
       assert has_element?(lv, ~s|li[aria-current=page] span:fl-icontains("content")|)
 
       result = lv |> element("button", "Unpublish") |> render_click()
-      assert result =~ "Lesson unpublished!"
       assert result =~ "Publish"
 
       updated_lesson = Content.get_lesson!(lesson.id)
@@ -103,9 +101,8 @@ defmodule UneebeeWeb.DashboardLessonViewLiveTest do
 
       {:ok, lv, _html} = live(conn, ~p"/dashboard/c/#{course.slug}/l/#{lesson.id}")
 
-      result = lv |> form("#step-form", lesson_step: %{content: "Text step 4"}) |> render_submit()
+      lv |> form("#step-form", lesson_step: %{content: "Text step 4"}) |> render_submit()
 
-      assert result =~ "Step created!"
       assert has_element?(lv, ~s|dt:fl-contains("Text step 4")|)
     end
 

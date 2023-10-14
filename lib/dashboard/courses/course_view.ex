@@ -31,12 +31,7 @@ defmodule UneebeeWeb.Live.Dashboard.CourseView do
 
     case Content.create_lesson(attrs) do
       {:ok, _lesson} ->
-        socket =
-          socket
-          |> put_flash(:info, dgettext("orgs", "Lesson created!"))
-          |> push_redirect(to: ~p"/dashboard/c/#{course.slug}")
-
-        {:noreply, socket}
+        {:noreply, push_navigate(socket, to: ~p"/dashboard/c/#{course.slug}")}
 
       {:error, _changeset} ->
         {:noreply, put_flash(socket, :error, dgettext("orgs", "Could not create lesson!"))}
@@ -47,12 +42,7 @@ defmodule UneebeeWeb.Live.Dashboard.CourseView do
   def handle_event("reposition", %{"new" => new_index, "old" => old_index}, socket) when new_index != old_index do
     case Content.update_lesson_order(socket.assigns.course, old_index, new_index) do
       {:ok, lessons} ->
-        socket =
-          socket
-          |> put_flash(:info, dgettext("orgs", "Lesson order changed!"))
-          |> assign(:lessons, lessons)
-
-        {:noreply, socket}
+        {:noreply, assign(socket, :lessons, lessons)}
 
       {:error, _changeset} ->
         {:noreply, put_flash(socket, :error, dgettext("orgs", "Could not change the lesson order!"))}

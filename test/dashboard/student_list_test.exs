@@ -98,13 +98,12 @@ defmodule UneebeeWeb.SchoolStudentListLiveTest do
       refute has_element?(lv, approve_button_el())
       refute has_element?(lv, reject_button_el())
 
-      {:ok, updated_lv, html} =
+      {:ok, updated_lv, _html} =
         lv
         |> element(delete_button_el())
         |> render_click()
         |> follow_redirect(conn, ~p"/dashboard/students")
 
-      assert html =~ "User removed!"
       refute has_element?(updated_lv, ~s|dt span:fl-icontains("#{user.first_name}")|)
     end
 
@@ -115,13 +114,12 @@ defmodule UneebeeWeb.SchoolStudentListLiveTest do
 
       refute has_element?(lv, ~s|dt span:fl-icontains("#{user.first_name}")|)
 
-      {:ok, updated_lv, html} =
+      {:ok, updated_lv, _html} =
         lv
         |> form("#add-user-form", %{email_or_username: user.email})
         |> render_submit()
         |> follow_redirect(conn, ~p"/dashboard/students")
 
-      assert html =~ "User added!"
       assert has_element?(updated_lv, ~s|dt span:fl-icontains("#{user.first_name}")|)
     end
 
@@ -132,13 +130,12 @@ defmodule UneebeeWeb.SchoolStudentListLiveTest do
 
       refute has_element?(lv, ~s|dt span:fl-icontains("#{user.first_name}")|)
 
-      {:ok, updated_lv, html} =
+      {:ok, updated_lv, _html} =
         lv
         |> form("#add-user-form", %{email_or_username: user.username})
         |> render_submit()
         |> follow_redirect(conn, ~p"/dashboard/students")
 
-      assert html =~ "User added!"
       assert has_element?(updated_lv, ~s|dt span:fl-icontains("#{user.first_name}")|)
     end
 

@@ -39,9 +39,7 @@ defmodule UneebeeWeb.UserSessionControllerTest do
 
     test "login following registration", %{conn: conn, user: user} do
       conn = post(conn, ~p"/users/login", %{"_action" => "registered", "user" => %{"email" => user.email, "password" => valid_user_password()}})
-
       assert redirected_to(conn) == ~p"/"
-      assert Phoenix.Flash.get(conn.assigns.flash, :info) =~ "Account created successfully"
     end
 
     test "login following password update", %{conn: conn, user: user} do

@@ -28,20 +28,11 @@ defmodule UneebeeWeb.Live.Dashboard.CourseNew do
   def handle_event("save", %{"course" => course_params}, socket) do
     school = socket.assigns.school
     user = socket.assigns.current_user
-
-    params =
-      course_params
-      |> Map.put("school_id", school.id)
-      |> Map.put("language", user.language)
+    params = Map.merge(course_params, %{"school_id" => school.id, "language" => user.language})
 
     case Content.create_course(params, user) do
       {:ok, course} ->
-        socket =
-          socket
-          |> put_flash(:info, dgettext("orgs", "Course created successfully"))
-          |> push_navigate(to: ~p"/dashboard/c/#{course.slug}")
-
-        {:noreply, socket}
+        {:noreply, push_navigate(socket, to: ~p"/dashboard/c/#{course.slug}")}
 
       {:error, %Ecto.Changeset{} = changeset} ->
         {:noreply, assign(socket, form: to_form(changeset))}

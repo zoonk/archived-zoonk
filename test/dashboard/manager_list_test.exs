@@ -96,13 +96,12 @@ defmodule UneebeeWeb.SchoolManagerListLiveTest do
 
       refute has_element?(lv, ~s|dt span:fl-icontains("#{user.first_name}")|)
 
-      {:ok, updated_lv, html} =
+      {:ok, updated_lv, _html} =
         lv
         |> form("#add-user-form", %{email_or_username: user.email})
         |> render_submit()
         |> follow_redirect(conn, ~p"/dashboard/managers")
 
-      assert html =~ "User added!"
       assert has_element?(updated_lv, ~s|dt span:fl-icontains("#{user.first_name}")|)
     end
 
@@ -113,13 +112,12 @@ defmodule UneebeeWeb.SchoolManagerListLiveTest do
 
       refute has_element?(lv, ~s|dt span:fl-icontains("#{user.first_name}")|)
 
-      {:ok, updated_lv, html} =
+      {:ok, updated_lv, _html} =
         lv
         |> form("#add-user-form", %{email_or_username: user.username})
         |> render_submit()
         |> follow_redirect(conn, ~p"/dashboard/managers")
 
-      assert html =~ "User added!"
       assert has_element?(updated_lv, ~s|dt span:fl-icontains("#{user.first_name}")|)
     end
 

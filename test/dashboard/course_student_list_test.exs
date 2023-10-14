@@ -85,13 +85,12 @@ defmodule UneebeeWeb.DashboardCourseStudentListLiveTest do
 
       refute has_element?(lv, ~s|dt span:fl-icontains("Leo da Vinci")|)
 
-      {:ok, updated_lv, html} =
+      {:ok, updated_lv, _html} =
         lv
         |> form("#add-user-form", %{email_or_username: user.email})
         |> render_submit()
         |> follow_redirect(conn, ~p"/dashboard/c/#{course.slug}/students")
 
-      assert html =~ "User added!"
       assert has_element?(updated_lv, ~s|dt span:fl-icontains("#{user.first_name}")|)
     end
 
@@ -101,13 +100,12 @@ defmodule UneebeeWeb.DashboardCourseStudentListLiveTest do
 
       refute has_element?(lv, ~s|dt span:fl-icontains("Leo da Vinci")|)
 
-      {:ok, updated_lv, html} =
+      {:ok, updated_lv, _html} =
         lv
         |> form("#add-user-form", %{email_or_username: user.username})
         |> render_submit()
         |> follow_redirect(conn, ~p"/dashboard/c/#{course.slug}/students")
 
-      assert html =~ "User added!"
       assert has_element?(updated_lv, ~s|dt span:fl-icontains("#{user.first_name}")|)
     end
 
@@ -186,13 +184,12 @@ defmodule UneebeeWeb.DashboardCourseStudentListLiveTest do
 
     assert has_element?(lv, user_el)
 
-    {:ok, updated_lv, html} =
+    {:ok, updated_lv, _html} =
       lv
       |> element(~s|button[phx-click="remove"]|)
       |> render_click()
       |> follow_redirect(conn, ~p"/dashboard/c/#{course.slug}/students")
 
-    assert html =~ "User removed!"
     refute has_element?(updated_lv, user_el)
   end
 

@@ -58,12 +58,7 @@ defmodule UneebeeWeb.Live.Dashboard.CourseUserList do
 
     case Content.delete_course_user(course_user_id) do
       {:ok, _course_user} ->
-        socket =
-          socket
-          |> put_flash(:info, dgettext("orgs", "User removed!"))
-          |> push_navigate(to: get_user_list_route(socket.assigns.live_action, course.slug))
-
-        {:noreply, socket}
+        {:noreply, push_navigate(socket, to: get_user_list_route(socket.assigns.live_action, course.slug))}
 
       {:error, _changeset} ->
         {:noreply, put_flash(socket, :error, dgettext("orgs", "Could not remove user!"))}
@@ -83,12 +78,7 @@ defmodule UneebeeWeb.Live.Dashboard.CourseUserList do
 
     case Content.create_course_user(course, user, attrs) do
       {:ok, _course_user} ->
-        socket =
-          socket
-          |> put_flash(:info, dgettext("orgs", "User added!"))
-          |> push_navigate(to: get_user_list_route(role, course.slug))
-
-        {:noreply, socket}
+        {:noreply, push_navigate(socket, to: get_user_list_route(role, course.slug))}
 
       {:error, _changeset} ->
         {:noreply, put_flash(socket, :error, dgettext("orgs", "Could not add user!"))}

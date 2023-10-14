@@ -58,12 +58,7 @@ defmodule UneebeeWeb.Live.Dashboard.LessonView do
 
     case Content.update_lesson(lesson, %{published?: published?}) do
       {:ok, updated_lesson} ->
-        socket =
-          socket
-          |> put_flash(:info, toggle_success_label(published?))
-          |> assign(lesson: updated_lesson)
-
-        {:noreply, socket}
+        {:noreply, assign(socket, lesson: updated_lesson)}
 
       {:error, _changeset} ->
         {:noreply, put_flash(socket, :error, dgettext("orgs", "Could not update lesson!"))}
@@ -74,12 +69,7 @@ defmodule UneebeeWeb.Live.Dashboard.LessonView do
   def handle_event("reposition", %{"new" => new_index, "old" => old_index}, socket) when new_index != old_index do
     case Content.update_lesson_step_order(socket.assigns.lesson, old_index, new_index) do
       {:ok, lesson_steps} ->
-        socket =
-          socket
-          |> put_flash(:info, dgettext("orgs", "Step order changed!"))
-          |> assign(lesson_steps: lesson_steps)
-
-        {:noreply, socket}
+        {:noreply, assign(socket, lesson_steps: lesson_steps)}
 
       {:error, _changeset} ->
         {:noreply, put_flash(socket, :error, dgettext("orgs", "Could not change the step order!"))}
@@ -100,12 +90,7 @@ defmodule UneebeeWeb.Live.Dashboard.LessonView do
       {:ok, _lesson_step} ->
         updated_steps = Enum.reject(lesson_steps, fn step -> step.id == step_id end)
 
-        socket =
-          socket
-          |> put_flash(:info, dgettext("orgs", "Step deleted!"))
-          |> assign(lesson_steps: updated_steps)
-
-        {:noreply, socket}
+        {:noreply, assign(socket, lesson_steps: updated_steps)}
 
       {:error, _changeset} ->
         {:noreply, put_flash(socket, :error, dgettext("orgs", "Could not delete step!"))}
@@ -126,12 +111,7 @@ defmodule UneebeeWeb.Live.Dashboard.LessonView do
 
     case Content.delete_step_option(option_id) do
       {:ok, _option} ->
-        socket =
-          socket
-          |> put_flash(:info, dgettext("orgs", "Option deleted!"))
-          |> push_navigate(to: ~p"/dashboard/c/#{course.slug}/l/#{lesson.id}")
-
-        {:noreply, socket}
+        {:noreply, push_navigate(socket, to: ~p"/dashboard/c/#{course.slug}/l/#{lesson.id}")}
 
       {:error, _changeset} ->
         {:noreply, put_flash(socket, :error, dgettext("orgs", "Could not delete option!"))}
@@ -146,12 +126,7 @@ defmodule UneebeeWeb.Live.Dashboard.LessonView do
 
     case Content.create_step_option(attrs) do
       {:ok, _option} ->
-        socket =
-          socket
-          |> put_flash(:info, dgettext("orgs", "Option added!"))
-          |> push_navigate(to: ~p"/dashboard/c/#{course.slug}/l/#{lesson.id}")
-
-        {:noreply, socket}
+        {:noreply, push_navigate(socket, to: ~p"/dashboard/c/#{course.slug}/l/#{lesson.id}")}
 
       {:error, _changeset} ->
         {:noreply, put_flash(socket, :error, dgettext("orgs", "Could not add option!"))}
@@ -164,12 +139,7 @@ defmodule UneebeeWeb.Live.Dashboard.LessonView do
 
     case Content.update_step_option(option, option_params) do
       {:ok, _option} ->
-        socket =
-          socket
-          |> put_flash(:info, dgettext("orgs", "Option updated!"))
-          |> push_navigate(to: ~p"/dashboard/c/#{course.slug}/l/#{lesson.id}")
-
-        {:noreply, socket}
+        {:noreply, push_navigate(socket, to: ~p"/dashboard/c/#{course.slug}/l/#{lesson.id}")}
 
       {:error, _changeset} ->
         {:noreply, put_flash(socket, :error, dgettext("orgs", "Could not update option!"))}
@@ -184,12 +154,7 @@ defmodule UneebeeWeb.Live.Dashboard.LessonView do
 
     case Content.create_lesson_step(attrs) do
       {:ok, _lesson_step} ->
-        socket =
-          socket
-          |> put_flash(:info, dgettext("orgs", "Step created!"))
-          |> push_navigate(to: ~p"/dashboard/c/#{course.slug}/l/#{lesson.id}")
-
-        {:noreply, socket}
+        {:noreply, push_navigate(socket, to: ~p"/dashboard/c/#{course.slug}/l/#{lesson.id}")}
 
       {:error, _changeset} ->
         socket = put_flash(socket, :error, dgettext("orgs", "Could not update option!"))
@@ -204,12 +169,7 @@ defmodule UneebeeWeb.Live.Dashboard.LessonView do
 
     case Content.update_step_option(option, %{image: new_path}) do
       {:ok, _option} ->
-        socket =
-          socket
-          |> put_flash(:info, dgettext("orgs", "Option updated!"))
-          |> push_navigate(to: ~p"/dashboard/c/#{course.slug}/l/#{lesson.id}")
-
-        {:noreply, socket}
+        {:noreply, push_navigate(socket, to: ~p"/dashboard/c/#{course.slug}/l/#{lesson.id}")}
 
       {:error, _changeset} ->
         {:noreply, put_flash(socket, :error, dgettext("orgs", "Could not update option!"))}
@@ -227,7 +187,6 @@ defmodule UneebeeWeb.Live.Dashboard.LessonView do
 
         socket =
           socket
-          |> put_flash(:info, dgettext("orgs", "Step created!"))
           |> assign(lesson_steps: lesson_steps ++ [new_lesson_step])
           |> assign(step_form: to_form(Content.change_lesson_step(%LessonStep{})))
 
@@ -242,7 +201,4 @@ defmodule UneebeeWeb.Live.Dashboard.LessonView do
         {:noreply, socket}
     end
   end
-
-  defp toggle_success_label(true), do: dgettext("orgs", "Lesson published!")
-  defp toggle_success_label(false), do: dgettext("orgs", "Lesson unpublished!")
 end

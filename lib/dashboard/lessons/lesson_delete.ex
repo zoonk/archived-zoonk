@@ -17,12 +17,7 @@ defmodule UneebeeWeb.Live.Dashboard.LessonDelete do
 
     case Content.delete_lesson(lesson) do
       {:ok, _lesson} ->
-        socket =
-          socket
-          |> put_flash(:info, dgettext("orgs", "Lesson deleted successfully!"))
-          |> push_navigate(to: ~p"/dashboard/c/#{course.slug}")
-
-        {:noreply, socket}
+        {:noreply, push_navigate(socket, to: ~p"/dashboard/c/#{course.slug}")}
 
       {:error, _changeset} ->
         {:noreply, put_flash(socket, :error, dgettext("orgs", "Could not delete lesson!"))}

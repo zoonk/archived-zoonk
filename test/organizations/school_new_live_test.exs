@@ -17,13 +17,11 @@ defmodule UneebeeWeb.NewSchoolLiveTest do
 
       {:ok, lv, _html} = live(conn, ~p"/schools/new")
 
-      {:ok, _lv, html} =
+      {:ok, _lv, _html} =
         lv
         |> form(@school_form, school: %{name: attrs.name, email: attrs.email, slug: attrs.slug})
         |> render_submit()
         |> follow_redirect(conn, ~p"/")
-
-      assert html =~ "School created successfully"
 
       school = Organizations.get_school_by_slug!(attrs.slug)
       assert school.created_by_id == user.id
