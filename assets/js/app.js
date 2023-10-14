@@ -77,6 +77,21 @@ Hooks.Sortable = {
   },
 };
 
+Hooks.ClearFlash = {
+  mounted() {
+    const kind = this.el.dataset.kind;
+    const delay = 5000;
+
+    setTimeout(() => this.el.classList.add('opacity-0'), delay);
+
+    // Make sure we also clear the flash. Otherwise, it will be displayed for other items too.
+    setTimeout(
+      () => this.pushEventTo('#' + this.el.id, 'lv:clear-flash', { key: kind }),
+      delay + 1000
+    );
+  },
+};
+
 let Uploaders = {};
 Uploaders.S3 = function (entries, onViewError) {
   entries.forEach((entry) => {
