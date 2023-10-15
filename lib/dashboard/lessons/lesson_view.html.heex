@@ -1,24 +1,5 @@
 <.live_component module={LessonPublish} id={:lesson_publish} lesson={@lesson} />
-
-<p class="text-gray py-4 text-xs italic"><%= dgettext("orgs", "Drag the steps to change their order:") %></p>
-
-<nav id="lesson-steps" class="flex flex-wrap gap-2" data-group="lesson-steps" phx-hook="Sortable">
-  <.link
-    :for={step_order <- 1..@step_count}
-    patch={step_link(@course, @lesson, step_order)}
-    class={[
-      "h-10 w-10 flex flex-col items-center justify-center rounded-full text-center font-black cursor-grab",
-      "drag-ghost:bg-gray-light drag-ghost:cursor-grabbing drag-ghost:border-0 drag-ghost:ring-0",
-      "focus-within:drag-item:ring-0 focus-within:drag-item:ring-offset-0",
-      step_order != @selected_step.order && "bg-primary-light3x text-primary-dark2x",
-      step_order == @selected_step.order && "bg-primary-dark2x text-primary-light3x"
-    ]}
-  >
-    <%= step_order %>
-  </.link>
-
-  <button class="bg-gray-light3x filtered text-gray-dark2x h-10 w-10 rounded-full text-center font-black" phx-click="add-step">+</button>
-</nav>
+<.live_component module={LessonSwitch} id={:lesson_switch} step_count={@step_count} course={@course} lesson={@lesson} step={@selected_step} />
 
 <div class="text-gray-dark2x card mt-4 p-4 text-sm">
   <.link class="mb-4 flex w-max items-center gap-1" patch={step_edit(@course, @lesson, @selected_step.order)}>

@@ -54,6 +54,8 @@ defmodule UneebeeWeb do
     quote do
       use Phoenix.LiveView, layout: {UneebeeWeb.Layouts, :app}
 
+      on_mount UneebeeWeb.Flash
+
       unquote(html_helpers())
     end
   end
@@ -61,6 +63,8 @@ defmodule UneebeeWeb do
   def live_component do
     quote do
       use Phoenix.LiveComponent
+
+      import UneebeeWeb.Flash, only: [put_flash!: 3]
 
       unquote(html_helpers())
     end

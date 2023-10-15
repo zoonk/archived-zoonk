@@ -6,6 +6,7 @@ defmodule UneebeeWeb.Live.Dashboard.LessonView do
   alias Uneebee.Content.LessonStep
   alias Uneebee.Content.StepOption
   alias UneebeeWeb.Components.Dashboard.LessonPublish
+  alias UneebeeWeb.Components.Dashboard.LessonSwitch
   alias UneebeeWeb.Components.Upload
 
   @impl Phoenix.LiveView
@@ -95,13 +96,6 @@ defmodule UneebeeWeb.Live.Dashboard.LessonView do
       {:error, _changeset} ->
         {:noreply, put_flash(socket, :error, dgettext("orgs", "Could not delete step!"))}
     end
-  end
-
-  @impl Phoenix.LiveView
-  def handle_event("add-step", _params, socket) do
-    %{lesson: lesson, step_count: step_count} = socket.assigns
-    attrs = %{lesson_id: lesson.id, order: step_count + 1, content: dgettext("orgs", "Untitled step")}
-    handle_create_step(socket, step_count, attrs)
   end
 
   @impl Phoenix.LiveView
@@ -197,30 +191,10 @@ defmodule UneebeeWeb.Live.Dashboard.LessonView do
     end
   end
 
-  defp handle_create_step(socket, step_count, _attrs) when step_count >= 20 do
-    {:noreply, put_flash(socket, :error, dgettext("orgs", "You cannot have more than 20 steps in a lesson"))}
-  end
-
-  defp handle_create_step(socket, _step_count, attrs) do
-    %{course: course, lesson: lesson, step_count: step_count} = socket.assigns
-
-    case Content.create_lesson_step(attrs) do
-      {:ok, lesson_step} ->
-        socket =
-          socket
-          |> assign(:step_count, step_count + 1)
-          |> push_patch(to: ~p"/dashboard/c/#{course.slug}/l/#{lesson.id}/s/#{lesson_step.order}")
-
-        {:noreply, socket}
-
-      {:error, changeset} ->
-        socket =
-          socket
-          |> put_flash(:error, dgettext("orgs", "Could not create step!"))
-          |> assign(step_form: to_form(changeset))
-
-        {:noreply, socket}
-    end
+  @impl Phoenix.LiveView
+  def handle_info({LessonSwitch, :lesson_switch, step_count}, socket) do
+    %{course: course, lesson: lesson} = socket.assigns
+    {:noreply, socket |> assign(step_count: step_count) |> push_patch(to: step_link(course, lesson, step_count))}
   end
 
   defp step_link(course, lesson, order), do: ~p"/dashboard/c/#{course.slug}/l/#{lesson.id}/s/#{order}"

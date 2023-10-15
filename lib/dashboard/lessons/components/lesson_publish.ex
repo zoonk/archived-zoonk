@@ -33,7 +33,7 @@ defmodule UneebeeWeb.Components.Dashboard.LessonPublish do
         {:noreply, assign(socket, lesson: updated_lesson)}
 
       {:error, _changeset} ->
-        {:noreply, put_flash(socket, :error, dgettext("orgs", "Could not update lesson!"))}
+        {:noreply, put_flash!(socket, :error, dgettext("orgs", "Could not update lesson!"))}
     end
   end
 end

@@ -128,10 +128,7 @@ defmodule UneebeeWeb.DashboardLessonViewLiveTest do
 
       {:ok, lv, _html} = live(conn, ~p"/dashboard/c/#{course.slug}/l/#{lesson.id}/s/1")
 
-      result = lv |> element("button", "+") |> render_click()
-
-      assert result =~ "You cannot have more than 20 steps in a lesson"
-      refute has_element?(lv, ~s|a:fl-contains("untitled step")|)
+      refute has_element?(lv, ~s|button:fl-icontains("+")|)
     end
 
     test "renders all options for a step", %{conn: conn, course: course} do
