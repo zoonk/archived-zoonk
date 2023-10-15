@@ -7,6 +7,7 @@ defmodule UneebeeWeb.Live.Dashboard.LessonView do
   alias UneebeeWeb.Components.Dashboard.LessonPublish
   alias UneebeeWeb.Components.Dashboard.LessonSwitch
   alias UneebeeWeb.Components.Dashboard.StepContent
+  alias UneebeeWeb.Components.Dashboard.StepImage
   alias UneebeeWeb.Components.Upload
 
   @impl Phoenix.LiveView
@@ -14,11 +15,7 @@ defmodule UneebeeWeb.Live.Dashboard.LessonView do
     %{lesson: lesson} = socket.assigns
 
     step_count = Content.count_lesson_steps(lesson.id)
-
-    socket =
-      socket
-      |> assign(:page_title, lesson.name)
-      |> assign(:step_count, step_count)
+    socket = socket |> assign(:page_title, lesson.name) |> assign(:step_count, step_count)
 
     {:ok, socket}
   end
@@ -109,17 +106,12 @@ defmodule UneebeeWeb.Live.Dashboard.LessonView do
   end
 
   @impl Phoenix.LiveView
-  def handle_info({Upload, :step_img, new_path}, socket) do
+  def handle_info({Upload, :step_img_upload, new_path}, socket) do
     %{course: course, lesson: lesson, selected_step: selected_step} = socket.assigns
 
     case Content.update_lesson_step(selected_step, %{image: new_path}) do
       {:ok, _lesson_step} ->
-        socket =
-          socket
-          |> put_flash(:info, dgettext("orgs", "Image updated!"))
-          |> push_patch(to: ~p"/dashboard/c/#{course.slug}/l/#{lesson.id}/s/#{selected_step.order}")
-
-        {:noreply, socket}
+        {:noreply, push_patch(socket, to: ~p"/dashboard/c/#{course.slug}/l/#{lesson.id}/s/#{selected_step.order}")}
 
       {:error, _changeset} ->
         socket = put_flash(socket, :error, dgettext("orgs", "Could not update image!"))
@@ -148,7 +140,6 @@ defmodule UneebeeWeb.Live.Dashboard.LessonView do
   end
 
   defp step_link(course, lesson, order), do: ~p"/dashboard/c/#{course.slug}/l/#{lesson.id}/s/#{order}"
-  defp step_img_link(course, lesson, order), do: ~p"/dashboard/c/#{course.slug}/l/#{lesson.id}/s/#{order}/image"
   defp option_link(course, lesson, order, option), do: ~p"/dashboard/c/#{course.slug}/l/#{lesson.id}/s/#{order}/o/#{option.id}"
   defp option_img_link(course, lesson, order, option), do: ~p"/dashboard/c/#{course.slug}/l/#{lesson.id}/s/#{order}/o/#{option.id}/image"
 end
