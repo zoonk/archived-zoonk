@@ -28,11 +28,7 @@ defmodule UneebeeWeb.Live.Dashboard.LessonView do
     %{lesson: lesson} = socket.assigns
 
     step = Content.get_lesson_step_by_order(lesson, params["step_order"])
-
-    socket =
-      socket
-      |> assign(:selected_step, step)
-      |> get_option(params)
+    socket = socket |> assign(:selected_step, step) |> get_option(params)
 
     {:noreply, socket}
   end
@@ -49,24 +45,6 @@ defmodule UneebeeWeb.Live.Dashboard.LessonView do
   def handle_event("validate-option", %{"step_option" => step_option_params}, socket) do
     changeset = %StepOption{} |> Content.change_step_option(step_option_params) |> Map.put(:action, :validate)
     {:noreply, assign(socket, option_form: to_form(changeset))}
-  end
-
-  @impl Phoenix.LiveView
-  def handle_event("reposition", %{"new" => new_index, "old" => old_index}, socket) when new_index != old_index do
-    %{course: course, lesson: lesson, selected_step: step} = socket.assigns
-
-    case Content.update_lesson_step_order(socket.assigns.lesson, old_index, new_index) do
-      {:ok, _steps} ->
-        {:noreply, push_patch(socket, to: ~p"/dashboard/c/#{course.slug}/l/#{lesson.id}/s/#{step.order}")}
-
-      {:error, _changeset} ->
-        {:noreply, put_flash(socket, :error, dgettext("orgs", "Could not change the step order!"))}
-    end
-  end
-
-  @impl Phoenix.LiveView
-  def handle_event("reposition", %{"new" => new_index, "old" => old_index}, socket) when new_index == old_index do
-    {:noreply, socket}
   end
 
   @impl Phoenix.LiveView
