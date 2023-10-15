@@ -34,7 +34,7 @@ if config_env() == :prod do
     hostname: database_host,
     ssl: true,
     ssl_opts: [
-      cacertfile: System.fetch_env!("CERT_PATH"),
+      cacertfile: CAStore.file_path(),
       server_name_indication: to_charlist(database_host),
       verify: :verify_peer,
       customize_hostname_check: [
