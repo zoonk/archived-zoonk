@@ -42,7 +42,6 @@ defmodule Uneebee.Fixtures.Content do
     Enum.into(attrs, %{
       course_id: course.id,
       description: "random lesson description",
-      kind: :story,
       name: "lesson title #{System.unique_integer()}",
       order: 1,
       published?: true
@@ -58,7 +57,6 @@ defmodule Uneebee.Fixtures.Content do
 
     Enum.into(attrs, %{
       content: "random lesson step content",
-      kind: :text,
       lesson_id: lesson.id,
       order: 1
     })

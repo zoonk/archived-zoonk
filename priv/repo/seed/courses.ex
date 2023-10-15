@@ -58,7 +58,6 @@ defmodule CourseSeed do
     %{
       cover: "/uploads/seed/courses/robot.png",
       description: "This is the example of the first lesson",
-      kind: :story,
       name: "First lesson",
       order: 1,
       published?: true
@@ -66,14 +65,12 @@ defmodule CourseSeed do
     %{
       cover: "/uploads/seed/courses/mars.png",
       description: "This is the example of the second lesson",
-      kind: :story,
       name: "Second lesson",
       order: 2,
       published?: true
     },
     %{
       description: "This is the example of an unpublished.",
-      kind: :story,
       name: "Third lesson",
       order: 3,
       published?: false
@@ -81,11 +78,10 @@ defmodule CourseSeed do
   ]
 
   @lesson_steps [
-    %{kind: :text, content: "This is the first step of the lesson.", order: 1},
-    %{kind: :text, content: "We can also have images:", order: 2},
-    %{kind: :image, content: "/uploads/seed/courses/robot.png", order: 3},
-    %{kind: :text, content: "Now should we ask users a question?", order: 4},
-    %{kind: :text, content: "Great stuff! Lesson completed!", order: 5}
+    %{content: "This is the first step of the lesson.", order: 1},
+    %{content: "We can also have images:", image: "/uploads/seed/courses/robot.png", order: 2},
+    %{content: "Now should we ask users a question?", order: 3},
+    %{content: "Great stuff! Lesson completed!", order: 4}
   ]
 
   @step_options [

@@ -111,7 +111,7 @@ defmodule UneebeeWeb.PlayViewLiveTest do
 
     step = Enum.at(lessons, 2)
 
-    assert has_element?(lv, ~s|img[src="#{step.content}"]|)
+    assert has_element?(lv, ~s|img[src="#{step.image}"]|)
     refute has_element?(lv, @select_form)
 
     lv |> element("button", "Next step") |> render_click()
@@ -139,10 +139,10 @@ defmodule UneebeeWeb.PlayViewLiveTest do
 
   defp generate_steps(lesson) do
     Enum.each(1..4, fn order ->
-      kind = if order == 3, do: :image, else: :text
-      content = if order == 3, do: "/uploads/img.png", else: "step #{order}!"
+      content = "step #{order}!"
+      image = if order == 3, do: "/uploads/img.png"
 
-      step = lesson_step_fixture(%{lesson_id: lesson.id, kind: kind, content: content, order: order})
+      step = lesson_step_fixture(%{lesson_id: lesson.id, content: content, image: image, order: order})
       generate_options(step, order)
     end)
   end

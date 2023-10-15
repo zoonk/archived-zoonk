@@ -31,8 +31,8 @@
 
     <div :for={selection <- lesson.user_selections} class="mt-4">
       <% step = selection.option.lesson_step %>
-      <img :if={step.kind == :image} src={step.content} class="w-20" />
-      <p :if={step.kind == :text}><%= step.content %></p>
+      <p><%= step.content %></p>
+      <img :if={step.image} src={step.image} class="w-20" />
       <p class="mt-2 font-semibold"><%= selection.option.title %></p>
     </div>
 

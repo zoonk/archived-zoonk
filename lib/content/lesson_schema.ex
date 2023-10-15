@@ -14,7 +14,6 @@ defmodule Uneebee.Content.Lesson do
   schema "lessons" do
     field :cover, :string
     field :description, :string
-    field :kind, Ecto.Enum, values: [:story], default: :story
     field :name, :string
     field :order, :integer
     field :published?, :boolean, default: false
@@ -31,7 +30,7 @@ defmodule Uneebee.Content.Lesson do
   @spec changeset(Ecto.Schema.t(), map()) :: Ecto.Changeset.t()
   def changeset(lesson, attrs) do
     lesson
-    |> cast(attrs, [:cover, :course_id, :description, :kind, :name, :order, :published?])
-    |> validate_required([:course_id, :description, :kind, :name, :order])
+    |> cast(attrs, [:cover, :course_id, :description, :name, :order, :published?])
+    |> validate_required([:course_id, :description, :name, :order])
   end
 end

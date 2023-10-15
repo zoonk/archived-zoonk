@@ -150,7 +150,7 @@ defmodule UneebeeWeb.Live.Dashboard.LessonView do
   def handle_info({Upload, :step_img, new_path}, socket) do
     %{course: course, lesson: lesson, lesson_steps: lesson_steps} = socket.assigns
 
-    attrs = %{lesson_id: lesson.id, kind: :image, content: new_path, order: length(lesson_steps) + 1}
+    attrs = %{lesson_id: lesson.id, content: "", image: new_path, order: length(lesson_steps) + 1}
 
     case Content.create_lesson_step(attrs) do
       {:ok, _lesson_step} ->

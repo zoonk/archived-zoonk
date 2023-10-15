@@ -8,18 +8,18 @@
   </.button>
 </nav>
 
-<dl class="my-4 space-y-4" id="lesson-steps" data-group="lesson-steps" phx-hook={if @lesson.kind == :story, do: "Sortable", else: nil}>
+<dl class="my-4 space-y-4" id="lesson-steps" data-group="lesson-steps" phx-hook="Sortable">
   <div
     :for={lesson_step <- @lesson_steps}
     class={[
       "flex items-center justify-between text-gray-dark-2x bg-white p-4 text-sm card",
-      @lesson.kind == :story &&
-        "cursor-grab drag-ghost:bg-gray-light drag-ghost:cursor-grabbing drag-ghost:border-0 drag-ghost:ring-0 focus-within:drag-item:ring-0 focus-within:drag-item:ring-offset-0"
+      "cursor-grab drag-ghost:bg-gray-light drag-ghost:cursor-grabbing drag-ghost:border-0 drag-ghost:ring-0",
+      "focus-within:drag-item:ring-0 focus-within:drag-item:ring-offset-0"
     ]}
   >
     <div>
-      <dt :if={lesson_step.kind == :text}><%= lesson_step.content %></dt>
-      <img :if={lesson_step.kind == :image} src={lesson_step.content} class="w-10" />
+      <dt><%= lesson_step.content %></dt>
+      <img :if={lesson_step.image} src={lesson_step.image} class="w-10" />
 
       <ul class="mt-4 space-y-2">
         <li :for={option <- lesson_step.options} class="flex items-center gap-2">
@@ -69,7 +69,6 @@
 </dl>
 
 <.form for={@step_form} id="step-form" phx-change="validate-step" phx-submit="create-step" class="flex items-end gap-2">
-  <.input type="hidden" field={@step_form[:kind]} value={:text} />
   <.input type="hidden" field={@step_form[:order]} value={length(@lesson_steps) + 1} />
 
   <.input

@@ -9,20 +9,13 @@ defmodule UneebeeWeb.Components.Content.LessonStep do
   attr :step, LessonStep, required: true
   attr :selected, :integer, default: nil
 
-  def lesson_step(%{step: %{kind: :text}} = assigns) do
+  def lesson_step(assigns) do
     ~H"""
     <section>
-      <p class="text-gray-dark py-4"><%= @step.content %></p>
-      <.option_list :if={@selected && @step.options != []} options={@step.options} selected={@selected} />
-    </section>
-    """
-  end
+      <p class="text-gray-dark whitespace-pre-wrap"><%= @step.content %></p>
 
-  def lesson_step(%{step: %{kind: :image}} = assigns) do
-    ~H"""
-    <section>
-      <div class="text-gray-dark py-4">
-        <img src={@step.content} class="w-1/3" />
+      <div :if={@step.image} class="text-gray-dark py-4">
+        <img src={@step.image} class="w-1/3" />
       </div>
 
       <.option_list :if={@selected && @step.options != []} options={@step.options} selected={@selected} />

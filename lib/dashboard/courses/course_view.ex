@@ -23,7 +23,6 @@ defmodule UneebeeWeb.Live.Dashboard.CourseView do
 
     attrs = %{
       course_id: course.id,
-      kind: :story,
       order: order,
       name: dgettext("orgs", "Lesson %{order}", order: order),
       description: dgettext("orgs", "Description for lesson %{order}. You should update this.", order: order)
