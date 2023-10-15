@@ -98,7 +98,7 @@ defmodule UneebeeWeb.DashboardLessonViewLiveTest do
 
     test "updates a step", %{conn: conn, course: course} do
       lesson = lesson_fixture(%{course_id: course.id})
-      lesson_step = lesson_step_fixture(%{lesson_id: lesson.id, order: 1, content: "Text step 1"})
+      lesson_step_fixture(%{lesson_id: lesson.id, order: 1, content: "Text step 1"})
 
       {:ok, lv, _html} = live(conn, ~p"/dashboard/c/#{course.slug}/l/#{lesson.id}/s/1")
 

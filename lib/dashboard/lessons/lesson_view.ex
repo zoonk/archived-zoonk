@@ -5,6 +5,7 @@ defmodule UneebeeWeb.Live.Dashboard.LessonView do
   alias Uneebee.Content
   alias Uneebee.Content.LessonStep
   alias Uneebee.Content.StepOption
+  alias UneebeeWeb.Components.Dashboard.LessonPublish
   alias UneebeeWeb.Components.Upload
 
   @impl Phoenix.LiveView
@@ -57,21 +58,6 @@ defmodule UneebeeWeb.Live.Dashboard.LessonView do
   def handle_event("validate-option", %{"step_option" => step_option_params}, socket) do
     changeset = %StepOption{} |> Content.change_step_option(step_option_params) |> Map.put(:action, :validate)
     {:noreply, assign(socket, option_form: to_form(changeset))}
-  end
-
-  @impl Phoenix.LiveView
-  def handle_event("toggle-status", _params, socket) do
-    %{lesson: lesson} = socket.assigns
-
-    published? = !lesson.published?
-
-    case Content.update_lesson(lesson, %{published?: published?}) do
-      {:ok, updated_lesson} ->
-        {:noreply, assign(socket, lesson: updated_lesson)}
-
-      {:error, _changeset} ->
-        {:noreply, put_flash(socket, :error, dgettext("orgs", "Could not update lesson!"))}
-    end
   end
 
   @impl Phoenix.LiveView

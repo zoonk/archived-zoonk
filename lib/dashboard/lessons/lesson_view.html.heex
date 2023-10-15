@@ -1,12 +1,4 @@
-<header class="flex justify-end">
-  <.button :if={not @lesson.published?} phx-click="toggle-status" icon="tabler-eye" color={:success_light}>
-    <%= dgettext("orgs", "Publish") %>
-  </.button>
-
-  <.button :if={@lesson.published?} phx-click="toggle-status" icon="tabler-eye-off" color={:alert_light}>
-    <%= dgettext("orgs", "Unpublish") %>
-  </.button>
-</header>
+<.live_component module={LessonPublish} id={:lesson_publish} lesson={@lesson} />
 
 <p class="text-gray py-4 text-xs italic"><%= dgettext("orgs", "Drag the steps to change their order:") %></p>
 
