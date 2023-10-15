@@ -3,9 +3,9 @@ defmodule UneebeeWeb.Live.Dashboard.LessonView do
   use UneebeeWeb, :live_view
 
   alias Uneebee.Content
-  alias Uneebee.Content.StepOption
   alias UneebeeWeb.Components.Dashboard.LessonPublish
   alias UneebeeWeb.Components.Dashboard.LessonSwitch
+  alias UneebeeWeb.Components.Dashboard.OptionList
   alias UneebeeWeb.Components.Dashboard.StepContent
   alias UneebeeWeb.Components.Dashboard.StepImage
   alias UneebeeWeb.Components.Upload
@@ -25,23 +25,13 @@ defmodule UneebeeWeb.Live.Dashboard.LessonView do
     %{lesson: lesson} = socket.assigns
 
     step = Content.get_lesson_step_by_order(lesson, params["step_order"])
-    socket = socket |> assign(:selected_step, step) |> get_option(params)
+
+    socket =
+      socket
+      |> assign(:selected_step, step)
+      |> assign(:option_id, params["option_id"])
 
     {:noreply, socket}
-  end
-
-  defp get_option(socket, %{"option_id" => option_id}) do
-    option = Content.get_step_option!(option_id)
-    changeset = Content.change_step_option(option)
-    socket |> assign(:selected_option, option) |> assign(:option_form, to_form(changeset))
-  end
-
-  defp get_option(socket, _params), do: socket
-
-  @impl Phoenix.LiveView
-  def handle_event("validate-option", %{"step_option" => step_option_params}, socket) do
-    changeset = %StepOption{} |> Content.change_step_option(step_option_params) |> Map.put(:action, :validate)
-    {:noreply, assign(socket, option_form: to_form(changeset))}
   end
 
   @impl Phoenix.LiveView
@@ -64,20 +54,6 @@ defmodule UneebeeWeb.Live.Dashboard.LessonView do
   end
 
   @impl Phoenix.LiveView
-  def handle_event("delete-option", params, socket) do
-    %{course: course, lesson: lesson, selected_step: step} = socket.assigns
-    option_id = String.to_integer(params["option-id"])
-
-    case Content.delete_step_option(option_id) do
-      {:ok, _option} ->
-        {:noreply, push_patch(socket, to: ~p"/dashboard/c/#{course.slug}/l/#{lesson.id}/s/#{step.order}")}
-
-      {:error, _changeset} ->
-        {:noreply, put_flash(socket, :error, dgettext("orgs", "Could not delete option!"))}
-    end
-  end
-
-  @impl Phoenix.LiveView
   def handle_event("add-option", %{"step-id" => step_id}, socket) do
     %{course: course, lesson: lesson, selected_step: step} = socket.assigns
 
@@ -89,19 +65,6 @@ defmodule UneebeeWeb.Live.Dashboard.LessonView do
 
       {:error, _changeset} ->
         {:noreply, put_flash(socket, :error, dgettext("orgs", "Could not add option!"))}
-    end
-  end
-
-  @impl Phoenix.LiveView
-  def handle_event("update-option", %{"step_option" => option_params}, socket) do
-    %{course: course, lesson: lesson, selected_option: option, selected_step: step} = socket.assigns
-
-    case Content.update_step_option(option, option_params) do
-      {:ok, _option} ->
-        {:noreply, push_patch(socket, to: ~p"/dashboard/c/#{course.slug}/l/#{lesson.id}/s/#{step.order}")}
-
-      {:error, _changeset} ->
-        {:noreply, put_flash(socket, :error, dgettext("orgs", "Could not update option!"))}
     end
   end
 
@@ -140,6 +103,4 @@ defmodule UneebeeWeb.Live.Dashboard.LessonView do
   end
 
   defp step_link(course, lesson, order), do: ~p"/dashboard/c/#{course.slug}/l/#{lesson.id}/s/#{order}"
-  defp option_link(course, lesson, order, option), do: ~p"/dashboard/c/#{course.slug}/l/#{lesson.id}/s/#{order}/o/#{option.id}"
-  defp option_img_link(course, lesson, order, option), do: ~p"/dashboard/c/#{course.slug}/l/#{lesson.id}/s/#{order}/o/#{option.id}/image"
 end

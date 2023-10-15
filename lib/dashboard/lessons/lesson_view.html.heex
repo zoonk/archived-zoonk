@@ -4,36 +4,7 @@
 <div class="text-gray-dark2x card mt-4 p-4 text-sm">
   <.live_component module={StepContent} id={:step_content} action={@live_action} course={@course} lesson={@lesson} step={@selected_step} />
   <.live_component module={StepImage} id={:step_image} course={@course} lesson={@lesson} step={@selected_step} />
-
-  <ul class="mt-8 space-y-2">
-    <li :for={option <- @selected_step.options} class="flex items-center gap-2">
-      <.link id={"option-#{option.id}-image-link"} patch={option_img_link(@course, @lesson, @selected_step.order, option)}>
-        <.avatar src={option.image} alt={option.title} />
-      </.link>
-
-      <.link
-        patch={option_link(@course, @lesson, @selected_step.order, option)}
-        class={[
-          "w-max truncate rounded-2xl border px-2 py-1",
-          option.correct? && "bg-success-light3x text-success-dark2x border-success-dark2x",
-          not option.correct? && "border-gray-light"
-        ]}
-      >
-        <%= option.title %>
-      </.link>
-
-      <.icon_button
-        icon="tabler-x"
-        color={:alert_light}
-        size={:sm}
-        role="button"
-        label={dgettext("orgs", "Delete option")}
-        data-confirm={gettext("Are you sure?")}
-        phx-click="delete-option"
-        phx-value-option-id={option.id}
-      />
-    </li>
-  </ul>
+  <.live_component module={OptionList} id={:option_list} action={@live_action} option_id={@option_id} course={@course} lesson={@lesson} step={@selected_step} />
 
   <.button phx-click="add-option" phx-value-step-id={@selected_step.id} icon="tabler-layout-grid-add" color={:info_light} class="mt-4">
     <%= dgettext("orgs", "Add option") %>
@@ -52,32 +23,4 @@
 
 <.modal :if={@live_action == :option_img} show id="option-img-modal" on_cancel={JS.patch(step_link(@course, @lesson, @selected_step.order))}>
   <.live_component module={Upload} id={:option_img} current_img={@selected_option.image} label={dgettext("orgs", "Add image to option")} unstyled />
-</.modal>
-
-<.modal :if={@live_action == :option} show id="edit-option-modal" on_cancel={JS.patch(step_link(@course, @lesson, @selected_step.order))}>
-  <.simple_form for={@option_form} title={dgettext("orgs", "Update option")} id="option-form" phx-change="validate-option" phx-submit="update-option" unstyled>
-    <.input type="text" field={@option_form[:title]} label={dgettext("orgs", "Option title")} required />
-
-    <.input
-      type="text"
-      field={@option_form[:feedback]}
-      label={dgettext("orgs", "Option feedback")}
-      helper={dgettext("orgs", "Feedback message displayed after a user answers this question. You can provide some additional context on why this is wrong or correct.")}
-    />
-
-    <.input
-      type="checkbox"
-      field={@option_form[:correct?]}
-      label={dgettext("orgs", "Is correct?")}
-      helper={dgettext("orgs", "Check this option if this is the correct answer.")}
-    />
-
-    <:actions>
-      <.button type="submit"><%= gettext("Save") %></.button>
-
-      <.link_button patch={step_link(@course, @lesson, @selected_step.order)} color={:alert_light}>
-        <%= gettext("Cancel") %>
-      </.link_button>
-    </:actions>
-  </.simple_form>
 </.modal>
