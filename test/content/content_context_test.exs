@@ -568,6 +568,22 @@ defmodule Uneebee.ContentTest do
     end
   end
 
+  describe "update_lesson_step/2" do
+    test "updates a lesson step" do
+      lesson_step = lesson_step_fixture()
+      attrs = %{content: "New content"}
+      assert {:ok, %LessonStep{} = updated} = Content.update_lesson_step(lesson_step, attrs)
+      assert updated.content == attrs.content
+    end
+
+    test "returns an error changeset" do
+      lesson_step = lesson_step_fixture()
+      attrs = %{content: ""}
+      assert {:error, %Ecto.Changeset{} = changeset} = Content.update_lesson_step(lesson_step, attrs)
+      assert "can't be blank" in errors_on(changeset).content
+    end
+  end
+
   describe "delete_lesson_step/1" do
     test "deletes a lesson step" do
       lesson_step = lesson_step_fixture()
@@ -597,6 +613,19 @@ defmodule Uneebee.ContentTest do
       assert Content.get_next_step(lesson, 1) == lesson_step2
       assert Content.get_next_step(lesson, 2) == lesson_step3
       assert Content.get_next_step(lesson, 3) == nil
+    end
+  end
+
+  describe "get_lesson_step_by_order/2" do
+    test "returns a lesson step" do
+      lesson = lesson_fixture()
+      lesson_step = lesson_step_fixture(%{lesson: lesson, order: 1})
+      assert Content.get_lesson_step_by_order(lesson, lesson_step.order) == lesson_step
+    end
+
+    test "returns nil if the lesson step does not exist" do
+      lesson = lesson_fixture()
+      assert Content.get_lesson_step_by_order(lesson, 1) == nil
     end
   end
 

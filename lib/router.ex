@@ -222,9 +222,11 @@ defmodule UneebeeWeb.Router do
         {UneebeeWeb.Plugs.Course, :mount_lesson},
         UneebeeWeb.Plugs.ActivePage
       ] do
-      live "/", Dashboard.LessonView, :view
-      live "/o/:option_id", Dashboard.LessonView, :option
-      live "/o/:option_id/image", Dashboard.LessonView, :option_img
+      live "/s/:step_order", Dashboard.LessonView
+      live "/s/:step_order/edit", Dashboard.LessonView, :edit
+      live "/s/:step_order/image", Dashboard.LessonView, :step_img
+      live "/s/:step_order/o/:option_id", Dashboard.LessonView, :option
+      live "/s/:step_order/o/:option_id/image", Dashboard.LessonView, :option_img
 
       live "/info", Dashboard.LessonEdit
       live "/cover", Dashboard.LessonCover

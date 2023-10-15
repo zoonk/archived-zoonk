@@ -240,44 +240,27 @@ msgstr "Despublicado"
 msgid "+ Lesson"
 msgstr "+ Aula"
 
-#: lib/dashboard/lessons/lesson_view.html.heex:87
-#: lib/dashboard/lessons/lesson_view.html.heex:91
-#, elixir-autogen, elixir-format
-msgid "Add image step"
-msgstr "Nova etapa de imagem"
-
-#: lib/dashboard/lessons/lesson_view.html.heex:95
+#: lib/dashboard/lessons/lesson_view.html.heex:110
 #, elixir-autogen, elixir-format
 msgid "Add image to option"
 msgstr "Adicionar imagem à alternativa"
 
-#: lib/dashboard/lessons/lesson_view.html.heex:55
+#: lib/dashboard/lessons/lesson_view.html.heex:79
 #, elixir-autogen, elixir-format
 msgid "Add option"
 msgstr "Nova alternativa"
-
-#: lib/dashboard/lessons/lesson_view.html.heex:77
-#, elixir-autogen, elixir-format, fuzzy
-msgid "Add step"
-msgstr "Nova etapa"
 
 #: lib/dashboard/courses/course_student_view.html.heex:40
 #, elixir-autogen, elixir-format
 msgid "All answers were correct."
 msgstr "Todas as respostas estavam corretas."
 
-#: lib/dashboard/lessons/lesson_view.html.heex:47
-#: lib/dashboard/lessons/lesson_view.html.heex:66
-#, elixir-autogen, elixir-format
-msgid "Are you sure?"
-msgstr "Tem certeza?"
-
-#: lib/dashboard/lessons/lesson_view.html.heex:113
+#: lib/dashboard/lessons/lesson_view.html.heex:128
 #, elixir-autogen, elixir-format
 msgid "Check this option if this is the correct answer."
 msgstr "Marque esta alternativa se ela for a resposta correta."
 
-#: lib/dashboard/lessons/lesson_view.ex:132
+#: lib/dashboard/lessons/lesson_view.ex:164
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Could not add option!"
 msgstr "Não foi possível adicionar a alternativa!"
@@ -287,7 +270,7 @@ msgstr "Não foi possível adicionar a alternativa!"
 msgid "Could not change the lesson order!"
 msgstr "Não foi possível alterar a ordem da aula!"
 
-#: lib/dashboard/lessons/lesson_view.ex:75
+#: lib/dashboard/lessons/lesson_view.ex:86
 #, elixir-autogen, elixir-format
 msgid "Could not change the step order!"
 msgstr "Não foi possível alterar a ordem da etapa!"
@@ -297,7 +280,7 @@ msgstr "Não foi possível alterar a ordem da etapa!"
 msgid "Could not create lesson!"
 msgstr "Não foi possível criar a aula!"
 
-#: lib/dashboard/lessons/lesson_view.ex:198
+#: lib/dashboard/lessons/lesson_view.ex:233
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Could not create step!"
 msgstr "Não foi possível criar a etapa!"
@@ -312,12 +295,12 @@ msgstr "Não foi possível excluir o curso!"
 msgid "Could not delete lesson!"
 msgstr "Não foi possível excluir a aula!"
 
-#: lib/dashboard/lessons/lesson_view.ex:117
+#: lib/dashboard/lessons/lesson_view.ex:149
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Could not delete option!"
 msgstr "Não foi possível excluir a alternativa!"
 
-#: lib/dashboard/lessons/lesson_view.ex:96
+#: lib/dashboard/lessons/lesson_view.ex:110
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Could not delete step!"
 msgstr "Não foi possível excluir a etapa!"
@@ -329,14 +312,13 @@ msgid "Could not update cover!"
 msgstr "Não foi possível atualizar a capa!"
 
 #: lib/dashboard/lessons/lesson_edit.ex:41
-#: lib/dashboard/lessons/lesson_view.ex:64
+#: lib/dashboard/lessons/lesson_view.ex:73
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Could not update lesson!"
 msgstr "Não foi possível atualizar a aula!"
 
-#: lib/dashboard/lessons/lesson_view.ex:145
-#: lib/dashboard/lessons/lesson_view.ex:160
-#: lib/dashboard/lessons/lesson_view.ex:175
+#: lib/dashboard/lessons/lesson_view.ex:177
+#: lib/dashboard/lessons/lesson_view.ex:210
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Could not update option!"
 msgstr "Não foi possível atualizar a alternativa!"
@@ -380,7 +362,7 @@ msgstr "Capa atualizada com sucesso!"
 msgid "Delete lesson"
 msgstr "Apagar aula"
 
-#: lib/dashboard/lessons/lesson_view.html.heex:46
+#: lib/dashboard/lessons/lesson_view.html.heex:70
 #, elixir-autogen, elixir-format
 msgid "Delete option"
 msgstr "Apagar alternativa"
@@ -411,7 +393,7 @@ msgstr "Editar curso"
 msgid "Friendly identifier used to access your course. I.e. my-course-name"
 msgstr "Identificador amigável usado para acessar o curso. Ex: meu-nome-de-curso"
 
-#: lib/dashboard/lessons/lesson_view.html.heex:112
+#: lib/dashboard/lessons/lesson_view.html.heex:127
 #, elixir-autogen, elixir-format
 msgid "Is correct?"
 msgstr "Está correto?"
@@ -451,12 +433,12 @@ msgstr "Nome da aula"
 msgid "Lesson updated successfully!"
 msgstr "Aula atualizada com sucesso!"
 
-#: lib/dashboard/lessons/lesson_view.html.heex:105
+#: lib/dashboard/lessons/lesson_view.html.heex:120
 #, elixir-autogen, elixir-format
 msgid "Option feedback"
 msgstr "Feedback da alternativa"
 
-#: lib/dashboard/lessons/lesson_view.html.heex:100
+#: lib/dashboard/lessons/lesson_view.html.heex:115
 #, elixir-autogen, elixir-format
 msgid "Option title"
 msgstr "Título da alternativa"
@@ -466,7 +448,7 @@ msgstr "Título da alternativa"
 msgid "Publish"
 msgstr "Publicar"
 
-#: lib/dashboard/lessons/lesson_view.html.heex:62
+#: lib/dashboard/lessons/lesson_view.html.heex:85
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Remove step"
 msgstr "Remover etapa"
@@ -476,7 +458,7 @@ msgstr "Remover etapa"
 msgid "Unpublish"
 msgstr "Despublicar"
 
-#: lib/dashboard/lessons/lesson_view.ex:125
+#: lib/dashboard/lessons/lesson_view.ex:157
 #, elixir-autogen, elixir-format
 msgid "Untitled option"
 msgstr "Alternativa sem título"
@@ -486,12 +468,12 @@ msgstr "Alternativa sem título"
 msgid "Update course"
 msgstr "Atualizar curso"
 
-#: lib/dashboard/lessons/lesson_view.html.heex:99
+#: lib/dashboard/lessons/lesson_view.html.heex:114
 #, elixir-autogen, elixir-format
 msgid "Update option"
 msgstr "Atualizar alternativa"
 
-#: lib/dashboard/lessons/lesson_view.ex:180
+#: lib/dashboard/lessons/lesson_view.ex:215
 #, elixir-autogen, elixir-format
 msgid "You cannot have more than 20 steps in a lesson"
 msgstr "Não é possível ter mais de 20 etapas em uma aula"
@@ -501,12 +483,7 @@ msgstr "Não é possível ter mais de 20 etapas em uma aula"
 msgid "You'll be able to edit this information and add content to your course later."
 msgstr "Você poderá editar essas informações e adicionar conteúdo ao seu curso mais tarde."
 
-#: lib/dashboard/lessons/lesson_view.html.heex:79
-#, elixir-autogen, elixir-format
-msgid "A story has multiple steps. Use them to tell a story, explain a concept or ask a question. Keep them short and simple."
-msgstr "Uma história tem várias etapas. Use-as para contar uma história, explicar um conceito ou fazer uma pergunta. Mantenha elas curtas e simples."
-
-#: lib/dashboard/lessons/lesson_view.html.heex:106
+#: lib/dashboard/lessons/lesson_view.html.heex:121
 #, elixir-autogen, elixir-format
 msgid "Feedback message displayed after a user answers this question. You can provide some additional context on why this is wrong or correct."
 msgstr "Menagem de feedback exibida após o usuário responder esta pergunta. Você pode fornecer algum contexto adicional sobre o porquê de estar errado ou correto."
@@ -540,3 +517,53 @@ msgstr "Termos de uso"
 #, elixir-autogen, elixir-format
 msgid "Terms of use URL"
 msgstr "Link dos termos de uso"
+
+#: lib/dashboard/lessons/lesson_view.html.heex:11
+#, elixir-autogen, elixir-format, fuzzy
+msgid "Drag the steps to change their order:"
+msgstr "Arraste as etapas para alterar a ordem:"
+
+#: lib/dashboard/lessons/lesson_view.ex:117
+#, elixir-autogen, elixir-format, fuzzy
+msgid "Untitled step"
+msgstr "Etapa sem título"
+
+#: lib/dashboard/lessons/lesson_view.html.heex:95
+#, elixir-autogen, elixir-format
+msgid "A lesson has multiple steps. Use them to tell a story, explain a concept or ask a question. Keep them short and simple."
+msgstr "Uma aula tem várias etapas. Use-as para contar uma história, explicar um conceito ou fazer uma pergunta. Mantenha-os curtos e simples."
+
+#: lib/dashboard/lessons/lesson_view.html.heex:106
+#, elixir-autogen, elixir-format, fuzzy
+msgid "Add image to step"
+msgstr "Adicionar imagem à etapa"
+
+#: lib/dashboard/lessons/lesson_view.html.heex:45
+#, elixir-autogen, elixir-format
+msgid "Click to add an image to this step."
+msgstr "Clique para adicionar uma imagem a esta etapa."
+
+#: lib/dashboard/lessons/lesson_view.ex:195
+#, elixir-autogen, elixir-format, fuzzy
+msgid "Could not update image!"
+msgstr "Não foi possível atualizar a imagem!"
+
+#: lib/dashboard/lessons/lesson_view.ex:132
+#, elixir-autogen, elixir-format, fuzzy
+msgid "Could not update step!"
+msgstr "Não foi possível atualizar a etapa!"
+
+#: lib/dashboard/lessons/lesson_view.html.heex:33
+#, elixir-autogen, elixir-format, fuzzy
+msgid "Edit step"
+msgstr "Editar etapa"
+
+#: lib/dashboard/lessons/lesson_view.ex:189
+#, elixir-autogen, elixir-format
+msgid "Image updated!"
+msgstr "Imagem atualizada!"
+
+#: lib/dashboard/lessons/lesson_view.html.heex:94
+#, elixir-autogen, elixir-format, fuzzy
+msgid "Update step"
+msgstr "Atualizar etapa"

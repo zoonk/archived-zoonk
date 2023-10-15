@@ -56,6 +56,7 @@ Hooks.Sortable = {
     let sorter = new Sortable(this.el, {
       group: group ? { name: group, pull: true, put: true } : undefined,
       animation: 150,
+      filter: '.filtered',
       dragClass: 'drag-item',
       ghostClass: 'drag-ghost',
       onStart: (e) => (isDragging = true), // prevent phx-blur from firing while dragging

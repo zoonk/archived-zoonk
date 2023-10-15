@@ -1,4 +1,4 @@
-<nav class="flex justify-end">
+<header class="flex justify-end">
   <.button :if={not @lesson.published?} phx-click="toggle-status" icon="tabler-eye" color={:success_light}>
     <%= dgettext("orgs", "Publish") %>
   </.button>
@@ -6,96 +6,111 @@
   <.button :if={@lesson.published?} phx-click="toggle-status" icon="tabler-eye-off" color={:alert_light}>
     <%= dgettext("orgs", "Unpublish") %>
   </.button>
-</nav>
+</header>
 
-<dl class="my-4 space-y-4" id="lesson-steps" data-group="lesson-steps" phx-hook="Sortable">
-  <div
-    :for={lesson_step <- @lesson_steps}
+<p class="text-gray py-4 text-xs italic"><%= dgettext("orgs", "Drag the steps to change their order:") %></p>
+
+<nav id="lesson-steps" class="flex flex-wrap gap-2" data-group="lesson-steps" phx-hook="Sortable">
+  <.link
+    :for={step_order <- 1..@step_count}
+    patch={step_link(@course, @lesson, step_order)}
     class={[
-      "flex items-center justify-between text-gray-dark-2x bg-white p-4 text-sm card",
-      "cursor-grab drag-ghost:bg-gray-light drag-ghost:cursor-grabbing drag-ghost:border-0 drag-ghost:ring-0",
-      "focus-within:drag-item:ring-0 focus-within:drag-item:ring-offset-0"
+      "h-10 w-10 flex flex-col items-center justify-center rounded-full text-center font-black cursor-grab",
+      "drag-ghost:bg-gray-light drag-ghost:cursor-grabbing drag-ghost:border-0 drag-ghost:ring-0",
+      "focus-within:drag-item:ring-0 focus-within:drag-item:ring-offset-0",
+      step_order != @selected_step.order && "bg-primary-light3x text-primary-dark2x",
+      step_order == @selected_step.order && "bg-primary-dark2x text-primary-light3x"
     ]}
   >
-    <div>
-      <dt><%= lesson_step.content %></dt>
-      <img :if={lesson_step.image} src={lesson_step.image} class="w-10" />
+    <%= step_order %>
+  </.link>
 
-      <ul class="mt-4 space-y-2">
-        <li :for={option <- lesson_step.options} class="flex items-center gap-2">
-          <.link id={"option-#{option.id}-image-link"} navigate={~p"/dashboard/c/#{@course.slug}/l/#{@lesson.id}/o/#{option.id}/image"}>
-            <.avatar src={option.image} alt={option.title} />
-          </.link>
+  <button class="bg-gray-light3x filtered text-gray-dark2x h-10 w-10 rounded-full text-center font-black" phx-click="add-step">+</button>
+</nav>
 
-          <.link
-            navigate={~p"/dashboard/c/#{@course.slug}/l/#{@lesson.id}/o/#{option.id}"}
-            class={[
-              "w-max truncate rounded-2xl border px-2 py-1",
-              option.correct? && "bg-success-light3x text-success-dark2x border-success-dark2x",
-              not option.correct? && "border-gray-light"
-            ]}
-          >
-            <%= option.title %>
-          </.link>
+<div class="text-gray-dark2x card mt-4 p-4 text-sm">
+  <.link class="mb-4 flex w-max items-center gap-1" patch={step_edit(@course, @lesson, @selected_step.order)}>
+    <%= @selected_step.content %> <.icon name="tabler-edit" title={dgettext("orgs", "Edit step")} />
+  </.link>
 
-          <.icon_button
-            icon="tabler-x"
-            color={:alert_light}
-            size={:sm}
-            role="button"
-            label={dgettext("orgs", "Delete option")}
-            data-confirm={dgettext("orgs", "Are you sure?")}
-            phx-click="delete-option"
-            phx-value-option-id={option.id}
-          />
-        </li>
-      </ul>
+  <.link :if={@selected_step.image} patch={step_img_link(@course, @lesson, @selected_step.order)} class="block w-full sm:w-1/3">
+    <img src={@selected_step.image} class="w-full" />
+  </.link>
 
-      <.button phx-click="add-option" phx-value-step-id={lesson_step.id} icon="tabler-layout-grid-add" color={:info_light} class="mt-4">
-        <%= dgettext("orgs", "Add option") %>
-      </.button>
-    </div>
+  <.link
+    :if={is_nil(@selected_step.image)}
+    patch={step_img_link(@course, @lesson, @selected_step.order)}
+    class="bg-gray-light2x text-gray-dark2x flex w-full flex-col items-center justify-center rounded-2xl py-12 sm:w-1/3"
+  >
+    <%= dgettext("orgs", "Click to add an image to this step.") %>
+  </.link>
 
-    <.icon_button
-      phx-click="delete-step"
-      phx-value-step-id={lesson_step.id}
-      label={dgettext("orgs", "Remove step")}
-      icon="tabler-trash-x"
-      color={:alert_light}
-      size={:sm}
-      data-confirm={dgettext("orgs", "Are you sure?")}
+  <ul class="mt-8 space-y-2">
+    <li :for={option <- @selected_step.options} class="flex items-center gap-2">
+      <.link id={"option-#{option.id}-image-link"} patch={option_img_link(@course, @lesson, @selected_step.order, option)}>
+        <.avatar src={option.image} alt={option.title} />
+      </.link>
+
+      <.link
+        patch={option_link(@course, @lesson, @selected_step.order, option)}
+        class={[
+          "w-max truncate rounded-2xl border px-2 py-1",
+          option.correct? && "bg-success-light3x text-success-dark2x border-success-dark2x",
+          not option.correct? && "border-gray-light"
+        ]}
+      >
+        <%= option.title %>
+      </.link>
+
+      <.icon_button
+        icon="tabler-x"
+        color={:alert_light}
+        size={:sm}
+        role="button"
+        label={dgettext("orgs", "Delete option")}
+        data-confirm={gettext("Are you sure?")}
+        phx-click="delete-option"
+        phx-value-option-id={option.id}
+      />
+    </li>
+  </ul>
+
+  <.button phx-click="add-option" phx-value-step-id={@selected_step.id} icon="tabler-layout-grid-add" color={:info_light} class="mt-4">
+    <%= dgettext("orgs", "Add option") %>
+  </.button>
+</div>
+
+<footer class="mt-8">
+  <.button phx-click="delete-step" phx-value-step-id={@selected_step.id} icon="tabler-trash-x" color={:alert_light} data-confirm={gettext("Are you sure?")}>
+    <%= dgettext("orgs", "Remove step") %>
+  </.button>
+</footer>
+
+<.modal :if={@live_action == :edit} show id="edit-step" on_cancel={JS.patch(step_link(@course, @lesson, @selected_step.order))}>
+  <.simple_form for={@step_form} id="step-form" phx-change="validate-step" phx-submit="update-step" unstyled>
+    <.input
+      type="textarea"
+      field={@step_form[:content]}
+      label={dgettext("orgs", "Update step")}
+      helper={dgettext("orgs", "A lesson has multiple steps. Use them to tell a story, explain a concept or ask a question. Keep them short and simple.")}
+      required
     />
-  </div>
-</dl>
 
-<.form for={@step_form} id="step-form" phx-change="validate-step" phx-submit="create-step" class="flex items-end gap-2">
-  <.input type="hidden" field={@step_form[:order]} value={length(@lesson_steps) + 1} />
-
-  <.input
-    type="text"
-    field={@step_form[:content]}
-    label={dgettext("orgs", "Add step")}
-    helper={
-      dgettext(
-        "orgs",
-        "A story has multiple steps. Use them to tell a story, explain a concept or ask a question. Keep them short and simple."
-      )
-    }
-    required
-  />
-
-  <.icon_button type="button" phx-click={show_modal("img-step-modal")} icon="tabler-photo-plus" size={:lg} label={dgettext("orgs", "Add image step")} />
-</.form>
-
-<.modal id="img-step-modal" on_cancel={hide_modal("img-step-modal")}>
-  <.live_component module={Upload} id={:step_img} current_img={nil} unstyled label={dgettext("orgs", "Add image step")} />
+    <:actions>
+      <.button type="submit" icon="tabler-edit" phx-disable-with={gettext("Updating...")}><%= gettext("Update") %></.button>
+    </:actions>
+  </.simple_form>
 </.modal>
 
-<.modal :if={@live_action == :option_img} show id="option-img-modal" on_cancel={JS.patch(~p"/dashboard/c/#{@course.slug}/l/#{@lesson.id}")}>
+<.modal :if={@live_action == :step_img} show id="img-step-modal" on_cancel={JS.patch(step_link(@course, @lesson, @selected_step.order))}>
+  <.live_component module={Upload} id={:step_img} current_img={nil} unstyled label={dgettext("orgs", "Add image to step")} />
+</.modal>
+
+<.modal :if={@live_action == :option_img} show id="option-img-modal" on_cancel={JS.patch(step_link(@course, @lesson, @selected_step.order))}>
   <.live_component module={Upload} id={:option_img} current_img={@selected_option.image} label={dgettext("orgs", "Add image to option")} unstyled />
 </.modal>
 
-<.modal :if={@live_action == :option} show id="edit-option-modal" on_cancel={JS.patch(~p"/dashboard/c/#{@course.slug}/l/#{@lesson.id}")}>
+<.modal :if={@live_action == :option} show id="edit-option-modal" on_cancel={JS.patch(step_link(@course, @lesson, @selected_step.order))}>
   <.simple_form for={@option_form} title={dgettext("orgs", "Update option")} id="option-form" phx-change="validate-option" phx-submit="update-option" unstyled>
     <.input type="text" field={@option_form[:title]} label={dgettext("orgs", "Option title")} required />
 
@@ -116,7 +131,7 @@
     <:actions>
       <.button type="submit"><%= gettext("Save") %></.button>
 
-      <.link_button navigate={~p"/dashboard/c/#{@course.slug}/l/#{@lesson.id}"} color={:alert_light}>
+      <.link_button patch={step_link(@course, @lesson, @selected_step.order)} color={:alert_light}>
         <%= gettext("Cancel") %>
       </.link_button>
     </:actions>

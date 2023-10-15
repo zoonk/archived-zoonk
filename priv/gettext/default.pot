@@ -127,7 +127,7 @@ msgstr ""
 #: lib/accounts/user_live/settings.html.heex:26
 #: lib/components/upload.ex:49
 #: lib/dashboard/lessons/lesson_edit.html.heex:7
-#: lib/dashboard/lessons/lesson_view.html.heex:117
+#: lib/dashboard/lessons/lesson_view.html.heex:132
 #: lib/dashboard/schools/school_edit.html.heex:11
 #, elixir-autogen, elixir-format
 msgid "Save"
@@ -197,7 +197,7 @@ msgstr ""
 #: lib/components/delete_item.ex:33
 #: lib/dashboard/courses/course_edit.html.heex:46
 #: lib/dashboard/lessons/lesson_edit.html.heex:11
-#: lib/dashboard/lessons/lesson_view.html.heex:120
+#: lib/dashboard/lessons/lesson_view.html.heex:135
 #, elixir-autogen, elixir-format
 msgid "Cancel"
 msgstr ""
@@ -303,4 +303,20 @@ msgstr ""
 #: lib/support/feedback_live/feedback.html.heex:6
 #, elixir-autogen, elixir-format
 msgid "We are always looking for ways to improve our app. Please send us your feedback."
+msgstr ""
+
+#: lib/dashboard/lessons/lesson_view.html.heex:71
+#: lib/dashboard/lessons/lesson_view.html.heex:84
+#, elixir-autogen, elixir-format
+msgid "Are you sure?"
+msgstr ""
+
+#: lib/dashboard/lessons/lesson_view.html.heex:100
+#, elixir-autogen, elixir-format
+msgid "Update"
+msgstr ""
+
+#: lib/dashboard/lessons/lesson_view.html.heex:100
+#, elixir-autogen, elixir-format
+msgid "Updating..."
 msgstr ""

@@ -16,7 +16,7 @@ defmodule UneebeeWeb.Components.Content.LessonStep do
       <p class="text-gray-dark whitespace-pre-wrap py-4"><%= @step.content %></p>
 
       <div :if={@step.image} class="text-gray-dark py-4">
-        <img src={@step.image} class="w-1/3" />
+        <img src={@step.image} class="w-full sm:w-1/3" />
       </div>
     </section>
     """

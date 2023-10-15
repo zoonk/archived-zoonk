@@ -520,6 +520,19 @@ defmodule Uneebee.Content do
   end
 
   @doc """
+  Updates a lesson step.
+  ## Examples
+      iex> update_lesson_step(%LessonStep{}, %{content: "Lesson Step 1"})
+      {:ok, %LessonStep{}}
+      iex> update_lesson_step(%LessonStep{}, %{content: "Lesson Step 1"})
+      {:error, %Ecto.Changeset{}}
+  """
+  @spec update_lesson_step(LessonStep.t(), map()) :: lesson_step_changeset()
+  def update_lesson_step(%LessonStep{} = lesson_step, attrs) do
+    lesson_step |> change_lesson_step(attrs) |> Repo.update()
+  end
+
+  @doc """
   Deletes a lesson step.
 
   ## Examples
@@ -557,6 +570,19 @@ defmodule Uneebee.Content do
   @spec get_next_step(Lesson.t(), non_neg_integer()) :: LessonStep.t() | nil
   def get_next_step(%Lesson{} = lesson, order) do
     LessonStep |> where([ls], ls.lesson_id == ^lesson.id and ls.order == ^order + 1) |> preload(:options) |> Repo.one()
+  end
+
+  @doc """
+  Get a lesson step by its order.
+
+  ## Examples
+
+      iex> get_lesson_step_by_order(%Lesson{}, 1)
+      %LessonStep{}
+  """
+  @spec get_lesson_step_by_order(Lesson.t(), non_neg_integer()) :: LessonStep.t() | nil
+  def get_lesson_step_by_order(%Lesson{} = lesson, order) do
+    LessonStep |> Repo.get_by(lesson_id: lesson.id, order: order) |> Repo.preload(:options)
   end
 
   @doc """

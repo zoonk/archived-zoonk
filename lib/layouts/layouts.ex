@@ -32,7 +32,9 @@ defmodule UneebeeWeb.Layouts do
 
   @spec lesson_view?(atom()) :: boolean()
   def lesson_view?(active_page) do
-    active_page |> Atom.to_string() |> String.starts_with?("dashboard_lesson")
+    option? = active_page in [:dashboard_lessonview_option, :dashboard_lessonview_option_img, :dashboard_lessonview_step_img, :dashboard_lessonview_edit]
+    lesson_view_page? = active_page |> Atom.to_string() |> String.starts_with?("dashboard_lesson")
+    option? or lesson_view_page?
   end
 
   @spec dashboard?(atom()) :: boolean()

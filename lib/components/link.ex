@@ -43,7 +43,7 @@ defmodule UneebeeWeb.Components.Link do
 
   attr :class, :string, default: nil
   attr :icon, :string, default: nil
-  attr :rest, :global, include: ~w(href method navigate)
+  attr :rest, :global, include: ~w(href method navigate patch)
 
   slot :inner_block
 

@@ -18,7 +18,7 @@
 <dl class="mt-4 space-y-4" id="lesson-list" data-group="lessons" phx-hook="Sortable">
   <.link
     :for={{lesson, index} <- Enum.with_index(@lessons)}
-    navigate={~p"/dashboard/c/#{@course.slug}/l/#{lesson.id}"}
+    navigate={~p"/dashboard/c/#{@course.slug}/l/#{lesson.id}/s/1"}
     class="text-gray-dark card-with-link flex cursor-grab gap-2 bg-white p-4 drag-ghost:bg-gray-light drag-ghost:cursor-grabbing drag-ghost:border-0 drag-ghost:ring-0 focus-within:drag-item:ring-0 focus-within:drag-item:ring-offset-0"
   >
     <.avatar src={lesson.cover} alt={if is_nil(lesson.cover), do: index + 1, else: dgettext("orgs", "Lesson cover")} class="mt-1" />

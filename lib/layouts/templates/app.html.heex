@@ -86,7 +86,7 @@
 
     <.menu_item
       :if={lesson_view?(@active_page)}
-      navigate={~p"/dashboard/c/#{@course.slug}/l/#{@lesson.id}"}
+      navigate={~p"/dashboard/c/#{@course.slug}/l/#{@lesson.id}/s/1"}
       icon="tabler-notes"
       active={lesson_view?(@active_page)}
       title={dgettext("courses", "Manage lesson")}
@@ -96,8 +96,8 @@
 
         <.sub_menu
           :if={lesson_view?(@active_page)}
-          navigate={~p"/dashboard/c/#{@course.slug}/l/#{@lesson.id}"}
-          active={@active_page == :dashboard_lessonview_view}
+          navigate={~p"/dashboard/c/#{@course.slug}/l/#{@lesson.id}/s/1"}
+          active={@active_page == :dashboard_lessonview}
           title={dgettext("courses", "Content")}
         />
 

@@ -240,25 +240,14 @@ msgstr ""
 msgid "+ Lesson"
 msgstr ""
 
-#: lib/dashboard/lessons/lesson_view.html.heex:87
-#: lib/dashboard/lessons/lesson_view.html.heex:91
-#, elixir-autogen, elixir-format
-msgid "Add image step"
-msgstr ""
-
-#: lib/dashboard/lessons/lesson_view.html.heex:95
+#: lib/dashboard/lessons/lesson_view.html.heex:110
 #, elixir-autogen, elixir-format
 msgid "Add image to option"
 msgstr ""
 
-#: lib/dashboard/lessons/lesson_view.html.heex:55
+#: lib/dashboard/lessons/lesson_view.html.heex:79
 #, elixir-autogen, elixir-format
 msgid "Add option"
-msgstr ""
-
-#: lib/dashboard/lessons/lesson_view.html.heex:77
-#, elixir-autogen, elixir-format, fuzzy
-msgid "Add step"
 msgstr ""
 
 #: lib/dashboard/courses/course_student_view.html.heex:40
@@ -266,18 +255,12 @@ msgstr ""
 msgid "All answers were correct."
 msgstr ""
 
-#: lib/dashboard/lessons/lesson_view.html.heex:47
-#: lib/dashboard/lessons/lesson_view.html.heex:66
-#, elixir-autogen, elixir-format
-msgid "Are you sure?"
-msgstr ""
-
-#: lib/dashboard/lessons/lesson_view.html.heex:113
+#: lib/dashboard/lessons/lesson_view.html.heex:128
 #, elixir-autogen, elixir-format
 msgid "Check this option if this is the correct answer."
 msgstr ""
 
-#: lib/dashboard/lessons/lesson_view.ex:132
+#: lib/dashboard/lessons/lesson_view.ex:164
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Could not add option!"
 msgstr ""
@@ -287,7 +270,7 @@ msgstr ""
 msgid "Could not change the lesson order!"
 msgstr ""
 
-#: lib/dashboard/lessons/lesson_view.ex:75
+#: lib/dashboard/lessons/lesson_view.ex:86
 #, elixir-autogen, elixir-format
 msgid "Could not change the step order!"
 msgstr ""
@@ -297,7 +280,7 @@ msgstr ""
 msgid "Could not create lesson!"
 msgstr ""
 
-#: lib/dashboard/lessons/lesson_view.ex:198
+#: lib/dashboard/lessons/lesson_view.ex:233
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Could not create step!"
 msgstr ""
@@ -312,12 +295,12 @@ msgstr ""
 msgid "Could not delete lesson!"
 msgstr ""
 
-#: lib/dashboard/lessons/lesson_view.ex:117
+#: lib/dashboard/lessons/lesson_view.ex:149
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Could not delete option!"
 msgstr ""
 
-#: lib/dashboard/lessons/lesson_view.ex:96
+#: lib/dashboard/lessons/lesson_view.ex:110
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Could not delete step!"
 msgstr ""
@@ -329,14 +312,13 @@ msgid "Could not update cover!"
 msgstr ""
 
 #: lib/dashboard/lessons/lesson_edit.ex:41
-#: lib/dashboard/lessons/lesson_view.ex:64
+#: lib/dashboard/lessons/lesson_view.ex:73
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Could not update lesson!"
 msgstr ""
 
-#: lib/dashboard/lessons/lesson_view.ex:145
-#: lib/dashboard/lessons/lesson_view.ex:160
-#: lib/dashboard/lessons/lesson_view.ex:175
+#: lib/dashboard/lessons/lesson_view.ex:177
+#: lib/dashboard/lessons/lesson_view.ex:210
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Could not update option!"
 msgstr ""
@@ -380,7 +362,7 @@ msgstr ""
 msgid "Delete lesson"
 msgstr ""
 
-#: lib/dashboard/lessons/lesson_view.html.heex:46
+#: lib/dashboard/lessons/lesson_view.html.heex:70
 #, elixir-autogen, elixir-format
 msgid "Delete option"
 msgstr ""
@@ -411,7 +393,7 @@ msgstr ""
 msgid "Friendly identifier used to access your course. I.e. my-course-name"
 msgstr ""
 
-#: lib/dashboard/lessons/lesson_view.html.heex:112
+#: lib/dashboard/lessons/lesson_view.html.heex:127
 #, elixir-autogen, elixir-format
 msgid "Is correct?"
 msgstr ""
@@ -451,12 +433,12 @@ msgstr ""
 msgid "Lesson updated successfully!"
 msgstr ""
 
-#: lib/dashboard/lessons/lesson_view.html.heex:105
+#: lib/dashboard/lessons/lesson_view.html.heex:120
 #, elixir-autogen, elixir-format
 msgid "Option feedback"
 msgstr ""
 
-#: lib/dashboard/lessons/lesson_view.html.heex:100
+#: lib/dashboard/lessons/lesson_view.html.heex:115
 #, elixir-autogen, elixir-format
 msgid "Option title"
 msgstr ""
@@ -466,7 +448,7 @@ msgstr ""
 msgid "Publish"
 msgstr ""
 
-#: lib/dashboard/lessons/lesson_view.html.heex:62
+#: lib/dashboard/lessons/lesson_view.html.heex:85
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Remove step"
 msgstr ""
@@ -476,7 +458,7 @@ msgstr ""
 msgid "Unpublish"
 msgstr ""
 
-#: lib/dashboard/lessons/lesson_view.ex:125
+#: lib/dashboard/lessons/lesson_view.ex:157
 #, elixir-autogen, elixir-format
 msgid "Untitled option"
 msgstr ""
@@ -486,12 +468,12 @@ msgstr ""
 msgid "Update course"
 msgstr ""
 
-#: lib/dashboard/lessons/lesson_view.html.heex:99
+#: lib/dashboard/lessons/lesson_view.html.heex:114
 #, elixir-autogen, elixir-format
 msgid "Update option"
 msgstr ""
 
-#: lib/dashboard/lessons/lesson_view.ex:180
+#: lib/dashboard/lessons/lesson_view.ex:215
 #, elixir-autogen, elixir-format
 msgid "You cannot have more than 20 steps in a lesson"
 msgstr ""
@@ -501,12 +483,7 @@ msgstr ""
 msgid "You'll be able to edit this information and add content to your course later."
 msgstr ""
 
-#: lib/dashboard/lessons/lesson_view.html.heex:79
-#, elixir-autogen, elixir-format
-msgid "A story has multiple steps. Use them to tell a story, explain a concept or ask a question. Keep them short and simple."
-msgstr ""
-
-#: lib/dashboard/lessons/lesson_view.html.heex:106
+#: lib/dashboard/lessons/lesson_view.html.heex:121
 #, elixir-autogen, elixir-format
 msgid "Feedback message displayed after a user answers this question. You can provide some additional context on why this is wrong or correct."
 msgstr ""
@@ -539,4 +516,54 @@ msgstr ""
 #: lib/dashboard/schools/school_edit.html.heex:7
 #, elixir-autogen, elixir-format
 msgid "Terms of use URL"
+msgstr ""
+
+#: lib/dashboard/lessons/lesson_view.html.heex:11
+#, elixir-autogen, elixir-format, fuzzy
+msgid "Drag the steps to change their order:"
+msgstr ""
+
+#: lib/dashboard/lessons/lesson_view.ex:117
+#, elixir-autogen, elixir-format, fuzzy
+msgid "Untitled step"
+msgstr ""
+
+#: lib/dashboard/lessons/lesson_view.html.heex:95
+#, elixir-autogen, elixir-format
+msgid "A lesson has multiple steps. Use them to tell a story, explain a concept or ask a question. Keep them short and simple."
+msgstr ""
+
+#: lib/dashboard/lessons/lesson_view.html.heex:106
+#, elixir-autogen, elixir-format, fuzzy
+msgid "Add image to step"
+msgstr ""
+
+#: lib/dashboard/lessons/lesson_view.html.heex:45
+#, elixir-autogen, elixir-format
+msgid "Click to add an image to this step."
+msgstr ""
+
+#: lib/dashboard/lessons/lesson_view.ex:195
+#, elixir-autogen, elixir-format, fuzzy
+msgid "Could not update image!"
+msgstr ""
+
+#: lib/dashboard/lessons/lesson_view.ex:132
+#, elixir-autogen, elixir-format, fuzzy
+msgid "Could not update step!"
+msgstr ""
+
+#: lib/dashboard/lessons/lesson_view.html.heex:33
+#, elixir-autogen, elixir-format, fuzzy
+msgid "Edit step"
+msgstr ""
+
+#: lib/dashboard/lessons/lesson_view.ex:189
+#, elixir-autogen, elixir-format
+msgid "Image updated!"
+msgstr ""
+
+#: lib/dashboard/lessons/lesson_view.html.heex:94
+#, elixir-autogen, elixir-format, fuzzy
+msgid "Update step"
 msgstr ""
