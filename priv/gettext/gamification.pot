@@ -11,7 +11,7 @@
 msgid ""
 msgstr ""
 
-#: lib/home/home.html.heex:5
+#: lib/home/home.html.heex:2
 #, elixir-autogen, elixir-format
 msgid "Learning days"
 msgstr ""
@@ -21,7 +21,7 @@ msgstr ""
 msgid "Lesson completed"
 msgstr ""
 
-#: lib/home/home.html.heex:11
+#: lib/home/home.html.heex:4
 #, elixir-autogen, elixir-format
 msgid "Medals"
 msgstr ""
@@ -48,7 +48,7 @@ msgstr ""
 msgid "You completed a lesson without any errors on your first try."
 msgstr ""
 
-#: lib/components/award_badge.ex:33
+#: lib/components/award_badge.ex:29
 #, elixir-autogen, elixir-format
 msgid "Learning day"
 msgid_plural "Learning days"
@@ -60,7 +60,7 @@ msgstr[1] ""
 msgid "Course completed"
 msgstr ""
 
-#: lib/home/home.html.heex:9
+#: lib/home/home.html.heex:3
 #, elixir-autogen, elixir-format
 msgid "Trophies"
 msgstr ""
@@ -169,7 +169,7 @@ msgid "You completed %{count} lessons."
 msgstr ""
 
 #: lib/gamification/mission_live/list.ex:18
-#: lib/layouts/templates/app.html.heex:193
+#: lib/layouts/templates/app.html.heex:128
 #, elixir-autogen, elixir-format
 msgid "Missions"
 msgstr ""

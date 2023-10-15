@@ -11,7 +11,7 @@ msgstr ""
 "Language: pt\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: lib/home/home.html.heex:5
+#: lib/home/home.html.heex:2
 #, elixir-autogen, elixir-format
 msgid "Learning days"
 msgstr "Dias de aprendizado"
@@ -21,7 +21,7 @@ msgstr "Dias de aprendizado"
 msgid "Lesson completed"
 msgstr "Aula concluída"
 
-#: lib/home/home.html.heex:11
+#: lib/home/home.html.heex:4
 #, elixir-autogen, elixir-format
 msgid "Medals"
 msgstr "Medalhas"
@@ -48,7 +48,7 @@ msgstr "Você concluiu uma aula sem erros após praticá-la."
 msgid "You completed a lesson without any errors on your first try."
 msgstr "Você concluiu uma aula sem erros na primeira tentativa."
 
-#: lib/components/award_badge.ex:33
+#: lib/components/award_badge.ex:29
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Learning day"
 msgid_plural "Learning days"
@@ -60,7 +60,7 @@ msgstr[1] "Dias de aprendizado"
 msgid "Course completed"
 msgstr "Curso concluído"
 
-#: lib/home/home.html.heex:9
+#: lib/home/home.html.heex:3
 #, elixir-autogen, elixir-format
 msgid "Trophies"
 msgstr "Troféus"
@@ -169,7 +169,7 @@ msgid "You completed %{count} lessons."
 msgstr "Você concluiu %{count} aulas."
 
 #: lib/gamification/mission_live/list.ex:18
-#: lib/layouts/templates/app.html.heex:193
+#: lib/layouts/templates/app.html.heex:128
 #, elixir-autogen, elixir-format
 msgid "Missions"
 msgstr "Missões"

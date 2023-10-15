@@ -7,44 +7,43 @@ defmodule UneebeeWeb.Live.Content.Course.Play do
 
   alias Uneebee.Content
   alias Uneebee.Content.Lesson
+  alias Uneebee.Content.StepOption
 
   @impl Phoenix.LiveView
   def mount(_params, _session, socket) do
     %{lesson: %Lesson{} = lesson} = socket.assigns
 
-    steps = Content.list_lesson_steps(lesson)
+    step_count = Content.count_lesson_steps(lesson.id)
+    current_step = Content.get_next_step(lesson, 0)
 
     socket =
       socket
       |> assign(:page_title, lesson.name)
-      |> assign(:completed_steps, [])
-      |> assign(:steps, steps)
-      |> assign(:selected_options, [])
+      |> assign(:step_count, step_count)
+      |> assign(:current_step, current_step)
+      |> assign(:selected_option, nil)
 
     {:ok, socket}
   end
 
   @impl Phoenix.LiveView
-  def handle_event("select-option", %{"selected_option" => selected_option}, socket) do
-    %{current_user: user, lesson: lesson, completed_steps: completed, steps: steps, selected_options: selected_options} = socket.assigns
+  def handle_event("next", %{"selected_option" => selected_option}, socket) when is_nil(socket.assigns.selected_option) do
+    %{current_user: user, lesson: lesson, current_step: step} =
+      socket.assigns
 
     option_id = String.to_integer(selected_option)
     attrs = %{user_id: user.id, option_id: option_id, lesson_id: lesson.id}
 
     case Content.add_user_selection(attrs) do
       {:ok, _} ->
-        [current | remaining] = steps
-
-        correct? = get_option(current.options, option_id).correct?
+        selected_option = get_option(step.options, option_id)
 
         socket =
           socket
-          |> assign(:steps, remaining)
-          |> assign(:completed_steps, completed ++ [current])
-          |> assign(:selected_options, selected_options ++ [option_id])
-          |> push_event("option-selected", %{isCorrect: correct?})
+          |> push_event("option-selected", %{isCorrect: selected_option.correct?})
+          |> assign(:selected_option, selected_option)
 
-        {:noreply, handle_lesson_completed(socket, remaining)}
+        {:noreply, socket}
 
       {:error, _} ->
         {:noreply, put_flash(socket, :error, dgettext("courses", "Unable to select option"))}
@@ -52,21 +51,20 @@ defmodule UneebeeWeb.Live.Content.Course.Play do
   end
 
   @impl Phoenix.LiveView
-  def handle_event("next-step", _params, socket) do
-    %{completed_steps: completed, steps: steps, selected_options: selected_options} = socket.assigns
-
-    [current | remaining] = steps
+  def handle_event("next", _params, socket) do
+    %{lesson: lesson, current_step: current_step} = socket.assigns
+    next_step = Content.get_next_step(lesson, current_step.order)
 
     socket =
       socket
-      |> assign(:steps, remaining)
-      |> assign(:completed_steps, completed ++ [current])
-      |> assign(:selected_options, selected_options ++ [nil])
+      |> assign(:selected_option, nil)
+      |> assign(:current_step, next_step)
+      |> handle_lesson_completed(next_step)
 
-    {:noreply, handle_lesson_completed(socket, remaining)}
+    {:noreply, socket}
   end
 
-  defp handle_lesson_completed(socket, []) do
+  defp handle_lesson_completed(socket, nil) do
     %{course: course, lesson: lesson, current_user: user} = socket.assigns
 
     case Content.mark_lesson_as_completed(user.id, lesson.id) do
@@ -78,7 +76,10 @@ defmodule UneebeeWeb.Live.Content.Course.Play do
     end
   end
 
-  defp handle_lesson_completed(socket, _completed), do: socket
+  defp handle_lesson_completed(socket, _next_step), do: socket
 
   defp get_option(options, option_id), do: Enum.find(options, &(&1.id == option_id))
+
+  defp user_selected_wrong_option?(%StepOption{correct?: false} = selected, option) when selected.id == option.id, do: true
+  defp user_selected_wrong_option?(_selected, _option), do: false
 end

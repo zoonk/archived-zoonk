@@ -8,8 +8,20 @@
     @apply text-transparent bg-clip-text bg-gradient-to-br from-info via-primary to-alert;
   }
 
+  .card-base {
+    @apply border rounded-2xl;
+  }
+
   .card {
-    @apply border border-gray-light2x rounded-2xl;
+    @apply card-base border-gray-light2x;
+  }
+
+  .card-alert {
+    @apply card-base border-alert-dark2x;
+  }
+
+  .card-success {
+    @apply card-base border-success-dark2x;
   }
 
   .card-with-link {

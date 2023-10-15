@@ -12,13 +12,13 @@ msgid "can't be blank"
 msgstr ""
 
 ## From Ecto.Changeset.unique_constraint/3
-#: lib/organizations/school_schema.ex:76
+#: lib/organizations/school_schema.ex:65
 #, elixir-autogen
 msgid "has already been taken"
 msgstr ""
 
 ## From Ecto.Changeset.put_change/3
-#: lib/accounts/user_schema.ex:189
+#: lib/accounts/user_schema.ex:186
 #, elixir-autogen
 msgid "is invalid"
 msgstr ""
@@ -117,7 +117,7 @@ msgstr ""
 msgid "can only contain letters, numbers, dashes and underscores"
 msgstr ""
 
-#: lib/accounts/user_schema.ex:76
+#: lib/accounts/user_schema.ex:75
 #, elixir-autogen, elixir-format
 msgid "at least one digit or punctuation character"
 msgstr ""
@@ -132,69 +132,69 @@ msgstr ""
 msgid "at least one upper case character"
 msgstr ""
 
-#: lib/accounts/user_schema.ex:120
+#: lib/accounts/user_schema.ex:118
 #, elixir-autogen, elixir-format
 msgid "did not change"
 msgstr ""
 
-#: lib/accounts/user_schema.ex:151
+#: lib/accounts/user_schema.ex:149
 #, elixir-autogen, elixir-format
 msgid "does not match password"
 msgstr ""
 
 #: lib/accounts/user_schema.ex:64
-#: lib/organizations/school_schema.ex:55
+#: lib/organizations/school_schema.ex:44
 #, elixir-autogen, elixir-format
 msgid "must have the @ sign and no spaces"
 msgstr ""
 
-#: lib/organizations/school_schema.ex:57
+#: lib/organizations/school_schema.ex:46
 #, elixir-autogen, elixir-format
 msgid "must start with / or https://"
 msgstr ""
 
-#: lib/components/upload.ex:139
+#: lib/components/upload.ex:113
 #, elixir-autogen, elixir-format
 msgid "Too large"
 msgstr ""
 
-#: lib/components/upload.ex:141
+#: lib/components/upload.ex:115
 #, elixir-autogen, elixir-format
 msgid "You have selected an unacceptable file type"
 msgstr ""
 
-#: lib/components/upload.ex:140
+#: lib/components/upload.ex:114
 #, elixir-autogen, elixir-format
 msgid "You have selected too many files"
 msgstr ""
 
-#: lib/error/permission_error.ex:17
+#: lib/error/permission_error.ex:12
 #, elixir-autogen, elixir-format
 msgid "Only managers and teachers can view this page"
 msgstr ""
 
-#: lib/error/permission_error.ex:14
+#: lib/error/permission_error.ex:11
 #, elixir-autogen, elixir-format
 msgid "Only managers can view this page"
 msgstr ""
 
-#: lib/error/permission_error.ex:11
+#: lib/error/permission_error.ex:10
 #, elixir-autogen, elixir-format
 msgid "School already configured"
 msgstr ""
 
-#: lib/error/permission_error.ex:20
+#: lib/error/permission_error.ex:13
 #, elixir-autogen, elixir-format
 msgid "You are not enrolled in this course"
 msgstr ""
 
-#: lib/error/permission_error.ex:23
+#: lib/error/permission_error.ex:14
 #, elixir-autogen, elixir-format
 msgid "Your enrollment is pending approval"
 msgstr ""
 
-#: lib/organizations/school_schema.ex:58
-#: lib/organizations/school_schema.ex:59
+#: lib/organizations/school_schema.ex:47
+#: lib/organizations/school_schema.ex:48
 #, elixir-autogen, elixir-format
 msgid "must start with https://"
 msgstr ""

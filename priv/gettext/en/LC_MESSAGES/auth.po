@@ -11,12 +11,12 @@ msgstr ""
 "Language: en\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: lib/accounts/user_live/registration.html.heex:45
+#: lib/accounts/user_live/registration.html.heex:30
 #, elixir-autogen, elixir-format
 msgid "Already registered?"
 msgstr ""
 
-#: lib/accounts/user_live/registration.html.heex:39
+#: lib/accounts/user_live/registration.html.heex:24
 #, elixir-autogen, elixir-format
 msgid "Create account"
 msgstr ""
@@ -27,31 +27,31 @@ msgstr ""
 msgid "Create an account"
 msgstr ""
 
-#: lib/accounts/user_live/login.html.heex:12
-#: lib/accounts/user_live/registration.html.heex:30
-#: lib/layouts/templates/app.html.heex:231
+#: lib/accounts/user_live/login.html.heex:5
+#: lib/accounts/user_live/registration.html.heex:18
+#: lib/layouts/templates/app.html.heex:136
 #, elixir-autogen, elixir-format
 msgid "Password"
 msgstr ""
 
-#: lib/accounts/user_live/confirmation.html.heex:15
-#: lib/accounts/user_live/confirmation_instructions.html.heex:19
+#: lib/accounts/user_live/confirmation.html.heex:14
+#: lib/accounts/user_live/confirmation_instructions.html.heex:18
 #: lib/accounts/user_live/login.ex:9
-#: lib/accounts/user_live/login.html.heex:20
-#: lib/accounts/user_live/registration.html.heex:46
-#: lib/accounts/user_live/reset_password.html.heex:34
-#: lib/layouts/templates/app.html.heex:7
+#: lib/accounts/user_live/login.html.heex:13
+#: lib/accounts/user_live/registration.html.heex:31
+#: lib/accounts/user_live/reset_password.html.heex:20
+#: lib/layouts/templates/app.html.heex:3
 #, elixir-autogen, elixir-format
 msgid "Sign in"
 msgstr ""
 
 #: lib/accounts/user_live/forgot_password.html.heex:3
-#: lib/accounts/user_live/login.html.heex:27
+#: lib/accounts/user_live/login.html.heex:20
 #, elixir-autogen, elixir-format
 msgid "Forgot your password?"
 msgstr ""
 
-#: lib/accounts/user_live/login.html.heex:15
+#: lib/accounts/user_live/login.html.heex:8
 #, elixir-autogen, elixir-format
 msgid "Keep me logged in"
 msgstr ""
@@ -61,15 +61,15 @@ msgstr ""
 msgid "Sign in to your account"
 msgstr ""
 
-#: lib/accounts/user_live/login.html.heex:19
+#: lib/accounts/user_live/login.html.heex:12
 #, elixir-autogen, elixir-format
 msgid "Signing in..."
 msgstr ""
 
 #: lib/accounts/user_live/confirmation.html.heex:14
 #: lib/accounts/user_live/confirmation_instructions.html.heex:18
-#: lib/accounts/user_live/login.html.heex:30
-#: lib/accounts/user_live/reset_password.html.heex:33
+#: lib/accounts/user_live/login.html.heex:23
+#: lib/accounts/user_live/reset_password.html.heex:20
 #, elixir-autogen, elixir-format
 msgid "Register"
 msgstr ""
@@ -79,14 +79,14 @@ msgstr ""
 msgid "Back to the sign in form"
 msgstr ""
 
-#: lib/accounts/user_live/forgot_password.ex:27
+#: lib/accounts/user_live/forgot_password.ex:21
 #, elixir-autogen, elixir-format
 msgid "If your email is in our system, you will receive instructions to reset your password shortly."
 msgstr ""
 
 #: lib/accounts/user_live/forgot_password.ex:9
 #: lib/accounts/user_live/reset_password.html.heex:2
-#: lib/accounts/user_live/reset_password.html.heex:27
+#: lib/accounts/user_live/reset_password.html.heex:14
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Reset Password"
 msgstr ""
@@ -101,56 +101,51 @@ msgstr ""
 msgid "We'll send a password reset link to your inbox"
 msgstr ""
 
-#: lib/accounts/user_session_controller.ex:11
-#, elixir-autogen, elixir-format
-msgid "Account created successfully!"
-msgstr ""
-
-#: lib/accounts/user_session_controller.ex:40
+#: lib/accounts/user_session_controller.ex:34
 #, elixir-autogen, elixir-format
 msgid "Invalid email or password."
 msgstr ""
 
-#: lib/accounts/user_session_controller.ex:17
+#: lib/accounts/user_session_controller.ex:13
 #, elixir-autogen, elixir-format
 msgid "Password updated successfully!"
 msgstr ""
 
-#: lib/accounts/user_auth_plug.ex:167
-#: lib/accounts/user_auth_plug.ex:218
+#: lib/accounts/user_auth_plug.ex:165
+#: lib/accounts/user_auth_plug.ex:214
 #, elixir-autogen, elixir-format
 msgid "You must log in to access this page."
 msgstr ""
 
-#: lib/accounts/user_live/settings.html.heex:72
+#: lib/accounts/user_live/settings.html.heex:45
 #, elixir-autogen, elixir-format
 msgid "Change Email"
 msgstr ""
 
-#: lib/accounts/user_live/settings.html.heex:116
+#: lib/accounts/user_live/settings.html.heex:77
 #, elixir-autogen, elixir-format
 msgid "Change Password"
 msgstr ""
 
-#: lib/accounts/user_live/reset_password.html.heex:20
-#: lib/accounts/user_live/settings.html.heex:110
+#: lib/accounts/user_live/reset_password.html.heex:10
+#: lib/accounts/user_live/settings.html.heex:73
 #, elixir-autogen, elixir-format
 msgid "Confirm new password"
 msgstr ""
 
-#: lib/accounts/user_live/settings.html.heex:65
-#: lib/accounts/user_live/settings.html.heex:93
+#: lib/accounts/user_live/settings.html.heex:38
+#: lib/accounts/user_live/settings.html.heex:66
 #, elixir-autogen, elixir-format
 msgid "Current password"
 msgstr ""
 
-#: lib/accounts/user_live/reset_password.html.heex:12
-#: lib/accounts/user_live/settings.html.heex:102
+#: lib/accounts/user_live/reset_password.html.heex:9
+#: lib/accounts/user_live/settings.html.heex:72
 #, elixir-autogen, elixir-format
 msgid "New password"
 msgstr ""
 
-#: lib/accounts/user_live/settings.ex:106
+#: lib/accounts/user_live/settings.ex:101
 #, elixir-autogen, elixir-format
 msgid "A link to confirm your email change has been sent to the new address."
 msgstr ""
@@ -205,32 +200,32 @@ msgstr ""
 msgid "We'll send a new confirmation link to your inbox"
 msgstr ""
 
-#: lib/accounts/user_live/login.html.heex:7
+#: lib/accounts/user_live/login.html.heex:4
 #, elixir-autogen, elixir-format
 msgid "Email or username"
 msgstr ""
 
-#: lib/accounts/user_live/registration.ex:97
+#: lib/accounts/user_live/registration.ex:92
 #, elixir-autogen, elixir-format
 msgid "By signing up, you agree to our %{privacy}."
 msgstr ""
 
-#: lib/accounts/user_live/registration.ex:101
+#: lib/accounts/user_live/registration.ex:96
 #, elixir-autogen, elixir-format
 msgid "By signing up, you agree to our %{terms} and %{privacy}."
 msgstr ""
 
-#: lib/accounts/user_live/registration.ex:93
+#: lib/accounts/user_live/registration.ex:88
 #, elixir-autogen, elixir-format
 msgid "By signing up, you agree to our %{terms}."
 msgstr ""
 
-#: lib/accounts/user_live/registration.ex:84
+#: lib/accounts/user_live/registration.ex:80
 #, elixir-autogen, elixir-format
 msgid "privacy policy"
 msgstr ""
 
-#: lib/accounts/user_live/registration.ex:80
+#: lib/accounts/user_live/registration.ex:76
 #, elixir-autogen, elixir-format
 msgid "terms of use"
 msgstr ""

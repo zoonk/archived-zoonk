@@ -21,12 +21,12 @@ msgstr ""
 msgid "Advanced"
 msgstr ""
 
-#: lib/layouts/templates/app.html.heex:149
+#: lib/layouts/templates/app.html.heex:95
 #, elixir-autogen, elixir-format
 msgid "All lessons"
 msgstr ""
 
-#: lib/content/course_live/lesson_completed.html.heex:41
+#: lib/content/course_live/lesson_completed.html.heex:34
 #, elixir-autogen, elixir-format
 msgid "Back to the course"
 msgstr ""
@@ -36,27 +36,27 @@ msgstr ""
 msgid "Beginner"
 msgstr ""
 
-#: lib/content/course_live/play.html.heex:59
+#: lib/content/course_live/play.html.heex:53
 #, elixir-autogen, elixir-format
 msgid "Confirming..."
 msgstr ""
 
-#: lib/layouts/templates/app.html.heex:156
+#: lib/layouts/templates/app.html.heex:101
 #, elixir-autogen, elixir-format
 msgid "Content"
 msgstr ""
 
-#: lib/content/course_live/components/lesson_step.ex:48
+#: lib/content/course_live/components/lesson_step.ex:44
 #, elixir-autogen, elixir-format
 msgid "Correct answer: %{title}."
 msgstr ""
 
-#: lib/layouts/templates/app.html.heex:132
+#: lib/layouts/templates/app.html.heex:82
 #, elixir-autogen, elixir-format
 msgid "Delete course"
 msgstr ""
 
-#: lib/layouts/templates/app.html.heex:177
+#: lib/layouts/templates/app.html.heex:122
 #, elixir-autogen, elixir-format
 msgid "Delete lesson"
 msgstr ""
@@ -96,7 +96,7 @@ msgstr ""
 msgid "Illustration of a green alien"
 msgstr ""
 
-#: lib/layouts/templates/app.html.heex:163
+#: lib/layouts/templates/app.html.heex:108
 #, elixir-autogen, elixir-format
 msgid "Information"
 msgstr ""
@@ -106,12 +106,12 @@ msgstr ""
 msgid "Intermediate"
 msgstr ""
 
-#: lib/layouts/templates/app.html.heex:142
+#: lib/layouts/templates/app.html.heex:92
 #, elixir-autogen, elixir-format
 msgid "Manage lesson"
 msgstr ""
 
-#: lib/content/course_live/play.html.heex:66
+#: lib/content/course_live/play.html.heex:56
 #, elixir-autogen, elixir-format
 msgid "Next step"
 msgstr ""
@@ -136,7 +136,7 @@ msgstr ""
 msgid "Request to join"
 msgstr ""
 
-#: lib/content/course_live/components/lesson_step.ex:40
+#: lib/content/course_live/components/lesson_step.ex:35
 #, elixir-autogen, elixir-format
 msgid "That's incorrect."
 msgstr ""
@@ -146,12 +146,12 @@ msgstr ""
 msgid "There's room for improvement"
 msgstr ""
 
-#: lib/content/course_live/play.ex:78
+#: lib/content/course_live/play.ex:75
 #, elixir-autogen, elixir-format
 msgid "Unable to complete lesson"
 msgstr ""
 
-#: lib/content/course_live/play.ex:51
+#: lib/content/course_live/play.ex:49
 #, elixir-autogen, elixir-format
 msgid "Unable to select option"
 msgstr ""
@@ -161,7 +161,7 @@ msgstr ""
 msgid "Very good!"
 msgstr ""
 
-#: lib/content/course_live/components/lesson_step.ex:40
+#: lib/content/course_live/components/lesson_step.ex:35
 #, elixir-autogen, elixir-format
 msgid "Well done!"
 msgstr ""
@@ -171,27 +171,27 @@ msgstr ""
 msgid "You got %{correct} out of %{total} answers right."
 msgstr ""
 
-#: lib/content/course_live/components/lesson_step.ex:44
+#: lib/content/course_live/components/lesson_step.ex:40
 #, elixir-autogen, elixir-format
 msgid "You selected: %{title}. %{feedback}"
 msgstr ""
 
-#: lib/layouts/templates/app.html.heex:90
+#: lib/layouts/templates/app.html.heex:40
 #, elixir-autogen, elixir-format
 msgid "Course page"
 msgstr ""
 
-#: lib/content/course_live/view.html.heex:41
+#: lib/content/course_live/view.html.heex:39
 #, elixir-autogen, elixir-format
 msgid "Lesson cover"
 msgstr ""
 
-#: lib/layouts/templates/app.html.heex:71
+#: lib/layouts/templates/app.html.heex:30
 #, elixir-autogen, elixir-format
 msgid "Manage courses"
 msgstr ""
 
-#: lib/content/course_live/play.html.heex:10
+#: lib/content/course_live/play.html.heex:8
 #, elixir-autogen, elixir-format
 msgid "Your progress in this lesson will be lost. Would you like to quit?"
 msgstr ""

@@ -549,6 +549,17 @@ defmodule Uneebee.Content do
   end
 
   @doc """
+  Get the next step based on the order from the previous one.
+  ## Examples
+      iex> get_next_step(%Lesson{}, 1)
+      %LessonStep{}
+  """
+  @spec get_next_step(Lesson.t(), non_neg_integer()) :: LessonStep.t() | nil
+  def get_next_step(%Lesson{} = lesson, order) do
+    LessonStep |> where([ls], ls.lesson_id == ^lesson.id and ls.order == ^order + 1) |> preload(:options) |> Repo.one()
+  end
+
+  @doc """
   Get the count of lesson steps.
 
   ## Examples
