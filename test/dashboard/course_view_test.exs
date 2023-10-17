@@ -4,6 +4,8 @@ defmodule UneebeeWeb.DashboardCourseViewLiveTest do
   import Phoenix.LiveViewTest
   import Uneebee.Fixtures.Content
 
+  alias Uneebee.Content
+
   describe "/dashboard/c/:slug (non-authenticated users)" do
     setup :set_school
 
@@ -63,6 +65,28 @@ defmodule UneebeeWeb.DashboardCourseViewLiveTest do
 
       assert has_element?(updated_lv, "dt", "Lesson 1")
     end
+
+    test "publishes a course", %{conn: conn, course: course} do
+      Content.update_course(course, %{published?: false})
+
+      {:ok, lv, _html} = live(conn, "/dashboard/c/#{course.slug}")
+
+      assert lv |> element("button", "Publish") |> render_click() =~ "Unpublish"
+
+      updated_course = Content.get_course!(course.id)
+      assert updated_course.published?
+    end
+
+    test "unpublishes a course", %{conn: conn, course: course} do
+      Content.update_course(course, %{published?: true})
+
+      {:ok, lv, _html} = live(conn, "/dashboard/c/#{course.slug}")
+
+      assert lv |> element("button", "Unpublish") |> render_click() =~ "Publish"
+
+      updated_course = Content.get_course!(course.id)
+      refute updated_course.published?
+    end
   end
 
   defp assert_course_view(conn, course) do
@@ -71,6 +95,7 @@ defmodule UneebeeWeb.DashboardCourseViewLiveTest do
     {:ok, lv, _html} = live(conn, "/dashboard/c/#{course.slug}")
 
     assert has_element?(lv, "h1", course.name)
+    assert has_element?(lv, ~s|li[aria-current=page] span:fl-icontains("course page")|)
 
     Enum.each(lessons, fn lesson -> assert has_element?(lv, "dt", lesson.name) end)
   end

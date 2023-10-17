@@ -87,14 +87,13 @@ defmodule UneebeeWeb.DashboardCourseEditLiveTest do
 
       assert has_element?(lv, ~s|li[aria-current="page"] span:fl-icontains("privacy")|)
 
-      attrs = %{public?: false, published?: false}
+      attrs = %{public?: false}
 
       result = lv |> form(@course_form, course: attrs) |> render_submit()
       assert result =~ "Course updated successfully!"
 
       updated_course = Content.get_course_by_slug!(course.slug, school.id)
       assert updated_course.public? == attrs.public?
-      assert updated_course.published? == attrs.published?
     end
   end
 

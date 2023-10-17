@@ -220,7 +220,7 @@ msgstr "Nível"
 msgid "Private"
 msgstr "Privado"
 
-#: lib/dashboard/courses/course_view.html.heex:32
+#: lib/dashboard/courses/course_view.html.heex:34
 #, elixir-autogen, elixir-format
 msgid "Published"
 msgstr "Publicado"
@@ -230,12 +230,12 @@ msgstr "Publicado"
 msgid "Type CONFIRM to delete %{name}."
 msgstr "Digite CONFIRMAR para apagar %{name}."
 
-#: lib/dashboard/courses/course_view.html.heex:36
+#: lib/dashboard/courses/course_view.html.heex:38
 #, elixir-autogen, elixir-format
 msgid "Unpublished"
 msgstr "Despublicado"
 
-#: lib/dashboard/courses/course_view.html.heex:11
+#: lib/dashboard/courses/course_view.html.heex:13
 #, elixir-autogen, elixir-format
 msgid "+ Lesson"
 msgstr "+ Aula"
@@ -265,7 +265,7 @@ msgstr "Marque esta alternativa se ela for a resposta correta."
 msgid "Could not add option!"
 msgstr "Não foi possível adicionar a alternativa!"
 
-#: lib/dashboard/courses/course_view.ex:49
+#: lib/dashboard/courses/course_view.ex:50
 #, elixir-autogen, elixir-format
 msgid "Could not change the lesson order!"
 msgstr "Não foi possível alterar a ordem da aula!"
@@ -275,7 +275,7 @@ msgstr "Não foi possível alterar a ordem da aula!"
 msgid "Could not change the step order!"
 msgstr "Não foi possível alterar a ordem da etapa!"
 
-#: lib/dashboard/courses/course_view.ex:38
+#: lib/dashboard/courses/course_view.ex:39
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Could not create lesson!"
 msgstr "Não foi possível criar a aula!"
@@ -367,7 +367,7 @@ msgstr "Apagar aula"
 msgid "Delete option"
 msgstr "Apagar alternativa"
 
-#: lib/dashboard/courses/course_view.ex:28
+#: lib/dashboard/courses/course_view.ex:29
 #, elixir-autogen, elixir-format
 msgid "Description for lesson %{order}. You should update this."
 msgstr "Descrição para a aula %{order}. Você deve atualizar isso."
@@ -377,7 +377,7 @@ msgstr "Descrição para a aula %{order}. Você deve atualizar isso."
 msgid "Details"
 msgstr "Detalhes"
 
-#: lib/dashboard/courses/course_view.html.heex:15
+#: lib/dashboard/courses/course_view.html.heex:17
 #, elixir-autogen, elixir-format
 msgid "Drag the lessons to change their order"
 msgstr "Arraste as aulas para alterar a ordem"
@@ -403,17 +403,12 @@ msgstr "Está correto?"
 msgid "Is public?"
 msgstr "É público?"
 
-#: lib/dashboard/courses/course_edit.html.heex:36
-#, elixir-autogen, elixir-format, fuzzy
-msgid "Is published?"
-msgstr "Publicado?"
-
-#: lib/dashboard/courses/course_view.ex:27
+#: lib/dashboard/courses/course_view.ex:28
 #, elixir-autogen, elixir-format
 msgid "Lesson %{order}"
 msgstr "Aula %{order}"
 
-#: lib/dashboard/courses/course_view.html.heex:24
+#: lib/dashboard/courses/course_view.html.heex:26
 #, elixir-autogen, elixir-format
 msgid "Lesson cover"
 msgstr "Capa da aula"
@@ -443,6 +438,7 @@ msgstr "Feedback da alternativa"
 msgid "Option title"
 msgstr "Título da alternativa"
 
+#: lib/dashboard/courses/components/course_publish.ex:15
 #: lib/dashboard/lessons/components/lesson_publish.ex:15
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Publish"
@@ -453,6 +449,7 @@ msgstr "Publicar"
 msgid "Remove step"
 msgstr "Remover etapa"
 
+#: lib/dashboard/courses/components/course_publish.ex:19
 #: lib/dashboard/lessons/components/lesson_publish.ex:19
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Unpublish"
@@ -463,7 +460,7 @@ msgstr "Despublicar"
 msgid "Untitled option"
 msgstr "Alternativa sem título"
 
-#: lib/dashboard/courses/course_edit.html.heex:42
+#: lib/dashboard/courses/course_edit.html.heex:34
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Update course"
 msgstr "Atualizar curso"
@@ -493,11 +490,6 @@ msgstr "Você está prestes a remover %{username} do seu curso. Eles não poder�
 msgid "When checked this course will be visible to all students from your school. Keep it unchecked if you want this course to be visible only to invited students."
 msgstr "Ao marcar esta opção, este curso será visível para todos os alunos da sua escola. Mantenha desmarcada se você quiser que o curso seja visível apenas para os alunos convidados."
 
-#: lib/dashboard/courses/course_edit.html.heex:37
-#, elixir-autogen, elixir-format
-msgid "When checked, this course will be visible to students. Keep it unchecked if this is a draft course that shouldn't be available yet."
-msgstr "Ao marcar esta opção, este curso será visível para os alunos. Mantenha desmarcada se este for um curso rascunho que ainda não deve estar disponível."
-
 #: lib/dashboard/schools/school_edit.html.heex:8
 #, elixir-autogen, elixir-format
 msgid "Privacy policy URL"
@@ -518,7 +510,7 @@ msgstr "Link dos termos de uso"
 msgid "Drag the steps to change their order:"
 msgstr "Arraste as etapas para alterar a ordem:"
 
-#: lib/dashboard/courses/course_view.ex:33
+#: lib/dashboard/courses/course_view.ex:34
 #: lib/dashboard/lessons/components/lesson_switch.ex:47
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Untitled step"
@@ -568,3 +560,8 @@ msgstr "Editar imagem"
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Edit step image"
 msgstr "Editar imagem da etapa"
+
+#: lib/dashboard/courses/components/course_publish.ex:36
+#, elixir-autogen, elixir-format, fuzzy
+msgid "Could not update course!"
+msgstr "Não foi possível atualizar o curso!"

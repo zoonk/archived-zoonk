@@ -1,8 +1,10 @@
-<header class="bg-gray-light3x rounded-2xl">
-  <div class="p-4">
-    <h1 class="text-gray-dark text-xl font-bold"><%= @course.name %></h1>
-    <h2 class="text-gray"><%= @course.description %></h2>
+<header class="bg-gray-light3x flex justify-between rounded-2xl p-4">
+  <div class="min-w-0">
+    <h1 class="text-gray-dark truncate text-xl font-bold"><%= @course.name %></h1>
+    <h2 class="text-gray truncate"><%= @course.description %></h2>
   </div>
+
+  <.live_component module={CoursePublish} id={:course_publish} course={@course} />
 </header>
 
 <section class="my-4 flex flex-col justify-between gap-2 sm:flex-row sm:items-center">

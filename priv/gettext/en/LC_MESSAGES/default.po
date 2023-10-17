@@ -62,7 +62,7 @@ msgstr ""
 
 #: lib/accounts/user_live/registration.html.heex:23
 #: lib/accounts/user_live/settings.html.heex:26
-#: lib/dashboard/courses/course_edit.html.heex:41
+#: lib/dashboard/courses/course_edit.html.heex:33
 #: lib/dashboard/courses/course_new.html.heex:22
 #: lib/dashboard/lessons/lesson_edit.html.heex:6
 #: lib/dashboard/schools/school_edit.html.heex:11
@@ -195,7 +195,7 @@ msgid "All courses"
 msgstr ""
 
 #: lib/components/delete_item.ex:33
-#: lib/dashboard/courses/course_edit.html.heex:46
+#: lib/dashboard/courses/course_edit.html.heex:38
 #: lib/dashboard/lessons/lesson_edit.html.heex:11
 #, elixir-autogen, elixir-format
 msgid "Cancel"

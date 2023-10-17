@@ -29,14 +29,6 @@
     }
   />
 
-  <.input
-    :if={@live_action == :privacy}
-    field={@form[:published?]}
-    type="checkbox"
-    label={dgettext("orgs", "Is published?")}
-    helper={dgettext("orgs", "When checked, this course will be visible to students. Keep it unchecked if this is a draft course that shouldn't be available yet.")}
-  />
-
   <:actions>
     <.button icon="tabler-table-export" type="submit" phx-disable-with={gettext("Saving...")}>
       <%= dgettext("orgs", "Update course") %>

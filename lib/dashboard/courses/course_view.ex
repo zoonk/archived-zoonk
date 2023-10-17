@@ -3,6 +3,7 @@ defmodule UneebeeWeb.Live.Dashboard.CourseView do
   use UneebeeWeb, :live_view
 
   alias Uneebee.Content
+  alias UneebeeWeb.Components.Dashboard.CoursePublish
 
   @impl Phoenix.LiveView
   def mount(_params, _session, socket) do
