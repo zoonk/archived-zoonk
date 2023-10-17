@@ -586,9 +586,20 @@ defmodule Uneebee.ContentTest do
 
   describe "delete_lesson_step/1" do
     test "deletes a lesson step" do
-      lesson_step = lesson_step_fixture()
+      lesson = lesson_fixture()
+      lesson_step_fixture(%{lesson: lesson})
+      lesson_step = lesson_step_fixture(%{lesson: lesson})
       assert {:ok, %LessonStep{}} = Content.delete_lesson_step(lesson_step.id)
       assert_raise Ecto.NoResultsError, fn -> Uneebee.Repo.get!(LessonStep, lesson_step.id) end
+    end
+
+    test "cannot delete the last lesson step" do
+      lesson = lesson_fixture()
+      lesson_step = lesson_step_fixture(%{lesson: lesson})
+
+      assert {:error, %Ecto.Changeset{} = changeset} = Content.delete_lesson_step(lesson_step.id)
+      assert "cannot delete the last step" in errors_on(changeset).base
+      assert Content.get_lesson_step_by_order(lesson, lesson_step.order) == lesson_step
     end
   end
 

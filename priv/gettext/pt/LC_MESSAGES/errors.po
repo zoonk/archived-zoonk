@@ -191,3 +191,8 @@ msgstr "A sua matrícula está pendente de aprovação"
 #, elixir-autogen, elixir-format, fuzzy
 msgid "must start with https://"
 msgstr "deve começar com https://"
+
+#: lib/content/content_context.ex:555
+#, elixir-autogen, elixir-format, fuzzy
+msgid "cannot delete the only step"
+msgstr "não pode excluir a única etapa"

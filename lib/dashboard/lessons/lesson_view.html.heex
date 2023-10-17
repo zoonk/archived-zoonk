@@ -11,7 +11,7 @@
   </.button>
 </div>
 
-<footer class="mt-8">
+<footer :if={@step_count > 1} class="mt-8">
   <.button phx-click="delete-step" phx-value-step-id={@selected_step.id} icon="tabler-trash-x" color={:alert_light} data-confirm={gettext("Are you sure?")}>
     <%= dgettext("orgs", "Remove step") %>
   </.button>

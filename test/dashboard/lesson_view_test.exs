@@ -96,6 +96,15 @@ defmodule UneebeeWeb.DashboardLessonViewLiveTest do
       assert_raise Ecto.NoResultsError, fn -> Uneebee.Repo.get!(LessonStep, lesson_step.id) end
     end
 
+    test "hides the remove step button when it's the only step", %{conn: conn, course: course} do
+      lesson = lesson_fixture(%{course_id: course.id})
+      lesson_step_fixture(%{lesson: lesson})
+
+      {:ok, lv, _html} = live(conn, ~p"/dashboard/c/#{course.slug}/l/#{lesson.id}/s/1")
+
+      refute has_element?(lv, ~s|button:fl-contains("Remove step")|)
+    end
+
     test "updates a step", %{conn: conn, course: course} do
       lesson = lesson_fixture(%{course_id: course.id})
       lesson_step_fixture(%{lesson_id: lesson.id, order: 1, content: "Text step 1"})

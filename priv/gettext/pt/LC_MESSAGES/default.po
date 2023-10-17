@@ -126,8 +126,8 @@ msgstr "Sobrenome"
 
 #: lib/accounts/user_live/settings.html.heex:26
 #: lib/components/upload.ex:49
+#: lib/dashboard/lessons/components/option_list.ex:79
 #: lib/dashboard/lessons/lesson_edit.html.heex:7
-#: lib/dashboard/lessons/lesson_view.html.heex:87
 #: lib/dashboard/schools/school_edit.html.heex:11
 #, elixir-autogen, elixir-format
 msgid "Save"
@@ -197,7 +197,6 @@ msgstr "Todos os cursos"
 #: lib/components/delete_item.ex:33
 #: lib/dashboard/courses/course_edit.html.heex:46
 #: lib/dashboard/lessons/lesson_edit.html.heex:11
-#: lib/dashboard/lessons/lesson_view.html.heex:90
 #, elixir-autogen, elixir-format
 msgid "Cancel"
 msgstr "Cancelar"
@@ -305,8 +304,8 @@ msgstr "Houve um erro ao enviar sua opinião. Por favor, tente novamente."
 msgid "We are always looking for ways to improve our app. Please send us your feedback."
 msgstr "Estamos sempre procurando maneiras de melhorar nosso aplicativo. Por favor, nos envie sua opinião."
 
-#: lib/dashboard/lessons/lesson_view.html.heex:42
-#: lib/dashboard/lessons/lesson_view.html.heex:55
+#: lib/dashboard/lessons/components/option_list.ex:44
+#: lib/dashboard/lessons/lesson_view.html.heex:15
 #, elixir-autogen, elixir-format
 msgid "Are you sure?"
 msgstr "Tem certeza?"

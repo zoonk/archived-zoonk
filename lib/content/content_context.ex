@@ -3,6 +3,7 @@ defmodule Uneebee.Content do
   Content context.
   """
   import Ecto.Query, warn: false
+  import UneebeeWeb.Gettext
 
   alias Uneebee.Accounts
   alias Uneebee.Accounts.User
@@ -545,8 +546,17 @@ defmodule Uneebee.Content do
   """
   @spec delete_lesson_step(non_neg_integer()) :: lesson_step_changeset()
   def delete_lesson_step(lesson_step_id) do
-    LessonStep |> Repo.get!(lesson_step_id) |> Repo.delete()
+    step = Repo.get!(LessonStep, lesson_step_id)
+    count = count_lesson_steps(step.lesson_id)
+    delete_lesson_step(step, count)
   end
+
+  defp delete_lesson_step(step, 1) do
+    changeset = step |> change_lesson_step() |> Ecto.Changeset.add_error(:base, dgettext("errors", "cannot delete the only step"))
+    {:error, changeset}
+  end
+
+  defp delete_lesson_step(step, _count), do: Repo.delete(step)
 
   @doc """
   List lesson steps.
