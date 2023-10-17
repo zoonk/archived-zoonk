@@ -14,7 +14,13 @@ defmodule UneebeeWeb.Components.Dashboard.StepImage do
   def render(assigns) do
     ~H"""
     <div>
-      <.link :if={@step.image} patch={~p"/dashboard/c/#{@course.slug}/l/#{@lesson.id}/s/#{@step.order}/image"} class="block w-full sm:w-1/3">
+      <.link
+        :if={@step.image}
+        id="step-img-link"
+        aria-label={dgettext("orgs", "Edit step image")}
+        patch={~p"/dashboard/c/#{@course.slug}/l/#{@lesson.id}/s/#{@step.order}/image"}
+        class="block w-full sm:w-1/3"
+      >
         <img src={@step.image} class="w-full" />
       </.link>
 

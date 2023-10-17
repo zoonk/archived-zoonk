@@ -255,12 +255,12 @@ msgstr ""
 msgid "All answers were correct."
 msgstr ""
 
-#: lib/dashboard/lessons/components/option_list.ex:75
+#: lib/dashboard/lessons/components/option_list.ex:79
 #, elixir-autogen, elixir-format
 msgid "Check this option if this is the correct answer."
 msgstr ""
 
-#: lib/dashboard/lessons/lesson_view.ex:67
+#: lib/dashboard/lessons/lesson_view.ex:70
 #, elixir-autogen, elixir-format
 msgid "Could not add option!"
 msgstr ""
@@ -295,12 +295,12 @@ msgstr ""
 msgid "Could not delete lesson!"
 msgstr ""
 
-#: lib/dashboard/lessons/components/option_list.ex:131
+#: lib/dashboard/lessons/components/option_list.ex:130
 #, elixir-autogen, elixir-format
 msgid "Could not delete option!"
 msgstr ""
 
-#: lib/dashboard/lessons/lesson_view.ex:52
+#: lib/dashboard/lessons/lesson_view.ex:55
 #, elixir-autogen, elixir-format
 msgid "Could not delete step!"
 msgstr ""
@@ -317,8 +317,8 @@ msgstr ""
 msgid "Could not update lesson!"
 msgstr ""
 
-#: lib/dashboard/lessons/components/option_list.ex:117
-#: lib/dashboard/lessons/lesson_view.ex:95
+#: lib/dashboard/lessons/components/option_list.ex:116
+#: lib/dashboard/lessons/lesson_view.ex:98
 #, elixir-autogen, elixir-format
 msgid "Could not update option!"
 msgstr ""
@@ -362,7 +362,7 @@ msgstr ""
 msgid "Delete lesson"
 msgstr ""
 
-#: lib/dashboard/lessons/components/option_list.ex:43
+#: lib/dashboard/lessons/components/option_list.ex:47
 #, elixir-autogen, elixir-format
 msgid "Delete option"
 msgstr ""
@@ -393,7 +393,7 @@ msgstr ""
 msgid "Friendly identifier used to access your course. I.e. my-course-name"
 msgstr ""
 
-#: lib/dashboard/lessons/components/option_list.ex:74
+#: lib/dashboard/lessons/components/option_list.ex:78
 #, elixir-autogen, elixir-format
 msgid "Is correct?"
 msgstr ""
@@ -433,12 +433,12 @@ msgstr ""
 msgid "Lesson updated successfully!"
 msgstr ""
 
-#: lib/dashboard/lessons/components/option_list.ex:67
+#: lib/dashboard/lessons/components/option_list.ex:71
 #, elixir-autogen, elixir-format
 msgid "Option feedback"
 msgstr ""
 
-#: lib/dashboard/lessons/components/option_list.ex:62
+#: lib/dashboard/lessons/components/option_list.ex:66
 #, elixir-autogen, elixir-format
 msgid "Option title"
 msgstr ""
@@ -458,7 +458,7 @@ msgstr ""
 msgid "Unpublish"
 msgstr ""
 
-#: lib/dashboard/lessons/lesson_view.ex:60
+#: lib/dashboard/lessons/lesson_view.ex:63
 #, elixir-autogen, elixir-format
 msgid "Untitled option"
 msgstr ""
@@ -468,7 +468,7 @@ msgstr ""
 msgid "Update course"
 msgstr ""
 
-#: lib/dashboard/lessons/components/option_list.ex:55
+#: lib/dashboard/lessons/components/option_list.ex:59
 #, elixir-autogen, elixir-format
 msgid "Update option"
 msgstr ""
@@ -478,7 +478,7 @@ msgstr ""
 msgid "You'll be able to edit this information and add content to your course later."
 msgstr ""
 
-#: lib/dashboard/lessons/components/option_list.ex:68
+#: lib/dashboard/lessons/components/option_list.ex:72
 #, elixir-autogen, elixir-format
 msgid "Feedback message displayed after a user answers this question. You can provide some additional context on why this is wrong or correct."
 msgstr ""
@@ -534,12 +534,12 @@ msgstr ""
 msgid "Add image to step"
 msgstr ""
 
-#: lib/dashboard/lessons/components/step_image.ex:26
+#: lib/dashboard/lessons/components/step_image.ex:32
 #, elixir-autogen, elixir-format
 msgid "Click to add an image to this step."
 msgstr ""
 
-#: lib/dashboard/lessons/lesson_view.ex:80
+#: lib/dashboard/lessons/lesson_view.ex:83
 #, elixir-autogen, elixir-format
 msgid "Could not update image!"
 msgstr ""
@@ -557,4 +557,14 @@ msgstr ""
 #: lib/dashboard/lessons/components/step_content.ex:28
 #, elixir-autogen, elixir-format
 msgid "Update step"
+msgstr ""
+
+#: lib/dashboard/lessons/components/option_list.ex:25
+#, elixir-autogen, elixir-format
+msgid "Edit image"
+msgstr ""
+
+#: lib/dashboard/lessons/components/step_image.ex:20
+#, elixir-autogen, elixir-format
+msgid "Edit step image"
 msgstr ""

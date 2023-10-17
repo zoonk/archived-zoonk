@@ -3,6 +3,7 @@ defmodule UneebeeWeb.DashboardLessonViewLiveTest do
 
   import Phoenix.LiveViewTest
   import Uneebee.Fixtures.Content
+  import UneebeeWeb.TestHelpers.Upload
 
   alias Uneebee.Content
   alias Uneebee.Content.LessonStep
@@ -118,6 +119,32 @@ defmodule UneebeeWeb.DashboardLessonViewLiveTest do
       assert Content.get_lesson_step_by_order(lesson, 1).content == "Updated step!"
     end
 
+    test "updates a step image", %{conn: conn, course: course} do
+      lesson = lesson_fixture(%{course_id: course.id})
+      lesson_step_fixture(%{lesson_id: lesson.id, order: 1, content: "Text step 1", image: "https://someimage.png"})
+
+      {:ok, lv, _html} = live(conn, ~p"/dashboard/c/#{course.slug}/l/#{lesson.id}/s/1")
+
+      lv |> element("#step-img-link") |> render_click()
+      assert_file_upload(lv, "step_img_upload")
+
+      updated_step = Content.get_lesson_step_by_order(lesson, 1)
+      assert String.starts_with?(updated_step.image, "/uploads")
+    end
+
+    test "adds an image to a step", %{conn: conn, course: course} do
+      lesson = lesson_fixture(%{course_id: course.id})
+      lesson_step_fixture(%{lesson_id: lesson.id, order: 1, content: "Text step 1", image: nil})
+
+      {:ok, lv, _html} = live(conn, ~p"/dashboard/c/#{course.slug}/l/#{lesson.id}/s/1")
+      lv |> element("a", "Click to add an image to this step.") |> render_click()
+
+      assert_file_upload(lv, "step_img_upload")
+
+      updated_step = Content.get_lesson_step_by_order(lesson, 1)
+      assert String.starts_with?(updated_step.image, "/uploads")
+    end
+
     test "adds a text step", %{conn: conn, course: course} do
       lesson = lesson_fixture(%{course_id: course.id})
 
@@ -190,6 +217,20 @@ defmodule UneebeeWeb.DashboardLessonViewLiveTest do
 
       assert has_element?(lv, ~s|a:fl-contains("Updated option!")|)
       assert Content.get_step_option!(option.id).title == "Updated option!"
+    end
+
+    test "updates an option image", %{conn: conn, course: course} do
+      lesson = lesson_fixture(%{course_id: course.id})
+      lesson_step = lesson_step_fixture(%{lesson_id: lesson.id, order: 1})
+      option = step_option_fixture(%{lesson_step_id: lesson_step.id, title: "New option 1"})
+
+      {:ok, lv, _html} = live(conn, ~p"/dashboard/c/#{course.slug}/l/#{lesson.id}/s/1")
+
+      lv |> element("#option-#{option.id}-image-link") |> render_click()
+      assert_file_upload(lv, "option_img")
+
+      updated_option = Content.get_step_option!(option.id)
+      assert String.starts_with?(updated_option.image, "/uploads")
     end
   end
 

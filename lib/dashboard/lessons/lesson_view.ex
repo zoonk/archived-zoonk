@@ -29,10 +29,13 @@ defmodule UneebeeWeb.Live.Dashboard.LessonView do
     socket =
       socket
       |> assign(:selected_step, step)
-      |> assign(:option_id, params["option_id"])
+      |> get_option(params["option_id"])
 
     {:noreply, socket}
   end
+
+  defp get_option(socket, nil), do: assign(socket, :selected_option, nil)
+  defp get_option(socket, option_id), do: assign(socket, :selected_option, Content.get_step_option!(option_id))
 
   @impl Phoenix.LiveView
   def handle_event("delete-step", params, socket) do

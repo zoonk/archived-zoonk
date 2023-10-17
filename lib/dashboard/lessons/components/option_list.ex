@@ -11,7 +11,7 @@ defmodule UneebeeWeb.Components.Dashboard.OptionList do
   attr :action, :atom, default: nil
   attr :course, Course, required: true
   attr :lesson, Lesson, required: true
-  attr :option_id, :string, default: nil
+  attr :option, StepOption, default: nil
   attr :step, LessonStep, required: true
 
   @impl Phoenix.LiveComponent
@@ -20,7 +20,11 @@ defmodule UneebeeWeb.Components.Dashboard.OptionList do
     <div>
       <ul class="mt-8 space-y-2">
         <li :for={option <- @step.options} class="flex items-center gap-2">
-          <.link id={"option-#{option.id}-image-link"} patch={~p"/dashboard/c/#{@course.slug}/l/#{@lesson.id}/s/#{@step.order}/o/#{option.id}/image"}>
+          <.link
+            id={"option-#{option.id}-image-link"}
+            aria-label={dgettext("orgs", "Edit image")}
+            patch={~p"/dashboard/c/#{@course.slug}/l/#{@lesson.id}/s/#{@step.order}/o/#{option.id}/image"}
+          >
             <.avatar src={option.image} alt={option.title} />
           </.link>
 
@@ -86,18 +90,13 @@ defmodule UneebeeWeb.Components.Dashboard.OptionList do
 
   @impl Phoenix.LiveComponent
   def update(assigns, socket) do
-    socket = socket |> assign(assigns) |> get_option(assigns.option_id)
-
+    changeset = option_changeset(assigns.option)
+    socket = socket |> assign(assigns) |> assign(option_form: to_form(changeset))
     {:ok, socket}
   end
 
-  defp get_option(socket, nil), do: socket
-
-  defp get_option(socket, option_id) do
-    option = Content.get_step_option!(option_id)
-    changeset = Content.change_step_option(option)
-    socket |> assign(:selected_option, option) |> assign(:option_form, to_form(changeset))
-  end
+  defp option_changeset(nil), do: Content.change_step_option(%StepOption{})
+  defp option_changeset(option), do: Content.change_step_option(option)
 
   @impl Phoenix.LiveComponent
   def handle_event("validate-option", %{"step_option" => step_option_params}, socket) do
@@ -107,7 +106,7 @@ defmodule UneebeeWeb.Components.Dashboard.OptionList do
 
   @impl Phoenix.LiveComponent
   def handle_event("update-option", %{"step_option" => option_params}, socket) do
-    %{course: course, lesson: lesson, selected_option: option, step: step} = socket.assigns
+    %{course: course, lesson: lesson, option: option, step: step} = socket.assigns
 
     case Content.update_step_option(option, option_params) do
       {:ok, _option} ->

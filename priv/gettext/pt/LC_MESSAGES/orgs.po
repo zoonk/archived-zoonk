@@ -255,12 +255,12 @@ msgstr "Nova alternativa"
 msgid "All answers were correct."
 msgstr "Todas as respostas estavam corretas."
 
-#: lib/dashboard/lessons/components/option_list.ex:75
+#: lib/dashboard/lessons/components/option_list.ex:79
 #, elixir-autogen, elixir-format
 msgid "Check this option if this is the correct answer."
 msgstr "Marque esta alternativa se ela for a resposta correta."
 
-#: lib/dashboard/lessons/lesson_view.ex:67
+#: lib/dashboard/lessons/lesson_view.ex:70
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Could not add option!"
 msgstr "Não foi possível adicionar a alternativa!"
@@ -295,12 +295,12 @@ msgstr "Não foi possível excluir o curso!"
 msgid "Could not delete lesson!"
 msgstr "Não foi possível excluir a aula!"
 
-#: lib/dashboard/lessons/components/option_list.ex:131
+#: lib/dashboard/lessons/components/option_list.ex:130
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Could not delete option!"
 msgstr "Não foi possível excluir a alternativa!"
 
-#: lib/dashboard/lessons/lesson_view.ex:52
+#: lib/dashboard/lessons/lesson_view.ex:55
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Could not delete step!"
 msgstr "Não foi possível excluir a etapa!"
@@ -317,8 +317,8 @@ msgstr "Não foi possível atualizar a capa!"
 msgid "Could not update lesson!"
 msgstr "Não foi possível atualizar a aula!"
 
-#: lib/dashboard/lessons/components/option_list.ex:117
-#: lib/dashboard/lessons/lesson_view.ex:95
+#: lib/dashboard/lessons/components/option_list.ex:116
+#: lib/dashboard/lessons/lesson_view.ex:98
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Could not update option!"
 msgstr "Não foi possível atualizar a alternativa!"
@@ -362,7 +362,7 @@ msgstr "Capa atualizada com sucesso!"
 msgid "Delete lesson"
 msgstr "Apagar aula"
 
-#: lib/dashboard/lessons/components/option_list.ex:43
+#: lib/dashboard/lessons/components/option_list.ex:47
 #, elixir-autogen, elixir-format
 msgid "Delete option"
 msgstr "Apagar alternativa"
@@ -393,7 +393,7 @@ msgstr "Editar curso"
 msgid "Friendly identifier used to access your course. I.e. my-course-name"
 msgstr "Identificador amigável usado para acessar o curso. Ex: meu-nome-de-curso"
 
-#: lib/dashboard/lessons/components/option_list.ex:74
+#: lib/dashboard/lessons/components/option_list.ex:78
 #, elixir-autogen, elixir-format
 msgid "Is correct?"
 msgstr "Está correto?"
@@ -433,12 +433,12 @@ msgstr "Nome da aula"
 msgid "Lesson updated successfully!"
 msgstr "Aula atualizada com sucesso!"
 
-#: lib/dashboard/lessons/components/option_list.ex:67
+#: lib/dashboard/lessons/components/option_list.ex:71
 #, elixir-autogen, elixir-format
 msgid "Option feedback"
 msgstr "Feedback da alternativa"
 
-#: lib/dashboard/lessons/components/option_list.ex:62
+#: lib/dashboard/lessons/components/option_list.ex:66
 #, elixir-autogen, elixir-format
 msgid "Option title"
 msgstr "Título da alternativa"
@@ -458,7 +458,7 @@ msgstr "Remover etapa"
 msgid "Unpublish"
 msgstr "Despublicar"
 
-#: lib/dashboard/lessons/lesson_view.ex:60
+#: lib/dashboard/lessons/lesson_view.ex:63
 #, elixir-autogen, elixir-format
 msgid "Untitled option"
 msgstr "Alternativa sem título"
@@ -468,7 +468,7 @@ msgstr "Alternativa sem título"
 msgid "Update course"
 msgstr "Atualizar curso"
 
-#: lib/dashboard/lessons/components/option_list.ex:55
+#: lib/dashboard/lessons/components/option_list.ex:59
 #, elixir-autogen, elixir-format
 msgid "Update option"
 msgstr "Atualizar alternativa"
@@ -478,7 +478,7 @@ msgstr "Atualizar alternativa"
 msgid "You'll be able to edit this information and add content to your course later."
 msgstr "Você poderá editar essas informações e adicionar conteúdo ao seu curso mais tarde."
 
-#: lib/dashboard/lessons/components/option_list.ex:68
+#: lib/dashboard/lessons/components/option_list.ex:72
 #, elixir-autogen, elixir-format
 msgid "Feedback message displayed after a user answers this question. You can provide some additional context on why this is wrong or correct."
 msgstr "Menagem de feedback exibida após o usuário responder esta pergunta. Você pode fornecer algum contexto adicional sobre o porquê de estar errado ou correto."
@@ -534,12 +534,12 @@ msgstr "Uma aula tem várias etapas. Use-as para contar uma história, explicar 
 msgid "Add image to step"
 msgstr "Adicionar imagem à etapa"
 
-#: lib/dashboard/lessons/components/step_image.ex:26
+#: lib/dashboard/lessons/components/step_image.ex:32
 #, elixir-autogen, elixir-format
 msgid "Click to add an image to this step."
 msgstr "Clique para adicionar uma imagem a esta etapa."
 
-#: lib/dashboard/lessons/lesson_view.ex:80
+#: lib/dashboard/lessons/lesson_view.ex:83
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Could not update image!"
 msgstr "Não foi possível atualizar a imagem!"
@@ -558,3 +558,13 @@ msgstr "Editar etapa"
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Update step"
 msgstr "Atualizar etapa"
+
+#: lib/dashboard/lessons/components/option_list.ex:25
+#, elixir-autogen, elixir-format
+msgid "Edit image"
+msgstr "Editar imagem"
+
+#: lib/dashboard/lessons/components/step_image.ex:20
+#, elixir-autogen, elixir-format, fuzzy
+msgid "Edit step image"
+msgstr "Editar imagem da etapa"

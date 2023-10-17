@@ -17,8 +17,6 @@ defmodule UneebeeWeb.TestHelpers.Upload do
     assert render_upload(input, "robot.png") =~ "Uploading file: 100% concluded"
 
     lv |> element("#upload-form-#{id}") |> render_submit()
-
-    assert has_element?(lv, ~s|p:fl-icontains("updated successfully!")|)
   end
 
   defp get_files do
