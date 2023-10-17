@@ -21,7 +21,7 @@ defmodule Uneebee.Content.Course do
     field :language, Ecto.Enum, values: Translate.supported_locales()
     field :level, Ecto.Enum, values: CourseUtils.level_keys(), default: :beginner
     field :name, :string
-    field :public?, :boolean, default: false
+    field :public?, :boolean, default: true
     field :published?, :boolean, default: false
     field :slug, :string
 
