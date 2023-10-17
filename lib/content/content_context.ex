@@ -556,7 +556,11 @@ defmodule Uneebee.Content do
     {:error, changeset}
   end
 
-  defp delete_lesson_step(step, _count), do: Repo.delete(step)
+  defp delete_lesson_step(step, count) do
+    lesson = get_lesson!(step.lesson_id)
+    update_lesson_step_order(lesson, step.order - 1, count - 1)
+    Repo.delete(step)
+  end
 
   @doc """
   List lesson steps.

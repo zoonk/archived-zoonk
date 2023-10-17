@@ -598,8 +598,23 @@ defmodule Uneebee.ContentTest do
       lesson_step = lesson_step_fixture(%{lesson: lesson})
 
       assert {:error, %Ecto.Changeset{} = changeset} = Content.delete_lesson_step(lesson_step.id)
-      assert "cannot delete the last step" in errors_on(changeset).base
+      assert "cannot delete the only step" in errors_on(changeset).base
       assert Content.get_lesson_step_by_order(lesson, lesson_step.order) == lesson_step
+    end
+
+    test "update the order field when deleting a step" do
+      lesson = lesson_fixture()
+      lesson_step1 = lesson_step_fixture(%{lesson: lesson, order: 1, content: "Step 1"})
+      lesson_step2 = lesson_step_fixture(%{lesson: lesson, order: 2, content: "Step 2"})
+      lesson_step3 = lesson_step_fixture(%{lesson: lesson, order: 3, content: "Step 3"})
+      lesson_step4 = lesson_step_fixture(%{lesson: lesson, order: 4, content: "Step 4"})
+      lesson_step5 = lesson_step_fixture(%{lesson: lesson, order: 5, content: "Step 5"})
+
+      assert {:ok, %LessonStep{}} = Content.delete_lesson_step(lesson_step3.id)
+      assert Content.get_lesson_step_by_order(lesson, 1).id == lesson_step1.id
+      assert Content.get_lesson_step_by_order(lesson, 2).id == lesson_step2.id
+      assert Content.get_lesson_step_by_order(lesson, 3).id == lesson_step4.id
+      assert Content.get_lesson_step_by_order(lesson, 4).id == lesson_step5.id
     end
   end
 
