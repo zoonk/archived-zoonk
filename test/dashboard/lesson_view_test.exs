@@ -126,6 +126,8 @@ defmodule UneebeeWeb.DashboardLessonViewLiveTest do
       {:ok, lv, _html} = live(conn, ~p"/dashboard/c/#{course.slug}/l/#{lesson.id}/s/1")
 
       lv |> element("#step-img-link") |> render_click()
+
+      assert has_element?(lv, "button", "Remove")
       assert_file_upload(lv, "step_img_upload")
 
       updated_step = Content.get_lesson_step_by_order(lesson, 1)
@@ -137,12 +139,26 @@ defmodule UneebeeWeb.DashboardLessonViewLiveTest do
       lesson_step_fixture(%{lesson_id: lesson.id, order: 1, content: "Text step 1", image: nil})
 
       {:ok, lv, _html} = live(conn, ~p"/dashboard/c/#{course.slug}/l/#{lesson.id}/s/1")
+
       lv |> element("a", "Click to add an image to this step.") |> render_click()
 
+      refute has_element?(lv, "button", "Remove")
       assert_file_upload(lv, "step_img_upload")
 
       updated_step = Content.get_lesson_step_by_order(lesson, 1)
       assert String.starts_with?(updated_step.image, "/uploads")
+    end
+
+    test "removes an image from a step", %{conn: conn, course: course} do
+      lesson = lesson_fixture(%{course_id: course.id})
+      lesson_step_fixture(%{lesson_id: lesson.id, order: 1, content: "Text step 1", image: "https://someimage.png"})
+
+      {:ok, lv, _html} = live(conn, ~p"/dashboard/c/#{course.slug}/l/#{lesson.id}/s/1/image")
+
+      lv |> element("button", "Remove") |> render_click()
+
+      updated_step = Content.get_lesson_step_by_order(lesson, 1)
+      assert updated_step.image == nil
     end
 
     test "adds a text step", %{conn: conn, course: course} do
@@ -231,6 +247,19 @@ defmodule UneebeeWeb.DashboardLessonViewLiveTest do
 
       updated_option = Content.get_step_option!(option.id)
       assert String.starts_with?(updated_option.image, "/uploads")
+    end
+
+    test "removes an image from an option", %{conn: conn, course: course} do
+      lesson = lesson_fixture(%{course_id: course.id})
+      lesson_step = lesson_step_fixture(%{lesson_id: lesson.id, order: 1})
+      option = step_option_fixture(%{lesson_step_id: lesson_step.id, title: "New option 1", image: "https://someimage.png"})
+
+      {:ok, lv, _html} = live(conn, ~p"/dashboard/c/#{course.slug}/l/#{lesson.id}/s/1/o/#{option.id}/image")
+
+      lv |> element("button", "Remove") |> render_click()
+
+      updated_option = Content.get_step_option!(option.id)
+      assert updated_option.image == nil
     end
   end
 

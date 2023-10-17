@@ -45,9 +45,15 @@ defmodule UneebeeWeb.Components.Upload do
 
         <p :for={err <- upload_errors(@uploads.file)}><%= error_to_string(err) %></p>
 
-        <.button icon="tabler-cloud-upload" type="submit" disabled={is_nil(entry)} class="w-max">
-          <%= gettext("Save") %>
-        </.button>
+        <div class="flex gap-2">
+          <.button icon="tabler-cloud-upload" type="submit" disabled={is_nil(entry)}>
+            <%= gettext("Save") %>
+          </.button>
+
+          <.button :if={@current_img} phx-click="remove" phx-target={@myself} icon="tabler-trash" type="button" color={:alert_light}>
+            <%= gettext("Remove") %>
+          </.button>
+        </div>
       </form>
     </section>
     """
@@ -68,12 +74,19 @@ defmodule UneebeeWeb.Components.Upload do
     {:noreply, cancel_upload(socket, :file, ref)}
   end
 
+  @impl Phoenix.LiveComponent
   def handle_event("save", _params, socket) do
     case consume_uploaded_entries(socket, :file, &consume_entry/2) do
       [] -> :ok
       [upload_path] -> notify_parent(socket, upload_path)
     end
 
+    {:noreply, socket}
+  end
+
+  @impl Phoenix.LiveComponent
+  def handle_event("remove", _params, socket) do
+    notify_parent(socket, nil)
     {:noreply, socket}
   end
 
