@@ -141,7 +141,9 @@ defmodule UneebeeWeb.DashboardCourseEditLiveTest do
     assert_course_description(lv)
     assert_course_slug(lv, school)
 
-    attrs = %{description: "new description", language: :pt, level: :advanced, name: "new name", slug: "new-slug"}
+    long_description = String.duplicate("a", 600)
+
+    attrs = %{description: long_description, language: :pt, level: :advanced, name: "new name", slug: "new-slug"}
 
     result = lv |> form(@course_form, course: attrs) |> render_submit()
     assert result =~ "Course updated successfully!"
