@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="csrf-token" content={get_csrf_token()} />
 
-    <.live_title><%= assigns[:page_title] || "UneeBee" %></.live_title>
+    <.live_title><%= assigns[:page_title] || school_name(assigns.school) %></.live_title>
 
     <link phx-track-static rel="stylesheet" href={~p"/assets/app.css"} />
     <script defer phx-track-static type="text/javascript" src={~p"/assets/app.js"}>
@@ -18,6 +18,15 @@
     <link rel="mask-icon" href={~p"/favicon/safari-pinned-tab.svg"} color="#ffcd01" />
     <meta name="msapplication-TileColor" content="#ffcd01" />
     <meta name="theme-color" content="#ffcd01" />
+
+    <meta :if={is_nil(assigns[:page_description])} name="robots" content="noindex" />
+    <meta :if={assigns[:page_description]} name="description" content={assigns[:page_description]} />
+
+    <meta property="og:type" content="school" />
+    <meta property="og:site_name" content={school_name(assigns.school)} />
+    <meta :if={assigns[:og_title]} property="og:title" content={assigns[:og_title]} />
+    <meta :if={assigns[:og_image]} property="og:image" content={assigns[:og_image]} />
+    <meta :if={assigns[:og_description]} property="og:description" content={assigns[:og_description]} />
   </head>
 
   <body class="bg-white antialiased"><%= @inner_content %></body>

@@ -15,6 +15,8 @@ defmodule UneebeeWeb.Live.Content.Course.View do
     socket =
       socket
       |> assign(:page_title, course.name)
+      |> assign(:page_description, course.description)
+      |> assign(:og_image, course.cover)
       |> assign(:student_count, student_count)
       |> assign(:lessons, lessons)
 

@@ -2,7 +2,13 @@ defmodule UneebeeWeb.Layouts do
   @moduledoc false
   use UneebeeWeb, :html
 
+  alias Uneebee.Organizations.School
+
   embed_templates "templates/*"
+
+  @spec school_name(School.t() | nil) :: String.t()
+  def school_name(nil), do: "UneeBee"
+  def school_name(%School{} = school), do: school.name
 
   @spec user_settings?(atom()) :: boolean()
   def user_settings?(active_page) do
