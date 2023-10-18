@@ -27,15 +27,6 @@ defmodule UneebeeWeb.Plugs.Course do
   def fetch_course(conn, _opts), do: conn
 
   @doc """
-  Requires a school manager or course teacher to access a page.
-  """
-  @spec require_manager_or_course_teacher(Plug.Conn.t(), Keyword.t()) :: Plug.Conn.t()
-  def require_manager_or_course_teacher(conn, _opts) do
-    %{school_user: school_user, course_user: course_user} = conn.assigns
-    require_manager_or_course_teacher(conn, school_user, course_user)
-  end
-
-  @doc """
   Requires a course user to access a page.
   """
   @spec require_course_user_for_lesson(Plug.Conn.t(), Keyword.t()) :: Plug.Conn.t()
@@ -79,10 +70,6 @@ defmodule UneebeeWeb.Plugs.Course do
   end
 
   def on_mount(:mount_lesson, _params, _session, socket), do: {:cont, socket}
-
-  defp require_manager_or_course_teacher(conn, %{role: :manager}, _cu), do: conn
-  defp require_manager_or_course_teacher(conn, _su, %{role: :teacher}), do: conn
-  defp require_manager_or_course_teacher(_conn, _su, _cu), do: raise(UneebeeWeb.PermissionError, code: :require_manager_or_teacher)
 
   defp get_course_user(_course, nil), do: nil
   defp get_course_user(course, user), do: Content.get_course_user_by_id(course.id, user.id)

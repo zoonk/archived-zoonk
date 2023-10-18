@@ -142,49 +142,10 @@ defmodule UneebeeWeb.Router do
   end
 
   # These routes are only available to managers and teachers.
-  scope "/dashboard", UneebeeWeb.Live do
-    pipe_through [:browser, :require_authenticated_user, :require_manager_or_teacher]
+  scope "/dashboard", UneebeeWeb.Live.Dashboard do
+    pipe_through [:browser, :require_authenticated_user, :fetch_course, :require_manager_or_teacher]
 
-    live_session :manager_or_teacher_view,
-      on_mount: [
-        {UneebeeWeb.Plugs.UserAuth, :ensure_authenticated},
-        {UneebeeWeb.Plugs.School, :mount_school},
-        {UneebeeWeb.Plugs.Translate, :set_locale_from_session},
-        UneebeeWeb.Plugs.ActivePage
-      ] do
-      live "/courses", Dashboard.CourseList
-      live "/courses/new", Dashboard.CourseNew
-    end
-  end
-
-  scope "/dashboard/c/:course_slug", UneebeeWeb.Live do
-    pipe_through [:browser, :require_authenticated_user, :fetch_course, :require_manager_or_course_teacher]
-
-    live_session :dashboard_manager_or_course_teacher,
-      on_mount: [
-        {UneebeeWeb.Plugs.UserAuth, :ensure_authenticated},
-        {UneebeeWeb.Plugs.School, :mount_school},
-        {UneebeeWeb.Plugs.Translate, :set_locale_from_session},
-        {UneebeeWeb.Plugs.Course, :mount_course},
-        UneebeeWeb.Plugs.ActivePage
-      ] do
-      live "/", Dashboard.CourseView
-
-      live "/edit/cover", Dashboard.CourseEdit, :cover
-      live "/edit/info", Dashboard.CourseEdit, :info
-      live "/edit/privacy", Dashboard.CourseEdit, :privacy
-      live "/edit/delete", Dashboard.CourseEdit, :delete
-
-      live "/teachers", Dashboard.CourseUserList, :teacher
-      live "/students", Dashboard.CourseUserList, :student
-      live "/s/:username", Dashboard.CourseStudentView
-    end
-  end
-
-  scope "/dashboard/c/:course_slug/l/:lesson_id", UneebeeWeb.Live do
-    pipe_through [:browser, :require_authenticated_user, :fetch_course, :require_manager_or_course_teacher]
-
-    live_session :dashboard_lesson,
+    live_session :course_dashboard,
       on_mount: [
         {UneebeeWeb.Plugs.UserAuth, :ensure_authenticated},
         {UneebeeWeb.Plugs.School, :mount_school},
@@ -193,15 +154,28 @@ defmodule UneebeeWeb.Router do
         {UneebeeWeb.Plugs.Course, :mount_lesson},
         UneebeeWeb.Plugs.ActivePage
       ] do
-      live "/s/:step_order", Dashboard.LessonView
-      live "/s/:step_order/edit", Dashboard.LessonView, :edit
-      live "/s/:step_order/image", Dashboard.LessonView, :step_img
-      live "/s/:step_order/o/:option_id", Dashboard.LessonView, :option
-      live "/s/:step_order/o/:option_id/image", Dashboard.LessonView, :option_img
+      live "/courses", CourseList
+      live "/courses/new", CourseNew
 
-      live "/info", Dashboard.LessonEdit
-      live "/cover", Dashboard.LessonCover
-      live "/delete", Dashboard.LessonDelete
+      live "/c/:course_slug", CourseView
+      live "/c/:course_slug/edit/cover", CourseEdit, :cover
+      live "/c/:course_slug/edit/info", CourseEdit, :info
+      live "/c/:course_slug/edit/privacy", CourseEdit, :privacy
+      live "/c/:course_slug/edit/delete", CourseEdit, :delete
+
+      live "/c/:course_slug/teachers", CourseUserList, :teacher
+      live "/c/:course_slug/students", CourseUserList, :student
+      live "/c/:course_slug/s/:username", CourseStudentView
+
+      live "/c/:course_slug/l/:lesson_id/s/:step_order", LessonView
+      live "/c/:course_slug/l/:lesson_id/s/:step_order/edit", LessonView, :edit
+      live "/c/:course_slug/l/:lesson_id/s/:step_order/image", LessonView, :step_img
+      live "/c/:course_slug/l/:lesson_id/s/:step_order/o/:option_id", LessonView, :option
+      live "/c/:course_slug/l/:lesson_id/s/:step_order/o/:option_id/image", LessonView, :option_img
+
+      live "/c/:course_slug/l/:lesson_id/info", LessonEdit
+      live "/c/:course_slug/l/:lesson_id/cover", LessonCover
+      live "/c/:course_slug/l/:lesson_id/delete", LessonDelete
     end
   end
 

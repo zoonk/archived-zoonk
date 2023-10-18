@@ -108,8 +108,15 @@ defmodule UneebeeWeb.Plugs.School do
 
   @doc """
   Requires `manager` or `teacher` permissions to access a certain route.
+
+  School routes require a manager but course routes also allow teachers to access them.
   """
   @spec require_manager_or_teacher(Plug.Conn.t(), Keyword.t()) :: Plug.Conn.t()
+  def require_manager_or_teacher(%Plug.Conn{params: %{"course_slug" => _slug}} = conn, _opts) do
+    %{school_user: school_user, course_user: course_user} = conn.assigns
+    require_manager_or_course_teacher(conn, school_user, course_user)
+  end
+
   def require_manager_or_teacher(conn, opts) do
     %{school_user: school_user} = conn.assigns
     require_manager_or_teacher(conn, opts, school_user.approved?, school_user.role)
@@ -121,6 +128,10 @@ defmodule UneebeeWeb.Plugs.School do
 
   # If the user is not a manager or teacher, then they don't have access.
   defp require_manager_or_teacher(_conn, _opts, _approved?, _role), do: raise(UneebeeWeb.PermissionError, code: :require_manager_or_teacher)
+
+  defp require_manager_or_course_teacher(conn, %{role: :manager, approved?: true}, _cu), do: conn
+  defp require_manager_or_course_teacher(conn, _su, %{role: :teacher, approved?: true}), do: conn
+  defp require_manager_or_course_teacher(_conn, _su, _cu), do: raise(UneebeeWeb.PermissionError, code: :require_manager_or_teacher)
 
   @doc """
   Handles mounting the school data to a LiveView.
