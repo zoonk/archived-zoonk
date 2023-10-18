@@ -40,7 +40,7 @@
 
     <div :if={school_user.approved?} class="mt-4 flex items-end justify-end">
       <.icon_button
-        id="remove-user"
+        id={"remove-user-#{school_user.id}"}
         icon="tabler-trash-x"
         label={dgettext("orgs", "Remove user")}
         color={:alert_light}

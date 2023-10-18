@@ -91,7 +91,7 @@ defmodule UneebeeWeb.SchoolStudentListLiveTest do
 
     test "deletes a student", %{conn: conn, school: school} do
       user = user_fixture(%{first_name: "Albert"})
-      school_user_fixture(%{school: school, user: user})
+      school_user = school_user_fixture(%{school: school, user: user})
 
       {:ok, lv, _html} = live(conn, ~p"/dashboard/students")
 
@@ -100,7 +100,7 @@ defmodule UneebeeWeb.SchoolStudentListLiveTest do
 
       {:ok, updated_lv, _html} =
         lv
-        |> element(delete_button_el())
+        |> element(delete_button_el(school_user.id))
         |> render_click()
         |> follow_redirect(conn, ~p"/dashboard/students")
 
@@ -153,5 +153,5 @@ defmodule UneebeeWeb.SchoolStudentListLiveTest do
 
   defp approve_button_el, do: ~s|button[phx-click="approve"]|
   defp reject_button_el, do: ~s|button[phx-click="reject"]|
-  defp delete_button_el, do: ~s|#remove-user|
+  defp delete_button_el(id), do: ~s|#remove-user-#{id}|
 end
