@@ -16,8 +16,8 @@ defmodule UneebeeWeb.Components.Dashboard.StepContent do
   def render(assigns) do
     ~H"""
     <div>
-      <.link class="mb-4 flex w-max items-center gap-1" patch={~p"/dashboard/c/#{@course.slug}/l/#{@lesson.id}/s/#{@step.order}/edit"}>
-        <%= @step.content %> <.icon name="tabler-edit" title={dgettext("orgs", "Edit step")} />
+      <.link class="mb-4 flex items-center gap-1" patch={~p"/dashboard/c/#{@course.slug}/l/#{@lesson.id}/s/#{@step.order}/edit"}>
+        <span class="whitespace-pre-wrap"><%= @step.content %></span> <.icon name="tabler-edit" title={dgettext("orgs", "Edit step")} />
       </.link>
 
       <.modal :if={@action == :edit} show id="edit-step" on_cancel={JS.patch(~p"/dashboard/c/#{@course.slug}/l/#{@lesson.id}/s/#{@step.order}")}>
