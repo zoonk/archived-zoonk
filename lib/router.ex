@@ -84,7 +84,7 @@ defmodule UneebeeWeb.Router do
   end
 
   scope "/", UneebeeWeb.Live do
-    pipe_through [:browser, :require_auth_for_private_schools, :require_subscription_for_private_schools, :fetch_course]
+    pipe_through [:browser, :require_auth_for_private_schools, :require_subscription_for_private_schools, :fetch_course, :require_course_user_for_lesson]
 
     live_session :public_routes,
       on_mount: [
@@ -92,6 +92,7 @@ defmodule UneebeeWeb.Router do
         {UneebeeWeb.Plugs.School, :mount_school},
         {UneebeeWeb.Plugs.Translate, :set_locale_from_session},
         {UneebeeWeb.Plugs.Course, :mount_course},
+        {UneebeeWeb.Plugs.Course, :mount_lesson},
         UneebeeWeb.Plugs.ActivePage
       ] do
       live "/", Home
@@ -102,6 +103,8 @@ defmodule UneebeeWeb.Router do
 
       live "/courses", Content.Course.List
       live "/c/:course_slug", Content.Course.View
+      live "/c/:course_slug/:lesson_id", Content.Course.Play
+      live "/c/:course_slug/:lesson_id/completed", Content.Course.LessonCompleted
     end
   end
 
@@ -113,23 +116,6 @@ defmodule UneebeeWeb.Router do
   scope "/", UneebeeWeb.Controller.Accounts.User do
     pipe_through [:browser]
     delete "/users/logout", Session, :delete
-  end
-
-  scope "/c/:course_slug/:lesson_id", UneebeeWeb.Live do
-    pipe_through [:browser, :require_authenticated_user, :fetch_course, :require_course_user]
-
-    live_session :lesson_play,
-      on_mount: [
-        {UneebeeWeb.Plugs.UserAuth, :ensure_authenticated},
-        {UneebeeWeb.Plugs.School, :mount_school},
-        {UneebeeWeb.Plugs.Translate, :set_locale_from_session},
-        {UneebeeWeb.Plugs.Course, :mount_course},
-        {UneebeeWeb.Plugs.Course, :mount_lesson},
-        UneebeeWeb.Plugs.ActivePage
-      ] do
-      live "/", Content.Course.Play
-      live "/completed", Content.Course.LessonCompleted
-    end
   end
 
   # Routes visible to school managers only.

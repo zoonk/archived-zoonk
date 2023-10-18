@@ -6,6 +6,7 @@ defmodule UneebeeWeb.Plugs.Course do
 
   import Plug.Conn
 
+  alias Phoenix.Controller
   alias Phoenix.LiveView
   alias Phoenix.LiveView.Socket
   alias Uneebee.Content
@@ -37,11 +38,13 @@ defmodule UneebeeWeb.Plugs.Course do
   @doc """
   Requires a course user to access a page.
   """
-  @spec require_course_user(Plug.Conn.t(), Keyword.t()) :: Plug.Conn.t()
-  def require_course_user(conn, opts), do: require_course_user(conn, opts, conn.assigns.course_user)
-  defp require_course_user(_conn, _opts, nil), do: raise(UneebeeWeb.PermissionError, code: :not_enrolled)
-  defp require_course_user(_conn, _opts, %{approved?: false}), do: raise(UneebeeWeb.PermissionError, code: :pending_approval)
-  defp require_course_user(conn, _opts, _cu), do: conn
+  @spec require_course_user_for_lesson(Plug.Conn.t(), Keyword.t()) :: Plug.Conn.t()
+  def require_course_user_for_lesson(%Plug.Conn{params: %{"lesson_id" => _lesson_id}} = conn, opts), do: require_course_user_for_lesson(conn, opts, conn.assigns.course_user)
+  def require_course_user_for_lesson(conn, _opts), do: conn
+  defp require_course_user_for_lesson(%Plug.Conn{assigns: %{current_user: nil}} = conn, _opts, nil), do: redirect_to_login(conn)
+  defp require_course_user_for_lesson(_conn, _opts, nil), do: raise(UneebeeWeb.PermissionError, code: :not_enrolled)
+  defp require_course_user_for_lesson(_conn, _opts, %{approved?: false}), do: raise(UneebeeWeb.PermissionError, code: :pending_approval)
+  defp require_course_user_for_lesson(conn, _opts, _cu), do: conn
 
   @doc """
   Handles mounting the course data to a LiveView.
@@ -69,11 +72,13 @@ defmodule UneebeeWeb.Plugs.Course do
 
   def on_mount(:mount_course, _params, _session, socket), do: {:cont, socket}
 
-  def on_mount(:mount_lesson, params, _session, socket) do
-    lesson = Content.get_lesson!(params["lesson_id"])
+  def on_mount(:mount_lesson, %{"lesson_id" => lesson_id}, _session, socket) do
+    lesson = Content.get_lesson!(lesson_id)
     socket = Phoenix.Component.assign(socket, :lesson, lesson)
     {:cont, socket}
   end
+
+  def on_mount(:mount_lesson, _params, _session, socket), do: {:cont, socket}
 
   defp require_manager_or_course_teacher(conn, %{role: :manager}, _cu), do: conn
   defp require_manager_or_course_teacher(conn, _su, %{role: :teacher}), do: conn
@@ -85,4 +90,6 @@ defmodule UneebeeWeb.Plugs.Course do
   defp get_course_role(nil), do: nil
   defp get_course_role(%{approved?: false}), do: :pending
   defp get_course_role(%{role: role}), do: role
+
+  defp redirect_to_login(conn), do: conn |> Controller.redirect(to: ~p"/users/login") |> halt()
 end
