@@ -79,19 +79,19 @@ defmodule UneebeeWeb.Router do
       live "/users/settings/name", Accounts.User.Settings, :name
       live "/users/settings/password", Accounts.User.Settings, :password
       live "/users/settings/username", Accounts.User.Settings, :username
-
       live "/users/settings/confirm_email/:token", Accounts.User.Settings, :confirm_email
     end
   end
 
   scope "/", UneebeeWeb.Live do
-    pipe_through [:browser, :require_auth_for_private_schools, :require_subscription_for_private_schools]
+    pipe_through [:browser, :require_auth_for_private_schools, :require_subscription_for_private_schools, :fetch_course]
 
     live_session :public_routes,
       on_mount: [
         {UneebeeWeb.Plugs.UserAuth, :mount_current_user},
         {UneebeeWeb.Plugs.School, :mount_school},
         {UneebeeWeb.Plugs.Translate, :set_locale_from_session},
+        {UneebeeWeb.Plugs.Course, :mount_course},
         UneebeeWeb.Plugs.ActivePage
       ] do
       live "/", Home
@@ -101,6 +101,7 @@ defmodule UneebeeWeb.Router do
       live "/users/confirm", Accounts.User.ConfirmationInstructions, :new
 
       live "/courses", Content.Course.List
+      live "/c/:course_slug", Content.Course.View
     end
   end
 
@@ -112,22 +113,6 @@ defmodule UneebeeWeb.Router do
   scope "/", UneebeeWeb.Controller.Accounts.User do
     pipe_through [:browser]
     delete "/users/logout", Session, :delete
-  end
-
-  # Course routes.
-  scope "/c/:course_slug", UneebeeWeb.Live do
-    pipe_through [:browser, :require_auth_for_private_schools, :require_subscription_for_private_schools, :fetch_course]
-
-    live_session :course_routes,
-      on_mount: [
-        {UneebeeWeb.Plugs.UserAuth, :mount_current_user},
-        {UneebeeWeb.Plugs.School, :mount_school},
-        {UneebeeWeb.Plugs.Translate, :set_locale_from_session},
-        {UneebeeWeb.Plugs.Course, :mount_course},
-        UneebeeWeb.Plugs.ActivePage
-      ] do
-      live "/", Content.Course.View
-    end
   end
 
   scope "/c/:course_slug/:lesson_id", UneebeeWeb.Live do

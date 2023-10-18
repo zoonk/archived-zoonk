@@ -14,14 +14,16 @@ defmodule UneebeeWeb.Plugs.Course do
   Fetches the course's data from the database.
   """
   @spec fetch_course(Plug.Conn.t(), Keyword.t()) :: Plug.Conn.t()
-  def fetch_course(conn, _opts) do
+  def fetch_course(%Plug.Conn{params: %{"course_slug" => course_slug}} = conn, _opts) do
     %{school: school, current_user: user} = conn.assigns
-    course = Content.get_course_by_slug!(conn.params["course_slug"], school.id)
+    course = Content.get_course_by_slug!(course_slug, school.id)
     course_user = get_course_user(course, user)
     course_role = get_course_role(course_user)
 
     conn |> assign(:course, course) |> assign(:course_user, course_user) |> assign(:course_role, course_role)
   end
+
+  def fetch_course(conn, _opts), do: conn
 
   @doc """
   Requires a school manager or course teacher to access a page.
@@ -50,9 +52,9 @@ defmodule UneebeeWeb.Plugs.Course do
     * `:mount_lesson` - Mounts the lesson from the `lesson_id` paramater.
   """
   @spec on_mount(atom(), LiveView.unsigned_params(), map(), Socket.t()) :: {:cont, Socket.t()}
-  def on_mount(:mount_course, params, _session, socket) do
+  def on_mount(:mount_course, %{"course_slug" => course_slug}, _session, socket) do
     %{school: school, current_user: user} = socket.assigns
-    course = Content.get_course_by_slug!(params["course_slug"], school.id)
+    course = Content.get_course_by_slug!(course_slug, school.id)
     course_user = get_course_user(course, user)
     course_role = get_course_role(course_user)
 
@@ -64,6 +66,8 @@ defmodule UneebeeWeb.Plugs.Course do
 
     {:cont, socket}
   end
+
+  def on_mount(:mount_course, _params, _session, socket), do: {:cont, socket}
 
   def on_mount(:mount_lesson, params, _session, socket) do
     lesson = Content.get_lesson!(params["lesson_id"])
