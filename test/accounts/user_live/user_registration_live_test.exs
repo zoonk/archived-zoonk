@@ -4,9 +4,10 @@ defmodule UneebeeWeb.UserRegistrationLiveTest do
   import Phoenix.LiveViewTest
   import Uneebee.Fixtures.Accounts
 
+  alias Uneebee.Accounts
   alias Uneebee.Organizations
 
-  describe "Registration page" do
+  describe "Registration page (school not configured)" do
     test "renders registration page", %{conn: conn} do
       {:ok, lv, _html} = live(conn, ~p"/users/register")
 
@@ -26,6 +27,15 @@ defmodule UneebeeWeb.UserRegistrationLiveTest do
 
       assert result =~ "must have the @ sign and no spaces"
       assert result =~ "should be at least 8 character"
+    end
+
+    test "automatically confirms a user", %{conn: conn} do
+      {:ok, lv, _html} = live(conn, ~p"/users/register")
+
+      attrs = valid_user_attributes()
+      lv |> form("#registration_form", user: attrs) |> render_submit()
+
+      assert Accounts.get_user_by_email(attrs.email).confirmed_at != nil
     end
   end
 
@@ -54,6 +64,9 @@ defmodule UneebeeWeb.UserRegistrationLiveTest do
       # Now do a logged in request
       response = html_response(get(conn, "/"), 200)
       assert response =~ "Settings"
+
+      # User should not be confirmed.
+      assert Accounts.get_user_by_email(attrs.email).confirmed_at == nil
 
       # Check if the user was added as school user
       school_user = Organizations.get_school_user(school.slug, attrs.username)

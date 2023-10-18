@@ -27,7 +27,7 @@ defmodule UneebeeWeb.Live.Accounts.User.Registration do
     case Accounts.register_user(user_params) do
       {:ok, user} ->
         {:ok, _} =
-          Accounts.deliver_user_confirmation_instructions(user, socket.assigns.host_school, &url(~p"/users/confirm/#{&1}"))
+          confirm_account(user, socket.assigns.host_school)
 
         maybe_create_school_user(user, socket.assigns.school)
 
@@ -100,4 +100,7 @@ defmodule UneebeeWeb.Live.Accounts.User.Registration do
   end
 
   defp terms_label(_school), do: nil
+
+  defp confirm_account(user, nil), do: Accounts.confirm_user(user)
+  defp confirm_account(user, school), do: Accounts.deliver_user_confirmation_instructions(user, school, &url(~p"/users/confirm/#{&1}"))
 end

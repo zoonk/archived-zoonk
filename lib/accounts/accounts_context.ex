@@ -391,8 +391,8 @@ defmodule Uneebee.Accounts do
   If the token matches, the user account is marked as confirmed
   and the token is deleted.
   """
-  @spec confirm_user(binary()) :: {:ok, User.t()} | :error
-  def confirm_user(token) do
+  @spec confirm_user(binary() | User.t()) :: {:ok, User.t()} | :error
+  def confirm_user(token) when is_binary(token) do
     with {:ok, query} <- UserToken.verify_email_token_query(token, "confirm"),
          %User{} = user <- Repo.one(query),
          {:ok, %{user: user}} <- user |> confirm_user_multi() |> Repo.transaction() do
@@ -400,6 +400,12 @@ defmodule Uneebee.Accounts do
     else
       _error -> :error
     end
+  end
+
+  # When the first user is registered, we want to automatically configure them without sending an email
+  # because the school email address isn't configured yet.
+  def confirm_user(%User{} = user) do
+    user |> User.confirm_changeset() |> Repo.update()
   end
 
   defp confirm_user_multi(user) do
