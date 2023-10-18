@@ -664,6 +664,17 @@ defmodule Uneebee.ContentTest do
     end
   end
 
+  describe "count_lesson_steps_with_options/1" do
+    test "returns the number of lesson steps with options" do
+      lesson = lesson_fixture()
+      Enum.each(1..3, fn order -> lesson_step_fixture(%{lesson_id: lesson.id, order: order}) end)
+      lesson_step = lesson_step_fixture(%{lesson_id: lesson.id, order: 4, preload: :options})
+      Enum.each(1..3, fn order -> step_option_fixture(%{lesson_step_id: lesson_step.id, order: order}) end)
+
+      assert Content.count_lesson_steps_with_options(lesson.id) == 1
+    end
+  end
+
   describe "update_lesson_step_order/3" do
     test "move a lesson step up" do
       lesson = lesson_fixture()
@@ -980,6 +991,7 @@ defmodule Uneebee.ContentTest do
       user = user_fixture()
       lesson1 = lesson_fixture()
       lesson_steps1 = Enum.map(1..3, fn idx -> lesson_step_fixture(%{lesson_id: lesson1.id, order: idx}) end)
+      lesson_step_fixture(%{lesson_id: lesson1.id, order: 4, content: "Step without options"})
 
       options1 = Enum.map(0..2, fn idx -> step_option_fixture(%{correct?: false, lesson_step_id: Enum.at(lesson_steps1, idx).id}) end)
       options2 = Enum.map(0..2, fn idx -> step_option_fixture(%{correct?: true, lesson_step_id: Enum.at(lesson_steps1, idx).id}) end)

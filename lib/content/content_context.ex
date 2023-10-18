@@ -613,6 +613,24 @@ defmodule Uneebee.Content do
   end
 
   @doc """
+  Get the count of steps containing at least one option.
+
+  ## Examples
+
+      iex> count_lesson_steps_with_options(lesson_id)
+      1
+  """
+  @spec count_lesson_steps_with_options(non_neg_integer()) :: non_neg_integer()
+  def count_lesson_steps_with_options(lesson_id) do
+    LessonStep
+    |> where([ls], ls.lesson_id == ^lesson_id)
+    |> preload(:options)
+    |> Repo.all()
+    |> Enum.filter(fn ls -> Enum.count(ls.options) > 0 end)
+    |> length()
+  end
+
+  @doc """
   Update lesson steps order.
 
   Reposition all lesson steps between an interval when a lesson step is moved.
@@ -886,7 +904,7 @@ defmodule Uneebee.Content do
   """
   @spec mark_lesson_as_completed(non_neg_integer(), non_neg_integer()) :: user_lesson_changeset()
   def mark_lesson_as_completed(user_id, lesson_id) do
-    steps = count_lesson_steps(lesson_id)
+    steps = count_lesson_steps_with_options(lesson_id)
     selections = list_user_selections_by_lesson(user_id, lesson_id, steps)
     correct = get_correct_selections(selections)
     attrs = %{user_id: user_id, lesson_id: lesson_id, attempts: 1, correct: correct, total: steps}
