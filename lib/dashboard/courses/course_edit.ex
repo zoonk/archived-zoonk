@@ -59,7 +59,7 @@ defmodule UneebeeWeb.Live.Dashboard.CourseEdit do
         socket =
           socket
           |> put_flash(:info, dgettext("orgs", "Course deleted successfully!"))
-          |> push_navigate(to: ~p"/dashboard")
+          |> push_navigate(to: ~p"/dashboard/courses")
 
         {:noreply, socket}
 

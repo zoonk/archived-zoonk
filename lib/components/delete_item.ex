@@ -9,7 +9,6 @@ defmodule UneebeeWeb.Components.DeleteItem do
 
   attr :id, :string, required: true
   attr :name, :string, required: true
-  attr :cancel_link, :string, required: true
 
   @impl Phoenix.LiveComponent
   def render(assigns) do
@@ -29,9 +28,6 @@ defmodule UneebeeWeb.Components.DeleteItem do
 
         <div class="mt-4 flex items-center gap-2">
           <.button type="submit" icon="tabler-trash-x" color={:alert}><%= dgettext("orgs", "Delete item") %></.button>
-          <.link_button navigate={@cancel_link} icon="tabler-x" color={:black_light}>
-            <%= gettext("Cancel") %>
-          </.link_button>
         </div>
       </form>
     </div>

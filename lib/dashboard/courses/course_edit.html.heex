@@ -40,4 +40,4 @@
   </:actions>
 </.simple_form>
 
-<.live_component :if={@live_action == :delete} id={:delete_course} module={DeleteItem} cancel_link={~p"/dashboard/c/#{@course.slug}"} name={@course.name} />
+<.live_component :if={@live_action == :delete} id={:delete_course} module={DeleteItem} name={@course.name} />

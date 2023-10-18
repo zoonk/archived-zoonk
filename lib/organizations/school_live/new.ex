@@ -35,7 +35,7 @@ defmodule UneebeeWeb.Live.Organizations.School.New do
 
     case Organizations.create_school_and_manager(user, attrs) do
       {:ok, _school} ->
-        {:noreply, push_navigate(socket, to: ~p"/")}
+        {:noreply, redirect(socket, to: ~p"/")}
 
       {:error, %Ecto.Changeset{} = changeset} ->
         {:noreply,

@@ -1,11 +1,11 @@
 <main class="m-auto flex max-w-5xl flex-col items-start gap-4 p-4 lg:flex-row">
   <.menu :if={@active_page} title={@page_title}>
-    <.menu_item :if={is_nil(@current_user)} navigate={~p"/users/login"} icon="tabler-login" title={dgettext("auth", "Sign in")} />
-    <.menu_item navigate={~p"/"} icon="tabler-ufo" active={@active_page == :live_home} title={gettext("Home")} />
+    <.menu_item :if={is_nil(@current_user)} href={~p"/users/login"} icon="tabler-login" title={dgettext("auth", "Sign in")} />
+    <.menu_item href={~p"/"} icon="tabler-ufo" active={@active_page == :live_home} title={gettext("Home")} />
 
     <.menu_item
       :if={@user_role == :manager}
-      navigate={~p"/dashboard"}
+      href={~p"/dashboard"}
       icon="tabler-beach"
       active={dashboard?(@active_page) and not course?(@active_page) and not lesson_view?(@active_page)}
       title={gettext("Manage school")}
@@ -24,7 +24,7 @@
 
     <.menu_item
       :if={@user_role in [:manager, :teacher]}
-      navigate={~p"/dashboard/courses"}
+      href={~p"/dashboard/courses"}
       icon="tabler-bulb"
       active={course?(@active_page)}
       title={dgettext("courses", "Manage courses")}
@@ -124,10 +124,10 @@
       </:sub_menus>
     </.menu_item>
 
-    <.menu_item navigate={~p"/courses"} icon="tabler-bulb" active={@active_page in [:course_list, :course_view]} title={gettext("Courses")} />
-    <.menu_item navigate={~p"/missions"} icon="tabler-target-arrow" active={@active_page == :mission_list} title={dgettext("gamification", "Missions")} />
+    <.menu_item href={~p"/courses"} icon="tabler-bulb" active={@active_page in [:course_list, :course_view]} title={gettext("Courses")} />
+    <.menu_item href={~p"/missions"} icon="tabler-target-arrow" active={@active_page == :mission_list} title={dgettext("gamification", "Missions")} />
 
-    <.menu_item :if={@current_user} navigate={~p"/users/settings/language"} icon="tabler-settings" active={user_settings?(@active_page)} title={gettext("Settings")}>
+    <.menu_item :if={@current_user} href={~p"/users/settings/language"} icon="tabler-settings" active={user_settings?(@active_page)} title={gettext("Settings")}>
       <:sub_menus>
         <.sub_menu navigate={~p"/users/settings/language"} active={@active_page == :user_settings_language} title={gettext("Language")} />
         <.sub_menu navigate={~p"/users/settings/username"} active={@active_page == :user_settings_username} title={gettext("Username")} />
@@ -138,7 +138,7 @@
       </:sub_menus>
     </.menu_item>
 
-    <.menu_item navigate={~p"/feedback"} icon="tabler-message-circle-2" active={@active_page == :support_feedback} title={gettext("Feedback")} />
+    <.menu_item href={~p"/feedback"} icon="tabler-message-circle-2" active={@active_page == :support_feedback} title={gettext("Feedback")} />
   </.menu>
 
   <section class="w-full"><%= @inner_content %></section>
