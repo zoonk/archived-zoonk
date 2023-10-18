@@ -11,6 +11,9 @@
     <.input type="text" label={gettext("Name")} name="name" required value={@name} />
     <.input type="email" label={gettext("Email")} name="email" required value={@email} />
     <.input type="textarea" label={gettext("Message")} name="message" required value="" />
-    <.button type="submit" icon="tabler-send" class="mt-4"><%= gettext("Send") %></.button>
+
+    <.button type="submit" icon="tabler-send" class="mt-4" phx-disable-with={gettext("Sending...")}>
+      <%= gettext("Send") %>
+    </.button>
   </form>
 </div>

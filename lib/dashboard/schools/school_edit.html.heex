@@ -8,6 +8,6 @@
   <.input :if={@live_action == :terms} field={@form[:privacy_policy]} type="url" label={dgettext("orgs", "Privacy policy URL")} />
 
   <:actions>
-    <.button icon="tabler-check" phx-disable-with={gettext("Saving...")}><%= gettext("Save") %></.button>
+    <.button type="submit" icon="tabler-check" phx-disable-with={gettext("Saving...")}><%= gettext("Save") %></.button>
   </:actions>
 </.simple_form>

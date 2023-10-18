@@ -50,7 +50,7 @@ defmodule UneebeeWeb.Components.Upload do
             <%= gettext("Save") %>
           </.button>
 
-          <.button :if={@current_img} phx-click="remove" phx-target={@myself} icon="tabler-trash" type="button" color={:alert_light}>
+          <.button :if={@current_img} phx-click="remove" phx-target={@myself} icon="tabler-trash" type="button" color={:alert_light} phx-disable-with={gettext("Deleting...")}>
             <%= gettext("Remove") %>
           </.button>
         </div>

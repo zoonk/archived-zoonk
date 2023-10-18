@@ -62,6 +62,9 @@
 
   <form phx-submit="add-user" id="add-user-form" class="mt-4">
     <.input type="text" label={gettext("Username or email address")} name="email_or_username" id="email_or_username" required value="" />
-    <.button type="submit" icon="tabler-user-plus" class="mt-4"><%= get_add_link_label(@live_action) %></.button>
+
+    <.button type="submit" icon="tabler-user-plus" class="mt-4" phx-disable-with={gettext("Saving...")}>
+      <%= get_add_link_label(@live_action) %>
+    </.button>
   </form>
 </.modal>

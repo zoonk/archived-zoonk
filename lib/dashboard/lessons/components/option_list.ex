@@ -80,7 +80,7 @@ defmodule UneebeeWeb.Components.Dashboard.OptionList do
           />
 
           <:actions>
-            <.button type="submit"><%= gettext("Save") %></.button>
+            <.button type="submit" phx-disable-with={gettext("Saving...")}><%= gettext("Save") %></.button>
           </:actions>
         </.simple_form>
       </.modal>

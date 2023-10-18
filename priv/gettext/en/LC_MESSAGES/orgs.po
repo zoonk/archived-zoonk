@@ -160,24 +160,24 @@ msgstr ""
 msgid "This will remove %{username} from your school. They won't be able to see your school anymore unless you approve them again."
 msgstr ""
 
-#: lib/components/delete_item.ex:19
+#: lib/components/delete_item.ex:18
 #: lib/components/delete_item.ex:31
 #, elixir-autogen, elixir-format
 msgid "Delete item"
 msgstr ""
 
-#: lib/components/delete_item.ex:21
+#: lib/components/delete_item.ex:20
 #, elixir-autogen, elixir-format
 msgid "Deleting this item will remove all of its content. This action cannot be undone."
 msgstr ""
 
-#: lib/components/delete_item.ex:48
-#: lib/components/delete_item.ex:64
+#: lib/components/delete_item.ex:46
+#: lib/components/delete_item.ex:62
 #, elixir-autogen, elixir-format
 msgid "CONFIRM"
 msgstr ""
 
-#: lib/components/delete_item.ex:62
+#: lib/components/delete_item.ex:60
 #, elixir-autogen, elixir-format
 msgid "Confirmation message does not match. You typed: %{confirmation} but you need to type %{message}."
 msgstr ""
@@ -225,7 +225,7 @@ msgstr ""
 msgid "Published"
 msgstr ""
 
-#: lib/components/delete_item.ex:26
+#: lib/components/delete_item.ex:25
 #, elixir-autogen, elixir-format
 msgid "Type CONFIRM to delete %{name}."
 msgstr ""
@@ -260,7 +260,7 @@ msgstr ""
 msgid "Check this option if this is the correct answer."
 msgstr ""
 
-#: lib/dashboard/lessons/lesson_view.ex:70
+#: lib/dashboard/lessons/lesson_view.ex:71
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Could not add option!"
 msgstr ""
@@ -300,7 +300,7 @@ msgstr ""
 msgid "Could not delete option!"
 msgstr ""
 
-#: lib/dashboard/lessons/lesson_view.ex:55
+#: lib/dashboard/lessons/lesson_view.ex:56
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Could not delete step!"
 msgstr ""
@@ -318,7 +318,7 @@ msgid "Could not update lesson!"
 msgstr ""
 
 #: lib/dashboard/lessons/components/option_list.ex:116
-#: lib/dashboard/lessons/lesson_view.ex:98
+#: lib/dashboard/lessons/lesson_view.ex:99
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Could not update option!"
 msgstr ""
@@ -455,7 +455,7 @@ msgstr ""
 msgid "Unpublish"
 msgstr ""
 
-#: lib/dashboard/lessons/lesson_view.ex:63
+#: lib/dashboard/lessons/lesson_view.ex:64
 #, elixir-autogen, elixir-format
 msgid "Untitled option"
 msgstr ""
@@ -526,12 +526,12 @@ msgstr ""
 msgid "Add image to step"
 msgstr ""
 
-#: lib/dashboard/lessons/components/step_image.ex:32
+#: lib/dashboard/lessons/components/step_image.ex:33
 #, elixir-autogen, elixir-format
 msgid "Click to add an image to this step."
 msgstr ""
 
-#: lib/dashboard/lessons/lesson_view.ex:83
+#: lib/dashboard/lessons/lesson_view.ex:84
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Could not update image!"
 msgstr ""
@@ -556,7 +556,7 @@ msgstr ""
 msgid "Edit image"
 msgstr ""
 
-#: lib/dashboard/lessons/components/step_image.ex:20
+#: lib/dashboard/lessons/components/step_image.ex:21
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Edit step image"
 msgstr ""

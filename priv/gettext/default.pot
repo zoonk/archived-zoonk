@@ -64,8 +64,11 @@ msgstr ""
 #: lib/accounts/user_live/settings.html.heex:26
 #: lib/dashboard/courses/course_edit.html.heex:33
 #: lib/dashboard/courses/course_new.html.heex:22
+#: lib/dashboard/courses/course_user_list.html.heex:62
+#: lib/dashboard/lessons/components/option_list.ex:83
 #: lib/dashboard/lessons/lesson_edit.html.heex:6
 #: lib/dashboard/schools/school_edit.html.heex:11
+#: lib/dashboard/schools/user_list.html.heex:66
 #: lib/organizations/school_live/new.html.heex:8
 #, elixir-autogen, elixir-format
 msgid "Saving..."
@@ -93,6 +96,7 @@ msgstr ""
 
 #: lib/accounts/user_live/confirmation_instructions.html.heex:11
 #: lib/accounts/user_live/forgot_password.html.heex:10
+#: lib/support/feedback_live/feedback.html.heex:15
 #, elixir-autogen, elixir-format
 msgid "Sending..."
 msgstr ""
@@ -194,7 +198,6 @@ msgstr ""
 msgid "All courses"
 msgstr ""
 
-#: lib/components/delete_item.ex:33
 #: lib/dashboard/courses/course_edit.html.heex:38
 #: lib/dashboard/lessons/lesson_edit.html.heex:11
 #, elixir-autogen, elixir-format
@@ -284,7 +287,7 @@ msgstr ""
 msgid "Message"
 msgstr ""
 
-#: lib/support/feedback_live/feedback.html.heex:14
+#: lib/support/feedback_live/feedback.html.heex:16
 #, elixir-autogen, elixir-format
 msgid "Send"
 msgstr ""
@@ -323,4 +326,10 @@ msgstr ""
 #: lib/components/upload.ex:54
 #, elixir-autogen, elixir-format
 msgid "Remove"
+msgstr ""
+
+#: lib/components/delete_item.ex:30
+#: lib/components/upload.ex:53
+#, elixir-autogen, elixir-format
+msgid "Deleting..."
 msgstr ""

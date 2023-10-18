@@ -23,7 +23,7 @@
   <.input :if={@live_action == :name} field={@settings_form[:last_name]} type="text" label={gettext("Last Name")} autocomplete="family-name" value={@current_user.last_name} />
 
   <:actions>
-    <.button phx-disable-with={gettext("Saving...")}><%= gettext("Save") %></.button>
+    <.button type="submit" phx-disable-with={gettext("Saving...")}><%= gettext("Save") %></.button>
   </:actions>
 </.simple_form>
 
@@ -41,7 +41,7 @@
   />
 
   <:actions>
-    <.button icon="tabler-mail-check" phx-disable-with={gettext("Changing...")}>
+    <.button type="submit" icon="tabler-mail-check" phx-disable-with={gettext("Changing...")}>
       <%= dgettext("auth", "Change Email") %>
     </.button>
   </:actions>
@@ -73,7 +73,7 @@
   <.input field={@password_form[:password_confirmation]} type="password" label={dgettext("auth", "Confirm new password")} autocomplete="new-password" />
 
   <:actions>
-    <.button icon="tabler-lock-check" phx-disable-with={gettext("Changing...")}>
+    <.button type="submit" icon="tabler-lock-check" phx-disable-with={gettext("Changing...")}>
       <%= dgettext("auth", "Change Password") %>
     </.button>
   </:actions>

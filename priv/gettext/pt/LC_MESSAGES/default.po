@@ -64,8 +64,11 @@ msgstr "Oops, algo deu errado! Por favor, verifique os erros abaixo."
 #: lib/accounts/user_live/settings.html.heex:26
 #: lib/dashboard/courses/course_edit.html.heex:33
 #: lib/dashboard/courses/course_new.html.heex:22
+#: lib/dashboard/courses/course_user_list.html.heex:62
+#: lib/dashboard/lessons/components/option_list.ex:83
 #: lib/dashboard/lessons/lesson_edit.html.heex:6
 #: lib/dashboard/schools/school_edit.html.heex:11
+#: lib/dashboard/schools/user_list.html.heex:66
 #: lib/organizations/school_live/new.html.heex:8
 #, elixir-autogen, elixir-format
 msgid "Saving..."
@@ -93,6 +96,7 @@ msgstr "Logo"
 
 #: lib/accounts/user_live/confirmation_instructions.html.heex:11
 #: lib/accounts/user_live/forgot_password.html.heex:10
+#: lib/support/feedback_live/feedback.html.heex:15
 #, elixir-autogen, elixir-format
 msgid "Sending..."
 msgstr ""
@@ -194,7 +198,6 @@ msgstr "Enviando arquivo: %{progress}% concluído."
 msgid "All courses"
 msgstr "Todos os cursos"
 
-#: lib/components/delete_item.ex:33
 #: lib/dashboard/courses/course_edit.html.heex:38
 #: lib/dashboard/lessons/lesson_edit.html.heex:11
 #, elixir-autogen, elixir-format
@@ -284,7 +287,7 @@ msgstr "Opinião enviada!"
 msgid "Message"
 msgstr "Mensagem"
 
-#: lib/support/feedback_live/feedback.html.heex:14
+#: lib/support/feedback_live/feedback.html.heex:16
 #, elixir-autogen, elixir-format
 msgid "Send"
 msgstr "Enviar"
@@ -324,3 +327,9 @@ msgstr "Atualizando..."
 #, elixir-autogen, elixir-format
 msgid "Remove"
 msgstr "Remover"
+
+#: lib/components/delete_item.ex:30
+#: lib/components/upload.ex:53
+#, elixir-autogen, elixir-format, fuzzy
+msgid "Deleting..."
+msgstr "Apagando..."

@@ -27,7 +27,9 @@ defmodule UneebeeWeb.Components.DeleteItem do
         <span :if={@error_msg} class="text-alert text-sm"><%= @error_msg %></span>
 
         <div class="mt-4 flex items-center gap-2">
-          <.button type="submit" icon="tabler-trash-x" color={:alert}><%= dgettext("orgs", "Delete item") %></.button>
+          <.button type="submit" icon="tabler-trash-x" color={:alert} phx-disable-with={gettext("Deleting...")}>
+            <%= dgettext("orgs", "Delete item") %>
+          </.button>
         </div>
       </form>
     </div>
