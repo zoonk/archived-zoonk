@@ -9,18 +9,9 @@
     required
   />
 
-  <.input
-    :if={@live_action == :username}
-    field={@settings_form[:username]}
-    type="text"
-    label={gettext("Username")}
-    autocomplete="username"
-    required
-    value={@current_user.username}
-  />
-
-  <.input :if={@live_action == :name} field={@settings_form[:first_name]} type="text" label={gettext("First Name")} autocomplete="given-name" value={@current_user.first_name} />
-  <.input :if={@live_action == :name} field={@settings_form[:last_name]} type="text" label={gettext("Last Name")} autocomplete="family-name" value={@current_user.last_name} />
+  <.input :if={@live_action == :username} field={@settings_form[:username]} type="text" label={gettext("Username")} autocomplete="username" required />
+  <.input :if={@live_action == :name} field={@settings_form[:first_name]} type="text" label={gettext("First Name")} autocomplete="given-name" />
+  <.input :if={@live_action == :name} field={@settings_form[:last_name]} type="text" label={gettext("Last Name")} autocomplete="family-name" />
 
   <:actions>
     <.button type="submit" phx-disable-with={gettext("Saving...")}><%= gettext("Save") %></.button>

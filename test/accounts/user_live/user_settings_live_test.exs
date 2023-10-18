@@ -81,6 +81,26 @@ defmodule UneebeeWeb.UserSettingsLiveTest do
       assert user.last_name == new_last_name
     end
 
+    test "makes sure the first name doesn't get replaced when filling the last name", %{conn: conn, user: user} do
+      {:ok, lv, _html} = live(conn, ~p"/users/settings/name")
+
+      new_first_name = "New first name"
+      new_last_name = "New last name"
+
+      assert has_element?(lv, ~s|input[name="user[first_name]"][value="#{user.first_name}"]|)
+      assert has_element?(lv, ~s|input[name="user[last_name]"][value="#{user.last_name}"]|)
+
+      lv |> element(@settings_form) |> render_change(%{user: %{first_name: new_first_name}})
+
+      assert has_element?(lv, ~s|input[name="user[first_name]"][value="#{new_first_name}"]|)
+      assert has_element?(lv, ~s|input[name="user[last_name]"][value="#{user.last_name}"]|)
+
+      lv |> element(@settings_form) |> render_change(%{user: %{last_name: new_last_name}})
+
+      assert has_element?(lv, ~s|input[name="user[first_name]"][value="#{new_first_name}"]|)
+      assert has_element?(lv, ~s|input[name="user[last_name]"][value="#{new_last_name}"]|)
+    end
+
     test "completes a mission when the first name is added", %{conn: conn, user: user} do
       Accounts.update_user_settings(user, %{first_name: nil, last_name: nil})
 
