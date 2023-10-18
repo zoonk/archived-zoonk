@@ -89,7 +89,7 @@ defmodule UneebeeWeb.DashboardLessonViewLiveTest do
 
       {:ok, lv, _html} = live(conn, ~p"/dashboard/c/#{course.slug}/l/#{lesson.id}/s/2")
 
-      assert has_element?(lv, ~s|a:fl-contains("Text step 2")|)
+      assert has_element?(lv, ~s|a span:fl-contains("Text step 2")|)
 
       lv |> element("button", "Remove step") |> render_click()
 
@@ -108,14 +108,14 @@ defmodule UneebeeWeb.DashboardLessonViewLiveTest do
 
     test "updates a step", %{conn: conn, course: course} do
       lesson = lesson_fixture(%{course_id: course.id})
-      lesson_step_fixture(%{lesson_id: lesson.id, order: 1, content: "Text step 1"})
+      step = lesson_step_fixture(%{lesson_id: lesson.id, order: 1, content: "Text step 1"})
 
       {:ok, lv, _html} = live(conn, ~p"/dashboard/c/#{course.slug}/l/#{lesson.id}/s/1")
 
-      lv |> element("a", "Text step 1") |> render_click()
+      lv |> element("#step-edit-#{step.id}", "Text step 1") |> render_click()
       lv |> form("#step-form", lesson_step: %{content: "Updated step!"}) |> render_submit()
 
-      assert has_element?(lv, ~s|a:fl-contains("Updated step!")|)
+      assert has_element?(lv, ~s|a span:fl-contains("Updated step!")|)
       assert Content.get_lesson_step_by_order(lesson, 1).content == "Updated step!"
     end
 
@@ -171,7 +171,7 @@ defmodule UneebeeWeb.DashboardLessonViewLiveTest do
 
       lv |> element("button", "+") |> render_click()
 
-      assert has_element?(lv, ~s|a[href="/dashboard/c/#{course.slug}/l/#{lesson.id}/s/4/edit"]:fl-icontains("untitled step")|)
+      assert has_element?(lv, ~s|a[href="/dashboard/c/#{course.slug}/l/#{lesson.id}/s/4/edit"] span:fl-icontains("untitled step")|)
     end
 
     test "cannot have more than 20 steps", %{conn: conn, course: course} do

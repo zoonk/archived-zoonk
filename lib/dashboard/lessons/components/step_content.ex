@@ -16,7 +16,7 @@ defmodule UneebeeWeb.Components.Dashboard.StepContent do
   def render(assigns) do
     ~H"""
     <div>
-      <.link class="mb-4 flex items-center gap-1" patch={~p"/dashboard/c/#{@course.slug}/l/#{@lesson.id}/s/#{@step.order}/edit"}>
+      <.link class="mb-4 flex items-center gap-1" id={"step-edit-#{@step.id}"} patch={~p"/dashboard/c/#{@course.slug}/l/#{@lesson.id}/s/#{@step.order}/edit"}>
         <span class="whitespace-pre-wrap"><%= @step.content %></span> <.icon name="tabler-edit" title={dgettext("orgs", "Edit step")} />
       </.link>
 
