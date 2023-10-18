@@ -121,7 +121,8 @@ defmodule UneebeeWeb.DashboardLessonViewLiveTest do
 
     test "updates a step image", %{conn: conn, course: course} do
       lesson = lesson_fixture(%{course_id: course.id})
-      lesson_step_fixture(%{lesson_id: lesson.id, order: 1, content: "Text step 1", image: "https://someimage.png"})
+      long_content = String.duplicate("a", 600)
+      lesson_step_fixture(%{lesson_id: lesson.id, order: 1, content: long_content, image: "https://someimage.png"})
 
       {:ok, lv, _html} = live(conn, ~p"/dashboard/c/#{course.slug}/l/#{lesson.id}/s/1")
 
