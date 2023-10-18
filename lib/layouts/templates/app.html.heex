@@ -127,6 +127,8 @@
     <.menu_item href={~p"/courses"} icon="tabler-bulb" active={@active_page in [:course_list, :course_view]} title={gettext("Courses")} />
     <.menu_item href={~p"/missions"} icon="tabler-target-arrow" active={@active_page == :mission_list} title={dgettext("gamification", "Missions")} />
 
+    <.menu_item href={~p"/feedback"} icon="tabler-message-circle-2" active={@active_page == :support_feedback} title={gettext("Feedback")} />
+
     <.menu_item :if={@current_user} href={~p"/users/settings/language"} icon="tabler-settings" active={user_settings?(@active_page)} title={gettext("Settings")}>
       <:sub_menus>
         <.sub_menu navigate={~p"/users/settings/language"} active={@active_page == :user_settings_language} title={gettext("Language")} />
@@ -137,8 +139,6 @@
         <.sub_menu href={~p"/users/logout"} method="delete" title={gettext("Logout")} />
       </:sub_menus>
     </.menu_item>
-
-    <.menu_item href={~p"/feedback"} icon="tabler-message-circle-2" active={@active_page == :support_feedback} title={gettext("Feedback")} />
   </.menu>
 
   <section class="w-full"><%= @inner_content %></section>
