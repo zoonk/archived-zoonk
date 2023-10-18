@@ -1,6 +1,8 @@
+# credo:disable-for-this-file Credo.Check.Readability.Specs
+
 defmodule UneebeeWeb.Components.Dashboard.StepImage do
   @moduledoc false
-  use UneebeeWeb, :live_component
+  use UneebeeWeb, :html
 
   alias Uneebee.Content.Course
   alias Uneebee.Content.Lesson
@@ -10,8 +12,7 @@ defmodule UneebeeWeb.Components.Dashboard.StepImage do
   attr :lesson, Lesson, required: true
   attr :step, LessonStep, required: true
 
-  @impl Phoenix.LiveComponent
-  def render(assigns) do
+  def step_image(assigns) do
     ~H"""
     <div>
       <.link

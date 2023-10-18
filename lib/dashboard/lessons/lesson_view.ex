@@ -2,12 +2,13 @@ defmodule UneebeeWeb.Live.Dashboard.LessonView do
   @moduledoc false
   use UneebeeWeb, :live_view
 
+  import UneebeeWeb.Components.Dashboard.StepImage
+
   alias Uneebee.Content
   alias UneebeeWeb.Components.Dashboard.LessonPublish
   alias UneebeeWeb.Components.Dashboard.LessonSwitch
   alias UneebeeWeb.Components.Dashboard.OptionList
   alias UneebeeWeb.Components.Dashboard.StepContent
-  alias UneebeeWeb.Components.Dashboard.StepImage
   alias UneebeeWeb.Components.Upload
 
   @impl Phoenix.LiveView

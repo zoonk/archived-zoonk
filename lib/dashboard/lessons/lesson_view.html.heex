@@ -3,7 +3,7 @@
 
 <div class="text-gray-dark2x card mt-4 p-4 text-sm">
   <.live_component module={StepContent} id={:step_content} action={@live_action} course={@course} lesson={@lesson} step={@selected_step} />
-  <.live_component module={StepImage} id={:step_image} course={@course} lesson={@lesson} step={@selected_step} />
+  <.step_image course={@course} lesson={@lesson} step={@selected_step} />
   <.live_component module={OptionList} id={:option_list} action={@live_action} option={@selected_option} course={@course} lesson={@lesson} step={@selected_step} />
 
   <.button phx-click="add-option" phx-value-step-id={@selected_step.id} icon="tabler-layout-grid-add" color={:info_light} class="mt-4">
