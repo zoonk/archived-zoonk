@@ -17,6 +17,16 @@ defmodule UneebeeWeb.CourseListLiveTest do
     test "lists public courses from the host school", %{conn: conn, school: school} do
       assert_course_list(conn, school, nil)
     end
+
+    test "doesn't show courses in another language", %{conn: conn, school: school} do
+      valid_course = course_fixture(%{school_id: school.id, language: :en})
+      other_language_course = course_fixture(%{school_id: school.id, language: :pt})
+
+      {:ok, lv, _html} = live(conn, ~p"/courses")
+
+      refute has_element?(lv, get_course_el(other_language_course))
+      assert has_element?(lv, get_course_el(valid_course))
+    end
   end
 
   describe "/courses (private school, non-authenticated users)" do

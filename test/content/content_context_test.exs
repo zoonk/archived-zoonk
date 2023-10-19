@@ -139,7 +139,7 @@ defmodule Uneebee.ContentTest do
     end
   end
 
-  describe "list_public_courses_by_school/2" do
+  describe "list_public_courses_by_school/3" do
     test "returns all public courses for a given school" do
       school = school_fixture()
       course1 = course_fixture(%{school_id: school.id, published?: true, public?: true, preload: :school})
@@ -147,10 +147,11 @@ defmodule Uneebee.ContentTest do
 
       course_fixture(%{school_id: school.id, published?: false, public?: true})
       course_fixture(%{school_id: school.id, published?: true, public?: false})
+      course_fixture(%{school_id: school.id, published?: true, public?: true, language: :pt})
 
       Enum.each(1..3, fn _idx -> course_user_fixture(%{course: course1}) end)
 
-      courses = Content.list_public_courses_by_school(school)
+      courses = Content.list_public_courses_by_school(school, :en)
 
       assert courses == [
                %CourseData{id: course1.id, data: course1, student_count: 3},
@@ -167,7 +168,7 @@ defmodule Uneebee.ContentTest do
 
       Enum.each(1..3, fn _idx -> course_user_fixture(%{course: course1}) end)
 
-      courses = Content.list_public_courses_by_school(school, limit: 2)
+      courses = Content.list_public_courses_by_school(school, :en, limit: 2)
 
       assert courses == [
                %CourseData{id: course1.id, data: course1, student_count: 3},

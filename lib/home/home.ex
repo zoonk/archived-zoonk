@@ -9,11 +9,11 @@ defmodule UneebeeWeb.Live.Home do
   alias Uneebee.Gamification
 
   @impl Phoenix.LiveView
-  def mount(_params, _session, socket) do
+  def mount(_params, session, socket) do
     %{current_user: user, school: school} = socket.assigns
 
     courses_learning = list_courses_by_user(user, :student)
-    courses = Content.list_public_courses_by_school(school, limit: 20)
+    courses = Content.list_public_courses_by_school(school, session["locale"], limit: 20)
     learning_days = get_learning_days(user)
     medals = get_user_medals(user)
     trophies = get_user_trophies(user)

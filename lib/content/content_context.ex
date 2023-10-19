@@ -144,15 +144,15 @@ defmodule Uneebee.Content do
       iex> list_public_courses_by_school(%School{})
       [%CourseData{}, ...]
   """
-  @spec list_public_courses_by_school(School.t(), list()) :: [CourseData.t()]
-  def list_public_courses_by_school(%School{} = school, opts \\ []) do
+  @spec list_public_courses_by_school(School.t(), atom(), list()) :: [CourseData.t()]
+  def list_public_courses_by_school(%School{} = school, language, opts \\ []) do
     limit = Keyword.get(opts, :limit, nil)
 
     courses =
       Course
       |> join(:left, [c], u in assoc(c, :users), on: u.role == ^:student)
       |> where([c], c.school_id == ^school.id)
-      |> where([c], c.published? and c.public?)
+      |> where([c], c.published? and c.public? and c.language == ^language)
       |> group_by([c], c.id)
       |> order_by([c, u], desc: count(u.id))
       |> limit(^limit)

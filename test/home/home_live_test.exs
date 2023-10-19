@@ -75,6 +75,15 @@ defmodule UneebeeWeb.HomeControllerTest do
       Enum.each(2..21, fn idx -> assert has_element?(lv, ~s|#courses-list dt:fl-icontains("course #{idx}!")|) end)
     end
 
+    test "doesn't show courses in another language", %{conn: conn, school: school} do
+      course_fixture(%{name: "Course 1", school_id: school.id, language: :pt})
+      course_fixture(%{name: "Course 2", school_id: school.id, language: :en})
+
+      {:ok, lv, _html} = live(conn, ~p"/")
+      refute has_element?(lv, ~s|#courses-list dt:fl-icontains("Course 1")|)
+      assert has_element?(lv, ~s|#courses-list dt:fl-icontains("Course 2")|)
+    end
+
     test "doesn't show the learning days count", %{conn: conn} do
       {:ok, lv, _html} = live(conn, ~p"/")
       refute has_element?(lv, ~s|#learning-days|)

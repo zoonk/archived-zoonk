@@ -7,10 +7,10 @@ defmodule UneebeeWeb.Live.Content.Course.List do
   alias Uneebee.Content
 
   @impl Phoenix.LiveView
-  def mount(_params, _session, socket) do
+  def mount(_params, session, socket) do
     %{current_user: user, school: school} = socket.assigns
 
-    courses = Content.list_public_courses_by_school(school)
+    courses = Content.list_public_courses_by_school(school, session["locale"])
     courses_learning = list_courses_by_user(user, :student)
 
     socket =
