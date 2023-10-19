@@ -21,13 +21,14 @@ defmodule Uneebee.GamificationTest do
   describe "create_user_medal/1" do
     test "creates a user medal" do
       user = user_fixture()
-      attrs = %{user_id: user.id, medal: :gold, reason: :perfect_lesson_first_try}
+      lesson = lesson_fixture()
+      attrs = %{user_id: user.id, lesson_id: lesson.id, medal: :gold, reason: :perfect_lesson_first_try}
 
       assert {:ok, %UserMedal{} = user_medal} = Gamification.create_user_medal(attrs)
       assert user_medal.user_id == attrs.user_id
       assert user_medal.medal == attrs.medal
       assert user_medal.reason == attrs.reason
-      assert is_nil(user_medal.lesson_id)
+      assert user_medal.lesson_id == attrs.lesson_id
     end
 
     test "creates a user medal with a lesson" do
@@ -57,13 +58,20 @@ defmodule Uneebee.GamificationTest do
       assert {:error, %Ecto.Changeset{} = changeset} = Gamification.create_user_medal(attrs)
       assert "is invalid" in errors_on(changeset).medal
     end
+
+    test "returns an error if it's a lesson medal without a lesson_id" do
+      user = user_fixture()
+      attrs = %{user_id: user.id, medal: :gold, reason: :perfect_lesson_first_try}
+
+      assert {:error, %Ecto.Changeset{} = changeset} = Gamification.create_user_medal(attrs)
+      assert "can't be blank" in errors_on(changeset).lesson_id
+    end
   end
 
   describe "count_user_medals/1" do
     test "returns the count of medals for a given user" do
       user = user_fixture()
-      attrs = %{user_id: user.id, medal: :gold, reason: :perfect_lesson_first_try}
-      Enum.each(1..3, fn _idx -> Gamification.create_user_medal(attrs) end)
+      Enum.each(1..3, fn _idx -> user_medal_fixture(%{user: user}) end)
       assert Gamification.count_user_medals(user.id) == 3
     end
   end
@@ -72,13 +80,9 @@ defmodule Uneebee.GamificationTest do
     test "returns the count of medals for a given user and medal type" do
       user = user_fixture()
 
-      attrs_gold = %{user_id: user.id, medal: :gold, reason: :perfect_lesson_first_try}
-      attrs_silver = %{user_id: user.id, medal: :silver, reason: :perfect_lesson_first_try}
-      attrs_bronze = %{user_id: user.id, medal: :bronze, reason: :perfect_lesson_first_try}
-
-      Enum.each(1..3, fn _idx -> Gamification.create_user_medal(attrs_gold) end)
-      Enum.each(1..2, fn _idx -> Gamification.create_user_medal(attrs_silver) end)
-      Gamification.create_user_medal(attrs_bronze)
+      Enum.each(1..3, fn _idx -> user_medal_fixture(%{user: user, medal: :gold}) end)
+      Enum.each(1..2, fn _idx -> user_medal_fixture(%{user: user, medal: :silver}) end)
+      user_medal_fixture(%{user: user, medal: :bronze})
 
       assert Gamification.count_user_medals(user.id, :gold) == 3
       assert Gamification.count_user_medals(user.id, :silver) == 2
