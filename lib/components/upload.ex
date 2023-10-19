@@ -8,6 +8,7 @@ defmodule UneebeeWeb.Components.Upload do
 
   attr :current_img, :string, default: nil
   attr :label, :string, default: nil
+  attr :subtitle, :string, default: nil
   attr :unstyled, :boolean, default: false
 
   @impl Phoenix.LiveComponent
@@ -16,7 +17,10 @@ defmodule UneebeeWeb.Components.Upload do
     <section class={["h-max space-y-4", not @unstyled && "bg-white p-4 card"]}>
       <% entry = List.first(@uploads.file.entries) %>
 
-      <.header :if={@label}><%= @label %></.header>
+      <.header :if={@label}>
+        <%= @label %>
+        <:subtitle><%= @subtitle %></:subtitle>
+      </.header>
 
       <form id={"upload-form-#{@id}"} phx-submit="save" phx-change="validate" phx-drop-target={@uploads.file.ref} phx-target={@myself} class="flex flex-col space-y-8">
         <div class="flex items-center space-x-6">

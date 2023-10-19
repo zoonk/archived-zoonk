@@ -20,15 +20,15 @@ defmodule UneebeeWeb.Components.Dashboard.StepImage do
         id="step-img-link"
         aria-label={dgettext("orgs", "Edit step image")}
         patch={~p"/dashboard/c/#{@course.slug}/l/#{@lesson.id}/s/#{@step.order}/image"}
-        class="block w-full sm:w-1/3"
+        class="block"
       >
-        <img src={@step.image} class="w-full" />
+        <img src={@step.image} class="aspect-video w-full object-cover sm:w-[386px]" />
       </.link>
 
       <.link
         :if={is_nil(@step.image)}
         patch={~p"/dashboard/c/#{@course.slug}/l/#{@lesson.id}/s/#{@step.order}/image"}
-        class="bg-gray-light2x text-gray-dark2x flex w-full flex-col items-center justify-center rounded-2xl px-4 py-12 text-center sm:w-1/3"
+        class="bg-gray-light2x text-gray-dark2x aspect-video flex w-full flex-col items-center justify-center rounded-2xl px-4 py-12 text-center sm:w-[386px]"
       >
         <%= dgettext("orgs", "Click to add an image to this step.") %>
       </.link>

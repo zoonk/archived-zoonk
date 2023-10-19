@@ -153,17 +153,17 @@ msgstr ""
 msgid "must start with / or https://"
 msgstr ""
 
-#: lib/components/upload.ex:126
+#: lib/components/upload.ex:130
 #, elixir-autogen, elixir-format
 msgid "Too large"
 msgstr ""
 
-#: lib/components/upload.ex:128
+#: lib/components/upload.ex:132
 #, elixir-autogen, elixir-format
 msgid "You have selected an unacceptable file type"
 msgstr ""
 
-#: lib/components/upload.ex:127
+#: lib/components/upload.ex:131
 #, elixir-autogen, elixir-format
 msgid "You have selected too many files"
 msgstr ""

@@ -241,7 +241,7 @@ msgstr "Despublicado"
 msgid "+ Lesson"
 msgstr "+ Aula"
 
-#: lib/dashboard/lessons/lesson_view.html.heex:25
+#: lib/dashboard/lessons/lesson_view.html.heex:32
 #, elixir-autogen, elixir-format
 msgid "Add image to option"
 msgstr "Adicionar imagem à alternativa"
@@ -522,7 +522,7 @@ msgstr "Etapa sem título"
 msgid "A lesson has multiple steps. Use them to tell a story, explain a concept or ask a question. Keep them short and simple."
 msgstr "Uma aula tem várias etapas. Use-as para contar uma história, explicar um conceito ou fazer uma pergunta. Mantenha-os curtos e simples."
 
-#: lib/dashboard/lessons/lesson_view.html.heex:21
+#: lib/dashboard/lessons/lesson_view.html.heex:26
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Add image to step"
 msgstr "Adicionar imagem à etapa"
@@ -566,3 +566,8 @@ msgstr "Editar imagem da etapa"
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Could not update course!"
 msgstr "Não foi possível atualizar o curso!"
+
+#: lib/dashboard/lessons/lesson_view.html.heex:27
+#, elixir-autogen, elixir-format
+msgid "Your image should be 384x216px (or use a 16/9 proportion)."
+msgstr "A imagem deve ter 384x216px (ou usar uma proporção 16/9)."

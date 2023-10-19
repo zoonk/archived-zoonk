@@ -241,7 +241,7 @@ msgstr ""
 msgid "+ Lesson"
 msgstr ""
 
-#: lib/dashboard/lessons/lesson_view.html.heex:25
+#: lib/dashboard/lessons/lesson_view.html.heex:32
 #, elixir-autogen, elixir-format
 msgid "Add image to option"
 msgstr ""
@@ -522,7 +522,7 @@ msgstr ""
 msgid "A lesson has multiple steps. Use them to tell a story, explain a concept or ask a question. Keep them short and simple."
 msgstr ""
 
-#: lib/dashboard/lessons/lesson_view.html.heex:21
+#: lib/dashboard/lessons/lesson_view.html.heex:26
 #, elixir-autogen, elixir-format
 msgid "Add image to step"
 msgstr ""
@@ -565,4 +565,9 @@ msgstr ""
 #: lib/dashboard/courses/components/course_publish.ex:36
 #, elixir-autogen, elixir-format
 msgid "Could not update course!"
+msgstr ""
+
+#: lib/dashboard/lessons/lesson_view.html.heex:27
+#, elixir-autogen, elixir-format
+msgid "Your image should be 384x216px (or use a 16/9 proportion)."
 msgstr ""
