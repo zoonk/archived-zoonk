@@ -1,0 +1,12 @@
+<dl class="grid grid-cols-2 gap-4 sm:grid-cols-3">
+  <div :for={user_trophy <- @user_trophies} class="bg-warning-light3x text-warning-dark2x flex flex-col items-center gap-1 rounded-2xl p-4 text-center">
+    <.icon name="tabler-trophy" />
+    <dt class="text-sm font-black"><%= trophy_name(user_trophy.reason) %></dt>
+
+    <time datetime={user_trophy.inserted_at} id={"trophy-created-#{user_trophy.id}"} phx-hook="LocaleTime" class="text-xs">
+      <%= DateTime.to_string(user_trophy.inserted_at) %>
+    </time>
+
+    <dd class="mt-4 text-sm font-semibold"><%= description(user_trophy) %></dd>
+  </div>
+</dl>

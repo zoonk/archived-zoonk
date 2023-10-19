@@ -126,6 +126,7 @@
 
     <.menu_item href={~p"/courses"} icon="tabler-bulb" active={@active_page in [:course_list, :course_view]} title={gettext("Courses")} />
     <.menu_item href={~p"/missions"} icon="tabler-target-arrow" active={@active_page == :mission_list} title={dgettext("gamification", "Missions")} />
+    <.menu_item href={~p"/trophies"} icon="tabler-trophy" active={@active_page == :trophy_list} title={dgettext("gamification", "Trophies")} />
 
     <.menu_item href={~p"/feedback"} icon="tabler-message-circle-2" active={@active_page == :support_feedback} title={gettext("Feedback")} />
 

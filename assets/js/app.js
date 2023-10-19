@@ -31,8 +31,10 @@ let Hooks = {};
 
 Hooks.LocaleTime = {
   mounted() {
-    let dt = new Date(this.el.textContent);
-    this.el.textContent = dt.toLocaleString();
+    const dt = new Date(this.el.textContent);
+    const locale = document.documentElement.lang;
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+    this.el.textContent = dt.toLocaleString(locale, options);
   },
 };
 

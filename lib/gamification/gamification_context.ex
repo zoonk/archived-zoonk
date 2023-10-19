@@ -191,6 +191,21 @@ defmodule Uneebee.Gamification do
   def maybe_award_trophy(_attrs), do: {:ok, %UserTrophy{}}
 
   @doc """
+  List user trophies.
+
+  It displays the most recent trophies first.
+
+  ## Examples
+
+      iex> list_user_trophies(user_id)
+      [%UserTrophy{}]
+  """
+  @spec list_user_trophies(integer()) :: [UserTrophy.t()]
+  def list_user_trophies(user_id) do
+    UserTrophy |> where([ut], ut.user_id == ^user_id) |> order_by(desc: :inserted_at) |> preload([:course, :mission]) |> Repo.all()
+  end
+
+  @doc """
   Returns the count of trophies for a given user.
 
   ## Examples

@@ -103,6 +103,24 @@ defmodule Uneebee.GamificationTest do
     end
   end
 
+  describe "list_user_trophies/1" do
+    test "returns a list of trophies for a given user" do
+      user = user_fixture()
+      course = course_fixture()
+      mission = user_mission_fixture(%{user: user, reason: :profile_name})
+
+      user_trophy_fixture(%{user: user, course: course, reason: :course_completed})
+
+      [trophy1, trophy2] = Gamification.list_user_trophies(user.id)
+
+      assert trophy1.course_id == course.id
+      assert trophy1.reason == :course_completed
+
+      assert trophy2.mission_id == mission.id
+      assert trophy2.reason == :mission_completed
+    end
+  end
+
   describe "create_user_trophy/1" do
     test "creates a user trophy" do
       user = user_fixture()
