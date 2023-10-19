@@ -16,7 +16,7 @@
 
   <form id="select-option" phx-submit="next" class="space-y-4" phx-hook="LessonSoundEffect">
     <secion :if={@current_step.options != []} class="grid grid-cols-2 gap-2">
-      <div :for={option <- @current_step.options} class="relative">
+      <div :for={option <- Enum.shuffle(@current_step.options)} class="relative">
         <input
           id={"select-option-#{option.id}"}
           type="radio"
