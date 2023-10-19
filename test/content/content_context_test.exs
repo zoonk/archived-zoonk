@@ -10,6 +10,7 @@ defmodule Uneebee.ContentTest do
   alias Uneebee.Content.Course
   alias Uneebee.Content.CourseData
   alias Uneebee.Content.CourseUser
+  alias Uneebee.Content.CourseUtils
   alias Uneebee.Content.Lesson
   alias Uneebee.Content.LessonStep
   alias Uneebee.Content.StepOption
@@ -752,6 +753,24 @@ defmodule Uneebee.ContentTest do
 
       assert {:error, %Ecto.Changeset{} = changeset} = Content.update_step_option(step_option, attrs)
       assert "can't be blank" in errors_on(changeset).title
+    end
+
+    test "doesn't allow feedback to go above the limit" do
+      step_option = step_option_fixture()
+      max_length = CourseUtils.max_length(:option_feedback)
+      attrs = %{feedback: String.duplicate("a", max_length + 1)}
+
+      assert {:error, %Ecto.Changeset{} = changeset} = Content.update_step_option(step_option, attrs)
+      assert "should be at most #{max_length} character(s)" in errors_on(changeset).feedback
+    end
+
+    test "doesn't allow title to go above the limit" do
+      step_option = step_option_fixture()
+      max_length = CourseUtils.max_length(:option_title)
+      attrs = %{title: String.duplicate("a", max_length + 1)}
+
+      assert {:error, %Ecto.Changeset{} = changeset} = Content.update_step_option(step_option, attrs)
+      assert "should be at most #{max_length} character(s)" in errors_on(changeset).title
     end
   end
 

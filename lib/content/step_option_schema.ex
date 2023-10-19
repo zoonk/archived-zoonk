@@ -6,6 +6,7 @@ defmodule Uneebee.Content.StepOption do
 
   import Ecto.Changeset
 
+  alias Uneebee.Content.CourseUtils
   alias Uneebee.Content.LessonStep
 
   @type t :: %__MODULE__{}
@@ -27,7 +28,7 @@ defmodule Uneebee.Content.StepOption do
     step_option
     |> cast(attrs, [:correct?, :feedback, :image, :title, :lesson_step_id])
     |> validate_required([:correct?, :title, :lesson_step_id])
-    |> validate_length(:feedback, max: 280)
-    |> validate_length(:title, max: 80)
+    |> validate_length(:feedback, max: CourseUtils.max_length(:option_feedback))
+    |> validate_length(:title, max: CourseUtils.max_length(:option_title))
   end
 end

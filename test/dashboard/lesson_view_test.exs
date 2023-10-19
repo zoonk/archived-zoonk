@@ -6,6 +6,7 @@ defmodule UneebeeWeb.DashboardLessonViewLiveTest do
   import UneebeeWeb.TestHelpers.Upload
 
   alias Uneebee.Content
+  alias Uneebee.Content.CourseUtils
   alias Uneebee.Content.LessonStep
 
   describe "lesson view (non-authenticated user)" do
@@ -229,11 +230,14 @@ defmodule UneebeeWeb.DashboardLessonViewLiveTest do
 
       {:ok, lv, _html} = live(conn, ~p"/dashboard/c/#{course.slug}/l/#{lesson.id}/s/1")
 
-      lv |> element("a", option.title) |> render_click()
-      lv |> form("#option-form", step_option: %{title: "Updated option!"}) |> render_submit()
+      feedback = String.duplicate("a", CourseUtils.max_length(:option_feedback))
+      title = String.duplicate("a", CourseUtils.max_length(:option_title))
 
-      assert has_element?(lv, ~s|a:fl-contains("Updated option!")|)
-      assert Content.get_step_option!(option.id).title == "Updated option!"
+      lv |> element("a", option.title) |> render_click()
+      lv |> form("#option-form", step_option: %{feedback: feedback, title: title}) |> render_submit()
+
+      assert Content.get_step_option!(option.id).feedback == feedback
+      assert Content.get_step_option!(option.id).title == title
     end
 
     test "updates an option image", %{conn: conn, course: course} do
