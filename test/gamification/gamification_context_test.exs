@@ -74,6 +74,36 @@ defmodule Uneebee.GamificationTest do
       assert {:error, %Ecto.Changeset{} = changeset} = Gamification.create_user_medal(attrs)
       assert "can't be blank" in errors_on(changeset).mission_id
     end
+
+    test "don't allow two medals with the same mission_id" do
+      user = user_fixture()
+      mission = user_mission_fixture(%{user: user, reason: :profile_name})
+      attrs = %{user_id: user.id, mission_id: mission.id, medal: :gold, reason: :mission_completed}
+
+      assert {:ok, %UserMedal{} = _user_medal} = Gamification.create_user_medal(attrs)
+      assert {:error, %Ecto.Changeset{} = changeset} = Gamification.create_user_medal(attrs)
+      assert "has already been taken" in errors_on(changeset).user_id
+    end
+
+    test "allows two medals with the same lesson_id but different reasons" do
+      user = user_fixture()
+      lesson = lesson_fixture()
+      attrs1 = %{user_id: user.id, lesson_id: lesson.id, medal: :gold, reason: :perfect_lesson_first_try}
+      attrs2 = %{user_id: user.id, lesson_id: lesson.id, medal: :silver, reason: :perfect_lesson_practiced}
+
+      assert {:ok, %UserMedal{} = _user_medal} = Gamification.create_user_medal(attrs1)
+      assert {:ok, %UserMedal{} = _user_medal} = Gamification.create_user_medal(attrs2)
+    end
+
+    test "don't allow two medals with the same lesson_id and reason" do
+      user = user_fixture()
+      lesson = lesson_fixture()
+      attrs = %{user_id: user.id, lesson_id: lesson.id, medal: :gold, reason: :perfect_lesson_first_try}
+
+      assert {:ok, %UserMedal{} = _user_medal} = Gamification.create_user_medal(attrs)
+      assert {:error, %Ecto.Changeset{} = changeset} = Gamification.create_user_medal(attrs)
+      assert "has already been taken" in errors_on(changeset).user_id
+    end
   end
 
   describe "count_user_medals/1" do

@@ -36,6 +36,7 @@ defmodule Uneebee.Gamification.UserMedal do
     |> maybe_require_lesson_id()
     |> maybe_require_mission_id()
     |> unique_constraint([:user_id, :mission_id])
+    |> unique_constraint([:user_id, :lesson_id, :reason])
   end
 
   # Requires a lesson_id when the `reason`includes the word `lesson`.
