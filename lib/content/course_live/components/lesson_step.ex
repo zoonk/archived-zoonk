@@ -27,8 +27,7 @@ defmodule UneebeeWeb.Components.Content.LessonStep do
 
   def feedback_option(assigns) do
     ~H"""
-    <div :if={@selected} class="py-4">
-      <% color = if @selected.correct?, do: :success_light, else: :alert_light %>
+    <div :if={@selected} class="min-w-0 py-4">
       <% icon = if @selected.correct?, do: "tabler-checks", else: "tabler-alert-square-rounded" %>
 
       <% default_feedback =
@@ -36,16 +35,17 @@ defmodule UneebeeWeb.Components.Content.LessonStep do
 
       <% feedback = if @selected.feedback, do: @selected.feedback, else: default_feedback %>
 
-      <.badge color={color} icon={icon}>
-        <%= dgettext("courses", "You selected: %{title}. %{feedback}", title: @selected.title, feedback: feedback) %>
-      </.badge>
-
-      <.badge :if={not @selected.correct?} color={:success_light} icon="tabler-checks">
-        <%= dgettext("courses", "Correct answer: %{title}.", title: correct_option(@options).title) %>
-      </.badge>
+      <div
+        role="alert"
+        class={[
+          "py-2 px-4 rounded-lg items-center fixed right-4 left-4 font-bold text-sm bottom-[72px] flex gap-2",
+          @selected.correct? && "bg-success-light3x text-success-dark2x",
+          not @selected.correct? && "bg-alert-light3x text-alert-dark2x"
+        ]}
+      >
+        <.icon name={icon} class="h-3 w-3" /> <%= feedback %>
+      </div>
     </div>
     """
   end
-
-  defp correct_option(options), do: Enum.find(options, fn option -> option.correct? end)
 end

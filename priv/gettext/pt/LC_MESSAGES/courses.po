@@ -11,7 +11,7 @@ msgstr ""
 "Language: pt\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: lib/content/course_live/view.ex:56
+#: lib/content/course_live/view.ex:58
 #, elixir-autogen, elixir-format
 msgid "A request to enroll has been sent to the course teacher."
 msgstr "Uma solicitação de matrícula foi enviada ao professor do curso."
@@ -46,11 +46,6 @@ msgstr "Confirmando..."
 msgid "Content"
 msgstr "Conteúdo"
 
-#: lib/content/course_live/components/lesson_step.ex:44
-#, elixir-autogen, elixir-format
-msgid "Correct answer: %{title}."
-msgstr "Respota correta: %{title}."
-
 #: lib/layouts/templates/app.html.heex:82
 #, elixir-autogen, elixir-format
 msgid "Delete course"
@@ -61,7 +56,7 @@ msgstr "Apagar curso"
 msgid "Delete lesson"
 msgstr "Apagar aula"
 
-#: lib/content/course_live/view.ex:55
+#: lib/content/course_live/view.ex:57
 #, elixir-autogen, elixir-format
 msgid "Enrolled successfully!"
 msgstr "Matriculado com sucesso!"
@@ -76,7 +71,7 @@ msgstr "Excelente!"
 msgid "Expert"
 msgstr "Especialista"
 
-#: lib/content/course_live/view.ex:41
+#: lib/content/course_live/view.ex:43
 #, elixir-autogen, elixir-format
 msgid "Failed to enroll"
 msgstr "Falha ao se matricular"
@@ -170,11 +165,6 @@ msgstr "Boa!"
 #, elixir-autogen, elixir-format
 msgid "You got %{correct} out of %{total} answers right."
 msgstr "Você acertou %{correct} de %{total} respostas."
-
-#: lib/content/course_live/components/lesson_step.ex:40
-#, elixir-autogen, elixir-format
-msgid "You selected: %{title}. %{feedback}"
-msgstr "Você selecionou: %{title}. %{feedback}"
 
 #: lib/layouts/templates/app.html.heex:40
 #, elixir-autogen, elixir-format, fuzzy
