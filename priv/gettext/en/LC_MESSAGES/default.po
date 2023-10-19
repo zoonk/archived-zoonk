@@ -49,6 +49,7 @@ msgstr ""
 #: lib/accounts/user_live/registration.html.heex:15
 #: lib/accounts/user_live/settings.html.heex:6
 #: lib/dashboard/courses/course_edit.html.heex:4
+#: lib/dashboard/courses/course_new.html.heex:10
 #: lib/layouts/templates/app.html.heex:134
 #, elixir-autogen, elixir-format
 msgid "Language"
@@ -63,7 +64,7 @@ msgstr ""
 #: lib/accounts/user_live/registration.html.heex:23
 #: lib/accounts/user_live/settings.html.heex:17
 #: lib/dashboard/courses/course_edit.html.heex:33
-#: lib/dashboard/courses/course_new.html.heex:22
+#: lib/dashboard/courses/course_new.html.heex:24
 #: lib/dashboard/courses/course_user_list.html.heex:62
 #: lib/dashboard/lessons/components/option_list.ex:83
 #: lib/dashboard/lessons/lesson_edit.html.heex:6
@@ -196,12 +197,6 @@ msgstr ""
 #: lib/layouts/templates/app.html.heex:33
 #, elixir-autogen, elixir-format
 msgid "All courses"
-msgstr ""
-
-#: lib/dashboard/courses/course_edit.html.heex:38
-#: lib/dashboard/lessons/lesson_edit.html.heex:11
-#, elixir-autogen, elixir-format
-msgid "Cancel"
 msgstr ""
 
 #: lib/content/course_live/play.html.heex:56

@@ -6,9 +6,5 @@
     <.button type="submit" icon="tabler-check" phx-disable-with={gettext("Saving...")}>
       <%= gettext("Save") %>
     </.button>
-
-    <.link_button icon="tabler-x" color={:alert_light} navigate={~p"/dashboard/c/#{@course.slug}"}>
-      <%= gettext("Cancel") %>
-    </.link_button>
   </:actions>
 </.simple_form>

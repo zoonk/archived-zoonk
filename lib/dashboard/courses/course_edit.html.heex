@@ -33,10 +33,6 @@
     <.button icon="tabler-table-export" type="submit" phx-disable-with={gettext("Saving...")}>
       <%= dgettext("orgs", "Update course") %>
     </.button>
-
-    <.link_button icon="tabler-x" color={:alert_light} navigate={~p"/dashboard/c/#{@course.slug}"}>
-      <%= gettext("Cancel") %>
-    </.link_button>
   </:actions>
 </.simple_form>
 

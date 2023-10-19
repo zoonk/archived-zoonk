@@ -195,7 +195,7 @@ msgstr "Capa"
 msgid "Create a course"
 msgstr "Criar um curso"
 
-#: lib/dashboard/courses/course_new.html.heex:23
+#: lib/dashboard/courses/course_new.html.heex:25
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Create course"
 msgstr "Criar curso"
@@ -211,6 +211,7 @@ msgid "Draft"
 msgstr "Rascunho"
 
 #: lib/dashboard/courses/course_edit.html.heex:16
+#: lib/dashboard/courses/course_new.html.heex:13
 #, elixir-autogen, elixir-format
 msgid "Level"
 msgstr "Nível"
@@ -285,7 +286,7 @@ msgstr "Não foi possível criar a aula!"
 msgid "Could not create step!"
 msgstr "Não foi possível criar a etapa!"
 
-#: lib/dashboard/courses/course_edit.ex:67
+#: lib/dashboard/courses/course_edit.ex:64
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Could not delete course!"
 msgstr "Não foi possível excluir o curso!"
@@ -305,7 +306,7 @@ msgstr "Não foi possível excluir a alternativa!"
 msgid "Could not delete step!"
 msgstr "Não foi possível excluir a etapa!"
 
-#: lib/dashboard/courses/course_edit.ex:81
+#: lib/dashboard/courses/course_edit.ex:78
 #: lib/dashboard/lessons/lesson_cover.ex:28
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Could not update cover!"
@@ -323,35 +324,35 @@ msgstr "Não foi possível atualizar a aula!"
 msgid "Could not update option!"
 msgstr "Não foi possível atualizar a alternativa!"
 
-#: lib/dashboard/courses/course_edit.ex:61
+#: lib/dashboard/courses/course_edit.ex:58
 #, elixir-autogen, elixir-format
 msgid "Course deleted successfully!"
 msgstr "Curso excluído com sucesso!"
 
 #: lib/dashboard/courses/course_edit.html.heex:17
-#: lib/dashboard/courses/course_new.html.heex:11
+#: lib/dashboard/courses/course_new.html.heex:12
 #, elixir-autogen, elixir-format
 msgid "Course description"
 msgstr "Descrição do curso"
 
 #: lib/dashboard/courses/course_edit.html.heex:11
-#: lib/dashboard/courses/course_new.html.heex:16
+#: lib/dashboard/courses/course_new.html.heex:18
 #, elixir-autogen, elixir-format
 msgid "Course slug"
 msgstr "URL do curso"
 
 #: lib/dashboard/courses/course_edit.html.heex:5
-#: lib/dashboard/courses/course_new.html.heex:10
+#: lib/dashboard/courses/course_new.html.heex:11
 #, elixir-autogen, elixir-format
 msgid "Course title"
 msgstr "Título do curso"
 
-#: lib/dashboard/courses/course_edit.ex:43
+#: lib/dashboard/courses/course_edit.ex:40
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Course updated successfully!"
 msgstr "Curso atualizado com sucesso!"
 
-#: lib/dashboard/courses/course_edit.ex:77
+#: lib/dashboard/courses/course_edit.ex:74
 #: lib/dashboard/lessons/lesson_cover.ex:22
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Cover updated successfully!"
@@ -382,13 +383,13 @@ msgstr "Detalhes"
 msgid "Drag the lessons to change their order"
 msgstr "Arraste as aulas para alterar a ordem"
 
-#: lib/dashboard/courses/course_edit.ex:17
+#: lib/dashboard/courses/course_edit.ex:16
 #, elixir-autogen, elixir-format
 msgid "Edit course"
 msgstr "Editar curso"
 
 #: lib/dashboard/courses/course_edit.html.heex:12
-#: lib/dashboard/courses/course_new.html.heex:17
+#: lib/dashboard/courses/course_new.html.heex:19
 #, elixir-autogen, elixir-format
 msgid "Friendly identifier used to access your course. I.e. my-course-name"
 msgstr "Identificador amigável usado para acessar o curso. Ex: meu-nome-de-curso"
