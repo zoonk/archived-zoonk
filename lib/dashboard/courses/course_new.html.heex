@@ -7,8 +7,10 @@
     </:subtitle>
   </.header>
 
+  <.input field={@form[:language]} type="select" label={gettext("Language")} options={UneebeeWeb.Plugs.Translate.language_options()} required />
   <.input field={@form[:name]} type="text" label={dgettext("orgs", "Course title")} required />
   <.input field={@form[:description]} type="textarea" label={dgettext("orgs", "Course description")} required />
+  <.input field={@form[:level]} type="select" label={dgettext("orgs", "Level")} options={Uneebee.Content.CourseUtils.level_options()} required />
 
   <.input
     field={@form[:slug]}

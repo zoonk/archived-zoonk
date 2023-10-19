@@ -6,6 +6,7 @@ defmodule UneebeeWeb.CourseNewLiveTest do
   import Uneebee.Fixtures.Content
   import UneebeeWeb.Shared.Slug
 
+  alias Uneebee.Accounts
   alias Uneebee.Content
 
   @course_form "#course-form"
@@ -35,6 +36,18 @@ defmodule UneebeeWeb.CourseNewLiveTest do
     test "creates a course", %{conn: conn, school: school} do
       assert_create_course(conn, school)
     end
+
+    test "uses the user language as default value for the course", %{conn: conn, school: school, user: user} do
+      Accounts.update_user_settings(user, %{language: :pt})
+      {:ok, lv, _html} = live(conn, ~p"/dashboard/courses/new")
+
+      attrs = valid_course_attributes()
+
+      lv |> form(@course_form, course: %{name: attrs.name, description: attrs.description, slug: attrs.slug}) |> render_submit()
+
+      course = Content.get_course_by_slug!(attrs.slug, school.id)
+      assert course.language == :pt
+    end
   end
 
   describe "/dashboard/courses/new (managers)" do
@@ -59,7 +72,7 @@ defmodule UneebeeWeb.CourseNewLiveTest do
 
     {:ok, _lv, _html} =
       lv
-      |> form(@course_form, course: %{name: attrs.name, description: attrs.description, slug: slug})
+      |> form(@course_form, course: %{name: attrs.name, description: attrs.description, level: :expert, slug: slug})
       |> render_submit()
       |> follow_redirect(conn, ~p"/dashboard/c/#{slug}")
 
@@ -70,6 +83,7 @@ defmodule UneebeeWeb.CourseNewLiveTest do
     assert course.school_id == school.id
     assert course.name == attrs.name
     assert course.description == attrs.description
+    assert course.level == :expert
   end
 
   defp assert_course_name(lv) do

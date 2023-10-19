@@ -6,8 +6,8 @@ defmodule UneebeeWeb.Live.Dashboard.CourseNew do
   alias Uneebee.Content.Course
 
   @impl Phoenix.LiveView
-  def mount(_params, _session, socket) do
-    changeset = Content.change_course(%Course{})
+  def mount(_params, session, socket) do
+    changeset = Content.change_course(%Course{language: session["locale"]})
     socket = socket |> assign(:page_title, dgettext("orgs", "Create a course")) |> assign(:form, to_form(changeset))
     {:ok, socket}
   end
@@ -28,7 +28,7 @@ defmodule UneebeeWeb.Live.Dashboard.CourseNew do
   def handle_event("save", %{"course" => course_params}, socket) do
     school = socket.assigns.school
     user = socket.assigns.current_user
-    params = Map.merge(course_params, %{"school_id" => school.id, "language" => user.language})
+    params = Map.merge(course_params, %{"school_id" => school.id})
 
     case Content.create_course(params, user) do
       {:ok, course} ->
