@@ -257,13 +257,9 @@ defmodule Uneebee.Gamification do
     end
   end
 
-  defp add_prize_for_mission(mission_id, attrs, :trophy) do
-    create_user_trophy(%{user_id: attrs.user_id, reason: :mission_completed, mission_id: mission_id})
-  end
-
-  defp add_prize_for_mission(mission_id, attrs, medal) do
-    create_user_medal(%{user_id: attrs.user_id, reason: :mission_completed, mission_id: mission_id, medal: medal})
-  end
+  defp add_prize_for_mission(nil, _attrs, _prize), do: {:ok, %UserTrophy{}}
+  defp add_prize_for_mission(mission_id, attrs, :trophy), do: create_user_trophy(%{user_id: attrs.user_id, reason: :mission_completed, mission_id: mission_id})
+  defp add_prize_for_mission(mission_id, attrs, medal), do: create_user_medal(%{user_id: attrs.user_id, reason: :mission_completed, mission_id: mission_id, medal: medal})
 
   @doc """
   Delete a user mission.

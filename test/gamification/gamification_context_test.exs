@@ -234,6 +234,16 @@ defmodule Uneebee.GamificationTest do
       assert Gamification.count_user_trophies(user.id) == 1
     end
 
+    test "doesn't award a trophy for a duplicated mission" do
+      user = user_fixture()
+      attrs = %{user_id: user.id, reason: :profile_name}
+      user_mission_fixture(%{user: user, reason: :profile_name})
+
+      assert Gamification.count_user_trophies(user.id) == 1
+      assert {:ok, %UserMission{} = _mission} = Gamification.create_user_mission(attrs)
+      assert Gamification.count_user_trophies(user.id) == 1
+    end
+
     test "earns a trophy when a user completes their first lesson" do
       user = user_fixture()
       attrs = %{user_id: user.id, reason: :lesson_1}
