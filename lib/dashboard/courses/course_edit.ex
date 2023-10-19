@@ -3,7 +3,6 @@ defmodule UneebeeWeb.Live.Dashboard.CourseEdit do
   use UneebeeWeb, :live_view
 
   alias Uneebee.Content
-  alias Uneebee.Content.Course
   alias UneebeeWeb.Components.DeleteItem
   alias UneebeeWeb.Components.Upload
 
@@ -22,10 +21,8 @@ defmodule UneebeeWeb.Live.Dashboard.CourseEdit do
 
   @impl Phoenix.LiveView
   def handle_event("validate", %{"course" => course_params}, socket) do
-    school = socket.assigns.school
-
     changeset =
-      %Course{school_id: school.id}
+      socket.assigns.course
       |> Content.change_course(course_params)
       |> Map.put(:action, :validate)
 

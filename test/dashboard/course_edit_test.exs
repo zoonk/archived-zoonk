@@ -59,6 +59,22 @@ defmodule UneebeeWeb.DashboardCourseEditLiveTest do
     test "can update the info form", %{conn: conn, school: school, course: course} do
       assert_info_form(conn, school, course)
     end
+
+    test "don't display an error for the slug after updating the form", %{conn: conn, school: school, course: course} do
+      existing_course = course_fixture(%{school_id: school.id})
+
+      {:ok, lv, _html} = live(conn, ~p"/dashboard/c/#{course.slug}/edit/info")
+
+      attrs = %{name: "new title"}
+
+      lv |> form(@course_form, course: attrs) |> render_submit()
+      lv |> form(@course_form) |> render_change(course: %{name: "test"})
+
+      refute has_element?(lv, ~s|div[phx-feedback-for="course[slug]"] p:fl-icontains("has already been taken")|)
+
+      lv |> form(@course_form) |> render_change(course: %{slug: existing_course.slug})
+      assert has_element?(lv, ~s|div[phx-feedback-for="course[slug]"] p:fl-icontains("has already been taken")|)
+    end
   end
 
   describe "/dashboard/c/edit/cover" do
