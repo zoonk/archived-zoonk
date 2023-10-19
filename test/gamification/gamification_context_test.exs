@@ -528,4 +528,14 @@ defmodule Uneebee.GamificationTest do
       assert Gamification.completed_missions(user.id) == []
     end
   end
+
+  describe "count_completed_missions/1" do
+    test "returns the count of completed missions for a given user" do
+      user = user_fixture()
+      user_mission_fixture(%{user: user, reason: :profile_name})
+      user_mission_fixture(%{user: user, reason: :lesson_1})
+
+      assert Gamification.count_completed_missions(user.id) == 2
+    end
+  end
 end

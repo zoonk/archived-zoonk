@@ -1,6 +1,10 @@
 <header :if={@current_user} class="bg-primary-light3x mb-4 flex items-center gap-4 rounded-2xl p-4">
   <.gamification_item id="learning-days" icon="tabler-calendar-heart" title={dgettext("gamification", "Learning days")} count={@learning_days} />
 
+  <.link navigate={~p"/missions"}>
+    <.gamification_item id="missions" icon="tabler-target-arrow" title={dgettext("gamification", "Missions")} count={"#{@mission_progress}%"} />
+  </.link>
+
   <.link navigate={~p"/trophies"}>
     <.gamification_item id="trophies" icon="tabler-trophy" title={dgettext("gamification", "Trophies")} count={@trophies} />
   </.link>

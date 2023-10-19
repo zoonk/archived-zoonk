@@ -7,6 +7,7 @@ defmodule UneebeeWeb.Live.Home do
 
   alias Uneebee.Content
   alias Uneebee.Gamification
+  alias Uneebee.Gamification.MissionUtils
 
   @impl Phoenix.LiveView
   def mount(_params, session, socket) do
@@ -17,6 +18,7 @@ defmodule UneebeeWeb.Live.Home do
     learning_days = get_learning_days(user)
     medals = get_user_medals(user)
     trophies = get_user_trophies(user)
+    mission_progress = mission_progress(user)
 
     socket =
       socket
@@ -27,6 +29,7 @@ defmodule UneebeeWeb.Live.Home do
       |> assign(:learning_days, learning_days)
       |> assign(:medals, medals)
       |> assign(:trophies, trophies)
+      |> assign(:mission_progress, mission_progress)
 
     {:ok, socket}
   end
@@ -42,4 +45,11 @@ defmodule UneebeeWeb.Live.Home do
 
   defp get_user_trophies(nil), do: nil
   defp get_user_trophies(user), do: Gamification.count_user_trophies(user.id)
+
+  defp get_user_missions(user), do: Gamification.count_completed_missions(user.id)
+
+  defp mission_progress(nil), do: 0
+  defp mission_progress(user), do: user |> get_user_missions() |> Kernel./(supported_missions_count()) |> Kernel.*(100) |> round()
+
+  defp supported_missions_count, do: length(MissionUtils.supported_missions())
 end

@@ -6,7 +6,7 @@ defmodule UneebeeWeb.Components.Home.GamificationItem do
 
   attr :id, :string, required: true
   attr :title, :string, required: true
-  attr :count, :integer, required: true
+  attr :count, :string, required: true
   attr :icon, :string, required: true
 
   def gamification_item(assigns) do

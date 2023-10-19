@@ -368,4 +368,17 @@ defmodule Uneebee.Gamification do
   def completed_missions(user_id) do
     UserMission |> where([um], um.user_id == ^user_id) |> order_by(desc: :inserted_at) |> Repo.all()
   end
+
+  @doc """
+  Count how many missions a user has completed.
+
+  ## Examples
+
+      iex> count_completed_missions(user_id)
+      3
+  """
+  @spec count_completed_missions(integer()) :: integer()
+  def count_completed_missions(user_id) do
+    UserMission |> where([um], um.user_id == ^user_id) |> Repo.aggregate(:count)
+  end
 end

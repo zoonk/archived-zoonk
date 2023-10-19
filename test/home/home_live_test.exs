@@ -8,6 +8,8 @@ defmodule UneebeeWeb.HomeControllerTest do
   import Uneebee.Fixtures.Gamification
   import Uneebee.Fixtures.Organizations
 
+  alias Uneebee.Gamification.MissionUtils
+
   describe "GET / (public school, logged in)" do
     setup :app_setup
 
@@ -41,6 +43,18 @@ defmodule UneebeeWeb.HomeControllerTest do
       Enum.each(1..3, fn _idx -> user_medal_fixture(%{user: user}) end)
       {:ok, lv, _html} = live(conn, ~p"/")
       assert has_element?(lv, ~s|#medals:fl-contains("3")|)
+    end
+
+    test "shows how many missions a user has completed", %{conn: conn, user: user} do
+      user_mission_fixture(%{user: user, reason: :profile_name})
+      user_mission_fixture(%{user: user, reason: :lesson_1})
+
+      {:ok, lv, _html} = live(conn, ~p"/")
+
+      mission_count = length(MissionUtils.supported_missions())
+      progress = round(2 / mission_count * 100)
+
+      assert has_element?(lv, ~s|#missions:fl-contains("#{progress}%")|)
     end
   end
 
