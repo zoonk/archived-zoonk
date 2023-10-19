@@ -38,7 +38,7 @@ defmodule UneebeeWeb.Components.Content.LessonStep do
       <div
         role="alert"
         class={[
-          "py-2 px-4 rounded-lg items-center fixed right-4 left-4 font-bold text-sm bottom-[72px] flex gap-2",
+          "py-2 px-4 rounded-lg items-center fixed right-4 left-4 sm:sticky sm:w-full font-bold text-sm bottom-[72px] flex gap-2",
           @selected.correct? && "bg-success-light3x text-success-dark2x",
           not @selected.correct? && "bg-alert-light3x text-alert-dark2x"
         ]}
