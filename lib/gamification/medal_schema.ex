@@ -34,6 +34,7 @@ defmodule Uneebee.Gamification.UserMedal do
     |> cast(attrs, [:medal, :reason, :lesson_id, :mission_id, :user_id])
     |> validate_required([:medal, :reason, :user_id])
     |> maybe_require_lesson_id()
+    |> maybe_require_mission_id()
     |> unique_constraint([:user_id, :mission_id])
   end
 
@@ -41,6 +42,10 @@ defmodule Uneebee.Gamification.UserMedal do
   defp maybe_require_lesson_id(changeset), do: maybe_require_lesson_id(changeset, lesson?(get_change(changeset, :reason)))
   defp maybe_require_lesson_id(changeset, true), do: validate_required(changeset, [:lesson_id])
   defp maybe_require_lesson_id(changeset, _reason), do: changeset
-
   defp lesson?(reason), do: reason |> to_string() |> String.contains?("lesson")
+
+  # Requires a mission_id when the `reason` is `:mission_completed`.
+  defp maybe_require_mission_id(changeset), do: maybe_require_mission_id(changeset, get_change(changeset, :reason))
+  defp maybe_require_mission_id(changeset, :mission_completed), do: validate_required(changeset, [:mission_id])
+  defp maybe_require_mission_id(changeset, _reason), do: changeset
 end

@@ -66,6 +66,14 @@ defmodule Uneebee.GamificationTest do
       assert {:error, %Ecto.Changeset{} = changeset} = Gamification.create_user_medal(attrs)
       assert "can't be blank" in errors_on(changeset).lesson_id
     end
+
+    test "returns an error if it's a mission medal without a mission_id" do
+      user = user_fixture()
+      attrs = %{user_id: user.id, medal: :gold, reason: :mission_completed}
+
+      assert {:error, %Ecto.Changeset{} = changeset} = Gamification.create_user_medal(attrs)
+      assert "can't be blank" in errors_on(changeset).mission_id
+    end
   end
 
   describe "count_user_medals/1" do
