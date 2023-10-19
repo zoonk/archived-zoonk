@@ -38,7 +38,7 @@
             @selected_option && option.correct? && "card-success text-success-dark2x bg-success-light2x"
           ]}
         >
-          <img :if={option.image} src={option.image} alt={option.title} class="w-12" />
+          <img :if={option.image} src={option.image} alt={option.title} class="h-16 w-16 object-cover" />
           <%= option.title %>
         </label>
       </div>

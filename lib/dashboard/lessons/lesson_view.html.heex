@@ -24,10 +24,17 @@
     current_img={@selected_step.image}
     unstyled
     label={dgettext("orgs", "Add image to step")}
-    subtitle={dgettext("orgs", "Your image should be 384x216px (or use a 16/9 proportion).")}
+    subtitle={dgettext("orgs", "Your image should be 384x216px (or use a 16:9 proportion).")}
   />
 </.modal>
 
 <.modal :if={@live_action == :option_img} show id="option-img-modal" on_cancel={JS.patch(step_link(@course, @lesson, @selected_step.order))}>
-  <.live_component module={Upload} id={:option_img} current_img={@selected_option.image} label={dgettext("orgs", "Add image to option")} unstyled />
+  <.live_component
+    module={Upload}
+    id={:option_img}
+    current_img={@selected_option.image}
+    label={dgettext("orgs", "Add image to option")}
+    subtitle={dgettext("orgs", "Your image should be 64x64px (or use a 1:1 proportion).")}
+    unstyled
+  />
 </.modal>

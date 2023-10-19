@@ -241,7 +241,7 @@ msgstr "Despublicado"
 msgid "+ Lesson"
 msgstr "+ Aula"
 
-#: lib/dashboard/lessons/lesson_view.html.heex:32
+#: lib/dashboard/lessons/lesson_view.html.heex:36
 #, elixir-autogen, elixir-format
 msgid "Add image to option"
 msgstr "Adicionar imagem à alternativa"
@@ -568,6 +568,11 @@ msgid "Could not update course!"
 msgstr "Não foi possível atualizar o curso!"
 
 #: lib/dashboard/lessons/lesson_view.html.heex:27
-#, elixir-autogen, elixir-format
-msgid "Your image should be 384x216px (or use a 16/9 proportion)."
-msgstr "A imagem deve ter 384x216px (ou usar uma proporção 16/9)."
+#, elixir-autogen, elixir-format, fuzzy
+msgid "Your image should be 384x216px (or use a 16:9 proportion)."
+msgstr "A imagem deve ter 384x216px (ou usar uma proporção de 16:9)."
+
+#: lib/dashboard/lessons/lesson_view.html.heex:37
+#, elixir-autogen, elixir-format, fuzzy
+msgid "Your image should be 64x64px (or use a 1:1 proportion)."
+msgstr "A imagem deve ter 64x64px (ou usar uma proporção de 1:1)."
