@@ -133,6 +133,34 @@ defmodule Uneebee.GamificationTest do
       assert {:ok, %UserTrophy{} = _user_trophy} = Gamification.create_user_trophy(attrs)
       assert Gamification.count_user_trophies(user.id) == 1
     end
+
+    test "creates a trophy for a mission_completed reason" do
+      user = user_fixture()
+      mission = user_mission_fixture(%{user: user, reason: :profile_name})
+      attrs = %{user_id: user.id, reason: :mission_completed, mission_id: mission.id}
+
+      assert {:ok, %UserTrophy{} = user_trophy} = Gamification.create_user_trophy(attrs)
+      assert user_trophy.user_id == attrs.user_id
+      assert user_trophy.course_id == nil
+      assert user_trophy.reason == attrs.reason
+      assert user_trophy.mission_id == attrs.mission_id
+    end
+
+    test "requires a mission_id the reason is mission_completed" do
+      user = user_fixture()
+      attrs = %{user_id: user.id, reason: :mission_completed}
+
+      assert {:error, %Ecto.Changeset{} = changeset} = Gamification.create_user_trophy(attrs)
+      assert "can't be blank" in errors_on(changeset).mission_id
+    end
+
+    test "requires a course_id if the reason is course_completed" do
+      user = user_fixture()
+      attrs = %{user_id: user.id, reason: :course_completed}
+
+      assert {:error, %Ecto.Changeset{} = changeset} = Gamification.create_user_trophy(attrs)
+      assert "can't be blank" in errors_on(changeset).course_id
+    end
   end
 
   describe "count_user_trophies/1" do

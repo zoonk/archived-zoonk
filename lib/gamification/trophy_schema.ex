@@ -31,7 +31,19 @@ defmodule Uneebee.Gamification.UserTrophy do
     user_trophy
     |> cast(attrs, [:reason, :course_id, :mission_id, :user_id])
     |> validate_required([:reason, :user_id])
+    |> maybe_require_mission_id()
+    |> maybe_require_course_id()
     |> unique_constraint([:user_id, :course_id, :reason])
     |> unique_constraint([:user_id, :mission_id])
   end
+
+  # Requires a mission_id when the `reason` is `:mission_completed`.
+  defp maybe_require_mission_id(changeset), do: maybe_require_mission_id(changeset, get_change(changeset, :reason))
+  defp maybe_require_mission_id(changeset, :mission_completed), do: validate_required(changeset, [:mission_id])
+  defp maybe_require_mission_id(changeset, _reason), do: changeset
+
+  # Requires a course_id when the `reason` is `:course_completed`.
+  defp maybe_require_course_id(changeset), do: maybe_require_course_id(changeset, get_change(changeset, :reason))
+  defp maybe_require_course_id(changeset, :course_completed), do: validate_required(changeset, [:course_id])
+  defp maybe_require_course_id(changeset, _reason), do: changeset
 end
