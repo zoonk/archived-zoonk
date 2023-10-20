@@ -15,7 +15,7 @@
   <.lesson_step step={@current_step} selected={@selected_option} />
 
   <form id="select-option" phx-submit="next" class="space-y-4" phx-hook="LessonSoundEffect">
-    <secion :if={@current_step.options != []} class={["grid gap-2", not long_option?(@current_step.options) && "grid-cols-2"]}>
+    <secion :if={@current_step.options != []} class={["grid gap-4", not long_option?(@current_step.options) && "grid-cols-2"]}>
       <div :for={option <- Enum.shuffle(@current_step.options)} class="relative">
         <input
           id={"select-option-#{option.id}"}
