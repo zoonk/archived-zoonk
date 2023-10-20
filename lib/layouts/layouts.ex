@@ -10,6 +10,18 @@ defmodule UneebeeWeb.Layouts do
   def school_name(nil), do: "UneeBee"
   def school_name(%School{} = school), do: school.name
 
+  @spec school_logo(School.t() | nil) :: String.t()
+  def school_logo(nil), do: ~p"/images/logo.png"
+  def school_logo(%School{} = school), do: school.logo
+
+  @spec social_image(String.t() | nil, School.t() | nil) :: String.t()
+  def social_image(nil, school), do: school_logo(school)
+  def social_image(img, _school), do: img
+
+  @spec page_title(String.t() | nil, School.t() | nil) :: String.t()
+  def page_title(nil, school), do: school_name(school)
+  def page_title(title, _school), do: title
+
   @spec user_settings?(atom()) :: boolean()
   def user_settings?(active_page) do
     active_page |> Atom.to_string() |> String.starts_with?("user_settings")

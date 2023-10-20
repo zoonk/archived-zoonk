@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="csrf-token" content={get_csrf_token()} />
 
-    <.live_title><%= assigns[:page_title] || school_name(assigns.school) %></.live_title>
+    <.live_title><%= page_title(assigns[:page_title], assigns[:school]) %></.live_title>
 
     <link phx-track-static rel="stylesheet" href={~p"/assets/app.css"} />
     <script defer phx-track-static type="text/javascript" src={~p"/assets/app.js"}>
@@ -24,8 +24,8 @@
 
     <meta property="og:type" content="school" />
     <meta property="og:site_name" content={school_name(assigns.school)} />
-    <meta :if={assigns[:og_title]} property="og:title" content={assigns[:og_title]} />
-    <meta :if={assigns[:og_image]} property="og:image" content={assigns[:og_image]} />
+    <meta property="og:title" content={page_title(assigns[:page_title], assigns[:school])} />
+    <meta property="og:image" content={social_image(assigns[:og_image], assigns[:school])} />
     <meta :if={assigns[:og_description]} property="og:description" content={assigns[:og_description]} />
   </head>
 
