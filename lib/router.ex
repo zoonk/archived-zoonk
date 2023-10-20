@@ -74,6 +74,7 @@ defmodule UneebeeWeb.Router do
 
       live "/missions", Gamification.Mission.List
       live "/trophies", Gamification.Trophy.List
+      live "/medals", Gamification.Medal.List
 
       live "/users/settings/email", Accounts.User.Settings, :email
       live "/users/settings/language", Accounts.User.Settings, :language

@@ -128,6 +128,21 @@ defmodule Uneebee.GamificationTest do
     end
   end
 
+  describe "group_user_medals_by_reason/2" do
+    test "returns a list of medals grouped by reason" do
+      user = user_fixture()
+
+      Enum.each(1..3, fn _idx -> user_medal_fixture(%{user: user, medal: :gold, reason: :perfect_lesson_first_try}) end)
+      Enum.each(1..2, fn _idx -> user_medal_fixture(%{user: user, medal: :silver, reason: :perfect_lesson_practiced}) end)
+      Enum.each(1..2, fn _idx -> user_medal_fixture(%{user: user, medal: :bronze, reason: :lesson_completed_with_errors}) end)
+      user_medal_fixture(%{user: user, medal: :bronze, reason: :mission_completed})
+
+      assert Gamification.group_user_medals_by_reason(user.id, :gold) == [%{reason: :perfect_lesson_first_try, count: 3}]
+      assert Gamification.group_user_medals_by_reason(user.id, :silver) == [%{reason: :perfect_lesson_practiced, count: 2}]
+      assert Gamification.group_user_medals_by_reason(user.id, :bronze) == [%{reason: :lesson_completed_with_errors, count: 2}, %{reason: :mission_completed, count: 1}]
+    end
+  end
+
   describe "first_lesson_today?/1" do
     test "returns true if the user has completed only one lesson today" do
       user = user_fixture()

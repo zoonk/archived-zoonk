@@ -95,6 +95,24 @@ defmodule Uneebee.Gamification do
   end
 
   @doc """
+  Group user medals by reason.
+
+  ## Examples
+
+      iex> group_user_medals_by_reason(user_id, :bronze)
+      [%{reason: :lesson_completed_with_errors, count: 3}]
+  """
+  @spec group_user_medals_by_reason(integer(), atom()) :: [%{reason: atom(), count: integer()}]
+  def group_user_medals_by_reason(user_id, medal) do
+    UserMedal
+    |> where([um], um.user_id == ^user_id and um.medal == ^medal)
+    |> group_by([um], um.reason)
+    |> select([um], %{reason: um.reason, count: count(um.id)})
+    |> order_by(desc: :count)
+    |> Repo.all()
+  end
+
+  @doc """
   Awards a medal when a user completes a lesson.
 
   ## Examples

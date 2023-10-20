@@ -21,7 +21,9 @@ msgstr ""
 msgid "Lesson completed"
 msgstr ""
 
-#: lib/home/home.html.heex:4
+#: lib/gamification/medal_live/list.ex:19
+#: lib/home/home.html.heex:12
+#: lib/layouts/templates/app.html.heex:130
 #, elixir-autogen, elixir-format
 msgid "Medals"
 msgstr ""
@@ -60,7 +62,9 @@ msgstr[1] ""
 msgid "Course completed"
 msgstr ""
 
-#: lib/home/home.html.heex:3
+#: lib/gamification/trophy_live/list.ex:18
+#: lib/home/home.html.heex:9
+#: lib/layouts/templates/app.html.heex:129
 #, elixir-autogen, elixir-format
 msgid "Trophies"
 msgstr ""
@@ -169,6 +173,7 @@ msgid "You completed %{count} lessons."
 msgstr ""
 
 #: lib/gamification/mission_live/list.ex:18
+#: lib/home/home.html.heex:5
 #: lib/layouts/templates/app.html.heex:128
 #, elixir-autogen, elixir-format
 msgid "Missions"
@@ -193,3 +198,24 @@ msgstr ""
 #, elixir-autogen, elixir-format
 msgid "You didn't complete any missions yet."
 msgstr ""
+
+#: lib/gamification/medal_live/medal_list.ex:60
+#, elixir-autogen, elixir-format
+msgid "%{count} bronze medal"
+msgid_plural "%{count} bronze medals"
+msgstr[0] ""
+msgstr[1] ""
+
+#: lib/gamification/medal_live/medal_list.ex:58
+#, elixir-autogen, elixir-format
+msgid "%{count} gold medal"
+msgid_plural "%{count} gold medals"
+msgstr[0] ""
+msgstr[1] ""
+
+#: lib/gamification/medal_live/medal_list.ex:59
+#, elixir-autogen, elixir-format
+msgid "%{count} silver medal"
+msgid_plural "%{count} silver medals"
+msgstr[0] ""
+msgstr[1] ""

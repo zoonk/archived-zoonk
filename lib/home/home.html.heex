@@ -8,8 +8,9 @@
   <.link navigate={~p"/trophies"}>
     <.gamification_item id="trophies" icon="tabler-trophy" title={dgettext("gamification", "Trophies")} count={@trophies} />
   </.link>
-
-  <.gamification_item id="medals" icon="tabler-medal" title={dgettext("gamification", "Medals")} count={@medals} />
+  <.link navigate={~p"/medals"}>
+    <.gamification_item id="medals" icon="tabler-medal" title={dgettext("gamification", "Medals")} count={@medals} />
+  </.link>
 </header>
 
 <article class="space-y-4">
