@@ -16,7 +16,7 @@ defmodule UneebeeWeb.Components.Dashboard.CourseList do
       <dl id={@id} phx-update="stream" class="grid grid-cols-1 gap-4 sm:grid-cols-2">
         <.link :for={{dom_id, course} <- @courses} id={dom_id} navigate={~p"/dashboard/c/#{course.slug}"} class="card-with-link flex rounded-2xl bg-white">
           <img :if={course.cover} src={course.cover} class="w-20 rounded-2xl object-cover p-1" />
-          <div :if={is_nil(course.cover)} class="bg-gray-light3x m-1 w-20 rounded-2xl" />
+          <div :if={is_nil(course.cover)} class="bg-gray-light3x w-20 rounded-2xl border-2 border-white p-1" />
 
           <div class="min-w-0 p-2 text-sm">
             <div class="min-w-0">
