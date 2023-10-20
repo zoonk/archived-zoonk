@@ -12,11 +12,11 @@ defmodule UneebeeWeb.Components.Content.LessonStep do
 
   def lesson_step(assigns) do
     ~H"""
-    <section>
-      <p class="text-gray-dark py-4"><%= @step.content %></p>
+    <section class="bg-gray-light3x text-gray-dark2x rounded-3xl p-4">
+      <p class="whitespace-pre-wrap"><%= @step.content %></p>
 
-      <div :if={@step.image} class="text-gray-dark flex w-full justify-center py-4">
-        <img src={@step.image} class="aspect-video w-2/3 object-cover" />
+      <div :if={@step.image} class="flex w-full justify-center py-4">
+        <img src={@step.image} class="aspect-video w-3/4 object-cover" />
       </div>
     </section>
     """
