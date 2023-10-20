@@ -11,7 +11,14 @@ defmodule UneebeeWeb.Components.Content.LessonProgress do
     ~H"""
     <div class="bg-white/90 border-gray-light2x flex w-full gap-1 rounded-2xl border p-2 backdrop-blur-md">
       <% steps = Enum.map(1..@total, fn order -> order end) %>
-      <div :for={step <- steps} class={["rounded-2xl w-full h-4 flex-1", step <= @current && "bg-success", step > @current && "bg-gray-light3x"]} />
+      <div
+        :for={step <- steps}
+        class={[
+          "rounded-2xl w-full h-4 flex-1",
+          step <= @current && "bg-success-light",
+          step > @current && "bg-gray-light3x"
+        ]}
+      />
     </div>
     """
   end
