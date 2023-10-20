@@ -11,7 +11,8 @@ defmodule UneebeeWeb.Layouts do
   def school_name(%School{} = school), do: school.name
 
   @spec school_logo(School.t() | nil) :: String.t()
-  def school_logo(nil), do: ~p"/images/logo.png"
+  def school_logo(nil), do: ~p"/images/logo.svg"
+  def school_logo(%School{logo: nil}), do: school_logo(nil)
   def school_logo(%School{} = school), do: school.logo
 
   @spec social_image(String.t() | nil, School.t() | nil) :: String.t()

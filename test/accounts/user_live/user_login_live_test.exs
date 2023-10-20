@@ -17,6 +17,11 @@ defmodule UneebeeWeb.UserLoginLiveTest do
       result = conn |> log_in_user(user_fixture()) |> live(~p"/users/login") |> follow_redirect(conn, "/")
       assert {:ok, _conn} = result
     end
+
+    test "displays a default logo when the school doesn't have one", %{conn: conn} do
+      {:ok, lv, _html} = live(conn, ~p"/users/login")
+      assert has_element?(lv, ~s|img[src="/images/logo.svg"]|)
+    end
   end
 
   describe "user login" do
