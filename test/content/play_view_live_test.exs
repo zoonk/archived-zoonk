@@ -116,7 +116,7 @@ defmodule UneebeeWeb.PlayViewLiveTest do
     lv |> form(@select_form) |> render_submit()
 
     assert has_element?(lv, ~s|section p:fl-icontains("step 4!")|)
-    assert has_element?(lv, ~s|button:fl-icontains("confirm")|)
+    assert has_element?(lv, ~s|button:fl-icontains("next step")|)
 
     step = Enum.at(lessons, 3)
 

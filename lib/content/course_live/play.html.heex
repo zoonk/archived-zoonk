@@ -14,6 +14,8 @@
 
   <.lesson_step step={@current_step} selected={@selected_option} />
 
+  <% no_options? = @current_step.options == [] %>
+
   <form id="select-option" phx-submit="next" class="space-y-4" phx-hook="LessonSoundEffect">
     <secion :if={@current_step.options != []} class={["grid gap-4", not long_option?(@current_step.options) && "grid-cols-2"]}>
       <div :for={option <- Enum.shuffle(@current_step.options)} class="relative">
@@ -49,12 +51,12 @@
 
     <.button
       type="submit"
-      color={if @selected_option, do: :success, else: :alert}
-      icon={if @selected_option, do: "tabler-chevron-right", else: "tabler-checks"}
+      color={if @selected_option || no_options?, do: :success, else: :alert}
+      icon={if @selected_option || no_options?, do: "tabler-chevron-right", else: "tabler-checks"}
       phx-disable-with={dgettext("courses", "Confirming...")}
       class="fixed right-4 bottom-4 left-4 sm:sticky sm:w-full"
     >
-      <%= if @selected_option, do: dgettext("courses", "Next step"), else: gettext("Confirm") %>
+      <%= if @selected_option || no_options?, do: dgettext("courses", "Next step"), else: gettext("Confirm") %>
     </.button>
   </form>
 </article>
