@@ -12,6 +12,7 @@ defmodule Uneebee.Content.CourseUtils do
   @spec max_length(atom()) :: non_neg_integer()
   def max_length(:option_feedback), do: 280
   def max_length(:option_title), do: 80
+  def max_length(:step_content), do: 280
 
   @doc """
   Returns the list of supported levels for the course.

@@ -6,6 +6,7 @@ defmodule Uneebee.Content.LessonStep do
 
   import Ecto.Changeset
 
+  alias Uneebee.Content.CourseUtils
   alias Uneebee.Content.Lesson
   alias Uneebee.Content.StepOption
 
@@ -28,6 +29,6 @@ defmodule Uneebee.Content.LessonStep do
     lesson_step
     |> cast(attrs, [:content, :image, :lesson_id, :order])
     |> validate_required([:content, :lesson_id, :order])
-    |> validate_length(:content, max: 600)
+    |> validate_length(:content, max: CourseUtils.max_length(:step_content))
   end
 end
