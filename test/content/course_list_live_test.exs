@@ -15,7 +15,7 @@ defmodule UneebeeWeb.CourseListLiveTest do
     end
 
     test "lists public courses from the host school", %{conn: conn, school: school} do
-      assert_course_list(conn, school, nil)
+      assert_course_list(conn, school)
     end
 
     test "doesn't show courses in another language", %{conn: conn, school: school} do
@@ -43,8 +43,8 @@ defmodule UneebeeWeb.CourseListLiveTest do
   describe "/courses (public school, students, approved)" do
     setup :app_setup
 
-    test "lists public courses from the host school", %{conn: conn, school: school, user: user} do
-      assert_course_list(conn, school, user)
+    test "lists public courses from the host school", %{conn: conn, school: school} do
+      assert_course_list(conn, school)
     end
   end
 
@@ -53,8 +53,8 @@ defmodule UneebeeWeb.CourseListLiveTest do
       app_setup(%{conn: build_conn()}, public_school?: false)
     end
 
-    test "lists public courses from the host school", %{conn: conn, school: school, user: user} do
-      assert_course_list(conn, school, user)
+    test "lists public courses from the host school", %{conn: conn, school: school} do
+      assert_course_list(conn, school)
     end
   end
 
@@ -73,8 +73,8 @@ defmodule UneebeeWeb.CourseListLiveTest do
       app_setup(%{conn: build_conn()}, school_user: :teacher)
     end
 
-    test "lists all courses from the selected school", %{conn: conn, school: school, user: user} do
-      assert_course_list(conn, school, user)
+    test "lists all courses from the selected school", %{conn: conn, school: school} do
+      assert_course_list(conn, school)
     end
   end
 
@@ -83,8 +83,8 @@ defmodule UneebeeWeb.CourseListLiveTest do
       app_setup(%{conn: build_conn()}, public_school?: false, school_user: :teacher)
     end
 
-    test "lists all courses from the selected school", %{conn: conn, school: school, user: user} do
-      assert_course_list(conn, school, user)
+    test "lists all courses from the selected school", %{conn: conn, school: school} do
+      assert_course_list(conn, school)
     end
   end
 
@@ -93,8 +93,8 @@ defmodule UneebeeWeb.CourseListLiveTest do
       app_setup(%{conn: build_conn()}, school_user: :manager)
     end
 
-    test "lists all courses from the selected school", %{conn: conn, school: school, user: user} do
-      assert_course_list(conn, school, user)
+    test "lists all courses from the selected school", %{conn: conn, school: school} do
+      assert_course_list(conn, school)
     end
   end
 
@@ -103,21 +103,16 @@ defmodule UneebeeWeb.CourseListLiveTest do
       app_setup(%{conn: build_conn()}, public_school?: false, school_user: :manager)
     end
 
-    test "lists all courses from the selected school", %{conn: conn, school: school, user: user} do
-      assert_course_list(conn, school, user)
+    test "lists all courses from the selected school", %{conn: conn, school: school} do
+      assert_course_list(conn, school)
     end
   end
 
   defp course_el(id, course), do: ~s|#courses-#{id} a[href="/c/#{course.slug}"]|
   defp get_course_el(course), do: course_el("list", course)
-  defp get_course_learning_el(course), do: course_el("learning", course)
 
-  defp assert_course_list(conn, school, user) do
+  defp assert_course_list(conn, school) do
     assert_public_courses(conn, school)
-
-    if user do
-      assert_learning_courses(conn, school, user)
-    end
   end
 
   defp assert_public_courses(conn, school) do
@@ -135,24 +130,5 @@ defmodule UneebeeWeb.CourseListLiveTest do
     refute has_element?(lv, get_course_el(unpublished_course))
     refute has_element?(lv, get_course_el(private_course))
     assert has_element?(lv, get_course_el(published_course))
-  end
-
-  defp assert_learning_courses(conn, school, user) do
-    # Private course should be on the learning list
-    private_course = course_fixture(%{school_id: school.id, published?: true, public?: false})
-    course_user_fixture(%{user: user, course: private_course, role: :student})
-
-    # Public course should be on the learning list
-    public_course = course_fixture(%{school_id: school.id, published?: true, public?: true})
-    course_user_fixture(%{user: user, course: public_course, role: :student})
-
-    # Courses not enrolled in shouldn't be on the learning list
-    other_course = course_fixture(%{school_id: school.id, published?: true, public?: true})
-
-    {:ok, lv, _html} = live(conn, ~p"/courses")
-
-    assert has_element?(lv, get_course_learning_el(private_course))
-    assert has_element?(lv, get_course_learning_el(public_course))
-    refute has_element?(lv, get_course_learning_el(other_course))
   end
 end

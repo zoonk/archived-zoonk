@@ -204,8 +204,8 @@ msgstr ""
 msgid "Confirm"
 msgstr ""
 
-#: lib/content/course_live/list.ex:18
-#: lib/content/course_live/list.html.heex:2
+#: lib/content/course_live/list.ex:17
+#: lib/content/course_live/list.html.heex:1
 #: lib/dashboard/courses/course_list.ex:15
 #: lib/layouts/templates/app.html.heex:127
 #, elixir-autogen, elixir-format
@@ -234,7 +234,6 @@ msgstr ""
 msgid "Locked"
 msgstr ""
 
-#: lib/content/course_live/list.html.heex:1
 #: lib/home/home.html.heex:17
 #, elixir-autogen, elixir-format
 msgid "My courses"
