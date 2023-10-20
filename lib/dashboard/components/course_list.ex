@@ -13,18 +13,18 @@ defmodule UneebeeWeb.Components.Dashboard.CourseList do
     <section class="mb-4">
       <h1 :if={@title} class="text-gray-dark mb-2 font-semibold"><%= @title %></h1>
 
-      <dl id={@id} phx-update="stream" class="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
-        <.link :for={{dom_id, course} <- @courses} id={dom_id} navigate={~p"/dashboard/c/#{course.slug}"} class="card-with-link flex flex-col rounded-2xl bg-white">
-          <img :if={course.cover} src={course.cover} class="aspect-video w-full rounded-2xl object-cover p-1" />
+      <dl id={@id} phx-update="stream" class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+        <.link :for={{dom_id, course} <- @courses} id={dom_id} navigate={~p"/dashboard/c/#{course.slug}"} class="card-with-link flex rounded-2xl bg-white">
+          <img :if={course.cover} src={course.cover} class="w-20 rounded-2xl object-cover p-1" />
+          <div :if={is_nil(course.cover)} class="bg-gray-light3x m-1 w-20 rounded-2xl" />
 
-          <div class="flex flex-1 flex-col gap-4 p-4">
-            <div class="min-w-0 flex-1">
+          <div class="min-w-0 p-2 text-sm">
+            <div class="min-w-0">
               <dt class="text-gray-dark truncate font-bold"><%= course.name %></dt>
-              <dd class="text-primary truncate text-xs"><%= course.school.name %></dd>
-              <dd class="text-gray line-clamp-2 mt-2 text-sm"><%= course.description %></dd>
+              <dd class="text-gray line-clamp-2"><%= course.description %></dd>
             </div>
 
-            <div>
+            <div :if={not course.published? or not course.public?} class="mt-2">
               <.badge :if={not course.published?} icon="tabler-notes-off" color={:black_light}>
                 <%= dgettext("orgs", "Draft") %>
               </.badge>
