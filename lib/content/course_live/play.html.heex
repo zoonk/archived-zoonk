@@ -29,13 +29,14 @@
 
         <label
           for={"select-option-#{option.id}"}
+          role="button"
           class={[
-            "flex h-full cursor-pointer flex-col items-center justify-center gap-4 rounded-2xl p-4 text-sm peer-checked:bg-info-light3x peer-checked:text-info-dark2x peer-checked:border-info-dark2x",
+            "flex h-full border cursor-pointer text-gray-dark2x bg-white flex-col items-center justify-center gap-4 rounded-2xl p-4 text-sm peer-checked:border-info peer-checked:shadow-b-info",
             (is_nil(@selected_option) || (@selected_option.id != option.id && not option.correct?)) &&
-              "text-gray-dark2x bg-white card",
+              "active:shadow-b-gray-pressed border-gray-light shadow-b-gray",
             user_selected_wrong_option?(@selected_option, option) &&
-              "card-alert text-alert-dark2x bg-alert-light2x",
-            @selected_option && option.correct? && "card-success text-success-dark2x bg-success-light2x"
+              "border-alert shadow-b-alert",
+            @selected_option && option.correct? && "border-success shadow-b-success"
           ]}
         >
           <img :if={option.image} src={option.image} alt={option.title} class="h-16 w-16 object-cover" />
