@@ -24,7 +24,7 @@ defmodule UneebeeWeb.Components.Badge do
     values: [:black, :alert, :info, :success, :warning, :black_light, :alert_light, :info_light, :success_light, :warning_light],
     doc: "the background color"
 
-  attr :icon, :string, required: true, doc: "name of the icon to add to the badge"
+  attr :icon, :string, default: nil, doc: "name of the icon to add to the badge"
   attr :class, :string, default: nil, doc: "the optional additional classes to add to the badge element"
   attr :rest, :global, doc: "the optional additional attributes to add to the badge element"
 
@@ -49,7 +49,7 @@ defmodule UneebeeWeb.Components.Badge do
       ]}
       {@rest}
     >
-      <.icon name={@icon} class="h-3 w-3" /> <%= render_slot(@inner_block) %>
+      <.icon :if={@icon} name={@icon} class="h-3 w-3" /> <%= render_slot(@inner_block) %>
     </span>
     """
   end

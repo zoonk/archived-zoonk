@@ -88,10 +88,10 @@ defmodule Uneebee.Content.CourseUtils do
   Returns the color for a given score.
   """
   @spec score_color(float() | nil) :: atom()
-  def score_color(nil), do: :success
-  def score_color(score) when score >= 8, do: :success
-  def score_color(score) when score >= 6, do: :warning
-  def score_color(_score), do: :alert
+  def score_color(nil), do: :success_light
+  def score_color(score) when score >= 8, do: :success_light
+  def score_color(score) when score >= 6, do: :warning_light
+  def score_color(_score), do: :alert_light
 
   @doc """
   Checks if a lesson is completed.

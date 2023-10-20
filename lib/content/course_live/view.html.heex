@@ -26,29 +26,29 @@
     :for={{lesson, index} <- Enum.with_index(@lessons)}
     navigate={lesson_link(lesson_locked?(@course_user), @course, lesson)}
     class={[
-      "text-gray-dark flex gap-2 border p-4 rounded-2xl",
-      lesson_locked?(@course_user) && "cursor-not-allowed opacity-50",
+      "text-gray-dark border border-l-8 flex gap-2 p-4 rounded-2xl",
+      lesson_locked?(@course_user) && "cursor-not-allowed border-gray-light opacity-50",
       CourseUtils.lesson_completed?(@current_user, lesson.user_lessons) &&
-        "bg-success-light3x border-success-light2x hover:outline hover:outline-1 hover:outline-offset-2 hover:outline-success-light2x focus:outline-1 focus:outline-offset-4 focus:outline-success-light2x",
+        "border-success",
       not CourseUtils.lesson_completed?(@current_user, lesson.user_lessons) &&
-        "bg-white card-with-link"
+        "border-gray-light"
     ]}
   >
     <% score = CourseUtils.lesson_score(@current_user, lesson.user_lessons) %>
 
     <.avatar src={lesson.cover} alt={if is_nil(lesson.cover), do: index + 1, else: dgettext("courses", "Lesson cover")} class="mt-1" />
 
-    <div>
-      <dt class="font-semibold"><%= lesson.name %></dt>
-      <dd class="text-gray text-sm"><%= lesson.description %></dd>
+    <div class="w-full min-w-0">
+      <dt class="flex gap-2 font-semibold">
+        <span class="flex-1 truncate"><%= lesson.name %></span>
 
-      <div class="mt-4">
-        <.badge :if={score} icon="tabler-check" color={CourseUtils.score_color(score)}><%= score %></.badge>
+        <.badge :if={score} color={CourseUtils.score_color(score)}><%= score %></.badge>
 
         <.badge :if={lesson_locked?(@course_user)} color={:black_light} icon="tabler-lock">
           <%= gettext("Locked") %>
         </.badge>
-      </div>
+      </dt>
+      <dd class="text-gray text-sm"><%= lesson.description %></dd>
     </div>
   </.link>
 </dl>

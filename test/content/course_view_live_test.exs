@@ -99,8 +99,8 @@ defmodule UneebeeWeb.CourseViewLiveTest do
 
       {:ok, lv, _html} = live(conn, "/c/#{course.slug}")
 
-      assert has_element?(lv, ~s|dt:fl-contains("#{lesson1.name}")|)
-      refute has_element?(lv, ~s|dt:fl-contains("#{lesson2.name}")|)
+      assert has_element?(lv, ~s|dt span:fl-contains("#{lesson1.name}")|)
+      refute has_element?(lv, ~s|dt span:fl-contains("#{lesson2.name}")|)
     end
 
     test "displays the course progress", %{conn: conn, course: course, user: user} do
