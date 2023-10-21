@@ -1,4 +1,4 @@
-<header :if={@current_user} class="bg-primary-light3x mb-4 flex items-center gap-4 rounded-2xl p-4">
+<header :if={@current_user} class="bg-primary-light3x/90 sticky top-4 mb-4 flex items-center gap-4 rounded-2xl p-4 backdrop-blur-md">
   <.gamification_item id="learning-days" icon="tabler-calendar-heart" title={dgettext("gamification", "Learning days")} count={@learning_days} />
 
   <.link navigate={~p"/missions"}>
