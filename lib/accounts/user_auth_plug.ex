@@ -6,10 +6,13 @@ defmodule UneebeeWeb.Plugs.UserAuth do
   import Plug.Conn
   import UneebeeWeb.Gettext
 
+  alias Phoenix.Component
   alias Phoenix.LiveView
   alias Phoenix.Socket
   alias Uneebee.Accounts
   alias Uneebee.Accounts.User
+  alias Uneebee.Gamification
+  alias Uneebee.Gamification.MissionUtils
 
   # Make the remember me cookie valid for 60 days.
   # If you want bump or reduce this value, also change
@@ -180,12 +183,41 @@ defmodule UneebeeWeb.Plugs.UserAuth do
   end
 
   defp mount_current_user(socket, session) do
-    Phoenix.Component.assign_new(socket, :current_user, fn ->
-      if user_token = session["user_token"] do
-        Accounts.get_user_by_session_token(user_token)
-      end
-    end)
+    user = get_user_by_session_token(session)
+    learning_days = get_learning_days(user)
+    medals = get_user_medals(user)
+    trophies = get_user_trophies(user)
+    mission_progress = mission_progress(user)
+
+    socket
+    |> Component.assign_new(:current_user, fn -> user end)
+    |> Component.assign(:learning_days, learning_days)
+    |> Component.assign(:medals, medals)
+    |> Component.assign(:trophies, trophies)
+    |> Component.assign(:mission_progress, mission_progress)
   end
+
+  defp get_user_by_session_token(session) do
+    if user_token = session["user_token"] do
+      Accounts.get_user_by_session_token(user_token)
+    end
+  end
+
+  defp get_learning_days(nil), do: nil
+  defp get_learning_days(user), do: Gamification.learning_days_count(user.id)
+
+  defp get_user_medals(nil), do: nil
+  defp get_user_medals(user), do: Gamification.count_user_medals(user.id)
+
+  defp get_user_trophies(nil), do: nil
+  defp get_user_trophies(user), do: Gamification.count_user_trophies(user.id)
+
+  defp get_user_missions(user), do: Gamification.count_completed_missions(user.id)
+
+  defp mission_progress(nil), do: 0
+  defp mission_progress(user), do: user |> get_user_missions() |> Kernel./(supported_missions_count()) |> Kernel.*(100) |> round()
+
+  defp supported_missions_count, do: length(MissionUtils.supported_missions())
 
   @doc """
   Used for routes that require the user to not be authenticated.

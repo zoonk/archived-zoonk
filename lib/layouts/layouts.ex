@@ -2,6 +2,8 @@ defmodule UneebeeWeb.Layouts do
   @moduledoc false
   use UneebeeWeb, :html
 
+  import UneebeeWeb.Components.Layouts.GamificationItem
+
   alias Uneebee.Organizations.School
 
   embed_templates "templates/*"

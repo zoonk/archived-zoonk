@@ -84,5 +84,5 @@ defmodule UneebeeWeb.Live.Content.Course.Play do
   defp user_selected_wrong_option?(_selected, _option), do: false
 
   # Find if at least one option's title has more than 15 characters
-  defp long_option?(options), do: Enum.any?(options, fn option -> String.length(option.title) > 15 end)
+  defp long_option?(options), do: Enum.any?(options, fn option -> String.length(option.title) > 20 end)
 end

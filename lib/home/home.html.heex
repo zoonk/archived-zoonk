@@ -1,18 +1,3 @@
-<header :if={@current_user} class="bg-primary-light3x/90 sticky top-4 mb-4 flex items-center gap-4 rounded-2xl p-4 backdrop-blur-md">
-  <.gamification_item id="learning-days" icon="tabler-calendar-heart" title={dgettext("gamification", "Learning days")} count={@learning_days} />
-
-  <.link navigate={~p"/missions"}>
-    <.gamification_item id="missions" icon="tabler-target-arrow" title={dgettext("gamification", "Missions")} count={"#{@mission_progress}%"} />
-  </.link>
-
-  <.link navigate={~p"/trophies"}>
-    <.gamification_item id="trophies" icon="tabler-trophy" title={dgettext("gamification", "Trophies")} count={@trophies} />
-  </.link>
-  <.link navigate={~p"/medals"}>
-    <.gamification_item id="medals" icon="tabler-medal" title={dgettext("gamification", "Medals")} count={@medals} />
-  </.link>
-</header>
-
 <article class="space-y-8">
   <.course_list id="my-courses" title={gettext("My courses")} courses={@streams.courses_learning} my_courses empty={@courses_learning_empty?} />
   <.course_list id="courses-list" title={gettext("Most popular courses")} courses={@streams.courses} />

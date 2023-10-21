@@ -1,5 +1,21 @@
 <main class="m-auto flex max-w-5xl flex-col items-start gap-4 lg:flex-row">
   <.menu :if={@active_page} title={@page_title}>
+    <:header :if={@current_user}>
+      <.gamification_item id="learning-days" color={:alert} icon="tabler-calendar-heart" title={dgettext("gamification", "Learning days")} count={@learning_days} />
+
+      <.link navigate={~p"/missions"}>
+        <.gamification_item id="missions" color={:info} icon="tabler-target-arrow" title={dgettext("gamification", "Missions")} count={"#{@mission_progress}%"} />
+      </.link>
+
+      <.link navigate={~p"/trophies"}>
+        <.gamification_item id="trophies" color={:gray} icon="tabler-trophy" title={dgettext("gamification", "Trophies")} count={@trophies} />
+      </.link>
+
+      <.link navigate={~p"/medals"}>
+        <.gamification_item id="medals" color={:warning} icon="tabler-medal" title={dgettext("gamification", "Medals")} count={@medals} />
+      </.link>
+    </:header>
+
     <.menu_item :if={is_nil(@current_user)} href={~p"/users/login"} icon="tabler-login" title={dgettext("auth", "Sign in")} />
     <.menu_item href={~p"/"} icon="tabler-ufo" active={@active_page == :live_home} title={gettext("Home")} />
 

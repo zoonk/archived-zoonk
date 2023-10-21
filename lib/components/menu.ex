@@ -11,19 +11,30 @@ defmodule UneebeeWeb.Components.Menu do
 
   attr :title, :string, required: true, doc: "Menu title."
   slot :inner_block, required: true, doc: "Inner block of the menu."
+  slot :header, doc: "Header of the menu."
 
   def menu(assigns) do
     ~H"""
     <!-- Mobile menu -->
-    <.details title={@title} rounded={false} class="bg-white/90 sticky top-0 z-50 backdrop-blur-sm lg:hidden">
-      <nav class="mt-4">
+    <header class="bg-white/90 sticky top-0 z-50 w-full shadow backdrop-blur-sm lg:hidden">
+      <.details shadow={false} rounded={false}>
+        <:title :if={@header}>
+          <nav class="flex gap-2"><%= render_slot(@header) %></nav>
+        </:title>
+
+        <nav class="mt-4">
+          <ul class="divide-gray-light2x flex w-full flex-col divide-y"><%= render_slot(@inner_block) %></ul>
+        </nav>
+      </.details>
+    </header>
+    <!-- Desktop menu menu -->
+    <header class="min-w-[250px] sticky top-4 hidden flex-col gap-4 lg:flex">
+      <nav :if={@header} class="flex justify-between gap-2 rounded-2xl bg-white p-4 shadow"><%= render_slot(@header) %></nav>
+
+      <nav class="border-gray-light2x shadow-b-gray rounded-2xl border bg-white">
         <ul class="divide-gray-light2x flex w-full flex-col divide-y"><%= render_slot(@inner_block) %></ul>
       </nav>
-    </.details>
-    <!-- Desktop menu menu -->
-    <nav class="min-w-[200px] border-gray-light2x shadow-b-gray sticky top-4 hidden rounded-2xl border bg-white lg:flex">
-      <ul class="divide-gray-light2x flex w-full flex-col divide-y"><%= render_slot(@inner_block) %></ul>
-    </nav>
+    </header>
     """
   end
 

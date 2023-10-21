@@ -33,7 +33,7 @@
           for={"select-option-#{option.id}"}
           role="button"
           class={[
-            "flex h-full border font-semibold cursor-pointer text-gray-dark2x bg-white flex-col items-center justify-center gap-4 rounded-2xl p-4 text-sm peer-checked:border-info peer-checked:shadow-b-info",
+            "flex h-full border cursor-pointer text-gray-dark2x bg-white flex-col items-center justify-center gap-4 rounded-2xl p-4 text-sm peer-checked:border-info peer-checked:shadow-b-info",
             (is_nil(@selected_option) || (@selected_option.id != option.id && not option.correct?)) &&
               "active:shadow-b-gray-pressed border-gray-light shadow-b-gray",
             user_selected_wrong_option?(@selected_option, option) &&
