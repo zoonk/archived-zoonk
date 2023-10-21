@@ -16,7 +16,7 @@ defmodule UneebeeWeb.Components.Content.CourseList do
       <h1 :if={@title} class="text-gray-dark mb-2 font-semibold"><%= @title %></h1>
 
       <dl id={@id} phx-update="stream" class="grid grid-cols-1 gap-4 sm:grid-cols-2">
-        <.link :for={{dom_id, course_data} <- @courses} id={dom_id} navigate={course_link(course_data, @my_courses)} class="card-with-link flex rounded-2xl border bg-white">
+        <.link :for={{dom_id, course_data} <- @courses} id={dom_id} navigate={course_link(course_data, @my_courses)} class="card-with-link flex">
           <% course = if @my_courses, do: course_data, else: course_data.data %>
           <img :if={course.cover} src={course.cover} class="w-20 rounded-2xl object-cover p-1" />
           <div :if={is_nil(course.cover)} class="bg-gray-light3x w-20 rounded-2xl border-2 border-white p-1" />

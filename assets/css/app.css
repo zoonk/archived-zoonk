@@ -16,15 +16,7 @@
     @apply card-base border-gray-light2x;
   }
 
-  .card-alert {
-    @apply card-base border-alert-dark2x;
-  }
-
-  .card-success {
-    @apply card-base border-success-dark2x;
-  }
-
   .card-with-link {
-    @apply card hover:outline hover:outline-1 hover:outline-offset-2 hover:outline-gray-light2x focus:outline-1 focus:outline-offset-4 focus:outline-gray-light2x;
+    @apply card-base shadow-b-gray border-gray-light active:shadow-b-gray-pressed focus:outline-none hover:border-gray-dark hover:shadow-b-gray-dark focus:border-gray-dark focus:shadow-b-gray-dark;
   }
 }
