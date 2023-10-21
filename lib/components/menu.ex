@@ -15,7 +15,7 @@ defmodule UneebeeWeb.Components.Menu do
   def menu(assigns) do
     ~H"""
     <!-- Mobile menu -->
-    <.details title={@title} class="lg:hidden">
+    <.details title={@title} rounded={false} class="bg-white/90 sticky top-0 z-50 backdrop-blur-sm lg:hidden">
       <nav class="mt-4">
         <ul class="divide-gray-light2x flex w-full flex-col divide-y"><%= render_slot(@inner_block) %></ul>
       </nav>

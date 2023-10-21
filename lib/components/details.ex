@@ -19,14 +19,15 @@ defmodule UneebeeWeb.Components.Details do
   """
   attr :title, :string, required: true, doc: "Title to be displayed even when the component is collapsed."
   attr :class, :string, default: nil, doc: "Optional additional classes to add to the details element."
+  attr :rounded, :boolean, default: true, doc: "Whether the details element should be rounded or not."
 
   slot :inner_block, required: true, doc: "Content to be displayed when the component is expanded."
 
   def details(assigns) do
     ~H"""
     <details class={[
-      "sticky top-4 group w-full flex-1 text-sm leading-6 min-w-0",
-      "bg-white/90 backdrop-blur-md shadow p-4 rounded-lg",
+      "group w-full shadow p-4 text-sm min-w-0",
+      @rounded && "rounded-lg",
       @class
     ]}>
       <summary class="flex cursor-pointer items-center gap-1 font-bold">

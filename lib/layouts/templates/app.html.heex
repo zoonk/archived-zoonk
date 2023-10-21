@@ -1,4 +1,4 @@
-<main class="m-auto flex max-w-5xl flex-col items-start gap-4 p-4 lg:flex-row">
+<main class="m-auto flex max-w-5xl flex-col items-start gap-4 lg:flex-row">
   <.menu :if={@active_page} title={@page_title}>
     <.menu_item :if={is_nil(@current_user)} href={~p"/users/login"} icon="tabler-login" title={dgettext("auth", "Sign in")} />
     <.menu_item href={~p"/"} icon="tabler-ufo" active={@active_page == :live_home} title={gettext("Home")} />
@@ -143,6 +143,6 @@
     </.menu_item>
   </.menu>
 
-  <section class="w-full"><%= @inner_content %></section>
+  <section class="w-full p-4"><%= @inner_content %></section>
   <.flash_group flash={@flash} />
 </main>
