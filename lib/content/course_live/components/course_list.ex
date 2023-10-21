@@ -13,7 +13,7 @@ defmodule UneebeeWeb.Components.Content.CourseList do
   def course_list(assigns) do
     ~H"""
     <section :if={not @empty} class="mb-4">
-      <h1 :if={@title} class="text-gray-dark mb-2 font-semibold"><%= @title %></h1>
+      <h1 :if={@title} class="text-gradient mb-2 font-semibold"><%= @title %></h1>
 
       <dl id={@id} phx-update="stream" class="grid grid-cols-1 gap-4 sm:grid-cols-2">
         <.link :for={{dom_id, course_data} <- @courses} id={dom_id} navigate={course_link(course_data, @my_courses)} class="card-with-link flex">
