@@ -10,16 +10,10 @@ defmodule UneebeeWeb.CourseViewLiveTest do
   describe "/c/:slug (non-authenticated)" do
     setup :set_school
 
-    test "renders the page", %{conn: conn, school: school} do
+    test "redirects to the login page", %{conn: conn, school: school} do
       course = course_fixture(%{school_id: school.id})
-      assert_course_view(conn, course)
-    end
-
-    test "redirects to the login page when trying to enroll", %{conn: conn, school: school} do
-      course = course_fixture(%{school_id: school.id})
-      {:ok, lv, _html} = live(conn, ~p"/c/#{course.slug}")
-
-      assert {:ok, _conn} = lv |> element("button", "Free Enroll") |> render_click() |> follow_redirect(conn, "/users/login")
+      result = get(conn, ~p"/c/#{course.slug}")
+      assert redirected_to(result) == ~p"/users/login"
     end
   end
 

@@ -22,7 +22,7 @@ defmodule UneebeeWeb.Components.Details do
   attr :shadow, :boolean, default: true, doc: "Whether the details element should have a shadow or not."
 
   slot :inner_block, required: true, doc: "Content to be displayed when the component is expanded."
-  slot :title, doc: "Title to be displayed when the component is collapsed."
+  slot :title, required: true, doc: "Title to be displayed when the component is collapsed."
 
   def details(assigns) do
     ~H"""

@@ -45,19 +45,6 @@ defmodule UneebeeWeb.UserConfirmationLiveTest do
       assert Accounts.get_user!(user.id).confirmed_at
       refute get_session(conn, :user_token)
       assert Repo.all(Accounts.UserToken) == []
-
-      # when not logged in
-      {:ok, invalid_lv, _html} = live(conn, ~p"/users/confirm/#{token}")
-
-      invalid_result =
-        invalid_lv
-        |> form("#confirmation_form")
-        |> render_submit()
-        |> follow_redirect(conn, "/")
-
-      assert {:ok, conn} = invalid_result
-
-      assert Phoenix.Flash.get(conn.assigns.flash, :error) =~ "User confirmation link is invalid or it has expired"
     end
 
     test "does not confirm email with invalid token", %{conn: conn} do
@@ -69,7 +56,7 @@ defmodule UneebeeWeb.UserConfirmationLiveTest do
         lv
         |> form("#confirmation_form")
         |> render_submit()
-        |> follow_redirect(conn, ~p"/")
+        |> follow_redirect(conn, ~p"/users/login")
 
       assert Phoenix.Flash.get(conn.assigns.flash, :error) =~ "User confirmation link is invalid or it has expired"
       refute Accounts.get_user!(user.id).confirmed_at

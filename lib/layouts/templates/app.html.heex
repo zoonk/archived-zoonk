@@ -1,6 +1,6 @@
 <main class="m-auto flex max-w-5xl flex-col items-start gap-4 lg:flex-row">
   <.menu :if={@active_page} title={@page_title}>
-    <:header :if={@current_user}>
+    <:header>
       <.gamification_item id="learning-days" color={:alert} icon="tabler-calendar-heart" title={dgettext("gamification", "Learning days")} count={@learning_days} />
 
       <.link navigate={~p"/missions"}>
@@ -16,7 +16,6 @@
       </.link>
     </:header>
 
-    <.menu_item :if={is_nil(@current_user)} href={~p"/users/login"} icon="tabler-login" title={dgettext("auth", "Sign in")} />
     <.menu_item href={~p"/"} icon="tabler-ufo" active={@active_page == :live_home} title={gettext("Home")} />
 
     <.menu_item
@@ -143,7 +142,7 @@
     <.menu_item href={~p"/courses"} icon="tabler-bulb" active={@active_page in [:course_list, :course_view]} title={gettext("Courses")} />
     <.menu_item href={~p"/feedback"} icon="tabler-message-circle-2" active={@active_page == :support_feedback} title={gettext("Feedback")} />
 
-    <.menu_item :if={@current_user} href={~p"/users/settings/language"} icon="tabler-settings" active={user_settings?(@active_page)} title={gettext("Settings")}>
+    <.menu_item href={~p"/users/settings/language"} icon="tabler-settings" active={user_settings?(@active_page)} title={gettext("Settings")}>
       <:sub_menus>
         <.sub_menu navigate={~p"/users/settings/language"} active={@active_page == :user_settings_language} title={gettext("Language")} />
         <.sub_menu navigate={~p"/users/settings/username"} active={@active_page == :user_settings_username} title={gettext("Username")} />

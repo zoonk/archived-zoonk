@@ -53,28 +53,12 @@ defmodule UneebeeWeb.Plugs.School do
   defp setup_school(conn, _opts, true), do: conn |> Controller.redirect(to: ~p"/schools/new") |> halt()
 
   @doc """
-  Requires authentication for private schools.
-  Some schools set their visibility to `false` through `school.public?`.
-  In those cases none of the school pages should be publicly visible.
-  """
-  @spec require_auth_for_private_schools(Plug.Conn.t(), Keyword.t()) :: Plug.Conn.t()
-  def require_auth_for_private_schools(conn, opts) do
-    %{current_user: current_user, school: school} = conn.assigns
-    require_auth_for_private_schools(conn, opts, current_user, school)
-  end
-
-  # Redirect users when they aren't logged in and the school is private.
-  defp require_auth_for_private_schools(conn, _opts, nil, %{public?: false}) do
-    conn |> Phoenix.Controller.redirect(to: ~p"/users/login") |> halt()
-  end
-
-  defp require_auth_for_private_schools(conn, _opts, _user, _school), do: conn
-
-  @doc """
   Requires a subscription for private schools.
   """
   @spec require_subscription_for_private_schools(Plug.Conn.t(), Keyword.t()) :: Plug.Conn.t()
   @spec require_subscription_for_private_schools(Plug.Conn.t(), boolean(), map()) :: Plug.Conn.t()
+  def require_subscription_for_private_schools(%Plug.Conn{assigns: %{school: nil}} = conn, _opts), do: conn
+
   def require_subscription_for_private_schools(conn, _opts) do
     %{school: school, school_user: school_user} = conn.assigns
     require_subscription_for_private_schools(conn, school.public?, school_user)

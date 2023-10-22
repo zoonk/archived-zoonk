@@ -59,18 +59,35 @@ defmodule UneebeeWeb.Router do
     end
   end
 
-  # Requires authentication
   scope "/", UneebeeWeb.Live do
-    pipe_through [:browser, :require_authenticated_user]
+    pipe_through [:browser]
 
-    live_session :require_authenticated_user,
+    live_session :public_routes,
+      layout: {UneebeeWeb.Layouts, :auth},
+      on_mount: [
+        {UneebeeWeb.Plugs.UserAuth, :mount_current_user},
+        {UneebeeWeb.Plugs.School, :mount_school},
+        {UneebeeWeb.Plugs.Translate, :set_locale_from_session}
+      ] do
+      live "/users/confirm/:token", Accounts.User.Confirmation, :edit
+      live "/users/confirm", Accounts.User.ConfirmationInstructions, :new
+    end
+  end
+
+  scope "/", UneebeeWeb.Live do
+    pipe_through [:browser, :require_authenticated_user, :require_subscription_for_private_schools, :fetch_course, :require_course_user_for_lesson]
+
+    live_session :requires_authentication,
       on_mount: [
         {UneebeeWeb.Plugs.UserAuth, :ensure_authenticated},
         {UneebeeWeb.Plugs.School, :mount_school},
         {UneebeeWeb.Plugs.Translate, :set_locale_from_session},
+        {UneebeeWeb.Plugs.Course, :mount_course},
+        {UneebeeWeb.Plugs.Course, :mount_lesson},
         UneebeeWeb.Plugs.ActivePage
       ] do
-      live "/schools/new", Organizations.School.New
+      live "/", Home
+      live "/feedback", Support.Feedback
 
       live "/missions", Gamification.Mission.List
       live "/trophies", Gamification.Trophy.List
@@ -82,26 +99,8 @@ defmodule UneebeeWeb.Router do
       live "/users/settings/password", Accounts.User.Settings, :password
       live "/users/settings/username", Accounts.User.Settings, :username
       live "/users/settings/confirm_email/:token", Accounts.User.Settings, :confirm_email
-    end
-  end
 
-  scope "/", UneebeeWeb.Live do
-    pipe_through [:browser, :require_auth_for_private_schools, :require_subscription_for_private_schools, :fetch_course, :require_course_user_for_lesson]
-
-    live_session :public_routes,
-      on_mount: [
-        {UneebeeWeb.Plugs.UserAuth, :mount_current_user},
-        {UneebeeWeb.Plugs.School, :mount_school},
-        {UneebeeWeb.Plugs.Translate, :set_locale_from_session},
-        {UneebeeWeb.Plugs.Course, :mount_course},
-        {UneebeeWeb.Plugs.Course, :mount_lesson},
-        UneebeeWeb.Plugs.ActivePage
-      ] do
-      live "/", Home
-      live "/feedback", Support.Feedback
-
-      live "/users/confirm/:token", Accounts.User.Confirmation, :edit
-      live "/users/confirm", Accounts.User.ConfirmationInstructions, :new
+      live "/schools/new", Organizations.School.New
 
       live "/courses", Content.Course.List
       live "/c/:course_slug", Content.Course.View

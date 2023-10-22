@@ -5,34 +5,8 @@ defmodule UneebeeWeb.CourseListLiveTest do
   import Phoenix.LiveViewTest
   import Uneebee.Fixtures.Content
 
-  describe "/courses (public school, non-authenticated users)" do
+  describe "/courses (non-authenticated users)" do
     setup :set_school
-
-    test "renders the app menu", %{conn: conn} do
-      {:ok, lv, _html} = live(conn, ~p"/courses")
-      refute has_element?(lv, ~s"#courses-teaching")
-      refute has_element?(lv, ~s"#courses-learning")
-    end
-
-    test "lists public courses from the host school", %{conn: conn, school: school} do
-      assert_course_list(conn, school)
-    end
-
-    test "doesn't show courses in another language", %{conn: conn, school: school} do
-      valid_course = course_fixture(%{school_id: school.id, language: :en})
-      other_language_course = course_fixture(%{school_id: school.id, language: :pt})
-
-      {:ok, lv, _html} = live(conn, ~p"/courses")
-
-      refute has_element?(lv, get_course_el(other_language_course))
-      assert has_element?(lv, get_course_el(valid_course))
-    end
-  end
-
-  describe "/courses (private school, non-authenticated users)" do
-    setup do
-      set_school(%{conn: build_conn()}, %{public?: false})
-    end
 
     test "redirects to the login page", %{conn: conn} do
       result = get(conn, ~p"/courses")

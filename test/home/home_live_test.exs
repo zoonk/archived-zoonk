@@ -58,57 +58,6 @@ defmodule UneebeeWeb.HomeControllerTest do
     end
   end
 
-  describe "GET / (public school, not logged in)" do
-    setup :set_school
-
-    test "redirects to the setup page when the school hasn't been created yet", %{conn: conn} do
-      result = conn |> Map.put(:host, "invalid.org") |> get(~p"/")
-      assert redirected_to(result) == ~p"/schools/new"
-    end
-
-    test "returns 404 when username as subdomain doesn't exist", %{conn: conn, school: school} do
-      assert_error_sent(404, fn -> conn |> Map.put(:host, "random.#{school.custom_domain}") |> get(~p"/") end)
-    end
-
-    test "doesn't list my courses", %{conn: conn} do
-      {:ok, lv, _html} = live(conn, ~p"/")
-      refute has_element?(lv, ~s|#my-courses|)
-    end
-
-    test "lists the 20 most popular courses", %{conn: conn, school: school} do
-      courses = Enum.map(1..21, fn idx -> course_fixture(%{name: "Course #{idx}!", school_id: school.id}) end)
-
-      Enum.each(courses, fn course ->
-        first_course? = course == Enum.at(courses, 0)
-        unless first_course?, do: course_user_fixture(%{user: user_fixture(), course: course})
-      end)
-
-      {:ok, lv, _html} = live(conn, ~p"/")
-      refute has_element?(lv, ~s|#courses-list dt:fl-icontains("course 1!")|)
-
-      Enum.each(2..21, fn idx -> assert has_element?(lv, ~s|#courses-list dt:fl-icontains("course #{idx}!")|) end)
-    end
-
-    test "doesn't show courses in another language", %{conn: conn, school: school} do
-      course_fixture(%{name: "Course 1", school_id: school.id, language: :pt})
-      course_fixture(%{name: "Course 2", school_id: school.id, language: :en})
-
-      {:ok, lv, _html} = live(conn, ~p"/")
-      refute has_element?(lv, ~s|#courses-list dt:fl-icontains("Course 1")|)
-      assert has_element?(lv, ~s|#courses-list dt:fl-icontains("Course 2")|)
-    end
-
-    test "doesn't show the learning days count", %{conn: conn} do
-      {:ok, lv, _html} = live(conn, ~p"/")
-      refute has_element?(lv, ~s|#learning-days|)
-    end
-
-    test "doesn't show the medals count", %{conn: conn} do
-      {:ok, lv, _html} = live(conn, ~p"/")
-      refute has_element?(lv, ~s|#medals|)
-    end
-  end
-
   describe "GET / (Private schools)" do
     setup do
       set_school(%{conn: build_conn()}, %{public?: false})
