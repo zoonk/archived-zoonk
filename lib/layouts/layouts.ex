@@ -27,7 +27,7 @@ defmodule UneebeeWeb.Layouts do
 
   @spec user_settings?(atom()) :: boolean()
   def user_settings?(active_page) do
-    active_page |> Atom.to_string() |> String.starts_with?("user_settings")
+    active_page |> Atom.to_string() |> String.starts_with?("usersettings")
   end
 
   @spec school_edit?(atom()) :: boolean()

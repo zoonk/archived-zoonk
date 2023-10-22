@@ -1,4 +1,4 @@
-defmodule UneebeeWeb.Live.Accounts.User.ForgotPassword do
+defmodule UneebeeWeb.Live.ForgotPassword do
   @moduledoc false
   use UneebeeWeb, :live_view
 

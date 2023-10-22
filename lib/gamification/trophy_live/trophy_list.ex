@@ -1,4 +1,4 @@
-defmodule UneebeeWeb.Live.Gamification.Trophy.List do
+defmodule UneebeeWeb.Live.TrophyList do
   @moduledoc false
   use UneebeeWeb, :live_view
 

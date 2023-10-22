@@ -1,4 +1,4 @@
-defmodule UneebeeWeb.Live.Gamification.Mission.List do
+defmodule UneebeeWeb.Live.MissionList do
   @moduledoc false
   use UneebeeWeb, :live_view
 

@@ -1,4 +1,4 @@
-defmodule UneebeeWeb.Live.Accounts.User.ResetPassword do
+defmodule UneebeeWeb.Live.ResetPassword do
   @moduledoc false
   use UneebeeWeb, :live_view
 

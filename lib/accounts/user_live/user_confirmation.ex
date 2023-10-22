@@ -1,4 +1,4 @@
-defmodule UneebeeWeb.Live.Accounts.User.Confirmation do
+defmodule UneebeeWeb.Live.UserConfirmation do
   @moduledoc false
   use UneebeeWeb, :live_view
 

@@ -1,4 +1,4 @@
-defmodule UneebeeWeb.Live.Accounts.User.Registration do
+defmodule UneebeeWeb.Live.Registration do
   @moduledoc false
   use UneebeeWeb, :live_view
 

@@ -1,4 +1,4 @@
-defmodule UneebeeWeb.Controller.Accounts.User.Session do
+defmodule UneebeeWeb.Controller.UserSession do
   @moduledoc false
   use UneebeeWeb, :controller
 

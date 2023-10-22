@@ -21,6 +21,7 @@ defmodule UneebeeWeb.Plugs.ActivePage do
           view
           |> Module.split()
           |> Enum.slice(-2..-1)
+          |> maybe_remove_live()
           |> Enum.join("_")
           |> String.downcase()
 
@@ -35,6 +36,10 @@ defmodule UneebeeWeb.Plugs.ActivePage do
   defp maybe_add_live_action(%{assigns: %{live_action: live_action}}, active_page) do
     if live_action, do: convert_to_atom("#{active_page}_#{live_action}"), else: convert_to_atom(active_page)
   end
+
+  ## When "Live" is the first item on the list, remove it.
+  defp maybe_remove_live(["Live" | rest]), do: rest
+  defp maybe_remove_live(list), do: list
 
   # We don't need the active_page for some views.
   # This means there won't be an existing atom.

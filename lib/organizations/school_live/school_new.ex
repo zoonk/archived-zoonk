@@ -1,4 +1,4 @@
-defmodule UneebeeWeb.Live.Organizations.School.New do
+defmodule UneebeeWeb.Live.SchoolNew do
   @moduledoc false
   use UneebeeWeb, :live_view
 

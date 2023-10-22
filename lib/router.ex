@@ -42,7 +42,7 @@ defmodule UneebeeWeb.Router do
   end
 
   ## Authentication routes
-  scope "/", UneebeeWeb.Live.Accounts.User do
+  scope "/", UneebeeWeb.Live do
     pipe_through [:browser, :redirect_if_user_is_authenticated]
 
     live_session :redirect_if_user_is_authenticated,
@@ -69,8 +69,8 @@ defmodule UneebeeWeb.Router do
         {UneebeeWeb.Plugs.School, :mount_school},
         {UneebeeWeb.Plugs.Translate, :set_locale_from_session}
       ] do
-      live "/users/confirm/:token", Accounts.User.Confirmation, :edit
-      live "/users/confirm", Accounts.User.ConfirmationInstructions, :new
+      live "/users/confirm/:token", UserConfirmation, :edit
+      live "/users/confirm", ConfirmationInstructions, :new
     end
   end
 
@@ -87,36 +87,36 @@ defmodule UneebeeWeb.Router do
         UneebeeWeb.Plugs.ActivePage
       ] do
       live "/", Home
-      live "/feedback", Support.Feedback
+      live "/feedback", Feedback
 
-      live "/missions", Gamification.Mission.List
-      live "/trophies", Gamification.Trophy.List
-      live "/medals", Gamification.Medal.List
+      live "/missions", MissionList
+      live "/trophies", TrophyList
+      live "/medals", MedalList
 
-      live "/users/settings/email", Accounts.User.Settings, :email
-      live "/users/settings/language", Accounts.User.Settings, :language
-      live "/users/settings/name", Accounts.User.Settings, :name
-      live "/users/settings/password", Accounts.User.Settings, :password
-      live "/users/settings/username", Accounts.User.Settings, :username
-      live "/users/settings/confirm_email/:token", Accounts.User.Settings, :confirm_email
+      live "/users/settings/email", UserSettings, :email
+      live "/users/settings/language", UserSettings, :language
+      live "/users/settings/name", UserSettings, :name
+      live "/users/settings/password", UserSettings, :password
+      live "/users/settings/username", UserSettings, :username
+      live "/users/settings/confirm_email/:token", UserSettings, :confirm_email
 
-      live "/schools/new", Organizations.School.New
+      live "/schools/new", SchoolNew
 
-      live "/courses", Content.Course.List
-      live "/c/:course_slug", Content.Course.View
-      live "/c/:course_slug/:lesson_id", Content.Course.Play
-      live "/c/:course_slug/:lesson_id/completed", Content.Course.LessonCompleted
+      live "/courses", CourseList
+      live "/c/:course_slug", CourseView
+      live "/c/:course_slug/:lesson_id", LessonPlay
+      live "/c/:course_slug/:lesson_id/completed", LessonCompleted
     end
   end
 
-  scope "/", UneebeeWeb.Controller.Accounts.User do
+  scope "/", UneebeeWeb.Controller do
     pipe_through [:browser, :redirect_if_user_is_authenticated]
-    post "/users/login", Session, :create
+    post "/users/login", UserSession, :create
   end
 
-  scope "/", UneebeeWeb.Controller.Accounts.User do
+  scope "/", UneebeeWeb.Controller do
     pipe_through [:browser]
-    delete "/users/logout", Session, :delete
+    delete "/users/logout", UserSession, :delete
   end
 
   # Routes visible to school managers only.

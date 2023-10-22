@@ -139,16 +139,16 @@
       </:sub_menus>
     </.menu_item>
 
-    <.menu_item href={~p"/courses"} icon="tabler-bulb" active={@active_page in [:course_list, :course_view]} title={gettext("Courses")} />
-    <.menu_item href={~p"/feedback"} icon="tabler-message-circle-2" active={@active_page == :support_feedback} title={gettext("Feedback")} />
+    <.menu_item href={~p"/courses"} icon="tabler-bulb" active={@active_page in [:courselist, :courseview]} title={gettext("Courses")} />
+    <.menu_item href={~p"/feedback"} icon="tabler-message-circle-2" active={@active_page == :feedback} title={gettext("Feedback")} />
 
     <.menu_item href={~p"/users/settings/language"} icon="tabler-settings" active={user_settings?(@active_page)} title={gettext("Settings")}>
       <:sub_menus>
-        <.sub_menu navigate={~p"/users/settings/language"} active={@active_page == :user_settings_language} title={gettext("Language")} />
-        <.sub_menu navigate={~p"/users/settings/username"} active={@active_page == :user_settings_username} title={gettext("Username")} />
-        <.sub_menu navigate={~p"/users/settings/name"} active={@active_page == :user_settings_name} title={gettext("Name")} />
-        <.sub_menu navigate={~p"/users/settings/email"} active={@active_page == :user_settings_email} title={gettext("Email")} />
-        <.sub_menu navigate={~p"/users/settings/password"} active={@active_page == :user_settings_password} title={dgettext("auth", "Password")} />
+        <.sub_menu navigate={~p"/users/settings/language"} active={@active_page == :usersettings_language} title={gettext("Language")} />
+        <.sub_menu navigate={~p"/users/settings/username"} active={@active_page == :usersettings_username} title={gettext("Username")} />
+        <.sub_menu navigate={~p"/users/settings/name"} active={@active_page == :usersettings_name} title={gettext("Name")} />
+        <.sub_menu navigate={~p"/users/settings/email"} active={@active_page == :usersettings_email} title={gettext("Email")} />
+        <.sub_menu navigate={~p"/users/settings/password"} active={@active_page == :usersettings_password} title={dgettext("auth", "Password")} />
         <.sub_menu href={~p"/users/logout"} method="delete" title={gettext("Logout")} />
       </:sub_menus>
     </.menu_item>

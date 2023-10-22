@@ -101,6 +101,8 @@ defmodule UneebeeWeb.CourseListLiveTest do
 
     {:ok, lv, _html} = live(conn, ~p"/courses")
 
+    assert has_element?(lv, ~s|li[aria-current=page] span:fl-icontains("courses")|)
+
     refute has_element?(lv, get_course_el(unpublished_course))
     refute has_element?(lv, get_course_el(private_course))
     assert has_element?(lv, get_course_el(published_course))

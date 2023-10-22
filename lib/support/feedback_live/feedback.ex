@@ -1,4 +1,4 @@
-defmodule UneebeeWeb.Live.Support.Feedback do
+defmodule UneebeeWeb.Live.Feedback do
   @moduledoc false
   use UneebeeWeb, :live_view
 

@@ -1,4 +1,4 @@
-defmodule UneebeeWeb.Live.Content.Course.List do
+defmodule UneebeeWeb.Live.CourseList do
   @moduledoc false
   use UneebeeWeb, :live_view
 

@@ -31,6 +31,9 @@ defmodule UneebeeWeb.UserSettingsLiveTest do
 
       {:ok, lv, _html} = live(conn, ~p"/users/settings/username")
 
+      assert has_element?(lv, ~s|li[aria-current=page] span:fl-icontains("settings")|)
+      assert has_element?(lv, ~s|li[aria-current=page] span:fl-icontains("username")|)
+
       refute has_element?(lv, ~s|#{@email_form}|)
       refute has_element?(lv, ~s|#{@password_form}|)
       assert has_element?(lv, ~s|input[name="user[username]"][value="#{user.username}"]|)
@@ -51,6 +54,9 @@ defmodule UneebeeWeb.UserSettingsLiveTest do
     test "updates the user language", %{conn: conn, user: user} do
       {:ok, lv, _html} = live(conn, ~p"/users/settings/language")
 
+      assert has_element?(lv, ~s|li[aria-current=page] span:fl-icontains("settings")|)
+      assert has_element?(lv, ~s|li[aria-current=page] span:fl-icontains("language")|)
+
       assert has_element?(lv, ~s|option[value="en"][selected]|)
       assert lv |> form(@settings_form, user: %{language: "pt"}) |> render_submit() =~ "Configurações atualizadas"
       assert has_element?(lv, ~s|button:fl-icontains("Salvar")|)
@@ -64,6 +70,9 @@ defmodule UneebeeWeb.UserSettingsLiveTest do
 
     test "updates the user name", %{conn: conn, user: user} do
       {:ok, lv, _html} = live(conn, ~p"/users/settings/name")
+
+      assert has_element?(lv, ~s|li[aria-current=page] span:fl-icontains("settings")|)
+      assert has_element?(lv, ~s|li[aria-current=page] span:fl-icontains("name")|)
 
       new_first_name = "New first name"
       new_last_name = "New last name"
@@ -157,6 +166,9 @@ defmodule UneebeeWeb.UserSettingsLiveTest do
       refute has_element?(lv, @settings_form)
       refute has_element?(lv, @password_form)
 
+      assert has_element?(lv, ~s|li[aria-current=page] span:fl-icontains("settings")|)
+      assert has_element?(lv, ~s|li[aria-current=page] span:fl-icontains("email")|)
+
       result =
         lv
         |> form(@email_form, %{"current_password" => password, "user" => %{"email" => new_email}})
@@ -202,6 +214,9 @@ defmodule UneebeeWeb.UserSettingsLiveTest do
 
       refute has_element?(lv, @settings_form)
       refute has_element?(lv, @email_form)
+
+      assert has_element?(lv, ~s|li[aria-current=page] span:fl-icontains("settings")|)
+      assert has_element?(lv, ~s|li[aria-current=page] span:fl-icontains("password")|)
 
       form =
         form(lv, @password_form, %{"current_password" => password, "user" => %{"email" => user.email, "password" => new_password, "password_confirmation" => new_password}})

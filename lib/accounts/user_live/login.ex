@@ -1,4 +1,4 @@
-defmodule UneebeeWeb.Live.Accounts.User.Login do
+defmodule UneebeeWeb.Live.Login do
   @moduledoc false
   use UneebeeWeb, :live_view
 
