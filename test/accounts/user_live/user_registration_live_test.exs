@@ -62,7 +62,7 @@ defmodule UneebeeWeb.UserRegistrationLiveTest do
       assert redirected_to(conn) == ~p"/"
 
       # Now do a logged in request
-      response = html_response(get(conn, "/"), 200)
+      response = html_response(get(conn, ~p"/courses"), 200)
       assert response =~ "Settings"
 
       # User should not be confirmed.

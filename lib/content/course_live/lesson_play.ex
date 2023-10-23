@@ -2,7 +2,6 @@ defmodule UneebeeWeb.Live.LessonPlay do
   @moduledoc false
   use UneebeeWeb, :live_view
 
-  import UneebeeWeb.Components.Content.LessonProgress
   import UneebeeWeb.Components.Content.LessonStep
 
   alias Uneebee.Content

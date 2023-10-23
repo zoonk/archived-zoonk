@@ -1066,4 +1066,16 @@ defmodule Uneebee.ContentTest do
       assert Content.count_user_perfect_lessons(user.id) == 5
     end
   end
+
+  describe "get_last_completed_course_slug/1" do
+    test "returns the last completed course slug" do
+      user = user_fixture()
+      course1 = course_fixture(%{slug: "course-1"})
+      course2 = course_fixture(%{slug: "course-2"})
+      generate_user_lesson(user.id, 0, course: course1)
+      generate_user_lesson(user.id, 0, course: course2)
+
+      assert Content.get_last_completed_course_slug(user) == course2.slug
+    end
+  end
 end

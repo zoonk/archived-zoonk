@@ -50,8 +50,6 @@ defmodule UneebeeWeb.PlayViewLiveTest do
 
       {:ok, lv, _html} = live(conn, ~p"/c/#{course.slug}/#{lesson.id}")
 
-      refute has_element?(lv, ~s|li a span:fl-icontains("Home")|)
-
       # image options
       refute has_element?(lv, ~s|img[alt="option 1!"]|)
       assert has_element?(lv, ~s|img[alt="option 2!"]|)

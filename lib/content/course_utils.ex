@@ -64,8 +64,11 @@ defmodule Uneebee.Content.CourseUtils do
     round(completed / total * 100)
   end
 
-  # Calculate how many lessons are completed. A lesson is completed when `user_lessons` is an empty list.
-  defp completed_lessons_count(lessons) do
+  @doc """
+  Calculate how many lessons are completed. A lesson is completed when `user_lessons` is an empty list.
+  """
+  @spec completed_lessons_count([Lesson.t()]) :: integer()
+  def completed_lessons_count(lessons) do
     Enum.count(lessons, fn lesson -> lesson.user_lessons != [] end)
   end
 

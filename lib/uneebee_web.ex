@@ -102,6 +102,7 @@ defmodule UneebeeWeb do
       import UneebeeWeb.Components.Link
       import UneebeeWeb.Components.Menu
       import UneebeeWeb.Components.Modal
+      import UneebeeWeb.Components.Progress
 
       # i18n
       import UneebeeWeb.Gettext

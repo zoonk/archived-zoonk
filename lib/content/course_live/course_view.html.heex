@@ -1,4 +1,4 @@
-<header class="bg-gray-light3x text-gray-dark rounded-2xl">
+<header class="bg-gray-light3x text-gray-dark mb-4 rounded-2xl">
   <img :if={@course.cover} src={@course.cover} alt={gettext("Cover")} class="aspect-[4/1] rounded-2xl object-cover p-1" />
 
   <div class="p-4">
@@ -21,7 +21,7 @@
   </div>
 </header>
 
-<dl class="mt-4 space-y-4">
+<dl class="space-y-4">
   <.link
     :for={{lesson, index} <- Enum.with_index(@lessons)}
     navigate={lesson_link(lesson_locked?(@course_user), @course, lesson)}

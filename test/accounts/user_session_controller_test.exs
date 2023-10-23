@@ -17,7 +17,7 @@ defmodule UneebeeWeb.UserSessionControllerTest do
       assert redirected_to(conn) == ~p"/"
 
       # Now do a logged in request and assert on the menu
-      response = html_response(get(conn, ~p"/"), 200)
+      response = html_response(get(conn, ~p"/courses"), 200)
       assert response =~ "Settings"
     end
 

@@ -41,6 +41,12 @@ defmodule UneebeeWeb.Router do
     plug :accepts, ["json"]
   end
 
+  # We don't have an actual home page. It redirects to the most recent course or the course list.
+  scope "/", UneebeeWeb.Controller do
+    pipe_through :browser
+    get "/", Home, :index
+  end
+
   ## Authentication routes
   scope "/", UneebeeWeb.Live do
     pipe_through [:browser, :redirect_if_user_is_authenticated]
@@ -86,7 +92,6 @@ defmodule UneebeeWeb.Router do
         {UneebeeWeb.Plugs.Course, :mount_lesson},
         UneebeeWeb.Plugs.ActivePage
       ] do
-      live "/", Home
       live "/feedback", Feedback
 
       live "/missions", MissionList

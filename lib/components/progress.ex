@@ -1,15 +1,14 @@
 # credo:disable-for-this-file Credo.Check.Readability.Specs
-
-defmodule UneebeeWeb.Components.Content.LessonProgress do
+defmodule UneebeeWeb.Components.Progress do
   @moduledoc false
-  use UneebeeWeb, :html
+  use Phoenix.Component
 
   attr :total, :integer, required: true
   attr :current, :integer, required: true
 
-  def lesson_progress(assigns) do
+  def progress(assigns) do
     ~H"""
-    <div class="bg-white/90 border-gray-light2x flex w-full gap-1 rounded-2xl border p-2 backdrop-blur-md">
+    <div class="border-gray-light2x flex w-full gap-1 rounded-2xl border p-2">
       <% steps = Enum.map(1..@total, fn order -> order end) %>
       <div
         :for={step <- steps}

@@ -955,4 +955,28 @@ defmodule Uneebee.Content do
   def count_user_perfect_lessons(user_id) do
     UserLesson |> where([ul], ul.user_id == ^user_id and ul.correct == ul.total) |> Repo.aggregate(:count)
   end
+
+  @doc """
+  Get the `slug` of the last course a user has completed a lesson from.
+
+  ## Examples
+
+      iex> get_last_completed_course_slug(user_id)
+      "course-slug"
+  """
+  @spec get_last_completed_course_slug(User.t() | nil) :: String.t() | nil
+  def get_last_completed_course_slug(nil), do: nil
+
+  def get_last_completed_course_slug(%User{id: user_id}) do
+    UserLesson
+    |> where([ul], ul.user_id == ^user_id)
+    |> order_by(desc: :inserted_at)
+    |> limit(1)
+    |> preload(lesson: [:course])
+    |> Repo.one()
+    |> handle_last_completed_course()
+  end
+
+  defp handle_last_completed_course(nil), do: nil
+  defp handle_last_completed_course(%UserLesson{} = user_lesson), do: user_lesson.lesson.course.slug
 end
