@@ -970,7 +970,7 @@ defmodule Uneebee.Content do
   def get_last_completed_course_slug(%User{id: user_id}) do
     UserLesson
     |> where([ul], ul.user_id == ^user_id)
-    |> order_by(desc: :inserted_at)
+    |> order_by(desc: :updated_at)
     |> limit(1)
     |> preload(lesson: [:course])
     |> Repo.one()
