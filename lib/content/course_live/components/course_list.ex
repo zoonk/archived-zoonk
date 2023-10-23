@@ -4,6 +4,8 @@ defmodule UneebeeWeb.Components.Content.CourseList do
   @moduledoc false
   use UneebeeWeb, :html
 
+  alias Uneebee.Content.CourseUtils
+
   attr :id, :string, required: true
   attr :title, :string, default: nil
   attr :courses, :list, required: true
@@ -12,18 +14,23 @@ defmodule UneebeeWeb.Components.Content.CourseList do
 
   def course_list(assigns) do
     ~H"""
-    <section :if={not @empty} class="mb-4">
+    <section :if={not @empty}>
       <h1 :if={@title} class="text-gradient mb-2 font-semibold"><%= @title %></h1>
 
       <dl id={@id} phx-update="stream" class="grid grid-cols-1 gap-4 sm:grid-cols-2">
-        <.link :for={{dom_id, course_data} <- @courses} id={dom_id} navigate={course_link(course_data, @my_courses)} class="card-with-link flex">
+        <.link :for={{dom_id, course_data} <- @courses} id={dom_id} navigate={course_link(course_data, @my_courses)} class="card-with-link flex p-1">
           <% course = if @my_courses, do: course_data, else: course_data.data %>
-          <img :if={course.cover} src={course.cover} class="w-20 rounded-2xl object-cover p-1" />
-          <div :if={is_nil(course.cover)} class="bg-gray-light3x w-20 rounded-2xl border-2 border-white p-1" />
+          <img :if={course.cover} src={course.cover} class="w-28 rounded-2xl object-cover" />
+          <div :if={is_nil(course.cover)} class="bg-gray-light3x w-28 rounded-2xl" />
 
-          <div class="min-w-0 p-2 text-sm">
+          <div class="min-w-0 flex-1 px-2 text-sm">
             <dt class="text-gray-dark truncate font-bold"><%= course.name %></dt>
             <dd class="text-gray line-clamp-2 text-sm"><%= course.description %></dd>
+
+            <div class="mt-4">
+              <.badge icon="tabler-chart-arrows-vertical"><%= CourseUtils.level_label(course.level) %></.badge>
+              <.badge :if={not @my_courses} icon="tabler-user" color={:black_light}><%= course_data.student_count %></.badge>
+            </div>
           </div>
         </.link>
       </dl>
