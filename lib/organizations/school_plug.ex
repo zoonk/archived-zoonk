@@ -26,7 +26,13 @@ defmodule UneebeeWeb.Plugs.School do
   def fetch_school(conn, _opts) do
     school = get_school(conn)
     school_user = get_school_user(school, conn.assigns.current_user)
-    conn |> assign(:school, school) |> assign(:school_user, school_user)
+    user_approved? = if is_map(school_user), do: school_user.approved?, else: false
+    user_role = if user_approved?, do: school_user.role
+
+    conn
+    |> assign(:school, school)
+    |> assign(:school_user, school_user)
+    |> assign(:user_role, user_role)
   end
 
   @doc """

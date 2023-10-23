@@ -18,29 +18,47 @@ defmodule UneebeeWeb.Components.Layouts.MenuMobile do
 
   def menu_mobile(assigns) do
     ~H"""
-    <header class="sticky top-0 w-full bg-white p-4 shadow lg:hidden">
+    <header class="sticky top-0 z-50 w-full bg-white p-4 shadow lg:hidden">
       <nav class="m-auto flex max-w-3xl justify-between">
         <.gamification_menu learning_days={@learning_days} mission_progress={@mission_progress} trophies={@trophies} medals={@medals} />
       </nav>
 
-      <div :if={@lessons} class="m-auto mt-4 max-w-3xl">
+      <div :if={@lessons && not dashboard?(@active_page)} class="m-auto mt-4 max-w-3xl">
         <.progress total={length(@lessons)} current={CourseUtils.completed_lessons_count(@lessons)} />
       </div>
     </header>
 
-    <nav class="border-gray-light fixed right-0 bottom-0 left-0 border-t-2 bg-white p-2 lg:hidden">
+    <nav class="border-gray-light fixed right-0 bottom-0 left-0 z-50 border-t-2 bg-white p-2 lg:hidden">
       <ul class="m-auto flex max-w-3xl justify-between gap-2">
         <.menu_bottom_item color={:primary} active={@active_page == :courseview} icon="tabler-home-2" label={gettext("Home")} href={~p"/"} />
-        <.menu_bottom_item color={:warning} active={@active_page == :mycourses} icon="tabler-books" label={gettext("My courses")} href={~p"/courses/my"} />
+
+        <.menu_bottom_item
+          :if={@user_role != :manager}
+          color={:warning}
+          active={@active_page == :mycourses}
+          icon="tabler-books"
+          label={gettext("My courses")}
+          href={~p"/courses/my"}
+        />
+
         <.menu_bottom_item color={:success} active={@active_page == :courselist} icon="tabler-ufo" label={gettext("Courses")} navigate={~p"/courses"} />
 
         <.menu_bottom_item
-          :if={@user_role in [:manager, :teacher]}
+          :if={@user_role == :manager}
           color={:alert}
-          active={dashboard?(@active_page)}
+          active={dashboard?(@active_page) and not course?(@active_page) and not lesson_view?(@active_page)}
           icon="tabler-table"
-          label={gettext("Dashboard")}
+          label={dgettext("orgs", "Manage school")}
           href={~p"/dashboard"}
+        />
+
+        <.menu_bottom_item
+          :if={@user_role in [:manager, :teacher]}
+          color={:bronze}
+          active={course?(@active_page) or lesson_view?(@active_page)}
+          icon="tabler-table-column"
+          label={dgettext("orgs", "Manage courses")}
+          href={~p"/dashboard/courses"}
         />
 
         <.menu_bottom_item color={:info} active={user_settings?(@active_page)} icon="tabler-settings" label={gettext("Settings")} navigate={~p"/users/settings/language"} />

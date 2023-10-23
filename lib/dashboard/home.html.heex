@@ -14,3 +14,15 @@
   <.item_stats_card title={gettext("Teachers")} icon="tabler-apple" count={@teacher_count} />
   <.item_stats_card title={gettext("Students")} icon="tabler-comet" count={@student_count} />
 </section>
+
+<section class="mt-4 lg:hidden">
+  <div class="mt-2 flex flex-col gap-2">
+    <.menu_card navigate={~p"/dashboard/managers"} title={gettext("Managers")} />
+    <.menu_card navigate={~p"/dashboard/teachers"} title={gettext("Teachers")} />
+    <.menu_card navigate={~p"/dashboard/students"} title={gettext("Students")} />
+    <.menu_card navigate={~p"/dashboard/edit/logo"} title={gettext("Logo")} />
+    <.menu_card navigate={~p"/dashboard/edit/slug"} title={dgettext("orgs", "Nickname")} />
+    <.menu_card navigate={~p"/dashboard/edit/info"} title={gettext("Profile")} />
+    <.menu_card navigate={~p"/dashboard/edit/terms"} title={dgettext("orgs", "Terms of use")} />
+  </div>
+</section>

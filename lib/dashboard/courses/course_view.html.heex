@@ -1,8 +1,7 @@
-<header class="bg-gray-light3x flex justify-between rounded-2xl p-4">
-  <div class="min-w-0">
-    <h1 class="text-gray-dark truncate text-xl font-bold"><%= @course.name %></h1>
-    <h2 class="text-gray truncate"><%= @course.description %></h2>
-  </div>
+<header class="bg-gray-light3x flex items-center justify-between gap-4 rounded-2xl p-4">
+  <form id="select-course" phx-change="select-course">
+    <.input type="select" name="course" value={@course.slug} options={@courses} />
+  </form>
 
   <.live_component module={CoursePublish} id={:course_publish} course={@course} />
 </header>

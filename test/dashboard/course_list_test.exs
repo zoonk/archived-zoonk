@@ -1,7 +1,6 @@
 defmodule UneebeeWeb.DashboardCourseListLiveTest do
   use UneebeeWeb.ConnCase, async: true
 
-  import Phoenix.LiveViewTest
   import Uneebee.Fixtures.Content
 
   describe "/dashboard/courses (non-authenticated users)" do
@@ -26,14 +25,13 @@ defmodule UneebeeWeb.DashboardCourseListLiveTest do
       app_setup(%{conn: build_conn()}, school_user: :teacher)
     end
 
-    test "returns all courses a teacher manages", %{conn: conn, school: school, user: user} do
-      courses = Enum.map(1..3, fn _idx -> course_fixture(%{school_id: school.id, user: user, preload: :school}) end)
-      other_courses = Enum.map(1..3, fn _idx -> course_fixture(%{school_id: school.id, preload: :school}) end)
+    test "redirects to the last course this teacher edited", %{conn: conn, school: school, user: user} do
+      course = course_fixture(%{school_id: school.id})
+      course_fixture(%{school_id: school.id})
+      course_user_fixture(%{course: course, user: user, role: :teacher})
 
-      {:ok, lv, _html} = live(conn, ~p"/dashboard/courses")
-
-      Enum.each(courses, fn course -> assert has_element?(lv, course_el(course)) end)
-      Enum.each(other_courses, fn course -> refute has_element?(lv, course_el(course)) end)
+      result = get(conn, ~p"/dashboard/courses")
+      assert redirected_to(result) == ~p"/dashboard/c/#{course.slug}"
     end
   end
 
@@ -42,14 +40,19 @@ defmodule UneebeeWeb.DashboardCourseListLiveTest do
       app_setup(%{conn: build_conn()}, school_user: :manager)
     end
 
-    test "returns all courses from a school", %{conn: conn, school: school} do
-      courses = Enum.map(1..3, fn _idx -> course_fixture(%{school_id: school.id, preload: :school}) end)
+    test "redirects to the last course edited for this school", %{conn: conn, school: school} do
+      course1 = course_fixture(%{school_id: school.id})
+      course_fixture(%{school_id: school.id})
+      course_fixture()
+      lesson_fixture(%{course: course1})
 
-      {:ok, lv, _html} = live(conn, ~p"/dashboard/courses")
+      result = get(conn, ~p"/dashboard/courses")
+      assert redirected_to(result) == ~p"/dashboard/c/#{course1.slug}"
+    end
 
-      Enum.each(courses, fn course -> assert has_element?(lv, course_el(course)) end)
+    test "redirects to the create new course page when there are no courses", %{conn: conn} do
+      result = get(conn, ~p"/dashboard/courses")
+      assert redirected_to(result) == ~p"/dashboard/courses/new"
     end
   end
-
-  defp course_el(course), do: ~s|#course-list a[href="/dashboard/c/#{course.slug}"]|
 end

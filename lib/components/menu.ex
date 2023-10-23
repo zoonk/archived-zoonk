@@ -85,4 +85,15 @@ defmodule UneebeeWeb.Components.Menu do
     </li>
     """
   end
+
+  attr :title, :string, required: true, doc: "Menu title."
+  attr :rest, :global, include: ~w(href method navigate)
+
+  def menu_card(assigns) do
+    ~H"""
+    <.link class="card-with-link text-gray-dark px-4 py-2" {@rest}>
+      <%= @title %>
+    </.link>
+    """
+  end
 end

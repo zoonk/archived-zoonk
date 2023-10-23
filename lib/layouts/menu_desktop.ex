@@ -20,7 +20,7 @@ defmodule UneebeeWeb.Components.Layouts.MenuDesktop do
         href={~p"/dashboard"}
         icon="tabler-table"
         active={dashboard?(@active_page) and not course?(@active_page) and not lesson_view?(@active_page)}
-        title={gettext("Manage school")}
+        title={dgettext("orgs", "Manage school")}
       >
         <:sub_menus>
           <.sub_menu navigate={~p"/dashboard"} active={@active_page == :dashboard_home} title={gettext("Dashboard")} />
@@ -39,7 +39,7 @@ defmodule UneebeeWeb.Components.Layouts.MenuDesktop do
         href={~p"/dashboard/courses"}
         icon="tabler-table-column"
         active={course?(@active_page)}
-        title={dgettext("courses", "Manage courses")}
+        title={dgettext("orgs", "Manage courses")}
       >
         <:sub_menus>
           <.sub_menu navigate={~p"/dashboard/courses"} active={@active_page == :dashboard_courselist} title={gettext("All courses")} />

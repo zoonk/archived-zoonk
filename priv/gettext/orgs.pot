@@ -23,6 +23,7 @@ msgstr ""
 msgid "Create school"
 msgstr ""
 
+#: lib/dashboard/home.html.heex:24
 #: lib/dashboard/schools/school_edit.html.heex:4
 #: lib/layouts/menu_desktop.ex:31
 #: lib/organizations/school_live/school_new.html.heex:6
@@ -221,7 +222,7 @@ msgstr ""
 msgid "Private"
 msgstr ""
 
-#: lib/dashboard/courses/course_view.html.heex:34
+#: lib/dashboard/courses/course_view.html.heex:33
 #, elixir-autogen, elixir-format
 msgid "Published"
 msgstr ""
@@ -231,12 +232,12 @@ msgstr ""
 msgid "Type CONFIRM to delete %{name}."
 msgstr ""
 
-#: lib/dashboard/courses/course_view.html.heex:38
+#: lib/dashboard/courses/course_view.html.heex:37
 #, elixir-autogen, elixir-format
 msgid "Unpublished"
 msgstr ""
 
-#: lib/dashboard/courses/course_view.html.heex:13
+#: lib/dashboard/courses/course_view.html.heex:12
 #, elixir-autogen, elixir-format
 msgid "+ Lesson"
 msgstr ""
@@ -266,7 +267,7 @@ msgstr ""
 msgid "Could not add option!"
 msgstr ""
 
-#: lib/dashboard/courses/course_view.ex:50
+#: lib/dashboard/courses/course_view.ex:60
 #, elixir-autogen, elixir-format
 msgid "Could not change the lesson order!"
 msgstr ""
@@ -276,7 +277,7 @@ msgstr ""
 msgid "Could not change the step order!"
 msgstr ""
 
-#: lib/dashboard/courses/course_view.ex:39
+#: lib/dashboard/courses/course_view.ex:44
 #, elixir-autogen, elixir-format
 msgid "Could not create lesson!"
 msgstr ""
@@ -368,7 +369,7 @@ msgstr ""
 msgid "Delete option"
 msgstr ""
 
-#: lib/dashboard/courses/course_view.ex:29
+#: lib/dashboard/courses/course_view.ex:34
 #, elixir-autogen, elixir-format
 msgid "Description for lesson %{order}. You should update this."
 msgstr ""
@@ -378,7 +379,7 @@ msgstr ""
 msgid "Details"
 msgstr ""
 
-#: lib/dashboard/courses/course_view.html.heex:17
+#: lib/dashboard/courses/course_view.html.heex:16
 #, elixir-autogen, elixir-format
 msgid "Drag the lessons to change their order"
 msgstr ""
@@ -404,12 +405,12 @@ msgstr ""
 msgid "Is public?"
 msgstr ""
 
-#: lib/dashboard/courses/course_view.ex:28
+#: lib/dashboard/courses/course_view.ex:33
 #, elixir-autogen, elixir-format
 msgid "Lesson %{order}"
 msgstr ""
 
-#: lib/dashboard/courses/course_view.html.heex:26
+#: lib/dashboard/courses/course_view.html.heex:25
 #, elixir-autogen, elixir-format
 msgid "Lesson cover"
 msgstr ""
@@ -496,6 +497,7 @@ msgstr ""
 msgid "Privacy policy URL"
 msgstr ""
 
+#: lib/dashboard/home.html.heex:26
 #: lib/layouts/menu_desktop.ex:33
 #, elixir-autogen, elixir-format
 msgid "Terms of use"
@@ -511,7 +513,7 @@ msgstr ""
 msgid "Drag the steps to change their order:"
 msgstr ""
 
-#: lib/dashboard/courses/course_view.ex:34
+#: lib/dashboard/courses/course_view.ex:39
 #: lib/dashboard/lessons/components/lesson_switch.ex:47
 #, elixir-autogen, elixir-format
 msgid "Untitled step"
@@ -575,4 +577,16 @@ msgstr ""
 #: lib/dashboard/lessons/lesson_view.html.heex:37
 #, elixir-autogen, elixir-format
 msgid "Your image should be 64x64px (or use a 1:1 proportion)."
+msgstr ""
+
+#: lib/layouts/menu_desktop.ex:42
+#: lib/layouts/menu_mobile.ex:60
+#, elixir-autogen, elixir-format
+msgid "Manage courses"
+msgstr ""
+
+#: lib/layouts/menu_desktop.ex:23
+#: lib/layouts/menu_mobile.ex:51
+#, elixir-autogen, elixir-format
+msgid "Manage school"
 msgstr ""

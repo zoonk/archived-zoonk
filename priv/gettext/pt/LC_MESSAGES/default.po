@@ -88,6 +88,7 @@ msgstr "Nome de usuário"
 msgid "Home"
 msgstr "Início"
 
+#: lib/dashboard/home.html.heex:23
 #: lib/dashboard/schools/school_edit.html.heex:1
 #: lib/layouts/menu_desktop.ex:30
 #: lib/layouts/templates/auth.html.heex:3
@@ -115,7 +116,7 @@ msgstr "Sair"
 
 #: lib/accounts/user_live/user_settings.ex:32
 #: lib/layouts/menu_desktop.ex:143
-#: lib/layouts/menu_mobile.ex:46
+#: lib/layouts/menu_mobile.ex:64
 #, elixir-autogen, elixir-format
 msgid "Settings"
 msgstr "Configurações"
@@ -146,17 +147,12 @@ msgid "Name"
 msgstr "Nome"
 
 #: lib/layouts/menu_desktop.ex:26
-#: lib/layouts/menu_mobile.ex:42
 #, elixir-autogen, elixir-format
 msgid "Dashboard"
 msgstr "Painel de controle"
 
-#: lib/layouts/menu_desktop.ex:23
-#, elixir-autogen, elixir-format
-msgid "Manage school"
-msgstr "Gerenciar escola"
-
 #: lib/dashboard/home.html.heex:13
+#: lib/dashboard/home.html.heex:20
 #: lib/dashboard/schools/user_list.ex:99
 #: lib/layouts/menu_desktop.ex:27
 #, elixir-autogen, elixir-format
@@ -165,6 +161,7 @@ msgstr "Gestores"
 
 #: lib/dashboard/courses/course_user_list.ex:93
 #: lib/dashboard/home.html.heex:15
+#: lib/dashboard/home.html.heex:22
 #: lib/dashboard/schools/user_list.ex:101
 #: lib/layouts/menu_desktop.ex:29
 #: lib/layouts/menu_desktop.ex:59
@@ -174,6 +171,7 @@ msgstr "Alunos"
 
 #: lib/dashboard/courses/course_user_list.ex:92
 #: lib/dashboard/home.html.heex:14
+#: lib/dashboard/home.html.heex:21
 #: lib/dashboard/schools/user_list.ex:100
 #: lib/layouts/menu_desktop.ex:28
 #: lib/layouts/menu_desktop.ex:66
@@ -186,6 +184,7 @@ msgstr "Professores"
 msgid "Click on the save button to upload your file."
 msgstr "Clique no botão salvar para enviar seu arquivo."
 
+#: lib/dashboard/home.html.heex:25
 #: lib/layouts/menu_desktop.ex:32
 #, elixir-autogen, elixir-format
 msgid "Profile"
@@ -207,9 +206,8 @@ msgid "Confirm"
 msgstr "Confirmar"
 
 #: lib/content/course_live/course_list.ex:17
-#: lib/dashboard/courses/course_list.ex:15
 #: lib/layouts/menu_desktop.ex:140
-#: lib/layouts/menu_mobile.ex:35
+#: lib/layouts/menu_mobile.ex:44
 #, elixir-autogen, elixir-format
 msgid "Courses"
 msgstr "Cursos"
@@ -221,6 +219,7 @@ msgstr "Cursos"
 msgid "Cover"
 msgstr "Capa"
 
+#: lib/dashboard/courses/course_view.ex:70
 #: lib/layouts/menu_desktop.ex:46
 #, elixir-autogen, elixir-format
 msgid "Create a course"
@@ -238,7 +237,7 @@ msgstr "Bloqueado"
 
 #: lib/content/course_live/my_courses.ex:17
 #: lib/layouts/menu_desktop.ex:139
-#: lib/layouts/menu_mobile.ex:34
+#: lib/layouts/menu_mobile.ex:40
 #, elixir-autogen, elixir-format
 msgid "My courses"
 msgstr "Meus cursos"

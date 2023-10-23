@@ -7,11 +7,16 @@ defmodule UneebeeWeb.Live.Dashboard.CourseView do
 
   @impl Phoenix.LiveView
   def mount(_params, _session, socket) do
-    %{course: course} = socket.assigns
+    %{course: course, school: school, user_role: role, current_user: user} = socket.assigns
 
     lessons = Content.list_lessons(course)
+    courses = list_courses(school, user, role)
 
-    socket = socket |> assign(:page_title, course.name) |> assign(:lessons, lessons)
+    socket =
+      socket
+      |> assign(:page_title, course.name)
+      |> assign(:lessons, lessons)
+      |> assign(:courses, course_options(courses))
 
     {:ok, socket}
   end
@@ -41,6 +46,11 @@ defmodule UneebeeWeb.Live.Dashboard.CourseView do
   end
 
   @impl Phoenix.LiveView
+  def handle_event("select-course", %{"course" => course_slug}, socket) do
+    {:noreply, push_navigate(socket, to: course_link(course_slug))}
+  end
+
+  @impl Phoenix.LiveView
   def handle_event("reposition", %{"new" => new_index, "old" => old_index}, socket) when new_index != old_index do
     case Content.update_lesson_order(socket.assigns.course, old_index, new_index) do
       {:ok, lessons} ->
@@ -55,4 +65,14 @@ defmodule UneebeeWeb.Live.Dashboard.CourseView do
   def handle_event("reposition", %{"new" => new_index, "old" => old_index}, socket) when new_index == old_index do
     {:noreply, socket}
   end
+
+  defp course_options(courses) do
+    [{gettext("Create a course"), "new-course"}] ++ Enum.map(courses, fn course -> {course.name, course.slug} end)
+  end
+
+  defp list_courses(school, _user, :manager), do: Content.list_courses_by_school(school)
+  defp list_courses(_school, user, :teacher), do: Content.list_courses_by_user(user, :teacher)
+
+  defp course_link("new-course"), do: ~p"/dashboard/courses/new"
+  defp course_link(slug), do: ~p"/dashboard/c/#{slug}"
 end

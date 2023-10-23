@@ -149,6 +149,12 @@ defmodule UneebeeWeb.Router do
   end
 
   # These routes are only available to managers and teachers.
+  scope "/dashboard", UneebeeWeb.Controller.Dashboard do
+    pipe_through [:browser, :require_authenticated_user, :fetch_course, :require_manager_or_teacher]
+
+    get "/courses", Courses, :index
+  end
+
   scope "/dashboard", UneebeeWeb.Live.Dashboard do
     pipe_through [:browser, :require_authenticated_user, :fetch_course, :require_manager_or_teacher]
 
@@ -161,7 +167,6 @@ defmodule UneebeeWeb.Router do
         {UneebeeWeb.Plugs.Course, :mount_lesson},
         UneebeeWeb.Plugs.ActivePage
       ] do
-      live "/courses", CourseList
       live "/courses/new", CourseNew
 
       live "/c/:course_slug", CourseView

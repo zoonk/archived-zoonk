@@ -181,7 +181,7 @@ defmodule Uneebee.Content do
     Course
     |> join(:inner, [c], cu in CourseUser, on: c.id == cu.course_id and cu.user_id == ^user.id and cu.role == ^role)
     |> preload(:school)
-    |> order_by(desc: :inserted_at)
+    |> order_by(desc: :updated_at)
     |> limit(^limit)
     |> Repo.all()
   end
@@ -961,7 +961,7 @@ defmodule Uneebee.Content do
 
   ## Examples
 
-      iex> get_last_completed_course_slug(user_id)
+      iex> get_last_completed_course_slug(user)
       "course-slug"
   """
   @spec get_last_completed_course_slug(User.t() | nil) :: String.t() | nil
@@ -979,4 +979,44 @@ defmodule Uneebee.Content do
 
   defp handle_last_completed_course(nil), do: nil
   defp handle_last_completed_course(%UserLesson{} = user_lesson), do: user_lesson.lesson.course.slug
+
+  @doc """
+  Get the latest course a teacher edit.
+
+  We use as a reference the last lesson a teacher has edited.
+
+  ## Examples
+
+      iex> get_last_edited_course_slug(school, user, role)
+      "course-slug"
+  """
+  @spec get_last_edited_course_slug(School.t(), User.t(), atom()) :: String.t() | nil
+  def get_last_edited_course_slug(%School{} = school, _user, :manager) do
+    Lesson
+    |> join(:inner, [l], c in assoc(l, :course))
+    |> where([l, c], c.school_id == ^school.id)
+    |> order_by(desc: :updated_at)
+    |> limit(1)
+    |> preload(:course)
+    |> Repo.one()
+    |> handle_last_edited_course(school)
+    |> get_course_slug()
+  end
+
+  def get_last_edited_course_slug(_school, %User{} = user, role) do
+    user |> list_courses_by_user(role, limit: 1) |> Enum.at(0) |> get_course_slug()
+  end
+
+  defp handle_last_edited_course(nil, %School{} = school) do
+    Course
+    |> where([c], c.school_id == ^school.id)
+    |> order_by(desc: :updated_at)
+    |> limit(1)
+    |> Repo.one()
+  end
+
+  defp handle_last_edited_course(%Lesson{} = lesson, _school), do: lesson.course
+
+  defp get_course_slug(nil), do: nil
+  defp get_course_slug(%Course{} = course), do: course.slug
 end

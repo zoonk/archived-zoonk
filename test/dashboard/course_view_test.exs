@@ -6,6 +6,8 @@ defmodule UneebeeWeb.DashboardCourseViewLiveTest do
 
   alias Uneebee.Content
 
+  @select_form "#select-course"
+
   describe "/dashboard/c/:slug (non-authenticated users)" do
     setup :set_school
 
@@ -40,6 +42,22 @@ defmodule UneebeeWeb.DashboardCourseViewLiveTest do
 
     test "renders the page", %{conn: conn, course: course} do
       assert_course_view(conn, course)
+    end
+
+    test "switches to a different course", %{conn: conn, school: school, course: course} do
+      course2 = course_fixture(%{school_id: school.id})
+
+      {:ok, lv, _html} = live(conn, "/dashboard/c/#{course.slug}")
+
+      assert has_element?(lv, "option[selected]", course.name)
+
+      {:ok, updated_lv, _html} =
+        lv
+        |> form(@select_form, course: course2.slug)
+        |> render_change()
+        |> follow_redirect(conn, ~p"/dashboard/c/#{course2.slug}")
+
+      assert has_element?(updated_lv, "option[selected]", course2.name)
     end
   end
 
@@ -87,6 +105,38 @@ defmodule UneebeeWeb.DashboardCourseViewLiveTest do
       updated_course = Content.get_course!(course.id)
       refute updated_course.published?
     end
+
+    test "switches to a different course", %{conn: conn, school: school, course: course, user: user} do
+      course2 = course_fixture(%{school_id: school.id})
+      course3 = course_fixture(%{school_id: school.id})
+      course_user_fixture(%{course: course2, user: user, role: :teacher})
+
+      {:ok, lv, _html} = live(conn, "/dashboard/c/#{course.slug}")
+
+      assert has_element?(lv, "option[selected]", course.name)
+      assert has_element?(lv, "option", course2.name)
+      refute has_element?(lv, "option", course3.name)
+
+      {:ok, updated_lv, _html} =
+        lv
+        |> form(@select_form, course: course2.slug)
+        |> render_change()
+        |> follow_redirect(conn, ~p"/dashboard/c/#{course2.slug}")
+
+      assert has_element?(updated_lv, "option[selected]", course2.name)
+    end
+
+    test "switches to the create new course page", %{conn: conn, course: course} do
+      {:ok, lv, _html} = live(conn, "/dashboard/c/#{course.slug}")
+
+      {:ok, updated_lv, _html} =
+        lv
+        |> form(@select_form, course: "new-course")
+        |> render_change()
+        |> follow_redirect(conn, ~p"/dashboard/courses/new")
+
+      assert has_element?(updated_lv, "h1", "Create a course")
+    end
   end
 
   defp assert_course_view(conn, course) do
@@ -94,7 +144,7 @@ defmodule UneebeeWeb.DashboardCourseViewLiveTest do
 
     {:ok, lv, _html} = live(conn, "/dashboard/c/#{course.slug}")
 
-    assert has_element?(lv, "h1", course.name)
+    assert has_element?(lv, "option[selected]", course.name)
     assert has_element?(lv, ~s|li[aria-current=page] span:fl-icontains("course page")|)
 
     Enum.each(lessons, fn lesson -> assert has_element?(lv, "dt", lesson.name) end)

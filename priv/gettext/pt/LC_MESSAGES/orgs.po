@@ -23,6 +23,7 @@ msgstr "Escolha um apelido para acessar o perfil da sua escola"
 msgid "Create school"
 msgstr "Criar escola"
 
+#: lib/dashboard/home.html.heex:24
 #: lib/dashboard/schools/school_edit.html.heex:4
 #: lib/layouts/menu_desktop.ex:31
 #: lib/organizations/school_live/school_new.html.heex:6
@@ -221,7 +222,7 @@ msgstr "Nível"
 msgid "Private"
 msgstr "Privado"
 
-#: lib/dashboard/courses/course_view.html.heex:34
+#: lib/dashboard/courses/course_view.html.heex:33
 #, elixir-autogen, elixir-format
 msgid "Published"
 msgstr "Publicado"
@@ -231,12 +232,12 @@ msgstr "Publicado"
 msgid "Type CONFIRM to delete %{name}."
 msgstr "Digite CONFIRMAR para apagar %{name}."
 
-#: lib/dashboard/courses/course_view.html.heex:38
+#: lib/dashboard/courses/course_view.html.heex:37
 #, elixir-autogen, elixir-format
 msgid "Unpublished"
 msgstr "Despublicado"
 
-#: lib/dashboard/courses/course_view.html.heex:13
+#: lib/dashboard/courses/course_view.html.heex:12
 #, elixir-autogen, elixir-format
 msgid "+ Lesson"
 msgstr "+ Aula"
@@ -266,7 +267,7 @@ msgstr "Marque esta alternativa se ela for a resposta correta."
 msgid "Could not add option!"
 msgstr "Não foi possível adicionar a alternativa!"
 
-#: lib/dashboard/courses/course_view.ex:50
+#: lib/dashboard/courses/course_view.ex:60
 #, elixir-autogen, elixir-format
 msgid "Could not change the lesson order!"
 msgstr "Não foi possível alterar a ordem da aula!"
@@ -276,7 +277,7 @@ msgstr "Não foi possível alterar a ordem da aula!"
 msgid "Could not change the step order!"
 msgstr "Não foi possível alterar a ordem da etapa!"
 
-#: lib/dashboard/courses/course_view.ex:39
+#: lib/dashboard/courses/course_view.ex:44
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Could not create lesson!"
 msgstr "Não foi possível criar a aula!"
@@ -368,7 +369,7 @@ msgstr "Apagar aula"
 msgid "Delete option"
 msgstr "Apagar alternativa"
 
-#: lib/dashboard/courses/course_view.ex:29
+#: lib/dashboard/courses/course_view.ex:34
 #, elixir-autogen, elixir-format
 msgid "Description for lesson %{order}. You should update this."
 msgstr "Descrição para a aula %{order}. Você deve atualizar isso."
@@ -378,7 +379,7 @@ msgstr "Descrição para a aula %{order}. Você deve atualizar isso."
 msgid "Details"
 msgstr "Detalhes"
 
-#: lib/dashboard/courses/course_view.html.heex:17
+#: lib/dashboard/courses/course_view.html.heex:16
 #, elixir-autogen, elixir-format
 msgid "Drag the lessons to change their order"
 msgstr "Arraste as aulas para alterar a ordem"
@@ -404,12 +405,12 @@ msgstr "Está correto?"
 msgid "Is public?"
 msgstr "É público?"
 
-#: lib/dashboard/courses/course_view.ex:28
+#: lib/dashboard/courses/course_view.ex:33
 #, elixir-autogen, elixir-format
 msgid "Lesson %{order}"
 msgstr "Aula %{order}"
 
-#: lib/dashboard/courses/course_view.html.heex:26
+#: lib/dashboard/courses/course_view.html.heex:25
 #, elixir-autogen, elixir-format
 msgid "Lesson cover"
 msgstr "Capa da aula"
@@ -496,6 +497,7 @@ msgstr "Ao marcar esta opção, este curso será visível para todos os alunos d
 msgid "Privacy policy URL"
 msgstr "Link da política de privacidade"
 
+#: lib/dashboard/home.html.heex:26
 #: lib/layouts/menu_desktop.ex:33
 #, elixir-autogen, elixir-format
 msgid "Terms of use"
@@ -511,7 +513,7 @@ msgstr "Link dos termos de uso"
 msgid "Drag the steps to change their order:"
 msgstr "Arraste as etapas para alterar a ordem:"
 
-#: lib/dashboard/courses/course_view.ex:34
+#: lib/dashboard/courses/course_view.ex:39
 #: lib/dashboard/lessons/components/lesson_switch.ex:47
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Untitled step"
@@ -576,3 +578,15 @@ msgstr "A imagem deve ter 384x216px (ou usar uma proporção de 16:9)."
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Your image should be 64x64px (or use a 1:1 proportion)."
 msgstr "A imagem deve ter 64x64px (ou usar uma proporção de 1:1)."
+
+#: lib/layouts/menu_desktop.ex:42
+#: lib/layouts/menu_mobile.ex:60
+#, elixir-autogen, elixir-format
+msgid "Manage courses"
+msgstr "Gereciar cursos"
+
+#: lib/layouts/menu_desktop.ex:23
+#: lib/layouts/menu_mobile.ex:51
+#, elixir-autogen, elixir-format
+msgid "Manage school"
+msgstr "Gereciar escola"

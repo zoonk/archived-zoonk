@@ -1078,4 +1078,58 @@ defmodule Uneebee.ContentTest do
       assert Content.get_last_completed_course_slug(user) == course2.slug
     end
   end
+
+  describe "get_last_edited_course_slug/3" do
+    test "returns the last edited course slug for a manager" do
+      user = user_fixture()
+      school = school_fixture()
+      course1 = course_fixture(%{school_id: school.id})
+      course2 = course_fixture(%{school_id: school.id})
+      course3 = course_fixture(%{school_id: school.id})
+      generate_user_lesson(user.id, 0, course: course1)
+      generate_user_lesson(user.id, 0, course: course3)
+      generate_user_lesson(user.id, 0, course: course2)
+
+      assert Content.get_last_edited_course_slug(school, user, :manager) == course2.slug
+    end
+
+    test "when there are no lessons, use the last updated course" do
+      user = user_fixture()
+      school = school_fixture()
+      course_fixture(%{school_id: school.id})
+      course2 = course_fixture(%{school_id: school.id})
+
+      assert Content.get_last_edited_course_slug(school, user, :manager) == course2.slug
+    end
+
+    test "returns nil when there are no courses" do
+      user = user_fixture()
+      school = school_fixture()
+
+      assert Content.get_last_edited_course_slug(school, user, :manager) == nil
+    end
+
+    test "returns the last course edited by a teacher" do
+      user = user_fixture()
+      school = school_fixture()
+      course1 = course_fixture(%{school_id: school.id})
+      course2 = course_fixture(%{school_id: school.id})
+      course_fixture(%{school_id: school.id})
+
+      course_user_fixture(%{course: course1, user: user, role: :teacher})
+      course_user_fixture(%{course: course2, user: user, role: :teacher})
+
+      assert Content.get_last_edited_course_slug(school, user, :teacher) == course2.slug
+    end
+
+    test "returns nil when there are no courses edited by a teacher" do
+      user = user_fixture()
+      school = school_fixture()
+      course1 = course_fixture(%{school_id: school.id})
+
+      course_user_fixture(%{course: course1, user: user, role: :student})
+
+      assert Content.get_last_edited_course_slug(school, user, :teacher) == nil
+    end
+  end
 end
