@@ -29,18 +29,17 @@ msgstr "Criar uma conta"
 
 #: lib/accounts/user_live/login.html.heex:5
 #: lib/accounts/user_live/registration.html.heex:18
-#: lib/layouts/templates/app.html.heex:140
+#: lib/layouts/menu_desktop.ex:149
 #, elixir-autogen, elixir-format
 msgid "Password"
 msgstr "Senha"
 
-#: lib/accounts/user_live/confirmation.html.heex:14
 #: lib/accounts/user_live/confirmation_instructions.html.heex:18
 #: lib/accounts/user_live/login.ex:9
 #: lib/accounts/user_live/login.html.heex:13
 #: lib/accounts/user_live/registration.html.heex:31
 #: lib/accounts/user_live/reset_password.html.heex:20
-#: lib/layouts/templates/app.html.heex:3
+#: lib/accounts/user_live/user_confirmation.html.heex:14
 #, elixir-autogen, elixir-format
 msgid "Sign in"
 msgstr "Entrar"
@@ -66,10 +65,10 @@ msgstr "Entrar na sua conta"
 msgid "Signing in..."
 msgstr "Entrando..."
 
-#: lib/accounts/user_live/confirmation.html.heex:14
 #: lib/accounts/user_live/confirmation_instructions.html.heex:18
 #: lib/accounts/user_live/login.html.heex:23
 #: lib/accounts/user_live/reset_password.html.heex:20
+#: lib/accounts/user_live/user_confirmation.html.heex:14
 #, elixir-autogen, elixir-format
 msgid "Register"
 msgstr "Cadastre-se"
@@ -111,76 +110,76 @@ msgstr "E-mail ou senha inválidos."
 msgid "Password updated successfully!"
 msgstr "Senha atualizada com sucesso!"
 
-#: lib/accounts/user_auth_plug.ex:165
-#: lib/accounts/user_auth_plug.ex:214
+#: lib/accounts/user_auth_plug.ex:168
+#: lib/accounts/user_auth_plug.ex:246
 #, elixir-autogen, elixir-format
 msgid "You must log in to access this page."
 msgstr "É necessário estar logado para acessar esta página."
 
-#: lib/accounts/user_live/settings.html.heex:36
+#: lib/accounts/user_live/user_settings.html.heex:36
 #, elixir-autogen, elixir-format
 msgid "Change Email"
 msgstr "Alterar e-mail"
 
-#: lib/accounts/user_live/settings.html.heex:68
+#: lib/accounts/user_live/user_settings.html.heex:68
 #, elixir-autogen, elixir-format
 msgid "Change Password"
 msgstr "Alterar senha"
 
 #: lib/accounts/user_live/reset_password.html.heex:10
-#: lib/accounts/user_live/settings.html.heex:64
+#: lib/accounts/user_live/user_settings.html.heex:64
 #, elixir-autogen, elixir-format
 msgid "Confirm new password"
 msgstr "Confirmar nova senha"
 
-#: lib/accounts/user_live/settings.html.heex:29
-#: lib/accounts/user_live/settings.html.heex:57
+#: lib/accounts/user_live/user_settings.html.heex:29
+#: lib/accounts/user_live/user_settings.html.heex:57
 #, elixir-autogen, elixir-format
 msgid "Current password"
 msgstr "Senha atual"
 
 #: lib/accounts/user_live/reset_password.html.heex:9
-#: lib/accounts/user_live/settings.html.heex:63
+#: lib/accounts/user_live/user_settings.html.heex:63
 #, elixir-autogen, elixir-format
 msgid "New password"
 msgstr "Nova senha"
 
-#: lib/accounts/user_live/settings.ex:101
+#: lib/accounts/user_live/user_settings.ex:101
 #, elixir-autogen, elixir-format
 msgid "A link to confirm your email change has been sent to the new address."
 msgstr "Enviamos um link para confirmar a alteração do seu e-mail para o novo endereço."
 
-#: lib/accounts/user_live/settings.ex:15
+#: lib/accounts/user_live/user_settings.ex:15
 #, elixir-autogen, elixir-format
 msgid "Email change link is invalid or it has expired."
 msgstr "O link para alterar o e-mail é inválido ou expirou."
 
-#: lib/accounts/user_live/settings.ex:14
+#: lib/accounts/user_live/user_settings.ex:14
 #, elixir-autogen, elixir-format
 msgid "Email changed successfully."
 msgstr "E-mail alterado."
 
-#: lib/accounts/user_live/settings.ex:75
+#: lib/accounts/user_live/user_settings.ex:75
 #, elixir-autogen, elixir-format
 msgid "Error updating settings"
 msgstr "Erro ao atualizar configurações"
 
-#: lib/accounts/user_live/settings.ex:68
+#: lib/accounts/user_live/user_settings.ex:68
 #, elixir-autogen, elixir-format
 msgid "Settings updated successfully"
 msgstr "Configurações atualizadas"
 
-#: lib/accounts/user_live/confirmation.html.heex:2
+#: lib/accounts/user_live/user_confirmation.html.heex:2
 #, elixir-autogen, elixir-format
 msgid "Confirm Account"
 msgstr "Confirmar conta"
 
-#: lib/accounts/user_live/confirmation.html.heex:8
+#: lib/accounts/user_live/user_confirmation.html.heex:8
 #, elixir-autogen, elixir-format
 msgid "Confirm my account"
 msgstr "Confirmar minha conta"
 
-#: lib/accounts/user_live/confirmation.html.heex:7
+#: lib/accounts/user_live/user_confirmation.html.heex:7
 #, elixir-autogen, elixir-format
 msgid "Confirming..."
 msgstr "Confirmando..."

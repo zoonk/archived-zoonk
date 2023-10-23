@@ -13,7 +13,7 @@ defmodule UneebeeWeb.Components.Layouts.MenuDesktop do
         <.gamification_menu learning_days={@learning_days} mission_progress={@mission_progress} trophies={@trophies} medals={@medals} />
       </:header>
 
-      <.menu_item href={~p"/"} icon="tabler-ufo" active={@active_page == :courseview} title={gettext("Home")} />
+      <.menu_item href={~p"/"} icon="tabler-home-2" active={@active_page == :courseview} title={gettext("Home")} />
 
       <.menu_item
         :if={@user_role == :manager}
@@ -136,7 +136,8 @@ defmodule UneebeeWeb.Components.Layouts.MenuDesktop do
         </:sub_menus>
       </.menu_item>
 
-      <.menu_item href={~p"/courses"} icon="tabler-books" active={@active_page == :courselist} title={gettext("Courses")} />
+      <.menu_item href={~p"/courses/my"} icon="tabler-books" active={@active_page == :mycourses} title={gettext("My courses")} />
+      <.menu_item href={~p"/courses"} icon="tabler-ufo" active={@active_page == :courselist} title={gettext("Courses")} />
       <.menu_item href={~p"/feedback"} icon="tabler-message-circle-2" active={@active_page == :feedback} title={gettext("Feedback")} />
 
       <.menu_item href={~p"/users/settings/language"} icon="tabler-settings" active={user_settings?(@active_page)} title={gettext("Settings")}>

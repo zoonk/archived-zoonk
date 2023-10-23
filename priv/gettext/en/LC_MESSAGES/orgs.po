@@ -11,38 +11,38 @@ msgstr ""
 "Language: en\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: lib/organizations/school_live/new.html.heex:6
+#: lib/organizations/school_live/school_new.html.heex:6
 #, elixir-autogen, elixir-format
 msgid "Choose a nickname to acess your school profile"
 msgstr ""
 
-#: lib/organizations/school_live/new.ex:12
-#: lib/organizations/school_live/new.html.heex:2
-#: lib/organizations/school_live/new.html.heex:9
+#: lib/organizations/school_live/school_new.ex:12
+#: lib/organizations/school_live/school_new.html.heex:2
+#: lib/organizations/school_live/school_new.html.heex:9
 #, elixir-autogen, elixir-format
 msgid "Create school"
 msgstr ""
 
 #: lib/dashboard/schools/school_edit.html.heex:4
-#: lib/layouts/templates/app.html.heex:19
-#: lib/organizations/school_live/new.html.heex:6
+#: lib/layouts/menu_desktop.ex:31
+#: lib/organizations/school_live/school_new.html.heex:6
 #, elixir-autogen, elixir-format
 msgid "Nickname"
 msgstr ""
 
-#: lib/organizations/school_live/new.ex:44
+#: lib/organizations/school_live/school_new.ex:44
 #, elixir-autogen, elixir-format
 msgid "School could not be created"
 msgstr ""
 
 #: lib/dashboard/schools/school_edit.html.heex:6
-#: lib/organizations/school_live/new.html.heex:5
+#: lib/organizations/school_live/school_new.html.heex:5
 #, elixir-autogen, elixir-format
 msgid "School email"
 msgstr ""
 
 #: lib/dashboard/schools/school_edit.html.heex:5
-#: lib/organizations/school_live/new.html.heex:4
+#: lib/organizations/school_live/school_new.html.heex:4
 #, elixir-autogen, elixir-format
 msgid "School name"
 msgstr ""
@@ -496,7 +496,7 @@ msgstr ""
 msgid "Privacy policy URL"
 msgstr ""
 
-#: lib/layouts/templates/app.html.heex:21
+#: lib/layouts/menu_desktop.ex:33
 #, elixir-autogen, elixir-format
 msgid "Terms of use"
 msgstr ""

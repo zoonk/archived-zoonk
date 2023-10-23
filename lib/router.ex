@@ -108,6 +108,7 @@ defmodule UneebeeWeb.Router do
       live "/schools/new", SchoolNew
 
       live "/courses", CourseList
+      live "/courses/my", MyCourses
       live "/c/:course_slug", CourseView
       live "/c/:course_slug/:lesson_id", LessonPlay
       live "/c/:course_slug/:lesson_id/completed", LessonCompleted

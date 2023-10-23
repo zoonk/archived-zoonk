@@ -30,8 +30,9 @@ defmodule UneebeeWeb.Components.Layouts.MenuMobile do
 
     <nav class="border-gray-light fixed right-0 bottom-0 left-0 border-t-2 bg-white p-2 lg:hidden">
       <ul class="m-auto flex max-w-3xl justify-between gap-2">
-        <.menu_bottom_item color={:primary} active={@active_page == :courseview} icon="tabler-ufo" label={gettext("Home")} href={~p"/"} />
-        <.menu_bottom_item color={:success} active={@active_page == :courselist} icon="tabler-books" label={gettext("Courses")} navigate={~p"/courses"} />
+        <.menu_bottom_item color={:primary} active={@active_page == :courseview} icon="tabler-home-2" label={gettext("Home")} href={~p"/"} />
+        <.menu_bottom_item color={:warning} active={@active_page == :mycourses} icon="tabler-books" label={gettext("My courses")} href={~p"/courses/my"} />
+        <.menu_bottom_item color={:success} active={@active_page == :courselist} icon="tabler-ufo" label={gettext("Courses")} navigate={~p"/courses"} />
 
         <.menu_bottom_item
           :if={@user_role in [:manager, :teacher]}
