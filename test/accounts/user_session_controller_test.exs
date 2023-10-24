@@ -60,13 +60,13 @@ defmodule UneebeeWeb.UserSessionControllerTest do
   describe "DELETE /users/logout" do
     test "logs the user out", %{conn: conn, user: user} do
       conn = conn |> log_in_user(user) |> delete(~p"/users/logout")
-      assert redirected_to(conn) == ~p"/"
+      assert redirected_to(conn) == ~p"/users/login"
       refute get_session(conn, :user_token)
     end
 
     test "succeeds even if the user is not logged in", %{conn: conn} do
       conn = delete(conn, ~p"/users/logout")
-      assert redirected_to(conn) == ~p"/"
+      assert redirected_to(conn) == ~p"/users/login"
       refute get_session(conn, :user_token)
     end
   end
