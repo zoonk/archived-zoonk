@@ -1,26 +1,28 @@
-<.simple_form for={@form} id="login_form" action={~p"/users/login"} phx-update="ignore" class="mx-auto w-full max-w-sm">
-  <.header icon="tabler-login-2"><%= dgettext("auth", "Sign in to your account") %></.header>
+<div class="mx-auto w-full max-w-sm">
+  <.simple_form for={@form} id="login_form" action={~p"/users/login"} phx-update="ignore">
+    <.header icon="tabler-login-2"><%= dgettext("auth", "Sign in to your account") %></.header>
 
-  <.input field={@form[:email_or_username]} type="text" label={dgettext("auth", "Email or username")} autocomplete="username" required />
-  <.input field={@form[:password]} type="password" label={dgettext("auth", "Password")} required />
+    <.input field={@form[:email_or_username]} type="text" label={dgettext("auth", "Email or username")} autocomplete="username" required />
+    <.input field={@form[:password]} type="password" label={dgettext("auth", "Password")} required />
 
-  <:actions>
-    <.input field={@form[:remember_me]} type="checkbox" label={dgettext("auth", "Keep me logged in")} />
-  </:actions>
+    <:actions>
+      <.input field={@form[:remember_me]} type="checkbox" label={dgettext("auth", "Keep me logged in")} />
+    </:actions>
 
-  <:actions>
-    <.button type="submit" phx-disable-with={dgettext("auth", "Signing in...")} icon="tabler-login-2" class="w-full">
-      <%= dgettext("auth", "Sign in") %>
-    </.button>
-  </:actions>
+    <:actions>
+      <.button type="submit" phx-disable-with={dgettext("auth", "Signing in...")} icon="tabler-login-2" class="w-full">
+        <%= dgettext("auth", "Sign in") %>
+      </.button>
+    </:actions>
 
-  <:actions>
-    <div class="flex w-full items-center justify-between">
-      <.link_styled navigate={~p"/users/reset_password"} color={:black} class="text-sm">
+    <:actions>
+      <.link_styled navigate={~p"/users/reset_password"} color={:black} class="m-auto text-sm">
         <%= dgettext("auth", "Forgot your password?") %>
       </.link_styled>
+    </:actions>
+  </.simple_form>
 
-      <.link_styled navigate={~p"/users/register"} class="text-sm"><%= dgettext("auth", "Register") %></.link_styled>
-    </div>
-  </:actions>
-</.simple_form>
+  <.link_button navigate={~p"/users/register"} color={:alert} class="mt-8">
+    <%= dgettext("auth", "Register") %>
+  </.link_button>
+</div>

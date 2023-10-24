@@ -122,7 +122,7 @@ defmodule UneebeeWeb.Components.Input do
         id={@id}
         value={Form.normalize_value(@type, @value)}
         class={[
-          "mt-2 block w-full rounded-lg py-[7px] px-[11px]",
+          "mt-2 block w-full rounded-lg py-2 px-3",
           "text-gray-dark2x focus:outline-none focus:ring-4 sm:text-sm sm:leading-6",
           @errors == [] && "border-gray-light2x focus:border-primary focus:ring-gray-dark/5",
           @errors != [] && "border-alert focus:border-alert focus:ring-alert/10"
