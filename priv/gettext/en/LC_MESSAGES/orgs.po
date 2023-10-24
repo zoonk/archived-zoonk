@@ -569,11 +569,6 @@ msgstr ""
 msgid "Could not update course!"
 msgstr ""
 
-#: lib/dashboard/lessons/lesson_view.html.heex:27
-#, elixir-autogen, elixir-format, fuzzy
-msgid "Your image should be 384x216px (or use a 16:9 proportion)."
-msgstr ""
-
 #: lib/dashboard/lessons/lesson_view.html.heex:37
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Your image should be 64x64px (or use a 1:1 proportion)."
@@ -589,4 +584,9 @@ msgstr ""
 #: lib/layouts/menu_mobile.ex:51
 #, elixir-autogen, elixir-format
 msgid "Manage school"
+msgstr ""
+
+#: lib/dashboard/lessons/lesson_view.html.heex:27
+#, elixir-autogen, elixir-format, fuzzy
+msgid "Your image should be 250x250px (or use a 1:1 proportion)."
 msgstr ""

@@ -40,6 +40,7 @@ msgstr ""
 #: lib/accounts/user_live/confirmation_instructions.html.heex:8
 #: lib/accounts/user_live/forgot_password.html.heex:7
 #: lib/accounts/user_live/registration.html.heex:16
+#: lib/accounts/user_live/user_settings_menu.html.heex:5
 #: lib/layouts/menu_desktop.ex:148
 #: lib/support/feedback_live/feedback.html.heex:12
 #, elixir-autogen, elixir-format
@@ -48,6 +49,7 @@ msgstr ""
 
 #: lib/accounts/user_live/registration.html.heex:15
 #: lib/accounts/user_live/user_settings.html.heex:6
+#: lib/accounts/user_live/user_settings_menu.html.heex:2
 #: lib/dashboard/courses/course_edit.html.heex:4
 #: lib/dashboard/courses/course_new.html.heex:10
 #: lib/layouts/menu_desktop.ex:145
@@ -77,6 +79,7 @@ msgstr ""
 
 #: lib/accounts/user_live/registration.html.heex:17
 #: lib/accounts/user_live/user_settings.html.heex:12
+#: lib/accounts/user_live/user_settings_menu.html.heex:3
 #: lib/layouts/menu_desktop.ex:146
 #, elixir-autogen, elixir-format
 msgid "Username"
@@ -109,14 +112,16 @@ msgstr ""
 msgid "Changing..."
 msgstr ""
 
+#: lib/accounts/user_live/user_settings_menu.html.heex:7
 #: lib/layouts/menu_desktop.ex:150
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Logout"
 msgstr ""
 
 #: lib/accounts/user_live/user_settings.ex:32
+#: lib/accounts/user_live/user_settings_menu.ex:7
 #: lib/layouts/menu_desktop.ex:143
-#: lib/layouts/menu_mobile.ex:64
+#: lib/layouts/menu_mobile.ex:68
 #, elixir-autogen, elixir-format
 msgid "Settings"
 msgstr ""
@@ -140,6 +145,7 @@ msgstr ""
 msgid "Save"
 msgstr ""
 
+#: lib/accounts/user_live/user_settings_menu.html.heex:4
 #: lib/layouts/menu_desktop.ex:147
 #: lib/support/feedback_live/feedback.html.heex:11
 #, elixir-autogen, elixir-format
@@ -200,7 +206,7 @@ msgstr ""
 msgid "All courses"
 msgstr ""
 
-#: lib/content/course_live/lesson_play.html.heex:59
+#: lib/content/course_live/lesson_play.html.heex:60
 #, elixir-autogen, elixir-format
 msgid "Confirm"
 msgstr ""

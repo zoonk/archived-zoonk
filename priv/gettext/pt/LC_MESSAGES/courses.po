@@ -11,7 +11,7 @@ msgstr ""
 "Language: pt\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: lib/content/course_live/course_view.ex:58
+#: lib/content/course_live/course_view.ex:59
 #, elixir-autogen, elixir-format
 msgid "A request to enroll has been sent to the course teacher."
 msgstr "Uma solicitação de matrícula foi enviada ao professor do curso."
@@ -36,7 +36,8 @@ msgstr "Voltar ao curso"
 msgid "Beginner"
 msgstr "Iniciante"
 
-#: lib/content/course_live/lesson_play.html.heex:56
+#: lib/content/course_live/lesson_play.html.heex:57
+#: lib/content/course_live/lesson_play.html.heex:74
 #, elixir-autogen, elixir-format
 msgid "Confirming..."
 msgstr "Confirmando..."
@@ -56,7 +57,7 @@ msgstr "Apagar curso"
 msgid "Delete lesson"
 msgstr "Apagar aula"
 
-#: lib/content/course_live/course_view.ex:57
+#: lib/content/course_live/course_view.ex:58
 #, elixir-autogen, elixir-format
 msgid "Enrolled successfully!"
 msgstr "Matriculado com sucesso!"
@@ -75,11 +76,6 @@ msgstr "Especialista"
 #, elixir-autogen, elixir-format
 msgid "Failed to enroll"
 msgstr "Falha ao se matricular"
-
-#: lib/content/course_live/course_view.html.heex:9
-#, elixir-autogen, elixir-format
-msgid "Free Enroll"
-msgstr "Matrícula gratuita"
 
 #: lib/content/course_live/lesson_completed.ex:40
 #, elixir-autogen, elixir-format
@@ -106,7 +102,8 @@ msgstr "Intermediário"
 msgid "Manage lesson"
 msgstr "Gereciar aula"
 
-#: lib/content/course_live/lesson_play.html.heex:59
+#: lib/content/course_live/lesson_play.html.heex:60
+#: lib/content/course_live/lesson_play.html.heex:75
 #, elixir-autogen, elixir-format
 msgid "Next step"
 msgstr "Próxima etapa"
@@ -141,12 +138,12 @@ msgstr "Está incorreto."
 msgid "There's room for improvement"
 msgstr "Tem espaço para melhorar"
 
-#: lib/content/course_live/lesson_play.ex:74
+#: lib/content/course_live/lesson_play.ex:76
 #, elixir-autogen, elixir-format
 msgid "Unable to complete lesson"
 msgstr "Não foi possível concluir a aula"
 
-#: lib/content/course_live/lesson_play.ex:48
+#: lib/content/course_live/lesson_play.ex:49
 #, elixir-autogen, elixir-format
 msgid "Unable to select option"
 msgstr "Não foi possível selecionar a alternativa"

@@ -569,11 +569,6 @@ msgstr "Editar imagem da etapa"
 msgid "Could not update course!"
 msgstr "Não foi possível atualizar o curso!"
 
-#: lib/dashboard/lessons/lesson_view.html.heex:27
-#, elixir-autogen, elixir-format, fuzzy
-msgid "Your image should be 384x216px (or use a 16:9 proportion)."
-msgstr "A imagem deve ter 384x216px (ou usar uma proporção de 16:9)."
-
 #: lib/dashboard/lessons/lesson_view.html.heex:37
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Your image should be 64x64px (or use a 1:1 proportion)."
@@ -590,3 +585,8 @@ msgstr "Gereciar cursos"
 #, elixir-autogen, elixir-format
 msgid "Manage school"
 msgstr "Gereciar escola"
+
+#: lib/dashboard/lessons/lesson_view.html.heex:27
+#, elixir-autogen, elixir-format, fuzzy
+msgid "Your image should be 250x250px (or use a 1:1 proportion)."
+msgstr "A imagem deve ter 250x250px (ou usar uma proporção de 1:1)."

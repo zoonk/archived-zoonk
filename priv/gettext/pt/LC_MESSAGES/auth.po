@@ -27,8 +27,9 @@ msgstr "Criar conta"
 msgid "Create an account"
 msgstr "Criar uma conta"
 
-#: lib/accounts/user_live/login.html.heex:5
+#: lib/accounts/user_live/login.html.heex:6
 #: lib/accounts/user_live/registration.html.heex:18
+#: lib/accounts/user_live/user_settings_menu.html.heex:6
 #: lib/layouts/menu_desktop.ex:149
 #, elixir-autogen, elixir-format
 msgid "Password"
@@ -36,7 +37,7 @@ msgstr "Senha"
 
 #: lib/accounts/user_live/confirmation_instructions.html.heex:18
 #: lib/accounts/user_live/login.ex:9
-#: lib/accounts/user_live/login.html.heex:13
+#: lib/accounts/user_live/login.html.heex:14
 #: lib/accounts/user_live/registration.html.heex:31
 #: lib/accounts/user_live/reset_password.html.heex:20
 #: lib/accounts/user_live/user_confirmation.html.heex:14
@@ -50,23 +51,23 @@ msgstr "Entrar"
 msgid "Forgot your password?"
 msgstr "Esqueceu a senha?"
 
-#: lib/accounts/user_live/login.html.heex:8
+#: lib/accounts/user_live/login.html.heex:9
 #, elixir-autogen, elixir-format
 msgid "Keep me logged in"
 msgstr "Manter logado"
 
-#: lib/accounts/user_live/login.html.heex:2
+#: lib/accounts/user_live/login.html.heex:3
 #, elixir-autogen, elixir-format
 msgid "Sign in to your account"
 msgstr "Entrar na sua conta"
 
-#: lib/accounts/user_live/login.html.heex:12
+#: lib/accounts/user_live/login.html.heex:13
 #, elixir-autogen, elixir-format
 msgid "Signing in..."
 msgstr "Entrando..."
 
 #: lib/accounts/user_live/confirmation_instructions.html.heex:18
-#: lib/accounts/user_live/login.html.heex:23
+#: lib/accounts/user_live/login.html.heex:26
 #: lib/accounts/user_live/reset_password.html.heex:20
 #: lib/accounts/user_live/user_confirmation.html.heex:14
 #, elixir-autogen, elixir-format
@@ -199,7 +200,7 @@ msgstr "Reenviar instruções de confirmação"
 msgid "We'll send a new confirmation link to your inbox"
 msgstr "Enviaremos um novo link de confirmação para o seu e-mail"
 
-#: lib/accounts/user_live/login.html.heex:4
+#: lib/accounts/user_live/login.html.heex:5
 #, elixir-autogen, elixir-format
 msgid "Email or username"
 msgstr "E-mail ou nome de usuário"

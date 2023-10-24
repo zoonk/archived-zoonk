@@ -11,7 +11,7 @@
 msgid ""
 msgstr ""
 
-#: lib/content/course_live/course_view.ex:58
+#: lib/content/course_live/course_view.ex:59
 #, elixir-autogen, elixir-format
 msgid "A request to enroll has been sent to the course teacher."
 msgstr ""
@@ -36,7 +36,8 @@ msgstr ""
 msgid "Beginner"
 msgstr ""
 
-#: lib/content/course_live/lesson_play.html.heex:56
+#: lib/content/course_live/lesson_play.html.heex:57
+#: lib/content/course_live/lesson_play.html.heex:74
 #, elixir-autogen, elixir-format
 msgid "Confirming..."
 msgstr ""
@@ -56,7 +57,7 @@ msgstr ""
 msgid "Delete lesson"
 msgstr ""
 
-#: lib/content/course_live/course_view.ex:57
+#: lib/content/course_live/course_view.ex:58
 #, elixir-autogen, elixir-format
 msgid "Enrolled successfully!"
 msgstr ""
@@ -74,11 +75,6 @@ msgstr ""
 #: lib/content/course_live/course_view.ex:43
 #, elixir-autogen, elixir-format
 msgid "Failed to enroll"
-msgstr ""
-
-#: lib/content/course_live/course_view.html.heex:9
-#, elixir-autogen, elixir-format
-msgid "Free Enroll"
 msgstr ""
 
 #: lib/content/course_live/lesson_completed.ex:40
@@ -106,7 +102,8 @@ msgstr ""
 msgid "Manage lesson"
 msgstr ""
 
-#: lib/content/course_live/lesson_play.html.heex:59
+#: lib/content/course_live/lesson_play.html.heex:60
+#: lib/content/course_live/lesson_play.html.heex:75
 #, elixir-autogen, elixir-format
 msgid "Next step"
 msgstr ""
@@ -141,12 +138,12 @@ msgstr ""
 msgid "There's room for improvement"
 msgstr ""
 
-#: lib/content/course_live/lesson_play.ex:74
+#: lib/content/course_live/lesson_play.ex:76
 #, elixir-autogen, elixir-format
 msgid "Unable to complete lesson"
 msgstr ""
 
-#: lib/content/course_live/lesson_play.ex:48
+#: lib/content/course_live/lesson_play.ex:49
 #, elixir-autogen, elixir-format
 msgid "Unable to select option"
 msgstr ""

@@ -17,7 +17,7 @@ defmodule UneebeeWeb.Components.Content.LessonStep do
     </section>
 
     <div :if={@step.image} class="flex w-full justify-center py-2">
-      <img src={@step.image} class="aspect-video w-3/4 object-cover" />
+      <img src={@step.image} class="aspect-square w-3/4 object-cover" />
     </div>
     """
   end
