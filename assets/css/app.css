@@ -19,4 +19,8 @@
   .card-with-link {
     @apply card-base shadow-b-gray border-gray-light active:shadow-b-gray-pressed focus:outline-none hover:border-gray-dark hover:shadow-b-gray-dark focus:border-gray-dark focus:shadow-b-gray-dark;
   }
+
+  .card-with-link-alert {
+    @apply card-base shadow-b-alert border-alert-light active:shadow-b-alert-pressed focus:outline-none hover:border-alert-dark hover:shadow-b-alert-dark focus:border-alert-dark focus:shadow-b-alert-dark;
+  }
 }

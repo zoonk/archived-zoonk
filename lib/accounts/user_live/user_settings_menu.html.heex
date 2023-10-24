@@ -1,0 +1,8 @@
+<div class="flex flex-col gap-2">
+  <.menu_card navigate={~p"/users/settings/language"} title={gettext("Language")} />
+  <.menu_card navigate={~p"/users/settings/username"} title={gettext("Username")} />
+  <.menu_card navigate={~p"/users/settings/name"} title={gettext("Name")} />
+  <.menu_card navigate={~p"/users/settings/email"} title={gettext("Email")} />
+  <.menu_card navigate={~p"/users/settings/password"} title={dgettext("auth", "Password")} />
+  <.menu_card href={~p"/users/logout"} method="delete" color={:alert} title={gettext("Logout")} />
+</div>

@@ -101,7 +101,7 @@ module.exports = {
         'b-warning-dark-pressed': `1px 1px 0px 0px ${colors.amber[700]}`,
         'b-alert-light': `2px 2px 0px 0px ${colors.pink[100]}`,
         'b-alert-light-pressed': `1px 1px 0px 0px ${colors.pink[100]}`,
-        'b-alert': `2px 2px 0px 0px ${colors.pink[100]}`,
+        'b-alert': `2px 2px 0px 0px ${colors.pink[300]}`,
         'b-alert-pressed': `1px 1px 0px 0px ${colors.pink[300]}`,
         'b-alert-dark': `2px 2px 0px 0px ${colors.pink[700]}`,
         'b-alert-dark-pressed': `1px 1px 0px 0px ${colors.pink[700]}`,

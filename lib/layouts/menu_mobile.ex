@@ -61,7 +61,13 @@ defmodule UneebeeWeb.Components.Layouts.MenuMobile do
           href={~p"/dashboard/courses"}
         />
 
-        <.menu_bottom_item color={:info} active={user_settings?(@active_page)} icon="tabler-settings" label={gettext("Settings")} navigate={~p"/users/settings/language"} />
+        <.menu_bottom_item
+          color={:info}
+          active={@active_page == :usersettingsmenu or user_settings?(@active_page)}
+          icon="tabler-settings"
+          label={gettext("Settings")}
+          navigate={~p"/users/settings"}
+        />
       </ul>
     </nav>
     """
