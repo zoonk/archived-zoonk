@@ -64,14 +64,14 @@
       :if={@selected_option}
       role="alert"
       class={[
-        "fixed space-y-4 motion-safe:animate-slide-up right-0 bottom-0 border-t-2 p-4 left-0 lg:sticky lg:border-none lg:w-full lg:rounded-2xl",
+        "fixed space-y-4 motion-safe:animate-slide-up lg:animate-none right-0 bottom-0 border-t-2 p-4 left-0 lg:sticky lg:border-none lg:w-full lg:rounded-2xl",
         @selected_option.correct? && "bg-success-light3x border-success-light2x text-success-dark",
         not @selected_option.correct? && "bg-alert-light3x border-alert-light2x text-alert-dark"
       ]}
     >
       <.feedback_option options={@current_step.options} selected={@selected_option} />
 
-      <.button type="submit" color={:success} icon="tabler-chevron-right" class="w-full motion-safe:animate-pulse" phx-disable-with={dgettext("courses", "Confirming...")}>
+      <.button type="submit" color={:success} icon="tabler-chevron-right" class="w-full" phx-disable-with={dgettext("courses", "Confirming...")}>
         <%= dgettext("courses", "Next step") %>
       </.button>
     </div>

@@ -1,8 +1,8 @@
-<article class="card m-auto max-w-sm rounded-2xl bg-white">
+<article class="card m-auto my-4 max-w-sm rounded-2xl bg-white">
   <div class="p-8">
     <% score = get_score(@user_lesson) %>
 
-    <img src={score_image(score)} alt={dgettext("courses", "Illustration of a green alien")} class="w-1/4" />
+    <img src={score_image(score)} alt={dgettext("courses", "Illustration of a green alien")} class="w-1/4 motion-safe:animate-bounce" />
 
     <div class="my-4 flex items-center justify-between gap-4">
       <div>
