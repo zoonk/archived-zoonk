@@ -18,7 +18,7 @@ defmodule UneebeeWeb.Components.Layouts.MenuMobile do
 
   def menu_mobile(assigns) do
     ~H"""
-    <header class="sticky top-0 z-50 w-full bg-white p-4 shadow lg:hidden">
+    <header :if={@active_page} class="sticky top-0 z-50 w-full bg-white p-4 shadow lg:hidden">
       <nav class="m-auto flex max-w-3xl justify-between">
         <.gamification_menu learning_days={@learning_days} mission_progress={@mission_progress} trophies={@trophies} medals={@medals} />
       </nav>
@@ -28,7 +28,7 @@ defmodule UneebeeWeb.Components.Layouts.MenuMobile do
       </div>
     </header>
 
-    <nav class="border-gray-light fixed right-0 bottom-0 left-0 z-50 border-t-2 bg-white p-2 lg:hidden">
+    <nav :if={@active_page} class="border-gray-light fixed right-0 bottom-0 left-0 z-50 border-t-2 bg-white p-2 lg:hidden">
       <ul class="m-auto flex max-w-3xl justify-between gap-2">
         <.menu_bottom_item color={:primary} active={@active_page == :courseview} icon="tabler-home-2" label={gettext("Home")} href={~p"/"} />
 

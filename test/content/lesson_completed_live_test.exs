@@ -40,6 +40,8 @@ defmodule UneebeeWeb.LessonCompletedLiveTest do
 
       {:ok, lv, _html} = live(conn, ~p"/c/#{course.slug}/#{lesson.id}/completed")
 
+      refute has_element?(lv, ~s|li a span:fl-icontains("Home")|)
+
       assert has_element?(lv, ~s|h1:fl-icontains("Good!")|)
       assert has_element?(lv, ~s|img[src="/images/lessons/good.svg"]|)
       assert has_element?(lv, ~s|p:fl-icontains("You got 7 out of 10 answers right.")|)
