@@ -1,5 +1,5 @@
-<article class="m-auto max-w-sm space-y-4 pb-20 sm:pb-0">
-  <header class="sticky top-4 flex items-center gap-4">
+<header class="sticky top-0 z-50 bg-white py-4">
+  <div class="m-auto flex max-w-sm items-center gap-4">
     <.progress total={@step_count} current={@current_step.order} />
 
     <.link_button
@@ -10,8 +10,10 @@
     >
       <span class="sr-only"><%= gettext("Close") %></span>
     </.link_button>
-  </header>
+  </div>
+</header>
 
+<article class="m-auto max-w-sm space-y-4 pb-20 sm:pb-0">
   <.lesson_step step={@current_step} selected={@selected_option} />
 
   <% no_options? = @current_step.options == [] %>

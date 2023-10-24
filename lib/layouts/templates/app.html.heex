@@ -21,6 +21,11 @@
     lesson={@lesson}
   />
 
-  <section class="w-full px-4 pt-4 pb-24 lg:px-0"><%= @inner_content %></section>
+  <section class={[
+    "w-full px-4 lg:px-0",
+    @active_page && "pb-24 pt-4"
+  ]}>
+    <%= @inner_content %>
+  </section>
   <.flash_group flash={@flash} />
 </main>
