@@ -106,6 +106,15 @@ module.exports = {
         'b-alert-dark': `3px 3px 0px 0px ${colors.pink[700]}`,
         'b-alert-dark-pressed': `1px 1px 0px 0px ${colors.pink[700]}`,
       },
+      animation: {
+        'slide-up': 'slide-up 0.5s ease-out forwards',
+      },
+      keyframes: {
+        'slide-up': {
+          '0%': { transform: 'translateY(100%)', opacity: '0' },
+          '100%': { transform: 'translateY(0)', opacity: '1' },
+        },
+      },
     },
   },
   plugins: [
