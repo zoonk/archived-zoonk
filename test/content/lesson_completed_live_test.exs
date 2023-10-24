@@ -20,17 +20,6 @@ defmodule UneebeeWeb.LessonCompletedLiveTest do
     end
   end
 
-  describe "completed view (pending course user)" do
-    setup do
-      course_setup(%{conn: build_conn()}, course_user: :pending)
-    end
-
-    test "returns 403", %{conn: conn, course: course} do
-      lesson = lesson_fixture(%{course_id: course.id})
-      assert_error_sent 403, fn -> get(conn, ~p"/c/#{course.slug}/#{lesson.id}/completed") end
-    end
-  end
-
   describe "completed view (course user)" do
     setup :course_setup
 

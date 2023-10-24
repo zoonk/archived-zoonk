@@ -20,9 +20,9 @@ defmodule UneebeeWeb.PlayViewLiveTest do
     end
   end
 
-  describe "play view (non course user)" do
+  describe "play view (private course, non course user)" do
     setup do
-      course_setup(%{conn: build_conn()}, course_user: nil)
+      course_setup(%{conn: build_conn()}, public_course?: false, course_user: nil)
     end
 
     test "returns 403", %{conn: conn, course: course} do
@@ -30,13 +30,32 @@ defmodule UneebeeWeb.PlayViewLiveTest do
     end
   end
 
-  describe "play view (pending course user)" do
+  describe "play view (private course, pending course user)" do
     setup do
-      course_setup(%{conn: build_conn()}, course_user: :pending)
+      course_setup(%{conn: build_conn()}, public_course?: false, course_user: :pending)
     end
 
     test "returns 403", %{conn: conn, course: course} do
       assert_403(conn, course)
+    end
+  end
+
+  describe "play view (public course, non course user)" do
+    setup do
+      course_setup(%{conn: build_conn()}, public_course?: true, course_user: nil)
+    end
+
+    test "automatically enrolls users", %{conn: conn, course: course, user: user} do
+      assert Content.get_course_user_by_id(course.id, user.id) == nil
+
+      lesson = lesson_fixture(%{course_id: course.id})
+      generate_steps(lesson)
+
+      {:ok, lv, _html} = live(conn, ~p"/c/#{course.slug}/#{lesson.id}")
+
+      assert Content.get_course_user_by_id(course.id, user.id) != nil
+
+      assert has_element?(lv, ~s|section p:fl-icontains("step 1!")|)
     end
   end
 

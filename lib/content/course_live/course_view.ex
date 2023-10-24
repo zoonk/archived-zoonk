@@ -52,7 +52,8 @@ defmodule UneebeeWeb.Live.CourseView do
     %{role: :student, approved?: true, approved_by_id: user.id, approved_at: DateTime.utc_now()}
   end
 
-  defp lesson_locked?(course_user), do: is_nil(course_user) or not course_user.approved?
+  defp lesson_locked?(%{public?: true}, _course_user), do: false
+  defp lesson_locked?(_course, course_user), do: is_nil(course_user) or not course_user.approved?
 
   defp enroll_sucess_msg(%{approved?: true}), do: dgettext("courses", "Enrolled successfully!")
   defp enroll_sucess_msg(_cu), do: dgettext("courses", "A request to enroll has been sent to the course teacher.")

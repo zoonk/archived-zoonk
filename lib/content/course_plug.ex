@@ -30,12 +30,20 @@ defmodule UneebeeWeb.Plugs.Course do
   Requires a course user to access a page.
   """
   @spec require_course_user_for_lesson(Plug.Conn.t(), Keyword.t()) :: Plug.Conn.t()
+  def require_course_user_for_lesson(%Plug.Conn{assigns: %{course: %{public?: true}}, params: %{"lesson_id" => _lesson_id}} = conn, _opts), do: maybe_create_course_user(conn)
   def require_course_user_for_lesson(%Plug.Conn{params: %{"lesson_id" => _lesson_id}} = conn, opts), do: require_course_user_for_lesson(conn, opts, conn.assigns.course_user)
   def require_course_user_for_lesson(conn, _opts), do: conn
   defp require_course_user_for_lesson(%Plug.Conn{assigns: %{current_user: nil}} = conn, _opts, nil), do: redirect_to_login(conn)
   defp require_course_user_for_lesson(_conn, _opts, nil), do: raise(UneebeeWeb.PermissionError, code: :not_enrolled)
   defp require_course_user_for_lesson(_conn, _opts, %{approved?: false}), do: raise(UneebeeWeb.PermissionError, code: :pending_approval)
   defp require_course_user_for_lesson(conn, _opts, _cu), do: conn
+
+  defp maybe_create_course_user(%Plug.Conn{assigns: %{course: course, current_user: user, course_user: nil}} = conn) do
+    Content.create_course_user(course, user, %{role: :student, approved?: true, approved_by_id: user.id, approved_at: DateTime.utc_now()})
+    conn
+  end
+
+  defp maybe_create_course_user(conn), do: conn
 
   @doc """
   Handles mounting the course data to a LiveView.

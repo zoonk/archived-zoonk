@@ -5,8 +5,8 @@
     <h1 class="text-xl font-bold"><%= @course.name %></h1>
     <h2 class="text-sm font-light"><%= @course.description %></h2>
 
-    <.button :if={is_nil(@course_user)} icon="tabler-book-download" phx-click="enroll" class="mt-4 w-max">
-      <%= if @course.public?, do: dgettext("courses", "Free Enroll"), else: dgettext("courses", "Request to join") %>
+    <.button :if={is_nil(@course_user) && not @course.public?} icon="tabler-book-download" phx-click="enroll" class="mt-4 w-max">
+      <%= dgettext("courses", "Request to join") %>
     </.button>
 
     <.badge :if={@course_user && not @course_user.approved?} color={:warning_light} icon="tabler-progress">
@@ -24,10 +24,10 @@
 <dl class="space-y-4">
   <.link
     :for={{lesson, index} <- Enum.with_index(@lessons)}
-    navigate={lesson_link(lesson_locked?(@course_user), @course, lesson)}
+    navigate={lesson_link(lesson_locked?(@course, @course_user), @course, lesson)}
     class={[
       "text-gray-dark border border-l-8 flex gap-2 p-4 rounded-2xl",
-      lesson_locked?(@course_user) && "cursor-not-allowed border-gray-light opacity-50",
+      lesson_locked?(@course, @course_user) && "cursor-not-allowed border-gray-light opacity-50",
       CourseUtils.lesson_completed?(@current_user, lesson.user_lessons) &&
         "border-success",
       not CourseUtils.lesson_completed?(@current_user, lesson.user_lessons) &&
@@ -44,7 +44,7 @@
 
         <.badge :if={score} color={CourseUtils.score_color(score)}><%= score %></.badge>
 
-        <.badge :if={lesson_locked?(@course_user)} color={:black_light} icon="tabler-lock">
+        <.badge :if={lesson_locked?(@course, @course_user)} color={:black_light} icon="tabler-lock">
           <%= gettext("Locked") %>
         </.badge>
       </dt>

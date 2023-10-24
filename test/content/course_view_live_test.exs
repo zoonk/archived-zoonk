@@ -36,21 +36,16 @@ defmodule UneebeeWeb.CourseViewLiveTest do
     end
   end
 
-  describe "/c/:slug (public course, non school user)" do
+  describe "/c/:slug (public course, non course user)" do
     setup do
-      course_setup(%{conn: build_conn()}, school_user: nil, course_user: nil)
+      course_setup(%{conn: build_conn()}, course_user: nil)
     end
 
-    test "allows to enroll to course", %{conn: conn, course: course} do
+    test "allows to automatically enroll", %{conn: conn, course: course} do
       lesson_fixture(%{course_id: course.id, name: "Lesson 1", published?: true})
       {:ok, lv, _html} = live(conn, ~p"/c/#{course.slug}")
-      assert has_element?(lv, ~s|span:fl-icontains("locked")|)
-
-      result = lv |> element("button", "Free Enroll") |> render_click()
-
-      assert result =~ "Enrolled successfully!"
-      refute has_element?(lv, ~s|button:fl-icontains("free enroll")|)
       refute has_element?(lv, ~s|span:fl-icontains("locked")|)
+      refute has_element?(lv, ~s|button[phx-click="enroll"]|)
     end
   end
 
