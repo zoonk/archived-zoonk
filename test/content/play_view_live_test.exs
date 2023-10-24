@@ -97,7 +97,7 @@ defmodule UneebeeWeb.PlayViewLiveTest do
 
     lv |> form(@select_form, %{selected_option: get_correct_option(step.options)}) |> render_submit()
 
-    assert has_element?(lv, ~s|div[role="alert"]:fl-icontains("Well done!")|)
+    assert has_element?(lv, ~s|div[role="alert"] div:fl-icontains("well done!")|)
   end
 
   # credo:disable-for-next-line Credo.Check.Refactor.ABCSize
@@ -115,7 +115,7 @@ defmodule UneebeeWeb.PlayViewLiveTest do
 
     lv |> form(@select_form, %{selected_option: get_incorrect_option(step.options)}) |> render_submit()
 
-    assert has_element?(lv, ~s|div[role="alert"]:fl-icontains("feedback 2!")|)
+    assert has_element?(lv, ~s|div[role="alert"] div:fl-icontains("feedback 2!")|)
   end
 
   defp assert_third_step(lv, lessons) do

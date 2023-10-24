@@ -20,7 +20,7 @@
 
   <form id="select-option" phx-submit="next" class="space-y-4" phx-hook="LessonSoundEffect">
     <secion :if={@current_step.options != []} class={["grid gap-4", not long_option?(@current_step.options) && "grid-cols-2"]}>
-      <div :for={option <- Enum.shuffle(@current_step.options)} class="relative">
+      <div :for={option <- @options} class="relative">
         <input
           id={"select-option-#{option.id}"}
           type="radio"
@@ -49,16 +49,31 @@
       </div>
     </secion>
 
-    <.feedback_option options={@current_step.options} selected={@selected_option} />
-
     <.button
+      :if={no_options? || is_nil(@selected_option)}
       type="submit"
-      color={if @selected_option || no_options?, do: :success, else: :alert}
-      icon={if @selected_option || no_options?, do: "tabler-chevron-right", else: "tabler-checks"}
+      color={if no_options?, do: :success, else: :alert}
+      icon={if no_options?, do: "tabler-chevron-right", else: "tabler-checks"}
       phx-disable-with={dgettext("courses", "Confirming...")}
-      class="fixed right-4 bottom-4 left-4 sm:sticky sm:w-full"
+      class="fixed right-4 bottom-4 left-4 lg:sticky lg:w-full"
     >
-      <%= if @selected_option || no_options?, do: dgettext("courses", "Next step"), else: gettext("Confirm") %>
+      <%= if no_options?, do: dgettext("courses", "Next step"), else: gettext("Confirm") %>
     </.button>
+
+    <div
+      :if={@selected_option}
+      role="alert"
+      class={[
+        "fixed space-y-4 right-0 bottom-0 border-t-2 p-4 left-0 lg:sticky lg:border-none lg:w-full lg:rounded-2xl",
+        @selected_option.correct? && "bg-success-light3x border-success-light2x text-success-dark",
+        not @selected_option.correct? && "bg-alert-light3x border-alert-light2x text-alert-dark"
+      ]}
+    >
+      <.feedback_option options={@current_step.options} selected={@selected_option} />
+
+      <.button type="submit" color={:success} icon="tabler-chevron-right" class="w-full" phx-disable-with={dgettext("courses", "Confirming...")}>
+        <%= dgettext("courses", "Next step") %>
+      </.button>
+    </div>
   </form>
 </article>

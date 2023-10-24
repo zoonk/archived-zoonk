@@ -27,7 +27,7 @@ defmodule UneebeeWeb.Components.Content.LessonStep do
 
   def feedback_option(assigns) do
     ~H"""
-    <div :if={@selected} class="min-w-0 py-4">
+    <div :if={@selected} class="flex items-center gap-2 text-lg font-semibold">
       <% icon = if @selected.correct?, do: "tabler-checks", else: "tabler-alert-square-rounded" %>
 
       <% default_feedback =
@@ -35,16 +35,7 @@ defmodule UneebeeWeb.Components.Content.LessonStep do
 
       <% feedback = if @selected.feedback, do: @selected.feedback, else: default_feedback %>
 
-      <div
-        role="alert"
-        class={[
-          "py-2 px-4 rounded-lg items-center fixed right-4 left-4 sm:sticky sm:w-full font-bold text-sm bottom-[72px] flex gap-2",
-          @selected.correct? && "bg-success-light3x text-success-dark2x",
-          not @selected.correct? && "bg-alert-light3x text-alert-dark2x"
-        ]}
-      >
-        <.icon name={icon} class="h-3 w-3" /> <%= feedback %>
-      </div>
+      <.icon name={icon} /> <%= feedback %>
     </div>
     """
   end

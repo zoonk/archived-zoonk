@@ -6,6 +6,7 @@ defmodule UneebeeWeb.Live.LessonPlay do
 
   alias Uneebee.Content
   alias Uneebee.Content.Lesson
+  alias Uneebee.Content.LessonStep
   alias Uneebee.Content.StepOption
 
   @impl Phoenix.LiveView
@@ -21,14 +22,14 @@ defmodule UneebeeWeb.Live.LessonPlay do
       |> assign(:step_count, step_count)
       |> assign(:current_step, current_step)
       |> assign(:selected_option, nil)
+      |> assign(:options, shuffle_options(current_step))
 
     {:ok, socket}
   end
 
   @impl Phoenix.LiveView
   def handle_event("next", %{"selected_option" => selected_option}, socket) when is_nil(socket.assigns.selected_option) do
-    %{current_user: user, lesson: lesson, current_step: step} =
-      socket.assigns
+    %{current_user: user, lesson: lesson, current_step: step} = socket.assigns
 
     option_id = String.to_integer(selected_option)
     attrs = %{user_id: user.id, option_id: option_id, lesson_id: lesson.id}
@@ -58,6 +59,7 @@ defmodule UneebeeWeb.Live.LessonPlay do
       socket
       |> assign(:selected_option, nil)
       |> assign(:current_step, next_step)
+      |> assign(:options, shuffle_options(next_step))
       |> handle_lesson_completed(next_step)
 
     {:noreply, socket}
@@ -84,4 +86,7 @@ defmodule UneebeeWeb.Live.LessonPlay do
 
   # Find if at least one option's title has more than 15 characters
   defp long_option?(options), do: Enum.any?(options, fn option -> String.length(option.title) > 20 end)
+
+  defp shuffle_options(nil), do: nil
+  defp shuffle_options(%LessonStep{} = step), do: Enum.shuffle(step.options)
 end
