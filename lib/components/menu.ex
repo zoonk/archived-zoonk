@@ -44,13 +44,7 @@ defmodule UneebeeWeb.Components.Menu do
 
   def menu_item(assigns) do
     ~H"""
-    <li
-      class={[
-        "text-gray-dark py-2 last:max-lg:pb-0 lg:first:rounded-t-2xl lg:last:rounded-b-2xl",
-        not @active and "hover:bg-gray-light3x"
-      ]}
-      aria-current={@active and "page"}
-    >
+    <li class={["text-gray-dark py-2 last:max-lg:pb-0 lg:first:rounded-t-2xl lg:last:rounded-b-2xl", not @active and "hover:bg-gray-light3x"]} aria-current={@active and "page"}>
       <.link class="flex items-center gap-2 focus:outline-primary lg:items-center lg:p-2" title={@title} {@rest}>
         <.icon name={@icon} gradient={@active} class="h-3 w-3 lg:h-5 lg:w-5" />
         <span class={[@active and "text-gradient"]}><%= @title %></span>

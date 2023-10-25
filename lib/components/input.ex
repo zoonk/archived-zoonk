@@ -98,8 +98,8 @@ defmodule UneebeeWeb.Components.Input do
         id={@id}
         name={@name}
         class={[
-          "mt-2 block min-h-[6rem] w-full rounded-lg py-[7px] px-[11px]",
-          "text-gray-dark focus:border-primary focus:outline-none focus:ring-4 focus:ring-gray-dark/5 sm:text-sm sm:leading-6",
+          "min-h-[6rem] py-[7px] px-[11px] mt-2 block w-full rounded-lg",
+          "text-gray-dark focus:border-primary focus:ring-gray-dark/5 focus:outline-none focus:ring-4 sm:text-sm sm:leading-6",
           @errors == [] && "border-gray-light2x focus:border-primary focus:ring-gray-dark/5",
           @errors != [] && "border-alert focus:border-alert focus:ring-alert/10"
         ]}
@@ -122,7 +122,7 @@ defmodule UneebeeWeb.Components.Input do
         id={@id}
         value={Form.normalize_value(@type, @value)}
         class={[
-          "mt-2 block w-full rounded-lg py-2 px-3",
+          "mt-2 block w-full rounded-lg px-3 py-2",
           "text-gray-dark2x focus:outline-none focus:ring-4 sm:text-sm sm:leading-6",
           @errors == [] && "border-gray-light2x focus:border-primary focus:ring-gray-dark/5",
           @errors != [] && "border-alert focus:border-alert focus:ring-alert/10"

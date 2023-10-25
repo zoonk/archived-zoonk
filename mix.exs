@@ -70,7 +70,7 @@ defmodule Uneebee.MixProject do
       {:styler, "~> 0.9.6", only: [:dev, :test], runtime: false},
       {:swoosh, "~> 1.12.0"},
       {:tailwind, "~> 0.2.0", runtime: Mix.env() == :dev},
-      {:tailwind_formatter, "~> 0.3.7", only: [:dev, :test], runtime: false},
+      {:tailwind_formatter, "~> 0.4.0", only: [:dev, :test], runtime: false},
       {:telemetry_metrics, "~> 0.6"},
       {:telemetry_poller, "~> 1.0"}
     ]

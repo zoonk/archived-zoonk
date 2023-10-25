@@ -26,12 +26,7 @@ defmodule UneebeeWeb.Components.Details do
 
   def details(assigns) do
     ~H"""
-    <details class={[
-      "group w-full p-4 text-sm min-w-0",
-      @rounded && "rounded-lg",
-      @shadow && "shadow",
-      @class
-    ]}>
+    <details class={["group w-full min-w-0 p-4 text-sm", @rounded && "rounded-lg", @shadow && "shadow", @class]}>
       <summary class="flex cursor-pointer items-center justify-between gap-1 font-bold">
         <.icon name="tabler-chevrons-down" class="group-open:hidden" gradient />
         <.icon name="tabler-chevrons-up" class="hidden group-open:inline" gradient />

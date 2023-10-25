@@ -14,7 +14,7 @@ defmodule UneebeeWeb.Components.Upload do
   @impl Phoenix.LiveComponent
   def render(assigns) do
     ~H"""
-    <section class={["h-max space-y-4", not @unstyled && "bg-white p-4 card"]}>
+    <section class={["h-max space-y-4", not @unstyled && "card bg-white p-4"]}>
       <% entry = List.first(@uploads.file.entries) %>
 
       <.header :if={@label}>

@@ -31,23 +31,22 @@ defmodule UneebeeWeb.Components.Button do
     ~H"""
     <button
       class={[
-        "flex justify-center items-center gap-2",
-        "phx-submit-loading:opacity-75 rounded-lg py-2 px-3 focus:outline-offset-2",
+        "flex items-center justify-center gap-2",
+        "rounded-lg px-3 py-2 focus:outline-offset-2 phx-submit-loading:opacity-75",
         "text-sm font-semibold leading-6",
-        "disabled:bg-gray-light2x disabled:cursor-not-allowed disabled:text-gray-light",
-        @color == :black && "bg-gray-dark shadow-b-gray active:shadow-b-gray-pressed text-white hover:bg-gray-dark2x focus:outline-gray-dark",
-        @color == :alert &&
-          "bg-alert text-white shadow-b-alert-dark active:shadow-b-alert-dark-pressed hover:bg-alert-dark focus:outline-alert",
-        @color == :success && "bg-success text-white shadow-b-success-dark active:shadow-b-success-dark-pressed hover:bg-success-dark focus:outline-success",
-        @color == :info && "bg-info text-white shadow-b-info-dark active:shadow-b-info-dark-pressed hover:bg-info-dark focus:outline-info",
-        @color == :warning && "bg-warning text-white shadow-b-warning-dark active:shadow-b-warning-dark-pressed hover:bg-warning-dark focus:outline-warning",
-        @color == :black_light && "bg-gray-light3x text-gray-dark2x shadow-b-gray-light active:shadow-b-gray-light-pressed hover:bg-gray-light2x focus:outline-gray-light3x",
-        @color == :alert_light && "bg-alert-light3x text-alert-dark2x shadow-b-alert-light active:shadow-b-alert-light-pressed hover:bg-alert-light2x focus:outline-alert-light3x",
-        @color == :info_light && "bg-info-light3x text-info-dark2x shadow-b-info-light active:shadow-b-info-light-pressed hover:bg-info-light2x focus:outline-info-light3x",
+        "disabled:bg-gray-light2x disabled:text-gray-light disabled:cursor-not-allowed",
+        @color == :black && "bg-gray-dark shadow-b-gray text-white hover:bg-gray-dark2x focus:outline-gray-dark active:shadow-b-gray-pressed",
+        @color == :alert && "bg-alert shadow-b-alert-dark text-white hover:bg-alert-dark focus:outline-alert active:shadow-b-alert-dark-pressed",
+        @color == :success && "bg-success shadow-b-success-dark text-white hover:bg-success-dark focus:outline-success active:shadow-b-success-dark-pressed",
+        @color == :info && "bg-info shadow-b-info-dark text-white hover:bg-info-dark focus:outline-info active:shadow-b-info-dark-pressed",
+        @color == :warning && "bg-warning shadow-b-warning-dark text-white hover:bg-warning-dark focus:outline-warning active:shadow-b-warning-dark-pressed",
+        @color == :black_light && "bg-gray-light3x text-gray-dark2x shadow-b-gray-light hover:bg-gray-light2x focus:outline-gray-light3x active:shadow-b-gray-light-pressed",
+        @color == :alert_light && "bg-alert-light3x text-alert-dark2x shadow-b-alert-light hover:bg-alert-light2x focus:outline-alert-light3x active:shadow-b-alert-light-pressed",
+        @color == :info_light && "bg-info-light3x text-info-dark2x shadow-b-info-light hover:bg-info-light2x focus:outline-info-light3x active:shadow-b-info-light-pressed",
         @color == :success_light &&
-          "bg-success-light3x text-success-dark2x shadow-b-success-light active:shadow-b-success-light-pressed hover:bg-success-light2x focus:outline-success-light3x",
+          "bg-success-light3x text-success-dark2x shadow-b-success-light hover:bg-success-light2x focus:outline-success-light3x active:shadow-b-success-light-pressed",
         @color == :warning_light &&
-          "bg-warning-light3x text-warning-dark2x shadow-b-warning-light active:shadow-b-warning-light-pressed hover:bg-warning-light2x focus:outline-warning-light3x",
+          "bg-warning-light3x text-warning-dark2x shadow-b-warning-light hover:bg-warning-light2x focus:outline-warning-light3x active:shadow-b-warning-light-pressed",
         @class
       ]}
       {@rest}
@@ -81,22 +80,21 @@ defmodule UneebeeWeb.Components.Button do
     <button
       class={[
         "flex items-center justify-center",
-        "phx-submit-loading:opacity-75 rounded-lg py-2 px-3 focus:outline-offset-2",
+        "rounded-lg px-3 py-2 focus:outline-offset-2 phx-submit-loading:opacity-75",
         "text-sm font-semibold leading-6",
-        "disabled:bg-gray-light2x disabled:cursor-not-allowed disabled:text-gray-light",
-        @color == :black && "bg-gray-dark shadow-b-gray active:shadow-b-gray-pressed text-white hover:bg-gray-dark2x focus:outline-gray-dark",
-        @color == :alert &&
-          "bg-alert text-white shadow-b-alert-dark active:shadow-b-alert-dark-pressed hover:bg-alert-dark focus:outline-alert",
-        @color == :success && "bg-success text-white shadow-b-success-dark active:shadow-b-success-dark-pressed hover:bg-success-dark focus:outline-success",
-        @color == :info && "bg-info text-white shadow-b-info-dark active:shadow-b-info-dark-pressed hover:bg-info-dark focus:outline-info",
-        @color == :warning && "bg-warning text-white shadow-b-warning-dark active:shadow-b-warning-dark-pressed hover:bg-warning-dark focus:outline-warning",
-        @color == :black_light && "bg-gray-light3x text-gray-dark2x shadow-b-gray-light active:shadow-b-gray-light-pressed hover:bg-gray-light2x focus:outline-gray-light3x",
-        @color == :alert_light && "bg-alert-light3x text-alert-dark2x shadow-b-alert-light active:shadow-b-alert-light-pressed hover:bg-alert-light2x focus:outline-alert-light3x",
-        @color == :info_light && "bg-info-light3x text-info-dark2x shadow-b-info-light active:shadow-b-info-light-pressed hover:bg-info-light2x focus:outline-info-light3x",
+        "disabled:bg-gray-light2x disabled:text-gray-light disabled:cursor-not-allowed",
+        @color == :black && "bg-gray-dark shadow-b-gray text-white hover:bg-gray-dark2x focus:outline-gray-dark active:shadow-b-gray-pressed",
+        @color == :alert && "bg-alert shadow-b-alert-dark text-white hover:bg-alert-dark focus:outline-alert active:shadow-b-alert-dark-pressed",
+        @color == :success && "bg-success shadow-b-success-dark text-white hover:bg-success-dark focus:outline-success active:shadow-b-success-dark-pressed",
+        @color == :info && "bg-info shadow-b-info-dark text-white hover:bg-info-dark focus:outline-info active:shadow-b-info-dark-pressed",
+        @color == :warning && "bg-warning shadow-b-warning-dark text-white hover:bg-warning-dark focus:outline-warning active:shadow-b-warning-dark-pressed",
+        @color == :black_light && "bg-gray-light3x text-gray-dark2x shadow-b-gray-light hover:bg-gray-light2x focus:outline-gray-light3x active:shadow-b-gray-light-pressed",
+        @color == :alert_light && "bg-alert-light3x text-alert-dark2x shadow-b-alert-light hover:bg-alert-light2x focus:outline-alert-light3x active:shadow-b-alert-light-pressed",
+        @color == :info_light && "bg-info-light3x text-info-dark2x shadow-b-info-light hover:bg-info-light2x focus:outline-info-light3x active:shadow-b-info-light-pressed",
         @color == :success_light &&
-          "bg-success-light3x text-success-dark2x shadow-b-success-light active:shadow-b-success-light-pressed hover:bg-success-light2x focus:outline-success-light3x",
+          "bg-success-light3x text-success-dark2x shadow-b-success-light hover:bg-success-light2x focus:outline-success-light3x active:shadow-b-success-light-pressed",
         @color == :warning_light &&
-          "bg-warning-light3x text-warning-dark2x shadow-b-warning-light active:shadow-b-warning-light-pressed hover:bg-warning-light2x focus:outline-warning-light3x",
+          "bg-warning-light3x text-warning-dark2x shadow-b-warning-light hover:bg-warning-light2x focus:outline-warning-light3x active:shadow-b-warning-light-pressed",
         @size == :sm && "h-6 w-6",
         @size == :md && "h-8 w-8",
         @size == :lg && "h-10 w-10"

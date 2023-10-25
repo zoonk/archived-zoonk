@@ -14,14 +14,7 @@ defmodule UneebeeWeb.Components.Progress do
       <% total = calculate_total(@total) %>
       <% current = calculate_current(@current, @total) %>
       <% steps = Enum.map(1..total, fn order -> order end) %>
-      <div
-        :for={step <- steps}
-        class={[
-          "rounded-2xl w-full h-4 flex-1",
-          step <= current && "bg-success-light",
-          step > current && "bg-gray-light3x"
-        ]}
-      />
+      <div :for={step <- steps} class={["h-4 w-full flex-1 rounded-2xl", step <= current && "bg-success-light", step > current && "bg-gray-light3x"]} />
     </div>
     """
   end

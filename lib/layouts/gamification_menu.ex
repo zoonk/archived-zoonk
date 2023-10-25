@@ -37,7 +37,7 @@ defmodule UneebeeWeb.Components.Layouts.GamificationMenu do
     ~H"""
     <span
       class={[
-        "flex items-center gap-1 font-semibold text-sm",
+        "flex items-center gap-1 text-sm font-semibold",
         @color == :alert and "text-alert",
         @color == :info and "text-info",
         @color == :warning and "text-warning",

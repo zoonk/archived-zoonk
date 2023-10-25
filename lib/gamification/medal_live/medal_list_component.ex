@@ -11,12 +11,7 @@ defmodule UneebeeWeb.Components.MedalList do
   def medal_list(assigns) do
     ~H"""
     <section class="mb-8">
-      <h2 class={[
-        "mb-2 font-bold",
-        @kind == :gold && "text-warning-dark2x",
-        @kind == :silver && "text-gray-dark2x",
-        @kind == :bronze && "text-bronze-dark2x"
-      ]}>
+      <h2 class={["mb-2 font-bold", @kind == :gold && "text-warning-dark2x", @kind == :silver && "text-gray-dark2x", @kind == :bronze && "text-bronze-dark2x"]}>
         <%= list_title(@kind, total_medals(@medals)) %>
       </h2>
 

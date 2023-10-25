@@ -35,11 +35,9 @@
           for={"select-option-#{option.id}"}
           role="button"
           class={[
-            "flex h-full border cursor-pointer text-gray-dark2x bg-white flex-col items-center justify-center gap-4 rounded-2xl p-4 text-sm peer-checked:border-info peer-checked:shadow-b-info",
-            (is_nil(@selected_option) || (@selected_option.id != option.id && not option.correct?)) &&
-              "active:shadow-b-gray-pressed border-gray-light shadow-b-gray",
-            user_selected_wrong_option?(@selected_option, option) &&
-              "border-alert shadow-b-alert",
+            "text-gray-dark2x flex h-full cursor-pointer flex-col items-center justify-center gap-4 rounded-2xl border bg-white p-4 text-sm peer-checked:border-info peer-checked:shadow-b-info",
+            (is_nil(@selected_option) || (@selected_option.id != option.id && not option.correct?)) && "border-gray-light shadow-b-gray active:shadow-b-gray-pressed",
+            user_selected_wrong_option?(@selected_option, option) && "border-alert shadow-b-alert",
             @selected_option && option.correct? && "border-success shadow-b-success"
           ]}
         >
@@ -64,7 +62,7 @@
       :if={@selected_option}
       role="alert"
       class={[
-        "fixed space-y-4 motion-safe:animate-slide-up lg:animate-none right-0 bottom-0 border-t-2 p-4 left-0 lg:sticky lg:border-none lg:w-full lg:rounded-2xl",
+        "fixed right-0 bottom-0 left-0 space-y-4 border-t-2 p-4 motion-safe:animate-slide-up lg:sticky lg:w-full lg:animate-none lg:rounded-2xl lg:border-none",
         @selected_option.correct? && "bg-success-light3x border-success-light2x text-success-dark",
         not @selected_option.correct? && "bg-alert-light3x border-alert-light2x text-alert-dark"
       ]}

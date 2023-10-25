@@ -32,7 +32,7 @@ defmodule UneebeeWeb.Components.Icon do
         "shrink-0",
         @name,
         @gradient and
-          "relative before:content-['*'] before:absolute before:top-0 before:left-0 before:w-full before:h-full before:bg-gradient-to-br before:from-info before:via-primary before:to-alert",
+          "relative before:content-['*'] before:from-info before:via-primary before:to-alert before:absolute before:top-0 before:left-0 before:h-full before:w-full before:bg-gradient-to-br",
         @class
       ]}
     >
