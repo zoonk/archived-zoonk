@@ -28,5 +28,12 @@ defmodule UneebeeWeb.MyCoursesLiveTest do
       Enum.each(courses, fn course -> assert has_element?(lv, ~s|a[href="/c/#{course.slug}"]|) end)
       refute has_element?(lv, ~s|a[href="/c/#{other_course.slug}"]|)
     end
+
+    test "displays a message when there are no courses", %{conn: conn} do
+      {:ok, lv, _html} = live(conn, ~p"/courses/my")
+
+      assert has_element?(lv, ~s|a:fl-icontains("browse courses")|)
+      assert has_element?(lv, ~s|p:fl-icontains("you haven't started any courses yet.")|)
+    end
   end
 end
