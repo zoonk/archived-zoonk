@@ -447,6 +447,15 @@ defmodule Uneebee.GamificationTest do
       assert {:ok, %UserMission{} = _mission} = Gamification.delete_user_mission(mission.id)
       assert Gamification.count_user_trophies(user.id) == 0
     end
+
+    test "deletes the medal associated with this mission" do
+      user = user_fixture()
+      mission = user_mission_fixture(%{user: user, reason: :lesson_5})
+
+      assert Gamification.count_user_medals(user.id, :bronze) == 1
+      assert {:ok, %UserMission{} = _mission} = Gamification.delete_user_mission(mission.id)
+      assert Gamification.count_user_medals(user.id, :bronze) == 0
+    end
   end
 
   describe "get_user_mission/2" do
