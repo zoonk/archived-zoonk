@@ -38,6 +38,11 @@ defmodule UneebeeWeb.Layouts.MenuUtils do
     active_page |> Atom.to_string() |> String.starts_with?("dashboard")
   end
 
+  @spec show_menu?(atom()) :: boolean()
+  def show_menu?(active_page) do
+    active_page not in [:lessonplay, :lessoncompleted]
+  end
+
   defp course_user_list?(active_page) do
     active_page |> Atom.to_string() |> String.starts_with?("dashboard_courseuserlist")
   end

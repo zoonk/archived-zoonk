@@ -8,7 +8,7 @@ defmodule UneebeeWeb.Components.Layouts.MenuDesktop do
 
   def menu_desktop(assigns) do
     ~H"""
-    <.menu :if={@active_page}>
+    <.menu :if={show_menu?(@active_page)}>
       <:header>
         <.gamification_menu learning_days={@learning_days} mission_progress={@mission_progress} trophies={@trophies} medals={@medals} />
       </:header>

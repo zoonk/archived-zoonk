@@ -21,6 +21,8 @@ defmodule UneebeeWeb.MedalListLiveTest do
 
       {:ok, lv, _html} = live(conn, ~p"/medals")
 
+      assert has_element?(lv, ~s|li a span:fl-icontains("Home")|)
+
       assert has_element?(lv, ~s|#medal-perfect_lesson_first_try dt:fl-icontains("perfect lesson")|)
       assert has_element?(lv, ~s|#medal-perfect_lesson_practiced dt:fl-icontains("perfect lesson")|)
       assert has_element?(lv, ~s|#medal-mission_completed dt:fl-icontains("mission completed")|)
