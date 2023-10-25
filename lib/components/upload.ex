@@ -136,5 +136,5 @@ defmodule UneebeeWeb.Components.Upload do
   defp upload_opts(socket, true), do: allow_upload(socket, :file, accept: accept_files(), max_entries: 1)
   defp upload_opts(socket, false), do: allow_upload(socket, :file, accept: accept_files(), max_entries: 1, external: &presign_upload/2)
 
-  defp accept_files, do: ~w(.jpg .jpeg .png .avif .gif .webp)
+  defp accept_files, do: ~w(.jpg .jpeg .png .avif .gif .webp .svg)
 end
