@@ -237,6 +237,35 @@ defmodule Uneebee.ContentTest do
       assert {:ok, %Course{}} = Content.delete_course(course)
       assert_raise Ecto.NoResultsError, fn -> Content.get_course_by_slug!(course.slug, course.school_id) end
     end
+
+    test "removes all course users" do
+      user = user_fixture()
+      course = course_fixture()
+      course_user_fixture(%{course: course, user: user})
+
+      assert length(Content.list_course_users_by_role(course, :student)) == 1
+      Content.delete_course(course)
+      assert Content.list_course_users_by_role(course, :student) == []
+    end
+
+    test "removes all lessons" do
+      course = course_fixture()
+      lesson_fixture(%{course: course})
+
+      assert length(Content.list_lessons(course)) == 1
+      Content.delete_course(course)
+      assert Content.list_lessons(course) == []
+    end
+
+    test "removes all trophies" do
+      user = user_fixture()
+      course = course_fixture()
+      user_trophy_fixture(%{course: course, user: user})
+
+      assert Gamification.count_user_trophies(user.id) == 1
+      Content.delete_course(course)
+      assert Gamification.count_user_trophies(user.id) == 0
+    end
   end
 
   describe "create_course_user/3" do
