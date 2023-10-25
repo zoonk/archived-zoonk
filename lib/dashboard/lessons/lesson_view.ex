@@ -64,8 +64,8 @@ defmodule UneebeeWeb.Live.Dashboard.LessonView do
     attrs = %{lesson_step_id: String.to_integer(step_id), title: dgettext("orgs", "Untitled option")}
 
     case Content.create_step_option(attrs) do
-      {:ok, _option} ->
-        {:noreply, push_patch(socket, to: ~p"/dashboard/c/#{course.slug}/l/#{lesson.id}/s/#{step.order}")}
+      {:ok, option} ->
+        {:noreply, push_patch(socket, to: ~p"/dashboard/c/#{course.slug}/l/#{lesson.id}/s/#{step.order}/o/#{option.id}")}
 
       {:error, _changeset} ->
         {:noreply, put_flash(socket, :error, dgettext("orgs", "Could not add option!"))}
