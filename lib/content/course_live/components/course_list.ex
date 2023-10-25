@@ -20,14 +20,14 @@ defmodule UneebeeWeb.Components.Content.CourseList do
       <dl id={@id} phx-update="stream" class="grid grid-cols-1 gap-4 sm:grid-cols-2">
         <.link :for={{dom_id, course_data} <- @courses} id={dom_id} navigate={course_link(course_data, @my_courses)} class="card-with-link flex p-1">
           <% course = if @my_courses, do: course_data, else: course_data.data %>
-          <img :if={course.cover} src={course.cover} class="w-28 rounded-2xl object-cover" />
-          <div :if={is_nil(course.cover)} class="bg-gray-light3x w-28 rounded-2xl" />
+          <img :if={course.cover} src={course.cover} class="h-28 w-28 rounded-2xl object-cover" />
+          <div :if={is_nil(course.cover)} class="bg-gray-light3x h-28 w-28 rounded-2xl" />
 
-          <div class="min-w-0 flex-1 px-2 text-sm">
+          <div class="flex h-full min-w-0 flex-1 flex-col px-2 text-sm">
             <dt class="text-gray-dark truncate font-bold"><%= course.name %></dt>
-            <dd class="text-gray line-clamp-2 text-sm"><%= course.description %></dd>
+            <dd class="text-gray line-clamp-2 flex-1 text-sm"><%= course.description %></dd>
 
-            <div class="mt-4">
+            <div class="pb-1">
               <.badge icon="tabler-chart-arrows-vertical"><%= CourseUtils.level_label(course.level) %></.badge>
               <.badge :if={not @my_courses} icon="tabler-user" color={:black_light}><%= course_data.student_count %></.badge>
             </div>
