@@ -2,10 +2,14 @@ defmodule Uneebee.AccountsTest do
   use Uneebee.DataCase, async: true
 
   import Uneebee.Fixtures.Accounts
+  import Uneebee.Fixtures.Content
+  import Uneebee.Fixtures.Gamification
 
   alias Uneebee.Accounts
   alias Uneebee.Accounts.User
   alias Uneebee.Accounts.UserToken
+  alias Uneebee.Content
+  alias Uneebee.Gamification
 
   describe "get_user_by_email/1" do
     test "does not return the user if the email does not exist" do
@@ -379,6 +383,71 @@ defmodule Uneebee.AccountsTest do
     test "does not return user for expired token", %{token: token} do
       {1, nil} = Repo.update_all(UserToken, set: [inserted_at: ~N[2020-01-01 00:00:00]])
       refute Accounts.get_user_by_session_token(token)
+    end
+  end
+
+  describe "delete_user/1" do
+    test "deletes the user" do
+      user = user_fixture()
+      Accounts.delete_user(user)
+      refute Accounts.get_user_by_email(user.email)
+    end
+
+    test "deletes all medals a user earned" do
+      user = user_fixture()
+      user_medal_fixture(%{user: user})
+
+      assert Gamification.count_user_medals(user.id) == 1
+      Accounts.delete_user(user)
+      assert Gamification.count_user_medals(user.id) == 0
+    end
+
+    test "deletes all trophies a user earned" do
+      user = user_fixture()
+      user_trophy_fixture(%{user: user})
+
+      assert Gamification.count_user_trophies(user.id) == 1
+      Accounts.delete_user(user)
+      assert Gamification.count_user_trophies(user.id) == 0
+    end
+
+    test "deletes all missions a user earned" do
+      user = user_fixture()
+      user_mission_fixture(%{user: user})
+
+      assert Gamification.count_completed_missions(user.id) == 1
+      Accounts.delete_user(user)
+      assert Gamification.count_completed_missions(user.id) == 0
+    end
+
+    test "deletes all courses a user has joined" do
+      user = user_fixture()
+      course_user = course_user_fixture(%{user: user})
+
+      assert Content.get_course_user_by_id(course_user.course_id, user.id)
+      Accounts.delete_user(user)
+      refute Content.get_course_user_by_id(course_user.course_id, user.id)
+    end
+
+    test "deletes all lessons a user has completed" do
+      user = user_fixture()
+      generate_user_lesson(user.id, 0, number_of_lessons: 1)
+
+      assert Content.count_user_lessons(user.id) == 1
+      Accounts.delete_user(user)
+      assert Content.count_user_lessons(user.id) == 0
+    end
+
+    test "deletes all user selections" do
+      user = user_fixture()
+      lesson = lesson_fixture()
+      step = lesson_step_fixture(%{lesson: lesson})
+      option = step_option_fixture(%{lesson_step: step})
+
+      Content.add_user_selection(%{user_id: user.id, option_id: option.id, lesson_id: lesson.id})
+      assert length(Content.list_user_selections_by_lesson(user.id, lesson.id, 1)) == 1
+      Accounts.delete_user(user)
+      assert Content.list_user_selections_by_lesson(user.id, lesson.id, 1) == []
     end
   end
 

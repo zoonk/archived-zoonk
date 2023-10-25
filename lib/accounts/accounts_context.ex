@@ -128,6 +128,20 @@ defmodule Uneebee.Accounts do
   @spec get_user!(integer()) :: User.t()
   def get_user!(id), do: Repo.get!(User, id)
 
+  @doc """
+  Deletes a user account.
+
+  ## Examples
+
+      iex> delete_user!(user)
+      {:ok, %User{}}
+
+  """
+  @spec delete_user(User.t()) :: user_changeset()
+  def delete_user(%User{} = user) do
+    Repo.delete(user)
+  end
+
   ## User registration
 
   @doc """
