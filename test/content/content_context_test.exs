@@ -4,6 +4,7 @@ defmodule Uneebee.ContentTest do
 
   import Uneebee.Fixtures.Accounts
   import Uneebee.Fixtures.Content
+  import Uneebee.Fixtures.Gamification
   import Uneebee.Fixtures.Organizations
 
   alias Uneebee.Content
@@ -423,6 +424,47 @@ defmodule Uneebee.ContentTest do
       lesson = lesson_fixture()
       assert {:ok, %Lesson{}} = Content.delete_lesson(lesson)
       assert_raise Ecto.NoResultsError, fn -> Content.get_lesson!(lesson.id) end
+    end
+
+    test "deletes all lesson steps" do
+      lesson = lesson_fixture()
+      lesson_step_fixture(%{lesson: lesson, order: 1})
+
+      assert Content.get_lesson_step_by_order(lesson, 1)
+      Content.delete_lesson(lesson)
+      refute Content.get_lesson_step_by_order(lesson, 1)
+    end
+
+    test "deletes all user lessons" do
+      lesson = lesson_fixture()
+      user = user_fixture()
+      Content.add_user_lesson(%{attempts: 1, correct: 1, total: 1, user_id: user.id, lesson_id: lesson.id})
+
+      assert Content.get_user_lesson(user.id, lesson.id)
+      Content.delete_lesson(lesson)
+      refute Content.get_user_lesson(user.id, lesson.id)
+    end
+
+    test "deletes all user selections" do
+      lesson = lesson_fixture()
+      user = user_fixture()
+      lesson_step = lesson_step_fixture(%{lesson: lesson})
+      step_option = step_option_fixture(%{lesson_step: lesson_step})
+      Content.add_user_selection(%{user_id: user.id, option_id: step_option.id, lesson_id: lesson.id})
+
+      assert length(Content.list_user_selections_by_lesson(user.id, lesson.id, 1)) == 1
+      Content.delete_lesson(lesson)
+      assert Content.list_user_selections_by_lesson(user.id, lesson.id, 1) == []
+    end
+
+    test "deletes all medals" do
+      user = user_fixture()
+      lesson = lesson_fixture()
+      user_medal_fixture(%{lesson: lesson, user: user})
+
+      assert Gamification.count_user_medals(user.id) == 1
+      Content.delete_lesson(lesson)
+      assert Gamification.count_user_medals(user.id) == 0
     end
   end
 
