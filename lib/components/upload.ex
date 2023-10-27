@@ -50,11 +50,11 @@ defmodule UneebeeWeb.Components.Upload do
         <p :for={err <- upload_errors(@uploads.file)}><%= error_to_string(err) %></p>
 
         <div class="flex gap-2">
-          <.button icon="tabler-cloud-upload" type="submit" disabled={is_nil(entry)}>
+          <.button icon="tabler-cloud-upload" type="submit" disabled={is_nil(entry)} phx-disable-with={gettext("Saving...")}>
             <%= gettext("Save") %>
           </.button>
 
-          <.button :if={@current_img} phx-click="remove" phx-target={@myself} icon="tabler-trash" type="button" color={:alert_light} phx-disable-with={gettext("Deleting...")}>
+          <.button :if={@current_img} phx-click="remove" phx-target={@myself} icon="tabler-trash" type="button" color={:alert_light}>
             <%= gettext("Remove") %>
           </.button>
         </div>
