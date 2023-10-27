@@ -52,11 +52,6 @@ msgstr ""
 msgid "Delete course"
 msgstr ""
 
-#: lib/layouts/menu_desktop.ex:133
-#, elixir-autogen, elixir-format
-msgid "Delete lesson"
-msgstr ""
-
 #: lib/content/course_live/course_view.ex:58
 #, elixir-autogen, elixir-format
 msgid "Enrolled successfully!"

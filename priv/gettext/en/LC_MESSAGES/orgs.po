@@ -262,7 +262,7 @@ msgstr ""
 msgid "Could not change the lesson order!"
 msgstr ""
 
-#: lib/dashboard/lessons/components/step_switch.ex:71
+#: lib/dashboard/lessons/components/step_switch.ex:81
 #, elixir-autogen, elixir-format
 msgid "Could not change the step order!"
 msgstr ""
@@ -273,7 +273,7 @@ msgstr ""
 msgid "Could not create lesson!"
 msgstr ""
 
-#: lib/dashboard/lessons/components/step_switch.ex:55
+#: lib/dashboard/lessons/components/step_switch.ex:65
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Could not create step!"
 msgstr ""
@@ -283,7 +283,7 @@ msgstr ""
 msgid "Could not delete course!"
 msgstr ""
 
-#: lib/dashboard/lessons/lesson_delete.ex:23
+#: lib/dashboard/lessons/components/step_switch.ex:101
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Could not delete lesson!"
 msgstr ""
@@ -350,7 +350,7 @@ msgstr ""
 msgid "Cover updated successfully!"
 msgstr ""
 
-#: lib/dashboard/lessons/lesson_delete.ex:10
+#: lib/dashboard/lessons/components/step_switch.ex:43
 #, elixir-autogen, elixir-format
 msgid "Delete lesson"
 msgstr ""
@@ -508,7 +508,7 @@ msgstr ""
 
 #: lib/dashboard/courses/course_view.ex:39
 #: lib/dashboard/lessons/components/lesson_switch.ex:35
-#: lib/dashboard/lessons/components/step_switch.ex:47
+#: lib/dashboard/lessons/components/step_switch.ex:57
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Untitled step"
 msgstr ""

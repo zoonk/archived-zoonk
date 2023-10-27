@@ -188,7 +188,6 @@ defmodule UneebeeWeb.Router do
 
       live "/c/:course_slug/l/:lesson_id/info", LessonEdit
       live "/c/:course_slug/l/:lesson_id/cover", LessonCover
-      live "/c/:course_slug/l/:lesson_id/delete", LessonDelete
     end
   end
 

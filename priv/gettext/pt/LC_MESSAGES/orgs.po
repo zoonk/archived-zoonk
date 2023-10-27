@@ -262,7 +262,7 @@ msgstr "Não foi possível adicionar a alternativa!"
 msgid "Could not change the lesson order!"
 msgstr "Não foi possível alterar a ordem da aula!"
 
-#: lib/dashboard/lessons/components/step_switch.ex:71
+#: lib/dashboard/lessons/components/step_switch.ex:81
 #, elixir-autogen, elixir-format
 msgid "Could not change the step order!"
 msgstr "Não foi possível alterar a ordem da etapa!"
@@ -273,7 +273,7 @@ msgstr "Não foi possível alterar a ordem da etapa!"
 msgid "Could not create lesson!"
 msgstr "Não foi possível criar a aula!"
 
-#: lib/dashboard/lessons/components/step_switch.ex:55
+#: lib/dashboard/lessons/components/step_switch.ex:65
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Could not create step!"
 msgstr "Não foi possível criar a etapa!"
@@ -283,7 +283,7 @@ msgstr "Não foi possível criar a etapa!"
 msgid "Could not delete course!"
 msgstr "Não foi possível excluir o curso!"
 
-#: lib/dashboard/lessons/lesson_delete.ex:23
+#: lib/dashboard/lessons/components/step_switch.ex:101
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Could not delete lesson!"
 msgstr "Não foi possível excluir a aula!"
@@ -350,7 +350,7 @@ msgstr "Curso atualizado com sucesso!"
 msgid "Cover updated successfully!"
 msgstr "Capa atualizada com sucesso!"
 
-#: lib/dashboard/lessons/lesson_delete.ex:10
+#: lib/dashboard/lessons/components/step_switch.ex:43
 #, elixir-autogen, elixir-format
 msgid "Delete lesson"
 msgstr "Apagar aula"
@@ -508,7 +508,7 @@ msgstr "Arraste as etapas para alterar a ordem:"
 
 #: lib/dashboard/courses/course_view.ex:39
 #: lib/dashboard/lessons/components/lesson_switch.ex:35
-#: lib/dashboard/lessons/components/step_switch.ex:47
+#: lib/dashboard/lessons/components/step_switch.ex:57
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Untitled step"
 msgstr "Etapa sem título"

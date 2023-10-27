@@ -41,7 +41,7 @@ msgstr ""
 #: lib/accounts/user_live/forgot_password.html.heex:7
 #: lib/accounts/user_live/registration.html.heex:16
 #: lib/accounts/user_live/user_settings_menu.html.heex:5
-#: lib/layouts/menu_desktop.ex:147
+#: lib/layouts/menu_desktop.ex:140
 #: lib/support/feedback_live/feedback.html.heex:12
 #, elixir-autogen, elixir-format
 msgid "Email"
@@ -52,7 +52,7 @@ msgstr ""
 #: lib/accounts/user_live/user_settings_menu.html.heex:2
 #: lib/dashboard/courses/course_edit.html.heex:4
 #: lib/dashboard/courses/course_new.html.heex:10
-#: lib/layouts/menu_desktop.ex:144
+#: lib/layouts/menu_desktop.ex:137
 #, elixir-autogen, elixir-format
 msgid "Language"
 msgstr ""
@@ -81,7 +81,7 @@ msgstr ""
 #: lib/accounts/user_live/registration.html.heex:17
 #: lib/accounts/user_live/user_settings.html.heex:12
 #: lib/accounts/user_live/user_settings_menu.html.heex:3
-#: lib/layouts/menu_desktop.ex:145
+#: lib/layouts/menu_desktop.ex:138
 #, elixir-autogen, elixir-format
 msgid "Username"
 msgstr ""
@@ -114,14 +114,14 @@ msgid "Changing..."
 msgstr ""
 
 #: lib/accounts/user_live/user_settings_menu.html.heex:7
-#: lib/layouts/menu_desktop.ex:149
+#: lib/layouts/menu_desktop.ex:142
 #, elixir-autogen, elixir-format
 msgid "Logout"
 msgstr ""
 
 #: lib/accounts/user_live/user_settings.ex:32
 #: lib/accounts/user_live/user_settings_menu.ex:7
-#: lib/layouts/menu_desktop.ex:142
+#: lib/layouts/menu_desktop.ex:135
 #: lib/layouts/menu_mobile.ex:68
 #, elixir-autogen, elixir-format
 msgid "Settings"
@@ -147,7 +147,7 @@ msgid "Save"
 msgstr ""
 
 #: lib/accounts/user_live/user_settings_menu.html.heex:4
-#: lib/layouts/menu_desktop.ex:146
+#: lib/layouts/menu_desktop.ex:139
 #: lib/support/feedback_live/feedback.html.heex:11
 #, elixir-autogen, elixir-format
 msgid "Name"
@@ -208,7 +208,7 @@ msgid "Confirm"
 msgstr ""
 
 #: lib/content/course_live/course_list.ex:17
-#: lib/layouts/menu_desktop.ex:139
+#: lib/layouts/menu_desktop.ex:132
 #: lib/layouts/menu_mobile.ex:44
 #, elixir-autogen, elixir-format
 msgid "Courses"
@@ -238,7 +238,7 @@ msgid "Locked"
 msgstr ""
 
 #: lib/content/course_live/my_courses.ex:17
-#: lib/layouts/menu_desktop.ex:138
+#: lib/layouts/menu_desktop.ex:131
 #: lib/layouts/menu_mobile.ex:40
 #, elixir-autogen, elixir-format
 msgid "My courses"
@@ -265,7 +265,7 @@ msgstr ""
 msgid "Close"
 msgstr ""
 
-#: lib/layouts/menu_desktop.ex:140
+#: lib/layouts/menu_desktop.ex:133
 #: lib/support/feedback_live/feedback.ex:15
 #, elixir-autogen, elixir-format
 msgid "Feedback"
@@ -302,6 +302,7 @@ msgid "We are always looking for ways to improve our app. Please send us your fe
 msgstr ""
 
 #: lib/dashboard/lessons/components/option_list.ex:48
+#: lib/dashboard/lessons/components/step_switch.ex:47
 #: lib/dashboard/lessons/lesson_view.html.heex:19
 #, elixir-autogen, elixir-format
 msgid "Are you sure?"

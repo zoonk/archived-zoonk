@@ -133,6 +133,46 @@ defmodule UneebeeWeb.DashboardLessonViewLiveTest do
       assert_raise Ecto.NoResultsError, fn -> Uneebee.Repo.get!(LessonStep, lesson_step.id) end
     end
 
+    test "deletes a lesson", %{conn: conn, course: course} do
+      lesson1 = lesson_fixture(%{course_id: course.id, order: 1})
+      lesson2 = lesson_fixture(%{course_id: course.id, order: 2})
+      lesson_step_fixture(%{lesson_id: lesson1.id, order: 1, content: "step lesson 1"})
+      lesson_step_fixture(%{lesson_id: lesson2.id, order: 1, content: "step lesson 2"})
+
+      {:ok, lv, _html} = live(conn, ~p"/dashboard/c/#{course.slug}/l/#{lesson1.id}/s/1")
+
+      assert has_element?(lv, ~s|a span:fl-contains("step lesson 1")|)
+      refute has_element?(lv, ~s|a span:fl-contains("step lesson 2")|)
+
+      assert {:ok, updated_lv, _html} =
+               lv
+               |> element("button", "Delete lesson")
+               |> render_click()
+               |> follow_redirect(conn, ~p"/dashboard/c/#{course.slug}/l/#{lesson2.id}/s/1")
+
+      assert has_element?(updated_lv, ~s|a span:fl-contains("step lesson 2")|)
+      refute has_element?(updated_lv, ~s|a span:fl-contains("step lesson 1")|)
+
+      assert_raise Ecto.NoResultsError, fn -> Content.get_lesson!(lesson1.id) end
+    end
+
+    test "redirects to the course view when deleting the only lesson", %{conn: conn, course: course} do
+      lesson = lesson_fixture(%{course_id: course.id, order: 1})
+      lesson_step_fixture(%{lesson_id: lesson.id, order: 1})
+
+      {:ok, lv, _html} = live(conn, ~p"/dashboard/c/#{course.slug}/l/#{lesson.id}/s/1")
+
+      assert {:ok, updated_lv, _html} =
+               lv
+               |> element("button", "Delete lesson")
+               |> render_click()
+               |> follow_redirect(conn, ~p"/dashboard/c/#{course.slug}")
+
+      assert has_element?(updated_lv, ~s|button:fl-icontains("+ Lesson")|)
+
+      assert_raise Ecto.NoResultsError, fn -> Content.get_lesson!(lesson.id) end
+    end
+
     test "hides the remove step button when it's the only step", %{conn: conn, course: course} do
       lesson = lesson_fixture(%{course_id: course.id})
       lesson_step_fixture(%{lesson: lesson})

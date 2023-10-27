@@ -508,6 +508,22 @@ defmodule Uneebee.ContentTest do
     end
   end
 
+  describe "get_first_lesson/1" do
+    test "returns the first lesson" do
+      course = course_fixture()
+      lesson_fixture(%{course: course, order: 2})
+      lesson_fixture(%{course: course, order: 3})
+      lesson3 = lesson_fixture(%{course: course, order: 1})
+
+      assert Content.get_first_lesson(course) == lesson3
+    end
+
+    test "returns nil if there are no lessons" do
+      course = course_fixture()
+      assert Content.get_first_lesson(course) == nil
+    end
+  end
+
   describe "list_published_lessons/2" do
     test "returns a list of published lessons" do
       course = course_fixture()

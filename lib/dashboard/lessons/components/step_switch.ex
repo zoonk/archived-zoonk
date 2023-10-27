@@ -36,6 +36,16 @@ defmodule UneebeeWeb.Components.Dashboard.StepSwitch do
         <button :if={@step_count < 20} class="bg-gray-light3x filtered text-gray-dark2x h-10 w-10 rounded-full text-center font-black" phx-click="add-step" phx-target={@myself}>
           +
         </button>
+
+        <.icon_button
+          icon="tabler-trash"
+          phx-click="delete-lesson"
+          label={dgettext("orgs", "Delete lesson")}
+          color={:alert_light}
+          size={:lg}
+          phx-target={@myself}
+          data-confirm={gettext("Are you sure?")}
+        />
       </nav>
     </div>
     """
@@ -77,8 +87,26 @@ defmodule UneebeeWeb.Components.Dashboard.StepSwitch do
     {:noreply, socket}
   end
 
+  @impl Phoenix.LiveComponent
+  def handle_event("delete-lesson", _params, socket) do
+    %{lesson: lesson, course: course} = socket.assigns
+
+    case Content.delete_lesson(lesson) do
+      {:ok, _lesson} ->
+        first_lesson = Content.get_first_lesson(course)
+
+        {:noreply, push_navigate(socket, to: lesson_link(course, first_lesson))}
+
+      {:error, _changeset} ->
+        {:noreply, put_flash!(socket, :error, dgettext("orgs", "Could not delete lesson!"))}
+    end
+  end
+
   defp notify_parent(socket, step_count) do
     send(self(), {__MODULE__, socket.assigns.id, step_count})
     :ok
   end
+
+  defp lesson_link(course, nil), do: ~p"/dashboard/c/#{course.slug}"
+  defp lesson_link(course, lesson), do: ~p"/dashboard/c/#{course.slug}/l/#{lesson.id}/s/1"
 end

@@ -420,6 +420,22 @@ defmodule Uneebee.Content do
   end
 
   @doc """
+  Get the first lesson of a course.
+
+  ## Examples
+
+      iex> get_first_lesson(%Course{})
+      %Lesson{}
+
+      iex> get_first_lesson(%Course{})
+      nil
+  """
+  @spec get_first_lesson(Course.t()) :: Lesson.t() | nil
+  def get_first_lesson(%Course{} = course) do
+    Lesson |> where([l], l.course_id == ^course.id) |> order_by(asc: :order) |> limit(1) |> Repo.one()
+  end
+
+  @doc """
   List published lessons.
 
   ## Examples
