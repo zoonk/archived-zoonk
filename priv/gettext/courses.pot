@@ -21,11 +21,6 @@ msgstr ""
 msgid "Advanced"
 msgstr ""
 
-#: lib/layouts/menu_desktop.ex:106
-#, elixir-autogen, elixir-format
-msgid "All lessons"
-msgstr ""
-
 #: lib/content/course_live/lesson_completed.html.heex:34
 #, elixir-autogen, elixir-format
 msgid "Back to the course"
@@ -42,12 +37,7 @@ msgstr ""
 msgid "Confirming..."
 msgstr ""
 
-#: lib/layouts/menu_desktop.ex:112
-#, elixir-autogen, elixir-format
-msgid "Content"
-msgstr ""
-
-#: lib/layouts/menu_desktop.ex:93
+#: lib/layouts/menu_desktop.ex:100
 #, elixir-autogen, elixir-format
 msgid "Delete course"
 msgstr ""
@@ -85,11 +75,6 @@ msgstr ""
 #: lib/content/course_utils.ex:24
 #, elixir-autogen, elixir-format
 msgid "Intermediate"
-msgstr ""
-
-#: lib/layouts/menu_desktop.ex:103
-#, elixir-autogen, elixir-format
-msgid "Manage lesson"
 msgstr ""
 
 #: lib/content/course_live/lesson_play.html.heex:58
@@ -151,11 +136,6 @@ msgstr ""
 #: lib/content/course_live/lesson_completed.html.heex:12
 #, elixir-autogen, elixir-format
 msgid "You got %{correct} out of %{total} answers right."
-msgstr ""
-
-#: lib/layouts/menu_desktop.ex:51
-#, elixir-autogen, elixir-format
-msgid "Course page"
 msgstr ""
 
 #: lib/content/course_live/course_view.html.heex:39

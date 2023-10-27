@@ -187,7 +187,7 @@ msgstr ""
 #: lib/dashboard/lessons/components/lesson_edit.ex:18
 #: lib/dashboard/lessons/lesson_cover.ex:10
 #: lib/dashboard/lessons/lesson_cover.html.heex:1
-#: lib/dashboard/lessons/lesson_view.html.heex:56
+#: lib/dashboard/lessons/lesson_view.html.heex:64
 #, elixir-autogen, elixir-format
 msgid "Cover"
 msgstr ""
@@ -234,7 +234,7 @@ msgstr ""
 msgid "+ Lesson"
 msgstr ""
 
-#: lib/dashboard/lessons/lesson_view.html.heex:49
+#: lib/dashboard/lessons/lesson_view.html.heex:57
 #, elixir-autogen, elixir-format
 msgid "Add image to option"
 msgstr ""
@@ -259,7 +259,7 @@ msgstr ""
 msgid "Could not add option!"
 msgstr ""
 
-#: lib/dashboard/courses/course_view.ex:60
+#: lib/dashboard/courses/course_view.ex:58
 #, elixir-autogen, elixir-format
 msgid "Could not change the lesson order!"
 msgstr ""
@@ -269,8 +269,8 @@ msgstr ""
 msgid "Could not change the step order!"
 msgstr ""
 
-#: lib/dashboard/courses/course_view.ex:44
-#: lib/dashboard/lessons/components/lesson_switch.ex:40
+#: lib/dashboard/courses/course_view.ex:42
+#: lib/dashboard/lessons/components/lesson_switch.ex:38
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Could not create lesson!"
 msgstr ""
@@ -285,7 +285,7 @@ msgstr ""
 msgid "Could not delete course!"
 msgstr ""
 
-#: lib/dashboard/lessons/components/lesson_edit.ex:90
+#: lib/dashboard/lessons/components/lesson_edit.ex:91
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Could not delete lesson!"
 msgstr ""
@@ -307,7 +307,7 @@ msgstr ""
 msgid "Could not update cover!"
 msgstr ""
 
-#: lib/dashboard/lessons/components/lesson_edit.ex:75
+#: lib/dashboard/lessons/components/lesson_edit.ex:76
 #: lib/dashboard/lessons/components/lesson_publish.ex:36
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Could not update lesson!"
@@ -354,7 +354,7 @@ msgstr ""
 msgid "Cover updated successfully!"
 msgstr ""
 
-#: lib/dashboard/lessons/components/lesson_edit.ex:29
+#: lib/dashboard/lessons/components/lesson_edit.ex:30
 #, elixir-autogen, elixir-format
 msgid "Delete lesson"
 msgstr ""
@@ -364,6 +364,7 @@ msgstr ""
 msgid "Delete option"
 msgstr ""
 
+#: lib/content/content_context.ex:70
 #: lib/dashboard/courses/course_view.ex:34
 #: lib/dashboard/lessons/components/lesson_switch.ex:30
 #, elixir-autogen, elixir-format
@@ -401,6 +402,7 @@ msgstr ""
 msgid "Is public?"
 msgstr ""
 
+#: lib/content/content_context.ex:69
 #: lib/dashboard/courses/course_view.ex:33
 #: lib/dashboard/lessons/components/lesson_switch.ex:29
 #, elixir-autogen, elixir-format
@@ -412,17 +414,17 @@ msgstr ""
 msgid "Lesson cover"
 msgstr ""
 
-#: lib/dashboard/lessons/components/lesson_edit.ex:35
+#: lib/dashboard/lessons/components/lesson_edit.ex:36
 #, elixir-autogen, elixir-format
 msgid "Lesson description"
 msgstr ""
 
-#: lib/dashboard/lessons/components/lesson_edit.ex:34
+#: lib/dashboard/lessons/components/lesson_edit.ex:35
 #, elixir-autogen, elixir-format
 msgid "Lesson name"
 msgstr ""
 
-#: lib/dashboard/lessons/components/lesson_edit.ex:69
+#: lib/dashboard/lessons/components/lesson_edit.ex:70
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Lesson updated successfully!"
 msgstr ""
@@ -510,8 +512,7 @@ msgstr ""
 msgid "Drag the steps to change their order:"
 msgstr ""
 
-#: lib/dashboard/courses/course_view.ex:39
-#: lib/dashboard/lessons/components/lesson_switch.ex:35
+#: lib/content/content_context.ex:386
 #: lib/dashboard/lessons/components/step_switch.ex:47
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Untitled step"
@@ -522,7 +523,7 @@ msgstr ""
 msgid "A lesson has multiple steps. Use them to tell a story, explain a concept or ask a question. Keep them short and simple."
 msgstr ""
 
-#: lib/dashboard/lessons/lesson_view.html.heex:39
+#: lib/dashboard/lessons/lesson_view.html.heex:47
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Add image to step"
 msgstr ""
@@ -567,7 +568,7 @@ msgstr ""
 msgid "Could not update course!"
 msgstr ""
 
-#: lib/dashboard/lessons/lesson_view.html.heex:50
+#: lib/dashboard/lessons/lesson_view.html.heex:58
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Your image should be 64x64px (or use a 1:1 proportion)."
 msgstr ""
@@ -584,7 +585,7 @@ msgstr ""
 msgid "Manage school"
 msgstr ""
 
-#: lib/dashboard/lessons/lesson_view.html.heex:40
+#: lib/dashboard/lessons/lesson_view.html.heex:48
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Your image should be 250x250px (or use a 1:1 proportion)."
 msgstr ""
@@ -594,7 +595,7 @@ msgstr ""
 msgid "Create a lesson"
 msgstr ""
 
-#: lib/dashboard/lessons/components/lesson_edit.ex:27
+#: lib/dashboard/lessons/components/lesson_edit.ex:28
 #, elixir-autogen, elixir-format
 msgid "All content from this lesson will be deleted. This action cannot be undone."
 msgstr ""
@@ -602,4 +603,14 @@ msgstr ""
 #: lib/dashboard/lessons/components/lesson_edit.ex:14
 #, elixir-autogen, elixir-format
 msgid "Edit lesson"
+msgstr ""
+
+#: lib/layouts/menu_desktop.ex:51
+#, elixir-autogen, elixir-format, fuzzy
+msgid "Course page"
+msgstr ""
+
+#: lib/layouts/menu_desktop.ex:58
+#, elixir-autogen, elixir-format, fuzzy
+msgid "Lesson editor"
 msgstr ""

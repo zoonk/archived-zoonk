@@ -450,26 +450,26 @@ defmodule Uneebee.OrganizationsTest do
       user1 = user_fixture()
       user2 = user_fixture()
 
-      school_user_fixture(%{user: user2, school: school1})
-      school_user_fixture(%{user: user1, school: school2})
+      school_user = school_user_fixture(%{user: user1, school: school1})
+      school_user_fixture(%{user: user2, school: school2})
 
-      course1 = course_fixture(%{school_id: school1.id, user: user1})
-      course_user1 = course_user_fixture(%{course_id: course1.id, user: user2})
+      course1 = course_fixture(%{school_id: school1.id})
+      course_user_fixture(%{course_id: course1.id, user: user1})
+      course_user_fixture(%{course_id: course1.id, user: user2})
 
-      course2 = course_fixture(%{school_id: school2.id, user: user1})
+      course2 = course_fixture(%{school_id: school2.id})
+      course_user_fixture(%{course_id: course2.id, user: user1})
 
       # Makes sure the course user actually exists to avoid false positives.
       assert Content.get_course_user_by_id(course1.id, user1.id) != nil
       assert Content.get_course_user_by_id(course1.id, user2.id) != nil
-
-      school_user = Organizations.get_school_user(school1.slug, user1.username)
 
       assert {:ok, _deleted} = Organizations.delete_school_user(school_user.id)
       assert Organizations.get_school_user(school1.slug, user1.username) == nil
       assert Content.get_course_user_by_id(course1.id, user1.id) == nil
 
       # Other course users should not be deleted.
-      assert Content.get_course_user_by_id(course1.id, user2.id) == course_user1
+      assert Content.get_course_user_by_id(course1.id, user2.id) != nil
 
       # Should not delete course users from other schools.
       assert Content.get_course_user_by_id(course2.id, user1.id) != nil

@@ -48,7 +48,14 @@ defmodule UneebeeWeb.Components.Layouts.MenuDesktop do
             :if={course_view?(@active_page)}
             navigate={~p"/dashboard/c/#{@course.slug}"}
             active={@active_page == :dashboard_courseview}
-            title={dgettext("courses", "Course page")}
+            title={dgettext("orgs", "Course page")}
+          />
+
+          <.sub_menu
+            :if={course_view?(@active_page)}
+            navigate={~p"/dashboard/c/#{@course.slug}/l/#{@first_lesson_id}/s/1"}
+            active={@active_page == :dashboard_lessonview}
+            title={dgettext("orgs", "Lesson editor")}
           />
 
           <.sub_menu
@@ -91,25 +98,6 @@ defmodule UneebeeWeb.Components.Layouts.MenuDesktop do
             navigate={~p"/dashboard/c/#{@course.slug}/edit/delete"}
             active={@active_page == :dashboard_courseedit_delete}
             title={dgettext("courses", "Delete course")}
-          />
-        </:sub_menus>
-      </.menu_item>
-
-      <.menu_item
-        :if={lesson_view?(@active_page)}
-        navigate={~p"/dashboard/c/#{@course.slug}/l/#{@lesson.id}/s/1"}
-        icon="tabler-notes"
-        active={lesson_view?(@active_page)}
-        title={dgettext("courses", "Manage lesson")}
-      >
-        <:sub_menus>
-          <.sub_menu :if={lesson_view?(@active_page)} navigate={~p"/dashboard/c/#{@course.slug}"} active={false} title={dgettext("courses", "All lessons")} />
-
-          <.sub_menu
-            :if={lesson_view?(@active_page)}
-            navigate={~p"/dashboard/c/#{@course.slug}/l/#{@lesson.id}/s/1"}
-            active={@active_page == :dashboard_lessonview}
-            title={dgettext("courses", "Content")}
           />
         </:sub_menus>
       </.menu_item>

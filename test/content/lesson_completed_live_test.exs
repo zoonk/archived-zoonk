@@ -76,8 +76,7 @@ defmodule UneebeeWeb.LessonCompletedLiveTest do
       refute has_element?(lv, "#medal-badge")
     end
 
-    test "display a trophy for completing a course", %{conn: conn, course: course, user: user} do
-      lesson = lesson_fixture(%{course_id: course.id})
+    test "display a trophy for completing a course", %{conn: conn, course: course, user: user, lesson: lesson} do
       Content.add_user_lesson(%{user_id: user.id, lesson_id: lesson.id, attempts: 1, correct: 7, total: 10})
 
       {:ok, lv, _html} = live(conn, ~p"/c/#{course.slug}/#{lesson.id}/completed")

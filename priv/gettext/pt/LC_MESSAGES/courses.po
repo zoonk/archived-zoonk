@@ -21,11 +21,6 @@ msgstr "Uma solicitação de matrícula foi enviada ao professor do curso."
 msgid "Advanced"
 msgstr "Avançado"
 
-#: lib/layouts/menu_desktop.ex:106
-#, elixir-autogen, elixir-format
-msgid "All lessons"
-msgstr "Todas as aulas"
-
 #: lib/content/course_live/lesson_completed.html.heex:34
 #, elixir-autogen, elixir-format
 msgid "Back to the course"
@@ -42,12 +37,7 @@ msgstr "Iniciante"
 msgid "Confirming..."
 msgstr "Confirmando..."
 
-#: lib/layouts/menu_desktop.ex:112
-#, elixir-autogen, elixir-format
-msgid "Content"
-msgstr "Conteúdo"
-
-#: lib/layouts/menu_desktop.ex:93
+#: lib/layouts/menu_desktop.ex:100
 #, elixir-autogen, elixir-format
 msgid "Delete course"
 msgstr "Apagar curso"
@@ -86,11 +76,6 @@ msgstr "Ilustração de um alienígena verde"
 #, elixir-autogen, elixir-format
 msgid "Intermediate"
 msgstr "Intermediário"
-
-#: lib/layouts/menu_desktop.ex:103
-#, elixir-autogen, elixir-format
-msgid "Manage lesson"
-msgstr "Gereciar aula"
 
 #: lib/content/course_live/lesson_play.html.heex:58
 #: lib/content/course_live/lesson_play.html.heex:73
@@ -152,11 +137,6 @@ msgstr "Boa!"
 #, elixir-autogen, elixir-format
 msgid "You got %{correct} out of %{total} answers right."
 msgstr "Você acertou %{correct} de %{total} respostas."
-
-#: lib/layouts/menu_desktop.ex:51
-#, elixir-autogen, elixir-format, fuzzy
-msgid "Course page"
-msgstr "Página do curso"
 
 #: lib/content/course_live/course_view.html.heex:39
 #, elixir-autogen, elixir-format, fuzzy

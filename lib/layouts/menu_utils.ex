@@ -17,13 +17,13 @@ defmodule UneebeeWeb.Layouts.MenuUtils do
 
   @spec course?(atom()) :: boolean()
   def course?(active_page) do
-    active_page |> Atom.to_string() |> String.starts_with?("dashboard_course")
+    course_view? = active_page |> Atom.to_string() |> String.starts_with?("dashboard_course")
+    course_view? or lesson_view?(active_page)
   end
 
   @spec course_view?(atom()) :: boolean()
   def course_view?(active_page) do
-    view? = active_page |> Atom.to_string() |> String.starts_with?("dashboard_courseview")
-    view? or course_edit?(active_page) or course_user_list?(active_page) or course_student_view?(active_page)
+    course?(active_page) and active_page != :dashboard_coursenew
   end
 
   @spec lesson_view?(atom()) :: boolean()
@@ -41,17 +41,5 @@ defmodule UneebeeWeb.Layouts.MenuUtils do
   @spec show_menu?(atom()) :: boolean()
   def show_menu?(active_page) do
     active_page not in [:lessonplay, :lessoncompleted]
-  end
-
-  defp course_user_list?(active_page) do
-    active_page |> Atom.to_string() |> String.starts_with?("dashboard_courseuserlist")
-  end
-
-  defp course_student_view?(active_page) do
-    active_page |> Atom.to_string() |> String.starts_with?("dashboard_coursestudentview")
-  end
-
-  defp course_edit?(active_page) do
-    active_page |> Atom.to_string() |> String.starts_with?("dashboard_courseedit")
   end
 end

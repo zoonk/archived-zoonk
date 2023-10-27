@@ -52,7 +52,7 @@ defmodule UneebeeWeb.DashboardLessonViewLiveTest do
 
       {:ok, lv, _html} = live(conn, ~p"/dashboard/c/#{course.slug}/l/#{lesson.id}/s/1")
 
-      assert has_element?(lv, ~s|li[aria-current=page] span:fl-icontains("content")|)
+      assert has_element?(lv, ~s|li[aria-current=page] span:fl-icontains("lesson editor")|)
 
       result = lv |> element("button", "Publish") |> render_click()
       assert result =~ "Unpublish"
@@ -67,7 +67,7 @@ defmodule UneebeeWeb.DashboardLessonViewLiveTest do
 
       {:ok, lv, _html} = live(conn, ~p"/dashboard/c/#{course.slug}/l/#{lesson.id}/s/1")
 
-      assert has_element?(lv, ~s|li[aria-current=page] span:fl-icontains("content")|)
+      assert has_element?(lv, ~s|li[aria-current=page] span:fl-icontains("lesson editor")|)
 
       result = lv |> element("button", "Unpublish") |> render_click()
       assert result =~ "Publish"
@@ -96,10 +96,7 @@ defmodule UneebeeWeb.DashboardLessonViewLiveTest do
       assert has_element?(updated_lv, "option[selected]", lesson2.name)
     end
 
-    test "creates a new lesson", %{conn: conn, course: course} do
-      lesson = lesson_fixture(%{course_id: course.id})
-      lesson_step_fixture(%{lesson: lesson, order: 1})
-
+    test "creates a new lesson", %{conn: conn, course: course, lesson: lesson} do
       {:ok, lv, _html} = live(conn, ~p"/dashboard/c/#{course.slug}/l/#{lesson.id}/s/1")
 
       {:ok, updated_lv, _html} =
@@ -135,51 +132,39 @@ defmodule UneebeeWeb.DashboardLessonViewLiveTest do
       assert_raise Ecto.NoResultsError, fn -> Uneebee.Repo.get!(LessonStep, lesson_step.id) end
     end
 
-    test "deletes a lesson", %{conn: conn, course: course} do
-      lesson1 = lesson_fixture(%{course_id: course.id, order: 1})
+    test "deletes a lesson", %{conn: conn, course: course, lesson: lesson1} do
       lesson2 = lesson_fixture(%{course_id: course.id, order: 2})
       lesson3 = lesson_fixture(%{course_id: course.id, order: 3})
       lesson4 = lesson_fixture(%{course_id: course.id, order: 4})
       lesson5 = lesson_fixture(%{course_id: course.id, order: 5})
-      lesson_step_fixture(%{lesson_id: lesson1.id, order: 1, content: "step lesson 1"})
       lesson_step_fixture(%{lesson_id: lesson2.id, order: 1, content: "step lesson 2"})
       lesson_step_fixture(%{lesson_id: lesson3.id, order: 1, content: "step lesson 3"})
       lesson_step_fixture(%{lesson_id: lesson4.id, order: 1, content: "step lesson 4"})
       lesson_step_fixture(%{lesson_id: lesson5.id, order: 1, content: "step lesson 5"})
 
-      {:ok, lv, _html} = live(conn, ~p"/dashboard/c/#{course.slug}/l/#{lesson1.id}/s/1")
+      assert Content.count_lessons(course.id) == 5
 
-      assert has_element?(lv, ~s|a span:fl-contains("step lesson 1")|)
-      refute has_element?(lv, ~s|a span:fl-contains("step lesson 2")|)
+      {:ok, lv, _html} = live(conn, ~p"/dashboard/c/#{course.slug}/l/#{lesson2.id}/s/1")
+
+      assert has_element?(lv, ~s|a span:fl-contains("step lesson 2")|)
+      refute has_element?(lv, ~s|a span:fl-contains("step lesson 3")|)
 
       assert {:ok, updated_lv, _html} =
                lv
                |> element("button", "Delete lesson")
                |> render_click()
-               |> follow_redirect(conn, ~p"/dashboard/c/#{course.slug}/l/#{lesson2.id}/s/1")
+               |> follow_redirect(conn, ~p"/dashboard/c/#{course.slug}/l/#{lesson1.id}/s/1")
 
-      assert has_element?(updated_lv, ~s|a span:fl-contains("step lesson 2")|)
-      refute has_element?(updated_lv, ~s|a span:fl-contains("step lesson 1")|)
+      refute has_element?(updated_lv, ~s|a span:fl-contains("step lesson 2")|)
 
-      assert_raise Ecto.NoResultsError, fn -> Content.get_lesson!(lesson1.id) end
+      assert_raise Ecto.NoResultsError, fn -> Content.get_lesson!(lesson2.id) end
       assert Content.count_lessons(course.id) == 4
     end
 
-    test "redirects to the course view when deleting the only lesson", %{conn: conn, course: course} do
-      lesson = lesson_fixture(%{course_id: course.id, order: 1})
-      lesson_step_fixture(%{lesson_id: lesson.id, order: 1})
-
+    test "does not allow to delete the only lesson", %{conn: conn, course: course, lesson: lesson} do
       {:ok, lv, _html} = live(conn, ~p"/dashboard/c/#{course.slug}/l/#{lesson.id}/s/1")
 
-      assert {:ok, updated_lv, _html} =
-               lv
-               |> element("button", "Delete lesson")
-               |> render_click()
-               |> follow_redirect(conn, ~p"/dashboard/c/#{course.slug}")
-
-      assert has_element?(updated_lv, ~s|button:fl-icontains("+ Lesson")|)
-
-      assert_raise Ecto.NoResultsError, fn -> Content.get_lesson!(lesson.id) end
+      refute has_element?(lv, ~s|button:fl-icontains("delete lesson")|)
     end
 
     test "hides the remove step button when it's the only step", %{conn: conn, course: course} do
@@ -386,7 +371,7 @@ defmodule UneebeeWeb.DashboardLessonViewLiveTest do
 
       {:ok, updated_lv, _html} =
         lv
-        |> element("a", "Cover")
+        |> element("a#lesson-cover-link", "Cover")
         |> render_click()
         |> follow_redirect(conn, ~p"/dashboard/c/#{course.slug}/l/#{lesson.id}/s/2/cover")
 

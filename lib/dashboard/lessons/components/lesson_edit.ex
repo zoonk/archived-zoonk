@@ -14,12 +14,13 @@ defmodule UneebeeWeb.Components.Dashboard.LessonEdit do
           <%= dgettext("orgs", "Edit lesson") %>
         </.link_button>
 
-        <.link_button icon="tabler-photo" color={:info_light} navigate={~p"/dashboard/c/#{@course.slug}/l/#{@lesson.id}/s/#{@step_order}/cover"}>
+        <.link_button id="lesson-cover-link" icon="tabler-photo" color={:info_light} navigate={~p"/dashboard/c/#{@course.slug}/l/#{@lesson.id}/s/#{@step_order}/cover"}>
           <%= dgettext("orgs", "Cover") %>
         </.link_button>
       </div>
 
       <.button
+        :if={@allow_delete}
         icon="tabler-trash"
         phx-click="delete-lesson"
         color={:alert}
@@ -91,6 +92,5 @@ defmodule UneebeeWeb.Components.Dashboard.LessonEdit do
     end
   end
 
-  defp lesson_link(course, nil, _order), do: ~p"/dashboard/c/#{course.slug}"
   defp lesson_link(course, lesson, order), do: ~p"/dashboard/c/#{course.slug}/l/#{lesson.id}/s/#{order}"
 end

@@ -35,9 +35,7 @@ defmodule UneebeeWeb.Live.Dashboard.CourseView do
     }
 
     case Content.create_lesson(attrs) do
-      {:ok, lesson} ->
-        Content.create_lesson_step(%{lesson_id: lesson.id, order: 1, content: dgettext("orgs", "Untitled step")})
-
+      {:ok, _lesson} ->
         {:noreply, push_navigate(socket, to: ~p"/dashboard/c/#{course.slug}")}
 
       {:error, _changeset} ->

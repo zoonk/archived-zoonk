@@ -50,6 +50,9 @@ defmodule Uneebee.ContentTest do
       assert course.name == attrs.name
       assert course.school_id == attrs.school_id
       assert course.slug == attrs.slug
+
+      # Should automatically create a lesson
+      assert Content.count_lessons(course.id) == 1
     end
 
     test "returns an error if the slug already exists on the same school" do
@@ -345,7 +348,7 @@ defmodule Uneebee.ContentTest do
       teacher = user_fixture()
       course = course_fixture(%{user: teacher})
 
-      course_user1 = Content.get_course_user_by_id(course.id, teacher.id, preload: :user)
+      course_user1 = course_user_fixture(%{role: :teacher, course: course, preload: :user})
       course_user2 = course_user_fixture(%{role: :teacher, course: course, preload: :user})
       course_user3 = course_user_fixture(%{role: :teacher, course: course, preload: :user})
       course_user_fixture(%{role: :student, course: course})
@@ -423,6 +426,9 @@ defmodule Uneebee.ContentTest do
       assert {:ok, %Lesson{} = lesson} = Content.create_lesson(attrs)
       assert lesson.name == attrs.name
       assert lesson.course_id == attrs.course_id
+
+      # Should automatically create a lesson step
+      assert Content.count_lesson_steps(lesson.id) == 1
     end
 
     test "returns an error changeset" do
@@ -451,21 +457,18 @@ defmodule Uneebee.ContentTest do
   describe "delete_lesson/1" do
     test "deletes a lesson" do
       lesson = lesson_fixture()
-      assert {:ok, %Lesson{}} = Content.delete_lesson(lesson)
-      assert_raise Ecto.NoResultsError, fn -> Content.get_lesson!(lesson.id) end
-    end
-
-    test "deletes all lesson steps" do
-      lesson = lesson_fixture()
       lesson_step_fixture(%{lesson: lesson, order: 1})
+      lesson_fixture(%{course_id: lesson.course_id})
 
       assert Content.get_lesson_step_by_order(lesson, 1)
-      Content.delete_lesson(lesson)
+      assert {:ok, %Lesson{}} = Content.delete_lesson(lesson)
+      assert_raise Ecto.NoResultsError, fn -> Content.get_lesson!(lesson.id) end
       refute Content.get_lesson_step_by_order(lesson, 1)
     end
 
     test "deletes all user lessons" do
       lesson = lesson_fixture()
+      lesson_fixture(%{course_id: lesson.course_id})
       user = user_fixture()
       Content.add_user_lesson(%{attempts: 1, correct: 1, total: 1, user_id: user.id, lesson_id: lesson.id})
 
@@ -476,6 +479,7 @@ defmodule Uneebee.ContentTest do
 
     test "deletes all user selections" do
       lesson = lesson_fixture()
+      lesson_fixture(%{course_id: lesson.course_id})
       user = user_fixture()
       lesson_step = lesson_step_fixture(%{lesson: lesson})
       step_option = step_option_fixture(%{lesson_step: lesson_step})
@@ -489,6 +493,7 @@ defmodule Uneebee.ContentTest do
     test "deletes all medals" do
       user = user_fixture()
       lesson = lesson_fixture()
+      lesson_fixture(%{course_id: lesson.course_id})
       user_medal_fixture(%{lesson: lesson, user: user})
 
       assert Gamification.count_user_medals(user.id) == 1
@@ -508,6 +513,14 @@ defmodule Uneebee.ContentTest do
       assert Content.get_lesson!(lesson1.id).order == 1
       assert Content.get_lesson!(lesson3.id).order == 2
       assert Content.get_lesson!(lesson4.id).order == 3
+    end
+
+    test "cannot delete the only lesson" do
+      lesson = lesson_fixture()
+
+      assert {:error, %Ecto.Changeset{} = changeset} = Content.delete_lesson(lesson)
+      assert "cannot delete the only lesson" in errors_on(changeset).base
+      assert Content.get_lesson!(lesson.id) == lesson
     end
   end
 
@@ -707,7 +720,7 @@ defmodule Uneebee.ContentTest do
       assert_raise Ecto.NoResultsError, fn -> Uneebee.Repo.get!(LessonStep, lesson_step.id) end
     end
 
-    test "cannot delete the last lesson step" do
+    test "cannot delete the only lesson step" do
       lesson = lesson_fixture()
       lesson_step = lesson_step_fixture(%{lesson: lesson})
 

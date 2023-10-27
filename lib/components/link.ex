@@ -37,6 +37,8 @@ defmodule UneebeeWeb.Components.Link do
   @doc """
   Renders a link but styled like a button.
   """
+  attr :id, :string, default: nil
+
   attr :color, :atom,
     default: :black,
     values: [:black, :alert, :info, :success, :warning, :black_light, :alert_light, :info_light, :success_light, :warning_light]
@@ -50,6 +52,7 @@ defmodule UneebeeWeb.Components.Link do
   def link_button(assigns) do
     ~H"""
     <.link
+      id={@id}
       class={[
         "flex justify-center items-center gap-2",
         "rounded-lg py-2 px-3 focus:outline-offset-2",

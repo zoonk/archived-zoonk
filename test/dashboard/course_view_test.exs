@@ -46,6 +46,7 @@ defmodule UneebeeWeb.DashboardCourseViewLiveTest do
 
     test "switches to a different course", %{conn: conn, school: school, course: course} do
       course2 = course_fixture(%{school_id: school.id})
+      lesson_fixture(%{course: course2})
 
       {:ok, lv, _html} = live(conn, "/dashboard/c/#{course.slug}")
 
@@ -73,7 +74,7 @@ defmodule UneebeeWeb.DashboardCourseViewLiveTest do
     test "creates a lesson", %{conn: conn, course: course} do
       {:ok, lv, _html} = live(conn, "/dashboard/c/#{course.slug}")
 
-      refute has_element?(lv, "dt", "Lesson 1")
+      refute has_element?(lv, "dt", "Lesson 2")
 
       {:ok, updated_lv, _html} =
         lv
@@ -81,7 +82,7 @@ defmodule UneebeeWeb.DashboardCourseViewLiveTest do
         |> render_click()
         |> follow_redirect(conn, ~p"/dashboard/c/#{course.slug}")
 
-      assert has_element?(updated_lv, "dt", "Lesson 1")
+      assert has_element?(updated_lv, "dt", "Lesson 2")
     end
 
     test "publishes a course", %{conn: conn, course: course} do
@@ -110,6 +111,8 @@ defmodule UneebeeWeb.DashboardCourseViewLiveTest do
       course2 = course_fixture(%{school_id: school.id})
       course3 = course_fixture(%{school_id: school.id})
       course_user_fixture(%{course: course2, user: user, role: :teacher})
+      lesson_fixture(%{course: course2})
+      lesson_fixture(%{course: course3})
 
       {:ok, lv, _html} = live(conn, "/dashboard/c/#{course.slug}")
 

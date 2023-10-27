@@ -92,14 +92,13 @@ defmodule UneebeeWeb.CourseViewLiveTest do
       refute has_element?(lv, ~s|dt span:fl-contains("#{lesson2.name}")|)
     end
 
-    test "displays the course progress", %{conn: conn, course: course, user: user} do
-      lessons = Enum.map(1..3, fn _idx -> lesson_fixture(%{course_id: course.id, published?: true}) end)
-      first_lesson = Enum.at(lessons, 0)
-      Content.add_user_lesson(%{user_id: user.id, lesson_id: first_lesson.id, attempts: 1, correct: 3, total: 4})
+    test "displays the course progress", %{conn: conn, course: course, user: user, lesson: lesson} do
+      Enum.each(1..3, fn _idx -> lesson_fixture(%{course_id: course.id, published?: true}) end)
+      Content.add_user_lesson(%{user_id: user.id, lesson_id: lesson.id, attempts: 1, correct: 3, total: 4})
 
       {:ok, lv, _html} = live(conn, "/c/#{course.slug}")
 
-      assert has_element?(lv, ~s|span:fl-contains("33%")|)
+      assert has_element?(lv, ~s|span:fl-contains("25%")|)
     end
   end
 

@@ -82,11 +82,8 @@ defmodule Uneebee.Fixtures.Content do
   """
   @spec course_fixture(map()) :: Course.t()
   def course_fixture(attrs \\ %{}) do
-    user = Map.get(attrs, :user, user_fixture())
     preload = Map.get(attrs, :preload, [])
-
-    {:ok, course} = attrs |> valid_course_attributes() |> Content.create_course(user)
-    Repo.preload(course, preload)
+    %Course{} |> Content.change_course(valid_course_attributes(attrs)) |> Repo.insert!() |> Repo.preload(preload)
   end
 
   @doc """
@@ -110,8 +107,7 @@ defmodule Uneebee.Fixtures.Content do
   @spec lesson_fixture(map()) :: Lesson.t()
   def lesson_fixture(attrs \\ %{}) do
     preload = Map.get(attrs, :preload, [])
-    {:ok, lesson} = attrs |> valid_lesson_attributes() |> Content.create_lesson()
-    Repo.preload(lesson, preload)
+    %Lesson{} |> Content.change_lesson(valid_lesson_attributes(attrs)) |> Repo.insert!() |> Repo.preload(preload)
   end
 
   @doc """

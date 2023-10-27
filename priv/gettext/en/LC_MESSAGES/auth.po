@@ -30,7 +30,7 @@ msgstr ""
 #: lib/accounts/user_live/login.html.heex:6
 #: lib/accounts/user_live/registration.html.heex:18
 #: lib/accounts/user_live/user_settings_menu.html.heex:6
-#: lib/layouts/menu_desktop.ex:127
+#: lib/layouts/menu_desktop.ex:115
 #, elixir-autogen, elixir-format
 msgid "Password"
 msgstr ""

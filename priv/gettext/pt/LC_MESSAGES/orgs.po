@@ -187,7 +187,7 @@ msgstr "A mensagem de confirmação não corresponde. Você digitou: %{confirmat
 #: lib/dashboard/lessons/components/lesson_edit.ex:18
 #: lib/dashboard/lessons/lesson_cover.ex:10
 #: lib/dashboard/lessons/lesson_cover.html.heex:1
-#: lib/dashboard/lessons/lesson_view.html.heex:56
+#: lib/dashboard/lessons/lesson_view.html.heex:64
 #, elixir-autogen, elixir-format
 msgid "Cover"
 msgstr "Capa"
@@ -234,7 +234,7 @@ msgstr "Despublicado"
 msgid "+ Lesson"
 msgstr "+ Aula"
 
-#: lib/dashboard/lessons/lesson_view.html.heex:49
+#: lib/dashboard/lessons/lesson_view.html.heex:57
 #, elixir-autogen, elixir-format
 msgid "Add image to option"
 msgstr "Adicionar imagem à alternativa"
@@ -259,7 +259,7 @@ msgstr "Marque esta alternativa se ela for a resposta correta."
 msgid "Could not add option!"
 msgstr "Não foi possível adicionar a alternativa!"
 
-#: lib/dashboard/courses/course_view.ex:60
+#: lib/dashboard/courses/course_view.ex:58
 #, elixir-autogen, elixir-format
 msgid "Could not change the lesson order!"
 msgstr "Não foi possível alterar a ordem da aula!"
@@ -269,8 +269,8 @@ msgstr "Não foi possível alterar a ordem da aula!"
 msgid "Could not change the step order!"
 msgstr "Não foi possível alterar a ordem da etapa!"
 
-#: lib/dashboard/courses/course_view.ex:44
-#: lib/dashboard/lessons/components/lesson_switch.ex:40
+#: lib/dashboard/courses/course_view.ex:42
+#: lib/dashboard/lessons/components/lesson_switch.ex:38
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Could not create lesson!"
 msgstr "Não foi possível criar a aula!"
@@ -285,7 +285,7 @@ msgstr "Não foi possível criar a etapa!"
 msgid "Could not delete course!"
 msgstr "Não foi possível excluir o curso!"
 
-#: lib/dashboard/lessons/components/lesson_edit.ex:90
+#: lib/dashboard/lessons/components/lesson_edit.ex:91
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Could not delete lesson!"
 msgstr "Não foi possível excluir a aula!"
@@ -307,7 +307,7 @@ msgstr "Não foi possível excluir a etapa!"
 msgid "Could not update cover!"
 msgstr "Não foi possível atualizar a capa!"
 
-#: lib/dashboard/lessons/components/lesson_edit.ex:75
+#: lib/dashboard/lessons/components/lesson_edit.ex:76
 #: lib/dashboard/lessons/components/lesson_publish.ex:36
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Could not update lesson!"
@@ -354,7 +354,7 @@ msgstr "Curso atualizado com sucesso!"
 msgid "Cover updated successfully!"
 msgstr "Capa atualizada com sucesso!"
 
-#: lib/dashboard/lessons/components/lesson_edit.ex:29
+#: lib/dashboard/lessons/components/lesson_edit.ex:30
 #, elixir-autogen, elixir-format
 msgid "Delete lesson"
 msgstr "Apagar aula"
@@ -364,6 +364,7 @@ msgstr "Apagar aula"
 msgid "Delete option"
 msgstr "Apagar alternativa"
 
+#: lib/content/content_context.ex:70
 #: lib/dashboard/courses/course_view.ex:34
 #: lib/dashboard/lessons/components/lesson_switch.ex:30
 #, elixir-autogen, elixir-format
@@ -401,6 +402,7 @@ msgstr "Está correto?"
 msgid "Is public?"
 msgstr "É público?"
 
+#: lib/content/content_context.ex:69
 #: lib/dashboard/courses/course_view.ex:33
 #: lib/dashboard/lessons/components/lesson_switch.ex:29
 #, elixir-autogen, elixir-format
@@ -412,17 +414,17 @@ msgstr "Aula %{order}"
 msgid "Lesson cover"
 msgstr "Capa da aula"
 
-#: lib/dashboard/lessons/components/lesson_edit.ex:35
+#: lib/dashboard/lessons/components/lesson_edit.ex:36
 #, elixir-autogen, elixir-format
 msgid "Lesson description"
 msgstr "Descrição da aula"
 
-#: lib/dashboard/lessons/components/lesson_edit.ex:34
+#: lib/dashboard/lessons/components/lesson_edit.ex:35
 #, elixir-autogen, elixir-format
 msgid "Lesson name"
 msgstr "Nome da aula"
 
-#: lib/dashboard/lessons/components/lesson_edit.ex:69
+#: lib/dashboard/lessons/components/lesson_edit.ex:70
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Lesson updated successfully!"
 msgstr "Aula atualizada com sucesso!"
@@ -510,8 +512,7 @@ msgstr "Link dos termos de uso"
 msgid "Drag the steps to change their order:"
 msgstr "Arraste as etapas para alterar a ordem:"
 
-#: lib/dashboard/courses/course_view.ex:39
-#: lib/dashboard/lessons/components/lesson_switch.ex:35
+#: lib/content/content_context.ex:386
 #: lib/dashboard/lessons/components/step_switch.ex:47
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Untitled step"
@@ -522,7 +523,7 @@ msgstr "Etapa sem título"
 msgid "A lesson has multiple steps. Use them to tell a story, explain a concept or ask a question. Keep them short and simple."
 msgstr "Uma aula tem várias etapas. Use-as para contar uma história, explicar um conceito ou fazer uma pergunta. Mantenha-os curtos e simples."
 
-#: lib/dashboard/lessons/lesson_view.html.heex:39
+#: lib/dashboard/lessons/lesson_view.html.heex:47
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Add image to step"
 msgstr "Adicionar imagem à etapa"
@@ -567,7 +568,7 @@ msgstr "Editar imagem da etapa"
 msgid "Could not update course!"
 msgstr "Não foi possível atualizar o curso!"
 
-#: lib/dashboard/lessons/lesson_view.html.heex:50
+#: lib/dashboard/lessons/lesson_view.html.heex:58
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Your image should be 64x64px (or use a 1:1 proportion)."
 msgstr "A imagem deve ter 64x64px (ou usar uma proporção de 1:1)."
@@ -584,7 +585,7 @@ msgstr "Gereciar cursos"
 msgid "Manage school"
 msgstr "Gereciar escola"
 
-#: lib/dashboard/lessons/lesson_view.html.heex:40
+#: lib/dashboard/lessons/lesson_view.html.heex:48
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Your image should be 250x250px (or use a 1:1 proportion)."
 msgstr "A imagem deve ter 250x250px (ou usar uma proporção de 1:1)."
@@ -594,7 +595,7 @@ msgstr "A imagem deve ter 250x250px (ou usar uma proporção de 1:1)."
 msgid "Create a lesson"
 msgstr "Criar uma aula"
 
-#: lib/dashboard/lessons/components/lesson_edit.ex:27
+#: lib/dashboard/lessons/components/lesson_edit.ex:28
 #, elixir-autogen, elixir-format
 msgid "All content from this lesson will be deleted. This action cannot be undone."
 msgstr "Todo o conteúdo desta aula será excluído. Esta ação não pode ser desfeita."
@@ -603,3 +604,13 @@ msgstr "Todo o conteúdo desta aula será excluído. Esta ação não pode ser d
 #, elixir-autogen, elixir-format
 msgid "Edit lesson"
 msgstr "Editar aula"
+
+#: lib/layouts/menu_desktop.ex:51
+#, elixir-autogen, elixir-format, fuzzy
+msgid "Course page"
+msgstr "Página do curso"
+
+#: lib/layouts/menu_desktop.ex:58
+#, elixir-autogen, elixir-format, fuzzy
+msgid "Lesson editor"
+msgstr "Editor de aula"

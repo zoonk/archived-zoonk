@@ -24,6 +24,8 @@ defmodule UneebeeWeb.ConnCase do
   alias Plug.Conn
   alias Uneebee.Accounts.User
   alias Uneebee.Content.Course
+  alias Uneebee.Content.Lesson
+  alias Uneebee.Content.LessonStep
   alias Uneebee.Organizations.School
 
   using do
@@ -120,7 +122,7 @@ defmodule UneebeeWeb.ConnCase do
   - Creates a course and sets it as the `conn.assigns.course` value.
   - Handles `school_user` and `course_user` permissions.
   """
-  @spec course_setup(%{conn: Conn.t()}, Keyword.t()) :: %{conn: Conn.t(), user: User.t(), school: School.t(), course: Course.t()}
+  @spec course_setup(%{conn: Conn.t()}, Keyword.t()) :: %{conn: Conn.t(), user: User.t(), school: School.t(), course: Course.t(), lesson: Lesson.t(), step: LessonStep.t()}
   def course_setup(%{conn: conn}, opts \\ []) do
     %{conn: app_conn, school: school, user: user} = app_setup(%{conn: conn}, opts)
 
@@ -129,12 +131,14 @@ defmodule UneebeeWeb.ConnCase do
     course_user_attrs = opts |> Keyword.get(:course_user, :student) |> get_user_attrs()
 
     course = course_fixture(%{school_id: school.id, public?: public_course?, published?: published_course?})
+    lesson = lesson_fixture(%{course_id: course.id})
+    step = lesson_step_fixture(%{lesson: lesson})
 
     if course_user_attrs do
       %{course: course, user: user} |> Map.merge(course_user_attrs) |> course_user_fixture()
     end
 
-    %{conn: app_conn, user: user, school: school, course: course}
+    %{conn: app_conn, user: user, school: school, course: course, lesson: lesson, step: step}
   end
 
   defp get_user_attrs(user_kind) do

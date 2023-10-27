@@ -6,6 +6,7 @@ defmodule UneebeeWeb.Plugs.Course do
 
   import Plug.Conn
 
+  alias Phoenix.Component
   alias Phoenix.Controller
   alias Phoenix.LiveView
   alias Phoenix.LiveView.Socket
@@ -59,12 +60,14 @@ defmodule UneebeeWeb.Plugs.Course do
     course = Content.get_course_by_slug!(course_slug, school.id)
     course_user = get_course_user(course, user)
     course_role = get_course_role(course_user)
+    first_lesson = Content.get_first_lesson(course)
 
     socket =
       socket
-      |> Phoenix.Component.assign(:course, course)
-      |> Phoenix.Component.assign(:course_user, course_user)
-      |> Phoenix.Component.assign(:course_role, course_role)
+      |> Component.assign(:course, course)
+      |> Component.assign(:course_user, course_user)
+      |> Component.assign(:course_role, course_role)
+      |> Component.assign(:first_lesson_id, first_lesson.id)
 
     {:cont, socket}
   end
@@ -73,7 +76,7 @@ defmodule UneebeeWeb.Plugs.Course do
 
   def on_mount(:mount_lesson, %{"lesson_id" => lesson_id}, _session, socket) do
     lesson = Content.get_lesson!(lesson_id)
-    socket = Phoenix.Component.assign(socket, :lesson, lesson)
+    socket = Component.assign(socket, :lesson, lesson)
     {:cont, socket}
   end
 

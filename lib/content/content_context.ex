@@ -62,6 +62,14 @@ defmodule Uneebee.Content do
       |> Ecto.Multi.run(:course_user, fn _repo, %{course: course} ->
         create_course_user(course, user, %{role: :teacher, approved?: true, approved_at: DateTime.utc_now(), approved_by_id: user.id})
       end)
+      |> Ecto.Multi.run(:lesson, fn _repo, %{course: course} ->
+        create_lesson(%{
+          course_id: course.id,
+          order: 1,
+          name: dgettext("orgs", "Lesson %{order}", order: 1),
+          description: dgettext("orgs", "Description for lesson %{order}. You should update this.", order: 1)
+        })
+      end)
 
     case Repo.transaction(multi) do
       {:ok, %{course: course}} -> {:ok, get_course!(course.id)}
@@ -371,7 +379,17 @@ defmodule Uneebee.Content do
   """
   @spec create_lesson(map()) :: lesson_changeset()
   def create_lesson(attrs) do
-    %Lesson{} |> change_lesson(attrs) |> Repo.insert()
+    multi =
+      Ecto.Multi.new()
+      |> Ecto.Multi.insert(:lesson, change_lesson(%Lesson{}, attrs))
+      |> Ecto.Multi.run(:lesson_step, fn _repo, %{lesson: lesson} ->
+        create_lesson_step(%{lesson_id: lesson.id, order: 1, content: dgettext("orgs", "Untitled step")})
+      end)
+
+    case Repo.transaction(multi) do
+      {:ok, %{lesson: lesson}} -> {:ok, get_lesson!(lesson.id)}
+      {:error, _failed_operation, changeset, _changes_so_far} -> {:error, changeset}
+    end
   end
 
   @doc """
@@ -403,8 +421,16 @@ defmodule Uneebee.Content do
   """
   @spec delete_lesson(Lesson.t()) :: lesson_changeset()
   def delete_lesson(%Lesson{} = lesson) do
-    lesson_count = count_lessons(lesson.course_id)
-    update_lesson_order(lesson.course_id, lesson.order - 1, lesson_count - 1)
+    delete_lesson(lesson, count_lessons(lesson.course_id))
+  end
+
+  defp delete_lesson(lesson, 1) do
+    changeset = lesson |> change_lesson() |> Ecto.Changeset.add_error(:base, dgettext("errors", "cannot delete the only lesson"))
+    {:error, changeset}
+  end
+
+  defp delete_lesson(lesson, count) do
+    update_lesson_order(lesson.course_id, lesson.order - 1, count - 1)
     Repo.delete(lesson)
   end
 
