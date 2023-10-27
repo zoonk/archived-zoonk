@@ -376,6 +376,25 @@ defmodule UneebeeWeb.DashboardLessonViewLiveTest do
       assert updated_lesson.name == attrs.name
       assert updated_lesson.description == attrs.description
     end
+
+    test "uploads a cover image", %{conn: conn, course: course} do
+      lesson = lesson_fixture(%{course_id: course.id})
+      lesson_step_fixture(%{lesson_id: lesson.id, order: 1})
+      lesson_step_fixture(%{lesson_id: lesson.id, order: 2})
+
+      {:ok, lv, _html} = live(conn, ~p"/dashboard/c/#{course.slug}/l/#{lesson.id}/s/2")
+
+      {:ok, updated_lv, _html} =
+        lv
+        |> element("a", "Cover")
+        |> render_click()
+        |> follow_redirect(conn, ~p"/dashboard/c/#{course.slug}/l/#{lesson.id}/s/2/cover")
+
+      assert_file_upload(updated_lv, "lesson_cover")
+
+      updated_lesson = Content.get_lesson!(lesson.id)
+      assert String.starts_with?(updated_lesson.cover, "/uploads")
+    end
   end
 
   defp assert_403(conn, course) do

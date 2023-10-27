@@ -111,13 +111,6 @@ defmodule UneebeeWeb.Components.Layouts.MenuDesktop do
             active={@active_page == :dashboard_lessonview}
             title={dgettext("courses", "Content")}
           />
-
-          <.sub_menu
-            :if={lesson_view?(@active_page)}
-            navigate={~p"/dashboard/c/#{@course.slug}/l/#{@lesson.id}/cover"}
-            active={@active_page == :dashboard_lessoncover}
-            title={gettext("Cover")}
-          />
         </:sub_menus>
       </.menu_item>
 

@@ -114,5 +114,23 @@ defmodule UneebeeWeb.Live.Dashboard.LessonView do
     {:noreply, socket |> assign(step_count: step_count) |> push_patch(to: step_link(course, lesson, step_count))}
   end
 
+  @impl Phoenix.LiveView
+  def handle_info({Upload, :lesson_cover, new_path}, socket) do
+    %{lesson: lesson, course: course, selected_step: step} = socket.assigns
+
+    case Content.update_lesson(lesson, %{cover: new_path}) do
+      {:ok, _updated_lesson} ->
+        socket =
+          socket
+          |> put_flash(:info, dgettext("orgs", "Cover updated successfully!"))
+          |> push_patch(to: step_link(course, lesson, step.order))
+
+        {:noreply, socket}
+
+      {:error, _changeset} ->
+        {:noreply, put_flash(socket, :error, dgettext("orgs", "Could not update cover!"))}
+    end
+  end
+
   defp step_link(course, lesson, order), do: ~p"/dashboard/c/#{course.slug}/l/#{lesson.id}/s/#{order}"
 end

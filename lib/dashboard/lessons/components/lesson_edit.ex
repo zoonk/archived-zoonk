@@ -8,10 +8,14 @@ defmodule UneebeeWeb.Components.Dashboard.LessonEdit do
   @impl Phoenix.LiveComponent
   def render(assigns) do
     ~H"""
-    <div class="mt-16 flex items-center justify-between gap-2 rounded-2xl">
-      <div>
+    <div class="mt-16 flex flex-col items-center justify-between gap-8 rounded-2xl lg:flex-row">
+      <div class="flex items-center gap-2">
         <.link_button icon="tabler-edit" color={:black_light} navigate={~p"/dashboard/c/#{@course.slug}/l/#{@lesson.id}/s/#{@step_order}/edit_step"}>
           <%= dgettext("orgs", "Edit lesson") %>
+        </.link_button>
+
+        <.link_button icon="tabler-photo" color={:info_light} navigate={~p"/dashboard/c/#{@course.slug}/l/#{@lesson.id}/s/#{@step_order}/cover"}>
+          <%= dgettext("orgs", "Cover") %>
         </.link_button>
       </div>
 

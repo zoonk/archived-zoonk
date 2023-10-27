@@ -51,3 +51,7 @@
     unstyled
   />
 </.modal>
+
+<.modal :if={@live_action == :cover} show id="cover-modal" on_cancel={JS.patch(step_link(@course, @lesson, @selected_step.order))}>
+  <.live_component module={Upload} id={:lesson_cover} current_img={@lesson.cover} unstyled label={dgettext("orgs", "Cover")} />
+</.modal>

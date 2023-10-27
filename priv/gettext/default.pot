@@ -41,7 +41,7 @@ msgstr ""
 #: lib/accounts/user_live/forgot_password.html.heex:7
 #: lib/accounts/user_live/registration.html.heex:16
 #: lib/accounts/user_live/user_settings_menu.html.heex:5
-#: lib/layouts/menu_desktop.ex:133
+#: lib/layouts/menu_desktop.ex:126
 #: lib/support/feedback_live/feedback.html.heex:12
 #, elixir-autogen, elixir-format
 msgid "Email"
@@ -52,7 +52,7 @@ msgstr ""
 #: lib/accounts/user_live/user_settings_menu.html.heex:2
 #: lib/dashboard/courses/course_edit.html.heex:4
 #: lib/dashboard/courses/course_new.html.heex:10
-#: lib/layouts/menu_desktop.ex:130
+#: lib/layouts/menu_desktop.ex:123
 #, elixir-autogen, elixir-format
 msgid "Language"
 msgstr ""
@@ -69,7 +69,7 @@ msgstr ""
 #: lib/dashboard/courses/course_edit.html.heex:33
 #: lib/dashboard/courses/course_new.html.heex:24
 #: lib/dashboard/courses/course_user_list.html.heex:62
-#: lib/dashboard/lessons/components/lesson_edit.ex:34
+#: lib/dashboard/lessons/components/lesson_edit.ex:38
 #: lib/dashboard/lessons/components/option_list.ex:83
 #: lib/dashboard/schools/school_edit.html.heex:11
 #: lib/dashboard/schools/user_list.html.heex:66
@@ -81,7 +81,7 @@ msgstr ""
 #: lib/accounts/user_live/registration.html.heex:17
 #: lib/accounts/user_live/user_settings.html.heex:12
 #: lib/accounts/user_live/user_settings_menu.html.heex:3
-#: lib/layouts/menu_desktop.ex:131
+#: lib/layouts/menu_desktop.ex:124
 #, elixir-autogen, elixir-format
 msgid "Username"
 msgstr ""
@@ -114,14 +114,14 @@ msgid "Changing..."
 msgstr ""
 
 #: lib/accounts/user_live/user_settings_menu.html.heex:7
-#: lib/layouts/menu_desktop.ex:135
+#: lib/layouts/menu_desktop.ex:128
 #, elixir-autogen, elixir-format
 msgid "Logout"
 msgstr ""
 
 #: lib/accounts/user_live/user_settings.ex:32
 #: lib/accounts/user_live/user_settings_menu.ex:7
-#: lib/layouts/menu_desktop.ex:128
+#: lib/layouts/menu_desktop.ex:121
 #: lib/layouts/menu_mobile.ex:68
 #, elixir-autogen, elixir-format
 msgid "Settings"
@@ -139,7 +139,7 @@ msgstr ""
 
 #: lib/accounts/user_live/user_settings.html.heex:17
 #: lib/components/upload.ex:54
-#: lib/dashboard/lessons/components/lesson_edit.ex:35
+#: lib/dashboard/lessons/components/lesson_edit.ex:39
 #: lib/dashboard/lessons/components/option_list.ex:83
 #: lib/dashboard/schools/school_edit.html.heex:11
 #, elixir-autogen, elixir-format
@@ -147,7 +147,7 @@ msgid "Save"
 msgstr ""
 
 #: lib/accounts/user_live/user_settings_menu.html.heex:4
-#: lib/layouts/menu_desktop.ex:132
+#: lib/layouts/menu_desktop.ex:125
 #: lib/support/feedback_live/feedback.html.heex:11
 #, elixir-autogen, elixir-format
 msgid "Name"
@@ -208,7 +208,7 @@ msgid "Confirm"
 msgstr ""
 
 #: lib/content/course_live/course_list.ex:17
-#: lib/layouts/menu_desktop.ex:125
+#: lib/layouts/menu_desktop.ex:118
 #: lib/layouts/menu_mobile.ex:44
 #, elixir-autogen, elixir-format
 msgid "Courses"
@@ -216,7 +216,6 @@ msgstr ""
 
 #: lib/content/course_live/course_view.html.heex:2
 #: lib/layouts/menu_desktop.ex:79
-#: lib/layouts/menu_desktop.ex:119
 #, elixir-autogen, elixir-format
 msgid "Cover"
 msgstr ""
@@ -238,7 +237,7 @@ msgid "Locked"
 msgstr ""
 
 #: lib/content/course_live/my_courses.ex:17
-#: lib/layouts/menu_desktop.ex:124
+#: lib/layouts/menu_desktop.ex:117
 #: lib/layouts/menu_mobile.ex:40
 #, elixir-autogen, elixir-format
 msgid "My courses"
@@ -265,7 +264,7 @@ msgstr ""
 msgid "Close"
 msgstr ""
 
-#: lib/layouts/menu_desktop.ex:126
+#: lib/layouts/menu_desktop.ex:119
 #: lib/support/feedback_live/feedback.ex:15
 #, elixir-autogen, elixir-format
 msgid "Feedback"

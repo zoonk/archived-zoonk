@@ -184,8 +184,10 @@ msgid "Confirmation message does not match. You typed: %{confirmation} but you n
 msgstr "A mensagem de confirmação não corresponde. Você digitou: %{confirmation} mas precisa digitar %{message}."
 
 #: lib/dashboard/courses/course_edit.html.heex:1
+#: lib/dashboard/lessons/components/lesson_edit.ex:18
 #: lib/dashboard/lessons/lesson_cover.ex:10
 #: lib/dashboard/lessons/lesson_cover.html.heex:1
+#: lib/dashboard/lessons/lesson_view.html.heex:56
 #, elixir-autogen, elixir-format
 msgid "Cover"
 msgstr "Capa"
@@ -283,7 +285,7 @@ msgstr "Não foi possível criar a etapa!"
 msgid "Could not delete course!"
 msgstr "Não foi possível excluir o curso!"
 
-#: lib/dashboard/lessons/components/lesson_edit.ex:86
+#: lib/dashboard/lessons/components/lesson_edit.ex:90
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Could not delete lesson!"
 msgstr "Não foi possível excluir a aula!"
@@ -300,11 +302,12 @@ msgstr "Não foi possível excluir a etapa!"
 
 #: lib/dashboard/courses/course_edit.ex:78
 #: lib/dashboard/lessons/lesson_cover.ex:28
+#: lib/dashboard/lessons/lesson_view.ex:131
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Could not update cover!"
 msgstr "Não foi possível atualizar a capa!"
 
-#: lib/dashboard/lessons/components/lesson_edit.ex:71
+#: lib/dashboard/lessons/components/lesson_edit.ex:75
 #: lib/dashboard/lessons/components/lesson_publish.ex:36
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Could not update lesson!"
@@ -346,11 +349,12 @@ msgstr "Curso atualizado com sucesso!"
 
 #: lib/dashboard/courses/course_edit.ex:74
 #: lib/dashboard/lessons/lesson_cover.ex:22
+#: lib/dashboard/lessons/lesson_view.ex:125
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Cover updated successfully!"
 msgstr "Capa atualizada com sucesso!"
 
-#: lib/dashboard/lessons/components/lesson_edit.ex:25
+#: lib/dashboard/lessons/components/lesson_edit.ex:29
 #, elixir-autogen, elixir-format
 msgid "Delete lesson"
 msgstr "Apagar aula"
@@ -408,17 +412,17 @@ msgstr "Aula %{order}"
 msgid "Lesson cover"
 msgstr "Capa da aula"
 
-#: lib/dashboard/lessons/components/lesson_edit.ex:31
+#: lib/dashboard/lessons/components/lesson_edit.ex:35
 #, elixir-autogen, elixir-format
 msgid "Lesson description"
 msgstr "Descrição da aula"
 
-#: lib/dashboard/lessons/components/lesson_edit.ex:30
+#: lib/dashboard/lessons/components/lesson_edit.ex:34
 #, elixir-autogen, elixir-format
 msgid "Lesson name"
 msgstr "Nome da aula"
 
-#: lib/dashboard/lessons/components/lesson_edit.ex:65
+#: lib/dashboard/lessons/components/lesson_edit.ex:69
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Lesson updated successfully!"
 msgstr "Aula atualizada com sucesso!"
@@ -590,7 +594,7 @@ msgstr "A imagem deve ter 250x250px (ou usar uma proporção de 1:1)."
 msgid "Create a lesson"
 msgstr "Criar uma aula"
 
-#: lib/dashboard/lessons/components/lesson_edit.ex:23
+#: lib/dashboard/lessons/components/lesson_edit.ex:27
 #, elixir-autogen, elixir-format
 msgid "All content from this lesson will be deleted. This action cannot be undone."
 msgstr "Todo o conteúdo desta aula será excluído. Esta ação não pode ser desfeita."

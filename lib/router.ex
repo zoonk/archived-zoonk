@@ -182,12 +182,11 @@ defmodule UneebeeWeb.Router do
 
       live "/c/:course_slug/l/:lesson_id/s/:step_order", LessonView
       live "/c/:course_slug/l/:lesson_id/s/:step_order/edit_step", LessonView, :edit_step
+      live "/c/:course_slug/l/:lesson_id/s/:step_order/cover", LessonView, :cover
       live "/c/:course_slug/l/:lesson_id/s/:step_order/edit", LessonView, :edit
       live "/c/:course_slug/l/:lesson_id/s/:step_order/image", LessonView, :step_img
       live "/c/:course_slug/l/:lesson_id/s/:step_order/o/:option_id", LessonView, :option
       live "/c/:course_slug/l/:lesson_id/s/:step_order/o/:option_id/image", LessonView, :option_img
-
-      live "/c/:course_slug/l/:lesson_id/cover", LessonCover
     end
   end
 
