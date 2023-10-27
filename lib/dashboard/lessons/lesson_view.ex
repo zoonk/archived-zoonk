@@ -31,7 +31,7 @@ defmodule UneebeeWeb.Live.Dashboard.LessonView do
     %{lesson: lesson, course: course} = socket.assigns
 
     step = Content.get_lesson_step_by_order(lesson, params["step_order"])
-    lessons = Content.list_lessons(course)
+    lessons = Content.list_lessons(course.id)
 
     socket =
       socket

@@ -403,6 +403,8 @@ defmodule Uneebee.Content do
   """
   @spec delete_lesson(Lesson.t()) :: lesson_changeset()
   def delete_lesson(%Lesson{} = lesson) do
+    lesson_count = count_lessons(lesson.course_id)
+    update_lesson_order(lesson.course_id, lesson.order - 1, lesson_count - 1)
     Repo.delete(lesson)
   end
 
@@ -411,12 +413,25 @@ defmodule Uneebee.Content do
 
   ## Examples
 
-      iex> list_lessons(%Course{})
+      iex> list_lessons(course_id)
       [%Lesson{}, ...]
   """
-  @spec list_lessons(Course.t()) :: [Lesson.t()]
-  def list_lessons(%Course{} = course) do
-    Lesson |> where([l], l.course_id == ^course.id) |> order_by(asc: :order) |> Repo.all()
+  @spec list_lessons(non_neg_integer()) :: [Lesson.t()]
+  def list_lessons(course_id) do
+    Lesson |> where([l], l.course_id == ^course_id) |> order_by(asc: :order) |> Repo.all()
+  end
+
+  @doc """
+  Count how many lessons a course has.
+
+  ## Examples
+
+      iex> count_lessons(course_id)
+      1
+  """
+  @spec count_lessons(non_neg_integer()) :: non_neg_integer()
+  def count_lessons(course_id) do
+    Lesson |> where([l], l.course_id == ^course_id) |> Repo.aggregate(:count)
   end
 
   @doc """
@@ -493,16 +508,16 @@ defmodule Uneebee.Content do
 
   ## Examples
 
-      iex> update_lesson_order(%Course{}, 1, 3)
+      iex> update_lesson_order(course_id, 1, 3)
       {:ok, [%Lesson{}, ...]}
   """
-  @spec update_lesson_order(Course.t(), non_neg_integer(), non_neg_integer()) ::
+  @spec update_lesson_order(non_neg_integer(), non_neg_integer(), non_neg_integer()) ::
           {:ok, [Lesson.t()]} | {:error, [Ecto.Changeset.t()]}
-  def update_lesson_order(%Course{} = course, from_index, to_index) do
-    lessons = list_lessons(course)
+  def update_lesson_order(course_id, from_index, to_index) do
+    lessons = list_lessons(course_id)
 
     case reorder_items(lessons, from_index, to_index, &change_lesson/2) do
-      {:ok, _} -> {:ok, list_lessons(course)}
+      {:ok, _} -> {:ok, list_lessons(course_id)}
       {:error, changesets} -> {:error, changesets}
     end
   end

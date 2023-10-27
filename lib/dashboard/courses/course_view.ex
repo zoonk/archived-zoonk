@@ -9,7 +9,7 @@ defmodule UneebeeWeb.Live.Dashboard.CourseView do
   def mount(_params, _session, socket) do
     %{course: course, school: school, user_role: role, current_user: user} = socket.assigns
 
-    lessons = Content.list_lessons(course)
+    lessons = Content.list_lessons(course.id)
     courses = list_courses(school, user, role)
 
     socket =
@@ -52,7 +52,7 @@ defmodule UneebeeWeb.Live.Dashboard.CourseView do
 
   @impl Phoenix.LiveView
   def handle_event("reposition", %{"new" => new_index, "old" => old_index}, socket) when new_index != old_index do
-    case Content.update_lesson_order(socket.assigns.course, old_index, new_index) do
+    case Content.update_lesson_order(socket.assigns.course.id, old_index, new_index) do
       {:ok, lessons} ->
         {:noreply, assign(socket, :lessons, lessons)}
 

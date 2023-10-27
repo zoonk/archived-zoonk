@@ -252,9 +252,9 @@ defmodule Uneebee.ContentTest do
       course = course_fixture()
       lesson_fixture(%{course: course})
 
-      assert length(Content.list_lessons(course)) == 1
+      assert length(Content.list_lessons(course.id)) == 1
       Content.delete_course(course)
-      assert Content.list_lessons(course) == []
+      assert Content.list_lessons(course.id) == []
     end
 
     test "removes all trophies" do
@@ -495,6 +495,20 @@ defmodule Uneebee.ContentTest do
       Content.delete_lesson(lesson)
       assert Gamification.count_user_medals(user.id) == 0
     end
+
+    test "updates the order field of the remaining lessons" do
+      course = course_fixture()
+      lesson1 = lesson_fixture(%{course: course, order: 1, name: "Lesson 1"})
+      lesson2 = lesson_fixture(%{course: course, order: 2, name: "Lesson 2"})
+      lesson3 = lesson_fixture(%{course: course, order: 3, name: "Lesson 3"})
+      lesson4 = lesson_fixture(%{course: course, order: 4, name: "Lesson 4"})
+
+      Content.delete_lesson(lesson2)
+
+      assert Content.get_lesson!(lesson1.id).order == 1
+      assert Content.get_lesson!(lesson3.id).order == 2
+      assert Content.get_lesson!(lesson4.id).order == 3
+    end
   end
 
   describe "list_lessons/1" do
@@ -504,7 +518,18 @@ defmodule Uneebee.ContentTest do
       lesson2 = lesson_fixture(%{course: course, order: 3})
       lesson3 = lesson_fixture(%{course: course, order: 1})
 
-      assert Content.list_lessons(course) == [lesson3, lesson1, lesson2]
+      assert Content.list_lessons(course.id) == [lesson3, lesson1, lesson2]
+    end
+  end
+
+  describe "count_lessons/1" do
+    test "returns the number of lessons in a course" do
+      course = course_fixture()
+      lesson_fixture(%{course: course})
+      lesson_fixture(%{course: course})
+      lesson_fixture(%{course: course})
+
+      assert Content.count_lessons(course.id) == 3
     end
   end
 
@@ -609,7 +634,7 @@ defmodule Uneebee.ContentTest do
 
       Enum.each(1..6, fn order -> lesson_fixture(%{course_id: course.id, name: "Lesson #{order}", order: order}) end)
 
-      {:ok, lessons} = Content.update_lesson_order(course, 4, 1)
+      {:ok, lessons} = Content.update_lesson_order(course.id, 4, 1)
 
       assert Enum.at(lessons, 0).name == "Lesson 1"
       assert Enum.at(lessons, 1).name == "Lesson 5"
@@ -624,7 +649,7 @@ defmodule Uneebee.ContentTest do
 
       Enum.each(1..6, fn order -> lesson_fixture(%{course_id: course.id, name: "Lesson #{order}", order: order}) end)
 
-      {:ok, lessons} = Content.update_lesson_order(course, 1, 4)
+      {:ok, lessons} = Content.update_lesson_order(course.id, 1, 4)
 
       assert Enum.at(lessons, 0).name == "Lesson 1"
       assert Enum.at(lessons, 1).name == "Lesson 3"
