@@ -10,7 +10,7 @@ defmodule UneebeeWeb.Components.Layouts.MenuDesktop do
     ~H"""
     <.menu :if={show_menu?(@active_page)}>
       <:header>
-        <.gamification_menu learning_days={@learning_days} mission_progress={@mission_progress} trophies={@trophies} medals={@medals} />
+        <.gamification_menu view={:desktop} learning_days={@learning_days} mission_progress={@mission_progress} trophies={@trophies} medals={@medals} />
       </:header>
 
       <.menu_item href={~p"/"} icon="tabler-home-2" active={@active_page == :courseview} title={gettext("Home")} />

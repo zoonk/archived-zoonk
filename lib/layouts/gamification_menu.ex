@@ -8,21 +8,22 @@ defmodule UneebeeWeb.Components.Layouts.GamificationMenu do
   attr :mission_progress, :integer, required: true
   attr :trophies, :integer, required: true
   attr :medals, :integer, required: true
+  attr :view, :atom, values: [:desktop, :mobile], required: true
 
   def gamification_menu(assigns) do
     ~H"""
-    <.gamification_item id="learning-days" color={:alert} icon="tabler-calendar-heart" title={dgettext("gamification", "Learning days")} count={@learning_days} />
+    <.gamification_item id={"learning-days-#{@view}"} color={:alert} icon="tabler-calendar-heart" title={dgettext("gamification", "Learning days")} count={@learning_days} />
 
     <.link navigate={~p"/missions"}>
-      <.gamification_item id="missions" color={:info} icon="tabler-target-arrow" title={dgettext("gamification", "Missions")} count={"#{@mission_progress}%"} />
+      <.gamification_item id={"missions-#{@view}"} color={:info} icon="tabler-target-arrow" title={dgettext("gamification", "Missions")} count={"#{@mission_progress}%"} />
     </.link>
 
     <.link navigate={~p"/trophies"}>
-      <.gamification_item id="trophies" color={:gray} icon="tabler-trophy" title={dgettext("gamification", "Trophies")} count={@trophies} />
+      <.gamification_item id={"trophies-#{@view}"} color={:gray} icon="tabler-trophy" title={dgettext("gamification", "Trophies")} count={@trophies} />
     </.link>
 
     <.link navigate={~p"/medals"}>
-      <.gamification_item id="medals" color={:warning} icon="tabler-medal" title={dgettext("gamification", "Medals")} count={@medals} />
+      <.gamification_item id={"medals-#{@view}"} color={:warning} icon="tabler-medal" title={dgettext("gamification", "Medals")} count={@medals} />
     </.link>
     """
   end

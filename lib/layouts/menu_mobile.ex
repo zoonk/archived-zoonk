@@ -20,7 +20,7 @@ defmodule UneebeeWeb.Components.Layouts.MenuMobile do
     ~H"""
     <header :if={show_menu?(@active_page)} class="sticky top-0 z-50 w-full bg-white p-4 shadow lg:hidden">
       <nav class="m-auto flex max-w-3xl justify-between">
-        <.gamification_menu learning_days={@learning_days} mission_progress={@mission_progress} trophies={@trophies} medals={@medals} />
+        <.gamification_menu view={:mobile} learning_days={@learning_days} mission_progress={@mission_progress} trophies={@trophies} medals={@medals} />
       </nav>
 
       <div :if={@lessons && not dashboard?(@active_page)} class="m-auto mt-4 max-w-3xl">
