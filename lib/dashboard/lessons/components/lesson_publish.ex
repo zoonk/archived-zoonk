@@ -10,7 +10,7 @@ defmodule UneebeeWeb.Components.Dashboard.LessonPublish do
   @impl Phoenix.LiveComponent
   def render(assigns) do
     ~H"""
-    <header class="flex justify-end">
+    <div>
       <.button :if={not @lesson.published?} phx-click="toggle-status" phx-target={@myself} icon="tabler-eye" color={:success_light}>
         <%= dgettext("orgs", "Publish") %>
       </.button>
@@ -18,7 +18,7 @@ defmodule UneebeeWeb.Components.Dashboard.LessonPublish do
       <.button :if={@lesson.published?} phx-click="toggle-status" phx-target={@myself} icon="tabler-eye-off" color={:alert_light}>
         <%= dgettext("orgs", "Unpublish") %>
       </.button>
-    </header>
+    </div>
     """
   end
 

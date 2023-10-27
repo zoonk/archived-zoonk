@@ -21,7 +21,7 @@ msgstr ""
 msgid "Advanced"
 msgstr ""
 
-#: lib/layouts/menu_desktop.ex:107
+#: lib/layouts/menu_desktop.ex:106
 #, elixir-autogen, elixir-format
 msgid "All lessons"
 msgstr ""
@@ -36,23 +36,23 @@ msgstr ""
 msgid "Beginner"
 msgstr ""
 
-#: lib/content/course_live/lesson_play.html.heex:57
-#: lib/content/course_live/lesson_play.html.heex:74
+#: lib/content/course_live/lesson_play.html.heex:55
+#: lib/content/course_live/lesson_play.html.heex:72
 #, elixir-autogen, elixir-format
 msgid "Confirming..."
 msgstr ""
 
-#: lib/layouts/menu_desktop.ex:113
+#: lib/layouts/menu_desktop.ex:112
 #, elixir-autogen, elixir-format
 msgid "Content"
 msgstr ""
 
-#: lib/layouts/menu_desktop.ex:94
+#: lib/layouts/menu_desktop.ex:93
 #, elixir-autogen, elixir-format
 msgid "Delete course"
 msgstr ""
 
-#: lib/layouts/menu_desktop.ex:134
+#: lib/layouts/menu_desktop.ex:133
 #, elixir-autogen, elixir-format
 msgid "Delete lesson"
 msgstr ""
@@ -87,7 +87,7 @@ msgstr ""
 msgid "Illustration of a green alien"
 msgstr ""
 
-#: lib/layouts/menu_desktop.ex:120
+#: lib/layouts/menu_desktop.ex:119
 #, elixir-autogen, elixir-format
 msgid "Information"
 msgstr ""
@@ -97,13 +97,13 @@ msgstr ""
 msgid "Intermediate"
 msgstr ""
 
-#: lib/layouts/menu_desktop.ex:104
+#: lib/layouts/menu_desktop.ex:103
 #, elixir-autogen, elixir-format
 msgid "Manage lesson"
 msgstr ""
 
-#: lib/content/course_live/lesson_play.html.heex:60
-#: lib/content/course_live/lesson_play.html.heex:75
+#: lib/content/course_live/lesson_play.html.heex:58
+#: lib/content/course_live/lesson_play.html.heex:73
 #, elixir-autogen, elixir-format
 msgid "Next step"
 msgstr ""
@@ -163,7 +163,7 @@ msgstr ""
 msgid "You got %{correct} out of %{total} answers right."
 msgstr ""
 
-#: lib/layouts/menu_desktop.ex:52
+#: lib/layouts/menu_desktop.ex:51
 #, elixir-autogen, elixir-format
 msgid "Course page"
 msgstr ""

@@ -206,21 +206,11 @@ msgstr "Criar curso"
 msgid "Dashboard"
 msgstr "Painel de controle"
 
-#: lib/dashboard/components/course_list.ex:29
-#, elixir-autogen, elixir-format
-msgid "Draft"
-msgstr "Rascunho"
-
 #: lib/dashboard/courses/course_edit.html.heex:16
 #: lib/dashboard/courses/course_new.html.heex:13
 #, elixir-autogen, elixir-format
 msgid "Level"
 msgstr "Nível"
-
-#: lib/dashboard/components/course_list.ex:33
-#, elixir-autogen, elixir-format
-msgid "Private"
-msgstr "Privado"
 
 #: lib/dashboard/courses/course_view.html.heex:33
 #, elixir-autogen, elixir-format
@@ -242,12 +232,12 @@ msgstr "Despublicado"
 msgid "+ Lesson"
 msgstr "+ Aula"
 
-#: lib/dashboard/lessons/lesson_view.html.heex:36
+#: lib/dashboard/lessons/lesson_view.html.heex:40
 #, elixir-autogen, elixir-format
 msgid "Add image to option"
 msgstr "Adicionar imagem à alternativa"
 
-#: lib/dashboard/lessons/lesson_view.html.heex:10
+#: lib/dashboard/lessons/lesson_view.html.heex:14
 #, elixir-autogen, elixir-format
 msgid "Add option"
 msgstr "Nova alternativa"
@@ -262,7 +252,7 @@ msgstr "Todas as respostas estavam corretas."
 msgid "Check this option if this is the correct answer."
 msgstr "Marque esta alternativa se ela for a resposta correta."
 
-#: lib/dashboard/lessons/lesson_view.ex:71
+#: lib/dashboard/lessons/lesson_view.ex:78
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Could not add option!"
 msgstr "Não foi possível adicionar a alternativa!"
@@ -272,17 +262,18 @@ msgstr "Não foi possível adicionar a alternativa!"
 msgid "Could not change the lesson order!"
 msgstr "Não foi possível alterar a ordem da aula!"
 
-#: lib/dashboard/lessons/components/lesson_switch.ex:71
+#: lib/dashboard/lessons/components/step_switch.ex:71
 #, elixir-autogen, elixir-format
 msgid "Could not change the step order!"
 msgstr "Não foi possível alterar a ordem da etapa!"
 
 #: lib/dashboard/courses/course_view.ex:44
+#: lib/dashboard/lessons/components/lesson_switch.ex:40
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Could not create lesson!"
 msgstr "Não foi possível criar a aula!"
 
-#: lib/dashboard/lessons/components/lesson_switch.ex:55
+#: lib/dashboard/lessons/components/step_switch.ex:55
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Could not create step!"
 msgstr "Não foi possível criar a etapa!"
@@ -302,7 +293,7 @@ msgstr "Não foi possível excluir a aula!"
 msgid "Could not delete option!"
 msgstr "Não foi possível excluir a alternativa!"
 
-#: lib/dashboard/lessons/lesson_view.ex:56
+#: lib/dashboard/lessons/lesson_view.ex:63
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Could not delete step!"
 msgstr "Não foi possível excluir a etapa!"
@@ -320,7 +311,7 @@ msgid "Could not update lesson!"
 msgstr "Não foi possível atualizar a aula!"
 
 #: lib/dashboard/lessons/components/option_list.ex:116
-#: lib/dashboard/lessons/lesson_view.ex:99
+#: lib/dashboard/lessons/lesson_view.ex:106
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Could not update option!"
 msgstr "Não foi possível atualizar a alternativa!"
@@ -370,6 +361,7 @@ msgid "Delete option"
 msgstr "Apagar alternativa"
 
 #: lib/dashboard/courses/course_view.ex:34
+#: lib/dashboard/lessons/components/lesson_switch.ex:30
 #, elixir-autogen, elixir-format
 msgid "Description for lesson %{order}. You should update this."
 msgstr "Descrição para a aula %{order}. Você deve atualizar isso."
@@ -406,6 +398,7 @@ msgid "Is public?"
 msgstr "É público?"
 
 #: lib/dashboard/courses/course_view.ex:33
+#: lib/dashboard/lessons/components/lesson_switch.ex:29
 #, elixir-autogen, elixir-format
 msgid "Lesson %{order}"
 msgstr "Aula %{order}"
@@ -446,7 +439,7 @@ msgstr "Título da alternativa"
 msgid "Publish"
 msgstr "Publicar"
 
-#: lib/dashboard/lessons/lesson_view.html.heex:16
+#: lib/dashboard/lessons/lesson_view.html.heex:20
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Remove step"
 msgstr "Remover etapa"
@@ -457,7 +450,7 @@ msgstr "Remover etapa"
 msgid "Unpublish"
 msgstr "Despublicar"
 
-#: lib/dashboard/lessons/lesson_view.ex:64
+#: lib/dashboard/lessons/lesson_view.ex:71
 #, elixir-autogen, elixir-format
 msgid "Untitled option"
 msgstr "Alternativa sem título"
@@ -508,13 +501,14 @@ msgstr "Termos de uso"
 msgid "Terms of use URL"
 msgstr "Link dos termos de uso"
 
-#: lib/dashboard/lessons/components/lesson_switch.ex:19
+#: lib/dashboard/lessons/components/step_switch.ex:19
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Drag the steps to change their order:"
 msgstr "Arraste as etapas para alterar a ordem:"
 
 #: lib/dashboard/courses/course_view.ex:39
-#: lib/dashboard/lessons/components/lesson_switch.ex:47
+#: lib/dashboard/lessons/components/lesson_switch.ex:35
+#: lib/dashboard/lessons/components/step_switch.ex:47
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Untitled step"
 msgstr "Etapa sem título"
@@ -524,7 +518,7 @@ msgstr "Etapa sem título"
 msgid "A lesson has multiple steps. Use them to tell a story, explain a concept or ask a question. Keep them short and simple."
 msgstr "Uma aula tem várias etapas. Use-as para contar uma história, explicar um conceito ou fazer uma pergunta. Mantenha-os curtos e simples."
 
-#: lib/dashboard/lessons/lesson_view.html.heex:26
+#: lib/dashboard/lessons/lesson_view.html.heex:30
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Add image to step"
 msgstr "Adicionar imagem à etapa"
@@ -534,7 +528,7 @@ msgstr "Adicionar imagem à etapa"
 msgid "Click to add an image to this step."
 msgstr "Clique para adicionar uma imagem a esta etapa."
 
-#: lib/dashboard/lessons/lesson_view.ex:84
+#: lib/dashboard/lessons/lesson_view.ex:91
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Could not update image!"
 msgstr "Não foi possível atualizar a imagem!"
@@ -569,7 +563,7 @@ msgstr "Editar imagem da etapa"
 msgid "Could not update course!"
 msgstr "Não foi possível atualizar o curso!"
 
-#: lib/dashboard/lessons/lesson_view.html.heex:37
+#: lib/dashboard/lessons/lesson_view.html.heex:41
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Your image should be 64x64px (or use a 1:1 proportion)."
 msgstr "A imagem deve ter 64x64px (ou usar uma proporção de 1:1)."
@@ -586,7 +580,12 @@ msgstr "Gereciar cursos"
 msgid "Manage school"
 msgstr "Gereciar escola"
 
-#: lib/dashboard/lessons/lesson_view.html.heex:27
+#: lib/dashboard/lessons/lesson_view.html.heex:31
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Your image should be 250x250px (or use a 1:1 proportion)."
 msgstr "A imagem deve ter 250x250px (ou usar uma proporção de 1:1)."
+
+#: lib/dashboard/lessons/components/lesson_switch.ex:17
+#, elixir-autogen, elixir-format, fuzzy
+msgid "Create a lesson"
+msgstr "Criar uma aula"

@@ -21,7 +21,7 @@ msgstr "Uma solicitação de matrícula foi enviada ao professor do curso."
 msgid "Advanced"
 msgstr "Avançado"
 
-#: lib/layouts/menu_desktop.ex:107
+#: lib/layouts/menu_desktop.ex:106
 #, elixir-autogen, elixir-format
 msgid "All lessons"
 msgstr "Todas as aulas"
@@ -36,23 +36,23 @@ msgstr "Voltar ao curso"
 msgid "Beginner"
 msgstr "Iniciante"
 
-#: lib/content/course_live/lesson_play.html.heex:57
-#: lib/content/course_live/lesson_play.html.heex:74
+#: lib/content/course_live/lesson_play.html.heex:55
+#: lib/content/course_live/lesson_play.html.heex:72
 #, elixir-autogen, elixir-format
 msgid "Confirming..."
 msgstr "Confirmando..."
 
-#: lib/layouts/menu_desktop.ex:113
+#: lib/layouts/menu_desktop.ex:112
 #, elixir-autogen, elixir-format
 msgid "Content"
 msgstr "Conteúdo"
 
-#: lib/layouts/menu_desktop.ex:94
+#: lib/layouts/menu_desktop.ex:93
 #, elixir-autogen, elixir-format
 msgid "Delete course"
 msgstr "Apagar curso"
 
-#: lib/layouts/menu_desktop.ex:134
+#: lib/layouts/menu_desktop.ex:133
 #, elixir-autogen, elixir-format
 msgid "Delete lesson"
 msgstr "Apagar aula"
@@ -87,7 +87,7 @@ msgstr "Bom!"
 msgid "Illustration of a green alien"
 msgstr "Ilustração de um alienígena verde"
 
-#: lib/layouts/menu_desktop.ex:120
+#: lib/layouts/menu_desktop.ex:119
 #, elixir-autogen, elixir-format
 msgid "Information"
 msgstr "Informações"
@@ -97,13 +97,13 @@ msgstr "Informações"
 msgid "Intermediate"
 msgstr "Intermediário"
 
-#: lib/layouts/menu_desktop.ex:104
+#: lib/layouts/menu_desktop.ex:103
 #, elixir-autogen, elixir-format
 msgid "Manage lesson"
 msgstr "Gereciar aula"
 
-#: lib/content/course_live/lesson_play.html.heex:60
-#: lib/content/course_live/lesson_play.html.heex:75
+#: lib/content/course_live/lesson_play.html.heex:58
+#: lib/content/course_live/lesson_play.html.heex:73
 #, elixir-autogen, elixir-format
 msgid "Next step"
 msgstr "Próxima etapa"
@@ -163,7 +163,7 @@ msgstr "Boa!"
 msgid "You got %{correct} out of %{total} answers right."
 msgstr "Você acertou %{correct} de %{total} respostas."
 
-#: lib/layouts/menu_desktop.ex:52
+#: lib/layouts/menu_desktop.ex:51
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Course page"
 msgstr "Página do curso"

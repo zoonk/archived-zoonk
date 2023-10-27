@@ -1,5 +1,9 @@
-<.live_component module={LessonPublish} id={:lesson_publish} lesson={@lesson} />
-<.live_component module={LessonSwitch} id={:lesson_switch} step_count={@step_count} course={@course} lesson={@lesson} step={@selected_step} />
+<header class="flex justify-between">
+  <.live_component module={LessonSwitch} id={:lesson_switch} active={@lesson.id} lessons={@lessons} course={@course} />
+  <.live_component module={LessonPublish} id={:lesson_publish} lesson={@lesson} />
+</header>
+
+<.live_component module={StepSwitch} id={:step_switch} step_count={@step_count} course={@course} lesson={@lesson} step={@selected_step} />
 
 <div class="text-gray-dark2x card mt-4 p-4 text-sm">
   <.live_component module={StepContent} id={:step_content} action={@live_action} course={@course} lesson={@lesson} step={@selected_step} />

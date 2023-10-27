@@ -74,6 +74,41 @@ defmodule UneebeeWeb.DashboardLessonViewLiveTest do
       refute updated_lesson.published?
     end
 
+    test "switches to a different lesson", %{conn: conn, course: course} do
+      lesson1 = lesson_fixture(%{course_id: course.id})
+      lesson2 = lesson_fixture(%{course_id: course.id})
+
+      lesson_step_fixture(%{lesson: lesson1, order: 1})
+      lesson_step_fixture(%{lesson: lesson2, order: 1})
+
+      {:ok, lv, _html} = live(conn, ~p"/dashboard/c/#{course.slug}/l/#{lesson1.id}/s/1")
+
+      assert has_element?(lv, "option[selected]", lesson1.name)
+
+      {:ok, updated_lv, _html} =
+        lv
+        |> form("#select-lesson", lesson: lesson2.id)
+        |> render_change()
+        |> follow_redirect(conn, ~p"/dashboard/c/#{course.slug}/l/#{lesson2.id}/s/1")
+
+      assert has_element?(updated_lv, "option[selected]", lesson2.name)
+    end
+
+    test "creates a new lesson", %{conn: conn, course: course} do
+      lesson = lesson_fixture(%{course_id: course.id})
+      lesson_step_fixture(%{lesson: lesson, order: 1})
+
+      {:ok, lv, _html} = live(conn, ~p"/dashboard/c/#{course.slug}/l/#{lesson.id}/s/1")
+
+      {:ok, updated_lv, _html} =
+        lv
+        |> form("#select-lesson", lesson: "new-lesson")
+        |> render_change()
+        |> follow_redirect(conn)
+
+      assert has_element?(updated_lv, "option[selected]", "Lesson 2")
+    end
+
     test "renders the step list", %{conn: conn, course: course} do
       lesson = lesson_fixture(%{course_id: course.id})
       steps = Enum.map(1..3, fn i -> lesson_step_fixture(%{lesson_id: lesson.id, order: i, content: "Step #{i}"}) end)

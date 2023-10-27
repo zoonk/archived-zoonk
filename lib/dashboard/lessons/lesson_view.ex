@@ -9,6 +9,7 @@ defmodule UneebeeWeb.Live.Dashboard.LessonView do
   alias UneebeeWeb.Components.Dashboard.LessonSwitch
   alias UneebeeWeb.Components.Dashboard.OptionList
   alias UneebeeWeb.Components.Dashboard.StepContent
+  alias UneebeeWeb.Components.Dashboard.StepSwitch
   alias UneebeeWeb.Components.Upload
 
   @impl Phoenix.LiveView
@@ -16,21 +17,27 @@ defmodule UneebeeWeb.Live.Dashboard.LessonView do
     %{lesson: lesson} = socket.assigns
 
     step_count = Content.count_lesson_steps(lesson.id)
-    socket = socket |> assign(:page_title, lesson.name) |> assign(:step_count, step_count)
+
+    socket =
+      socket
+      |> assign(:page_title, lesson.name)
+      |> assign(:step_count, step_count)
 
     {:ok, socket}
   end
 
   @impl Phoenix.LiveView
   def handle_params(params, _url, socket) do
-    %{lesson: lesson} = socket.assigns
+    %{lesson: lesson, course: course} = socket.assigns
 
     step = Content.get_lesson_step_by_order(lesson, params["step_order"])
+    lessons = Content.list_lessons(course)
 
     socket =
       socket
       |> assign(:selected_step, step)
       |> get_option(params["option_id"])
+      |> assign(:lessons, lessons)
 
     {:noreply, socket}
   end
@@ -101,7 +108,7 @@ defmodule UneebeeWeb.Live.Dashboard.LessonView do
   end
 
   @impl Phoenix.LiveView
-  def handle_info({LessonSwitch, :lesson_switch, step_count}, socket) do
+  def handle_info({StepSwitch, :step_switch, step_count}, socket) do
     %{course: course, lesson: lesson} = socket.assigns
     {:noreply, socket |> assign(step_count: step_count) |> push_patch(to: step_link(course, lesson, step_count))}
   end
