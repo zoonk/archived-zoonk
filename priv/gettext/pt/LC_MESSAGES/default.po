@@ -302,8 +302,7 @@ msgid "We are always looking for ways to improve our app. Please send us your fe
 msgstr "Estamos sempre procurando maneiras de melhorar nosso aplicativo. Por favor, nos envie sua opinião."
 
 #: lib/dashboard/lessons/components/option_list.ex:48
-#: lib/dashboard/lessons/components/step_switch.ex:47
-#: lib/dashboard/lessons/lesson_view.html.heex:19
+#: lib/dashboard/lessons/lesson_view.html.heex:24
 #, elixir-autogen, elixir-format
 msgid "Are you sure?"
 msgstr "Tem certeza?"

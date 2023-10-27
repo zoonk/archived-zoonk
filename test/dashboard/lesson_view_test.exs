@@ -136,8 +136,14 @@ defmodule UneebeeWeb.DashboardLessonViewLiveTest do
     test "deletes a lesson", %{conn: conn, course: course} do
       lesson1 = lesson_fixture(%{course_id: course.id, order: 1})
       lesson2 = lesson_fixture(%{course_id: course.id, order: 2})
+      lesson3 = lesson_fixture(%{course_id: course.id, order: 3})
+      lesson4 = lesson_fixture(%{course_id: course.id, order: 4})
+      lesson5 = lesson_fixture(%{course_id: course.id, order: 5})
       lesson_step_fixture(%{lesson_id: lesson1.id, order: 1, content: "step lesson 1"})
       lesson_step_fixture(%{lesson_id: lesson2.id, order: 1, content: "step lesson 2"})
+      lesson_step_fixture(%{lesson_id: lesson3.id, order: 1, content: "step lesson 3"})
+      lesson_step_fixture(%{lesson_id: lesson4.id, order: 1, content: "step lesson 4"})
+      lesson_step_fixture(%{lesson_id: lesson5.id, order: 1, content: "step lesson 5"})
 
       {:ok, lv, _html} = live(conn, ~p"/dashboard/c/#{course.slug}/l/#{lesson1.id}/s/1")
 
@@ -154,6 +160,7 @@ defmodule UneebeeWeb.DashboardLessonViewLiveTest do
       refute has_element?(updated_lv, ~s|a span:fl-contains("step lesson 1")|)
 
       assert_raise Ecto.NoResultsError, fn -> Content.get_lesson!(lesson1.id) end
+      assert Content.count_lessons(course.id) == 4
     end
 
     test "redirects to the course view when deleting the only lesson", %{conn: conn, course: course} do
@@ -219,7 +226,7 @@ defmodule UneebeeWeb.DashboardLessonViewLiveTest do
 
       lv |> element("a", "Click to add an image to this step.") |> render_click()
 
-      refute has_element?(lv, "button", "Remove")
+      refute has_element?(lv, "#remove-step_img_upload")
       assert_file_upload(lv, "step_img_upload")
 
       updated_step = Content.get_lesson_step_by_order(lesson, 1)
@@ -232,7 +239,7 @@ defmodule UneebeeWeb.DashboardLessonViewLiveTest do
 
       {:ok, lv, _html} = live(conn, ~p"/dashboard/c/#{course.slug}/l/#{lesson.id}/s/1/image")
 
-      lv |> element("button", "Remove") |> render_click()
+      lv |> element("#remove-step_img_upload") |> render_click()
 
       updated_step = Content.get_lesson_step_by_order(lesson, 1)
       assert updated_step.image == nil

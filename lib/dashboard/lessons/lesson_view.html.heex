@@ -10,16 +10,25 @@
   <.step_image course={@course} lesson={@lesson} step={@selected_step} />
   <.live_component module={OptionList} id={:option_list} action={@live_action} option={@selected_option} course={@course} lesson={@lesson} step={@selected_step} />
 
-  <.button phx-click="add-option" phx-value-step-id={@selected_step.id} icon="tabler-layout-grid-add" color={:info_light} class="mt-4">
-    <%= dgettext("orgs", "Add option") %>
-  </.button>
+  <div class="mt-4 flex flex-col gap-8 lg:flex-row lg:justify-between">
+    <.button phx-click="add-option" phx-value-step-id={@selected_step.id} icon="tabler-layout-grid-add" color={:info_light}>
+      <%= dgettext("orgs", "Add option") %>
+    </.button>
+
+    <.button
+      :if={@step_count > 1}
+      phx-click="delete-step"
+      phx-value-step-id={@selected_step.id}
+      icon="tabler-trash-x"
+      color={:alert_light}
+      data-confirm={gettext("Are you sure?")}
+    >
+      <%= dgettext("orgs", "Remove step") %>
+    </.button>
+  </div>
 </div>
 
-<footer :if={@step_count > 1} class="mt-8">
-  <.button phx-click="delete-step" phx-value-step-id={@selected_step.id} icon="tabler-trash-x" color={:alert_light} data-confirm={gettext("Are you sure?")}>
-    <%= dgettext("orgs", "Remove step") %>
-  </.button>
-</footer>
+<.live_component module={LessonEdit} id={:lesson_edit} course={@course} lesson={@lesson} />
 
 <.modal :if={@live_action == :step_img} show id="img-step-modal" on_cancel={JS.patch(step_link(@course, @lesson, @selected_step.order))}>
   <.live_component
