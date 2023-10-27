@@ -28,7 +28,7 @@
   </div>
 </div>
 
-<.live_component module={LessonEdit} id={:lesson_edit} course={@course} lesson={@lesson} />
+<.live_component module={LessonEdit} action={@live_action} step_order={@selected_step.order} id={:lesson_edit} course={@course} lesson={@lesson} />
 
 <.modal :if={@live_action == :step_img} show id="img-step-modal" on_cancel={JS.patch(step_link(@course, @lesson, @selected_step.order))}>
   <.live_component

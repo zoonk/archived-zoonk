@@ -9,6 +9,8 @@ defmodule UneebeeWeb.DashboardLessonViewLiveTest do
   alias Uneebee.Content.CourseUtils
   alias Uneebee.Content.LessonStep
 
+  @lesson_form "#lesson-form"
+
   describe "lesson view (non-authenticated user)" do
     setup :set_school
 
@@ -348,11 +350,47 @@ defmodule UneebeeWeb.DashboardLessonViewLiveTest do
       updated_option = Content.get_step_option!(option.id)
       assert updated_option.image == nil
     end
+
+    test "edits a lesson information", %{conn: conn, course: course} do
+      lesson = lesson_fixture(%{course_id: course.id})
+      lesson_step_fixture(%{lesson_id: lesson.id, order: 1})
+      lesson_step_fixture(%{lesson_id: lesson.id, order: 2})
+
+      {:ok, lv, _html} = live(conn, ~p"/dashboard/c/#{course.slug}/l/#{lesson.id}/s/2")
+
+      {:ok, updated_lv, _html} =
+        lv
+        |> element("a", "Edit lesson")
+        |> render_click()
+        |> follow_redirect(conn, ~p"/dashboard/c/#{course.slug}/l/#{lesson.id}/s/2/edit_step")
+
+      assert_lesson_name(updated_lv)
+      assert_lesson_description(updated_lv)
+
+      attrs = %{name: "New lesson name", description: "New lesson description"}
+      updated_lv |> form(@lesson_form, lesson: attrs) |> render_submit()
+
+      assert has_element?(updated_lv, ~s|option[selected]:fl-icontains("#{attrs.name}")|)
+
+      updated_lesson = Content.get_lesson!(lesson.id)
+      assert updated_lesson.name == attrs.name
+      assert updated_lesson.description == attrs.description
+    end
   end
 
   defp assert_403(conn, course) do
     lesson = lesson_fixture(%{course_id: course.id})
     lesson_step_fixture(%{lesson: lesson, order: 1})
     assert_error_sent(403, fn -> get(conn, ~p"/dashboard/c/#{course.slug}/l/#{lesson.id}/s/1") end)
+  end
+
+  defp assert_lesson_name(lv) do
+    lv |> element(@lesson_form) |> render_change(lesson: %{name: ""})
+    assert has_element?(lv, ~s|div[phx-feedback-for="lesson[name]"] p:fl-icontains("can't be blank")|)
+  end
+
+  defp assert_lesson_description(lv) do
+    lv |> element(@lesson_form) |> render_change(lesson: %{description: ""})
+    assert has_element?(lv, ~s|div[phx-feedback-for="lesson[description]"] p:fl-icontains("can't be blank")|)
   end
 end

@@ -82,11 +82,6 @@ msgstr "Bom!"
 msgid "Illustration of a green alien"
 msgstr "Ilustração de um alienígena verde"
 
-#: lib/layouts/menu_desktop.ex:119
-#, elixir-autogen, elixir-format
-msgid "Information"
-msgstr "Informações"
-
 #: lib/content/course_utils.ex:24
 #, elixir-autogen, elixir-format
 msgid "Intermediate"

@@ -283,7 +283,7 @@ msgstr ""
 msgid "Could not delete course!"
 msgstr ""
 
-#: lib/dashboard/lessons/components/lesson_edit.ex:37
+#: lib/dashboard/lessons/components/lesson_edit.ex:86
 #, elixir-autogen, elixir-format
 msgid "Could not delete lesson!"
 msgstr ""
@@ -304,8 +304,8 @@ msgstr ""
 msgid "Could not update cover!"
 msgstr ""
 
+#: lib/dashboard/lessons/components/lesson_edit.ex:71
 #: lib/dashboard/lessons/components/lesson_publish.ex:36
-#: lib/dashboard/lessons/lesson_edit.ex:41
 #, elixir-autogen, elixir-format
 msgid "Could not update lesson!"
 msgstr ""
@@ -350,7 +350,7 @@ msgstr ""
 msgid "Cover updated successfully!"
 msgstr ""
 
-#: lib/dashboard/lessons/components/lesson_edit.ex:20
+#: lib/dashboard/lessons/components/lesson_edit.ex:25
 #, elixir-autogen, elixir-format
 msgid "Delete lesson"
 msgstr ""
@@ -408,17 +408,17 @@ msgstr ""
 msgid "Lesson cover"
 msgstr ""
 
-#: lib/dashboard/lessons/lesson_edit.html.heex:3
+#: lib/dashboard/lessons/components/lesson_edit.ex:31
 #, elixir-autogen, elixir-format
 msgid "Lesson description"
 msgstr ""
 
-#: lib/dashboard/lessons/lesson_edit.html.heex:2
+#: lib/dashboard/lessons/components/lesson_edit.ex:30
 #, elixir-autogen, elixir-format
 msgid "Lesson name"
 msgstr ""
 
-#: lib/dashboard/lessons/lesson_edit.ex:35
+#: lib/dashboard/lessons/components/lesson_edit.ex:65
 #, elixir-autogen, elixir-format
 msgid "Lesson updated successfully!"
 msgstr ""
@@ -590,7 +590,12 @@ msgstr ""
 msgid "Create a lesson"
 msgstr ""
 
-#: lib/dashboard/lessons/components/lesson_edit.ex:18
+#: lib/dashboard/lessons/components/lesson_edit.ex:23
 #, elixir-autogen, elixir-format
 msgid "All content from this lesson will be deleted. This action cannot be undone."
+msgstr ""
+
+#: lib/dashboard/lessons/components/lesson_edit.ex:14
+#, elixir-autogen, elixir-format
+msgid "Edit lesson"
 msgstr ""
