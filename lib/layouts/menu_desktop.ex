@@ -42,7 +42,6 @@ defmodule UneebeeWeb.Components.Layouts.MenuDesktop do
         title={dgettext("orgs", "Manage courses")}
       >
         <:sub_menus>
-          <.sub_menu navigate={~p"/dashboard/courses"} active={@active_page == :dashboard_courselist} title={gettext("All courses")} />
           <.sub_menu navigate={~p"/dashboard/courses/new"} active={@active_page == :dashboard_coursenew} title={gettext("Create a course")} />
 
           <.sub_menu
