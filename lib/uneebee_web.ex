@@ -55,6 +55,7 @@ defmodule UneebeeWeb do
       use Phoenix.LiveView, layout: {UneebeeWeb.Layouts, :app}
 
       on_mount UneebeeWeb.Flash
+      on_mount UneebeeWeb.Plugs.ActivePage
 
       unquote(html_helpers())
     end

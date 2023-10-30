@@ -89,8 +89,7 @@ defmodule UneebeeWeb.Router do
         {UneebeeWeb.Plugs.School, :mount_school},
         {UneebeeWeb.Plugs.Translate, :set_locale_from_session},
         {UneebeeWeb.Plugs.Course, :mount_course},
-        {UneebeeWeb.Plugs.Course, :mount_lesson},
-        UneebeeWeb.Plugs.ActivePage
+        {UneebeeWeb.Plugs.Course, :mount_lesson}
       ] do
       live "/feedback", Feedback
 
@@ -134,8 +133,7 @@ defmodule UneebeeWeb.Router do
       on_mount: [
         {UneebeeWeb.Plugs.UserAuth, :ensure_authenticated},
         {UneebeeWeb.Plugs.School, :mount_school},
-        {UneebeeWeb.Plugs.Translate, :set_locale_from_session},
-        UneebeeWeb.Plugs.ActivePage
+        {UneebeeWeb.Plugs.Translate, :set_locale_from_session}
       ] do
       live "/", Dashboard.Home
       live "/edit/logo", Dashboard.SchoolEdit, :logo
@@ -165,8 +163,7 @@ defmodule UneebeeWeb.Router do
         {UneebeeWeb.Plugs.School, :mount_school},
         {UneebeeWeb.Plugs.Translate, :set_locale_from_session},
         {UneebeeWeb.Plugs.Course, :mount_course},
-        {UneebeeWeb.Plugs.Course, :mount_lesson},
-        UneebeeWeb.Plugs.ActivePage
+        {UneebeeWeb.Plugs.Course, :mount_lesson}
       ] do
       live "/courses/new", CourseNew
 
