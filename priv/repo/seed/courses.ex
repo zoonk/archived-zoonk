@@ -3,9 +3,11 @@ defmodule CourseSeed do
 
   alias Uneebee.Content
   alias Uneebee.Content.Course
+  alias Uneebee.Content.CourseUser
   alias Uneebee.Content.Lesson
   alias Uneebee.Content.LessonStep
   alias Uneebee.Organizations
+  alias Uneebee.Repo
 
   @courses [
     %{
@@ -109,17 +111,30 @@ defmodule CourseSeed do
   defp create_courses(attrs, slug) do
     school = Organizations.get_school_by_slug!(slug)
     teachers = Organizations.list_school_users_by_role(school, :teacher)
-    course_teacher = Enum.random(teachers)
-    attrs = Map.put(attrs, :school_id, school.id)
+    managers = Organizations.list_school_users_by_role(school, :manager)
 
-    {:ok, %Course{} = course} = Content.create_course(attrs, course_teacher.user)
+    attrs = Map.put(attrs, :school_id, school.id)
+    course = %Course{} |> Content.change_course(attrs) |> Repo.insert!()
+
+    course_teacher = Enum.random(teachers)
+
+    course_user_attrs = %{
+      course_id: course.id,
+      user_id: course_teacher.id,
+      role: :teacher,
+      approved?: true,
+      approved_at: DateTime.utc_now(),
+      approved_by_id: Enum.at(managers, 0).id
+    }
+
+    %CourseUser{} |> CourseUser.changeset(course_user_attrs) |> Repo.insert!()
 
     Enum.each(@lessons, fn lesson_attrs -> create_lessons(lesson_attrs, course) end)
   end
 
   defp create_lessons(attrs, course) do
     lesson_attrs = Map.put(attrs, :course_id, course.id)
-    {:ok, %Lesson{} = lesson} = Content.create_lesson(lesson_attrs)
+    lesson = %Lesson{} |> Content.change_lesson(lesson_attrs) |> Repo.insert!()
 
     Enum.each(@lesson_steps, fn lesson_step_attrs ->
       create_lesson_steps(lesson_step_attrs, lesson)
@@ -128,7 +143,7 @@ defmodule CourseSeed do
 
   defp create_lesson_steps(attrs, lesson) do
     lesson_step_attrs = Map.put(attrs, :lesson_id, lesson.id)
-    {:ok, %LessonStep{} = lesson_step} = Content.create_lesson_step(lesson_step_attrs)
+    lesson_step = %LessonStep{} |> Content.change_lesson_step(lesson_step_attrs) |> Repo.insert!()
 
     Enum.each(@step_options, fn step_option_attrs ->
       create_step_options(step_option_attrs, lesson_step)
