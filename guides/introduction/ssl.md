@@ -10,6 +10,8 @@ After you install `mkcert`, follow the steps below:
 
 - Create a `cert` directory under `priv`: `mkdir priv/cert`.
 - Generate a new certificate: `mkcert -key-file priv/cert/selfsigned_key.pem -cert-file priv/cert/selfsigned.pem localhost`.
+- Run `mkcert -install` to install the certificate in the system trust store.
+- You may also need to enable `Allow invalid certificates for resources loaded from localhost` on [Google Chrome flags](chrome://flags/#allow-insecure-localhost).
 - Restart your local server: `mix phx.server`. You may also need to restart your browser.
 
 Uneebee can also work as a multi-tenant app where multiple schools can use this app with their custom domain or our subdomain (i.e. `username.uneebee.test`). Therefore, it's useful to test those domains locally. You can do so by following the steps below:
