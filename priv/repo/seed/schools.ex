@@ -9,7 +9,6 @@ defmodule SchoolSeed do
       name: "UneeBee",
       custom_domain: "uneebee.test",
       email: "noreply@uneebee.com",
-      logo: "/uploads/seed/schools/uneebee.png",
       public?: true,
       slug: "uneebee",
       managers: ["einstein"],
