@@ -28,6 +28,7 @@ defmodule UneebeeWeb.Components.Input do
   attr :label, :string, default: nil, doc: "the label of the input"
   attr :value, :any, doc: "the value of the input"
   attr :helper, :string, default: nil, doc: "a helper text to be displayed with the input"
+  attr :mt, :boolean, default: true, doc: "whether to add a top margin to the input"
 
   attr :type, :string, default: "text", values: ~w(checkbox color date datetime-local email file hidden month number password
                range radio search select tel text textarea time url week)
@@ -77,7 +78,7 @@ defmodule UneebeeWeb.Components.Input do
       <select
         id={@id}
         name={@name}
-        class="border-gray-light2x text-gray-dark2x mt-1 block w-full rounded-md border bg-white focus:border-primary focus:ring-0 sm:text-sm"
+        class={["border-gray-light2x text-gray-dark2x block w-full rounded-md border bg-white focus:border-primary focus:ring-0 sm:text-sm", @mt && "mt-2"]}
         multiple={@multiple}
         {@rest}
       >
@@ -98,8 +99,9 @@ defmodule UneebeeWeb.Components.Input do
         id={@id}
         name={@name}
         class={[
-          "min-h-[6rem] py-[7px] px-[11px] mt-2 block w-full rounded-lg",
+          "min-h-[6rem] py-[7px] px-[11px] block w-full rounded-lg",
           "text-gray-dark focus:border-primary focus:ring-gray-dark/5 focus:outline-none focus:ring-4 sm:text-sm sm:leading-6",
+          @mt && "mt-2",
           @errors == [] && "border-gray-light2x focus:border-primary focus:ring-gray-dark/5",
           @errors != [] && "border-alert focus:border-alert focus:ring-alert/10"
         ]}
@@ -122,8 +124,9 @@ defmodule UneebeeWeb.Components.Input do
         id={@id}
         value={Form.normalize_value(@type, @value)}
         class={[
-          "mt-2 block w-full rounded-lg px-3 py-2",
+          "block w-full rounded-lg px-3 py-2",
           "text-gray-dark2x focus:outline-none focus:ring-4 sm:text-sm sm:leading-6",
+          @mt && "mt-2",
           @errors == [] && "border-gray-light2x focus:border-primary focus:ring-gray-dark/5",
           @errors != [] && "border-alert focus:border-alert focus:ring-alert/10"
         ]}

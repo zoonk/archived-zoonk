@@ -19,7 +19,7 @@ defmodule UneebeeWeb.Components.Layouts.MenuMobile do
   def menu_mobile(assigns) do
     ~H"""
     <header :if={show_menu?(@active_page)} class="sticky top-0 z-50 w-full bg-white p-4 shadow lg:hidden">
-      <nav class="m-auto flex max-w-3xl justify-between">
+      <nav class="m-auto flex max-w-3xl justify-around">
         <.gamification_menu view={:mobile} learning_days={@learning_days} mission_progress={@mission_progress} trophies={@trophies} medals={@medals} />
       </nav>
 
@@ -28,8 +28,8 @@ defmodule UneebeeWeb.Components.Layouts.MenuMobile do
       </div>
     </header>
 
-    <nav :if={show_menu?(@active_page)} class="border-gray-light fixed right-0 bottom-0 left-0 z-50 border-t-2 bg-white p-2 lg:hidden">
-      <ul class="m-auto flex max-w-3xl justify-between gap-2">
+    <nav :if={show_menu?(@active_page)} class="bg-white/90 fixed right-4 bottom-4 left-4 z-50 rounded-2xl p-2 shadow backdrop-blur-sm lg:hidden">
+      <ul class="m-auto flex max-w-3xl justify-around gap-2">
         <.menu_bottom_item color={:primary} active={@active_page == :courseview} icon="tabler-home-2" label={gettext("Home")} href={~p"/"} />
 
         <.menu_bottom_item
@@ -64,7 +64,7 @@ defmodule UneebeeWeb.Components.Layouts.MenuMobile do
         <.menu_bottom_item
           color={:info}
           active={@active_page == :usersettingsmenu or user_settings?(@active_page)}
-          icon="tabler-settings"
+          icon="tabler-settings-2"
           label={gettext("Settings")}
           navigate={~p"/users/settings"}
         />
@@ -81,24 +81,9 @@ defmodule UneebeeWeb.Components.Layouts.MenuMobile do
 
   defp menu_bottom_item(assigns) do
     ~H"""
-    <li
-      class={[
-        "rounded-2xl p-2",
-        @active && "bg-gray-light3x",
-        not @active && "bg-white",
-        @color == :alert && "text-alert",
-        @color == :primary && "text-primary",
-        @color == :info && "text-info",
-        @color == :success && "text-success",
-        @color == :warning && "text-warning",
-        @color == :gray && "text-gray",
-        @color == :bronze && "text-bronze"
-      ]}
-      title={@label}
-      aria-current={@active and "page"}
-    >
+    <li class={["rounded-2xl p-2", @active && "text-primary", not @active && "text-gray"]} title={@label} aria-current={@active and "page"}>
       <.link {@rest}>
-        <.icon name={@icon} title={@label} class="h-10 w-10" />
+        <.icon name={@icon} title={@label} class="h-6 w-6" />
       </.link>
     </li>
     """

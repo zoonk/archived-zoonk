@@ -33,7 +33,7 @@ defmodule UneebeeWeb.Components.Dashboard.StepSwitch do
           <%= step_order %>
         </.link>
 
-        <button :if={@step_count < 20} class="bg-gray-light3x filtered text-gray-dark2x h-10 w-10 rounded-full text-center font-black" phx-click="add-step" phx-target={@myself}>
+        <button :if={@step_count < 20} class="filtered text-gray-dark2x h-10 w-10 rounded-full bg-white text-center font-black" phx-click="add-step" phx-target={@myself}>
           +
         </button>
       </nav>

@@ -9,7 +9,7 @@
   }
 
   .card-base {
-    @apply border rounded-2xl;
+    @apply border rounded-2xl bg-white;
   }
 
   .card {

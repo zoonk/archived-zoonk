@@ -12,7 +12,7 @@ defmodule UneebeeWeb.Components.Content.LessonStep do
 
   def lesson_step(assigns) do
     ~H"""
-    <section class="bg-gray-light3x text-gray-dark2x rounded-3xl p-4">
+    <section class="text-gray-dark2x rounded-3xl bg-white p-4">
       <p class="whitespace-pre-wrap"><%= @step.content %></p>
     </section>
 

@@ -5,7 +5,7 @@
 
 <.live_component module={StepSwitch} id={:step_switch} step_count={@step_count} course={@course} lesson={@lesson} step={@selected_step} />
 
-<div class="text-gray-dark2x card mt-4 p-4 text-sm">
+<div class="text-gray-dark2x card mt-4 bg-white p-4 text-sm">
   <.live_component module={StepContent} id={:step_content} action={@live_action} course={@course} lesson={@lesson} step={@selected_step} />
   <.step_image course={@course} lesson={@lesson} step={@selected_step} />
   <.live_component module={OptionList} id={:option_list} action={@live_action} option={@selected_option} course={@course} lesson={@lesson} step={@selected_step} />

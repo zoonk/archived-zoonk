@@ -38,7 +38,7 @@ defmodule UneebeeWeb.Components.Layouts.GamificationMenu do
     ~H"""
     <span
       class={[
-        "flex items-center gap-1 text-sm font-semibold",
+        "flex items-center gap-1 text-xs font-semibold",
         @color == :alert and "text-alert",
         @color == :info and "text-info",
         @color == :warning and "text-warning",
@@ -46,7 +46,7 @@ defmodule UneebeeWeb.Components.Layouts.GamificationMenu do
       ]}
       id={@id}
     >
-      <.icon name={@icon} title={@title} /> <%= @count %>
+      <.icon name={@icon} title={@title} class="h-4 w-4" /> <%= @count %>
     </span>
     """
   end

@@ -14,7 +14,7 @@ defmodule UneebeeWeb.Components.Menu do
   def menu(assigns) do
     ~H"""
     <header class="min-w-[280px] sticky top-4 mt-4 hidden flex-col gap-4 lg:flex">
-      <nav class="flex justify-between gap-2 rounded-2xl bg-white p-4 shadow"><%= render_slot(@header) %></nav>
+      <nav class="flex justify-around gap-2 rounded-2xl bg-white p-4 shadow"><%= render_slot(@header) %></nav>
 
       <nav class="rounded-2xl bg-white shadow">
         <ul class="divide-gray-light2x flex w-full flex-col divide-y"><%= render_slot(@inner_block) %></ul>

@@ -10,7 +10,7 @@ defmodule UneebeeWeb.Components.Progress do
 
   def progress(assigns) do
     ~H"""
-    <div class="border-gray-light2x flex w-full gap-1 rounded-2xl border p-2">
+    <div class="border-gray-light2x flex w-full gap-1 rounded-2xl border bg-white p-2">
       <% total = calculate_total(@total) %>
       <% current = calculate_current(@current, @total) %>
       <% steps = Enum.map(1..total, fn order -> order end) %>

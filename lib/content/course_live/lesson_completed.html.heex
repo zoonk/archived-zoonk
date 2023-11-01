@@ -1,4 +1,4 @@
-<article class="card m-auto my-4 max-w-sm rounded-2xl bg-white">
+<article class="card m-auto my-4 max-w-sm rounded-2xl bg-white shadow">
   <div class="p-8">
     <% score = get_score(@user_lesson) %>
 
@@ -30,7 +30,7 @@
     </div>
   </div>
 
-  <.link_button color={:black} class="m-2" navigate={~p"/c/#{@course.slug}"}>
+  <.link_button color={:black} class="m-4" navigate={~p"/c/#{@course.slug}"}>
     <%= dgettext("courses", "Back to the course") %>
   </.link_button>
 </article>

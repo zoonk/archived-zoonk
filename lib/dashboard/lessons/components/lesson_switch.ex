@@ -8,7 +8,7 @@ defmodule UneebeeWeb.Components.Dashboard.LessonSwitch do
   def render(assigns) do
     ~H"""
     <form id="select-lesson" phx-change="select-lesson" phx-target={@myself}>
-      <.input type="select" name="lesson" value={@active} options={lesson_options(@lessons)} />
+      <.input type="select" name="lesson" value={@active} options={lesson_options(@lessons)} mt={false} />
     </form>
     """
   end
