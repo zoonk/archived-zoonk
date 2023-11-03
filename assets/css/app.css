@@ -4,20 +4,12 @@
 
 /* This file is for your main application CSS */
 @layer components {
-  .text-gradient {
-    @apply text-transparent bg-clip-text bg-gradient-to-br from-info via-primary to-alert;
-  }
-
-  .card-base {
-    @apply border rounded-2xl bg-white;
-  }
-
   .card {
     @apply card-base border-gray-light2x;
   }
 
   .card-with-link {
-    @apply card-base shadow-b-gray border-gray-light active:shadow-b-gray-pressed focus:outline-none hover:border-gray-dark hover:shadow-b-gray-dark focus:border-gray-dark focus:shadow-b-gray-dark;
+    @apply card-base border-gray-light;
   }
 
   .card-with-link-alert {

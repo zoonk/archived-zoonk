@@ -13,8 +13,13 @@ defmodule UneebeeWeb.Components.Content.CourseList do
 
   def course_list(assigns) do
     ~H"""
-    <dl :if={not @empty} id={@id} phx-update="stream" class="grid grid-cols-1 gap-4 sm:grid-cols-2">
-      <.link :for={{dom_id, course_data} <- @courses} id={dom_id} navigate={course_link(course_data, @my_courses)} class="card-with-link h-60 relative p-1">
+    <dl
+      :if={not @empty}
+      id={@id}
+      phx-update="stream"
+      class="grid grid-cols-1 gap-4 3xl:grid-cols-6 4xl:grid-cols-7 5xl:grid-cols-8 6xl:grid-cols-9 7xl:grid-cols-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5"
+    >
+      <.link :for={{dom_id, course_data} <- @courses} id={dom_id} navigate={course_link(course_data, @my_courses)} class="h-60 shadow hover:shadow-lg rounded-2xl relative">
         <% course = if @my_courses, do: course_data, else: course_data.data %>
         <img :if={course.cover} src={course.cover} class="h-full w-full rounded-2xl object-cover" />
         <div :if={is_nil(course.cover)} class="from-alert-light3x to-info-light3x h-full w-full rounded-2xl bg-gradient-to-br" />

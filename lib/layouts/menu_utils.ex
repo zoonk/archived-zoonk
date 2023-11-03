@@ -1,5 +1,18 @@
 defmodule UneebeeWeb.Layouts.MenuUtils do
   @moduledoc false
+  use UneebeeWeb, :html
+
+  alias Uneebee.Organizations.School
+
+  @spec school_name(School.t() | nil) :: String.t()
+  def school_name(nil), do: "UneeBee"
+  def school_name(%School{} = school), do: school.name
+
+  @spec school_logo(School.t() | nil) :: String.t()
+  def school_logo(nil), do: ~p"/images/logo.svg"
+  def school_logo(%School{logo: nil}), do: school_logo(nil)
+  def school_logo(%School{} = school), do: school.logo
+
   @spec user_settings?(atom()) :: boolean()
   def user_settings?(active_page) do
     active_page |> Atom.to_string() |> String.starts_with?("usersettings")
@@ -38,8 +51,8 @@ defmodule UneebeeWeb.Layouts.MenuUtils do
     active_page |> Atom.to_string() |> String.starts_with?("dashboard")
   end
 
-  @spec show_menu?(atom()) :: boolean()
-  def show_menu?(active_page) do
-    active_page not in [:lessonplay, :lessoncompleted]
+  @spec school_expanded?(atom()) :: boolean()
+  def school_expanded?(active_page) do
+    dashboard?(active_page) and not course?(active_page) and not lesson_view?(active_page)
   end
 end

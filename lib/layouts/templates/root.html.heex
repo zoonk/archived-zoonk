@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang={Plug.Conn.get_session(@conn, :locale)} class="[scrollbar-gutter:stable]">
+<html lang={Plug.Conn.get_session(@conn, :locale)} class="h-full bg-white [scrollbar-gutter:stable]">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -29,5 +29,5 @@
     <meta :if={assigns[:og_description]} property="og:description" content={assigns[:og_description]} />
   </head>
 
-  <body class="bg-gray-light3x antialiased"><%= @inner_content %></body>
+  <body class="h-full antialiased"><%= @inner_content %></body>
 </html>
