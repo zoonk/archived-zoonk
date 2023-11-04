@@ -17,9 +17,14 @@ defmodule UneebeeWeb.Components.Content.CourseList do
       :if={not @empty}
       id={@id}
       phx-update="stream"
-      class="grid grid-cols-1 gap-4 3xl:grid-cols-6 4xl:grid-cols-7 5xl:grid-cols-8 6xl:grid-cols-9 7xl:grid-cols-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5"
+      class="grid grid-cols-1 gap-4 3xl:grid-cols-5 4xl:grid-cols-6 5xl:grid-cols-7 6xl:grid-cols-8 7xl:grid-cols-9 sm:grid-cols-2 lg:gap-6 xl:grid-cols-3 xl:gap-8 2xl:grid-cols-4"
     >
-      <.link :for={{dom_id, course_data} <- @courses} id={dom_id} navigate={course_link(course_data, @my_courses)} class="h-60 shadow hover:shadow-lg rounded-2xl relative">
+      <.link
+        :for={{dom_id, course_data} <- @courses}
+        id={dom_id}
+        navigate={course_link(course_data, @my_courses)}
+        class="h-60 shadow hover:shadow-lg rounded-2xl relative focus:outline-offset-4 focus:outline-2 focus:outline-indigo-500"
+      >
         <% course = if @my_courses, do: course_data, else: course_data.data %>
         <img :if={course.cover} src={course.cover} class="h-full w-full rounded-2xl object-cover" />
         <div :if={is_nil(course.cover)} class="h-full w-full rounded-2xl bg-gradient-to-br from-pink-50 to-cyan-50" />
