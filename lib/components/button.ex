@@ -18,7 +18,7 @@ defmodule UneebeeWeb.Components.Button do
   """
   attr :color, :atom,
     default: :black,
-    values: [:black, :alert, :success, :alert_light, :info_light, :success_light],
+    values: [:black, :alert, :success, :primary, :alert_light, :info_light, :success_light],
     doc: "the background color"
 
   attr :icon, :string, default: nil, doc: "name of the icon to add to the button"
@@ -38,6 +38,7 @@ defmodule UneebeeWeb.Components.Button do
         @color == :black && "bg-gray-700 text-white hover:bg-gray-900 focus:outline-gray-700",
         @color == :alert && "bg-pink-500 text-white hover:bg-pink-700 focus:outline-pink-500",
         @color == :success && "bg-teal-500 text-white hover:bg-teal-700 focus:outline-teal-500",
+        @color == :primary && "bg-indigo-500 text-white hover:bg-indigo-700 focus:outline-indigo-500",
         @color == :alert_light && "bg-pink-50 text-pink-900 hover:bg-pink-200 focus:outline-pink-50",
         @color == :info_light && "bg-cyan-50 text-cyan-900 hover:bg-cyan-200 focus:outline-cyan-50",
         @color == :success_light && "bg-teal-50 text-teal-900 hover:bg-teal-200 focus:outline-teal-50",
