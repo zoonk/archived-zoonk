@@ -26,8 +26,8 @@ defmodule UneebeeWeb.Components.Dashboard.StepSwitch do
             "h-10 w-10 flex flex-col items-center justify-center rounded-full text-center font-black cursor-grab",
             "drag-ghost:bg-gray-light drag-ghost:cursor-grabbing drag-ghost:border-0 drag-ghost:ring-0",
             "focus-within:drag-item:ring-0 focus-within:drag-item:ring-offset-0",
-            step_order != @step.order && "bg-primary-light3x text-primary-dark2x",
-            step_order == @step.order && "bg-primary-dark2x text-primary-light3x"
+            step_order != @step.order && "bg-indigo-50 text-indigo-700",
+            step_order == @step.order && "bg-indigo-700 text-indigo-50"
           ]}
         >
           <%= step_order %>

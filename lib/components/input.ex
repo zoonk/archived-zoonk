@@ -78,7 +78,7 @@ defmodule UneebeeWeb.Components.Input do
       <select
         id={@id}
         name={@name}
-        class={["border-gray-light2x text-gray-dark2x block w-full rounded-md border bg-white focus:border-primary focus:ring-0 sm:text-sm", @mt && "mt-2"]}
+        class={["border-gray-light2x text-gray-dark2x block w-full rounded-md border bg-white focus:border-indigo-500 focus:ring-0 sm:text-sm", @mt && "mt-2"]}
         multiple={@multiple}
         {@rest}
       >
@@ -100,9 +100,9 @@ defmodule UneebeeWeb.Components.Input do
         name={@name}
         class={[
           "min-h-[6rem] py-[7px] px-[11px] block w-full rounded-lg",
-          "text-gray-dark focus:border-primary focus:ring-gray-dark/5 focus:outline-none focus:ring-4 sm:text-sm sm:leading-6",
+          "text-gray-dark focus:ring-gray-dark/5 focus:border-indigo-500 focus:outline-none focus:ring-4 sm:text-sm sm:leading-6",
           @mt && "mt-2",
-          @errors == [] && "border-gray-light2x focus:border-primary focus:ring-gray-dark/5",
+          @errors == [] && "border-gray-light2x focus:ring-gray-dark/5 focus:border-indigo-500",
           @errors != [] && "border-alert focus:border-alert focus:ring-alert/10"
         ]}
         {@rest}
@@ -127,7 +127,7 @@ defmodule UneebeeWeb.Components.Input do
           "block w-full rounded-lg px-3 py-2",
           "text-gray-dark2x focus:outline-none focus:ring-4 sm:text-sm sm:leading-6",
           @mt && "mt-2",
-          @errors == [] && "border-gray-light2x focus:border-primary focus:ring-gray-dark/5",
+          @errors == [] && "border-gray-light2x focus:ring-gray-dark/5 focus:border-indigo-500",
           @errors != [] && "border-alert focus:border-alert focus:ring-alert/10"
         ]}
         {@rest}

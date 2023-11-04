@@ -18,14 +18,6 @@ module.exports = {
         '7xl': '3000px',
       },
       colors: {
-        primary: {
-          light3x: colors.fuchsia[50],
-          light2x: colors.fuchsia[100],
-          light: colors.fuchsia[300],
-          DEFAULT: colors.fuchsia[500],
-          dark: colors.fuchsia[700],
-          dark2x: colors.fuchsia[900],
-        },
         alert: {
           light3x: colors.pink[50],
           light2x: colors.pink[100],

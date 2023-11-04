@@ -80,7 +80,7 @@ defmodule UneebeeWeb.Live.Registration do
     "auth" |> dgettext("privacy policy") |> get_terms_link(privacy_policy) |> HTML.safe_to_string()
   end
 
-  defp get_terms_link(label, link), do: HTML.Link.link(label, to: URI.parse(link), class: "text-primary hover:underline")
+  defp get_terms_link(label, link), do: HTML.Link.link(label, to: URI.parse(link), class: "text-indigo-500 hover:underline")
 
   defp terms_label(%School{terms_of_use: nil, privacy_policy: nil}), do: nil
 

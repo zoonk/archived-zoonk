@@ -35,8 +35,8 @@ defmodule UneebeeWeb.Components.Upload do
               "file:mr-4 file:py-2 file:px-4",
               "file:rounded-full file:border-0",
               "file:text-sm file:font-semibold",
-              "file:bg-primary-light3x file:text-primary-dark",
-              "hover:file:bg-primary-light"
+              "file:bg-indigo-50 file:text-indigo-700",
+              "hover:file:bg-indigo-300"
             ]}
           />
         </div>

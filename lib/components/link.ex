@@ -22,7 +22,7 @@ defmodule UneebeeWeb.Components.Link do
     <.link
       class={[
         "font-semibold hover:underline",
-        @color == :primary && "text-primary",
+        @color == :primary && "text-indigo-500",
         @color == :black && "text-gray-dark",
         @color == :alert && "text-alert",
         @class
