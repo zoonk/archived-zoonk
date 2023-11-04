@@ -41,7 +41,6 @@ defmodule UneebeeWeb.Components.Dashboard.OptionList do
 
           <.icon_button
             icon="tabler-x"
-            color={:alert_light}
             size={:sm}
             role="button"
             label={dgettext("orgs", "Delete option")}

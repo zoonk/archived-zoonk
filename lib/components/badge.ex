@@ -38,11 +38,11 @@ defmodule UneebeeWeb.Components.Badge do
         @color == :black && "bg-gray-dark text-white",
         @color == :alert && "bg-pink-500 text-white",
         @color == :success && "bg-success text-white",
-        @color == :info && "bg-info text-white",
+        @color == :info && "bg-cyan-500 text-white",
         @color == :warning && "bg-warning text-white",
         @color == :black_light && "bg-gray-light3x text-gray-dark2x",
         @color == :alert_light && "bg-pink-50 text-pink-700",
-        @color == :info_light && "bg-info-light3x text-info-dark2x",
+        @color == :info_light && "bg-cyan-50 text-cyan-900",
         @color == :success_light && "bg-success-light3x text-success-dark2x",
         @color == :warning_light && "bg-warning-light3x text-warning-dark2x",
         @class

@@ -38,7 +38,6 @@
           :if={course_user.approved?}
           icon="tabler-trash-x"
           label={dgettext("orgs", "Remove user")}
-          color={:alert_light}
           phx-click="remove"
           phx-value-course-user-id={course_user.id}
           data-confirm={

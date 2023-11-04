@@ -61,11 +61,11 @@ defmodule UneebeeWeb.Components.Link do
         @color == :alert &&
           "bg-pink-500 text-white shadow-b-pink-700 active:shadow-b-pink-700-pressed hover:bg-pink-700 focus:outline-pink-500",
         @color == :success && "bg-success text-white shadow-b-success-dark active:shadow-b-success-dark-pressed hover:bg-success-dark focus:outline-success",
-        @color == :info && "bg-info text-white shadow-b-info-dark active:shadow-b-info-dark-pressed hover:bg-info-dark focus:outline-info",
+        @color == :info && "bg-cyan-500 text-white shadow-b-cyan-700 active:shadow-b-cyan-700-pressed hover:bg-cyan-700 focus:outline-cyan-500",
         @color == :warning && "bg-warning text-white shadow-b-warning-dark active:shadow-b-warning-dark-pressed hover:bg-warning-dark focus:outline-warning",
         @color == :black_light && "bg-gray-light3x text-gray-dark2x shadow-b-gray-light active:shadow-b-gray-light-pressed hover:bg-gray-light2x focus:outline-gray-light3x",
         @color == :alert_light && "bg-pink-50 text-pink-7002x shadow-b-pink-400 active:shadow-b-pink-400-pressed hover:bg-pink-200 focus:outline-pink-50",
-        @color == :info_light && "bg-info-light3x text-info-dark2x shadow-b-info-light active:shadow-b-info-light-pressed hover:bg-info-light2x focus:outline-info-light3x",
+        @color == :info_light && "bg-cyan-50 text-cyan-900 shadow-b-cyan-400 active:shadow-b-cyan-400-pressed hover:bg-cyan-200 focus:outline-cyan-50",
         @color == :success_light &&
           "bg-success-light3x text-success-dark2x shadow-b-success-light active:shadow-b-success-light-pressed hover:bg-success-light2x focus:outline-success-light3x",
         @color == :warning_light &&
