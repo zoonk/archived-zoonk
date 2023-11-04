@@ -38,7 +38,7 @@
             "flex h-full cursor-pointer flex-col items-center justify-center gap-4 rounded-2xl border bg-white p-4 text-sm text-gray-900 peer-checked:shadow-b-cyan peer-checked:border-cyan-500",
             (is_nil(@selected_option) || (@selected_option.id != option.id && not option.correct?)) && "shadow-b-gray border-gray-400 active:shadow-b-gray-pressed",
             user_selected_wrong_option?(@selected_option, option) && "shadow-b-pink border-pink-500",
-            @selected_option && option.correct? && "shadow-b-teal-400 border-teal-400"
+            @selected_option && option.correct? && "shadow-b-teal border-teal-400"
           ]}
         >
           <img :if={option.image} src={option.image} alt={option.title} class="h-16 w-16 object-cover" />
