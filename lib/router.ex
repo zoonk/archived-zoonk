@@ -97,7 +97,6 @@ defmodule UneebeeWeb.Router do
       live "/trophies", TrophyList
       live "/medals", MedalList
 
-      live "/users/settings", UserSettingsMenu
       live "/users/settings/email", UserSettings, :email
       live "/users/settings/language", UserSettings, :language
       live "/users/settings/name", UserSettings, :name

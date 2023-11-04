@@ -53,23 +53,4 @@ defmodule UneebeeWeb.Components.Menu do
     </li>
     """
   end
-
-  attr :title, :string, required: true, doc: "Menu title."
-  attr :color, :atom, values: [:primary, :alert], default: :primary, doc: "Menu color."
-  attr :rest, :global, include: ~w(href method navigate)
-
-  def menu_card(assigns) do
-    ~H"""
-    <.link
-      class={[
-        "px-4 py-2",
-        @color == :primary && "card-with-link bg-white text-gray-dark",
-        @color == :alert && "card-with-link-alert bg-alert-light3x text-alert-dark2x"
-      ]}
-      {@rest}
-    >
-      <%= @title %>
-    </.link>
-    """
-  end
 end

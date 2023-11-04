@@ -4,15 +4,14 @@
 
 /* This file is for your main application CSS */
 @layer components {
+  .card-base {
+  }
+
   .card {
     @apply card-base border-gray-light2x;
   }
 
   .card-with-link {
     @apply card-base border-gray-light;
-  }
-
-  .card-with-link-alert {
-    @apply card-base shadow-b-alert border-alert-light active:shadow-b-alert-pressed focus:outline-none hover:border-alert-dark hover:shadow-b-alert-dark focus:border-alert-dark focus:shadow-b-alert-dark;
   }
 }
