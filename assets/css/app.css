@@ -1,10 +1,14 @@
-@import 'tailwindcss/base';
-@import 'tailwindcss/components';
-@import 'tailwindcss/utilities';
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
 
 /* This file is for your main application CSS */
 @layer components {
   .card {
     @apply rounded-2xl border border-gray-300;
+  }
+
+  .container {
+    @apply px-4 py-4 lg:px-6 lg:py-6 xl:px-8 xl:py-8;
   }
 }
