@@ -1,6 +1,6 @@
 <.course_list id="courses-learning" courses={@streams.courses} my_courses empty={@courses_empty?} />
 
 <div :if={@courses_empty?}>
-  <p class="text-gray text-sm"><%= dgettext("courses", "You haven't started any courses yet.") %></p>
+  <p class="text-sm text-gray-500"><%= dgettext("courses", "You haven't started any courses yet.") %></p>
   <.link_button navigate={~p"/courses"} class="mt-4 w-max"><%= dgettext("courses", "Browse courses") %></.link_button>
 </div>

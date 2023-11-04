@@ -47,9 +47,9 @@ defmodule UneebeeWeb.Components.Link do
         "flex justify-center items-center gap-2",
         "rounded-lg py-2 px-3 focus:outline-offset-2",
         "text-sm font-semibold leading-6",
-        @color == :black && "bg-gray-dark shadow-b-gray active:shadow-b-gray-pressed text-white hover:bg-gray-dark2x focus:outline-gray-dark",
+        @color == :black && "bg-gray-700 shadow-b-gray active:shadow-b-gray-pressed text-white hover:bg-gray-900 focus:outline-gray-700",
         @color == :alert && "bg-pink-500 text-white shadow-b-pink-700 active:shadow-b-pink-700-pressed hover:bg-pink-700 focus:outline-pink-500",
-        @color == :black_light && "bg-gray-light3x text-gray-dark2x shadow-b-gray-light active:shadow-b-gray-light-pressed hover:bg-gray-light2x focus:outline-gray-light3x",
+        @color == :black_light && "bg-gray-50 text-gray-900 shadow-b-gray-400 active:shadow-b-gray-400-pressed hover:bg-gray-200 focus:outline-gray-50",
         @color == :alert_light && "bg-pink-50 text-pink-900 shadow-b-pink-400 active:shadow-b-pink-400-pressed hover:bg-pink-200 focus:outline-pink-50",
         @color == :info_light && "bg-cyan-50 text-cyan-900 shadow-b-cyan-400 active:shadow-b-cyan-400-pressed hover:bg-cyan-200 focus:outline-cyan-50",
         @class

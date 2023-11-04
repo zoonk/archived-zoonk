@@ -6,9 +6,9 @@
 
     <div class="my-4 flex items-center justify-between gap-4">
       <div>
-        <h1 class="text-gray-dark2x font-semibold"><%= score_title(score) %></h1>
+        <h1 class="font-semibold text-gray-900"><%= score_title(score) %></h1>
 
-        <p class="text-gray text-sm">
+        <p class="text-sm text-gray-500">
           <%= dgettext("courses", "You got %{correct} out of %{total} answers right.", correct: @user_lesson.correct, total: @user_lesson.total) %>
         </p>
       </div>

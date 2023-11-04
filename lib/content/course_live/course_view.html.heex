@@ -1,4 +1,4 @@
-<header class="text-gray-dark mb-4 rounded-2xl bg-white shadow">
+<header class="mb-4 rounded-2xl bg-white text-gray-700 shadow">
   <img :if={@course.cover} src={@course.cover} alt={gettext("Cover")} class="aspect-[4/1] rounded-2xl object-cover p-1" />
 
   <div class="p-4">
@@ -24,12 +24,12 @@
     :for={{lesson, index} <- Enum.with_index(@lessons)}
     navigate={lesson_link(lesson_locked?(@course, @course_user), @course, lesson)}
     class={[
-      "text-gray-dark bg-white border border-l-8 flex gap-2 p-4 rounded-2xl",
-      lesson_locked?(@course, @course_user) && "cursor-not-allowed border-gray-light opacity-50",
+      "text-gray-700 bg-white border border-l-8 flex gap-2 p-4 rounded-2xl",
+      lesson_locked?(@course, @course_user) && "cursor-not-allowed border-gray-400 opacity-50",
       CourseUtils.lesson_completed?(@current_user, lesson.user_lessons) &&
         "border-teal-500",
       not CourseUtils.lesson_completed?(@current_user, lesson.user_lessons) &&
-        "border-gray-light"
+        "border-gray-400"
     ]}
   >
     <% score = CourseUtils.lesson_score(@current_user, lesson.user_lessons) %>
@@ -43,7 +43,7 @@
         <.badge :if={score} color={CourseUtils.score_color(score)}><%= score %></.badge>
         <.badge :if={lesson_locked?(@course, @course_user)} color={:black} icon="tabler-lock"><%= gettext("Locked") %></.badge>
       </dt>
-      <dd class="text-gray text-sm"><%= lesson.description %></dd>
+      <dd class="text-sm text-gray-500"><%= lesson.description %></dd>
     </div>
   </.link>
 </dl>

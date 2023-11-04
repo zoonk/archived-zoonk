@@ -5,7 +5,7 @@
 </nav>
 
 <dl id="user-list" phx-update="stream" class="grid grid-cols-1 gap-4 sm:grid-cols-2">
-  <div :for={{dom_id, school_user} <- @streams.users} id={dom_id} class="text-gray-dark2x card flex h-full flex-col bg-white p-4">
+  <div :for={{dom_id, school_user} <- @streams.users} id={dom_id} class="card flex h-full flex-col bg-white p-4 text-gray-900">
     <div class="flex gap-2" id={"user-#{school_user.user.id}"}>
       <.avatar src={school_user.user.avatar} alt={UserUtils.full_name(school_user.user)} />
 
@@ -24,7 +24,7 @@
       </header>
     </div>
 
-    <dd :if={school_user.approved? && school_user.user.id != school_user.approved_by.id} class="text-gray mt-2 text-sm italic">
+    <dd :if={school_user.approved? && school_user.user.id != school_user.approved_by.id} class="mt-2 text-sm italic text-gray-500">
       <%= dgettext("orgs", "Approved by: @%{username}", username: school_user.approved_by.username) %>
     </dd>
 

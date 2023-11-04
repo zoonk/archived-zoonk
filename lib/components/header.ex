@@ -27,7 +27,7 @@ defmodule UneebeeWeb.Components.Header do
           <span><%= render_slot(@inner_block) %></span>
         </h1>
 
-        <p :if={@subtitle != []} class="text-gray mt-2 text-sm leading-6"><%= render_slot(@subtitle) %></p>
+        <p :if={@subtitle != []} class="mt-2 text-sm leading-6 text-gray-500"><%= render_slot(@subtitle) %></p>
       </div>
 
       <div :if={@actions != []} class="flex-none"><%= render_slot(@actions) %></div>

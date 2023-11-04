@@ -41,7 +41,7 @@ defmodule UneebeeWeb.Components.Layouts.GamificationMenu do
         @color == :alert and "text-pink-500",
         @color == :info and "text-cyan-500",
         @color == :warning and "text-amber-500",
-        @color == :gray and "text-gray"
+        @color == :gray and "text-gray-500"
       ]}
       id={@id}
     >

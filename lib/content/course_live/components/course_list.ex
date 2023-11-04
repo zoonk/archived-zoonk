@@ -26,8 +26,8 @@ defmodule UneebeeWeb.Components.Content.CourseList do
 
         <div class="absolute right-4 bottom-4 left-4 flex min-w-0 flex-col justify-between rounded-2xl bg-white p-4 pb-1 text-sm">
           <div>
-            <dt class="text-gray-dark truncate font-bold"><%= course.name %></dt>
-            <dd class="text-gray line-clamp-2 pt-1 text-sm"><%= course.description %></dd>
+            <dt class="truncate font-bold text-gray-700"><%= course.name %></dt>
+            <dd class="line-clamp-2 pt-1 text-sm text-gray-500"><%= course.description %></dd>
           </div>
 
           <div class="mt-4 pb-1">

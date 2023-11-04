@@ -59,11 +59,11 @@ defmodule UneebeeWeb.Components.Input do
 
     ~H"""
     <div phx-feedback-for={@name} hidden={@type == "hidden"}>
-      <label class="text-gray-dark flex items-start gap-2 text-sm" for={@id}>
+      <label class="flex items-start gap-2 text-sm text-gray-700" for={@id}>
         <input type="hidden" name={@name} value="false" />
-        <input type="checkbox" id={@id} name={@name} value="true" checked={@checked} class="border-gray-light2x text-gray-dark rounded focus:ring-0" {@rest} />
+        <input type="checkbox" id={@id} name={@name} value="true" checked={@checked} class="rounded border-gray-200 text-gray-700 focus:ring-0" {@rest} />
         <span class="flex flex-col gap-2"><span class="font-semibold"><%= @label %></span>
-          <span class="text-gray"><%= @helper %></span></span>
+          <span class="text-gray-500"><%= @helper %></span></span>
       </label>
       <.error :for={msg <- @errors}><%= msg %></.error>
     </div>
@@ -78,7 +78,7 @@ defmodule UneebeeWeb.Components.Input do
       <select
         id={@id}
         name={@name}
-        class={["border-gray-light2x text-gray-dark2x block w-full rounded-md border bg-white focus:border-indigo-500 focus:ring-0 sm:text-sm", @mt && "mt-2"]}
+        class={["block w-full rounded-md border border-gray-200 bg-white text-gray-900 focus:border-indigo-500 focus:ring-0 sm:text-sm", @mt && "mt-2"]}
         multiple={@multiple}
         {@rest}
       >
@@ -100,9 +100,9 @@ defmodule UneebeeWeb.Components.Input do
         name={@name}
         class={[
           "min-h-[6rem] py-[7px] px-[11px] block w-full rounded-lg",
-          "text-gray-dark focus:ring-gray-dark/5 focus:border-indigo-500 focus:outline-none focus:ring-4 sm:text-sm sm:leading-6",
+          "text-gray-700 focus:ring-gray-700/5 focus:border-indigo-500 focus:outline-none focus:ring-4 sm:text-sm sm:leading-6",
           @mt && "mt-2",
-          @errors == [] && "border-gray-light2x focus:ring-gray-dark/5 focus:border-indigo-500",
+          @errors == [] && "border-gray-200 focus:ring-gray-700/5 focus:border-indigo-500",
           @errors != [] && "border-pink-500 focus:ring-pink-500/10 focus:border-pink-500"
         ]}
         {@rest}
@@ -125,9 +125,9 @@ defmodule UneebeeWeb.Components.Input do
         value={Form.normalize_value(@type, @value)}
         class={[
           "block w-full rounded-lg px-3 py-2",
-          "text-gray-dark2x focus:outline-none focus:ring-4 sm:text-sm sm:leading-6",
+          "text-gray-900 focus:outline-none focus:ring-4 sm:text-sm sm:leading-6",
           @mt && "mt-2",
-          @errors == [] && "border-gray-light2x focus:ring-gray-dark/5 focus:border-indigo-500",
+          @errors == [] && "border-gray-200 focus:ring-gray-700/5 focus:border-indigo-500",
           @errors != [] && "border-pink-500 focus:ring-pink-500/10 focus:border-pink-500"
         ]}
         {@rest}
@@ -145,7 +145,7 @@ defmodule UneebeeWeb.Components.Input do
 
   def label(assigns) do
     ~H"""
-    <label for={@for} class="text-gray-dark2x block text-sm font-semibold leading-6">
+    <label for={@for} class="block text-sm font-semibold leading-6 text-gray-900">
       <%= render_slot(@inner_block) %>
     </label>
     """
@@ -158,7 +158,7 @@ defmodule UneebeeWeb.Components.Input do
 
   def helper(assigns) do
     ~H"""
-    <span class="text-gray text-sm leading-6"><%= render_slot(@inner_block) %></span>
+    <span class="text-sm leading-6 text-gray-500"><%= render_slot(@inner_block) %></span>
     """
   end
 

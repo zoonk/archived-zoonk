@@ -35,7 +35,7 @@ defmodule UneebeeWeb.Components.Badge do
     <span
       class={[
         "inline-flex w-max max-w-full items-center gap-1 rounded-full px-2.5 py-0.5 text-xs font-medium leading-4",
-        @color == :black && "bg-gray-light3x text-gray-dark2x",
+        @color == :black && "bg-gray-50 text-gray-900",
         @color == :alert && "bg-pink-50 text-pink-700",
         @color == :info && "bg-cyan-50 text-cyan-900",
         @color == :success && "bg-teal-50 text-teal-900",

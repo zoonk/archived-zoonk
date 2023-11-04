@@ -28,7 +28,7 @@ defmodule UneebeeWeb.Components.Dashboard.StepImage do
       <.link
         :if={is_nil(@step.image)}
         patch={~p"/dashboard/c/#{@course.slug}/l/#{@lesson.id}/s/#{@step.order}/image"}
-        class="bg-gray-light2x text-gray-dark2x aspect-video flex w-full flex-col items-center justify-center rounded-2xl px-4 py-12 text-center sm:w-[386px]"
+        class="bg-gray-200 text-gray-900 aspect-video flex w-full flex-col items-center justify-center rounded-2xl px-4 py-12 text-center sm:w-[386px]"
       >
         <%= dgettext("orgs", "Click to add an image to this step.") %>
       </.link>

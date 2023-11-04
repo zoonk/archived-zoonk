@@ -18,14 +18,6 @@ module.exports = {
         "7xl": "3000px",
       },
       colors: {
-        gray: {
-          light3x: colors.slate[50],
-          light2x: colors.slate[100],
-          light: colors.slate[300],
-          DEFAULT: colors.slate[500],
-          dark: colors.slate[700],
-          dark2x: colors.slate[900],
-        },
         bronze: {
           light3x: colors.orange[50],
           light2x: colors.orange[100],
@@ -40,10 +32,10 @@ module.exports = {
         },
       },
       boxShadow: {
-        "b-gray-light": `3px 3px 0px 0px ${colors.slate[100]}`,
-        "b-gray-light-pressed": `1px 1px 0px 0px ${colors.slate[100]}`,
-        "b-gray": `3px 3px 0px 0px ${colors.slate[300]}`,
-        "b-gray-pressed": `1px 1px 0px 0px ${colors.slate[300]}`,
+        "b-gray-400": `3px 3px 0px 0px ${colors.gray[100]}`,
+        "b-gray-400-pressed": `1px 1px 0px 0px ${colors.gray[100]}`,
+        "b-gray": `3px 3px 0px 0px ${colors.gray[300]}`,
+        "b-gray-pressed": `1px 1px 0px 0px ${colors.gray[300]}`,
         "b-cyan-400": `3px 3px 0px 0px ${colors.cyan[100]}`,
         "b-cyan-400-pressed": `1px 1px 0px 0px ${colors.cyan[100]}`,
         "b-cyan": `3px 3px 0px 0px ${colors.cyan[300]}`,

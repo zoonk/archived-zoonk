@@ -31,7 +31,7 @@ defmodule UneebeeWeb.Components.Upload do
           <.live_file_input
             upload={@uploads.file}
             class={[
-              "block w-full text-sm text-gray",
+              "block w-full text-sm text-gray-500",
               "file:mr-4 file:py-2 file:px-4",
               "file:rounded-full file:border-0",
               "file:text-sm file:font-semibold",
@@ -41,7 +41,7 @@ defmodule UneebeeWeb.Components.Upload do
           />
         </div>
 
-        <p :if={entry} class="text-gray text-sm">
+        <p :if={entry} class="text-sm text-gray-500">
           <%= if entry.progress > 0,
             do: gettext("Uploading file: %{progress}% concluded.", progress: entry.progress),
             else: gettext("Click on the save button to upload your file.") %>
