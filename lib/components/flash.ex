@@ -39,7 +39,7 @@ defmodule UneebeeWeb.Components.Flash do
       role="alert"
       class={[
         "fixed top-2 right-2 z-50 mr-2 w-80 rounded-lg p-3 ring-1 transition-opacity duration-500 ease-in-out sm:w-96",
-        @kind == :info && "bg-success-light3x text-success-dark ring-success fill-cyan-700",
+        @kind == :info && "bg-teal-50 fill-cyan-700 text-teal-700 ring-teal-500",
         @kind == :error && "bg-pink-50 fill-pink-700 text-pink-700 shadow-md ring-pink-500"
       ]}
       {@rest}

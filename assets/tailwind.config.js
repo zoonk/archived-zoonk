@@ -18,14 +18,6 @@ module.exports = {
         "7xl": "3000px",
       },
       colors: {
-        success: {
-          light3x: colors.teal[50],
-          light2x: colors.teal[100],
-          light: colors.teal[300],
-          DEFAULT: colors.teal[500],
-          dark: colors.teal[700],
-          dark2x: colors.teal[900],
-        },
         warning: {
           light3x: colors.amber[50],
           light2x: colors.amber[100],
@@ -64,8 +56,8 @@ module.exports = {
         "b-cyan-400-pressed": `1px 1px 0px 0px ${colors.cyan[100]}`,
         "b-cyan": `3px 3px 0px 0px ${colors.cyan[300]}`,
         "b-cyan-pressed": `1px 1px 0px 0px ${colors.cyan[300]}`,
-        "b-success-light": `3px 3px 0px 0px ${colors.teal[100]}`,
-        "b-success-light-pressed": `1px 1px 0px 0px ${colors.teal[100]}`,
+        "b-teal-400": `3px 3px 0px 0px ${colors.teal[100]}`,
+        "b-teal-400-pressed": `1px 1px 0px 0px ${colors.teal[100]}`,
         "b-pink-400": `3px 3px 0px 0px ${colors.pink[100]}`,
         "b-pink-400-pressed": `1px 1px 0px 0px ${colors.pink[100]}`,
         "b-pink": `3px 3px 0px 0px ${colors.pink[300]}`,

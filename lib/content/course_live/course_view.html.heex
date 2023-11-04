@@ -29,7 +29,7 @@
       "text-gray-dark bg-white border border-l-8 flex gap-2 p-4 rounded-2xl",
       lesson_locked?(@course, @course_user) && "cursor-not-allowed border-gray-light opacity-50",
       CourseUtils.lesson_completed?(@current_user, lesson.user_lessons) &&
-        "border-success",
+        "border-teal-500",
       not CourseUtils.lesson_completed?(@current_user, lesson.user_lessons) &&
         "border-gray-light"
     ]}

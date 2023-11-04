@@ -37,11 +37,10 @@ defmodule UneebeeWeb.Components.Button do
         "disabled:bg-gray-light2x disabled:text-gray-light disabled:cursor-not-allowed",
         @color == :black && "bg-gray-dark shadow-b-gray text-white hover:bg-gray-dark2x focus:outline-gray-dark active:shadow-b-gray-pressed",
         @color == :alert && "shadow-b-pink-700 bg-pink-500 text-white hover:bg-pink-700 focus:outline-pink-500 active:shadow-b-pink-700-pressed",
-        @color == :success && "bg-success shadow-b-success-dark text-white hover:bg-success-dark focus:outline-success active:shadow-b-success-dark-pressed",
-        @color == :alert_light && "text-pink-7002x shadow-b-pink-400 bg-pink-50 hover:bg-pink-200 focus:outline-pink-50 active:shadow-b-pink-400-pressed",
+        @color == :success && "shadow-b-teal-700 bg-teal-500 text-white hover:bg-teal-700 focus:outline-teal-500 active:shadow-b-teal-700-pressed",
+        @color == :alert_light && "shadow-b-pink-400 bg-pink-50 text-pink-900 hover:bg-pink-200 focus:outline-pink-50 active:shadow-b-pink-400-pressed",
         @color == :info_light && "shadow-b-cyan-400 bg-cyan-50 text-cyan-900 hover:bg-cyan-200 focus:outline-cyan-50 active:shadow-b-cyan-400-pressed",
-        @color == :success_light &&
-          "bg-success-light3x text-success-dark2x shadow-b-success-light hover:bg-success-light2x focus:outline-success-light3x active:shadow-b-success-light-pressed",
+        @color == :success_light && "shadow-b-teal-400 bg-teal-50 text-teal-900 hover:bg-teal-200 focus:outline-teal-50 active:shadow-b-teal-400-pressed",
         @class
       ]}
       {@rest}

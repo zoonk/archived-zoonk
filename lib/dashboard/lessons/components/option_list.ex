@@ -32,7 +32,7 @@ defmodule UneebeeWeb.Components.Dashboard.OptionList do
             patch={~p"/dashboard/c/#{@course.slug}/l/#{@lesson.id}/s/#{@step.order}/o/#{option.id}"}
             class={[
               "w-max truncate rounded-2xl border px-2 py-1",
-              option.correct? && "bg-success-light3x text-success-dark2x border-success-dark2x",
+              option.correct? && "bg-teal-50 text-teal-900 border-teal-900",
               not option.correct? && "border-gray-light"
             ]}
           >

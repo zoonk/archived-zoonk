@@ -38,7 +38,7 @@
             "text-gray-dark2x flex h-full cursor-pointer flex-col items-center justify-center gap-4 rounded-2xl border bg-white p-4 text-sm peer-checked:shadow-b-cyan peer-checked:border-cyan-500",
             (is_nil(@selected_option) || (@selected_option.id != option.id && not option.correct?)) && "border-gray-light shadow-b-gray active:shadow-b-gray-pressed",
             user_selected_wrong_option?(@selected_option, option) && "shadow-b-pink border-pink-500",
-            @selected_option && option.correct? && "border-success shadow-b-success"
+            @selected_option && option.correct? && "shadow-b-teal-400 border-teal-400"
           ]}
         >
           <img :if={option.image} src={option.image} alt={option.title} class="h-16 w-16 object-cover" />
@@ -63,7 +63,7 @@
       role="alert"
       class={[
         "fixed right-0 bottom-0 left-0 space-y-4 border-t-2 p-4 motion-safe:animate-slide-up lg:sticky lg:w-full lg:animate-none lg:rounded-2xl lg:border-none",
-        @selected_option.correct? && "bg-success-light3x border-success-light2x text-success-dark",
+        @selected_option.correct? && "border-teal-200 bg-teal-50 text-teal-700",
         not @selected_option.correct? && "border-pink-200 bg-pink-50 text-pink-700"
       ]}
     >
