@@ -5,7 +5,7 @@
 /* This file is for your main application CSS */
 @layer components {
   .card {
-    @apply rounded-2xl border border-gray-300;
+    @apply rounded-2xl border shadow border-gray-300;
   }
 
   .container {
