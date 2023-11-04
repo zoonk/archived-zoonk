@@ -21,7 +21,7 @@ defmodule UneebeeWeb.Components.Badge do
   """
   attr :color, :atom,
     default: :info,
-    values: [:black, :alert, :info, :success, :warning],
+    values: [:black, :alert, :info, :success, :warning, :bronze],
     doc: "the background color"
 
   attr :icon, :string, default: nil, doc: "name of the icon to add to the badge"
@@ -34,12 +34,13 @@ defmodule UneebeeWeb.Components.Badge do
     ~H"""
     <span
       class={[
-        "inline-flex w-max max-w-full items-center gap-1 rounded-full px-2.5 py-0.5 text-xs font-medium leading-4",
-        @color == :black && "bg-gray-50 text-gray-900",
-        @color == :alert && "bg-pink-50 text-pink-700",
-        @color == :info && "bg-cyan-50 text-cyan-900",
-        @color == :success && "bg-teal-50 text-teal-900",
-        @color == :warning && "bg-amber-50 text-amber-900",
+        "inline-flex flex-shrink-0 items-center gap-x-2 rounded-md px-2 py-1 text-xs font-medium ring-1 ring-inset",
+        @color == :black && "ring-gray-600/20 bg-gray-50 text-gray-700",
+        @color == :alert && "ring-pink-600/20 bg-pink-50 text-pink-700",
+        @color == :info && "ring-cyan-600/20 bg-cyan-50 text-cyan-700",
+        @color == :success && "ring-teal-600/20 bg-teal-50 text-teal-700",
+        @color == :warning && "ring-amber-600/20 bg-amber-50 text-amber-700",
+        @color == :bronze && "ring-orange-600/20 bg-orange-50 text-orange-700",
         @class
       ]}
       {@rest}

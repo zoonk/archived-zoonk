@@ -29,8 +29,9 @@
         title={trophy(@course_completed_trophy).label}
         description={trophy(@course_completed_trophy).description}
       />
+
       <.learning_days_badge :if={@first_lesson_today?} days={@learning_days} />
-      <.medal_badge :if={@medal} medal={@medal} />
+      <.medal_badge :if={@medal} prize={@medal.medal} title={@medal.label} description={@medal.description} />
     </div>
   </div>
 

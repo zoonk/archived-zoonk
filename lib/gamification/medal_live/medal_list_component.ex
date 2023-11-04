@@ -11,42 +11,20 @@ defmodule UneebeeWeb.Components.MedalList do
   def medal_list(assigns) do
     ~H"""
     <section class="mb-8">
-      <h2 class={["mb-2 font-bold", @kind == :gold && "text-amber-900", @kind == :silver && "text-gray-900", @kind == :bronze && "text-orange-900"]}>
+      <h2 class={["mb-2 font-bold", @kind == :gold && "text-amber-600", @kind == :silver && "text-gray-600", @kind == :bronze && "text-orange-600"]}>
         <%= list_title(@kind, total_medals(@medals)) %>
       </h2>
 
       <dl class="grid grid-cols-2 gap-4 sm:grid-cols-3">
-        <.medal_card :for={medal <- @medals} medal={MedalUtils.medal(medal.reason)} kind={@kind} count={medal.count} />
+        <.medal_badge
+          :for={user_medal <- @medals}
+          badge={medal_badge_label(user_medal.count)}
+          prize={@kind}
+          title={medal_title(user_medal)}
+          description={medal_description(user_medal)}
+        />
       </dl>
     </section>
-    """
-  end
-
-  defp medal_card(assigns) do
-    ~H"""
-    <div
-      id={"medal-#{@medal.key}"}
-      class={[
-        "flex flex-col items-center justify-center gap-1 rounded-2xl p-4 text-center",
-        @kind == :gold && "bg-amber-50 text-amber-900",
-        @kind == :silver && "bg-gray-50 text-gray-900",
-        @kind == :bronze && "bg-orange-50 text-orange-900"
-      ]}
-    >
-      <.icon name="tabler-medal" />
-
-      <dt class="text-sm font-black"><%= @medal.label %></dt>
-      <dd class="flex-1 text-sm"><%= @medal.description %></dd>
-
-      <dd class={[
-        "mt-4 flex h-12 w-12 flex-col items-center justify-center rounded-full font-black",
-        @kind == :gold && "bg-amber-900 text-amber-50",
-        @kind == :silver && "bg-gray-900 text-gray-50",
-        @kind == :bronze && "bg-orange-900 text-orange-50"
-      ]}>
-        <%= @count %>
-      </dd>
-    </div>
     """
   end
 
@@ -54,5 +32,10 @@ defmodule UneebeeWeb.Components.MedalList do
   defp list_title(:silver, count), do: dngettext("gamification", "%{count} silver medal", "%{count} silver medals", count, count: count)
   defp list_title(:bronze, count), do: dngettext("gamification", "%{count} bronze medal", "%{count} bronze medals", count, count: count)
 
+  defp medal_badge_label(count), do: dngettext("gamification", "%{count} time", "%{count} times", count, count: count)
+
   defp total_medals(medals), do: Enum.reduce(medals, 0, fn medal, acc -> acc + medal.count end)
+  defp medal(user_medal), do: MedalUtils.medal(user_medal.reason)
+  defp medal_title(user_medal), do: medal(user_medal).label
+  defp medal_description(user_medal), do: medal(user_medal).description
 end

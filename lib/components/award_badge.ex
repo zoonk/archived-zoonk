@@ -8,10 +8,10 @@ defmodule UneebeeWeb.Components.AwardBadge do
   """
   use Phoenix.Component
 
+  import UneebeeWeb.Components.Badge
   import UneebeeWeb.Components.Icon
   import UneebeeWeb.Gettext
 
-  alias Uneebee.Gamification.Medal
   alias Uneebee.Gamification.Mission
 
   @doc """
@@ -32,11 +32,14 @@ defmodule UneebeeWeb.Components.AwardBadge do
   @doc """
   Renders a badge for a medal.
   """
-  attr :medal, Medal, required: true
+  attr :prize, :atom, values: [:gold, :silver, :bronze], required: true
+  attr :title, :string, required: true
+  attr :description, :string, required: true
+  attr :badge, :string, default: nil
 
   def medal_badge(assigns) do
     ~H"""
-    <.award_badge id="medal-badge" prize={@medal.medal} icon="tabler-medal" value={@medal.label} label={@medal.description} />
+    <.award_badge id="medal-badge" prize={@prize} icon="tabler-medal" value={@title} label={@description} badge={@badge} />
     """
   end
 
@@ -75,13 +78,15 @@ defmodule UneebeeWeb.Components.AwardBadge do
   attr :icon, :string, required: true
   attr :value, :string, required: true
   attr :label, :string, required: true
+  attr :badge, :string, default: nil
 
   defp award_badge(assigns) do
     ~H"""
     <dl id={@id} class={["overflow-hidden rounded-xl border ", prize_color_border(@prize), prize_color_text(@prize)]}>
       <div class={["flex items-center gap-x-2 border-b p-4", prize_color_border(@prize), prize_color_bg(@prize)]}>
         <.icon name={@icon} />
-        <dt class="text-sm font-medium leading-6"><%= @value %></dt>
+        <dt class="flex-1 truncate text-sm font-medium leading-6" title={@value}><%= @value %></dt>
+        <.badge :if={@badge} color={badge_color(@prize)}><%= @badge %></.badge>
       </div>
 
       <div class="-my-3 px-4 py-2 text-sm leading-6">
@@ -90,6 +95,11 @@ defmodule UneebeeWeb.Components.AwardBadge do
     </dl>
     """
   end
+
+  defp badge_color(:gold), do: :warning
+  defp badge_color(:silver), do: :black
+  defp badge_color(:bronze), do: :bronze
+  defp badge_color(_other), do: :success
 
   defp prize_color_bg(:gold), do: "bg-yellow-50"
   defp prize_color_bg(:silver), do: "bg-gray-50"
