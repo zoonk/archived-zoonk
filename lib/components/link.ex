@@ -11,7 +11,6 @@ defmodule UneebeeWeb.Components.Link do
   @doc """
   Renders a styled link using our default style guide.
   """
-  attr :color, :atom, default: :primary, values: [:primary, :black, :alert], doc: "the color of the link"
   attr :class, :string, default: nil, doc: "the optional additional classes to add to the header element"
   attr :rest, :global, include: ~w(href method navigate)
 
@@ -19,16 +18,7 @@ defmodule UneebeeWeb.Components.Link do
 
   def link_styled(assigns) do
     ~H"""
-    <.link
-      class={[
-        "font-semibold hover:underline",
-        @color == :primary && "text-indigo-500",
-        @color == :black && "text-gray-dark",
-        @color == :alert && "text-pink-500",
-        @class
-      ]}
-      {@rest}
-    >
+    <.link class={["font-semibold text-indigo-500 hover:underline", @class]} {@rest}>
       <%= render_slot(@inner_block) %>
     </.link>
     """
