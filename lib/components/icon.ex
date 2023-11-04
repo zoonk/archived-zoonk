@@ -24,7 +24,7 @@ defmodule UneebeeWeb.Components.Icon do
 
   def icon(%{name: "tabler-" <> _} = assigns) do
     ~H"""
-    <span {@rest} title={@title} class={["shrink-0", @name, @class]}>
+    <span {@rest} title={@title} class={["shrink-0", @name, @class]} aria-hidden={is_nil(@title)}>
       <span :if={@title} class="sr-only"><%= @title %></span>
     </span>
     """

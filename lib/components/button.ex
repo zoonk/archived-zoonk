@@ -31,7 +31,7 @@ defmodule UneebeeWeb.Components.Button do
     ~H"""
     <button
       class={[
-        "flex items-center justify-center gap-2",
+        "inline-flex items-center justify-center gap-2",
         "rounded-lg px-3 py-2 focus:outline-offset-2 phx-submit-loading:opacity-75",
         "text-sm font-semibold leading-6",
         "disabled:cursor-not-allowed disabled:bg-gray-200 disabled:text-gray-400",
@@ -46,7 +46,7 @@ defmodule UneebeeWeb.Components.Button do
       ]}
       {@rest}
     >
-      <%= render_slot(@inner_block) %> <.icon :if={@icon} name={@icon} class="h-4 w-4" />
+      <.icon :if={@icon} name={@icon} class="h-5 w-5 -ml-0.5 mr-1" /> <%= render_slot(@inner_block) %>
     </button>
     """
   end
