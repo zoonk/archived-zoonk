@@ -31,7 +31,7 @@ defmodule UneebeeWeb.Components.Link do
 
   attr :color, :atom,
     default: :black,
-    values: [:black, :alert, :info, :success, :warning, :black_light, :alert_light, :info_light, :success_light, :warning_light]
+    values: [:black, :alert, :black_light, :alert_light, :info_light]
 
   attr :class, :string, default: nil
   attr :icon, :string, default: nil
@@ -48,18 +48,10 @@ defmodule UneebeeWeb.Components.Link do
         "rounded-lg py-2 px-3 focus:outline-offset-2",
         "text-sm font-semibold leading-6",
         @color == :black && "bg-gray-dark shadow-b-gray active:shadow-b-gray-pressed text-white hover:bg-gray-dark2x focus:outline-gray-dark",
-        @color == :alert &&
-          "bg-pink-500 text-white shadow-b-pink-700 active:shadow-b-pink-700-pressed hover:bg-pink-700 focus:outline-pink-500",
-        @color == :success && "bg-success text-white shadow-b-success-dark active:shadow-b-success-dark-pressed hover:bg-success-dark focus:outline-success",
-        @color == :info && "bg-cyan-500 text-white shadow-b-cyan-700 active:shadow-b-cyan-700-pressed hover:bg-cyan-700 focus:outline-cyan-500",
-        @color == :warning && "bg-warning text-white shadow-b-warning-dark active:shadow-b-warning-dark-pressed hover:bg-warning-dark focus:outline-warning",
+        @color == :alert && "bg-pink-500 text-white shadow-b-pink-700 active:shadow-b-pink-700-pressed hover:bg-pink-700 focus:outline-pink-500",
         @color == :black_light && "bg-gray-light3x text-gray-dark2x shadow-b-gray-light active:shadow-b-gray-light-pressed hover:bg-gray-light2x focus:outline-gray-light3x",
         @color == :alert_light && "bg-pink-50 text-pink-7002x shadow-b-pink-400 active:shadow-b-pink-400-pressed hover:bg-pink-200 focus:outline-pink-50",
         @color == :info_light && "bg-cyan-50 text-cyan-900 shadow-b-cyan-400 active:shadow-b-cyan-400-pressed hover:bg-cyan-200 focus:outline-cyan-50",
-        @color == :success_light &&
-          "bg-success-light3x text-success-dark2x shadow-b-success-light active:shadow-b-success-light-pressed hover:bg-success-light2x focus:outline-success-light3x",
-        @color == :warning_light &&
-          "bg-warning-light3x text-warning-dark2x shadow-b-warning-light active:shadow-b-warning-light-pressed hover:bg-warning-light2x focus:outline-warning-light3x",
         @class
       ]}
       {@rest}
