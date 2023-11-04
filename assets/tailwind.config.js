@@ -18,14 +18,6 @@ module.exports = {
         "7xl": "3000px",
       },
       colors: {
-        warning: {
-          light3x: colors.amber[50],
-          light2x: colors.amber[100],
-          light: colors.amber[300],
-          DEFAULT: colors.amber[500],
-          dark: colors.amber[700],
-          dark2x: colors.amber[900],
-        },
         gray: {
           light3x: colors.slate[50],
           light2x: colors.slate[100],

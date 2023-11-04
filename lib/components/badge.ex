@@ -39,12 +39,12 @@ defmodule UneebeeWeb.Components.Badge do
         @color == :alert && "bg-pink-500 text-white",
         @color == :success && "bg-teal-500 text-white",
         @color == :info && "bg-cyan-500 text-white",
-        @color == :warning && "bg-warning text-white",
+        @color == :warning && "bg-amber-500 text-white",
         @color == :black_light && "bg-gray-light3x text-gray-dark2x",
         @color == :alert_light && "bg-pink-50 text-pink-700",
         @color == :info_light && "bg-cyan-50 text-cyan-900",
         @color == :success_light && "bg-teal-50 text-teal-900",
-        @color == :warning_light && "bg-warning-light3x text-warning-dark2x",
+        @color == :warning_light && "bgamber-50 textamber-900",
         @class
       ]}
       {@rest}

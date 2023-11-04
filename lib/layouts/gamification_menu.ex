@@ -40,7 +40,7 @@ defmodule UneebeeWeb.Components.Layouts.GamificationMenu do
         "flex items-center gap-1 font-bold",
         @color == :alert and "text-pink-500",
         @color == :info and "text-cyan-500",
-        @color == :warning and "text-warning",
+        @color == :warning and "text-amber-500",
         @color == :gray and "text-gray"
       ]}
       id={@id}
