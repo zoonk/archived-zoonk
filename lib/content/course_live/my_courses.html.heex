@@ -1,12 +1,12 @@
 <div class="px-4 py-4 lg:px-6 lg:py-6 xl:px-8 xl:py-8">
   <.course_list id="courses-learning" courses={@streams.courses} my_courses empty={@courses_empty?} />
+</div>
 
-  <div :if={@courses_empty?} class="text-center">
-    <.icon name="tabler-books" class="h-12 w-12 text-gray-400" />
+<div :if={@courses_empty?} class="flex flex-1 flex-col items-center justify-center lg:block lg:text-center">
+  <.icon name="tabler-books" class="h-12 w-12 text-gray-400" />
 
-    <h3 class="mt-2 text-sm font-semibold text-gray-900"><%= dgettext("courses", "No courses") %></h3>
-    <p class="mt-1 text-sm text-gray-500"><%= dgettext("courses", "Get started by joining a course.") %></p>
+  <h3 class="mt-2 text-sm font-semibold text-gray-900"><%= dgettext("courses", "No courses") %></h3>
+  <p class="mt-1 text-sm text-gray-500"><%= dgettext("courses", "Get started by joining a course.") %></p>
 
-    <.link_button navigate={~p"/courses"} icon="tabler-ufo" color={:primary} class="mt-6 w-max"><%= dgettext("courses", "Browse courses") %></.link_button>
-  </div>
+  <.link_button navigate={~p"/courses"} icon="tabler-ufo" color={:primary} class="mt-6 w-max"><%= dgettext("courses", "Browse courses") %></.link_button>
 </div>
