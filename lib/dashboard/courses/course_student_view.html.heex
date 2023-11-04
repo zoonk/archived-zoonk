@@ -18,10 +18,14 @@
 </header>
 
 <article class="mt-4 space-y-4">
-  <details :for={lesson <- @lessons} id={"lessons-#{lesson.id}"} class="group text-gray-dark card-with-link w-full min-w-0 cursor-pointer bg-white p-4 text-sm">
+  <details
+    :for={lesson <- @lessons}
+    id={"lessons-#{lesson.id}"}
+    class="group text-gray-dark w-full min-w-0 cursor-pointer rounded-2xl border border-gray-300 bg-white p-4 text-sm shadow-sm focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:border-gray-400"
+  >
     <% score = CourseUtils.lesson_score(@student, lesson.user_lessons) %>
 
-    <summary class="flex gap-2 font-semibold">
+    <summary class="flex gap-2 font-semibold focus:outline-none">
       <.icon name="tabler-chevrons-down" class="group-open:hidden" />
       <.icon name="tabler-chevrons-up" class="hidden group-open:inline" />
 

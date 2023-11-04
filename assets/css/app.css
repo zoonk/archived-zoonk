@@ -10,8 +10,4 @@
   .card {
     @apply card-base border-gray-light2x;
   }
-
-  .card-with-link {
-    @apply card-base border-gray-light;
-  }
 }
