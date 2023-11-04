@@ -103,7 +103,7 @@ defmodule UneebeeWeb.Components.Input do
           "text-gray-dark focus:ring-gray-dark/5 focus:border-indigo-500 focus:outline-none focus:ring-4 sm:text-sm sm:leading-6",
           @mt && "mt-2",
           @errors == [] && "border-gray-light2x focus:ring-gray-dark/5 focus:border-indigo-500",
-          @errors != [] && "border-alert focus:border-alert focus:ring-alert/10"
+          @errors != [] && "border-pink-500 focus:ring-pink-500/10 focus:border-pink-500"
         ]}
         {@rest}
       ><%= Form.normalize_value("textarea", @value) %></textarea>
@@ -128,7 +128,7 @@ defmodule UneebeeWeb.Components.Input do
           "text-gray-dark2x focus:outline-none focus:ring-4 sm:text-sm sm:leading-6",
           @mt && "mt-2",
           @errors == [] && "border-gray-light2x focus:ring-gray-dark/5 focus:border-indigo-500",
-          @errors != [] && "border-alert focus:border-alert focus:ring-alert/10"
+          @errors != [] && "border-pink-500 focus:ring-pink-500/10 focus:border-pink-500"
         ]}
         {@rest}
       />
@@ -169,7 +169,7 @@ defmodule UneebeeWeb.Components.Input do
 
   def error(assigns) do
     ~H"""
-    <p class="text-alert mt-3 flex gap-3 text-sm leading-6 phx-no-feedback:hidden">
+    <p class="mt-3 flex gap-3 text-sm leading-6 text-pink-500 phx-no-feedback:hidden">
       <.icon name="tabler-alert-circle-filled" class="mt-0.5 h-5 w-5 flex-none" />
       <%= render_slot(@inner_block) %>
     </p>

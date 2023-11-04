@@ -18,14 +18,6 @@ module.exports = {
         '7xl': '3000px',
       },
       colors: {
-        alert: {
-          light3x: colors.pink[50],
-          light2x: colors.pink[100],
-          light: colors.pink[300],
-          DEFAULT: colors.pink[500],
-          dark: colors.pink[700],
-          dark2x: colors.pink[900],
-        },
         info: {
           light3x: colors.cyan[50],
           light2x: colors.cyan[100],
@@ -96,12 +88,12 @@ module.exports = {
         'b-warning-pressed': `1px 1px 0px 0px ${colors.amber[300]}`,
         'b-warning-dark': `3px 3px 0px 0px ${colors.amber[700]}`,
         'b-warning-dark-pressed': `1px 1px 0px 0px ${colors.amber[700]}`,
-        'b-alert-light': `3px 3px 0px 0px ${colors.pink[100]}`,
-        'b-alert-light-pressed': `1px 1px 0px 0px ${colors.pink[100]}`,
-        'b-alert': `3px 3px 0px 0px ${colors.pink[300]}`,
-        'b-alert-pressed': `1px 1px 0px 0px ${colors.pink[300]}`,
-        'b-alert-dark': `3px 3px 0px 0px ${colors.pink[700]}`,
-        'b-alert-dark-pressed': `1px 1px 0px 0px ${colors.pink[700]}`,
+        'b-pink-400': `3px 3px 0px 0px ${colors.pink[100]}`,
+        'b-pink-400-pressed': `1px 1px 0px 0px ${colors.pink[100]}`,
+        'b-pink': `3px 3px 0px 0px ${colors.pink[300]}`,
+        'b-pink-pressed': `1px 1px 0px 0px ${colors.pink[300]}`,
+        'b-pink-700': `3px 3px 0px 0px ${colors.pink[700]}`,
+        'b-pink-700-pressed': `1px 1px 0px 0px ${colors.pink[700]}`,
       },
       animation: {
         'slide-up': 'slide-up 0.5s ease-out forwards',
