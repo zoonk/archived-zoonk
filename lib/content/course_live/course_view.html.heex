@@ -4,12 +4,12 @@
       :for={{lesson, index} <- Enum.with_index(@lessons)}
       navigate={lesson_link(lesson_locked?(@course, @course_user), @course, lesson)}
       class={[
-        "text-gray-700 bg-white border border-l-8 flex gap-2 p-4 rounded-2xl",
+        "text-gray-700 bg-white border border-l-8 flex gap-2 p-4 shadow rounded-2xl hover:shadow-lg focus:outline-offset-4",
         lesson_locked?(@course, @course_user) && "cursor-not-allowed border-gray-400 opacity-50",
         CourseUtils.lesson_completed?(@current_user, lesson.user_lessons) &&
-          "border-teal-500",
+          "border-teal-500 focus:outline-teal-500",
         not CourseUtils.lesson_completed?(@current_user, lesson.user_lessons) &&
-          "border-gray-400"
+          "border-gray-400 focus:outline-gray-400"
       ]}
     >
       <% score = CourseUtils.lesson_score(@current_user, lesson.user_lessons) %>
