@@ -41,13 +41,15 @@
         <%= dgettext("courses", "Request to join") %>
       </.button>
 
-      <.badge :if={@course_user && not @course_user.approved?} color={:warning} icon="tabler-progress">
-        <%= dgettext("courses", "Pending Approval") %>
-      </.badge>
+      <div class="mt-4">
+        <.badge :if={@course_user && not @course_user.approved?} color={:warning} icon="tabler-progress">
+          <%= dgettext("courses", "Pending Approval") %>
+        </.badge>
 
-      <.badge icon="tabler-chart-arrows-vertical" class="mt-4"><%= CourseUtils.level_label(@course.level) %></.badge>
-      <.badge icon="tabler-progress" color={:success}><%= CourseUtils.course_progress(@lessons, @current_user) %>%</.badge>
-      <.badge icon="tabler-user" color={:info}><%= @student_count %></.badge>
+        <.badge icon="tabler-chart-arrows-vertical"><%= CourseUtils.level_label(@course.level) %></.badge>
+        <.badge :if={@course_user} icon="tabler-progress" color={:success}><%= CourseUtils.course_progress(@lessons, @current_user) %>%</.badge>
+        <.badge icon="tabler-user" color={:black}><%= @student_count %></.badge>
+      </div>
     </div>
   </header>
 </aside>

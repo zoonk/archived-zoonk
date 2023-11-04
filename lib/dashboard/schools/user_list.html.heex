@@ -13,7 +13,7 @@
         <dt class="flex items-center justify-between font-semibold">
           <span class="truncate"><%= UserUtils.full_name(school_user.user) %></span>
 
-          <span :if={not school_user.approved?} role="status" class="bgamber-200 textamber-700 rounded-full px-2 py-1 text-xs">
+          <span :if={not school_user.approved?} role="status" class="rounded-full bg-amber-200 px-2 py-1 text-xs text-amber-700">
             <%= dgettext("orgs", "Pending") %>
           </span>
         </dt>

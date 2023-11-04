@@ -88,7 +88,7 @@ defmodule UneebeeWeb.Components.AwardBadge do
       class={[
         "flex flex-1 flex-col items-center gap-1 rounded-2xl p-4 text-center",
         @color == :primary && "bg-indigo-100 text-indigo-700",
-        @color == :warning && "bgamber-200 textamber-900",
+        @color == :warning && "bg-amber-200 text-amber-900",
         @color == :alert && "bg-pink-200 text-pink-700",
         @color == :gray && "bg-gray-200 text-gray-900",
         @color == :bronze && "bg-orange-200 text-orange-900"
