@@ -18,7 +18,7 @@ defmodule UneebeeWeb.Components.Button do
   """
   attr :color, :atom,
     default: :black,
-    values: [:black, :alert, :info, :success, :warning, :black_light, :alert_light, :info_light, :success_light, :warning_light],
+    values: [:black, :alert, :success, :alert_light, :info_light, :success_light],
     doc: "the background color"
 
   attr :icon, :string, default: nil, doc: "name of the icon to add to the button"
@@ -38,15 +38,10 @@ defmodule UneebeeWeb.Components.Button do
         @color == :black && "bg-gray-dark shadow-b-gray text-white hover:bg-gray-dark2x focus:outline-gray-dark active:shadow-b-gray-pressed",
         @color == :alert && "shadow-b-pink-700 bg-pink-500 text-white hover:bg-pink-700 focus:outline-pink-500 active:shadow-b-pink-700-pressed",
         @color == :success && "bg-success shadow-b-success-dark text-white hover:bg-success-dark focus:outline-success active:shadow-b-success-dark-pressed",
-        @color == :info && "shadow-b-cyan-700 bg-cyan-500 text-white hover:bg-cyan-700 focus:outline-cyan-500 active:shadow-b-cyan-700-pressed",
-        @color == :warning && "bg-warning shadow-b-warning-dark text-white hover:bg-warning-dark focus:outline-warning active:shadow-b-warning-dark-pressed",
-        @color == :black_light && "bg-gray-light3x text-gray-dark2x shadow-b-gray-light hover:bg-gray-light2x focus:outline-gray-light3x active:shadow-b-gray-light-pressed",
         @color == :alert_light && "text-pink-7002x shadow-b-pink-400 bg-pink-50 hover:bg-pink-200 focus:outline-pink-50 active:shadow-b-pink-400-pressed",
         @color == :info_light && "shadow-b-cyan-400 bg-cyan-50 text-cyan-900 hover:bg-cyan-200 focus:outline-cyan-50 active:shadow-b-cyan-400-pressed",
         @color == :success_light &&
           "bg-success-light3x text-success-dark2x shadow-b-success-light hover:bg-success-light2x focus:outline-success-light3x active:shadow-b-success-light-pressed",
-        @color == :warning_light &&
-          "bg-warning-light3x text-warning-dark2x shadow-b-warning-light hover:bg-warning-light2x focus:outline-warning-light3x active:shadow-b-warning-light-pressed",
         @class
       ]}
       {@rest}
