@@ -4,10 +4,7 @@
 
 /* This file is for your main application CSS */
 @layer components {
-  .card-base {
-  }
-
   .card {
-    @apply card-base border-gray-light2x;
+    @apply rounded-2xl border border-gray-300;
   }
 }
