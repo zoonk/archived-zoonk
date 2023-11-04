@@ -13,7 +13,6 @@ defmodule UneebeeWeb.Components.AwardBadge do
 
   alias Uneebee.Gamification.Medal
   alias Uneebee.Gamification.Mission
-  alias Uneebee.Gamification.Trophy
 
   @doc """
   Renders a badge for learning days.
@@ -42,13 +41,14 @@ defmodule UneebeeWeb.Components.AwardBadge do
   end
 
   @doc """
-  Completed course trophy.
+  Badge for a trophy.
   """
-  attr :trophy, Trophy, required: true
+  attr :title, :string, required: true
+  attr :description, :string, required: true
 
   def trophy_badge(assigns) do
     ~H"""
-    <.award_badge id="trophy-badge" prize={:trophy} icon="tabler-trophy" value={@trophy.label} label={@trophy.description} />
+    <.award_badge id="trophy-badge" prize={:trophy} icon="tabler-trophy" value={@title} label={@description} />
     """
   end
 

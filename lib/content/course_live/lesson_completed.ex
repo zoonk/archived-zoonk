@@ -2,12 +2,11 @@ defmodule UneebeeWeb.Live.LessonCompleted do
   @moduledoc false
   use UneebeeWeb, :live_view
 
-  import Uneebee.Gamification.TrophyUtils
-
   alias Uneebee.Content
   alias Uneebee.Content.UserLesson
   alias Uneebee.Gamification
   alias Uneebee.Gamification.MedalUtils
+  alias Uneebee.Gamification.TrophyUtils
   alias Uneebee.Gamification.UserTrophy
 
   @impl Phoenix.LiveView
@@ -57,4 +56,6 @@ defmodule UneebeeWeb.Live.LessonCompleted do
   defp completed_course_recently?(%UserTrophy{} = user_trophy) do
     DateTime.utc_now() |> DateTime.diff(user_trophy.updated_at, :minute) |> Kernel.<(3)
   end
+
+  defp trophy(user_trophy), do: TrophyUtils.trophy(user_trophy.reason)
 end
