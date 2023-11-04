@@ -17,12 +17,6 @@ module.exports = {
         "6xl": "2700px",
         "7xl": "3000px",
       },
-      colors: {
-        white: {
-          DEFAULT: colors.white,
-          dark: colors.slate[100],
-        },
-      },
       boxShadow: {
         "b-gray-400": `3px 3px 0px 0px ${colors.gray[100]}`,
         "b-gray-400-pressed": `1px 1px 0px 0px ${colors.gray[100]}`,
