@@ -34,8 +34,8 @@
     <img :if={@course.cover} src={@course.cover} alt={gettext("Cover")} class="aspect-[4/2] rounded-2xl object-cover p-1" />
 
     <div class="p-4">
-      <h1 class="text-xl font-bold"><%= @course.name %></h1>
-      <h2 class="text-sm font-light"><%= @course.description %></h2>
+      <h1 class="text-xl font-semibold"><%= @course.name %></h1>
+      <h2 class="font-light"><%= @course.description %></h2>
 
       <.button :if={is_nil(@course_user) && not @course.public?} icon="tabler-book-download" phx-click="enroll" class="mt-4 w-max">
         <%= dgettext("courses", "Request to join") %>
