@@ -11,7 +11,7 @@ defmodule UneebeeWeb.Components.MedalList do
   def medal_list(assigns) do
     ~H"""
     <section class="mb-8">
-      <h2 class={["mb-2 font-bold", @kind == :gold && "textamber-900", @kind == :silver && "text-gray-900", @kind == :bronze && "text-bronze-dark2x"]}>
+      <h2 class={["mb-2 font-bold", @kind == :gold && "textamber-900", @kind == :silver && "text-gray-900", @kind == :bronze && "text-orange-900"]}>
         <%= list_title(@kind, total_medals(@medals)) %>
       </h2>
 
@@ -30,7 +30,7 @@ defmodule UneebeeWeb.Components.MedalList do
         "flex flex-col items-center justify-center gap-1 rounded-2xl p-4 text-center",
         @kind == :gold && "bgamber-50 textamber-900",
         @kind == :silver && "bg-gray-50 text-gray-900",
-        @kind == :bronze && "bg-bronze-light3x text-bronze-dark2x"
+        @kind == :bronze && "bg-orange-50 text-orange-900"
       ]}
     >
       <.icon name="tabler-medal" />
@@ -42,7 +42,7 @@ defmodule UneebeeWeb.Components.MedalList do
         "mt-4 flex h-12 w-12 flex-col items-center justify-center rounded-full font-black",
         @kind == :gold && "bgamber-900 textamber-50",
         @kind == :silver && "bg-gray-900 text-gray-50",
-        @kind == :bronze && "bg-bronze-dark2x text-bronze-light3x"
+        @kind == :bronze && "bg-orange-900 text-orange-50"
       ]}>
         <%= @count %>
       </dd>
