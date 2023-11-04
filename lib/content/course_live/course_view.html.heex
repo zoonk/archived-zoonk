@@ -9,15 +9,13 @@
       <%= dgettext("courses", "Request to join") %>
     </.button>
 
-    <.badge :if={@course_user && not @course_user.approved?} color={:warning_light} icon="tabler-progress">
+    <.badge :if={@course_user && not @course_user.approved?} color={:warning} icon="tabler-progress">
       <%= dgettext("courses", "Pending Approval") %>
     </.badge>
 
     <.badge icon="tabler-chart-arrows-vertical" class="mt-4"><%= CourseUtils.level_label(@course.level) %></.badge>
-    <.badge icon="tabler-progress" color={:success_light}>
-      <%= CourseUtils.course_progress(@lessons, @current_user) %>%
-    </.badge>
-    <.badge icon="tabler-user" color={:info_light}><%= @student_count %></.badge>
+    <.badge icon="tabler-progress" color={:success}><%= CourseUtils.course_progress(@lessons, @current_user) %>%</.badge>
+    <.badge icon="tabler-user" color={:info}><%= @student_count %></.badge>
   </div>
 </header>
 
@@ -43,10 +41,7 @@
         <span class="flex-1 truncate"><%= lesson.name %></span>
 
         <.badge :if={score} color={CourseUtils.score_color(score)}><%= score %></.badge>
-
-        <.badge :if={lesson_locked?(@course, @course_user)} color={:black_light} icon="tabler-lock">
-          <%= gettext("Locked") %>
-        </.badge>
+        <.badge :if={lesson_locked?(@course, @course_user)} color={:black} icon="tabler-lock"><%= gettext("Locked") %></.badge>
       </dt>
       <dd class="text-gray text-sm"><%= lesson.description %></dd>
     </div>

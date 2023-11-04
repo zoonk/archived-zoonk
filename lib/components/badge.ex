@@ -20,8 +20,8 @@ defmodule UneebeeWeb.Components.Badge do
       <.badge color={:warning}>5</.badge>
   """
   attr :color, :atom,
-    default: :info_light,
-    values: [:black, :alert, :info, :success, :warning, :black_light, :alert_light, :info_light, :success_light, :warning_light],
+    default: :info,
+    values: [:black, :alert, :info, :success, :warning],
     doc: "the background color"
 
   attr :icon, :string, default: nil, doc: "name of the icon to add to the badge"
@@ -35,16 +35,11 @@ defmodule UneebeeWeb.Components.Badge do
     <span
       class={[
         "inline-flex w-max max-w-full items-center gap-1 rounded-full px-2.5 py-0.5 text-xs font-medium leading-4",
-        @color == :black && "bg-gray-dark text-white",
-        @color == :alert && "bg-pink-500 text-white",
-        @color == :success && "bg-teal-500 text-white",
-        @color == :info && "bg-cyan-500 text-white",
-        @color == :warning && "bg-amber-500 text-white",
-        @color == :black_light && "bg-gray-light3x text-gray-dark2x",
-        @color == :alert_light && "bg-pink-50 text-pink-700",
-        @color == :info_light && "bg-cyan-50 text-cyan-900",
-        @color == :success_light && "bg-teal-50 text-teal-900",
-        @color == :warning_light && "bgamber-50 textamber-900",
+        @color == :black && "bg-gray-light3x text-gray-dark2x",
+        @color == :alert && "bg-pink-50 text-pink-700",
+        @color == :info && "bg-cyan-50 text-cyan-900",
+        @color == :success && "bg-teal-50 text-teal-900",
+        @color == :warning && "bgamber-50 textamber-900",
         @class
       ]}
       {@rest}

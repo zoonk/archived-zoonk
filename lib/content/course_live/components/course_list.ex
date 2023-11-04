@@ -32,7 +32,7 @@ defmodule UneebeeWeb.Components.Content.CourseList do
 
           <div class="mt-4 pb-1">
             <.badge icon="tabler-chart-arrows-vertical"><%= CourseUtils.level_label(course.level) %></.badge>
-            <.badge :if={not @my_courses} icon="tabler-user" color={:black_light}><%= course_data.student_count %></.badge>
+            <.badge :if={not @my_courses} icon="tabler-user" color={:black}><%= course_data.student_count %></.badge>
           </div>
         </div>
       </.link>

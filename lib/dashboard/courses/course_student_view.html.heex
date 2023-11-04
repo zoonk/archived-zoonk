@@ -8,7 +8,7 @@
     <h2 class="flex-1 text-xs font-light">@<%= @student.username %> - <%= @student.email %></h2>
 
     <div class="mt-4">
-      <.badge icon="tabler-progress" color={:success_light}>
+      <.badge icon="tabler-progress" color={:success}>
         <%= CourseUtils.course_progress(@lessons, @student) %>%
       </.badge>
 

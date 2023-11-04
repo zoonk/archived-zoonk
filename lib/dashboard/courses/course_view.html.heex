@@ -29,13 +29,8 @@
       <dd class="text-gray text-sm"><%= lesson.description %></dd>
 
       <div class="mt-4">
-        <.badge :if={lesson.published?} color={:success_light} icon="tabler-eye">
-          <%= dgettext("orgs", "Published") %>
-        </.badge>
-
-        <.badge :if={not lesson.published?} color={:alert_light} icon="tabler-eye-off">
-          <%= dgettext("orgs", "Unpublished") %>
-        </.badge>
+        <.badge :if={lesson.published?} color={:success} icon="tabler-eye"><%= dgettext("orgs", "Published") %></.badge>
+        <.badge :if={not lesson.published?} color={:alert} icon="tabler-eye-off"><%= dgettext("orgs", "Unpublished") %></.badge>
       </div>
     </div>
   </.link>
