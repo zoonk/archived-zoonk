@@ -1,23 +1,32 @@
-<header class="flex gap-2 rounded-2xl bg-gray-50 p-4">
+<header class="flex flex-col items-start justify-between gap-x-8 gap-y-4 bg-gray-50 p-4 sm:flex-row sm:items-center sm:px-6 lg:px-8">
   <% score = CourseUtils.course_score(@lessons) %>
-  <.avatar src={@student.avatar} alt={UserUtils.full_name(@student)} />
 
-  <div class="w-full">
-    <h1 class="font-semibold text-gray-900"><%= UserUtils.full_name(@student) %></h1>
+  <div>
+    <div class="flex items-center gap-x-3">
+      <.avatar src={@student.avatar} alt={UserUtils.full_name(@student)} size={:small} />
 
-    <h2 class="flex-1 text-xs font-light">@<%= @student.username %> - <%= @student.email %></h2>
-
-    <div class="mt-4">
-      <.badge icon="tabler-progress" color={:success}>
-        <%= CourseUtils.course_progress(@lessons, @student) %>%
-      </.badge>
-
-      <.badge :if={score} icon="tabler-check" color={CourseUtils.score_color(score)}><%= score %></.badge>
+      <h1 class="flex gap-x-3 text-base leading-7">
+        <span class="font-semibold text-gray-700"><%= UserUtils.full_name(@student) %></span>
+        <span class="text-gray-300">/</span>
+        <span class="text-gray-700">@<%= @student.username %></span>
+      </h1>
     </div>
+
+    <p class="mt-2 text-xs leading-6 text-gray-500">
+      <%= @student.email %>
+    </p>
+  </div>
+
+  <div class="order-first space-x-1 sm:order-none">
+    <.badge icon="tabler-progress" color={:success}>
+      <%= CourseUtils.course_progress(@lessons, @student) %>%
+    </.badge>
+
+    <.badge :if={score} icon="tabler-check" color={CourseUtils.score_color(score)}><%= score %></.badge>
   </div>
 </header>
 
-<article class="mt-4 space-y-4">
+<article class="container space-y-4">
   <details
     :for={lesson <- @lessons}
     id={"lessons-#{lesson.id}"}
