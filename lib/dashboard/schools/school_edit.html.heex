@@ -8,10 +8,10 @@
   </div>
 
   <div class="container max-w-3xl space-y-8">
-    <.input :if={@live_action == :profile} field={@form[:slug]} type="text" label={dgettext("orgs", "Nickname")} required />
-    <.input :if={@live_action == :profile} field={@form[:name]} type="text" label={dgettext("orgs", "School name")} required />
-    <.input :if={@live_action == :profile} field={@form[:email]} type="email" label={dgettext("orgs", "School email")} required />
-    <.input :if={@live_action == :terms} field={@form[:terms_of_use]} type="url" label={dgettext("orgs", "Terms of use URL")} />
-    <.input :if={@live_action == :terms} field={@form[:privacy_policy]} type="url" label={dgettext("orgs", "Privacy policy URL")} />
+    <.input :if={@live_action == :settings} field={@form[:slug]} type="text" label={dgettext("orgs", "Nickname")} required />
+    <.input :if={@live_action == :settings} field={@form[:name]} type="text" label={dgettext("orgs", "School name")} required />
+    <.input :if={@live_action == :settings} field={@form[:email]} type="email" label={dgettext("orgs", "School email")} required />
+    <.input :if={@live_action == :settings} field={@form[:terms_of_use]} type="url" label={dgettext("orgs", "Terms of use URL")} />
+    <.input :if={@live_action == :settings} field={@form[:privacy_policy]} type="url" label={dgettext("orgs", "Privacy policy URL")} />
   </div>
 </.simple_form>

@@ -57,7 +57,6 @@ defmodule UneebeeWeb.Live.Dashboard.SchoolEdit do
     assign(socket, :form, to_form(changeset))
   end
 
-  defp get_page_title(:profile), do: dgettext("orgs", "Profile")
+  defp get_page_title(:settings), do: gettext("Settings")
   defp get_page_title(:logo), do: dgettext("orgs", "Logo")
-  defp get_page_title(:terms), do: dgettext("orgs", "Terms")
 end
