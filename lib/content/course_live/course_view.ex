@@ -60,4 +60,17 @@ defmodule UneebeeWeb.Live.CourseView do
 
   defp lesson_link(true, _course, _lesson), do: nil
   defp lesson_link(_locked, course, lesson), do: ~p"/c/#{course.slug}/#{lesson.id}"
+
+  defp lesson_color(course, course_user, user, user_lessons) do
+    locked? = lesson_locked?(course, course_user)
+    completed? = CourseUtils.lesson_completed?(user, user_lessons)
+    score = CourseUtils.lesson_score(user, user_lessons)
+    lesson_color(locked?, completed?, score)
+  end
+
+  defp lesson_color(true, _completed, _score), do: "cursor-not-allowed border-gray-400 opacity-50"
+  defp lesson_color(false, true, score) when score >= 8, do: "border-teal-500 focus:outline-teal-500"
+  defp lesson_color(false, true, score) when score >= 6, do: "border-amber-500 focus:outline-amber-500"
+  defp lesson_color(false, true, _score), do: "border-pink-500 focus:outline-pink-500"
+  defp lesson_color(false, false, _score), do: "border-gray-400 focus:outline-gray-400"
 end
