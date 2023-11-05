@@ -4,7 +4,6 @@ defmodule UneebeeWeb.Components.DeleteItem do
   """
   use UneebeeWeb, :live_component
 
-  import UneebeeWeb.Components.Header
   import UneebeeWeb.Components.Input
 
   attr :id, :string, required: true
@@ -13,26 +12,27 @@ defmodule UneebeeWeb.Components.DeleteItem do
   @impl Phoenix.LiveComponent
   def render(assigns) do
     ~H"""
-    <div class="card p-4">
-      <.header>
-        <%= dgettext("orgs", "Delete item") %>
-        <:subtitle>
-          <%= dgettext("orgs", "Deleting this item will remove all of its content. This action cannot be undone.") %>
-        </:subtitle>
-      </.header>
+    <form phx-submit="delete" phx-target={@myself} id="delete-form">
+      <div class="flex flex-wrap items-center gap-2 bg-gray-50 p-4 sm:flex-nowrap sm:px-6 lg:px-8">
+        <h1 class="text-base font-semibold leading-7 text-gray-900"><%= gettext("Delete") %></h1>
 
-      <form phx-submit="delete" phx-target={@myself} id="delete-form" class="mt-4">
+        <div class="ml-auto">
+          <.button type="submit" icon="tabler-trash-x" color={:alert} phx-disable-with={gettext("Deleting...")}>
+            <%= dgettext("orgs", "Delete") %>
+          </.button>
+        </div>
+      </div>
+
+      <div class="container">
+        <p class="pb-4 text-sm text-gray-600">
+          <%= dgettext("orgs", "Deleting this item will remove all of its content. This action cannot be undone.") %>
+        </p>
+
         <.input type="text" label={dgettext("orgs", "Type CONFIRM to delete %{name}.", name: @name)} name="confirmation" id="confirmation" required value="" />
 
         <span :if={@error_msg} class="text-sm text-pink-500"><%= @error_msg %></span>
-
-        <div class="mt-4 flex items-center gap-2">
-          <.button type="submit" icon="tabler-trash-x" color={:alert} phx-disable-with={gettext("Deleting...")}>
-            <%= dgettext("orgs", "Delete item") %>
-          </.button>
-        </div>
-      </form>
-    </div>
+      </div>
+    </form>
     """
   end
 
