@@ -30,8 +30,7 @@ defmodule UneebeeWeb.Layouts.MenuUtils do
 
   @spec course?(atom()) :: boolean()
   def course?(active_page) do
-    course_view? = active_page |> Atom.to_string() |> String.starts_with?("dashboard_course")
-    course_view? or lesson_view?(active_page)
+    active_page |> Atom.to_string() |> String.starts_with?("dashboard_course")
   end
 
   @spec course_view?(atom()) :: boolean()
@@ -54,6 +53,12 @@ defmodule UneebeeWeb.Layouts.MenuUtils do
   @spec dashboard_school?(atom()) :: boolean()
   def dashboard_school?(active_page) do
     dashboard?(active_page) and not course?(active_page) and not lesson_view?(active_page)
+  end
+
+  @spec dashboard_course?(atom()) :: boolean()
+  def dashboard_course?(active_page) do
+    course_view? = active_page |> Atom.to_string() |> String.starts_with?("dashboard_course")
+    course_view? or lesson_view?(active_page)
   end
 
   @spec show_menu?(atom()) :: boolean()

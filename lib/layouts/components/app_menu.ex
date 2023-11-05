@@ -22,7 +22,7 @@ defmodule UneebeeWeb.Components.Layouts.AppMenu do
 
           <ul role="list" class="-mx-2 mt-2 space-y-1">
             <.menu_item :if={@user_role == :manager} href={~p"/dashboard"} icon="tabler-table" active={dashboard_school?(@active_page)} title={dgettext("orgs", "Manage school")} />
-            <.menu_item href={~p"/dashboard/courses"} icon="tabler-table-column" active={course?(@active_page)} title={dgettext("orgs", "Manage courses")} />
+            <.menu_item href={~p"/dashboard/courses"} icon="tabler-table-column" active={dashboard_course?(@active_page)} title={dgettext("orgs", "Manage courses")} />
           </ul>
         </li>
 
