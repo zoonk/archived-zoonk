@@ -30,7 +30,7 @@ defmodule UneebeeWeb.Components.Form do
 
   def simple_form(assigns) do
     ~H"""
-    <.form :let={f} for={@for} as={@as} class={["space-y-4", not @unstyled && "bg-white rounded-xl border border-gray-200 p-4", @class]} {@rest}>
+    <.form :let={f} for={@for} as={@as} class={[not @unstyled && "space-y-4 bg-white rounded-xl border border-gray-200 p-4", @class]} {@rest}>
       <%= render_slot(@inner_block, f) %>
 
       <div :for={action <- @actions} class="mt-2 flex items-center gap-4">

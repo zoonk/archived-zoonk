@@ -1,28 +1,24 @@
-<.simple_form for={@form} id="course-form" phx-change="validate" phx-submit="save">
-  <.header>
-    <%= dgettext("orgs", "Create a course") %>
+<.simple_form for={@form} id="course-form" unstyled phx-change="validate" phx-submit="save">
+  <div class="top-[57px] sticky flex flex-wrap items-center gap-2 bg-gray-50 p-4 sm:flex-nowrap sm:px-6 lg:px-8">
+    <h1 class="text-base font-semibold leading-7 text-gray-900"><%= dgettext("orgs", "Create a course") %></h1>
 
-    <:subtitle>
-      <%= dgettext("orgs", "You'll be able to edit this information and add content to your course later.") %>
-    </:subtitle>
-  </.header>
-
-  <.input field={@form[:language]} type="select" label={gettext("Language")} options={UneebeeWeb.Plugs.Translate.language_options()} required />
-  <.input field={@form[:name]} type="text" label={dgettext("orgs", "Course title")} required />
-  <.input field={@form[:description]} type="textarea" label={dgettext("orgs", "Course description")} required />
-  <.input field={@form[:level]} type="select" label={dgettext("orgs", "Level")} options={Uneebee.Content.CourseUtils.level_options()} required />
-
-  <.input
-    field={@form[:slug]}
-    type="text"
-    label={dgettext("orgs", "Course slug")}
-    helper={dgettext("orgs", "Friendly identifier used to access your course. I.e. my-course-name")}
-    required
-  />
-
-  <:actions>
-    <.button icon="tabler-table-plus" type="submit" phx-disable-with={gettext("Saving...")}>
-      <%= dgettext("orgs", "Create course") %>
+    <.button icon="tabler-table-plus" type="submit" phx-disable-with={gettext("Saving...")} class="ml-auto">
+      <%= dgettext("orgs", "Create") %>
     </.button>
-  </:actions>
+  </div>
+
+  <div class="container max-w-3xl space-y-8">
+    <.input field={@form[:language]} type="select" label={gettext("Language")} options={UneebeeWeb.Plugs.Translate.language_options()} required />
+    <.input field={@form[:name]} type="text" label={dgettext("orgs", "Course title")} required />
+    <.input field={@form[:description]} type="textarea" label={dgettext("orgs", "Course description")} required />
+    <.input field={@form[:level]} type="select" label={dgettext("orgs", "Level")} options={Uneebee.Content.CourseUtils.level_options()} required />
+
+    <.input
+      field={@form[:slug]}
+      type="text"
+      label={dgettext("orgs", "Course slug")}
+      helper={dgettext("orgs", "Friendly identifier used to access your course. I.e. my-course-name")}
+      required
+    />
+  </div>
 </.simple_form>
