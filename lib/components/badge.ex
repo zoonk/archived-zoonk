@@ -21,7 +21,7 @@ defmodule UneebeeWeb.Components.Badge do
   """
   attr :color, :atom,
     default: :info,
-    values: [:black, :alert, :info, :success, :warning, :bronze],
+    values: [:black, :alert, :info, :primary, :success, :warning, :bronze],
     doc: "the background color"
 
   attr :icon, :string, default: nil, doc: "name of the icon to add to the badge"
@@ -37,6 +37,7 @@ defmodule UneebeeWeb.Components.Badge do
         "inline-flex h-fit flex-shrink-0 items-center gap-x-2 rounded-md px-2 py-1 text-xs font-medium ring-1 ring-inset",
         @color == :black && "ring-gray-600/20 bg-gray-50 text-gray-700",
         @color == :alert && "ring-pink-600/20 bg-pink-50 text-pink-700",
+        @color == :primary && "ring-blue-600/20 bg-blue-50 text-blue-700",
         @color == :info && "ring-cyan-600/20 bg-cyan-50 text-cyan-700",
         @color == :success && "ring-teal-600/20 bg-teal-50 text-teal-700",
         @color == :warning && "ring-amber-600/20 bg-amber-50 text-amber-700",
