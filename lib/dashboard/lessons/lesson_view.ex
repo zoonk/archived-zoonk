@@ -80,6 +80,21 @@ defmodule UneebeeWeb.Live.Dashboard.LessonView do
   end
 
   @impl Phoenix.LiveView
+  def handle_event("delete-lesson", _params, socket) do
+    %{lesson: lesson, course: course} = socket.assigns
+
+    case Content.delete_lesson(lesson) do
+      {:ok, _lesson} ->
+        first_lesson = Content.get_first_lesson(course)
+
+        {:noreply, push_navigate(socket, to: ~p"/dashboard/c/#{course.slug}/l/#{first_lesson.id}/s/1")}
+
+      {:error, _changeset} ->
+        {:noreply, put_flash(socket, :error, dgettext("orgs", "Could not delete lesson!"))}
+    end
+  end
+
+  @impl Phoenix.LiveView
   def handle_info({Upload, :step_img_upload, new_path}, socket) do
     %{course: course, lesson: lesson, selected_step: selected_step} = socket.assigns
 

@@ -8,27 +8,16 @@ defmodule UneebeeWeb.Components.Dashboard.LessonEdit do
   @impl Phoenix.LiveComponent
   def render(assigns) do
     ~H"""
-    <div class="mt-16 flex flex-col items-center justify-between gap-8 rounded-2xl lg:flex-row">
-      <div class="flex items-center gap-2">
-        <.link_button icon="tabler-edit" color={:black_light} navigate={~p"/dashboard/c/#{@course.slug}/l/#{@lesson.id}/s/#{@step_order}/edit_step"}>
-          <%= dgettext("orgs", "Edit lesson") %>
-        </.link_button>
-
-        <.link_button id="lesson-cover-link" icon="tabler-photo" color={:info_light} navigate={~p"/dashboard/c/#{@course.slug}/l/#{@lesson.id}/s/#{@step_order}/cover"}>
+    <div>
+      <div class="flex items-center gap-x-2">
+        <.link_button id="lesson-cover-link" icon="tabler-photo" color={:white} navigate={~p"/dashboard/c/#{@course.slug}/l/#{@lesson.id}/s/#{@step_order}/cover"}>
           <%= dgettext("orgs", "Cover") %>
         </.link_button>
-      </div>
 
-      <.button
-        :if={@allow_delete}
-        icon="tabler-trash"
-        phx-click="delete-lesson"
-        color={:alert}
-        phx-target={@myself}
-        data-confirm={dgettext("orgs", "All content from this lesson will be deleted. This action cannot be undone.")}
-      >
-        <%= dgettext("orgs", "Delete lesson") %>
-      </.button>
+        <.link_button icon="tabler-edit" color={:white} navigate={~p"/dashboard/c/#{@course.slug}/l/#{@lesson.id}/s/#{@step_order}/edit_step"}>
+          <%= gettext("Edit") %>
+        </.link_button>
+      </div>
 
       <.modal :if={@action == :edit_step} id="edit-step-modal" show on_cancel={JS.patch(~p"/dashboard/c/#{@course.slug}/l/#{@lesson.id}/s/#{@step_order}")}>
         <.simple_form for={@lesson_form} id="lesson-form" unstyled phx-change="validate" phx-submit="save" phx-target={@myself}>
@@ -74,21 +63,6 @@ defmodule UneebeeWeb.Components.Dashboard.LessonEdit do
 
       {:error, _changeset} ->
         {:noreply, put_flash(socket, :error, dgettext("orgs", "Could not update lesson!"))}
-    end
-  end
-
-  @impl Phoenix.LiveComponent
-  def handle_event("delete-lesson", _params, socket) do
-    %{lesson: lesson, course: course} = socket.assigns
-
-    case Content.delete_lesson(lesson) do
-      {:ok, _lesson} ->
-        first_lesson = Content.get_first_lesson(course)
-
-        {:noreply, push_navigate(socket, to: lesson_link(course, first_lesson, 1))}
-
-      {:error, _changeset} ->
-        {:noreply, put_flash!(socket, :error, dgettext("orgs", "Could not delete lesson!"))}
     end
   end
 

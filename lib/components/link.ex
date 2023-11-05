@@ -31,7 +31,7 @@ defmodule UneebeeWeb.Components.Link do
 
   attr :color, :atom,
     default: :black,
-    values: [:black, :alert, :primary, :black_light, :alert_light, :info_light]
+    values: [:black, :alert, :primary, :white, :black_light, :alert_light, :info_light]
 
   attr :class, :string, default: nil
   attr :icon, :string, default: nil
@@ -51,6 +51,7 @@ defmodule UneebeeWeb.Components.Link do
         @color == :black && "bg-gray-700 text-white hover:bg-gray-900 focus:outline-gray-700",
         @color == :alert && "bg-pink-500 text-white hover:bg-pink-700 focus:outline-pink-500",
         @color == :primary && "bg-indigo-500 text-white hover:bg-indigo-700 focus:outline-indigo-500",
+        @color == :white && "bg-white text-gray-900 hover:bg-gray-50 ring-1 ring-inset ring-gray-300 focus:outline-gray-300",
         @color == :black_light && "bg-gray-50 text-gray-900 hover:bg-gray-200 focus:outline-gray-50",
         @color == :alert_light && "bg-pink-50 text-pink-900 hover:bg-pink-200 focus:outline-pink-50",
         @color == :info_light && "bg-cyan-50 text-cyan-900 hover:bg-cyan-200 focus:outline-cyan-50",
