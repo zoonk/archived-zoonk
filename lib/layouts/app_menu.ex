@@ -12,8 +12,8 @@ defmodule UneebeeWeb.Components.Layouts.AppMenu do
         <li>
           <ul role="list" class="-mx-2 space-y-1">
             <.menu_item href={~p"/"} icon="tabler-home-2" active={@active_page == :courseview} title={gettext("Home")} />
-            <.menu_item href={~p"/courses/my"} icon="tabler-books" active={@active_page == :mycourses} title={gettext("My courses")} />
-            <.menu_item href={~p"/courses"} icon="tabler-ufo" active={@active_page == :courselist} title={gettext("Courses")} />
+            <.menu_item navigate={~p"/courses/my"} icon="tabler-books" active={@active_page == :mycourses} title={gettext("My courses")} />
+            <.menu_item navigate={~p"/courses"} icon="tabler-ufo" active={@active_page == :courselist} title={gettext("Courses")} />
           </ul>
         </li>
 
@@ -28,8 +28,8 @@ defmodule UneebeeWeb.Components.Layouts.AppMenu do
 
         <li class="mt-auto">
           <ul class="-mx-2 space-y-1">
-            <.menu_item href={~p"/feedback"} icon="tabler-message-circle-2" active={@active_page == :feedback} title={gettext("Feedback")} />
-            <.menu_item href={~p"/users/settings/language"} icon="tabler-settings" active={user_settings?(@active_page)} title={gettext("Settings")} />
+            <.menu_item navigate={~p"/feedback"} icon="tabler-message-circle-2" active={@active_page == :feedback} title={gettext("Feedback")} />
+            <.menu_item navigate={~p"/users/settings/language"} icon="tabler-settings" active={user_settings?(@active_page)} title={gettext("Settings")} />
           </ul>
         </li>
       </ul>
