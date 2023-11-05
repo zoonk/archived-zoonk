@@ -17,57 +17,12 @@ defmodule UneebeeWeb.Components.Layouts.AppMenu do
           </ul>
         </li>
 
-        <li :if={@user_role == :manager}>
-          <div class="text-xs font-semibold leading-6 text-gray-400"><%= dgettext("orgs", "Manage school") %></div>
-
-          <ul role="list" class="-mx-2 mt-2 space-y-1">
-            <.menu_item href={~p"/dashboard"} active={@active_page == :dashboard_home} title={gettext("Overview")} />
-
-            <div :if={school_expanded?(@active_page)}>
-              <.menu_item href={~p"/dashboard/managers"} active={@active_page == :dashboard_userlist_manager} title={gettext("Managers")} />
-              <.menu_item href={~p"/dashboard/teachers"} active={@active_page == :dashboard_userlist_teacher} title={gettext("Teachers")} />
-              <.menu_item href={~p"/dashboard/students"} active={@active_page == :dashboard_userlist_student} title={gettext("Students")} />
-              <.menu_item href={~p"/dashboard/edit/logo"} active={@active_page == :dashboard_schooledit_logo} title={gettext("Logo")} />
-              <.menu_item href={~p"/dashboard/edit/slug"} active={@active_page == :dashboard_schooledit_slug} title={dgettext("orgs", "Nickname")} />
-              <.menu_item href={~p"/dashboard/edit/info"} active={@active_page == :dashboard_schooledit_info} title={gettext("Profile")} />
-              <.menu_item href={~p"/dashboard/edit/terms"} active={@active_page == :dashboard_schooledit_terms} title={dgettext("orgs", "Terms of use")} />
-            </div>
-          </ul>
-        </li>
-
         <li :if={@user_role in [:manager, :teacher]}>
-          <div class="text-xs font-semibold leading-6 text-gray-400"><%= dgettext("orgs", "Manage courses") %></div>
+          <div class="text-xs font-semibold leading-6 text-gray-400"><%= dgettext("orgs", "Dashboard") %></div>
 
           <ul role="list" class="-mx-2 mt-2 space-y-1">
-            <.menu_item :if={not course_view?(@active_page)} href={~p"/dashboard/courses"} title={dgettext("orgs", "All courses")} />
-            <.menu_item navigate={~p"/dashboard/courses/new"} active={@active_page == :dashboard_coursenew} title={gettext("Create a course")} />
-
-            <div :if={course_view?(@active_page)}>
-              <.menu_item navigate={~p"/dashboard/c/#{@course.slug}"} active={@active_page == :dashboard_courseview} title={dgettext("orgs", "Course page")} />
-
-              <.menu_item
-                navigate={~p"/dashboard/c/#{@course.slug}/l/#{@first_lesson_id}/s/1"}
-                active={@active_page == :dashboard_lessonview}
-                title={dgettext("orgs", "Lesson editor")}
-              />
-
-              <.menu_item
-                navigate={~p"/dashboard/c/#{@course.slug}/students"}
-                active={@active_page in [:dashboard_courseuserlist_student, :dashboard_coursestudentview]}
-                title={gettext("Students")}
-              />
-
-              <.menu_item navigate={~p"/dashboard/c/#{@course.slug}/teachers"} active={@active_page == :dashboard_courseuserlist_teacher} title={gettext("Teachers")} />
-              <.menu_item navigate={~p"/dashboard/c/#{@course.slug}/edit/info"} active={@active_page == :dashboard_courseedit_info} title={gettext("Information")} />
-              <.menu_item navigate={~p"/dashboard/c/#{@course.slug}/edit/cover"} active={@active_page == :dashboard_courseedit_cover} title={gettext("Cover")} />
-              <.menu_item navigate={~p"/dashboard/c/#{@course.slug}/edit/privacy"} active={@active_page == :dashboard_courseedit_privacy} title={gettext("Privacy")} />
-
-              <.menu_item
-                navigate={~p"/dashboard/c/#{@course.slug}/edit/delete"}
-                active={@active_page == :dashboard_courseedit_delete}
-                title={dgettext("courses", "Delete course")}
-              />
-            </div>
+            <.menu_item :if={@user_role == :manager} href={~p"/dashboard"} icon="tabler-table" active={dashboard_school?(@active_page)} title={dgettext("orgs", "Manage school")} />
+            <.menu_item href={~p"/dashboard/courses"} icon="tabler-table-column" active={course?(@active_page)} title={dgettext("orgs", "Manage courses")} />
           </ul>
         </li>
 

@@ -129,6 +129,7 @@ defmodule UneebeeWeb.Router do
     pipe_through [:browser, :require_authenticated_user, :require_manager]
 
     live_session :school_dashboard,
+      layout: {UneebeeWeb.Layouts, :dashboard_school},
       on_mount: [
         {UneebeeWeb.Plugs.UserAuth, :ensure_authenticated},
         {UneebeeWeb.Plugs.School, :mount_school},

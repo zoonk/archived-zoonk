@@ -51,13 +51,27 @@ defmodule UneebeeWeb.Layouts.MenuUtils do
     active_page |> Atom.to_string() |> String.starts_with?("dashboard")
   end
 
-  @spec school_expanded?(atom()) :: boolean()
-  def school_expanded?(active_page) do
+  @spec dashboard_school?(atom()) :: boolean()
+  def dashboard_school?(active_page) do
     dashboard?(active_page) and not course?(active_page) and not lesson_view?(active_page)
   end
 
   @spec show_menu?(atom()) :: boolean()
   def show_menu?(active_page) do
     active_page not in [:lessonplay, :lessoncompleted]
+  end
+
+  @spec dashboard_school_menu() :: list()
+  def dashboard_school_menu do
+    [
+      %{link: ~p"/dashboard", view: :dashboard_home, title: gettext("Overview")},
+      %{link: ~p"/dashboard/managers", view: :dashboard_userlist_manager, title: gettext("Managers")},
+      %{link: ~p"/dashboard/teachers", view: :dashboard_userlist_teacher, title: gettext("Teachers")},
+      %{link: ~p"/dashboard/students", view: :dashboard_userlist_student, title: gettext("Students")},
+      %{link: ~p"/dashboard/edit/logo", view: :dashboard_schooledit_logo, title: gettext("Logo")},
+      %{link: ~p"/dashboard/edit/slug", view: :dashboard_schooledit_slug, title: dgettext("orgs", "Nickname")},
+      %{link: ~p"/dashboard/edit/info", view: :dashboard_schooledit_info, title: gettext("Profile")},
+      %{link: ~p"/dashboard/edit/terms", view: :dashboard_schooledit_terms, title: dgettext("orgs", "Terms of use")}
+    ]
   end
 end

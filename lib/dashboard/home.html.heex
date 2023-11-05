@@ -1,18 +1,30 @@
-<div class="container">
-  <header class="flex flex-col gap-8 rounded-2xl border border-gray-200 bg-white p-4 text-gray-900">
-    <div class="flex gap-4">
-      <.avatar src={@school.logo} alt={@school.name} />
+<header class="flex flex-col items-start justify-between gap-x-8 gap-y-4 bg-gray-50 px-4 py-4 sm:flex-row sm:items-center sm:px-6 lg:px-8">
+  <div>
+    <div class="flex items-center gap-x-3">
+      <.avatar src={@school.logo} alt={@school.name} size={:small} />
 
-      <section>
-        <h1 class="font-bold leading-tight"><%= @school.name %></h1>
-        <h3 class="text-xs font-light">@<%= @school.slug %></h3>
-      </section>
+      <h1 class="flex gap-x-3 text-base leading-7">
+        <span class="font-semibold text-gray-700"><%= @school.name %></span>
+        <span class="text-gray-300">/</span>
+        <span class="text-gray-700">@<%= @school.slug %></span>
+      </h1>
     </div>
-  </header>
 
-  <section class="mt-4 grid grid-cols-2 gap-4 sm:grid-cols-3">
-    <.item_stats_card title={gettext("Managers")} icon="tabler-puzzle" count={@manager_count} />
-    <.item_stats_card title={gettext("Teachers")} icon="tabler-apple" count={@teacher_count} />
-    <.item_stats_card title={gettext("Students")} icon="tabler-comet" count={@student_count} />
-  </section>
-</div>
+    <p class="mt-2 text-xs leading-6 text-gray-500">
+      <%= @school.custom_domain || "#{@school.slug}.#{@host}" %>
+    </p>
+  </div>
+
+  <div class="bg-indigo-400/10 ring-indigo-400/30 order-first flex-none rounded-full px-2 py-1 text-xs font-medium text-indigo-400 ring-1 ring-inset sm:order-none">
+    <%= if @school.public?, do: dgettext("orgs", "Public"), else: dgettext("orgs", "Private") %>
+  </div>
+</header>
+
+<dl class="border-gray-900/10 grid grid-cols-1 border-b bg-white sm:grid-cols-3">
+  <div :for={item <- school_stats()} class="border-gray-900/10 border-t px-4 py-6 last:border-r-0 sm:border-r sm:px-6 lg:px-8">
+    <dt class="text-sm leading-6 text-gray-500"><%= item.title %></dt>
+    <dd class="mt-2 flex items-baseline gap-x-2">
+      <span class="text-4xl font-semibold tracking-tight text-gray-600"><%= Map.get(@user_count, item.id) %></span>
+    </dd>
+  </div>
+</dl>
