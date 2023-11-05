@@ -27,6 +27,7 @@ defmodule UneebeeWeb.Live.LessonCompleted do
       |> assign(:learning_days, learning_days)
       |> assign(:medal, medal)
       |> assign(:course_completed_trophy, course_completed_trophy)
+      |> assign(:award_count, award_count(first_lesson_today?, medal, course_completed_trophy))
 
     {:ok, socket}
   end
@@ -58,4 +59,16 @@ defmodule UneebeeWeb.Live.LessonCompleted do
   end
 
   defp trophy(user_trophy), do: TrophyUtils.trophy(user_trophy.reason)
+
+  defp badge_color(score) when score >= 8, do: :success
+  defp badge_color(score) when score >= 6, do: :warning
+  defp badge_color(_score), do: :alert
+
+  defp award_count(first_lesson?, medal, user_trophy) do
+    learning_day = if first_lesson?, do: 1, else: 0
+    medal = if is_nil(medal), do: 0, else: 1
+    trophy = if completed_course_recently?(user_trophy), do: 1, else: 0
+
+    learning_day + medal + trophy
+  end
 end

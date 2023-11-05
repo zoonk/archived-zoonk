@@ -34,7 +34,7 @@ defmodule UneebeeWeb.Components.Badge do
     ~H"""
     <span
       class={[
-        "inline-flex flex-shrink-0 items-center gap-x-2 rounded-md px-2 py-1 text-xs font-medium ring-1 ring-inset",
+        "inline-flex h-fit flex-shrink-0 items-center gap-x-2 rounded-md px-2 py-1 text-xs font-medium ring-1 ring-inset",
         @color == :black && "ring-gray-600/20 bg-gray-50 text-gray-700",
         @color == :alert && "ring-pink-600/20 bg-pink-50 text-pink-700",
         @color == :info && "ring-cyan-600/20 bg-cyan-50 text-cyan-700",

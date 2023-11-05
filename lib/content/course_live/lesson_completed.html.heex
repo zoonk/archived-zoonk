@@ -1,29 +1,22 @@
-<article class="card m-auto my-4 max-w-sm rounded-2xl bg-white shadow">
-  <div class="p-8">
-    <% score = get_score(@user_lesson) %>
+<article class="m-auto my-4 flex h-screen max-w-sm flex-col bg-white p-8 md:justify-center">
+  <% score = get_score(@user_lesson) %>
 
-    <img src={score_image(score)} alt={dgettext("courses", "Illustration of a green alien")} class="w-1/4 motion-safe:animate-bounce" />
+  <img src={score_image(score)} alt={dgettext("courses", "Illustration of a green alien")} class="w-1/4 motion-safe:animate-bounce" />
 
-    <div class="my-4 flex items-center justify-between gap-4">
-      <div>
-        <h1 class="font-semibold text-gray-900"><%= score_title(score) %></h1>
+  <div class="my-4 flex justify-between gap-4">
+    <div>
+      <h1 class="font-semibold text-gray-900"><%= score_title(score) %></h1>
 
-        <p class="text-sm text-gray-500">
-          <%= dgettext("courses", "You got %{correct} out of %{total} answers right.", correct: @user_lesson.correct, total: @user_lesson.total) %>
-        </p>
-      </div>
-
-      <div class={[
-        "flex h-10 w-10 flex-col items-center justify-center rounded-full p-6 font-bold",
-        score >= 8 && "bg-teal-50 text-teal-900",
-        score >= 6 && score < 8 && "bg-amber-50 text-amber-900",
-        score < 6 && "bg-pink-50 text-pink-900"
-      ]}>
-        <%= score %>
-      </div>
+      <p class="text-sm text-gray-500">
+        <%= dgettext("courses", "You got %{correct} out of %{total} answers right.", correct: @user_lesson.correct, total: @user_lesson.total) %>
+      </p>
     </div>
 
-    <div class="grid grid-cols-1 gap-4 pt-4 sm:grid-cols-2">
+    <.badge color={badge_color(score)}><%= score %></.badge>
+  </div>
+
+  <div class="flex-1 md:flex-none">
+    <div class={["grid gap-4 pt-4", @award_count == 1 && "grid-cols-1", @award_count == 2 && "grid-cols-1 md:grid-cols-2"]}>
       <.trophy_badge
         :if={completed_course_recently?(@course_completed_trophy)}
         title={trophy(@course_completed_trophy).label}
@@ -35,7 +28,7 @@
     </div>
   </div>
 
-  <.link_button color={:black} class="m-4" navigate={~p"/c/#{@course.slug}"}>
+  <.link_button color={:primary} class="mt-8 w-full" navigate={~p"/c/#{@course.slug}"}>
     <%= dgettext("courses", "Back to the course") %>
   </.link_button>
 </article>

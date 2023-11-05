@@ -25,7 +25,13 @@ defmodule UneebeeWeb.Components.AwardBadge do
 
   def learning_days_badge(assigns) do
     ~H"""
-    <.award_badge id="learning-days-badge" icon="tabler-calendar-heart" prize={:other} value={@days} label={dngettext("gamification", "Learning day", "Learning days", @days)} />
+    <.award_badge
+      id="learning-days-badge"
+      icon="tabler-calendar-heart"
+      prize={:other}
+      value={dgettext("gamification", "Learning day")}
+      label={dngettext("gamification", "You completed a lesson on %{count} day.", "You completed a lesson on %{count} days.", @days, count: @days)}
+    />
     """
   end
 
