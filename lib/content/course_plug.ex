@@ -53,6 +53,7 @@ defmodule UneebeeWeb.Plugs.Course do
 
     * `:mount_course` - Mounts the course from the `course_slug` paramater.
     * `:mount_lesson` - Mounts the lesson from the `lesson_id` paramater.
+    * `:mount_course_list` - Mounts the list of courses for the school.
   """
   @spec on_mount(atom(), LiveView.unsigned_params(), map(), Socket.t()) :: {:cont, Socket.t()}
   def on_mount(:mount_course, %{"course_slug" => course_slug}, _session, socket) do

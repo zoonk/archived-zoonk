@@ -133,12 +133,12 @@ defmodule Uneebee.Content do
 
   ## Examples
 
-      iex> list_courses_by_school(%School{})
+      iex> list_courses_by_school(school_id)
       [%Course{}, ...]
   """
-  @spec list_courses_by_school(School.t()) :: [Course.t()]
-  def list_courses_by_school(%School{} = school) do
-    Course |> where([c], c.school_id == ^school.id) |> order_by(desc: :inserted_at) |> preload(:school) |> Repo.all()
+  @spec list_courses_by_school(non_neg_integer()) :: [Course.t()]
+  def list_courses_by_school(school_id) do
+    Course |> where([c], c.school_id == ^school_id) |> order_by(desc: :inserted_at) |> preload(:school) |> Repo.all()
   end
 
   @doc """
@@ -176,18 +176,18 @@ defmodule Uneebee.Content do
 
   ## Examples
 
-      iex> list_courses_by_user(%User{}, :teacher)
+      iex> list_courses_by_user(user_id, :teacher)
       [%Course{}, ...]
 
-      iex> list_courses_by_user(%User{}, :student, limit: 5)
+      iex> list_courses_by_user(user_id, :student, limit: 5)
       [%Course{}, ...]
   """
-  @spec list_courses_by_user(User.t(), atom(), keyword()) :: [Course.t()]
-  def list_courses_by_user(%User{} = user, role, opts \\ []) do
+  @spec list_courses_by_user(non_neg_integer(), atom(), keyword()) :: [Course.t()]
+  def list_courses_by_user(user_id, role, opts \\ []) do
     limit = Keyword.get(opts, :limit, nil)
 
     Course
-    |> join(:inner, [c], cu in CourseUser, on: c.id == cu.course_id and cu.user_id == ^user.id and cu.role == ^role)
+    |> join(:inner, [c], cu in CourseUser, on: c.id == cu.course_id and cu.user_id == ^user_id and cu.role == ^role)
     |> preload(:school)
     |> order_by(desc: :updated_at)
     |> limit(^limit)
@@ -1061,7 +1061,7 @@ defmodule Uneebee.Content do
   end
 
   def get_last_edited_course_slug(_school, %User{} = user, role) do
-    user |> list_courses_by_user(role, limit: 1) |> Enum.at(0) |> get_course_slug()
+    user.id |> list_courses_by_user(role, limit: 1) |> Enum.at(0) |> get_course_slug()
   end
 
   defp handle_last_edited_course(nil, %School{} = school) do

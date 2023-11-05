@@ -157,6 +157,7 @@ defmodule UneebeeWeb.Router do
     pipe_through [:browser, :require_authenticated_user, :fetch_course, :require_manager_or_teacher]
 
     live_session :course_dashboard,
+      layout: {UneebeeWeb.Layouts, :dashboard_course},
       on_mount: [
         {UneebeeWeb.Plugs.UserAuth, :ensure_authenticated},
         {UneebeeWeb.Plugs.School, :mount_school},

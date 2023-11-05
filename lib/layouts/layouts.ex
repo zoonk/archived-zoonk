@@ -9,6 +9,7 @@ defmodule UneebeeWeb.Layouts do
   import UneebeeWeb.Layouts.MenuUtils
 
   alias Uneebee.Organizations.School
+  alias UneebeeWeb.Components.Layouts.CourseSelect
 
   embed_templates "templates/*"
 

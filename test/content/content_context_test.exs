@@ -138,7 +138,7 @@ defmodule Uneebee.ContentTest do
       course2 = course_fixture(%{school_id: school.id, language: :en, preload: :school})
       course3 = course_fixture(%{school_id: school.id, published?: false, preload: :school})
 
-      courses = Content.list_courses_by_school(school)
+      courses = Content.list_courses_by_school(school.id)
 
       assert courses == [course3, course2, course1]
     end
@@ -195,7 +195,7 @@ defmodule Uneebee.ContentTest do
       course_user_fixture(%{user_id: user.id, course_id: enrolled2.id, role: :student})
       course_user_fixture(%{user_id: user.id, course_id: teacher.id, role: :teacher})
 
-      courses = Content.list_courses_by_user(user, :student)
+      courses = Content.list_courses_by_user(user.id, :student)
       assert courses == [enrolled2, enrolled1]
     end
 
@@ -211,7 +211,7 @@ defmodule Uneebee.ContentTest do
       course_user_fixture(%{user_id: user.id, course_id: teacher1.id, role: :teacher})
       course_user_fixture(%{user_id: user.id, course_id: teacher2.id, role: :teacher})
 
-      courses = Content.list_courses_by_user(user, :teacher)
+      courses = Content.list_courses_by_user(user.id, :teacher)
       assert courses == [teacher2, teacher1]
     end
 
@@ -227,7 +227,7 @@ defmodule Uneebee.ContentTest do
       course_user_fixture(%{user_id: user.id, course_id: enrolled2.id, role: :student})
       course_user_fixture(%{user_id: user.id, course_id: teacher.id, role: :teacher})
 
-      courses = Content.list_courses_by_user(user, :student, limit: 1)
+      courses = Content.list_courses_by_user(user.id, :student, limit: 1)
       assert courses == [enrolled2]
     end
   end

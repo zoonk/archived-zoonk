@@ -10,7 +10,7 @@ defmodule UneebeeWeb.Live.MyCourses do
   def mount(_params, _session, socket) do
     %{current_user: user} = socket.assigns
 
-    courses = Content.list_courses_by_user(user, :student)
+    courses = Content.list_courses_by_user(user.id, :student)
 
     socket =
       socket

@@ -1,8 +1,4 @@
 <header class="flex items-center justify-between gap-4 rounded-2xl bg-white">
-  <form id="select-course" phx-change="select-course">
-    <.input type="select" name="course" value={@course.slug} options={@courses} mt={false} />
-  </form>
-
   <.live_component module={CoursePublish} id={:course_publish} course={@course} />
 </header>
 
