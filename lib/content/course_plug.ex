@@ -56,9 +56,9 @@ defmodule UneebeeWeb.Plugs.Course do
     * `:mount_course_list` - Mounts the list of courses for the school.
   """
   @spec on_mount(atom(), LiveView.unsigned_params(), map(), Socket.t()) :: {:cont, Socket.t()}
-  def on_mount(:mount_course, %{"course_slug" => course_slug}, _session, socket) do
-    %{school: school, current_user: user} = socket.assigns
-    course = Content.get_course_by_slug!(course_slug, school.id)
+  def on_mount(:mount_course, params, _session, socket) do
+    %{school: school, current_user: user, user_role: role} = socket.assigns
+    course = get_course(params, school, user, role)
     course_user = get_course_user(course, user)
     course_role = get_course_role(course_user)
     first_lesson = Content.get_first_lesson(course)
@@ -72,8 +72,6 @@ defmodule UneebeeWeb.Plugs.Course do
 
     {:cont, socket}
   end
-
-  def on_mount(:mount_course, _params, _session, socket), do: {:cont, socket}
 
   def on_mount(:mount_lesson, %{"lesson_id" => lesson_id}, _session, socket) do
     lesson = Content.get_lesson!(lesson_id)
@@ -89,6 +87,9 @@ defmodule UneebeeWeb.Plugs.Course do
   defp get_course_role(nil), do: nil
   defp get_course_role(%{approved?: false}), do: :pending
   defp get_course_role(%{role: role}), do: role
+
+  defp get_course(%{"course_slug" => slug}, school, _user, _role), do: Content.get_course_by_slug!(slug, school.id)
+  defp get_course(_params, school, user, role), do: Content.get_last_edited_course(school, user, role)
 
   defp redirect_to_login(conn), do: conn |> Controller.redirect(to: ~p"/users/login") |> halt()
 end

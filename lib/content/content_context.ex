@@ -1044,11 +1044,14 @@ defmodule Uneebee.Content do
 
   ## Examples
 
-      iex> get_last_edited_course_slug(school, user, role)
-      "course-slug"
+      iex> get_last_edited_course(school, user, role)
+      %Course{}
+
+      iex> get_last_edited_course(school, user, role)
+      nil
   """
-  @spec get_last_edited_course_slug(School.t(), User.t(), atom()) :: String.t() | nil
-  def get_last_edited_course_slug(%School{} = school, _user, :manager) do
+  @spec get_last_edited_course(School.t(), User.t(), atom()) :: Course.t() | nil
+  def get_last_edited_course(%School{} = school, _user, :manager) do
     Lesson
     |> join(:inner, [l], c in assoc(l, :course))
     |> where([l, c], c.school_id == ^school.id)
@@ -1057,11 +1060,10 @@ defmodule Uneebee.Content do
     |> preload(:course)
     |> Repo.one()
     |> handle_last_edited_course(school)
-    |> get_course_slug()
   end
 
-  def get_last_edited_course_slug(_school, %User{} = user, role) do
-    user.id |> list_courses_by_user(role, limit: 1) |> Enum.at(0) |> get_course_slug()
+  def get_last_edited_course(_school, %User{} = user, role) do
+    user.id |> list_courses_by_user(role, limit: 1) |> Enum.at(0)
   end
 
   defp handle_last_edited_course(nil, %School{} = school) do
@@ -1073,7 +1075,4 @@ defmodule Uneebee.Content do
   end
 
   defp handle_last_edited_course(%Lesson{} = lesson, _school), do: lesson.course
-
-  defp get_course_slug(nil), do: nil
-  defp get_course_slug(%Course{} = course), do: course.slug
 end

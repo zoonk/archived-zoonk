@@ -1204,7 +1204,7 @@ defmodule Uneebee.ContentTest do
     end
   end
 
-  describe "get_last_edited_course_slug/3" do
+  describe "get_last_edited_course/3" do
     test "returns the last edited course slug for a manager" do
       user = user_fixture()
       school = school_fixture()
@@ -1215,7 +1215,7 @@ defmodule Uneebee.ContentTest do
       generate_user_lesson(user.id, 0, course: course3)
       generate_user_lesson(user.id, 0, course: course2)
 
-      assert Content.get_last_edited_course_slug(school, user, :manager) == course2.slug
+      assert Content.get_last_edited_course(school, user, :manager) == course2
     end
 
     test "when there are no lessons, use the last updated course" do
@@ -1224,14 +1224,14 @@ defmodule Uneebee.ContentTest do
       course_fixture(%{school_id: school.id})
       course2 = course_fixture(%{school_id: school.id})
 
-      assert Content.get_last_edited_course_slug(school, user, :manager) == course2.slug
+      assert Content.get_last_edited_course(school, user, :manager) == course2
     end
 
     test "returns nil when there are no courses" do
       user = user_fixture()
       school = school_fixture()
 
-      assert Content.get_last_edited_course_slug(school, user, :manager) == nil
+      assert Content.get_last_edited_course(school, user, :manager) == nil
     end
 
     test "returns the last course edited by a teacher" do

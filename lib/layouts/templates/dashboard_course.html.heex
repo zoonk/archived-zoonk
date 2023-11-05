@@ -9,6 +9,10 @@
         <.link href={~p"/"}><%= gettext("Home") %></.link>
       </li>
 
+      <.dashboard_menu_item active={@active_page == :dashboard_coursenew} navigate={~p"/dashboard/courses/new"}>
+        <%= gettext("New") %>
+      </.dashboard_menu_item>
+
       <.dashboard_menu_item active={@active_page == :dashboard_courseview} navigate={~p"/dashboard/c/#{@course.slug}"}>
         <%= gettext("Overview") %>
       </.dashboard_menu_item>
@@ -39,7 +43,7 @@
     </ul>
 
     <.live_component
-      :if={course?(@active_page)}
+      :if={course_view?(@active_page)}
       module={CourseSelect}
       id={:course_select}
       school_id={@school.id}
