@@ -16,7 +16,7 @@ defmodule UneebeeWeb.Components.Dashboard.StepSwitch do
   def render(assigns) do
     ~H"""
     <div>
-      <p class="py-4 text-xs italic text-gray-500"><%= dgettext("orgs", "Drag the steps to change their order:") %></p>
+      <p class="pb-4 text-xs italic text-gray-500"><%= dgettext("orgs", "Drag the steps to change their order:") %></p>
 
       <nav id="lesson-steps" class="flex flex-wrap gap-2" data-group="lesson-steps" phx-target={@myself} phx-hook="Sortable">
         <.link
@@ -33,7 +33,12 @@ defmodule UneebeeWeb.Components.Dashboard.StepSwitch do
           <%= step_order %>
         </.link>
 
-        <button :if={@step_count < 20} class="filtered h-10 w-10 rounded-full bg-white text-center font-black text-gray-900" phx-click="add-step" phx-target={@myself}>
+        <button
+          :if={@step_count < 20}
+          class="filtered h-10 w-10 rounded-full bg-white text-center font-black text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:outline-gray-300"
+          phx-click="add-step"
+          phx-target={@myself}
+        >
           +
         </button>
       </nav>
