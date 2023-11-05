@@ -9,6 +9,6 @@
   }
 
   .container {
-    @apply px-4 py-4 lg:px-6 lg:py-6 xl:px-8 xl:py-8;
+    @apply p-4 lg:p-6 xl:p-8;
   }
 }

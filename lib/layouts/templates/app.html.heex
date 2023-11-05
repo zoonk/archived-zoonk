@@ -1,12 +1,12 @@
-<.menu_mobile school={@school}>
+<.menu_mobile :if={show_menu?(@active_page)} school={@school}>
   <.app_menu active_page={@active_page} user_role={@user_role} course={@course} lessons={@lessons} lesson={@lesson} first_lesson_id={@first_lesson_id} />
 </.menu_mobile>
 
-<.menu_desktop school={@school}>
+<.menu_desktop :if={show_menu?(@active_page)} school={@school}>
   <.app_menu active_page={@active_page} user_role={@user_role} course={@course} lessons={@lessons} lesson={@lesson} first_lesson_id={@first_lesson_id} />
 </.menu_desktop>
 
-<main class="flex min-h-screen flex-col lg:pl-72">
+<main :if={show_menu?(@active_page)} class="flex min-h-screen flex-col lg:pl-72">
   <header class="sticky top-0 z-40 flex h-16 shrink-0 items-center gap-x-4 border-b border-gray-200 bg-white px-4 shadow-sm sm:gap-x-6 sm:px-6 lg:px-8">
     <button type="button" class="-m-2.5 p-2.5 text-gray-700 lg:hidden" phx-click={show_drawer("mobile-menu")}>
       <span class="sr-only"><% gettext("Open sidebar") %></span>
@@ -22,5 +22,7 @@
 
   <%= @inner_content %>
 </main>
+
+<main :if={not show_menu?(@active_page)} class="m-auto max-w-3xl lg:max-w-5xl"><%= @inner_content %></main>
 
 <.flash_group flash={@flash} />

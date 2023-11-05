@@ -55,4 +55,9 @@ defmodule UneebeeWeb.Layouts.MenuUtils do
   def school_expanded?(active_page) do
     dashboard?(active_page) and not course?(active_page) and not lesson_view?(active_page)
   end
+
+  @spec show_menu?(atom()) :: boolean()
+  def show_menu?(active_page) do
+    active_page not in [:lessonplay, :lessoncompleted]
+  end
 end

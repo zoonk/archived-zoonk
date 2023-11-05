@@ -24,6 +24,8 @@ defmodule UneebeeWeb.Components.Button do
   attr :icon, :string, default: nil, doc: "name of the icon to add to the button"
   attr :class, :string, default: nil, doc: "the optional additional classes to add to the button element"
   attr :rest, :global, include: ~w(disabled form name type value)
+  attr :size, :atom, default: :md, values: [:md, :lg], doc: "the button size"
+  attr :shadow, :boolean, default: false, doc: "whether to add a shadow to the button"
 
   slot :inner_block, required: true, doc: "the inner block that renders the button content"
 
@@ -32,7 +34,7 @@ defmodule UneebeeWeb.Components.Button do
     <button
       class={[
         "inline-flex items-center justify-center gap-2",
-        "rounded-lg px-3 py-2 focus:outline-offset-2 phx-submit-loading:opacity-75",
+        "rounded-lg px-6 focus:outline-offset-2 phx-submit-loading:opacity-75",
         "text-sm font-semibold leading-6",
         "disabled:cursor-not-allowed disabled:bg-gray-200 disabled:text-gray-400",
         @color == :black && "bg-gray-700 text-white hover:bg-gray-900 focus:outline-gray-700",
@@ -42,6 +44,15 @@ defmodule UneebeeWeb.Components.Button do
         @color == :alert_light && "bg-pink-50 text-pink-900 hover:bg-pink-200 focus:outline-pink-50",
         @color == :info_light && "bg-cyan-50 text-cyan-900 hover:bg-cyan-200 focus:outline-cyan-50",
         @color == :success_light && "bg-teal-50 text-teal-900 hover:bg-teal-200 focus:outline-teal-50",
+        @size == :md && "py-2",
+        @size == :lg && "py-3",
+        @shadow && @color == :black && "shadow-b-gray active:shadow-b-gray-pressed",
+        @shadow && @color == :alert && "shadow-b-pink active:shadow-b-pink-pressed",
+        @shadow && @color == :success && "shadow-b-teal active:shadow-b-teal-pressed",
+        @shadow && @color == :primary && "shadow-b-indigo active:shadow-b-indigo-pressed",
+        @shadow && @color == :alert_light && "shadow-b-pink active:shadow-b-pink-pressed",
+        @shadow && @color == :info_light && "shadow-b-cyan active:shadow-b-cyan-pressed",
+        @shadow && @color == :success_light && "shadow-b-teal active:shadow-b-teal-pressed",
         @class
       ]}
       {@rest}

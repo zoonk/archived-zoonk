@@ -18,7 +18,7 @@ defmodule UneebeeWeb.Components.Icon do
       <.icon name="tabler-refresh" class="ml-1 w-3 h-3 animate-spin" />
   """
   attr :name, :string, required: true, doc: "the name of the icon from the tabler library"
-  attr :class, :string, default: nil, doc: "the optional additional classes to add to the icon element"
+  attr :class, :any, default: nil, doc: "the optional additional classes to add to the icon element"
   attr :rest, :global, doc: "the arbitrary HTML attributes to add to the icon element"
   attr :title, :string, default: nil, doc: "the optional title to add to the icon element"
 

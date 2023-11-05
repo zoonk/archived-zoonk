@@ -84,9 +84,11 @@ defmodule UneebeeWeb.Live.LessonPlay do
   defp user_selected_wrong_option?(%StepOption{correct?: false} = selected, option) when selected.id == option.id, do: true
   defp user_selected_wrong_option?(_selected, _option), do: false
 
-  # Find if at least one option's title has more than 15 characters
-  defp long_option?(options), do: Enum.any?(options, fn option -> String.length(option.title) > 20 end)
-
   defp shuffle_options(nil), do: nil
   defp shuffle_options(%LessonStep{} = step), do: Enum.shuffle(step.options)
+
+  defp confirm_color([], _selected), do: :primary
+  defp confirm_color(_opts, %StepOption{correct?: true}), do: :success
+  defp confirm_color(_opts, %StepOption{correct?: false}), do: :alert
+  defp confirm_color(_opts, nil), do: :alert
 end

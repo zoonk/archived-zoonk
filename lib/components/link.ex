@@ -36,6 +36,7 @@ defmodule UneebeeWeb.Components.Link do
   attr :class, :string, default: nil
   attr :icon, :string, default: nil
   attr :rest, :global, include: ~w(href method navigate patch)
+  attr :kind, :atom, values: [:text, :icon], default: :text
 
   slot :inner_block
 
@@ -57,7 +58,7 @@ defmodule UneebeeWeb.Components.Link do
       ]}
       {@rest}
     >
-      <.icon :if={@icon} name={@icon} class="h-5 w-5 -ml-0.5 mr-1" />
+      <.icon :if={@icon} name={@icon} class={["h-5 w-5", @kind == :text && "-ml-0.5 mr-1"]} />
       <%= render_slot(@inner_block) %>
     </.link>
     """
