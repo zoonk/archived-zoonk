@@ -17,7 +17,7 @@ defmodule UneebeeWeb.Components.Button do
       <.button phx-click="go" class="ml-2">Send!</.button>
   """
   attr :color, :atom,
-    default: :black,
+    default: :primary,
     values: [:black, :alert, :success, :primary, :alert_light, :info_light, :success_light],
     doc: "the background color"
 
@@ -34,7 +34,7 @@ defmodule UneebeeWeb.Components.Button do
     <button
       class={[
         "inline-flex items-center justify-center gap-2",
-        "rounded-lg px-6 focus:outline-offset-2 phx-submit-loading:opacity-75",
+        "rounded-lg px-4 focus:outline-offset-2 phx-submit-loading:opacity-75",
         "text-sm font-semibold leading-6",
         "disabled:cursor-not-allowed disabled:bg-gray-200 disabled:text-gray-400",
         @color == :black && "bg-gray-700 text-white hover:bg-gray-900 focus:outline-gray-700",

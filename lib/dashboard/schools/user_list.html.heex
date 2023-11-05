@@ -1,48 +1,70 @@
-<nav class="mb-4 flex justify-end">
-  <.button phx-click={show_modal("add-user-modal")} color={:info_light} icon="tabler-user-plus">
+<div class="flex flex-wrap items-center gap-2 bg-gray-50 p-4 sm:flex-nowrap sm:px-6 lg:px-8">
+  <h1 class="text-base font-semibold leading-7 text-gray-900"><%= get_page_title(@live_action) %></h1>
+
+  <.badge color={:info}>1</.badge>
+
+  <.button phx-click={show_modal("add-user-modal")} color={:primary} icon="tabler-user-plus" class="ml-auto">
     <%= get_add_link_label(@live_action) %>
   </.button>
-</nav>
+</div>
 
-<dl id="user-list" phx-update="stream" class="grid grid-cols-1 gap-4 sm:grid-cols-2">
-  <div :for={{dom_id, school_user} <- @streams.users} id={dom_id} class="card flex h-full flex-col bg-white p-4 text-gray-900">
-    <div class="flex gap-2" id={"user-#{school_user.user.id}"}>
-      <.avatar src={school_user.user.avatar} alt={UserUtils.full_name(school_user.user)} />
+<ul role="list" id="user-list" phx-update="stream" class="container grid grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-3">
+  <li :for={{dom_id, school_user} <- @streams.users} id={dom_id} class="col-span-1 divide-y divide-gray-200 rounded-lg bg-white shadow">
+    <div class="flex w-full items-center justify-between space-x-6 p-6" id={"user-#{school_user.user.id}"}>
+      <div class="flex-1 truncate">
+        <div class="flex items-center space-x-3">
+          <h3 class="truncate text-sm font-medium text-gray-900"><%= UserUtils.full_name(school_user.user) %></h3>
 
-      <header>
-        <dt class="flex items-center justify-between font-semibold">
-          <span class="truncate"><%= UserUtils.full_name(school_user.user) %></span>
+          <.badge color={if school_user.approved?, do: :success, else: :warning}>
+            <%= if school_user.approved?, do: dgettext("orgs", "Approved"), else: dgettext("orgs", "Pending") %>
+          </.badge>
+        </div>
 
-          <span :if={not school_user.approved?} role="status" class="rounded-full bg-amber-200 px-2 py-1 text-xs text-amber-700">
-            <%= dgettext("orgs", "Pending") %>
-          </span>
-        </dt>
+        <p class="mt-1 truncate text-sm text-gray-500">
+          @<%= school_user.user.username %>
+          <span class="text-gray-300">/</span>
+          <%= school_user.user.email %>
+        </p>
 
-        <dd class="flex-1 truncate text-xs font-light">
-          @<%= school_user.user.username %> - <%= school_user.user.email %>
-        </dd>
-      </header>
+        <p :if={school_user.approved?} class="mt-1 truncate text-xs italic text-gray-500">
+          <%= dgettext("orgs", "Approved by: @%{username}", username: school_user.approved_by.username) %>
+        </p>
+
+        <p :if={not school_user.approved?} class="mt-1 truncate text-xs italic text-gray-500">
+          <%= dgettext("orgs", "Pending approval") %>
+        </p>
+      </div>
+
+      <.avatar src={school_user.user.avatar} alt={UserUtils.full_name(school_user.user)} size={:large} />
     </div>
 
-    <dd :if={school_user.approved? && school_user.user.id != school_user.approved_by.id} class="mt-2 text-sm italic text-gray-500">
-      <%= dgettext("orgs", "Approved by: @%{username}", username: school_user.approved_by.username) %>
-    </dd>
+    <div :if={not school_user.approved?} class="-mt-px flex divide-x divide-gray-200">
+      <div class="flex w-0 flex-1">
+        <button
+          phx-click="approve"
+          phx-value-school-user-id={school_user.id}
+          class="relative -mr-px inline-flex w-0 flex-1 items-center justify-center gap-x-3 rounded-bl-lg border border-transparent py-4 text-sm font-semibold text-teal-500 hover:bg-gray-50"
+        >
+          <.icon name="tabler-checks" class="h-5 w-5" />
+          <%= dgettext("orgs", "Approve") %>
+        </button>
+      </div>
 
-    <div :if={not school_user.approved?} class="mt-4 flex items-center gap-2">
-      <.button phx-click="approve" phx-value-school-user-id={school_user.id} icon="tabler-checks" color={:success_light}>
-        <%= dgettext("orgs", "Approve") %>
-      </.button>
-
-      <.button phx-click="reject" phx-value-school-user-id={school_user.id} icon="tabler-ban" color={:alert_light}>
-        <%= dgettext("orgs", "Reject") %>
-      </.button>
+      <div class="-ml-px flex w-0 flex-1">
+        <button
+          phx-click="reject"
+          phx-value-school-user-id={school_user.id}
+          class="relative inline-flex w-0 flex-1 items-center justify-center gap-x-3 rounded-br-lg border border-transparent py-4 text-sm font-semibold text-pink-500 hover:bg-gray-50"
+        >
+          <.icon name="tabler-ban" class="h-5 w-5" />
+          <%= dgettext("orgs", "Reject") %>
+        </button>
+      </div>
     </div>
 
-    <div :if={school_user.approved?} class="mt-4 flex items-end justify-end">
-      <.icon_button
+    <div :if={school_user.approved?} class="-mt-px flex">
+      <button
         id={"remove-user-#{school_user.id}"}
-        icon="tabler-trash-x"
-        label={dgettext("orgs", "Remove user")}
         phx-click="remove"
         phx-value-school-user-id={school_user.id}
         data-confirm={
@@ -50,11 +72,14 @@
             username: school_user.user.username
           )
         }
-        size={:md}
-      />
+        class="relative inline-flex w-0 flex-1 items-center justify-center gap-x-3 rounded-b-lg border border-transparent py-4 text-sm font-semibold text-pink-500 hover:bg-gray-50"
+      >
+        <.icon name="tabler-trash-x" class="h-5 w-5" />
+        <%= dgettext("orgs", "Remove user") %>
+      </button>
     </div>
-  </div>
-</dl>
+  </li>
+</ul>
 
 <.modal id="add-user-modal" on_cancel={hide_modal("add-user-modal")}>
   <.header><%= get_add_link_label(@live_action) %></.header>

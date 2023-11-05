@@ -35,7 +35,7 @@ defmodule UneebeeWeb.Components.Avatar do
 
   defp avatar_class(size, class) do
     [
-      "shrink-0 rounded-full uppercase text-white text-xs object-cover flex items-center justify-center flex-column font-semibold",
+      "flex-shrink-0 rounded-full uppercase text-white text-xs object-cover flex items-center justify-center flex-column font-semibold",
       size == :small && "h-5 w-5",
       size == :medium && "h-8 w-8",
       size == :large && "w-10 h-10",
