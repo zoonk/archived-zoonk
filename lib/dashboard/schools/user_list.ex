@@ -2,6 +2,8 @@ defmodule UneebeeWeb.Live.Dashboard.UserList do
   @moduledoc false
   use UneebeeWeb, :live_view
 
+  import UneebeeWeb.Components.Dashboard.UserListHeader
+
   alias Uneebee.Accounts
   alias Uneebee.Accounts.User
   alias Uneebee.Accounts.UserUtils
