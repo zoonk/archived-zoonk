@@ -19,6 +19,7 @@ defmodule UneebeeWeb.Live.Dashboard.UserList do
       |> assign(:page_title, get_page_title(role))
       |> stream(:users, users)
       |> assign(:can_demote_user?, can_demote_user?)
+      |> assign(:user_count, length(users))
 
     {:ok, socket}
   end

@@ -1,7 +1,7 @@
 <div class="flex flex-wrap items-center gap-2 bg-gray-50 p-4 sm:flex-nowrap sm:px-6 lg:px-8">
   <h1 class="text-base font-semibold leading-7 text-gray-900"><%= get_page_title(@live_action) %></h1>
 
-  <.badge color={:info}>1</.badge>
+  <.badge color={:info}><%= @user_count %></.badge>
 
   <.button phx-click={show_modal("add-user-modal")} color={:primary} icon="tabler-user-plus" class="ml-auto">
     <%= get_add_link_label(@live_action) %>
