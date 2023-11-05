@@ -7,7 +7,7 @@ defmodule UneebeeWeb.Components.Layouts.LessonSelect do
   @impl Phoenix.LiveComponent
   def render(assigns) do
     ~H"""
-    <form id="select-lesson" phx-change="select-lesson" phx-target={@myself} class="p-4">
+    <form id="select-lesson" phx-change="select-lesson" phx-target={@myself} class="border-gray-900/10 border-t p-4">
       <.input type="select" name="lesson" value={@active} options={lesson_options(@lessons)} mt={false} />
     </form>
     """

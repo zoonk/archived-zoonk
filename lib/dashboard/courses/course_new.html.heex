@@ -1,6 +1,6 @@
 <.simple_form for={@form} id="course-form" unstyled phx-change="validate" phx-submit="save">
   <div class="top-[57px] sticky flex flex-wrap items-center gap-2 bg-gray-50 p-4 sm:flex-nowrap sm:px-6 lg:px-8">
-    <h1 class="text-base font-semibold leading-7 text-gray-900"><%= dgettext("orgs", "Create a course") %></h1>
+    <h1 class="text-base font-semibold leading-7 text-gray-900"><%= dgettext("orgs", "Create course") %></h1>
 
     <.button icon="tabler-table-plus" type="submit" phx-disable-with={gettext("Saving...")} class="ml-auto">
       <%= dgettext("orgs", "Create") %>
