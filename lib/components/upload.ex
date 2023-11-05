@@ -14,15 +14,22 @@ defmodule UneebeeWeb.Components.Upload do
   @impl Phoenix.LiveComponent
   def render(assigns) do
     ~H"""
-    <section class={["h-max space-y-4", not @unstyled && "card bg-white p-4"]}>
+    <form id={"upload-form-#{@id}"} phx-submit="save" phx-change="validate" phx-drop-target={@uploads.file.ref} phx-target={@myself}>
       <% entry = List.first(@uploads.file.entries) %>
 
-      <.header :if={@label}>
-        <%= @label %>
-        <:subtitle><%= @subtitle %></:subtitle>
-      </.header>
+      <div class="top-[57px] sticky flex flex-wrap items-center gap-2 bg-gray-50 p-4 sm:flex-nowrap sm:px-6 lg:px-8">
+        <h1 class="text-base font-semibold leading-7 text-gray-900"><%= @label %></h1>
 
-      <form id={"upload-form-#{@id}"} phx-submit="save" phx-change="validate" phx-drop-target={@uploads.file.ref} phx-target={@myself} class="flex flex-col space-y-8">
+        <div class="ml-auto flex gap-2">
+          <.button :if={@current_img} id={"remove-#{@id}"} phx-click="remove" phx-target={@myself} icon="tabler-trash" type="button" color={:alert_light}>
+            <%= gettext("Remove") %>
+          </.button>
+
+          <.button type="submit" icon="tabler-cloud-upload" disabled={is_nil(entry)} phx-disable-with={gettext("Uploading...")}><%= gettext("Upload") %></.button>
+        </div>
+      </div>
+
+      <div class="container flex flex-col space-y-8">
         <div class="flex items-center space-x-6">
           <.live_img_preview :if={entry} entry={entry} class="h-16 rounded-2xl object-cover" />
 
@@ -48,18 +55,8 @@ defmodule UneebeeWeb.Components.Upload do
         </p>
 
         <p :for={err <- upload_errors(@uploads.file)}><%= error_to_string(err) %></p>
-
-        <div class="flex gap-2">
-          <.button icon="tabler-cloud-upload" type="submit" disabled={is_nil(entry)} phx-disable-with={gettext("Saving...")}>
-            <%= gettext("Save") %>
-          </.button>
-
-          <.button :if={@current_img} id={"remove-#{@id}"} phx-click="remove" phx-target={@myself} icon="tabler-trash" type="button" color={:alert_light}>
-            <%= gettext("Remove") %>
-          </.button>
-        </div>
-      </form>
-    </section>
+      </div>
+    </form>
     """
   end
 

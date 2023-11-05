@@ -69,8 +69,7 @@ defmodule UneebeeWeb.Layouts.MenuUtils do
       %{link: ~p"/dashboard/teachers", view: :dashboard_userlist_teacher, title: gettext("Teachers")},
       %{link: ~p"/dashboard/students", view: :dashboard_userlist_student, title: gettext("Students")},
       %{link: ~p"/dashboard/edit/logo", view: :dashboard_schooledit_logo, title: gettext("Logo")},
-      %{link: ~p"/dashboard/edit/slug", view: :dashboard_schooledit_slug, title: dgettext("orgs", "Nickname")},
-      %{link: ~p"/dashboard/edit/info", view: :dashboard_schooledit_info, title: gettext("Profile")},
+      %{link: ~p"/dashboard/edit/profile", view: :dashboard_schooledit_profile, title: gettext("Profile")},
       %{link: ~p"/dashboard/edit/terms", view: :dashboard_schooledit_terms, title: dgettext("orgs", "Terms of use")}
     ]
   end
