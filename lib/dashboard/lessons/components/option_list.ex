@@ -18,8 +18,14 @@ defmodule UneebeeWeb.Components.Dashboard.OptionList do
   def render(assigns) do
     ~H"""
     <div>
+      <h2 class="text-base font-semibold leading-6 text-gray-900"><%= dgettext("orgs", "Options") %></h2>
+
+      <h3 class="mt-6 inline text-sm text-gray-500 sm:pr-4 ">
+        <%= dgettext("orgs", "These are the options students can select while playing this step.") %>
+      </h3>
+
       <ul class="mt-8 space-y-2">
-        <li :for={option <- @step.options} class="flex items-center gap-2">
+        <li :for={option <- @step.options} class="flex items-center gap-2 text-sm">
           <.link
             id={"option-#{option.id}-image-link"}
             aria-label={dgettext("orgs", "Edit image")}
