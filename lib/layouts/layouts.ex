@@ -3,6 +3,7 @@ defmodule UneebeeWeb.Layouts do
   use UneebeeWeb, :html
 
   import UneebeeWeb.Components.Layouts.AppMenu
+  import UneebeeWeb.Components.Layouts.DashboardMenuItem
   import UneebeeWeb.Components.Layouts.GamificationMenu
   import UneebeeWeb.Components.Layouts.MenuDesktop
   import UneebeeWeb.Components.Layouts.MenuMobile

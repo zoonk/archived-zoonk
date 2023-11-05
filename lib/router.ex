@@ -169,8 +169,7 @@ defmodule UneebeeWeb.Router do
 
       live "/c/:course_slug", CourseView
       live "/c/:course_slug/edit/cover", CourseEdit, :cover
-      live "/c/:course_slug/edit/info", CourseEdit, :info
-      live "/c/:course_slug/edit/privacy", CourseEdit, :privacy
+      live "/c/:course_slug/edit/settings", CourseEdit, :settings
       live "/c/:course_slug/edit/delete", CourseEdit, :delete
 
       live "/c/:course_slug/teachers", CourseUserList, :teacher

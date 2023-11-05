@@ -3,7 +3,41 @@
 </.menu_desktop>
 
 <main class="lg:pl-72">
-  <nav class="border-gray-900/10 sticky top-0 z-40 w-full overflow-x-auto border-b bg-white p-4">
+  <nav class="border-gray-900/10 sticky top-0 z-40 w-full border-b bg-white">
+    <ul role="list" class="border-gray-900/10 flex min-w-full flex-none gap-x-6 overflow-x-auto border-b p-4 text-sm font-semibold leading-6 text-gray-400 sm:px-6 lg:px-8">
+      <li class="lg:hidden">
+        <.link href={~p"/"}><%= gettext("Home") %></.link>
+      </li>
+
+      <.dashboard_menu_item active={@active_page == :dashboard_courseview} navigate={~p"/dashboard/c/#{@course.slug}"}>
+        <%= gettext("Overview") %>
+      </.dashboard_menu_item>
+
+      <.dashboard_menu_item active={@active_page == :dashboard_lessonview} navigate={~p"/dashboard/c/#{@course.slug}/l/#{@first_lesson_id}/s/1"}>
+        <%= dgettext("orgs", "Editor") %>
+      </.dashboard_menu_item>
+
+      <.dashboard_menu_item navigate={~p"/dashboard/c/#{@course.slug}/students"} active={@active_page in [:dashboard_courseuserlist_student, :dashboard_coursestudentview]}>
+        <%= gettext("Students") %>
+      </.dashboard_menu_item>
+
+      <.dashboard_menu_item navigate={~p"/dashboard/c/#{@course.slug}/teachers"} active={@active_page == :dashboard_courseuserlist_teacher}>
+        <%= gettext("Teachers") %>
+      </.dashboard_menu_item>
+
+      <.dashboard_menu_item navigate={~p"/dashboard/c/#{@course.slug}/edit/settings"} active={@active_page == :dashboard_courseedit_settings}>
+        <%= gettext("Settings") %>
+      </.dashboard_menu_item>
+
+      <.dashboard_menu_item navigate={~p"/dashboard/c/#{@course.slug}/edit/cover"} active={@active_page == :dashboard_courseedit_cover}>
+        <%= gettext("Cover") %>
+      </.dashboard_menu_item>
+
+      <.dashboard_menu_item navigate={~p"/dashboard/c/#{@course.slug}/edit/delete"} active={@active_page == :dashboard_courseedit_delete}>
+        <%= gettext("Delete") %>
+      </.dashboard_menu_item>
+    </ul>
+
     <.live_component module={CourseSelect} id={:course_select} school_id={@school.id} user_id={@current_user.id} role={@user_role} selected={@course.slug} />
   </nav>
 
