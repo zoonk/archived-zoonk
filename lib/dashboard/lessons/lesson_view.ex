@@ -7,7 +7,6 @@ defmodule UneebeeWeb.Live.Dashboard.LessonView do
   alias Uneebee.Content
   alias UneebeeWeb.Components.Dashboard.LessonEdit
   alias UneebeeWeb.Components.Dashboard.LessonPublish
-  alias UneebeeWeb.Components.Dashboard.LessonSwitch
   alias UneebeeWeb.Components.Dashboard.OptionList
   alias UneebeeWeb.Components.Dashboard.StepContent
   alias UneebeeWeb.Components.Dashboard.StepSwitch

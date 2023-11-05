@@ -11,6 +11,7 @@ defmodule UneebeeWeb.Layouts do
 
   alias Uneebee.Organizations.School
   alias UneebeeWeb.Components.Layouts.CourseSelect
+  alias UneebeeWeb.Components.Layouts.LessonSelect
 
   embed_templates "templates/*"
 

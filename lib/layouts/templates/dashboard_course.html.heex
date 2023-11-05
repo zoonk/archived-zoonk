@@ -48,6 +48,8 @@
       selected={@course.slug}
       page={@active_page}
     />
+
+    <.live_component :if={lesson_view?(@active_page)} module={LessonSelect} id={:lesson_select} active={@lesson.id} lessons={@lessons} course={@course} />
   </nav>
 
   <%= @inner_content %>

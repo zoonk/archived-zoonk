@@ -1,4 +1,4 @@
-defmodule UneebeeWeb.Components.Dashboard.LessonSwitch do
+defmodule UneebeeWeb.Components.Layouts.LessonSelect do
   @moduledoc false
   use UneebeeWeb, :live_component
 
@@ -7,7 +7,7 @@ defmodule UneebeeWeb.Components.Dashboard.LessonSwitch do
   @impl Phoenix.LiveComponent
   def render(assigns) do
     ~H"""
-    <form id="select-lesson" phx-change="select-lesson" phx-target={@myself}>
+    <form id="select-lesson" phx-change="select-lesson" phx-target={@myself} class="p-4">
       <.input type="select" name="lesson" value={@active} options={lesson_options(@lessons)} mt={false} />
     </form>
     """
