@@ -13,7 +13,7 @@
     </p>
   </div>
 
-  <div class="flex gap-x-2 self-start">
+  <div class="flex flex-wrap gap-2 self-start">
     <.live_component
       module={LessonEdit}
       action={@live_action}
@@ -25,6 +25,17 @@
     />
 
     <.live_component module={LessonPublish} id={:lesson_publish} lesson={@lesson} />
+
+    <.button
+      :if={length(@lessons) > 1}
+      icon="tabler-trash"
+      phx-click="delete-lesson"
+      color={:alert_light}
+      kind={:icon}
+      data-confirm={dgettext("orgs", "All content from this lesson will be deleted. This action cannot be undone.")}
+    >
+      <span class="sr-only"><%= dgettext("orgs", "Delete lesson") %></span>
+    </.button>
   </div>
 </header>
 
@@ -53,16 +64,6 @@
       </.button>
     </div>
   </div>
-
-  <.button
-    :if={length(@lessons) > 1}
-    icon="tabler-trash"
-    phx-click="delete-lesson"
-    color={:alert}
-    data-confirm={dgettext("orgs", "All content from this lesson will be deleted. This action cannot be undone.")}
-  >
-    <%= dgettext("orgs", "Delete lesson") %>
-  </.button>
 
   <.modal :if={@live_action == :step_img} show id="img-step-modal" on_cancel={JS.patch(step_link(@course, @lesson, @selected_step.order))}>
     <.live_component

@@ -26,6 +26,7 @@ defmodule UneebeeWeb.Components.Button do
   attr :rest, :global, include: ~w(disabled form name type value)
   attr :size, :atom, default: :md, values: [:md, :lg], doc: "the button size"
   attr :shadow, :boolean, default: false, doc: "whether to add a shadow to the button"
+  attr :kind, :atom, values: [:text, :icon], default: :text
 
   slot :inner_block, required: true, doc: "the inner block that renders the button content"
 
@@ -57,7 +58,7 @@ defmodule UneebeeWeb.Components.Button do
       ]}
       {@rest}
     >
-      <.icon :if={@icon} name={@icon} class="h-5 w-5 -ml-0.5 mr-1" /> <%= render_slot(@inner_block) %>
+      <.icon :if={@icon} name={@icon} class={["h-5 w-5", @kind == :text && "-ml-0.5 mr-1"]} /> <%= render_slot(@inner_block) %>
     </button>
     """
   end
