@@ -38,6 +38,7 @@ defmodule UneebeeWeb.Components.AwardBadge do
   @doc """
   Renders a badge for a medal.
   """
+  attr :id, :string, required: true
   attr :prize, :atom, values: [:gold, :silver, :bronze], required: true
   attr :title, :string, required: true
   attr :description, :string, required: true
@@ -45,7 +46,7 @@ defmodule UneebeeWeb.Components.AwardBadge do
 
   def medal_badge(assigns) do
     ~H"""
-    <.award_badge id="medal-badge" prize={@prize} icon="tabler-medal" value={@title} label={@description} badge={@badge} />
+    <.award_badge id={@id} prize={@prize} icon="tabler-medal" value={@title} label={@description} badge={@badge} />
     """
   end
 

@@ -24,7 +24,7 @@
       />
 
       <.learning_days_badge :if={@first_lesson_today?} days={@learning_days} />
-      <.medal_badge :if={@medal} prize={@medal.medal} title={@medal.label} description={@medal.description} />
+      <.medal_badge :if={@medal} id={"medal-#{@medal.key}"} prize={@medal.medal} title={@medal.label} description={@medal.description} />
     </div>
   </div>
 

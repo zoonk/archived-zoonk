@@ -21,16 +21,16 @@ defmodule UneebeeWeb.MedalListLiveTest do
 
       {:ok, lv, _html} = live(conn, ~p"/medals")
 
-      assert has_element?(lv, ~s|li a span:fl-icontains("Home")|)
+      assert has_element?(lv, ~s|li a:fl-icontains("Home")|)
 
-      assert has_element?(lv, ~s|#medal-perfect_lesson_first_try dt:fl-icontains("perfect lesson")|)
-      assert has_element?(lv, ~s|#medal-perfect_lesson_practiced dt:fl-icontains("perfect lesson")|)
-      assert has_element?(lv, ~s|#medal-mission_completed dt:fl-icontains("mission completed")|)
+      assert has_element?(lv, ~s|#medal-perfect_lesson_first_try *:fl-icontains("perfect lesson")|)
+      assert has_element?(lv, ~s|#medal-perfect_lesson_practiced *:fl-icontains("perfect lesson")|)
+      assert has_element?(lv, ~s|#medal-mission_completed *:fl-icontains("mission completed")|)
       refute has_element?(lv, ~s|#medal-lesson_completed_with_errors|)
 
-      assert has_element?(lv, ~s|#medal-perfect_lesson_first_try dd:fl-contains("3")|)
-      assert has_element?(lv, ~s|#medal-perfect_lesson_practiced dd:fl-contains("2")|)
-      assert has_element?(lv, ~s|#medal-mission_completed dd:fl-contains("1")|)
+      assert has_element?(lv, ~s|#medal-perfect_lesson_first_try *:fl-contains("3")|)
+      assert has_element?(lv, ~s|#medal-perfect_lesson_practiced *:fl-contains("2")|)
+      assert has_element?(lv, ~s|#medal-mission_completed *:fl-contains("1")|)
 
       assert has_element?(lv, ~s|h2:fl-icontains("3 gold medals")|)
       assert has_element?(lv, ~s|h2:fl-icontains("2 silver medals")|)

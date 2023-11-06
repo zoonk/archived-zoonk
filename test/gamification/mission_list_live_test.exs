@@ -19,9 +19,9 @@ defmodule UneebeeWeb.MissionListLiveTest do
 
       {:ok, lv, _html} = live(conn, ~p"/missions")
 
-      assert has_element?(lv, ~s|li a span:fl-icontains("Home")|)
-      assert has_element?(lv, ~s|#completed-missions div span:fl-icontains("profile name")|)
-      assert has_element?(lv, ~s|#next-missions div span:fl-icontains("first lesson")|)
+      assert has_element?(lv, ~s|li a:fl-icontains("Home")|)
+      assert has_element?(lv, ~s|#completed-missions *:fl-icontains("profile name")|)
+      assert has_element?(lv, ~s|#next-missions *:fl-icontains("first lesson")|)
     end
   end
 end

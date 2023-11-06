@@ -53,7 +53,7 @@ defmodule UneebeeWeb.LessonCompletedLiveTest do
 
       {:ok, lv, _html} = live(conn, ~p"/c/#{course.slug}/#{lesson.id}/completed")
 
-      assert has_element?(lv, "#medal-badge")
+      assert has_element?(lv, "#medal-perfect_lesson_practiced")
       assert has_element?(lv, ~s|dd:fl-icontains("You completed a lesson without any errors after practicing it.")|)
     end
 
@@ -63,7 +63,7 @@ defmodule UneebeeWeb.LessonCompletedLiveTest do
 
       {:ok, lv, _html} = live(conn, ~p"/c/#{course.slug}/#{lesson.id}/completed")
 
-      assert has_element?(lv, "#medal-badge")
+      assert has_element?(lv, "#medal-lesson_completed_with_errors")
       assert has_element?(lv, ~s|dd:fl-icontains("You completed a lesson with some errors on your first try.")|)
     end
 

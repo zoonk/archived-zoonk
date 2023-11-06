@@ -18,6 +18,7 @@ defmodule UneebeeWeb.Components.MedalList do
       <dl class="grid grid-cols-2 gap-4 sm:grid-cols-3">
         <.medal_badge
           :for={user_medal <- @medals}
+          id={"medal-#{user_medal.reason}"}
           badge={medal_badge_label(user_medal.count)}
           prize={@kind}
           title={medal_title(user_medal)}
