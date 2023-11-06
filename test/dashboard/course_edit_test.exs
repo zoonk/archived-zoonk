@@ -10,7 +10,7 @@ defmodule UneebeeWeb.DashboardCourseEditLiveTest do
 
   @course_form "#course-form"
 
-  describe "/dashboard/c/edit/info (non-authenticated user)" do
+  describe "/dashboard/c/edit/settings (non-authenticated user)" do
     setup :set_school
 
     test "redirects to the login page", %{conn: conn, school: school} do
@@ -18,7 +18,7 @@ defmodule UneebeeWeb.DashboardCourseEditLiveTest do
     end
   end
 
-  describe "/dashboard/c/edit/info (manager)" do
+  describe "/dashboard/c/edit/settings (manager)" do
     setup do
       course_setup(%{conn: build_conn()}, school_user: :manager, course_user: nil)
     end
@@ -28,30 +28,31 @@ defmodule UneebeeWeb.DashboardCourseEditLiveTest do
     end
 
     test "the information menu is active", %{conn: conn, course: course} do
-      {:ok, lv, _html} = live(conn, ~p"/dashboard/c/#{course.slug}/edit/info")
-      assert has_element?(lv, ~s|li[aria-current=page] a:fl-icontains("Information")|)
+      {:ok, lv, _html} = live(conn, ~p"/dashboard/c/#{course.slug}/edit/settings")
+      assert has_element?(lv, ~s|li[aria-current=page] a:fl-icontains("manage courses")|)
+      assert has_element?(lv, ~s|li[aria-current=page] a:fl-icontains("settings")|)
     end
   end
 
-  describe "/dashboard/c/edit/info (school teacher)" do
+  describe "/dashboard/c/edit/settings (school teacher)" do
     setup do
       course_setup(%{conn: build_conn()}, school_user: :teacher, course_user: nil)
     end
 
     test "returns 403", %{conn: conn, course: course} do
-      assert_error_sent(403, fn -> get(conn, ~p"/dashboard/c/#{course.slug}/edit/info") end)
+      assert_error_sent(403, fn -> get(conn, ~p"/dashboard/c/#{course.slug}/edit/settings") end)
     end
   end
 
-  describe "/dashboard/c/edit/info (student)" do
+  describe "/dashboard/c/edit/settings (student)" do
     setup :course_setup
 
     test "returns 403", %{conn: conn, course: course} do
-      assert_error_sent(403, fn -> get(conn, ~p"/dashboard/c/#{course.slug}/edit/info") end)
+      assert_error_sent(403, fn -> get(conn, ~p"/dashboard/c/#{course.slug}/edit/settings") end)
     end
   end
 
-  describe "/dashboard/c/edit/info (course teacher)" do
+  describe "/dashboard/c/edit/settings (course teacher)" do
     setup do
       course_setup(%{conn: build_conn()}, course_user: :teacher)
     end
@@ -63,7 +64,7 @@ defmodule UneebeeWeb.DashboardCourseEditLiveTest do
     test "don't display an error for the slug after updating the form", %{conn: conn, school: school, course: course} do
       existing_course = course_fixture(%{school_id: school.id})
 
-      {:ok, lv, _html} = live(conn, ~p"/dashboard/c/#{course.slug}/edit/info")
+      {:ok, lv, _html} = live(conn, ~p"/dashboard/c/#{course.slug}/edit/settings")
 
       attrs = %{name: "new title"}
 
@@ -85,7 +86,8 @@ defmodule UneebeeWeb.DashboardCourseEditLiveTest do
     test "updates the cover image", %{conn: conn, school: school, course: course} do
       {:ok, lv, _html} = live(conn, ~p"/dashboard/c/#{course.slug}/edit/cover")
 
-      assert has_element?(lv, ~s|li[aria-current="page"] span:fl-icontains("cover")|)
+      assert has_element?(lv, ~s|li[aria-current="page"] a:fl-icontains("manage courses")|)
+      assert has_element?(lv, ~s|li[aria-current="page"] a:fl-icontains("cover")|)
       assert_file_upload(lv, "course_cover")
 
       updated_course = Content.get_course_by_slug!(course.slug, school.id)
@@ -93,15 +95,15 @@ defmodule UneebeeWeb.DashboardCourseEditLiveTest do
     end
   end
 
-  describe "/dashboard/c/edit/privacy" do
+  describe "/dashboard/c/edit/settings (privacy)" do
     setup do
       course_setup(%{conn: build_conn()}, course_user: :teacher)
     end
 
     test "updates the privacy", %{conn: conn, school: school, course: course} do
-      {:ok, lv, _html} = live(conn, ~p"/dashboard/c/#{course.slug}/edit/privacy")
+      {:ok, lv, _html} = live(conn, ~p"/dashboard/c/#{course.slug}/edit/settings")
 
-      assert has_element?(lv, ~s|li[aria-current="page"] span:fl-icontains("privacy")|)
+      assert has_element?(lv, ~s|li[aria-current="page"] a:fl-icontains("settings")|)
 
       attrs = %{public?: false}
 
@@ -121,7 +123,8 @@ defmodule UneebeeWeb.DashboardCourseEditLiveTest do
     test "deletes the course", %{conn: conn, school: school, course: course} do
       {:ok, lv, _html} = live(conn, ~p"/dashboard/c/#{course.slug}/edit/delete")
 
-      assert has_element?(lv, ~s|li[aria-current="page"] span:fl-icontains("delete course")|)
+      assert has_element?(lv, ~s|li[aria-current="page"] a:fl-icontains("manage courses")|)
+      assert has_element?(lv, ~s|li[aria-current="page"] a:fl-icontains("delete")|)
 
       lv |> form("#delete-form", %{confirmation: "CONFIRM"}) |> render_submit()
 
@@ -131,7 +134,7 @@ defmodule UneebeeWeb.DashboardCourseEditLiveTest do
     test "doesn't delete if confirmation message doesn't match", %{conn: conn, school: school, course: course} do
       {:ok, lv, _html} = live(conn, ~p"/dashboard/c/#{course.slug}/edit/delete")
 
-      assert has_element?(lv, ~s|li[aria-current="page"] span:fl-icontains("delete course")|)
+      assert has_element?(lv, ~s|li[aria-current="page"] a:fl-icontains("delete")|)
 
       result =
         lv
@@ -146,12 +149,12 @@ defmodule UneebeeWeb.DashboardCourseEditLiveTest do
 
   defp redirect_to_login_page(conn, school) do
     course = course_fixture(%{school_id: school.id})
-    result = get(conn, ~p"/dashboard/c/#{course.slug}/edit/info")
+    result = get(conn, ~p"/dashboard/c/#{course.slug}/edit/settings")
     assert redirected_to(result) == "/users/login"
   end
 
   defp assert_info_form(conn, school, course) do
-    {:ok, lv, _html} = live(conn, ~p"/dashboard/c/#{course.slug}/edit/info")
+    {:ok, lv, _html} = live(conn, ~p"/dashboard/c/#{course.slug}/edit/settings")
 
     assert_course_name(lv)
     assert_course_description(lv)
