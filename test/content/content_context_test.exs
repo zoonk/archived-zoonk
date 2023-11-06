@@ -1238,13 +1238,13 @@ defmodule Uneebee.ContentTest do
       user = user_fixture()
       school = school_fixture()
       course1 = course_fixture(%{school_id: school.id})
-      course2 = course_fixture(%{school_id: school.id})
+      course2 = course_fixture(%{school_id: school.id, preload: :school})
       course_fixture(%{school_id: school.id})
 
       course_user_fixture(%{course: course1, user: user, role: :teacher})
       course_user_fixture(%{course: course2, user: user, role: :teacher})
 
-      assert Content.get_last_edited_course_slug(school, user, :teacher) == course2.slug
+      assert Content.get_last_edited_course(school, user, :teacher) == course2
     end
 
     test "returns nil when there are no courses edited by a teacher" do
@@ -1254,7 +1254,7 @@ defmodule Uneebee.ContentTest do
 
       course_user_fixture(%{course: course1, user: user, role: :student})
 
-      assert Content.get_last_edited_course_slug(school, user, :teacher) == nil
+      assert Content.get_last_edited_course(school, user, :teacher) == nil
     end
   end
 end

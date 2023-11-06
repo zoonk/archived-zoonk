@@ -83,7 +83,7 @@ defmodule UneebeeWeb.DashboardCourseStudentListLiveTest do
       user = user_fixture(%{first_name: "Leo", last_name: "Da Vinci"})
       {:ok, lv, _html} = live(conn, ~p"/dashboard/c/#{course.slug}/students")
 
-      refute has_element?(lv, ~s|dt span:fl-icontains("Leo da Vinci")|)
+      refute has_element?(lv, ~s|h3:fl-icontains("Leo da Vinci")|)
 
       {:ok, updated_lv, _html} =
         lv
@@ -91,14 +91,14 @@ defmodule UneebeeWeb.DashboardCourseStudentListLiveTest do
         |> render_submit()
         |> follow_redirect(conn, ~p"/dashboard/c/#{course.slug}/students")
 
-      assert has_element?(updated_lv, ~s|dt span:fl-icontains("#{user.first_name}")|)
+      assert has_element?(updated_lv, ~s|h3:fl-icontains("#{user.first_name}")|)
     end
 
     test "adds a user using their username", %{conn: conn, course: course} do
       user = user_fixture(%{first_name: "Leo", last_name: "Da Vinci"})
       {:ok, lv, _html} = live(conn, ~p"/dashboard/c/#{course.slug}/students")
 
-      refute has_element?(lv, ~s|dt span:fl-icontains("Leo da Vinci")|)
+      refute has_element?(lv, ~s|h3:fl-icontains("Leo da Vinci")|)
 
       {:ok, updated_lv, _html} =
         lv
@@ -106,7 +106,7 @@ defmodule UneebeeWeb.DashboardCourseStudentListLiveTest do
         |> render_submit()
         |> follow_redirect(conn, ~p"/dashboard/c/#{course.slug}/students")
 
-      assert has_element?(updated_lv, ~s|dt span:fl-icontains("#{user.first_name}")|)
+      assert has_element?(updated_lv, ~s|h3:fl-icontains("#{user.first_name}")|)
     end
 
     test "displays an error when trying to add an unexisting user", %{conn: conn, course: course} do
@@ -143,14 +143,14 @@ defmodule UneebeeWeb.DashboardCourseStudentListLiveTest do
 
     {:ok, lv, _html} = live(conn, ~p"/dashboard/c/#{course.slug}/students")
 
-    assert has_element?(lv, ~s|li[aria-current="page"] span:fl-icontains("students")|)
+    assert has_element?(lv, ~s|li[aria-current="page"] a:fl-icontains("students")|)
 
     assert has_element?(lv, ~s|a:fl-icontains("details")|)
 
-    assert has_element?(lv, ~s|dt span:fl-icontains("#{user2.first_name}")|)
-    assert has_element?(lv, ~s|dt span:fl-icontains("#{user3.first_name}")|)
-    refute has_element?(lv, ~s|dt span:fl-icontains("#{user1.first_name}")|)
-    refute has_element?(lv, ~s|dt span:fl-icontains("#{user4.first_name}")|)
+    assert has_element?(lv, ~s|h3:fl-icontains("#{user2.first_name}")|)
+    assert has_element?(lv, ~s|h3:fl-icontains("#{user3.first_name}")|)
+    refute has_element?(lv, ~s|h3:fl-icontains("#{user1.first_name}")|)
+    refute has_element?(lv, ~s|h3:fl-icontains("#{user4.first_name}")|)
 
     assert has_element?(lv, ~s|#users-#{cu3.id} span[role="status"]:fl-icontains("pending")|)
     refute has_element?(lv, ~s|#users-#{cu2.id} span[role="status"]:fl-icontains("pending")|)
@@ -178,7 +178,7 @@ defmodule UneebeeWeb.DashboardCourseStudentListLiveTest do
   defp assert_remove_user(conn, course) do
     user = user_fixture(%{first_name: "Leo", last_name: "Da Vinci"})
     course_user_fixture(%{course: course, user: user, role: :student})
-    user_el = ~s|dt span:fl-icontains("Leo da Vinci")|
+    user_el = ~s|h3:fl-icontains("Leo da Vinci")|
 
     {:ok, lv, _html} = live(conn, ~p"/dashboard/c/#{course.slug}/students")
 

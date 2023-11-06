@@ -88,8 +88,8 @@ defmodule UneebeeWeb.CourseViewLiveTest do
 
       {:ok, lv, _html} = live(conn, "/c/#{course.slug}")
 
-      assert has_element?(lv, ~s|dt span:fl-contains("#{lesson1.name}")|)
-      refute has_element?(lv, ~s|dt span:fl-contains("#{lesson2.name}")|)
+      assert has_element?(lv, ~s|h3:fl-contains("#{lesson1.name}")|)
+      refute has_element?(lv, ~s|h3:fl-contains("#{lesson2.name}")|)
     end
 
     test "displays the course progress", %{conn: conn, course: course, user: user, lesson: lesson} do
@@ -104,7 +104,7 @@ defmodule UneebeeWeb.CourseViewLiveTest do
 
   defp assert_course_view(conn, course) do
     {:ok, lv, _html} = live(conn, "/c/#{course.slug}")
-    assert has_element?(lv, ~s|li[aria-current=page] span:fl-icontains("home")|)
+    assert has_element?(lv, ~s|li[aria-current=page] a:fl-icontains("home")|)
     assert has_element?(lv, ~s|h1:fl-icontains("#{course.name}")|)
   end
 end

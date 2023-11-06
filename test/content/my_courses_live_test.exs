@@ -23,7 +23,7 @@ defmodule UneebeeWeb.MyCoursesLiveTest do
 
       {:ok, lv, _html} = live(conn, ~p"/courses/my")
 
-      assert has_element?(lv, ~s|li[aria-current=page] span:fl-icontains("my courses")|)
+      assert has_element?(lv, ~s|li[aria-current=page] a:fl-icontains("my courses")|)
 
       Enum.each(courses, fn course -> assert has_element?(lv, ~s|a[href="/c/#{course.slug}"]|) end)
       refute has_element?(lv, ~s|a[href="/c/#{other_course.slug}"]|)

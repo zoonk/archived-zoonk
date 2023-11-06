@@ -10,8 +10,8 @@ defmodule UneebeeWeb.Components.Layouts.DashboardMenuItem do
 
   def dashboard_menu_item(assigns) do
     ~H"""
-    <li>
-      <.link class={[@active && "text-indigo-600"]} aria-current={@active && "page"} {@rest}><%= render_slot(@inner_block) %></.link>
+    <li aria-current={@active && "page"}>
+      <.link class={[@active && "text-indigo-600"]} {@rest}><%= render_slot(@inner_block) %></.link>
     </li>
     """
   end

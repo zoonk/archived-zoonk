@@ -52,7 +52,7 @@ defmodule UneebeeWeb.DashboardLessonViewLiveTest do
 
       {:ok, lv, _html} = live(conn, ~p"/dashboard/c/#{course.slug}/l/#{lesson.id}/s/1")
 
-      assert has_element?(lv, ~s|li[aria-current=page] span:fl-icontains("lesson editor")|)
+      assert has_element?(lv, ~s|li[aria-current=page] a:fl-icontains("editor")|)
 
       result = lv |> element("button", "Publish") |> render_click()
       assert result =~ "Unpublish"
@@ -67,7 +67,7 @@ defmodule UneebeeWeb.DashboardLessonViewLiveTest do
 
       {:ok, lv, _html} = live(conn, ~p"/dashboard/c/#{course.slug}/l/#{lesson.id}/s/1")
 
-      assert has_element?(lv, ~s|li[aria-current=page] span:fl-icontains("lesson editor")|)
+      assert has_element?(lv, ~s|li[aria-current=page] a:fl-icontains("editor")|)
 
       result = lv |> element("button", "Unpublish") |> render_click()
       assert result =~ "Publish"
@@ -345,7 +345,7 @@ defmodule UneebeeWeb.DashboardLessonViewLiveTest do
 
       {:ok, updated_lv, _html} =
         lv
-        |> element("a", "Edit lesson")
+        |> element(~s|a[href="/dashboard/c/#{course.slug}/l/#{lesson.id}/s/2/edit_step"]:fl-icontains("edit")|)
         |> render_click()
         |> follow_redirect(conn, ~p"/dashboard/c/#{course.slug}/l/#{lesson.id}/s/2/edit_step")
 

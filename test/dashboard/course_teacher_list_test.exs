@@ -80,10 +80,10 @@ defmodule UneebeeWeb.DashboardCourseTeacherListLiveTest do
 
     assert has_element?(lv, ~s|li[aria-current="page"] span:fl-icontains("teachers")|)
 
-    assert has_element?(lv, ~s|dt span:fl-icontains("#{user2.first_name}")|)
-    assert has_element?(lv, ~s|dt span:fl-icontains("#{user3.first_name}")|)
-    refute has_element?(lv, ~s|dt span:fl-icontains("#{user1.first_name}")|)
-    refute has_element?(lv, ~s|dt span:fl-icontains("#{user4.first_name}")|)
+    assert has_element?(lv, ~s|h3:fl-icontains("#{user2.first_name}")|)
+    assert has_element?(lv, ~s|h3:fl-icontains("#{user3.first_name}")|)
+    refute has_element?(lv, ~s|h3:fl-icontains("#{user1.first_name}")|)
+    refute has_element?(lv, ~s|h3:fl-icontains("#{user4.first_name}")|)
 
     refute has_element?(lv, ~s|a:fl-icontains("stats")|)
 

@@ -7,7 +7,7 @@
         <div class="flex items-center space-x-3">
           <h3 class="truncate text-sm font-medium text-gray-900"><%= UserUtils.full_name(course_user.user) %></h3>
 
-          <.badge color={if course_user.approved?, do: :success, else: :warning}>
+          <.badge color={if course_user.approved?, do: :success, else: :warning} role="status">
             <%= if course_user.approved?, do: dgettext("orgs", "Approved"), else: dgettext("orgs", "Pending") %>
           </.badge>
         </div>
@@ -30,7 +30,7 @@
       <div class="flex w-0 flex-1">
         <button
           phx-click="approve"
-          phx-value-school-user-id={course_user.id}
+          phx-value-course-user-id={course_user.id}
           class="relative -mr-px inline-flex w-0 flex-1 items-center justify-center gap-x-3 rounded-bl-lg border border-transparent py-4 text-sm font-semibold text-teal-500 hover:bg-gray-50"
         >
           <.icon name="tabler-checks" class="h-5 w-5" />
@@ -41,7 +41,7 @@
       <div class="-ml-px flex w-0 flex-1">
         <button
           phx-click="reject"
-          phx-value-school-user-id={course_user.id}
+          phx-value-course-user-id={course_user.id}
           class="relative inline-flex w-0 flex-1 items-center justify-center gap-x-3 rounded-br-lg border border-transparent py-4 text-sm font-semibold text-pink-500 hover:bg-gray-50"
         >
           <.icon name="tabler-ban" class="h-5 w-5" />
@@ -75,9 +75,9 @@
         <button
           id={"remove-user-#{course_user.id}"}
           phx-click="remove"
-          phx-value-school-user-id={course_user.id}
+          phx-value-course-user-id={course_user.id}
           data-confirm={
-            dgettext("orgs", "This will remove %{username} from your school. They won't be able to see your school anymore unless you approve them again.",
+            dgettext("orgs", "This will remove %{username} from your course. They won't be able to see your course anymore unless you approve them again.",
               username: course_user.user.username
             )
           }

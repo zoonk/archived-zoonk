@@ -472,6 +472,8 @@ defmodule Uneebee.Content do
       nil
   """
   @spec get_first_lesson(Course.t()) :: Lesson.t() | nil
+  def get_first_lesson(nil), do: nil
+
   def get_first_lesson(%Course{} = course) do
     Lesson |> where([l], l.course_id == ^course.id) |> order_by(asc: :order) |> limit(1) |> Repo.one()
   end

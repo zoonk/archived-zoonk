@@ -148,7 +148,7 @@ defmodule UneebeeWeb.DashboardCourseViewLiveTest do
     {:ok, lv, _html} = live(conn, "/dashboard/c/#{course.slug}")
 
     assert has_element?(lv, "option[selected]", course.name)
-    assert has_element?(lv, ~s|li[aria-current=page] span:fl-icontains("course page")|)
+    assert has_element?(lv, ~s|li[aria-current=page] a:fl-icontains("course page")|)
 
     Enum.each(lessons, fn lesson -> assert has_element?(lv, "dt", lesson.name) end)
   end

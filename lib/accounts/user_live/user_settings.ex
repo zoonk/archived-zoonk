@@ -82,6 +82,7 @@ defmodule UneebeeWeb.Live.UserSettings do
           |> assign(form: to_form(changeset))
           |> assign(current_user: updated_user)
           |> put_flash(:info, dgettext("auth", "Settings updated successfully"))
+          |> push_navigate(to: ~p"/users/settings")
 
         {:noreply, socket}
 

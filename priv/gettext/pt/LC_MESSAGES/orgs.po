@@ -149,7 +149,6 @@ msgstr "Usuário aprovado!"
 msgid "User rejected!"
 msgstr "Usuário rejeitado!"
 
-#: lib/dashboard/courses/course_user_list.html.heex:80
 #: lib/dashboard/schools/user_list.html.heex:63
 #, elixir-autogen, elixir-format
 msgid "This will remove %{username} from your school. They won't be able to see your school anymore unless you approve them again."
@@ -598,3 +597,8 @@ msgstr "Público"
 #, elixir-autogen, elixir-format
 msgid "These are the options students can select while playing this step."
 msgstr "Estas são as alternativas que os alunos podem selecionar quando jogam esta etapa."
+
+#: lib/dashboard/courses/course_user_list.html.heex:80
+#, elixir-autogen, elixir-format, fuzzy
+msgid "This will remove %{username} from your course. They won't be able to see your course anymore unless you approve them again."
+msgstr "Você está prestes a remover %{username} do seu curso. Eles não poderão mais ver seu curso a menos que você os aprove novamente."

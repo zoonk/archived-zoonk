@@ -29,7 +29,7 @@ defmodule UneebeeWeb.DashboardCourseEditLiveTest do
 
     test "the information menu is active", %{conn: conn, course: course} do
       {:ok, lv, _html} = live(conn, ~p"/dashboard/c/#{course.slug}/edit/info")
-      assert has_element?(lv, ~s|li[aria-current=page] span:fl-icontains("Information")|)
+      assert has_element?(lv, ~s|li[aria-current=page] a:fl-icontains("Information")|)
     end
   end
 

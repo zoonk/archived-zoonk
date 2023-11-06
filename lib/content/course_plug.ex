@@ -62,13 +62,14 @@ defmodule UneebeeWeb.Plugs.Course do
     course_user = get_course_user(course, user)
     course_role = get_course_role(course_user)
     first_lesson = Content.get_first_lesson(course)
+    first_lesson_id = if is_nil(first_lesson), do: nil, else: first_lesson.id
 
     socket =
       socket
       |> Component.assign(:course, course)
       |> Component.assign(:course_user, course_user)
       |> Component.assign(:course_role, course_role)
-      |> Component.assign(:first_lesson_id, first_lesson.id)
+      |> Component.assign(:first_lesson_id, first_lesson_id)
 
     {:cont, socket}
   end
@@ -82,6 +83,7 @@ defmodule UneebeeWeb.Plugs.Course do
   def on_mount(:mount_lesson, _params, _session, socket), do: {:cont, socket}
 
   defp get_course_user(_course, nil), do: nil
+  defp get_course_user(nil, _user), do: nil
   defp get_course_user(course, user), do: Content.get_course_user_by_id(course.id, user.id)
 
   defp get_course_role(nil), do: nil
@@ -89,6 +91,7 @@ defmodule UneebeeWeb.Plugs.Course do
   defp get_course_role(%{role: role}), do: role
 
   defp get_course(%{"course_slug" => slug}, school, _user, _role), do: Content.get_course_by_slug!(slug, school.id)
+  defp get_course(_params, school, user, nil), do: Content.get_last_edited_course(school, user, :student)
   defp get_course(_params, school, user, role), do: Content.get_last_edited_course(school, user, role)
 
   defp redirect_to_login(conn), do: conn |> Controller.redirect(to: ~p"/users/login") |> halt()

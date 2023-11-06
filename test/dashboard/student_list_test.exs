@@ -50,11 +50,11 @@ defmodule UneebeeWeb.SchoolStudentListLiveTest do
 
       {:ok, lv, _html} = live(conn, ~p"/dashboard/students")
 
-      assert has_element?(lv, ~s|dt span:fl-icontains("#{user1.first_name}")|)
-      assert has_element?(lv, ~s|dt span:fl-icontains("#{user2.first_name}")|)
+      assert has_element?(lv, ~s|h3:fl-icontains("#{user1.first_name}")|)
+      assert has_element?(lv, ~s|h3:fl-icontains("#{user2.first_name}")|)
       assert has_element?(lv, ~s|span[role="status"]:fl-icontains("pending")|)
-      refute has_element?(lv, ~s|dt span:fl-icontains("#{user3.first_name}")|)
-      refute has_element?(lv, ~s|dt span:fl-icontains("#{user4.first_name}")|)
+      refute has_element?(lv, ~s|h3:fl-icontains("#{user3.first_name}")|)
+      refute has_element?(lv, ~s|h3:fl-icontains("#{user4.first_name}")|)
     end
 
     test "approves a pending user", %{conn: conn, school: school} do
@@ -104,7 +104,7 @@ defmodule UneebeeWeb.SchoolStudentListLiveTest do
         |> render_click()
         |> follow_redirect(conn, ~p"/dashboard/students")
 
-      refute has_element?(updated_lv, ~s|dt span:fl-icontains("#{user.first_name}")|)
+      refute has_element?(updated_lv, ~s|h3:fl-icontains("#{user.first_name}")|)
     end
 
     test "adds a user using their email address", %{conn: conn} do
@@ -112,7 +112,7 @@ defmodule UneebeeWeb.SchoolStudentListLiveTest do
 
       {:ok, lv, _html} = live(conn, ~p"/dashboard/students")
 
-      refute has_element?(lv, ~s|dt span:fl-icontains("#{user.first_name}")|)
+      refute has_element?(lv, ~s|h3:fl-icontains("#{user.first_name}")|)
 
       {:ok, updated_lv, _html} =
         lv
@@ -120,7 +120,7 @@ defmodule UneebeeWeb.SchoolStudentListLiveTest do
         |> render_submit()
         |> follow_redirect(conn, ~p"/dashboard/students")
 
-      assert has_element?(updated_lv, ~s|dt span:fl-icontains("#{user.first_name}")|)
+      assert has_element?(updated_lv, ~s|h3:fl-icontains("#{user.first_name}")|)
     end
 
     test "adds a user using their username", %{conn: conn} do
@@ -128,7 +128,7 @@ defmodule UneebeeWeb.SchoolStudentListLiveTest do
 
       {:ok, lv, _html} = live(conn, ~p"/dashboard/students")
 
-      refute has_element?(lv, ~s|dt span:fl-icontains("#{user.first_name}")|)
+      refute has_element?(lv, ~s|h3:fl-icontains("#{user.first_name}")|)
 
       {:ok, updated_lv, _html} =
         lv
@@ -136,7 +136,7 @@ defmodule UneebeeWeb.SchoolStudentListLiveTest do
         |> render_submit()
         |> follow_redirect(conn, ~p"/dashboard/students")
 
-      assert has_element?(updated_lv, ~s|dt span:fl-icontains("#{user.first_name}")|)
+      assert has_element?(updated_lv, ~s|h3:fl-icontains("#{user.first_name}")|)
     end
 
     test "displays an error when trying to add an unexisting user", %{conn: conn} do

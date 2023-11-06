@@ -7,7 +7,6 @@ defmodule UneebeeWeb.Layouts do
   import UneebeeWeb.Components.Layouts.GamificationMenu
   import UneebeeWeb.Components.Layouts.MenuDesktop
   import UneebeeWeb.Components.Layouts.MenuMobile
-  import UneebeeWeb.Components.Layouts.UserMenu
   import UneebeeWeb.Layouts.MenuUtils
 
   alias Uneebee.Organizations.School

@@ -34,7 +34,7 @@ defmodule UneebeeWeb.LessonCompletedLiveTest do
       assert has_element?(lv, ~s|h1:fl-icontains("Good!")|)
       assert has_element?(lv, ~s|img[src="/images/lessons/good.svg"]|)
       assert has_element?(lv, ~s|p:fl-icontains("You got 7 out of 10 answers right.")|)
-      assert has_element?(lv, ~s|div:fl-icontains("7.0")|)
+      assert has_element?(lv, ~s|span:fl-icontains("7.0")|)
       assert has_element?(lv, ~s|a[href="/c/#{course.slug}"]:fl-icontains("back to the course")|)
     end
 
@@ -44,7 +44,7 @@ defmodule UneebeeWeb.LessonCompletedLiveTest do
 
       {:ok, lv, _html} = live(conn, ~p"/c/#{course.slug}/#{lesson.id}/completed")
 
-      assert has_element?(lv, ~s|span:fl-icontains("You completed a lesson without any errors on your first try.")|)
+      assert has_element?(lv, ~s|dd:fl-icontains("You completed a lesson without any errors on your first try.")|)
     end
 
     test "display a silver medal for a perfect score after practicing", %{conn: conn, course: course, user: user} do
