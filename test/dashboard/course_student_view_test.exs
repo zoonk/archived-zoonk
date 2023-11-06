@@ -63,8 +63,9 @@ defmodule UneebeeWeb.DashboardCourseStudentViewLiveTest do
 
     {:ok, lv, _html} = live(conn, "/dashboard/c/#{course.slug}/s/#{user.username}")
 
-    assert has_element?(lv, ~s|h1:fl-contains("#{user.username}")|)
-    assert has_element?(lv, ~s|h2:fl-contains("@#{user.username} - #{user.email}")|)
+    assert has_element?(lv, ~s|h1 span:fl-contains("#{user.username}")|)
+    assert has_element?(lv, ~s|h1 span:fl-contains("@#{user.username}")|)
+    assert has_element?(lv, ~s|p:fl-contains("#{user.email}")|)
 
     assert_lesson_render(lv)
     assert_user_selections(lv, lesson1, lesson2)
