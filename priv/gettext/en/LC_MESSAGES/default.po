@@ -41,7 +41,7 @@ msgstr ""
 #: lib/accounts/user_live/forgot_password.html.heex:7
 #: lib/accounts/user_live/registration.html.heex:16
 #: lib/accounts/user_live/user_settings.html.heex:34
-#: lib/layouts/components/user_menu.ex:21
+#: lib/layouts/templates/app.html.heex:37
 #: lib/support/feedback_live/feedback.html.heex:12
 #, elixir-autogen, elixir-format
 msgid "Email"
@@ -82,7 +82,7 @@ msgid "Username"
 msgstr ""
 
 #: lib/layouts/components/app_menu.ex:14
-#: lib/layouts/components/user_menu.ex:13
+#: lib/layouts/templates/app.html.heex:29
 #: lib/layouts/templates/dashboard_course.html.heex:9
 #: lib/layouts/templates/dashboard_school.html.heex:9
 #, elixir-autogen, elixir-format
@@ -104,7 +104,7 @@ msgstr ""
 msgid "Sending..."
 msgstr ""
 
-#: lib/layouts/components/user_menu.ex:29
+#: lib/layouts/templates/app.html.heex:45
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Logout"
 msgstr ""
@@ -172,7 +172,7 @@ msgstr ""
 msgid "Click on the save button to upload your file."
 msgstr ""
 
-#: lib/layouts/components/user_menu.ex:17
+#: lib/layouts/templates/app.html.heex:33
 #, elixir-autogen, elixir-format
 msgid "Profile"
 msgstr ""
@@ -283,17 +283,17 @@ msgstr ""
 msgid "Deleting..."
 msgstr ""
 
-#: lib/accounts/user_live/user_settings.ex:135
+#: lib/accounts/user_live/user_settings.ex:136
 #, elixir-autogen, elixir-format
 msgid "Change email"
 msgstr ""
 
-#: lib/accounts/user_live/user_settings.ex:136
+#: lib/accounts/user_live/user_settings.ex:137
 #, elixir-autogen, elixir-format
 msgid "Change password"
 msgstr ""
 
-#: lib/accounts/user_live/user_settings.ex:134
+#: lib/accounts/user_live/user_settings.ex:135
 #, elixir-autogen, elixir-format
 msgid "Change profile"
 msgstr ""
@@ -333,7 +333,7 @@ msgstr ""
 
 #: lib/accounts/user_live/login.html.heex:6
 #: lib/accounts/user_live/registration.html.heex:18
-#: lib/layouts/components/user_menu.ex:25
+#: lib/layouts/templates/app.html.heex:41
 #, elixir-autogen, elixir-format
 msgid "Password"
 msgstr ""

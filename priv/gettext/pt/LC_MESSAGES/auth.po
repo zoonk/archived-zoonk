@@ -126,7 +126,7 @@ msgstr "Senha atual"
 msgid "New password"
 msgstr "Nova senha"
 
-#: lib/accounts/user_live/user_settings.ex:106
+#: lib/accounts/user_live/user_settings.ex:107
 #, elixir-autogen, elixir-format
 msgid "A link to confirm your email change has been sent to the new address."
 msgstr "Enviamos um link para confirmar a alteração do seu e-mail para o novo endereço."
@@ -141,7 +141,7 @@ msgstr "O link para alterar o e-mail é inválido ou expirou."
 msgid "Email changed successfully."
 msgstr "E-mail alterado."
 
-#: lib/accounts/user_live/user_settings.ex:91
+#: lib/accounts/user_live/user_settings.ex:92
 #, elixir-autogen, elixir-format
 msgid "Error updating settings"
 msgstr "Erro ao atualizar configurações"

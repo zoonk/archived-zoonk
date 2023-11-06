@@ -202,7 +202,7 @@ msgstr ""
 msgid "must start with https://"
 msgstr ""
 
-#: lib/content/content_context.ex:612
+#: lib/content/content_context.ex:614
 #, elixir-autogen, elixir-format, fuzzy
 msgid "cannot delete the only step"
 msgstr ""
