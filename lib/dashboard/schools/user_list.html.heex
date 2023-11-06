@@ -7,7 +7,7 @@
         <div class="flex items-center space-x-3">
           <h3 class="truncate text-sm font-medium text-gray-900"><%= UserUtils.full_name(school_user.user) %></h3>
 
-          <.badge color={if school_user.approved?, do: :success, else: :warning}>
+          <.badge color={if school_user.approved?, do: :success, else: :warning} role="status">
             <%= if school_user.approved?, do: dgettext("orgs", "Approved"), else: dgettext("orgs", "Pending") %>
           </.badge>
         </div>
