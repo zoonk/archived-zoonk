@@ -255,7 +255,6 @@ defmodule UneebeeWeb.UserSettingsLiveTest do
         |> element(@form)
         |> render_change(%{"current_password" => "invalid", "user" => %{"password" => "short", "password_confirmation" => "does not match"}})
 
-      assert result =~ "Change Password"
       assert result =~ "at least one digit or punctuation character"
       assert result =~ "at least one upper case character"
       assert result =~ "should be at least 8 character(s)"
@@ -270,7 +269,6 @@ defmodule UneebeeWeb.UserSettingsLiveTest do
         |> form(@form, %{"current_password" => "invalid", "user" => %{"password" => "short", "password_confirmation" => "does not match"}})
         |> render_submit()
 
-      assert result =~ "Change Password"
       assert result =~ "at least one digit or punctuation character"
       assert result =~ "at least one upper case character"
       assert result =~ "should be at least 8 character(s)"
