@@ -1,6 +1,6 @@
 <.simple_form :if={@live_action not in [:email, :password]} for={@settings_form} id="settings-form" phx-submit="update_settings" phx-change="validate_settings">
   <.input
-    :if={@live_action == :language}
+    :if={@live_action == :profile}
     field={@settings_form[:language]}
     type="select"
     label={gettext("Language")}
@@ -9,9 +9,9 @@
     required
   />
 
-  <.input :if={@live_action == :username} field={@settings_form[:username]} type="text" label={gettext("Username")} autocomplete="username" required />
-  <.input :if={@live_action == :name} field={@settings_form[:first_name]} type="text" label={gettext("First Name")} autocomplete="given-name" />
-  <.input :if={@live_action == :name} field={@settings_form[:last_name]} type="text" label={gettext("Last Name")} autocomplete="family-name" />
+  <.input :if={@live_action == :profile} field={@settings_form[:username]} type="text" label={gettext("Username")} autocomplete="username" required />
+  <.input :if={@live_action == :profile} field={@settings_form[:first_name]} type="text" label={gettext("First Name")} autocomplete="given-name" />
+  <.input :if={@live_action == :profile} field={@settings_form[:last_name]} type="text" label={gettext("Last Name")} autocomplete="family-name" />
 
   <:actions>
     <.button type="submit" phx-disable-with={gettext("Saving...")}><%= gettext("Save") %></.button>

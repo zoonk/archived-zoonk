@@ -97,11 +97,9 @@ defmodule UneebeeWeb.Router do
       live "/trophies", TrophyList
       live "/medals", MedalList
 
+      live "/users/settings", UserSettings, :profile
       live "/users/settings/email", UserSettings, :email
-      live "/users/settings/language", UserSettings, :language
-      live "/users/settings/name", UserSettings, :name
       live "/users/settings/password", UserSettings, :password
-      live "/users/settings/username", UserSettings, :username
       live "/users/settings/confirm_email/:token", UserSettings, :confirm_email
 
       live "/schools/new", SchoolNew

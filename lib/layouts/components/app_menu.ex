@@ -29,7 +29,7 @@ defmodule UneebeeWeb.Components.Layouts.AppMenu do
         <li class="mt-auto">
           <ul class="-mx-2 space-y-1">
             <.menu_item navigate={~p"/feedback"} icon="tabler-message-circle-2" active={@active_page == :feedback} title={gettext("Feedback")} />
-            <.menu_item navigate={~p"/users/settings/language"} icon="tabler-settings" active={user_settings?(@active_page)} title={gettext("Settings")} />
+            <.menu_item navigate={~p"/users/settings"} icon="tabler-settings" active={user_settings?(@active_page)} title={gettext("Settings")} />
           </ul>
         </li>
       </ul>
