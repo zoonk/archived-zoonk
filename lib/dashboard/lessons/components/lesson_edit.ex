@@ -20,7 +20,7 @@ defmodule UneebeeWeb.Components.Dashboard.LessonEdit do
       </div>
 
       <.modal :if={@action == :edit_step} id="edit-step-modal" show on_cancel={JS.patch(~p"/dashboard/c/#{@course.slug}/l/#{@lesson.id}/s/#{@step_order}")}>
-        <.simple_form for={@lesson_form} id="lesson-form" unstyled phx-change="validate" phx-submit="save" phx-target={@myself}>
+        <.simple_form for={@lesson_form} id="lesson-form" unstyled phx-change="validate" phx-submit="save" class="space-y-8" phx-target={@myself}>
           <.input type="text" field={@lesson_form[:name]} label={dgettext("orgs", "Lesson name")} required />
           <.input type="text" field={@lesson_form[:description]} label={dgettext("orgs", "Lesson description")} required />
 

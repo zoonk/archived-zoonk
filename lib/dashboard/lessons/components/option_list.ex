@@ -67,6 +67,7 @@ defmodule UneebeeWeb.Components.Dashboard.OptionList do
           phx-target={@myself}
           phx-submit="update-option"
           unstyled
+          class="space-y-8"
         >
           <.input type="text" field={@option_form[:title]} label={dgettext("orgs", "Option title")} required />
 
