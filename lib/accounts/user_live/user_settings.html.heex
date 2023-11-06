@@ -1,71 +1,51 @@
-<.simple_form :if={@live_action not in [:email, :password]} for={@settings_form} id="settings-form" phx-submit="update_settings" phx-change="validate_settings">
-  <.input
-    :if={@live_action == :profile}
-    field={@settings_form[:language]}
-    type="select"
-    label={gettext("Language")}
-    options={UneebeeWeb.Plugs.Translate.language_options()}
-    value={@current_user.language}
-    required
-  />
-
-  <.input :if={@live_action == :profile} field={@settings_form[:username]} type="text" label={gettext("Username")} autocomplete="username" required />
-  <.input :if={@live_action == :profile} field={@settings_form[:first_name]} type="text" label={gettext("First Name")} autocomplete="given-name" />
-  <.input :if={@live_action == :profile} field={@settings_form[:last_name]} type="text" label={gettext("Last Name")} autocomplete="family-name" />
-
-  <:actions>
-    <.button type="submit" phx-disable-with={gettext("Saving...")}><%= gettext("Save") %></.button>
-  </:actions>
-</.simple_form>
-
-<.simple_form :if={@live_action == :email} for={@email_form} id="email-form" phx-submit="update_email" phx-change="validate_email">
-  <.input field={@email_form[:email]} type="email" label="Email" required />
-
-  <.input
-    field={@email_form[:current_password]}
-    name="current_password"
-    id="current_password_for_email"
-    type="password"
-    label={dgettext("auth", "Current password")}
-    value={@email_form_current_password}
-    required
-  />
-
-  <:actions>
-    <.button type="submit" icon="tabler-mail-check" phx-disable-with={gettext("Changing...")}>
-      <%= dgettext("auth", "Change Email") %>
-    </.button>
-  </:actions>
-</.simple_form>
-
 <.simple_form
-  :if={@live_action == :password}
-  for={@password_form}
-  id="password-form"
-  action={~p"/users/login?_action=password_updated"}
-  method="post"
-  phx-change="validate_password"
-  phx-submit="update_password"
-  phx-trigger-action={@trigger_submit}
+  unstyled
+  for={@form}
+  phx-trigger-action={if @live_action == :password, do: @trigger_submit, else: nil}
+  id="settings-form"
+  phx-submit="update"
+  phx-change="validate"
+  action={if @live_action == :password, do: ~p"/users/login?_action=password_updated", else: nil}
+  method={if @live_action == :password, do: "post", else: nil}
 >
-  <.input field={@password_form[:email]} id="current_email_for_password" type="hidden" value={@current_user.email} />
+  <div class="top-[57px] sticky flex flex-wrap items-center gap-2 bg-gray-50 p-4 sm:flex-nowrap sm:px-6 lg:px-8">
+    <h1 class="text-base font-semibold leading-7 text-gray-900"><%= get_page_title(@live_action) %></h1>
 
-  <.input
-    field={@password_form[:current_password]}
-    name="current_password"
-    type="password"
-    label={dgettext("auth", "Current password")}
-    id="current_password_for_password"
-    value={@current_password}
-    required
-  />
-
-  <.input field={@password_form[:password]} type="password" label={dgettext("auth", "New password")} autocomplete="new-password" required />
-  <.input field={@password_form[:password_confirmation]} type="password" label={dgettext("auth", "Confirm new password")} autocomplete="new-password" />
-
-  <:actions>
-    <.button type="submit" icon="tabler-lock-check" phx-disable-with={gettext("Changing...")}>
-      <%= dgettext("auth", "Change Password") %>
+    <.button type="submit" icon="tabler-checks" class="ml-auto" phx-disable-with={gettext("Saving...")}>
+      <%= gettext("Save") %>
     </.button>
-  </:actions>
+  </div>
+
+  <div class="container max-w-3xl space-y-8">
+    <.input
+      :if={@live_action == :profile}
+      field={@form[:language]}
+      type="select"
+      label={gettext("Language")}
+      options={UneebeeWeb.Plugs.Translate.language_options()}
+      value={@current_user.language}
+      required
+    />
+
+    <.input :if={@live_action == :profile} field={@form[:username]} type="text" label={gettext("Username")} autocomplete="username" required />
+    <.input :if={@live_action == :profile} field={@form[:first_name]} type="text" label={gettext("First Name")} autocomplete="given-name" />
+    <.input :if={@live_action == :profile} field={@form[:last_name]} type="text" label={gettext("Last Name")} autocomplete="family-name" />
+
+    <.input :if={@live_action == :email} field={@form[:email]} type="email" label={gettext("Email")} required />
+    <.input :if={@live_action == :password} field={@form[:email]} type="hidden" value={@current_user.email} />
+
+    <.input
+      :if={@live_action in [:email, :password]}
+      field={@form[:current_password]}
+      name="current_password"
+      id="current_password"
+      type="password"
+      label={dgettext("auth", "Current password")}
+      value={@current_password}
+      required
+    />
+
+    <.input :if={@live_action == :password} field={@form[:password]} type="password" label={dgettext("auth", "New password")} autocomplete="new-password" required />
+    <.input :if={@live_action == :password} field={@form[:password_confirmation]} type="password" label={dgettext("auth", "Confirm new password")} autocomplete="new-password" />
+  </div>
 </.simple_form>

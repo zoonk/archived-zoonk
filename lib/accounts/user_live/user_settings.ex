@@ -20,39 +20,55 @@ defmodule UneebeeWeb.Live.UserSettings do
 
   @impl Phoenix.LiveView
   def mount(_params, _session, socket) do
-    user = socket.assigns.current_user
+    %{current_user: user, live_action: live_action} = socket.assigns
 
-    # We have separate forms for settings, email, and password changes.
-    settings_changeset = Accounts.change_user_settings(user)
-    email_changeset = Accounts.change_user_email(user)
-    password_changeset = Accounts.change_user_password(user)
+    changeset = get_changeset(live_action, user)
 
     socket =
       socket
-      |> assign(:page_title, gettext("Settings"))
+      |> assign(:page_title, get_page_title(live_action))
       |> assign(:current_password, nil)
-      |> assign(:email_form_current_password, nil)
-      |> assign(:settings_form, to_form(settings_changeset))
-      |> assign(:email_form, to_form(email_changeset))
-      |> assign(:password_form, to_form(password_changeset))
+      |> assign(:form, to_form(changeset))
       |> assign(:trigger_submit, false)
 
     {:ok, socket}
   end
 
   @impl Phoenix.LiveView
-  def handle_event("validate_settings", %{"user" => user_params}, socket) do
+  def handle_event("validate", %{"user" => user_params}, socket) when socket.assigns.live_action == :profile do
     settings_form =
       socket.assigns.current_user
       |> Accounts.change_user_settings(user_params)
       |> Map.put(:action, :validate)
       |> to_form()
 
-    {:noreply, assign(socket, settings_form: settings_form)}
+    {:noreply, assign(socket, form: settings_form)}
   end
 
   @impl Phoenix.LiveView
-  def handle_event("update_settings", %{"user" => user_params}, socket) do
+  def handle_event("validate", %{"current_password" => password, "user" => user_params}, socket) when socket.assigns.live_action == :email do
+    email_form =
+      socket.assigns.current_user
+      |> Accounts.change_user_email(user_params)
+      |> Map.put(:action, :validate)
+      |> to_form()
+
+    {:noreply, assign(socket, form: email_form, current_password: password)}
+  end
+
+  @impl Phoenix.LiveView
+  def handle_event("validate", %{"current_password" => password, "user" => user_params}, socket) when socket.assigns.live_action == :password do
+    password_form =
+      socket.assigns.current_user
+      |> Accounts.change_user_password(user_params)
+      |> Map.put(:action, :validate)
+      |> to_form()
+
+    {:noreply, assign(socket, form: password_form, current_password: password)}
+  end
+
+  @impl Phoenix.LiveView
+  def handle_event("update", %{"user" => user_params}, socket) when socket.assigns.live_action == :profile do
     user = socket.assigns.current_user
     changeset = Accounts.change_user_settings(user, user_params)
     changed_language? = Map.has_key?(changeset.changes, :language)
@@ -73,25 +89,14 @@ defmodule UneebeeWeb.Live.UserSettings do
         socket =
           socket
           |> put_flash(:error, dgettext("auth", "Error updating settings"))
-          |> assign(settings_form: to_form(changeset))
+          |> assign(form: to_form(changeset))
 
         {:noreply, socket}
     end
   end
 
   @impl Phoenix.LiveView
-  def handle_event("validate_email", %{"current_password" => password, "user" => user_params}, socket) do
-    email_form =
-      socket.assigns.current_user
-      |> Accounts.change_user_email(user_params)
-      |> Map.put(:action, :validate)
-      |> to_form()
-
-    {:noreply, assign(socket, email_form: email_form, email_form_current_password: password)}
-  end
-
-  @impl Phoenix.LiveView
-  def handle_event("update_email", %{"current_password" => password, "user" => user_params}, socket) do
+  def handle_event("update", %{"current_password" => password, "user" => user_params}, socket) when socket.assigns.live_action == :email do
     user = socket.assigns.current_user
 
     case Accounts.apply_user_email(user, password, user_params) do
@@ -100,36 +105,33 @@ defmodule UneebeeWeb.Live.UserSettings do
 
         info = dgettext("auth", "A link to confirm your email change has been sent to the new address.")
 
-        {:noreply, socket |> put_flash(:info, info) |> assign(email_form_current_password: nil)}
+        {:noreply, socket |> put_flash(:info, info) |> assign(current_password: nil)}
 
       {:error, changeset} ->
-        {:noreply, assign(socket, :email_form, to_form(Map.put(changeset, :action, :insert)))}
+        {:noreply, assign(socket, :form, to_form(Map.put(changeset, :action, :insert)))}
     end
   end
 
   @impl Phoenix.LiveView
-  def handle_event("validate_password", %{"current_password" => password, "user" => user_params}, socket) do
-    password_form =
-      socket.assigns.current_user
-      |> Accounts.change_user_password(user_params)
-      |> Map.put(:action, :validate)
-      |> to_form()
-
-    {:noreply, assign(socket, password_form: password_form, current_password: password)}
-  end
-
-  @impl Phoenix.LiveView
-  def handle_event("update_password", %{"current_password" => password, "user" => user_params}, socket) do
+  def handle_event("update", %{"current_password" => password, "user" => user_params}, socket) when socket.assigns.live_action == :password do
     user = socket.assigns.current_user
 
     case Accounts.update_user_password(user, password, user_params) do
       {:ok, user} ->
         password_form = user |> Accounts.change_user_password(user_params) |> to_form()
 
-        {:noreply, assign(socket, trigger_submit: true, password_form: password_form)}
+        {:noreply, assign(socket, trigger_submit: true, form: password_form)}
 
       {:error, changeset} ->
-        {:noreply, assign(socket, password_form: to_form(changeset))}
+        {:noreply, assign(socket, form: to_form(changeset))}
     end
   end
+
+  defp get_changeset(:profile, user), do: Accounts.change_user_settings(user)
+  defp get_changeset(:email, user), do: Accounts.change_user_email(user)
+  defp get_changeset(:password, user), do: Accounts.change_user_password(user)
+
+  defp get_page_title(:profile), do: gettext("Change profile")
+  defp get_page_title(:email), do: gettext("Change email")
+  defp get_page_title(:password), do: gettext("Change password")
 end
