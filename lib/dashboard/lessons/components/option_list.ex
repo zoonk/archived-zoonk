@@ -18,8 +18,14 @@ defmodule UneebeeWeb.Components.Dashboard.OptionList do
   def render(assigns) do
     ~H"""
     <div>
+      <h2 class="text-base font-semibold leading-6 text-gray-900"><%= dgettext("orgs", "Options") %></h2>
+
+      <h3 class="mt-6 inline text-sm text-gray-500 sm:pr-4 ">
+        <%= dgettext("orgs", "These are the options students can select while playing this step.") %>
+      </h3>
+
       <ul class="mt-8 space-y-2">
-        <li :for={option <- @step.options} class="flex items-center gap-2">
+        <li :for={option <- @step.options} class="flex items-center gap-2 text-sm">
           <.link
             id={"option-#{option.id}-image-link"}
             aria-label={dgettext("orgs", "Edit image")}
@@ -32,8 +38,8 @@ defmodule UneebeeWeb.Components.Dashboard.OptionList do
             patch={~p"/dashboard/c/#{@course.slug}/l/#{@lesson.id}/s/#{@step.order}/o/#{option.id}"}
             class={[
               "w-max truncate rounded-2xl border px-2 py-1",
-              option.correct? && "bg-success-light3x text-success-dark2x border-success-dark2x",
-              not option.correct? && "border-gray-light"
+              option.correct? && "bg-teal-50 text-teal-900 border-teal-900",
+              not option.correct? && "border-gray-400"
             ]}
           >
             <%= option.title %>
@@ -41,7 +47,6 @@ defmodule UneebeeWeb.Components.Dashboard.OptionList do
 
           <.icon_button
             icon="tabler-x"
-            color={:alert_light}
             size={:sm}
             role="button"
             label={dgettext("orgs", "Delete option")}
@@ -62,6 +67,7 @@ defmodule UneebeeWeb.Components.Dashboard.OptionList do
           phx-target={@myself}
           phx-submit="update-option"
           unstyled
+          class="space-y-8"
         >
           <.input type="text" field={@option_form[:title]} label={dgettext("orgs", "Option title")} required />
 

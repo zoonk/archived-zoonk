@@ -22,7 +22,7 @@ defmodule UneebeeWeb.Components.Avatar do
   # Handle the case where the image is not available.
   def avatar(%{src: nil} = assigns) do
     ~H"""
-    <div class={["bg-primary", avatar_class(@size, @class)]} title={@alt}><%= avatar_label(@alt) %></div>
+    <div class={["bg-indigo-500", avatar_class(@size, @class)]} title={@alt}><%= avatar_label(@alt) %></div>
     """
   end
 
@@ -35,7 +35,7 @@ defmodule UneebeeWeb.Components.Avatar do
 
   defp avatar_class(size, class) do
     [
-      "shrink-0 rounded-full uppercase text-white text-xs object-cover flex items-center justify-center flex-column font-semibold",
+      "flex-shrink-0 rounded-full uppercase text-white text-xs object-cover flex items-center justify-center flex-column font-semibold",
       size == :small && "h-5 w-5",
       size == :medium && "h-8 w-8",
       size == :large && "w-10 h-10",

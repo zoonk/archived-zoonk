@@ -1,25 +1,39 @@
-<header class="sticky top-0 z-50 py-4">
-  <div class="m-auto flex max-w-sm items-center gap-4">
-    <.progress total={@step_count} current={@current_step.order} />
+<form
+  id="select-option"
+  phx-submit="next"
+  phx-hook="LessonSoundEffect"
+  class="grid-rows-[min-content_1fr_min-content] absolute top-0 left-0 grid h-full min-h-screen w-full overflow-hidden"
+>
+  <header class="px-4 pt-4">
+    <div class="flex gap-x-4">
+      <.progress total={@step_count} current={@current_step.order} />
 
-    <.link_button
-      icon="tabler-x"
-      navigate={~p"/c/#{@course.slug}"}
-      data-confirm={dgettext("courses", "Your progress in this lesson will be lost. Would you like to quit?")}
-      color={:alert_light}
+      <.link_button
+        kind={:icon}
+        icon="tabler-x"
+        navigate={~p"/c/#{@course.slug}"}
+        data-confirm={dgettext("courses", "Your progress in this lesson will be lost. Would you like to quit?")}
+        color={:alert_light}
+      >
+        <span class="sr-only"><%= gettext("Close") %></span>
+      </.link_button>
+    </div>
+  </header>
+
+  <article class="mx-auto flex max-w-3xl flex-col items-center overflow-y-auto p-8 before:content-[''] before:flex-1 after:content-[''] after:flex-1 sm:px-16">
+    <.lesson_step step={@current_step} selected={@selected_option} />
+
+    <% no_options? = @current_step.options == [] %>
+
+    <section
+      :if={@current_step.options != []}
+      class={[
+        "mt-8 grid gap-4",
+        length(@current_step.options) == 2 && "grid-cols-2",
+        length(@current_step.options) == 3 && "grid-cols-2 sm:grid-cols-3",
+        length(@current_step.options) >= 4 && "grid-cols-2 sm:grid-cols-3 md:grid-cols-4"
+      ]}
     >
-      <span class="sr-only"><%= gettext("Close") %></span>
-    </.link_button>
-  </div>
-</header>
-
-<article class="m-auto max-w-sm space-y-4 pb-20 sm:pb-0">
-  <.lesson_step step={@current_step} selected={@selected_option} />
-
-  <% no_options? = @current_step.options == [] %>
-
-  <form id="select-option" phx-submit="next" class="space-y-4" phx-hook="LessonSoundEffect">
-    <secion :if={@current_step.options != []} class={["grid gap-4", not long_option?(@current_step.options) && "grid-cols-2"]}>
       <div :for={option <- @options} class="relative">
         <input
           id={"select-option-#{option.id}"}
@@ -35,43 +49,39 @@
           for={"select-option-#{option.id}"}
           role="button"
           class={[
-            "text-gray-dark2x flex h-full cursor-pointer flex-col items-center justify-center gap-4 rounded-2xl border bg-white p-4 text-sm peer-checked:border-info peer-checked:shadow-b-info",
-            (is_nil(@selected_option) || (@selected_option.id != option.id && not option.correct?)) && "border-gray-light shadow-b-gray active:shadow-b-gray-pressed",
-            user_selected_wrong_option?(@selected_option, option) && "border-alert shadow-b-alert",
-            @selected_option && option.correct? && "border-success shadow-b-success"
+            "flex h-full cursor-pointer flex-col items-center justify-center gap-4 rounded-2xl border bg-white p-4 text-sm text-gray-900 peer-checked:shadow-b-cyan peer-checked:border-cyan-300",
+            (is_nil(@selected_option) || (@selected_option.id != option.id && not option.correct?)) && "shadow-b-gray border-gray-300 active:shadow-b-gray-pressed",
+            user_selected_wrong_option?(@selected_option, option) && "shadow-b-pink border-pink-300",
+            @selected_option && option.correct? && "shadow-b-teal border-teal-100"
           ]}
         >
           <img :if={option.image} src={option.image} alt={option.title} class="h-16 w-16 object-cover" />
           <%= option.title %>
         </label>
       </div>
-    </secion>
+    </section>
+  </article>
+
+  <div class={[
+    "z-50 flex flex-col gap-4 border-t-2 p-4 sm:flex-row sm:items-center",
+    is_nil(@selected_option) && "border-gray-100 bg-white text-gray-700",
+    @selected_option && @selected_option.correct? && "border-teal-100 bg-teal-50 text-teal-700",
+    @selected_option && not @selected_option.correct? && "border-pink-100 bg-pink-50 text-pink-700"
+  ]}>
+    <div class={["w-full sm:block", is_nil(@selected_option) && "hidden"]}>
+      <.feedback_option :if={@selected_option} options={@current_step.options} selected={@selected_option} />
+    </div>
 
     <.button
-      :if={no_options? || is_nil(@selected_option)}
       type="submit"
-      color={if no_options?, do: :success, else: :alert}
-      icon={if no_options?, do: "tabler-chevron-right", else: "tabler-checks"}
+      size={:lg}
+      color={confirm_color(@current_step.options, @selected_option)}
+      icon={if no_options? || @selected_option, do: "tabler-chevron-right", else: "tabler-checks"}
       phx-disable-with={dgettext("courses", "Confirming...")}
-      class="fixed right-4 bottom-4 left-4 lg:sticky lg:w-full"
+      shadow
+      class="w-full sm:w-fit flex-shrink-0"
     >
-      <%= if no_options?, do: dgettext("courses", "Next step"), else: gettext("Confirm") %>
+      <%= if no_options? || @selected_option, do: dgettext("courses", "Next step"), else: gettext("Confirm") %>
     </.button>
-
-    <div
-      :if={@selected_option}
-      role="alert"
-      class={[
-        "fixed right-0 bottom-0 left-0 space-y-4 border-t-2 p-4 motion-safe:animate-slide-up lg:sticky lg:w-full lg:animate-none lg:rounded-2xl lg:border-none",
-        @selected_option.correct? && "bg-success-light3x border-success-light2x text-success-dark",
-        not @selected_option.correct? && "bg-alert-light3x border-alert-light2x text-alert-dark"
-      ]}
-    >
-      <.feedback_option options={@current_step.options} selected={@selected_option} />
-
-      <.button type="submit" color={:success} icon="tabler-chevron-right" class="w-full" phx-disable-with={dgettext("courses", "Confirming...")}>
-        <%= dgettext("courses", "Next step") %>
-      </.button>
-    </div>
-  </form>
-</article>
+  </div>
+</form>

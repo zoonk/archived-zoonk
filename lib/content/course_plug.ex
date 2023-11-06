@@ -53,26 +53,26 @@ defmodule UneebeeWeb.Plugs.Course do
 
     * `:mount_course` - Mounts the course from the `course_slug` paramater.
     * `:mount_lesson` - Mounts the lesson from the `lesson_id` paramater.
+    * `:mount_course_list` - Mounts the list of courses for the school.
   """
   @spec on_mount(atom(), LiveView.unsigned_params(), map(), Socket.t()) :: {:cont, Socket.t()}
-  def on_mount(:mount_course, %{"course_slug" => course_slug}, _session, socket) do
-    %{school: school, current_user: user} = socket.assigns
-    course = Content.get_course_by_slug!(course_slug, school.id)
+  def on_mount(:mount_course, params, _session, socket) do
+    %{school: school, current_user: user, user_role: role} = socket.assigns
+    course = get_course(params, school, user, role)
     course_user = get_course_user(course, user)
     course_role = get_course_role(course_user)
     first_lesson = Content.get_first_lesson(course)
+    first_lesson_id = if is_nil(first_lesson), do: nil, else: first_lesson.id
 
     socket =
       socket
       |> Component.assign(:course, course)
       |> Component.assign(:course_user, course_user)
       |> Component.assign(:course_role, course_role)
-      |> Component.assign(:first_lesson_id, first_lesson.id)
+      |> Component.assign(:first_lesson_id, first_lesson_id)
 
     {:cont, socket}
   end
-
-  def on_mount(:mount_course, _params, _session, socket), do: {:cont, socket}
 
   def on_mount(:mount_lesson, %{"lesson_id" => lesson_id}, _session, socket) do
     lesson = Content.get_lesson!(lesson_id)
@@ -83,11 +83,16 @@ defmodule UneebeeWeb.Plugs.Course do
   def on_mount(:mount_lesson, _params, _session, socket), do: {:cont, socket}
 
   defp get_course_user(_course, nil), do: nil
+  defp get_course_user(nil, _user), do: nil
   defp get_course_user(course, user), do: Content.get_course_user_by_id(course.id, user.id)
 
   defp get_course_role(nil), do: nil
   defp get_course_role(%{approved?: false}), do: :pending
   defp get_course_role(%{role: role}), do: role
+
+  defp get_course(%{"course_slug" => slug}, school, _user, _role), do: Content.get_course_by_slug!(slug, school.id)
+  defp get_course(_params, school, user, nil), do: Content.get_last_edited_course(school, user, :student)
+  defp get_course(_params, school, user, role), do: Content.get_last_edited_course(school, user, role)
 
   defp redirect_to_login(conn), do: conn |> Controller.redirect(to: ~p"/users/login") |> halt()
 end

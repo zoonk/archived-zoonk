@@ -1,19 +1,15 @@
-<div class="card p-4">
-  <.header>
-    <%= gettext("Send your feedback") %>
+<form phx-submit="send">
+  <div class="top-[64px] sticky flex flex-wrap items-center gap-2 bg-gray-50 p-4 sm:flex-nowrap sm:px-6 lg:px-8">
+    <h1 class="text-base font-semibold leading-7 text-gray-900"><%= gettext("Send feedback") %></h1>
 
-    <:subtitle>
-      <%= gettext("We are always looking for ways to improve our app. Please send us your feedback.") %>
-    </:subtitle>
-  </.header>
+    <.button type="submit" icon="tabler-send" class="ml-auto" phx-disable-with={gettext("Sending...")}>
+      <%= gettext("Send") %>
+    </.button>
+  </div>
 
-  <form phx-submit="send" class="mt-4">
+  <div class="container max-w-3xl space-y-8">
     <.input type="text" label={gettext("Name")} name="name" required value={@name} />
     <.input type="email" label={gettext("Email")} name="email" required value={@email} />
     <.input type="textarea" label={gettext("Message")} name="message" required value="" />
-
-    <.button type="submit" icon="tabler-send" class="mt-4" phx-disable-with={gettext("Sending...")}>
-      <%= gettext("Send") %>
-    </.button>
-  </form>
-</div>
+  </div>
+</form>

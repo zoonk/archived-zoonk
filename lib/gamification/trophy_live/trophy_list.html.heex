@@ -1,7 +1,3 @@
-<dl class="grid grid-cols-2 gap-4 sm:grid-cols-3">
-  <div :for={user_trophy <- @user_trophies} class="bg-warning-light3x text-warning-dark2x flex flex-col items-center gap-1 rounded-2xl p-4 text-center">
-    <.icon name="tabler-trophy" />
-    <dt class="text-sm font-black"><%= trophy_name(user_trophy.reason) %></dt>
-    <dd class="mt-4 text-sm font-semibold"><%= description(user_trophy) %></dd>
-  </div>
+<dl class="container grid grid-cols-1 gap-4 4xl:grid-cols-5 6xl:grid-cols-6 sm:grid-cols-2 lg:grid-cols-3 lg:gap-6 xl:gap-8 2xl:grid-cols-4">
+  <.trophy_badge :for={user_trophy <- @user_trophies} title={trophy_name(user_trophy.reason)} description={description(user_trophy)} />
 </dl>

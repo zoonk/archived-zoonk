@@ -1,13 +1,17 @@
 <.live_component :if={@live_action == :logo} module={Upload} id={:school_logo} current_img={@school.logo} label={gettext("Logo")} />
 
-<.simple_form :if={@live_action != :logo} for={@form} id="school-form" phx-change="validate" phx-submit="save" class="lg:order-first">
-  <.input :if={@live_action == :slug} field={@form[:slug]} type="text" label={dgettext("orgs", "Nickname")} required />
-  <.input :if={@live_action == :info} field={@form[:name]} type="text" label={dgettext("orgs", "School name")} required />
-  <.input :if={@live_action == :info} field={@form[:email]} type="email" label={dgettext("orgs", "School email")} required />
-  <.input :if={@live_action == :terms} field={@form[:terms_of_use]} type="url" label={dgettext("orgs", "Terms of use URL")} />
-  <.input :if={@live_action == :terms} field={@form[:privacy_policy]} type="url" label={dgettext("orgs", "Privacy policy URL")} />
+<.simple_form :if={@live_action != :logo} for={@form} id="school-form" phx-change="validate" unstyled phx-submit="save">
+  <div class="top-[57px] sticky flex flex-wrap items-center gap-2 bg-gray-50 p-4 sm:flex-nowrap sm:px-6 lg:px-8">
+    <h1 class="text-base font-semibold leading-7 text-gray-900"><%= get_page_title(@live_action) %></h1>
 
-  <:actions>
-    <.button type="submit" icon="tabler-check" phx-disable-with={gettext("Saving...")}><%= gettext("Save") %></.button>
-  </:actions>
+    <.button type="submit" icon="tabler-check" phx-disable-with={gettext("Saving...")} class="ml-auto"><%= gettext("Save") %></.button>
+  </div>
+
+  <div class="container max-w-3xl space-y-8">
+    <.input :if={@live_action == :settings} field={@form[:slug]} type="text" label={dgettext("orgs", "Nickname")} required />
+    <.input :if={@live_action == :settings} field={@form[:name]} type="text" label={dgettext("orgs", "School name")} required />
+    <.input :if={@live_action == :settings} field={@form[:email]} type="email" label={dgettext("orgs", "School email")} required />
+    <.input :if={@live_action == :settings} field={@form[:terms_of_use]} type="url" label={dgettext("orgs", "Terms of use URL")} />
+    <.input :if={@live_action == :settings} field={@form[:privacy_policy]} type="url" label={dgettext("orgs", "Privacy policy URL")} />
+  </div>
 </.simple_form>

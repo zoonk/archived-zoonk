@@ -27,14 +27,6 @@ msgstr "Criar conta"
 msgid "Create an account"
 msgstr "Criar uma conta"
 
-#: lib/accounts/user_live/login.html.heex:6
-#: lib/accounts/user_live/registration.html.heex:18
-#: lib/accounts/user_live/user_settings_menu.html.heex:6
-#: lib/layouts/menu_desktop.ex:115
-#, elixir-autogen, elixir-format
-msgid "Password"
-msgstr "Senha"
-
 #: lib/accounts/user_live/confirmation_instructions.html.heex:18
 #: lib/accounts/user_live/login.ex:9
 #: lib/accounts/user_live/login.html.heex:14
@@ -117,35 +109,24 @@ msgstr "Senha atualizada com sucesso!"
 msgid "You must log in to access this page."
 msgstr "É necessário estar logado para acessar esta página."
 
-#: lib/accounts/user_live/user_settings.html.heex:36
-#, elixir-autogen, elixir-format
-msgid "Change Email"
-msgstr "Alterar e-mail"
-
-#: lib/accounts/user_live/user_settings.html.heex:68
-#, elixir-autogen, elixir-format
-msgid "Change Password"
-msgstr "Alterar senha"
-
 #: lib/accounts/user_live/reset_password.html.heex:10
-#: lib/accounts/user_live/user_settings.html.heex:64
+#: lib/accounts/user_live/user_settings.html.heex:49
 #, elixir-autogen, elixir-format
 msgid "Confirm new password"
 msgstr "Confirmar nova senha"
 
-#: lib/accounts/user_live/user_settings.html.heex:29
-#: lib/accounts/user_live/user_settings.html.heex:57
+#: lib/accounts/user_live/user_settings.html.heex:43
 #, elixir-autogen, elixir-format
 msgid "Current password"
 msgstr "Senha atual"
 
 #: lib/accounts/user_live/reset_password.html.heex:9
-#: lib/accounts/user_live/user_settings.html.heex:63
+#: lib/accounts/user_live/user_settings.html.heex:48
 #, elixir-autogen, elixir-format
 msgid "New password"
 msgstr "Nova senha"
 
-#: lib/accounts/user_live/user_settings.ex:101
+#: lib/accounts/user_live/user_settings.ex:107
 #, elixir-autogen, elixir-format
 msgid "A link to confirm your email change has been sent to the new address."
 msgstr "Enviamos um link para confirmar a alteração do seu e-mail para o novo endereço."
@@ -160,12 +141,12 @@ msgstr "O link para alterar o e-mail é inválido ou expirou."
 msgid "Email changed successfully."
 msgstr "E-mail alterado."
 
-#: lib/accounts/user_live/user_settings.ex:75
+#: lib/accounts/user_live/user_settings.ex:92
 #, elixir-autogen, elixir-format
 msgid "Error updating settings"
 msgstr "Erro ao atualizar configurações"
 
-#: lib/accounts/user_live/user_settings.ex:68
+#: lib/accounts/user_live/user_settings.ex:84
 #, elixir-autogen, elixir-format
 msgid "Settings updated successfully"
 msgstr "Configurações atualizadas"

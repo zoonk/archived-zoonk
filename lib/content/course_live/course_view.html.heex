@@ -1,54 +1,51 @@
-<header class="text-gray-dark mb-4 rounded-2xl bg-white shadow">
-  <img :if={@course.cover} src={@course.cover} alt={gettext("Cover")} class="aspect-[4/1] rounded-2xl object-cover p-1" />
+<div class="md:pr-72 lg:pr-80 xl:pr-96">
+  <dl class="space-y-4 px-4 py-4 lg:px-6 lg:py-6 xl:px-8 xl:py-8">
+    <.link
+      :for={{lesson, index} <- Enum.with_index(@lessons)}
+      navigate={lesson_link(lesson_locked?(@course, @course_user), @course, lesson)}
+      class={[
+        "text-gray-700 bg-white border border-l-8 flex gap-2 p-4 rounded-2xl hover:outline outline-2 outline-offset-2 focus:outline-offset-4",
+        lesson_color(@course, @course_user, @current_user, lesson.user_lessons)
+      ]}
+    >
+      <% score = CourseUtils.lesson_score(@current_user, lesson.user_lessons) %>
 
-  <div class="p-4">
-    <h1 class="text-xl font-bold"><%= @course.name %></h1>
-    <h2 class="text-sm font-light"><%= @course.description %></h2>
+      <.avatar src={lesson.cover} alt={if is_nil(lesson.cover), do: index + 1, else: dgettext("courses", "Lesson cover")} class="mt-1" />
 
-    <.button :if={is_nil(@course_user) && not @course.public?} icon="tabler-book-download" phx-click="enroll" class="mt-4 w-max">
-      <%= dgettext("courses", "Request to join") %>
-    </.button>
+      <div class="w-full min-w-0">
+        <dt class="flex gap-2 font-semibold">
+          <span class="flex-1 truncate"><%= lesson.name %></span>
 
-    <.badge :if={@course_user && not @course_user.approved?} color={:warning_light} icon="tabler-progress">
-      <%= dgettext("courses", "Pending Approval") %>
-    </.badge>
+          <.badge :if={score} color={CourseUtils.score_color(score)}><%= score %></.badge>
+          <.badge :if={lesson_locked?(@course, @course_user)} color={:black} icon="tabler-lock"><%= gettext("Locked") %></.badge>
+        </dt>
+        <dd class="text-sm text-gray-500"><%= lesson.description %></dd>
+      </div>
+    </.link>
+  </dl>
+</div>
 
-    <.badge icon="tabler-chart-arrows-vertical" class="mt-4"><%= CourseUtils.level_label(@course.level) %></.badge>
-    <.badge icon="tabler-progress" color={:success_light}>
-      <%= CourseUtils.course_progress(@lessons, @current_user) %>%
-    </.badge>
-    <.badge icon="tabler-user" color={:info_light}><%= @student_count %></.badge>
-  </div>
-</header>
+<aside class="fixed inset-y-0 top-16 right-0 bottom-0 hidden w-72 overflow-y-auto border-l border-gray-200 px-4 py-4 md:block lg:w-80 lg:px-6 lg:py-6 xl:w-96 xl:px-8 xl:py-8">
+  <header class="rounded-2xl bg-white text-gray-700 shadow">
+    <img :if={@course.cover} src={@course.cover} alt={gettext("Cover")} class="aspect-[4/2] rounded-2xl object-cover p-1" />
 
-<dl class="space-y-4">
-  <.link
-    :for={{lesson, index} <- Enum.with_index(@lessons)}
-    navigate={lesson_link(lesson_locked?(@course, @course_user), @course, lesson)}
-    class={[
-      "text-gray-dark bg-white border border-l-8 flex gap-2 p-4 rounded-2xl",
-      lesson_locked?(@course, @course_user) && "cursor-not-allowed border-gray-light opacity-50",
-      CourseUtils.lesson_completed?(@current_user, lesson.user_lessons) &&
-        "border-success",
-      not CourseUtils.lesson_completed?(@current_user, lesson.user_lessons) &&
-        "border-gray-light"
-    ]}
-  >
-    <% score = CourseUtils.lesson_score(@current_user, lesson.user_lessons) %>
+    <div class="p-4">
+      <h1 class="text-xl font-semibold"><%= @course.name %></h1>
+      <h2 class="font-light"><%= @course.description %></h2>
 
-    <.avatar src={lesson.cover} alt={if is_nil(lesson.cover), do: index + 1, else: dgettext("courses", "Lesson cover")} class="mt-1" />
+      <.button :if={is_nil(@course_user) && not @course.public?} color={:primary} icon="tabler-book-download" phx-click="enroll" class="my-4 w-max">
+        <%= dgettext("courses", "Request to join") %>
+      </.button>
 
-    <div class="w-full min-w-0">
-      <dt class="flex gap-2 font-semibold">
-        <span class="flex-1 truncate"><%= lesson.name %></span>
-
-        <.badge :if={score} color={CourseUtils.score_color(score)}><%= score %></.badge>
-
-        <.badge :if={lesson_locked?(@course, @course_user)} color={:black_light} icon="tabler-lock">
-          <%= gettext("Locked") %>
+      <div class="mt-4">
+        <.badge :if={@course_user && not @course_user.approved?} color={:warning} icon="tabler-progress">
+          <%= gettext("Pending") %>
         </.badge>
-      </dt>
-      <dd class="text-gray text-sm"><%= lesson.description %></dd>
+
+        <.badge icon="tabler-chart-arrows-vertical"><%= CourseUtils.level_label(@course.level) %></.badge>
+        <.badge :if={@course_user} icon="tabler-progress" color={:success}><%= CourseUtils.course_progress(@lessons, @current_user) %>%</.badge>
+        <.badge icon="tabler-user" color={:black}><%= @student_count %></.badge>
+      </div>
     </div>
-  </.link>
-</dl>
+  </header>
+</aside>

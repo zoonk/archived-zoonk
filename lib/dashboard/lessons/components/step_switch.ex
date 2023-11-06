@@ -16,7 +16,7 @@ defmodule UneebeeWeb.Components.Dashboard.StepSwitch do
   def render(assigns) do
     ~H"""
     <div>
-      <p class="text-gray py-4 text-xs italic"><%= dgettext("orgs", "Drag the steps to change their order:") %></p>
+      <p class="pb-4 text-xs italic text-gray-500"><%= dgettext("orgs", "Drag the steps to change their order:") %></p>
 
       <nav id="lesson-steps" class="flex flex-wrap gap-2" data-group="lesson-steps" phx-target={@myself} phx-hook="Sortable">
         <.link
@@ -24,16 +24,21 @@ defmodule UneebeeWeb.Components.Dashboard.StepSwitch do
           patch={~p"/dashboard/c/#{@course.slug}/l/#{@lesson.id}/s/#{step_order}"}
           class={[
             "h-10 w-10 flex flex-col items-center justify-center rounded-full text-center font-black cursor-grab",
-            "drag-ghost:bg-gray-light drag-ghost:cursor-grabbing drag-ghost:border-0 drag-ghost:ring-0",
+            "drag-ghost:bg-gray-400 drag-ghost:cursor-grabbing drag-ghost:border-0 drag-ghost:ring-0",
             "focus-within:drag-item:ring-0 focus-within:drag-item:ring-offset-0",
-            step_order != @step.order && "bg-primary-light3x text-primary-dark2x",
-            step_order == @step.order && "bg-primary-dark2x text-primary-light3x"
+            step_order != @step.order && "bg-indigo-50 text-indigo-700",
+            step_order == @step.order && "bg-indigo-700 text-indigo-50"
           ]}
         >
           <%= step_order %>
         </.link>
 
-        <button :if={@step_count < 20} class="filtered text-gray-dark2x h-10 w-10 rounded-full bg-white text-center font-black" phx-click="add-step" phx-target={@myself}>
+        <button
+          :if={@step_count < 20}
+          class="filtered h-10 w-10 rounded-full bg-white text-center font-black text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:outline-gray-300"
+          phx-click="add-step"
+          phx-target={@myself}
+        >
           +
         </button>
       </nav>

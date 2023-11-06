@@ -2,6 +2,8 @@ defmodule UneebeeWeb.Live.Dashboard.CourseUserList do
   @moduledoc false
   use UneebeeWeb, :live_view
 
+  import UneebeeWeb.Components.Dashboard.UserListHeader
+
   alias Uneebee.Accounts
   alias Uneebee.Accounts.User
   alias Uneebee.Accounts.UserUtils
@@ -11,7 +13,13 @@ defmodule UneebeeWeb.Live.Dashboard.CourseUserList do
   def mount(_params, _session, socket) do
     %{live_action: role, course: course} = socket.assigns
     users = Content.list_course_users_by_role(course, role)
-    socket = socket |> assign(:page_title, get_page_title(role)) |> stream(:users, users)
+
+    socket =
+      socket
+      |> assign(:page_title, get_page_title(role))
+      |> stream(:users, users)
+      |> assign(:user_count, length(users))
+
     {:ok, socket}
   end
 

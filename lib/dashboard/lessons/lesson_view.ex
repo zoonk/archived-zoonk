@@ -7,7 +7,6 @@ defmodule UneebeeWeb.Live.Dashboard.LessonView do
   alias Uneebee.Content
   alias UneebeeWeb.Components.Dashboard.LessonEdit
   alias UneebeeWeb.Components.Dashboard.LessonPublish
-  alias UneebeeWeb.Components.Dashboard.LessonSwitch
   alias UneebeeWeb.Components.Dashboard.OptionList
   alias UneebeeWeb.Components.Dashboard.StepContent
   alias UneebeeWeb.Components.Dashboard.StepSwitch
@@ -77,6 +76,21 @@ defmodule UneebeeWeb.Live.Dashboard.LessonView do
 
       {:error, _changeset} ->
         {:noreply, put_flash(socket, :error, dgettext("orgs", "Could not add option!"))}
+    end
+  end
+
+  @impl Phoenix.LiveView
+  def handle_event("delete-lesson", _params, socket) do
+    %{lesson: lesson, course: course} = socket.assigns
+
+    case Content.delete_lesson(lesson) do
+      {:ok, _lesson} ->
+        first_lesson = Content.get_first_lesson(course)
+
+        {:noreply, push_navigate(socket, to: ~p"/dashboard/c/#{course.slug}/l/#{first_lesson.id}/s/1")}
+
+      {:error, _changeset} ->
+        {:noreply, put_flash(socket, :error, dgettext("orgs", "Could not delete lesson!"))}
     end
   end
 

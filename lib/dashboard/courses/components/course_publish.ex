@@ -11,11 +11,11 @@ defmodule UneebeeWeb.Components.Dashboard.CoursePublish do
   def render(assigns) do
     ~H"""
     <header class="flex h-max justify-end">
-      <.button :if={not @course.published?} phx-click="toggle-status" phx-target={@myself} icon="tabler-eye" color={:success_light}>
+      <.button :if={not @course.published?} phx-click="toggle-status" phx-target={@myself} icon="tabler-eye" color={:success}>
         <%= dgettext("orgs", "Publish") %>
       </.button>
 
-      <.button :if={@course.published?} phx-click="toggle-status" phx-target={@myself} icon="tabler-eye-off" color={:alert_light}>
+      <.button :if={@course.published?} phx-click="toggle-status" phx-target={@myself} icon="tabler-eye-off" color={:alert}>
         <%= dgettext("orgs", "Unpublish") %>
       </.button>
     </header>

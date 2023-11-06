@@ -27,7 +27,7 @@ defmodule UneebeeWeb.SchoolUpdateLiveTest do
       existing_school = school_fixture()
       new_slug = "new_#{System.unique_integer()}"
 
-      {:ok, lv, _html} = live(conn, ~p"/dashboard/edit/slug")
+      {:ok, lv, _html} = live(conn, ~p"/dashboard/edit/settings")
 
       assert has_element?(lv, ~s|input[name="school[slug]"][value="#{school.slug}"]|)
       assert field_change(lv, %{slug: ""}) =~ "can&#39;t be blank"
@@ -41,7 +41,7 @@ defmodule UneebeeWeb.SchoolUpdateLiveTest do
     end
 
     test "updates information", %{conn: conn, school: school} do
-      {:ok, lv, _html} = live(conn, ~p"/dashboard/edit/info")
+      {:ok, lv, _html} = live(conn, ~p"/dashboard/edit/settings")
 
       new_name = "New school name"
       new_email = "new@example.com"
@@ -68,7 +68,7 @@ defmodule UneebeeWeb.SchoolUpdateLiveTest do
     setup :set_school
 
     test "redirects to login page", %{conn: conn} do
-      result = get(conn, ~p"/dashboard/edit/slug")
+      result = get(conn, ~p"/dashboard/edit/settings")
       assert redirected_to(result) == ~p"/users/login"
     end
   end
@@ -77,7 +77,7 @@ defmodule UneebeeWeb.SchoolUpdateLiveTest do
     setup :app_setup
 
     test "returns 403", %{conn: conn} do
-      assert_error_sent 403, fn -> get(conn, ~p"/dashboard/edit/slug") end
+      assert_error_sent 403, fn -> get(conn, ~p"/dashboard/edit/settings") end
     end
   end
 
@@ -87,7 +87,7 @@ defmodule UneebeeWeb.SchoolUpdateLiveTest do
     end
 
     test "returns 403", %{conn: conn} do
-      assert_error_sent 403, fn -> get(conn, ~p"/dashboard/edit/slug") end
+      assert_error_sent 403, fn -> get(conn, ~p"/dashboard/edit/settings") end
     end
   end
 

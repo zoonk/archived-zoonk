@@ -21,7 +21,7 @@ msgstr ""
 msgid "Advanced"
 msgstr ""
 
-#: lib/content/course_live/lesson_completed.html.heex:34
+#: lib/content/course_live/lesson_completed.html.heex:32
 #, elixir-autogen, elixir-format
 msgid "Back to the course"
 msgstr ""
@@ -31,15 +31,9 @@ msgstr ""
 msgid "Beginner"
 msgstr ""
 
-#: lib/content/course_live/lesson_play.html.heex:55
-#: lib/content/course_live/lesson_play.html.heex:72
+#: lib/content/course_live/lesson_play.html.heex:80
 #, elixir-autogen, elixir-format
 msgid "Confirming..."
-msgstr ""
-
-#: lib/layouts/menu_desktop.ex:100
-#, elixir-autogen, elixir-format
-msgid "Delete course"
 msgstr ""
 
 #: lib/content/course_live/course_view.ex:58
@@ -67,7 +61,7 @@ msgstr ""
 msgid "Good!"
 msgstr ""
 
-#: lib/content/course_live/lesson_completed.html.heex:5
+#: lib/content/course_live/lesson_completed.html.heex:4
 #, elixir-autogen, elixir-format
 msgid "Illustration of a green alien"
 msgstr ""
@@ -77,8 +71,7 @@ msgstr ""
 msgid "Intermediate"
 msgstr ""
 
-#: lib/content/course_live/lesson_play.html.heex:58
-#: lib/content/course_live/lesson_play.html.heex:73
+#: lib/content/course_live/lesson_play.html.heex:84
 #, elixir-autogen, elixir-format
 msgid "Next step"
 msgstr ""
@@ -88,17 +81,12 @@ msgstr ""
 msgid "Not bad!"
 msgstr ""
 
-#: lib/content/course_live/course_view.html.heex:13
-#, elixir-autogen, elixir-format
-msgid "Pending Approval"
-msgstr ""
-
 #: lib/content/course_live/lesson_completed.ex:37
 #, elixir-autogen, elixir-format
 msgid "Perfect!"
 msgstr ""
 
-#: lib/content/course_live/course_view.html.heex:9
+#: lib/content/course_live/course_view.html.heex:37
 #, elixir-autogen, elixir-format
 msgid "Request to join"
 msgstr ""
@@ -133,27 +121,32 @@ msgstr ""
 msgid "Well done!"
 msgstr ""
 
-#: lib/content/course_live/lesson_completed.html.heex:12
+#: lib/content/course_live/lesson_completed.html.heex:11
 #, elixir-autogen, elixir-format
 msgid "You got %{correct} out of %{total} answers right."
 msgstr ""
 
-#: lib/content/course_live/course_view.html.heex:39
+#: lib/content/course_live/course_view.html.heex:13
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Lesson cover"
 msgstr ""
 
-#: lib/content/course_live/lesson_play.html.heex:8
+#: lib/content/course_live/lesson_play.html.heex:15
 #, elixir-autogen, elixir-format
 msgid "Your progress in this lesson will be lost. Would you like to quit?"
 msgstr ""
 
-#: lib/content/course_live/my_courses.html.heex:5
+#: lib/content/course_live/my_courses.html.heex:11
 #, elixir-autogen, elixir-format
 msgid "Browse courses"
 msgstr ""
 
-#: lib/content/course_live/my_courses.html.heex:4
+#: lib/content/course_live/my_courses.html.heex:9
 #, elixir-autogen, elixir-format
-msgid "You haven't started any courses yet."
+msgid "Get started by joining a course."
+msgstr ""
+
+#: lib/content/course_live/my_courses.html.heex:8
+#, elixir-autogen, elixir-format, fuzzy
+msgid "No courses"
 msgstr ""

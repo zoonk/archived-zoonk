@@ -1,26 +1,14 @@
-@import 'tailwindcss/base';
-@import 'tailwindcss/components';
-@import 'tailwindcss/utilities';
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
 
 /* This file is for your main application CSS */
 @layer components {
-  .text-gradient {
-    @apply text-transparent bg-clip-text bg-gradient-to-br from-info via-primary to-alert;
-  }
-
-  .card-base {
-    @apply border rounded-2xl bg-white;
-  }
-
   .card {
-    @apply card-base border-gray-light2x;
+    @apply rounded-2xl border shadow border-gray-300;
   }
 
-  .card-with-link {
-    @apply card-base shadow-b-gray border-gray-light active:shadow-b-gray-pressed focus:outline-none hover:border-gray-dark hover:shadow-b-gray-dark focus:border-gray-dark focus:shadow-b-gray-dark;
-  }
-
-  .card-with-link-alert {
-    @apply card-base shadow-b-alert border-alert-light active:shadow-b-alert-pressed focus:outline-none hover:border-alert-dark hover:shadow-b-alert-dark focus:border-alert-dark focus:shadow-b-alert-dark;
+  .container {
+    @apply p-4 lg:p-6 xl:p-8;
   }
 }

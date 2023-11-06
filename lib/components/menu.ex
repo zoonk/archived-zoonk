@@ -8,21 +8,6 @@ defmodule UneebeeWeb.Components.Menu do
 
   import UneebeeWeb.Components.Icon
 
-  slot :inner_block, required: true, doc: "Inner block of the menu."
-  slot :header, required: true, doc: "Header of the menu."
-
-  def menu(assigns) do
-    ~H"""
-    <header class="min-w-[280px] sticky top-4 mt-4 hidden flex-col gap-4 lg:flex">
-      <nav class="flex justify-around gap-2 rounded-2xl bg-white p-4 shadow"><%= render_slot(@header) %></nav>
-
-      <nav class="rounded-2xl bg-white shadow">
-        <ul class="divide-gray-light2x flex w-full flex-col divide-y"><%= render_slot(@inner_block) %></ul>
-      </nav>
-    </header>
-    """
-  end
-
   @doc """
   Renders a menu item.
 
@@ -36,66 +21,36 @@ defmodule UneebeeWeb.Components.Menu do
       />
   """
   attr :active, :boolean, default: false, doc: "Whether the menu is active or not."
-  attr :icon, :string, required: true, doc: "Icon displayed above the title."
+  attr :icon, :string, default: nil, doc: "Icon displayed above the title."
   attr :title, :string, required: true, doc: "Menu title."
   attr :rest, :global, include: ~w(href method navigate)
-
-  slot :sub_menus, doc: "Sub menu items."
+  attr :class, :string, default: nil
 
   def menu_item(assigns) do
     ~H"""
-    <li class={["text-gray-dark py-2 last:max-lg:pb-0 lg:first:rounded-t-2xl lg:last:rounded-b-2xl", not @active and "hover:bg-gray-light3x"]} aria-current={@active and "page"}>
-      <.link class="flex items-center gap-2 focus:outline-primary lg:items-center lg:p-2" title={@title} {@rest}>
-        <.icon name={@icon} gradient={@active} class="h-3 w-3 lg:h-5 lg:w-5" />
-        <span class={[@active and "text-gradient"]}><%= @title %></span>
-      </.link>
+    <li aria-current={@active and "page"} class={@class}>
+      <.link
+        class={[
+          "group flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 text-gray-700 hover:bg-gray-50 hover:text-indigo-600",
+          @active && "bg-gray-50 text-indigo-600",
+          not @active && "text-gray-700 hover:text-indigo-600 hover:bg-gray-50"
+        ]}
+        {@rest}
+      >
+        <div :if={@icon} class={[@active && "text-indigo-600", not @active && "text-gray-400 group-hover:text-indigo-600"]}>
+          <.icon name={@icon} class="h-6 w-6" aria-hidden="true" />
+        </div>
 
-      <ul :if={@sub_menus != [] && @active} class="px-5 lg:px-9"><%= render_slot(@sub_menus) %></ul>
-    </li>
-    """
-  end
+        <span
+          :if={is_nil(@icon)}
+          class="text-[0.625rem] flex h-6 w-6 shrink-0 items-center justify-center rounded-lg border border-gray-200 bg-white font-medium text-gray-400 group-hover:border-indigo-600 group-hover:text-indigo-600"
+        >
+          <%= String.first(@title) %>
+        </span>
 
-  @doc """
-  Renders a sub menu item.
-
-  ## Examples
-
-      <.sub_menu
-        active={@live_action == :school_list}
-        navigate={~p"/schools"}
-        title="Schools"
-      />
-  """
-  attr :active, :boolean, default: false, doc: "Whether the menu is active or not."
-  attr :title, :string, required: true, doc: "Menu title."
-  attr :rest, :global, include: ~w(href method navigate)
-
-  def sub_menu(assigns) do
-    ~H"""
-    <li class="text-gray-dark py-1 text-sm hover:bg-gray-light3x" aria-current={@active and "page"}>
-      <.link class="focus:outline-primary" title={@title} {@rest}>
-        <span class={[@active and "text-gradient"]}><%= @title %></span>
+        <%= @title %>
       </.link>
     </li>
-    """
-  end
-
-  attr :title, :string, required: true, doc: "Menu title."
-  attr :color, :atom, values: [:primary, :alert], default: :primary, doc: "Menu color."
-  attr :rest, :global, include: ~w(href method navigate)
-
-  def menu_card(assigns) do
-    ~H"""
-    <.link
-      class={[
-        "px-4 py-2",
-        @color == :primary && "card-with-link bg-white text-gray-dark",
-        @color == :alert && "card-with-link-alert bg-alert-light3x text-alert-dark2x"
-      ]}
-      {@rest}
-    >
-      <%= @title %>
-    </.link>
     """
   end
 end

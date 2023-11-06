@@ -8,12 +8,11 @@ defmodule UneebeeWeb.Components.AwardBadge do
   """
   use Phoenix.Component
 
+  import UneebeeWeb.Components.Badge
   import UneebeeWeb.Components.Icon
   import UneebeeWeb.Gettext
 
-  alias Uneebee.Gamification.Medal
   alias Uneebee.Gamification.Mission
-  alias Uneebee.Gamification.Trophy
 
   @doc """
   Renders a badge for learning days.
@@ -26,34 +25,40 @@ defmodule UneebeeWeb.Components.AwardBadge do
 
   def learning_days_badge(assigns) do
     ~H"""
-    <.award_badge id="learning-days-badge" icon="tabler-calendar-heart" value={@days} label={dngettext("gamification", "Learning day", "Learning days", @days)} />
+    <.award_badge
+      id="learning-days-badge"
+      icon="tabler-calendar-heart"
+      prize={:other}
+      value={dgettext("gamification", "Learning days")}
+      label={dngettext("gamification", "You completed a lesson on %{count} day.", "You completed a lesson on %{count} days.", @days, count: @days)}
+    />
     """
   end
 
   @doc """
   Renders a badge for a medal.
   """
-  attr :medal, Medal, required: true
+  attr :id, :string, required: true
+  attr :prize, :atom, values: [:gold, :silver, :bronze], required: true
+  attr :title, :string, required: true
+  attr :description, :string, required: true
+  attr :badge, :string, default: nil
 
   def medal_badge(assigns) do
     ~H"""
-    <.award_badge id="medal-badge" color={medal_color(@medal.medal)} icon="tabler-medal" value={@medal.label} label={@medal.description} />
+    <.award_badge id={@id} prize={@prize} icon="tabler-medal" value={@title} label={@description} badge={@badge} />
     """
   end
 
-  defp medal_color(:gold), do: :warning
-  defp medal_color(:silver), do: :gray
-  defp medal_color(:bronze), do: :bronze
-  defp medal_color(_prize), do: :primary
-
   @doc """
-  Completed course trophy.
+  Badge for a trophy.
   """
-  attr :trophy, Trophy, required: true
+  attr :title, :string, required: true
+  attr :description, :string, required: true
 
   def trophy_badge(assigns) do
     ~H"""
-    <.award_badge id="trophy-badge" color={:warning} icon="tabler-trophy" value={@trophy.label} label={@trophy.description} />
+    <.award_badge id="trophy-badge" prize={:trophy} icon="tabler-trophy" value={@title} label={@description} />
     """
   end
 
@@ -66,8 +71,8 @@ defmodule UneebeeWeb.Components.AwardBadge do
   def mission_badge(assigns) do
     ~H"""
     <.award_badge
-      id={"mission-badge-#{@mission.key}"}
-      color={medal_color(@mission.prize)}
+      id={"mission-#{@mission.label}"}
+      prize={@mission.prize}
       icon={if @mission.prize == :trophy, do: "tabler-trophy", else: "tabler-medal"}
       value={@mission.label}
       label={if @completed, do: @mission.success_message, else: @mission.description}
@@ -76,28 +81,45 @@ defmodule UneebeeWeb.Components.AwardBadge do
   end
 
   attr :id, :string, required: true
-  attr :color, :atom, default: :primary, values: [:primary, :warning, :alert, :gray, :bronze]
+  attr :prize, :atom, default: :other, values: [:gold, :silver, :bronze, :trophy, :other]
   attr :icon, :string, required: true
   attr :value, :string, required: true
   attr :label, :string, required: true
+  attr :badge, :string, default: nil
 
   defp award_badge(assigns) do
     ~H"""
-    <div
-      id={@id}
-      class={[
-        "flex flex-1 flex-col items-center gap-1 rounded-2xl p-4 text-center",
-        @color == :primary && "bg-primary-light2x text-primary-dark2x",
-        @color == :warning && "bg-warning-light2x text-warning-dark2x",
-        @color == :alert && "bg-alert-light2x text-alert-dark2x",
-        @color == :gray && "bg-gray-light2x text-gray-dark2x",
-        @color == :bronze && "bg-bronze-light2x text-bronze-dark2x"
-      ]}
-    >
-      <.icon name={@icon} />
-      <span class="font-black"><%= @value %></span>
-      <span class="text-xs font-light"><%= @label %></span>
-    </div>
+    <dl id={@id} class={["overflow-hidden rounded-xl border ", prize_color_border(@prize), prize_color_text(@prize)]}>
+      <div class={["flex items-center gap-x-2 border-b p-4", prize_color_border(@prize), prize_color_bg(@prize)]}>
+        <.icon name={@icon} />
+        <dt class="flex-1 truncate text-sm font-medium leading-6" title={@value}><%= @value %></dt>
+        <.badge :if={@badge} color={badge_color(@prize)}><%= @badge %></.badge>
+      </div>
+
+      <div class="-my-3 px-4 py-2 text-sm leading-6">
+        <dd class="py-3"><%= @label %></dd>
+      </div>
+    </dl>
     """
   end
+
+  defp badge_color(:gold), do: :warning
+  defp badge_color(:silver), do: :black
+  defp badge_color(:bronze), do: :bronze
+  defp badge_color(_other), do: :success
+
+  defp prize_color_bg(:gold), do: "bg-yellow-50"
+  defp prize_color_bg(:silver), do: "bg-gray-50"
+  defp prize_color_bg(:bronze), do: "bg-orange-50"
+  defp prize_color_bg(_prize), do: "bg-teal-50"
+
+  defp prize_color_text(:gold), do: "text-yellow-900"
+  defp prize_color_text(:silver), do: "text-gray-900"
+  defp prize_color_text(:bronze), do: "text-orange-900"
+  defp prize_color_text(_prize), do: "text-teal-900"
+
+  defp prize_color_border(:gold), do: "border-yellow-100"
+  defp prize_color_border(:silver), do: "border-gray-100"
+  defp prize_color_border(:bronze), do: "border-orange-100"
+  defp prize_color_border(_prize), do: "border-teal-100"
 end

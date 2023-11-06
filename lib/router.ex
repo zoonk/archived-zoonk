@@ -97,12 +97,9 @@ defmodule UneebeeWeb.Router do
       live "/trophies", TrophyList
       live "/medals", MedalList
 
-      live "/users/settings", UserSettingsMenu
+      live "/users/settings", UserSettings, :profile
       live "/users/settings/email", UserSettings, :email
-      live "/users/settings/language", UserSettings, :language
-      live "/users/settings/name", UserSettings, :name
       live "/users/settings/password", UserSettings, :password
-      live "/users/settings/username", UserSettings, :username
       live "/users/settings/confirm_email/:token", UserSettings, :confirm_email
 
       live "/schools/new", SchoolNew
@@ -130,6 +127,7 @@ defmodule UneebeeWeb.Router do
     pipe_through [:browser, :require_authenticated_user, :require_manager]
 
     live_session :school_dashboard,
+      layout: {UneebeeWeb.Layouts, :dashboard_school},
       on_mount: [
         {UneebeeWeb.Plugs.UserAuth, :ensure_authenticated},
         {UneebeeWeb.Plugs.School, :mount_school},
@@ -137,9 +135,7 @@ defmodule UneebeeWeb.Router do
       ] do
       live "/", Dashboard.Home
       live "/edit/logo", Dashboard.SchoolEdit, :logo
-      live "/edit/slug", Dashboard.SchoolEdit, :slug
-      live "/edit/info", Dashboard.SchoolEdit, :info
-      live "/edit/terms", Dashboard.SchoolEdit, :terms
+      live "/edit/settings", Dashboard.SchoolEdit, :settings
 
       live "/managers", Dashboard.UserList, :manager
       live "/teachers", Dashboard.UserList, :teacher
@@ -158,6 +154,7 @@ defmodule UneebeeWeb.Router do
     pipe_through [:browser, :require_authenticated_user, :fetch_course, :require_manager_or_teacher]
 
     live_session :course_dashboard,
+      layout: {UneebeeWeb.Layouts, :dashboard_course},
       on_mount: [
         {UneebeeWeb.Plugs.UserAuth, :ensure_authenticated},
         {UneebeeWeb.Plugs.School, :mount_school},
@@ -169,8 +166,7 @@ defmodule UneebeeWeb.Router do
 
       live "/c/:course_slug", CourseView
       live "/c/:course_slug/edit/cover", CourseEdit, :cover
-      live "/c/:course_slug/edit/info", CourseEdit, :info
-      live "/c/:course_slug/edit/privacy", CourseEdit, :privacy
+      live "/c/:course_slug/edit/settings", CourseEdit, :settings
       live "/c/:course_slug/edit/delete", CourseEdit, :delete
 
       live "/c/:course_slug/teachers", CourseUserList, :teacher

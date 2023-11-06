@@ -34,7 +34,7 @@ defmodule UneebeeWeb.LessonCompletedLiveTest do
       assert has_element?(lv, ~s|h1:fl-icontains("Good!")|)
       assert has_element?(lv, ~s|img[src="/images/lessons/good.svg"]|)
       assert has_element?(lv, ~s|p:fl-icontains("You got 7 out of 10 answers right.")|)
-      assert has_element?(lv, ~s|div:fl-icontains("7.0")|)
+      assert has_element?(lv, ~s|span:fl-icontains("7.0")|)
       assert has_element?(lv, ~s|a[href="/c/#{course.slug}"]:fl-icontains("back to the course")|)
     end
 
@@ -44,7 +44,7 @@ defmodule UneebeeWeb.LessonCompletedLiveTest do
 
       {:ok, lv, _html} = live(conn, ~p"/c/#{course.slug}/#{lesson.id}/completed")
 
-      assert has_element?(lv, ~s|span:fl-icontains("You completed a lesson without any errors on your first try.")|)
+      assert has_element?(lv, ~s|dd:fl-icontains("You completed a lesson without any errors on your first try.")|)
     end
 
     test "display a silver medal for a perfect score after practicing", %{conn: conn, course: course, user: user} do
@@ -53,8 +53,8 @@ defmodule UneebeeWeb.LessonCompletedLiveTest do
 
       {:ok, lv, _html} = live(conn, ~p"/c/#{course.slug}/#{lesson.id}/completed")
 
-      assert has_element?(lv, "#medal-badge")
-      assert has_element?(lv, ~s|span:fl-icontains("You completed a lesson without any errors after practicing it.")|)
+      assert has_element?(lv, "#medal-perfect_lesson_practiced")
+      assert has_element?(lv, ~s|dd:fl-icontains("You completed a lesson without any errors after practicing it.")|)
     end
 
     test "display a bronze medal for a lesson with errors on the first try", %{conn: conn, course: course, user: user} do
@@ -63,8 +63,8 @@ defmodule UneebeeWeb.LessonCompletedLiveTest do
 
       {:ok, lv, _html} = live(conn, ~p"/c/#{course.slug}/#{lesson.id}/completed")
 
-      assert has_element?(lv, "#medal-badge")
-      assert has_element?(lv, ~s|span:fl-icontains("You completed a lesson with some errors on your first try.")|)
+      assert has_element?(lv, "#medal-lesson_completed_with_errors")
+      assert has_element?(lv, ~s|dd:fl-icontains("You completed a lesson with some errors on your first try.")|)
     end
 
     test "don't display a medal for a lesson with errors after practicing", %{conn: conn, course: course, user: user} do
@@ -82,7 +82,7 @@ defmodule UneebeeWeb.LessonCompletedLiveTest do
       {:ok, lv, _html} = live(conn, ~p"/c/#{course.slug}/#{lesson.id}/completed")
 
       assert has_element?(lv, "#trophy-badge")
-      assert has_element?(lv, ~s|span:fl-icontains("You completed a course.")|)
+      assert has_element?(lv, ~s|dd:fl-icontains("You completed a course.")|)
     end
 
     test "doesn't display a trophy if the course wasn't completed", %{conn: conn, course: course, user: user} do

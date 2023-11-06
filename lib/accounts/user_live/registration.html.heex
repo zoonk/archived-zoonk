@@ -15,9 +15,9 @@
   <.input field={@form[:language]} type="select" label={gettext("Language")} options={UneebeeWeb.Plugs.Translate.language_options()} required />
   <.input field={@form[:email]} type="email" label={gettext("Email")} autocomplete="email" required />
   <.input field={@form[:username]} type="text" label={gettext("Username")} autocomplete="off" required />
-  <.input field={@form[:password]} type="password" label={dgettext("auth", "Password")} autocomplete="new-password" required />
+  <.input field={@form[:password]} type="password" label={gettext("Password")} autocomplete="new-password" required />
 
-  <p :if={not is_nil(terms_label(@school))} class="text-gray text-xs"><%= terms_label(@school) |> HTML.raw() %></p>
+  <p :if={not is_nil(terms_label(@school))} class="text-xs text-gray-500"><%= terms_label(@school) |> HTML.raw() %></p>
 
   <:actions>
     <.button icon="tabler-user-plus" class="w-full" type="submit" phx-disable-with={gettext("Saving...")}>
@@ -26,7 +26,7 @@
   </:actions>
 
   <:actions>
-    <p class="text-gray-dark mx-auto text-sm">
+    <p class="mx-auto text-sm text-gray-700">
       <%= dgettext("auth", "Already registered?") %>
       <.link_styled navigate={~p"/users/login"}><%= dgettext("auth", "Sign in") %></.link_styled>
     </p>

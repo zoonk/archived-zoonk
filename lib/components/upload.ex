@@ -14,15 +14,22 @@ defmodule UneebeeWeb.Components.Upload do
   @impl Phoenix.LiveComponent
   def render(assigns) do
     ~H"""
-    <section class={["h-max space-y-4", not @unstyled && "card bg-white p-4"]}>
+    <form id={"upload-form-#{@id}"} phx-submit="save" class={[@unstyled && "flex flex-col-reverse"]} phx-change="validate" phx-drop-target={@uploads.file.ref} phx-target={@myself}>
       <% entry = List.first(@uploads.file.entries) %>
 
-      <.header :if={@label}>
-        <%= @label %>
-        <:subtitle><%= @subtitle %></:subtitle>
-      </.header>
+      <div class={["flex flex-wrap items-center gap-2", not @unstyled && "top-[57px] sticky bg-gray-50 p-4 sm:flex-nowrap sm:px-6 lg:px-8"]}>
+        <h1 :if={not @unstyled} class="text-base font-semibold leading-7 text-gray-900"><%= @label %></h1>
 
-      <form id={"upload-form-#{@id}"} phx-submit="save" phx-change="validate" phx-drop-target={@uploads.file.ref} phx-target={@myself} class="flex flex-col space-y-8">
+        <div class={["flex gap-2", not @unstyled && "ml-auto", @unstyled && "flex-row-reverse"]}>
+          <.button :if={@current_img} id={"remove-#{@id}"} phx-click="remove" phx-target={@myself} icon="tabler-trash" type="button" color={:alert_light}>
+            <%= gettext("Remove") %>
+          </.button>
+
+          <.button type="submit" icon="tabler-cloud-upload" disabled={is_nil(entry)} phx-disable-with={gettext("Uploading...")}><%= gettext("Upload") %></.button>
+        </div>
+      </div>
+
+      <div class="container flex flex-col space-y-8">
         <div class="flex items-center space-x-6">
           <.live_img_preview :if={entry} entry={entry} class="h-16 rounded-2xl object-cover" />
 
@@ -31,35 +38,25 @@ defmodule UneebeeWeb.Components.Upload do
           <.live_file_input
             upload={@uploads.file}
             class={[
-              "block w-full text-sm text-gray",
+              "block w-full text-sm text-gray-500",
               "file:mr-4 file:py-2 file:px-4",
               "file:rounded-full file:border-0",
               "file:text-sm file:font-semibold",
-              "file:bg-primary-light3x file:text-primary-dark",
-              "hover:file:bg-primary-light"
+              "file:bg-indigo-50 file:text-indigo-700",
+              "hover:file:bg-indigo-300"
             ]}
           />
         </div>
 
-        <p :if={entry} class="text-gray text-sm">
+        <p :if={entry} class="text-sm text-gray-500">
           <%= if entry.progress > 0,
             do: gettext("Uploading file: %{progress}% concluded.", progress: entry.progress),
             else: gettext("Click on the save button to upload your file.") %>
         </p>
 
         <p :for={err <- upload_errors(@uploads.file)}><%= error_to_string(err) %></p>
-
-        <div class="flex gap-2">
-          <.button icon="tabler-cloud-upload" type="submit" disabled={is_nil(entry)} phx-disable-with={gettext("Saving...")}>
-            <%= gettext("Save") %>
-          </.button>
-
-          <.button :if={@current_img} id={"remove-#{@id}"} phx-click="remove" phx-target={@myself} icon="tabler-trash" type="button" color={:alert_light}>
-            <%= gettext("Remove") %>
-          </.button>
-        </div>
-      </form>
-    </section>
+      </div>
+    </form>
     """
   end
 

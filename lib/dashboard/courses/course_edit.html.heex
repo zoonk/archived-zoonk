@@ -1,39 +1,55 @@
 <.live_component :if={@live_action == :cover} module={Upload} id={:course_cover} current_img={@course.cover} label={dgettext("orgs", "Cover")} />
 
-<.simple_form :if={@live_action not in [:cover, :delete]} for={@form} id="course-form" phx-change="validate" phx-submit="save">
-  <.input :if={@live_action == :info} field={@form[:language]} type="select" label={gettext("Language")} options={UneebeeWeb.Plugs.Translate.language_options()} required />
-  <.input :if={@live_action == :info} field={@form[:name]} type="text" label={dgettext("orgs", "Course title")} required />
+<.simple_form :if={@live_action not in [:cover, :delete]} for={@form} unstyled id="course-form" phx-change="validate" phx-submit="save">
+  <div class="top-[128px] sticky flex flex-wrap items-center gap-2 bg-gray-50 p-4 sm:flex-nowrap sm:px-6 lg:px-8">
+    <h1 class="text-base font-semibold leading-7 text-gray-900"><%= gettext("Settings") %></h1>
 
-  <.input
-    :if={@live_action == :info}
-    field={@form[:slug]}
-    type="text"
-    label={dgettext("orgs", "Course slug")}
-    helper={dgettext("orgs", "Friendly identifier used to access your course. I.e. my-course-name")}
-    required
-  />
+    <.button type="submit" icon="tabler-check" phx-disable-with={gettext("Saving...")} class="ml-auto"><%= gettext("Save") %></.button>
+  </div>
 
-  <.input :if={@live_action == :info} field={@form[:level]} type="select" label={dgettext("orgs", "Level")} options={Uneebee.Content.CourseUtils.level_options()} required />
-  <.input :if={@live_action == :info} field={@form[:description]} type="textarea" label={dgettext("orgs", "Course description")} required />
+  <div class="container max-w-3xl space-y-8">
+    <.input
+      :if={@live_action == :settings}
+      field={@form[:language]}
+      type="select"
+      label={gettext("Language")}
+      options={UneebeeWeb.Plugs.Translate.language_options()}
+      required
+    />
+    <.input :if={@live_action == :settings} field={@form[:name]} type="text" label={dgettext("orgs", "Course title")} required />
 
-  <.input
-    :if={@live_action == :privacy}
-    field={@form[:public?]}
-    type="checkbox"
-    label={dgettext("orgs", "Is public?")}
-    helper={
-      dgettext(
-        "orgs",
-        "When checked this course will be visible to all students from your school. Keep it unchecked if you want this course to be visible only to invited students."
-      )
-    }
-  />
+    <.input
+      :if={@live_action == :settings}
+      field={@form[:slug]}
+      type="text"
+      label={dgettext("orgs", "Course slug")}
+      helper={dgettext("orgs", "Friendly identifier used to access your course. I.e. my-course-name")}
+      required
+    />
 
-  <:actions>
-    <.button icon="tabler-table-export" type="submit" phx-disable-with={gettext("Saving...")}>
-      <%= dgettext("orgs", "Update course") %>
-    </.button>
-  </:actions>
+    <.input
+      :if={@live_action == :settings}
+      field={@form[:level]}
+      type="select"
+      label={dgettext("orgs", "Level")}
+      options={Uneebee.Content.CourseUtils.level_options()}
+      required
+    />
+    <.input :if={@live_action == :settings} field={@form[:description]} type="textarea" label={dgettext("orgs", "Course description")} required />
+
+    <.input
+      :if={@live_action == :settings}
+      field={@form[:public?]}
+      type="checkbox"
+      label={dgettext("orgs", "Is public?")}
+      helper={
+        dgettext(
+          "orgs",
+          "When checked this course will be visible to all students from your school. Keep it unchecked if you want this course to be visible only to invited students."
+        )
+      }
+    />
+  </div>
 </.simple_form>
 
 <.live_component :if={@live_action == :delete} id={:delete_course} module={DeleteItem} name={@course.name} />

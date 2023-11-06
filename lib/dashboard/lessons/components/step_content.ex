@@ -21,7 +21,7 @@ defmodule UneebeeWeb.Components.Dashboard.StepContent do
       </.link>
 
       <.modal :if={@action == :edit} show id="edit-step" on_cancel={JS.patch(~p"/dashboard/c/#{@course.slug}/l/#{@lesson.id}/s/#{@step.order}")}>
-        <.simple_form for={@step_form} id="step-form" phx-change="validate-step" phx-target={@myself} phx-submit="update-step" unstyled>
+        <.simple_form for={@step_form} id="step-form" phx-change="validate-step" phx-target={@myself} phx-submit="update-step" class="space-y-8" unstyled>
           <.input
             type="textarea"
             field={@step_form[:content]}

@@ -2,6 +2,8 @@ defmodule UneebeeWeb.Live.Dashboard.UserList do
   @moduledoc false
   use UneebeeWeb, :live_view
 
+  import UneebeeWeb.Components.Dashboard.UserListHeader
+
   alias Uneebee.Accounts
   alias Uneebee.Accounts.User
   alias Uneebee.Accounts.UserUtils
@@ -19,6 +21,7 @@ defmodule UneebeeWeb.Live.Dashboard.UserList do
       |> assign(:page_title, get_page_title(role))
       |> stream(:users, users)
       |> assign(:can_demote_user?, can_demote_user?)
+      |> assign(:user_count, length(users))
 
     {:ok, socket}
   end

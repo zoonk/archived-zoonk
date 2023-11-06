@@ -138,7 +138,7 @@ defmodule UneebeeWeb.DashboardCourseViewLiveTest do
         |> render_change()
         |> follow_redirect(conn, ~p"/dashboard/courses/new")
 
-      assert has_element?(updated_lv, "h1", "Create a course")
+      assert has_element?(updated_lv, "h1", "Create course")
     end
   end
 
@@ -148,7 +148,7 @@ defmodule UneebeeWeb.DashboardCourseViewLiveTest do
     {:ok, lv, _html} = live(conn, "/dashboard/c/#{course.slug}")
 
     assert has_element?(lv, "option[selected]", course.name)
-    assert has_element?(lv, ~s|li[aria-current=page] span:fl-icontains("course page")|)
+    assert has_element?(lv, ~s|li[aria-current=page] a:fl-icontains("overview")|)
 
     Enum.each(lessons, fn lesson -> assert has_element?(lv, "dt", lesson.name) end)
   end

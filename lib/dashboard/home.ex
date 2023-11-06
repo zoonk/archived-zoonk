@@ -2,8 +2,6 @@ defmodule UneebeeWeb.Live.Dashboard.Home do
   @moduledoc false
   use UneebeeWeb, :live_view
 
-  import UneebeeWeb.Components.Dashboard.ItemStatsCard
-
   alias Uneebee.Organizations
 
   @impl Phoenix.LiveView
@@ -17,10 +15,16 @@ defmodule UneebeeWeb.Live.Dashboard.Home do
     socket =
       socket
       |> assign(:page_title, dgettext("orgs", "Dashboard"))
-      |> assign(:manager_count, manager_count)
-      |> assign(:teacher_count, teacher_count)
-      |> assign(:student_count, student_count)
+      |> assign(:user_count, %{manager: manager_count, teacher: teacher_count, student: student_count})
 
     {:ok, socket}
+  end
+
+  defp school_stats do
+    [
+      %{title: gettext("Managers"), icon: "tabler-puzzle", id: :manager},
+      %{title: gettext("Teachers"), icon: "tabler-apple", id: :teacher},
+      %{title: gettext("Students"), icon: "tabler-comet", id: :student}
+    ]
   end
 end

@@ -94,7 +94,7 @@ defmodule UneebeeWeb do
       import UneebeeWeb.Components.AwardBadge
       import UneebeeWeb.Components.Badge
       import UneebeeWeb.Components.Button
-      import UneebeeWeb.Components.Details
+      import UneebeeWeb.Components.Drawer
       import UneebeeWeb.Components.Flash
       import UneebeeWeb.Components.Form
       import UneebeeWeb.Components.Header

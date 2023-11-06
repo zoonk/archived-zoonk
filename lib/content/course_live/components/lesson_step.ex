@@ -12,12 +12,12 @@ defmodule UneebeeWeb.Components.Content.LessonStep do
 
   def lesson_step(assigns) do
     ~H"""
-    <section class="text-gray-dark2x rounded-3xl bg-white p-4">
-      <p class="whitespace-pre-wrap"><%= @step.content %></p>
-    </section>
+    <div class="flex w-full flex-col items-center justify-center gap-4">
+      <img :if={@step.image} src={@step.image} class="aspect-square w-1/2 object-cover sm:w-1/3" />
 
-    <div :if={@step.image} class="flex w-full justify-center py-2">
-      <img src={@step.image} class="aspect-square w-3/4 object-cover" />
+      <blockquote class="w-fit rounded-2xl bg-gray-50 p-4 text-sm leading-6 text-gray-900 sm:text-lg">
+        <p><%= @step.content %></p>
+      </blockquote>
     </div>
     """
   end
@@ -27,15 +27,27 @@ defmodule UneebeeWeb.Components.Content.LessonStep do
 
   def feedback_option(assigns) do
     ~H"""
-    <div :if={@selected} class="flex items-center gap-2 text-lg font-semibold">
-      <% icon = if @selected.correct?, do: "tabler-checks", else: "tabler-alert-square-rounded" %>
+    <div :if={@selected} class="flex items-center gap-4 sm:gap-8">
+      <% icon = if @selected.correct?, do: "tabler-checks", else: "tabler-x" %>
 
       <% default_feedback =
         if @selected.correct?, do: dgettext("courses", "Well done!"), else: dgettext("courses", "That's incorrect.") %>
 
-      <% feedback = if @selected.feedback, do: @selected.feedback, else: default_feedback %>
+      <div class="flex h-8 w-8 flex-col items-center justify-center rounded-full bg-white sm:h-12 sm:w-12">
+        <.icon
+          name={icon}
+          class={[
+            "sm:w-8 sm:h-8",
+            @selected.correct? && "text-teal-700",
+            not @selected.correct? && "text-pink-700"
+          ]}
+        />
+      </div>
 
-      <.icon name={icon} /> <%= feedback %>
+      <div class="leading-6" role="alert">
+        <h3 class="text-md font-bold sm:text-lg"><%= default_feedback %></h3>
+        <h4 :if={@selected.feedback} class="text-xs sm:text-sm"><%= @selected.feedback %></h4>
+      </div>
     </div>
     """
   end

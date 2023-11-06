@@ -1,19 +1,29 @@
-<h2 class="text-gray-dark2x pb-2 font-semibold"><%= dgettext("gamification", "Completed missions") %></h2>
+<div class="container">
+  <h2 class="pb-2 font-semibold text-gray-900"><%= dgettext("gamification", "Completed missions") %></h2>
 
-<p :if={@completed_missions == []} class="text-gray text-sm">
-  <%= dgettext("gamification", "You didn't complete any missions yet.") %>
-</p>
+  <p :if={@completed_missions == []} class="text-sm text-gray-500">
+    <%= dgettext("gamification", "You didn't complete any missions yet.") %>
+  </p>
 
-<section :if={@completed_missions != []} id="completed-missions" class="grid grid-cols-2 gap-4 sm:grid-cols-4">
-  <.mission_badge :for={mission <- @completed_missions} completed mission={mission} />
-</section>
+  <section
+    :if={@completed_missions != []}
+    id="completed-missions"
+    class="grid grid-cols-1 gap-4 4xl:grid-cols-5 6xl:grid-cols-6 sm:grid-cols-2 lg:grid-cols-3 lg:gap-6 xl:gap-8 2xl:grid-cols-4"
+  >
+    <.mission_badge :for={mission <- @completed_missions} completed mission={mission} />
+  </section>
 
-<h2 class="text-gray-dark2x pt-4 pb-2 font-semibold"><%= dgettext("gamification", "Next missions") %></h2>
+  <h2 class="pt-4 pb-2 font-semibold text-gray-900"><%= dgettext("gamification", "Next missions") %></h2>
 
-<p :if={@incomplete_missions == []} class="text-gray text-sm">
-  <%= dgettext("gamification", "Congrats! You completed all missions.") %>
-</p>
+  <p :if={@incomplete_missions == []} class="text-sm text-gray-500">
+    <%= dgettext("gamification", "Congrats! You completed all missions.") %>
+  </p>
 
-<section :if={@incomplete_missions != []} id="next-missions" class="grid grid-cols-2 gap-4 sm:grid-cols-4">
-  <.mission_badge :for={mission <- @incomplete_missions} mission={mission} />
-</section>
+  <section
+    :if={@incomplete_missions != []}
+    id="next-missions"
+    class="grid grid-cols-1 gap-4 4xl:grid-cols-5 6xl:grid-cols-6 sm:grid-cols-2 lg:grid-cols-3 lg:gap-6 xl:gap-8 2xl:grid-cols-4"
+  >
+    <.mission_badge :for={mission <- @incomplete_missions} mission={mission} />
+  </section>
+</div>

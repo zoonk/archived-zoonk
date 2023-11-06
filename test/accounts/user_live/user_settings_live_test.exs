@@ -8,13 +8,11 @@ defmodule UneebeeWeb.UserSettingsLiveTest do
   alias Uneebee.Accounts
   alias Uneebee.Gamification
 
-  @settings_form "#settings-form"
-  @email_form "#email-form"
-  @password_form "#password-form"
+  @form "#settings-form"
 
   describe "/users/settings (not authenticated)" do
     test "redirects if user is not logged in", %{conn: conn} do
-      assert {:error, redirect} = live(conn, ~p"/users/settings/language")
+      assert {:error, redirect} = live(conn, ~p"/users/settings")
 
       assert {:redirect, %{to: path, flash: flash}} = redirect
       assert path == ~p"/users/login"
@@ -22,57 +20,68 @@ defmodule UneebeeWeb.UserSettingsLiveTest do
     end
   end
 
-  describe "/users/settings/username" do
+  describe "/users/settings (username)" do
     setup :register_and_log_in_user
 
     test "updates the user username", %{conn: conn, user: user} do
       existing_user = user_fixture()
       new_username = unique_user_username()
 
-      {:ok, lv, _html} = live(conn, ~p"/users/settings/username")
+      {:ok, lv, _html} = live(conn, ~p"/users/settings")
 
-      assert has_element?(lv, ~s|li[aria-current=page] span:fl-icontains("settings")|)
-      assert has_element?(lv, ~s|li[aria-current=page] span:fl-icontains("username")|)
+      assert has_element?(lv, ~s|li[aria-current=page] a:fl-icontains("settings")|)
+      assert has_element?(lv, ~s|li[aria-current=page] a:fl-icontains("profile")|)
 
-      refute has_element?(lv, ~s|#{@email_form}|)
-      refute has_element?(lv, ~s|#{@password_form}|)
       assert has_element?(lv, ~s|input[name="user[username]"][value="#{user.username}"]|)
 
       assert field_change(lv, %{username: ""}) =~ "can&#39;t be blank"
       assert field_change(lv, %{username: "ab"}) =~ "should be at least 3 character(s)"
       assert field_change(lv, %{username: existing_user.username}) =~ "has already been taken"
 
-      assert lv |> form(@settings_form, user: %{username: new_username}) |> render_submit() =~ "Settings updated successfully"
+      assert {:ok, _lv, html} =
+               lv
+               |> form(@form, user: %{username: new_username})
+               |> render_submit()
+               |> follow_redirect(conn, ~p"/users/settings")
+
+      assert html =~ "Settings updated successfully"
 
       assert Accounts.get_user!(user.id).username == new_username
     end
   end
 
-  describe "/users/settings/language" do
+  describe "/users/settings (language)" do
     setup :register_and_log_in_user
 
     test "updates the user language", %{conn: conn, user: user} do
-      {:ok, lv, _html} = live(conn, ~p"/users/settings/language")
+      {:ok, lv, _html} = live(conn, ~p"/users/settings")
 
-      assert has_element?(lv, ~s|li[aria-current=page] span:fl-icontains("settings")|)
-      assert has_element?(lv, ~s|li[aria-current=page] span:fl-icontains("language")|)
+      assert has_element?(lv, ~s|li[aria-current=page] a:fl-icontains("settings")|)
+      assert has_element?(lv, ~s|li[aria-current="page"] a:fl-icontains("profile")|)
 
       assert has_element?(lv, ~s|option[value="en"][selected]|)
-      assert lv |> form(@settings_form, user: %{language: "pt"}) |> render_submit() =~ "Configurações atualizadas"
-      assert has_element?(lv, ~s|button:fl-icontains("Salvar")|)
-      assert has_element?(lv, ~s|option[value="pt"][selected]|)
+
+      assert {:ok, updated_lv, html} =
+               lv
+               |> form(@form, user: %{language: "pt"})
+               |> render_submit()
+               |> follow_redirect(conn, ~p"/users/settings")
+
+      assert html =~ "Configurações atualizadas"
+      assert has_element?(updated_lv, ~s|button:fl-icontains("Salvar")|)
+      assert has_element?(updated_lv, ~s|option[value="pt"][selected]|)
       assert Accounts.get_user!(user.id).language == :pt
     end
   end
 
-  describe "/users/settings/name" do
+  describe "/users/settings (name)" do
     setup :register_and_log_in_user
 
     test "updates the user name", %{conn: conn, user: user} do
-      {:ok, lv, _html} = live(conn, ~p"/users/settings/name")
+      {:ok, lv, _html} = live(conn, ~p"/users/settings")
 
-      assert has_element?(lv, ~s|li[aria-current=page] span:fl-icontains("settings")|)
-      assert has_element?(lv, ~s|li[aria-current=page] span:fl-icontains("name")|)
+      assert has_element?(lv, ~s|li[aria-current=page] a:fl-icontains("settings")|)
+      assert has_element?(lv, ~s|li[aria-current=page] a:fl-icontains("profile")|)
 
       new_first_name = "New first name"
       new_last_name = "New last name"
@@ -80,9 +89,13 @@ defmodule UneebeeWeb.UserSettingsLiveTest do
       assert has_element?(lv, ~s|input[name="user[first_name]"][value="#{user.first_name}"]|)
       assert has_element?(lv, ~s|input[name="user[last_name]"][value="#{user.last_name}"]|)
 
-      assert lv
-             |> form(@settings_form, user: %{first_name: new_first_name, last_name: new_last_name})
-             |> render_submit() =~ "Settings updated successfully"
+      assert {:ok, _updated_lv, html} =
+               lv
+               |> form(@form, user: %{first_name: new_first_name, last_name: new_last_name})
+               |> render_submit()
+               |> follow_redirect(conn, ~p"/users/settings")
+
+      assert html =~ "Settings updated successfully"
 
       user = Accounts.get_user!(user.id)
 
@@ -91,7 +104,7 @@ defmodule UneebeeWeb.UserSettingsLiveTest do
     end
 
     test "makes sure the first name doesn't get replaced when filling the last name", %{conn: conn, user: user} do
-      {:ok, lv, _html} = live(conn, ~p"/users/settings/name")
+      {:ok, lv, _html} = live(conn, ~p"/users/settings")
 
       new_first_name = "New first name"
       new_last_name = "New last name"
@@ -99,12 +112,12 @@ defmodule UneebeeWeb.UserSettingsLiveTest do
       assert has_element?(lv, ~s|input[name="user[first_name]"][value="#{user.first_name}"]|)
       assert has_element?(lv, ~s|input[name="user[last_name]"][value="#{user.last_name}"]|)
 
-      lv |> element(@settings_form) |> render_change(%{user: %{first_name: new_first_name}})
+      lv |> element(@form) |> render_change(%{user: %{first_name: new_first_name}})
 
       assert has_element?(lv, ~s|input[name="user[first_name]"][value="#{new_first_name}"]|)
       assert has_element?(lv, ~s|input[name="user[last_name]"][value="#{user.last_name}"]|)
 
-      lv |> element(@settings_form) |> render_change(%{user: %{last_name: new_last_name}})
+      lv |> element(@form) |> render_change(%{user: %{last_name: new_last_name}})
 
       assert has_element?(lv, ~s|input[name="user[first_name]"][value="#{new_first_name}"]|)
       assert has_element?(lv, ~s|input[name="user[last_name]"][value="#{new_last_name}"]|)
@@ -115,13 +128,17 @@ defmodule UneebeeWeb.UserSettingsLiveTest do
 
       assert Gamification.get_user_mission(:profile_name, user.id) == nil
 
-      {:ok, lv, _html} = live(conn, ~p"/users/settings/name")
+      {:ok, lv, _html} = live(conn, ~p"/users/settings")
 
       new_first_name = "New first name"
 
-      assert lv
-             |> form(@settings_form, user: %{first_name: new_first_name, last_name: nil})
-             |> render_submit() =~ "Settings updated successfully"
+      assert {:ok, _lv, html} =
+               lv
+               |> form(@form, user: %{first_name: new_first_name, last_name: nil})
+               |> render_submit()
+               |> follow_redirect(conn, ~p"/users/settings")
+
+      assert html =~ "Settings updated successfully"
 
       assert Gamification.get_user_mission(:profile_name, user.id) != nil
     end
@@ -131,13 +148,17 @@ defmodule UneebeeWeb.UserSettingsLiveTest do
 
       assert Gamification.get_user_mission(:profile_name, user.id) == nil
 
-      {:ok, lv, _html} = live(conn, ~p"/users/settings/name")
+      {:ok, lv, _html} = live(conn, ~p"/users/settings")
 
       new_last_name = "New last name"
 
-      assert lv
-             |> form(@settings_form, user: %{first_name: nil, last_name: new_last_name})
-             |> render_submit() =~ "Settings updated successfully"
+      assert {:ok, _lv, html} =
+               lv
+               |> form(@form, user: %{first_name: nil, last_name: new_last_name})
+               |> render_submit()
+               |> follow_redirect(conn, ~p"/users/settings")
+
+      assert html =~ "Settings updated successfully"
 
       assert Gamification.get_user_mission(:profile_name, user.id) != nil
     end
@@ -145,11 +166,15 @@ defmodule UneebeeWeb.UserSettingsLiveTest do
     test "removes a mission if both the first and last name are removed", %{conn: conn, user: user} do
       user_mission_fixture(%{user: user, reason: :profile_name})
 
-      {:ok, lv, _html} = live(conn, ~p"/users/settings/name")
+      {:ok, lv, _html} = live(conn, ~p"/users/settings")
 
-      assert lv
-             |> form(@settings_form, user: %{first_name: nil, last_name: nil})
-             |> render_submit() =~ "Settings updated successfully"
+      assert {:ok, _lv, html} =
+               lv
+               |> form(@form, user: %{first_name: nil, last_name: nil})
+               |> render_submit()
+               |> follow_redirect(conn, ~p"/users/settings")
+
+      assert html =~ "Settings updated successfully"
 
       assert Gamification.get_user_mission(:profile_name, user.id) == nil
     end
@@ -163,15 +188,12 @@ defmodule UneebeeWeb.UserSettingsLiveTest do
 
       {:ok, lv, _html} = live(conn, ~p"/users/settings/email")
 
-      refute has_element?(lv, @settings_form)
-      refute has_element?(lv, @password_form)
-
-      assert has_element?(lv, ~s|li[aria-current=page] span:fl-icontains("settings")|)
-      assert has_element?(lv, ~s|li[aria-current=page] span:fl-icontains("email")|)
+      assert has_element?(lv, ~s|li[aria-current=page] a:fl-icontains("settings")|)
+      assert has_element?(lv, ~s|li[aria-current=page] a:fl-icontains("email")|)
 
       result =
         lv
-        |> form(@email_form, %{"current_password" => password, "user" => %{"email" => new_email}})
+        |> form(@form, %{"current_password" => password, "user" => %{"email" => new_email}})
         |> render_submit()
 
       assert result =~ "A link to confirm your email"
@@ -183,10 +205,9 @@ defmodule UneebeeWeb.UserSettingsLiveTest do
 
       result =
         lv
-        |> element(@email_form)
+        |> element(@form)
         |> render_change(%{"action" => "update_email", "current_password" => "invalid", "user" => %{"email" => "with spaces"}})
 
-      assert result =~ "Change Email"
       assert result =~ "must have the @ sign and no spaces"
     end
 
@@ -195,10 +216,9 @@ defmodule UneebeeWeb.UserSettingsLiveTest do
 
       result =
         lv
-        |> form(@email_form, %{"current_password" => "invalid", "user" => %{"email" => user.email}})
+        |> form(@form, %{"current_password" => "invalid", "user" => %{"email" => user.email}})
         |> render_submit()
 
-      assert result =~ "Change Email"
       assert result =~ "did not change"
       assert result =~ "is invalid"
     end
@@ -212,14 +232,11 @@ defmodule UneebeeWeb.UserSettingsLiveTest do
 
       {:ok, lv, _html} = live(conn, ~p"/users/settings/password")
 
-      refute has_element?(lv, @settings_form)
-      refute has_element?(lv, @email_form)
-
-      assert has_element?(lv, ~s|li[aria-current=page] span:fl-icontains("settings")|)
-      assert has_element?(lv, ~s|li[aria-current=page] span:fl-icontains("password")|)
+      assert has_element?(lv, ~s|li[aria-current=page] a:fl-icontains("settings")|)
+      assert has_element?(lv, ~s|li[aria-current=page] a:fl-icontains("password")|)
 
       form =
-        form(lv, @password_form, %{"current_password" => password, "user" => %{"email" => user.email, "password" => new_password, "password_confirmation" => new_password}})
+        form(lv, @form, %{"current_password" => password, "user" => %{"email" => user.email, "password" => new_password, "password_confirmation" => new_password}})
 
       render_submit(form)
       new_password_conn = follow_trigger_action(form, conn)
@@ -235,10 +252,9 @@ defmodule UneebeeWeb.UserSettingsLiveTest do
 
       result =
         lv
-        |> element(@password_form)
+        |> element(@form)
         |> render_change(%{"current_password" => "invalid", "user" => %{"password" => "short", "password_confirmation" => "does not match"}})
 
-      assert result =~ "Change Password"
       assert result =~ "at least one digit or punctuation character"
       assert result =~ "at least one upper case character"
       assert result =~ "should be at least 8 character(s)"
@@ -250,10 +266,9 @@ defmodule UneebeeWeb.UserSettingsLiveTest do
 
       result =
         lv
-        |> form(@password_form, %{"current_password" => "invalid", "user" => %{"password" => "short", "password_confirmation" => "does not match"}})
+        |> form(@form, %{"current_password" => "invalid", "user" => %{"password" => "short", "password_confirmation" => "does not match"}})
         |> render_submit()
 
-      assert result =~ "Change Password"
       assert result =~ "at least one digit or punctuation character"
       assert result =~ "at least one upper case character"
       assert result =~ "should be at least 8 character(s)"
@@ -310,6 +325,6 @@ defmodule UneebeeWeb.UserSettingsLiveTest do
   end
 
   defp field_change(lv, changes) do
-    lv |> element(@settings_form) |> render_change(user: changes)
+    lv |> element(@form) |> render_change(user: changes)
   end
 end

@@ -12,7 +12,7 @@ defmodule UneebeeWeb.Live.Dashboard.SchoolEdit do
 
     socket =
       socket
-      |> assign(page_title: dgettext("orgs", "Edit %{name}", name: school.name))
+      |> assign(page_title: get_page_title(socket.assigns.live_action))
       |> assign_form(changeset)
 
     {:ok, socket}
@@ -56,4 +56,7 @@ defmodule UneebeeWeb.Live.Dashboard.SchoolEdit do
   defp assign_form(socket, %Ecto.Changeset{} = changeset) do
     assign(socket, :form, to_form(changeset))
   end
+
+  defp get_page_title(:settings), do: gettext("Settings")
+  defp get_page_title(:logo), do: gettext("Logo")
 end

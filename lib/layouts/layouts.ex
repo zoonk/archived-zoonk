@@ -2,22 +2,18 @@ defmodule UneebeeWeb.Layouts do
   @moduledoc false
   use UneebeeWeb, :html
 
+  import UneebeeWeb.Components.Layouts.AppMenu
+  import UneebeeWeb.Components.Layouts.DashboardMenuItem
+  import UneebeeWeb.Components.Layouts.GamificationMenu
   import UneebeeWeb.Components.Layouts.MenuDesktop
   import UneebeeWeb.Components.Layouts.MenuMobile
   import UneebeeWeb.Layouts.MenuUtils
 
   alias Uneebee.Organizations.School
+  alias UneebeeWeb.Components.Layouts.CourseSelect
+  alias UneebeeWeb.Components.Layouts.LessonSelect
 
   embed_templates "templates/*"
-
-  @spec school_name(School.t() | nil) :: String.t()
-  def school_name(nil), do: "UneeBee"
-  def school_name(%School{} = school), do: school.name
-
-  @spec school_logo(School.t() | nil) :: String.t()
-  def school_logo(nil), do: ~p"/images/logo.svg"
-  def school_logo(%School{logo: nil}), do: school_logo(nil)
-  def school_logo(%School{} = school), do: school.logo
 
   @spec social_image(String.t() | nil, School.t() | nil) :: String.t()
   def social_image(nil, school), do: school_logo(school)
