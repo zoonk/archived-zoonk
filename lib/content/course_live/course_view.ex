@@ -68,9 +68,9 @@ defmodule UneebeeWeb.Live.CourseView do
     lesson_color(locked?, completed?, score)
   end
 
-  defp lesson_color(true, _completed, _score), do: "cursor-not-allowed border-gray-400 opacity-50"
-  defp lesson_color(false, true, score) when score >= 8, do: "border-teal-500 focus:outline-teal-500"
-  defp lesson_color(false, true, score) when score >= 6, do: "border-amber-500 focus:outline-amber-500"
-  defp lesson_color(false, true, _score), do: "border-pink-500 focus:outline-pink-500"
-  defp lesson_color(false, false, _score), do: "border-gray-400 focus:outline-gray-400"
+  defp lesson_color(true, _completed, _score), do: "cursor-not-allowed border-gray-400 hover:outline-gray-400 opacity-50"
+  defp lesson_color(false, true, score) when score >= 8, do: "border-teal-500 hover:outline-teal-500 focus:outline-teal-500"
+  defp lesson_color(false, true, score) when score >= 6, do: "border-amber-500 hover:outline-amber-500 focus:outline-amber-500"
+  defp lesson_color(false, true, _score), do: "border-pink-500 hover:outline-pink-500 focus:outline-pink-500"
+  defp lesson_color(false, false, _score), do: "border-gray-400 hover:outline-gray-400 focus:outline-gray-400"
 end

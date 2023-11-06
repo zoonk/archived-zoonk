@@ -4,7 +4,7 @@
       :for={{lesson, index} <- Enum.with_index(@lessons)}
       navigate={lesson_link(lesson_locked?(@course, @course_user), @course, lesson)}
       class={[
-        "text-gray-700 bg-white border border-l-8 flex gap-2 p-4 shadow rounded-2xl hover:shadow-lg focus:outline-offset-4",
+        "text-gray-700 bg-white border border-l-8 flex gap-2 p-4 rounded-2xl hover:outline outline-2 outline-offset-2 focus:outline-offset-4",
         lesson_color(@course, @course_user, @current_user, lesson.user_lessons)
       ]}
     >
