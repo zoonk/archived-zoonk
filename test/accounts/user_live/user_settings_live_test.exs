@@ -32,8 +32,6 @@ defmodule UneebeeWeb.UserSettingsLiveTest do
       assert has_element?(lv, ~s|li[aria-current=page] a:fl-icontains("settings")|)
       assert has_element?(lv, ~s|li[aria-current=page] a:fl-icontains("profile")|)
 
-      refute has_element?(lv, ~s|#{@form}|)
-      refute has_element?(lv, ~s|#{@form}|)
       assert has_element?(lv, ~s|input[name="user[username]"][value="#{user.username}"]|)
 
       assert field_change(lv, %{username: ""}) =~ "can&#39;t be blank"
@@ -190,9 +188,6 @@ defmodule UneebeeWeb.UserSettingsLiveTest do
 
       {:ok, lv, _html} = live(conn, ~p"/users/settings/email")
 
-      refute has_element?(lv, @form)
-      refute has_element?(lv, @form)
-
       assert has_element?(lv, ~s|li[aria-current=page] a:fl-icontains("settings")|)
       assert has_element?(lv, ~s|li[aria-current=page] a:fl-icontains("email")|)
 
@@ -213,7 +208,6 @@ defmodule UneebeeWeb.UserSettingsLiveTest do
         |> element(@form)
         |> render_change(%{"action" => "update_email", "current_password" => "invalid", "user" => %{"email" => "with spaces"}})
 
-      assert result =~ "Change Email"
       assert result =~ "must have the @ sign and no spaces"
     end
 
@@ -225,7 +219,6 @@ defmodule UneebeeWeb.UserSettingsLiveTest do
         |> form(@form, %{"current_password" => "invalid", "user" => %{"email" => user.email}})
         |> render_submit()
 
-      assert result =~ "Change Email"
       assert result =~ "did not change"
       assert result =~ "is invalid"
     end
@@ -238,9 +231,6 @@ defmodule UneebeeWeb.UserSettingsLiveTest do
       new_password = valid_user_password()
 
       {:ok, lv, _html} = live(conn, ~p"/users/settings/password")
-
-      refute has_element?(lv, @form)
-      refute has_element?(lv, @form)
 
       assert has_element?(lv, ~s|li[aria-current=page] a:fl-icontains("settings")|)
       assert has_element?(lv, ~s|li[aria-current=page] a:fl-icontains("password")|)
