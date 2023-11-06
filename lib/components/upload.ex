@@ -14,13 +14,13 @@ defmodule UneebeeWeb.Components.Upload do
   @impl Phoenix.LiveComponent
   def render(assigns) do
     ~H"""
-    <form id={"upload-form-#{@id}"} phx-submit="save" phx-change="validate" phx-drop-target={@uploads.file.ref} phx-target={@myself}>
+    <form id={"upload-form-#{@id}"} phx-submit="save" class={[@unstyled && "flex flex-col-reverse"]} phx-change="validate" phx-drop-target={@uploads.file.ref} phx-target={@myself}>
       <% entry = List.first(@uploads.file.entries) %>
 
-      <div class="top-[57px] sticky flex flex-wrap items-center gap-2 bg-gray-50 p-4 sm:flex-nowrap sm:px-6 lg:px-8">
-        <h1 class="text-base font-semibold leading-7 text-gray-900"><%= @label %></h1>
+      <div class={["flex flex-wrap items-center gap-2", not @unstyled && "top-[57px] sticky bg-gray-50 p-4 sm:flex-nowrap sm:px-6 lg:px-8"]}>
+        <h1 :if={not @unstyled} class="text-base font-semibold leading-7 text-gray-900"><%= @label %></h1>
 
-        <div class="ml-auto flex gap-2">
+        <div class={["flex gap-2", not @unstyled && "ml-auto", @unstyled && "flex-row-reverse"]}>
           <.button :if={@current_img} id={"remove-#{@id}"} phx-click="remove" phx-target={@myself} icon="tabler-trash" type="button" color={:alert_light}>
             <%= gettext("Remove") %>
           </.button>
