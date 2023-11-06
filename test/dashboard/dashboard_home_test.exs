@@ -35,7 +35,7 @@ defmodule UneebeeWeb.DashboardHomeLiveTest do
 
   defp assert_dashboard(conn, school) do
     {:ok, lv, _html} = live(conn, ~p"/dashboard")
-    assert has_element?(lv, ~s|h1:fl-icontains("#{school.name}")|)
+    assert has_element?(lv, ~s|h1 *:fl-icontains("#{school.name}")|)
     assert has_element?(lv, ~s|li[aria-current=page] a:fl-icontains("manage school")|)
   end
 end
