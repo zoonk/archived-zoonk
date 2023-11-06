@@ -7,7 +7,7 @@
 </.menu_desktop>
 
 <main :if={show_menu?(@active_page)} class="flex min-h-screen flex-col lg:pl-72">
-  <header class="sticky top-0 z-40 flex h-16 shrink-0 items-center gap-x-4 border-b border-gray-200 bg-white px-4 shadow-sm sm:gap-x-6 sm:px-6 lg:px-8">
+  <header class="sticky top-0 z-40 flex h-16 shrink-0 items-center gap-x-4 border-b border-gray-200 bg-white px-4 sm:gap-x-6 sm:px-6 lg:px-8">
     <button type="button" class="-m-2.5 p-2.5 text-gray-700 lg:hidden" phx-click={show_drawer("mobile-menu")}>
       <span class="sr-only"><% gettext("Open sidebar") %></span>
       <.icon name="tabler-layout-sidebar-left-expand" class="h-6 w-6" />
