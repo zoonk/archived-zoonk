@@ -3,6 +3,7 @@ defmodule UneebeeWeb.Live.UserSettings do
   use UneebeeWeb, :live_view
 
   alias Uneebee.Accounts
+  alias UneebeeWeb.Components.Upload
 
   # When users change their email address, we send them a link to confirm their new email.
   # That link contains a `token` parameter that we use to confirm their email when they
@@ -128,11 +129,27 @@ defmodule UneebeeWeb.Live.UserSettings do
     end
   end
 
+  @impl Phoenix.LiveView
+  def handle_info({Upload, :user_avatar, new_path}, socket) do
+    case Accounts.update_user_settings(socket.assigns.current_user, %{avatar: new_path}) do
+      {:ok, updated_user} ->
+        {:noreply,
+         socket
+         |> assign(current_user: updated_user)
+         |> put_flash(:info, gettext("Avatar updated successfully!"))}
+
+      {:error, _changeset} ->
+        {:noreply, put_flash(socket, :error, gettext("Could not update avatar!"))}
+    end
+  end
+
   defp get_changeset(:profile, user), do: Accounts.change_user_settings(user)
   defp get_changeset(:email, user), do: Accounts.change_user_email(user)
   defp get_changeset(:password, user), do: Accounts.change_user_password(user)
+  defp get_changeset(_live_action, user), do: Accounts.change_user_settings(user)
 
   defp get_page_title(:profile), do: gettext("Change profile")
   defp get_page_title(:email), do: gettext("Change email")
   defp get_page_title(:password), do: gettext("Change password")
+  defp get_page_title(:avatar), do: gettext("Avatar")
 end

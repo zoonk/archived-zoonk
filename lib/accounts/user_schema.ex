@@ -125,7 +125,7 @@ defmodule Uneebee.Accounts.User do
   @spec settings_changeset(Ecto.Schema.t(), map(), Keyword.t()) :: Ecto.Changeset.t()
   def settings_changeset(user, attrs, opts \\ []) do
     user
-    |> cast(attrs, [:first_name, :last_name, :language, :username])
+    |> cast(attrs, [:avatar, :first_name, :last_name, :language, :username])
     |> validate_settings()
     |> validate_username(opts)
   end

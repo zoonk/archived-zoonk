@@ -4,6 +4,7 @@ defmodule UneebeeWeb.UserSettingsLiveTest do
   import Phoenix.LiveViewTest
   import Uneebee.Fixtures.Accounts
   import Uneebee.Fixtures.Gamification
+  import UneebeeWeb.TestHelpers.Upload
 
   alias Uneebee.Accounts
   alias Uneebee.Gamification
@@ -177,6 +178,23 @@ defmodule UneebeeWeb.UserSettingsLiveTest do
       assert html =~ "Settings updated successfully"
 
       assert Gamification.get_user_mission(:profile_name, user.id) == nil
+    end
+  end
+
+  describe "/users/settings/avatar" do
+    setup :register_and_log_in_user
+
+    test "uploads avatar", %{conn: conn, user: user} do
+      {:ok, lv, _html} = live(conn, ~p"/users/settings/avatar")
+
+      assert user.avatar == nil
+
+      assert has_element?(lv, ~s|li[aria-current=page] a:fl-icontains("settings")|)
+      assert has_element?(lv, ~s|li[aria-current=page] a:fl-icontains("avatar")|)
+      assert_file_upload(lv, "user_avatar")
+
+      updated_user = Accounts.get_user!(user.id)
+      assert String.starts_with?(updated_user.avatar, "/uploads/")
     end
   end
 

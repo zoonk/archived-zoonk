@@ -33,6 +33,10 @@
         <%= gettext("Profile") %>
       </.dashboard_menu_item>
 
+      <.dashboard_menu_item active={@active_page == :usersettings_avatar} navigate={~p"/users/settings/avatar"}>
+        <%= gettext("Avatar") %>
+      </.dashboard_menu_item>
+
       <.dashboard_menu_item active={@active_page == :usersettings_email} navigate={~p"/users/settings/email"}>
         <%= gettext("Email") %>
       </.dashboard_menu_item>

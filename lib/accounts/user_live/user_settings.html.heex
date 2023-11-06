@@ -1,4 +1,7 @@
+<.live_component :if={@live_action == :avatar} module={Upload} id={:user_avatar} current_img={@current_user.avatar} label={gettext("Avatar")} />
+
 <.simple_form
+  :if={@live_action != :avatar}
   unstyled
   for={@form}
   phx-trigger-action={if @live_action == :password, do: @trigger_submit, else: nil}
