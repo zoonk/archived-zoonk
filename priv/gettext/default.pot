@@ -113,7 +113,7 @@ msgstr ""
 #: lib/dashboard/schools/school_edit.ex:60
 #: lib/layouts/components/app_menu.ex:32
 #: lib/layouts/menu_utils.ex:86
-#: lib/layouts/templates/dashboard_course.html.heex:33
+#: lib/layouts/templates/dashboard_course.html.heex:37
 #, elixir-autogen, elixir-format
 msgid "Settings"
 msgstr ""
@@ -153,7 +153,7 @@ msgstr ""
 #: lib/dashboard/home.ex:27
 #: lib/dashboard/schools/user_list.ex:104
 #: lib/layouts/menu_utils.ex:84
-#: lib/layouts/templates/dashboard_course.html.heex:25
+#: lib/layouts/templates/dashboard_course.html.heex:29
 #, elixir-autogen, elixir-format
 msgid "Students"
 msgstr ""
@@ -162,7 +162,7 @@ msgstr ""
 #: lib/dashboard/home.ex:26
 #: lib/dashboard/schools/user_list.ex:103
 #: lib/layouts/menu_utils.ex:83
-#: lib/layouts/templates/dashboard_course.html.heex:29
+#: lib/layouts/templates/dashboard_course.html.heex:33
 #, elixir-autogen, elixir-format
 msgid "Teachers"
 msgstr ""
@@ -194,7 +194,7 @@ msgid "Courses"
 msgstr ""
 
 #: lib/content/course_live/course_view.html.heex:30
-#: lib/layouts/templates/dashboard_course.html.heex:37
+#: lib/layouts/templates/dashboard_course.html.heex:41
 #, elixir-autogen, elixir-format
 msgid "Cover"
 msgstr ""
@@ -305,7 +305,7 @@ msgstr ""
 
 #: lib/components/delete_item.ex:17
 #: lib/components/delete_item.ex:21
-#: lib/layouts/templates/dashboard_course.html.heex:41
+#: lib/layouts/templates/dashboard_course.html.heex:45
 #, elixir-autogen, elixir-format
 msgid "Delete"
 msgstr ""
