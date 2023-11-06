@@ -78,7 +78,7 @@ defmodule UneebeeWeb.DashboardCourseTeacherListLiveTest do
 
     {:ok, lv, _html} = live(conn, ~p"/dashboard/c/#{course.slug}/teachers")
 
-    assert has_element?(lv, ~s|li[aria-current="page"] span:fl-icontains("teachers")|)
+    assert has_element?(lv, ~s|li[aria-current="page"] a:fl-icontains("teachers")|)
 
     assert has_element?(lv, ~s|h3:fl-icontains("#{user2.first_name}")|)
     assert has_element?(lv, ~s|h3:fl-icontains("#{user3.first_name}")|)
