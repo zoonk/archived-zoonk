@@ -29,7 +29,7 @@ defmodule UneebeeWeb.Components.AwardBadge do
       id="learning-days-badge"
       icon="tabler-calendar-heart"
       prize={:other}
-      value={dgettext("gamification", "Learning day")}
+      value={dgettext("gamification", "Learning days")}
       label={dngettext("gamification", "You completed a lesson on %{count} day.", "You completed a lesson on %{count} days.", @days, count: @days)}
     />
     """

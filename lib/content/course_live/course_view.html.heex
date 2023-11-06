@@ -39,7 +39,7 @@
 
       <div class="mt-4">
         <.badge :if={@course_user && not @course_user.approved?} color={:warning} icon="tabler-progress">
-          <%= dgettext("courses", "Pending Approval") %>
+          <%= gettext("Pending") %>
         </.badge>
 
         <.badge icon="tabler-chart-arrows-vertical"><%= CourseUtils.level_label(@course.level) %></.badge>

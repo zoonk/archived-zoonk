@@ -58,5 +58,5 @@ defmodule UneebeeWeb.Live.Dashboard.SchoolEdit do
   end
 
   defp get_page_title(:settings), do: gettext("Settings")
-  defp get_page_title(:logo), do: dgettext("orgs", "Logo")
+  defp get_page_title(:logo), do: gettext("Logo")
 end

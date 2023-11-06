@@ -18,7 +18,7 @@ defmodule UneebeeWeb.Components.DeleteItem do
 
         <div class="ml-auto">
           <.button type="submit" icon="tabler-trash-x" color={:alert} phx-disable-with={gettext("Deleting...")}>
-            <%= dgettext("orgs", "Delete") %>
+            <%= gettext("Delete") %>
           </.button>
         </div>
       </div>
