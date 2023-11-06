@@ -55,7 +55,7 @@ defmodule UneebeeWeb.PlayViewLiveTest do
 
       assert Content.get_course_user_by_id(course.id, user.id) != nil
 
-      assert has_element?(lv, ~s|section p:fl-icontains("step 1!")|)
+      assert has_element?(lv, ~s|blockquote p:fl-icontains("step 1!")|)
     end
   end
 
@@ -87,7 +87,7 @@ defmodule UneebeeWeb.PlayViewLiveTest do
   end
 
   defp assert_first_step(lv, lessons) do
-    assert has_element?(lv, ~s|section p:fl-icontains("step 1!")|)
+    assert has_element?(lv, ~s|blockquote p:fl-icontains("step 1!")|)
     assert has_element?(lv, ~s|button:fl-icontains("confirm")|)
 
     step = hd(lessons)
@@ -97,15 +97,15 @@ defmodule UneebeeWeb.PlayViewLiveTest do
 
     lv |> form(@select_form, %{selected_option: get_correct_option(step.options)}) |> render_submit()
 
-    assert has_element?(lv, ~s|div[role="alert"] div:fl-icontains("well done!")|)
+    assert has_element?(lv, ~s|div[role="alert"] h3:fl-icontains("well done!")|)
   end
 
   # credo:disable-for-next-line Credo.Check.Refactor.ABCSize
   defp assert_second_step(lv, lessons) do
     lv |> form(@select_form) |> render_submit()
 
-    refute has_element?(lv, ~s|section p:fl-icontains("step 1!")|)
-    assert has_element?(lv, ~s|section p:fl-icontains("step 2!")|)
+    refute has_element?(lv, ~s|blockquote p:fl-icontains("step 1!")|)
+    assert has_element?(lv, ~s|blockquote p:fl-icontains("step 2!")|)
     assert has_element?(lv, ~s|button:fl-icontains("confirm")|)
 
     step = Enum.at(lessons, 1)
@@ -115,15 +115,15 @@ defmodule UneebeeWeb.PlayViewLiveTest do
 
     lv |> form(@select_form, %{selected_option: get_incorrect_option(step.options)}) |> render_submit()
 
-    assert has_element?(lv, ~s|div[role="alert"] div:fl-icontains("feedback 2!")|)
+    assert has_element?(lv, ~s|div[role="alert"] h4:fl-icontains("feedback 2!")|)
   end
 
   defp assert_third_step(lv, lessons) do
     lv |> form(@select_form) |> render_submit()
 
-    refute has_element?(lv, ~s|section p:fl-icontains("step 1!")|)
-    refute has_element?(lv, ~s|section p:fl-icontains("step 2!")|)
-    assert has_element?(lv, ~s|section p:fl-icontains("step 3!")|)
+    refute has_element?(lv, ~s|blockquote p:fl-icontains("step 1!")|)
+    refute has_element?(lv, ~s|blockquote p:fl-icontains("step 2!")|)
+    assert has_element?(lv, ~s|blockquote p:fl-icontains("step 3!")|)
 
     step = Enum.at(lessons, 2)
 
@@ -133,7 +133,7 @@ defmodule UneebeeWeb.PlayViewLiveTest do
   defp assert_fourth_step(conn, lv, lessons, course) do
     lv |> form(@select_form) |> render_submit()
 
-    assert has_element?(lv, ~s|section p:fl-icontains("step 4!")|)
+    assert has_element?(lv, ~s|blockquote p:fl-icontains("step 4!")|)
     assert has_element?(lv, ~s|button:fl-icontains("next step")|)
 
     step = Enum.at(lessons, 3)

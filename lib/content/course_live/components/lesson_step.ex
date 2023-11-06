@@ -44,7 +44,7 @@ defmodule UneebeeWeb.Components.Content.LessonStep do
         />
       </div>
 
-      <div class="leading-6">
+      <div class="leading-6" role="alert">
         <h3 class="text-md font-bold sm:text-lg"><%= default_feedback %></h3>
         <h4 :if={@selected.feedback} class="text-xs sm:text-sm"><%= @selected.feedback %></h4>
       </div>
