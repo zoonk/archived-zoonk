@@ -33,7 +33,7 @@ defmodule UneebeeWeb.MyCoursesLiveTest do
       {:ok, lv, _html} = live(conn, ~p"/courses/my")
 
       assert has_element?(lv, ~s|a:fl-icontains("browse courses")|)
-      assert has_element?(lv, ~s|p:fl-icontains("you haven't started any courses yet.")|)
+      assert has_element?(lv, ~s|p:fl-icontains("get started by joining a course.")|)
     end
   end
 end

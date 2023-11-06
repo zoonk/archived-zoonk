@@ -23,7 +23,7 @@ defmodule UneebeeWeb.TrophyListLiveTest do
 
       {:ok, lv, _html} = live(conn, ~p"/trophies")
 
-      assert has_element?(lv, ~s|li a span:fl-icontains("Home")|)
+      assert has_element?(lv, ~s|li a:fl-icontains("Home")|)
 
       assert has_element?(lv, ~s|dt:fl-icontains("mission completed")|)
       assert has_element?(lv, ~s|dt:fl-icontains("course completed")|)
