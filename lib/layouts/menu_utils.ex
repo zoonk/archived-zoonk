@@ -72,7 +72,7 @@ defmodule UneebeeWeb.Layouts.MenuUtils do
 
   @spec show_menu?(atom()) :: boolean()
   def show_menu?(active_page) do
-    active_page not in [:lessonplay, :lessoncompleted]
+    active_page not in [:lessonplay, :lessoncompleted, :schoolnew]
   end
 
   @spec dashboard_school_menu() :: list()
