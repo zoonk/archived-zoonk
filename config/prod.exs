@@ -15,6 +15,7 @@ config :uneebee, UneebeeWeb.Endpoint,
 
 config :uneebee, :csp, connect_src: System.get_env("CSP_CONNECT_SRC")
 config :uneebee, :cdn, url: System.get_env("CDN_URL")
+config :uneebee, :plausible, domain: System.get_env("PLAUSIBLE_DOMAIN")
 
 # Runtime production configuration, including reading
 # of environment variables, is done on config/runtime.exs.
