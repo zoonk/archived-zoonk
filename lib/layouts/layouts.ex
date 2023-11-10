@@ -22,4 +22,22 @@ defmodule UneebeeWeb.Layouts do
   @spec page_title(String.t() | nil, School.t() | nil) :: String.t()
   def page_title(nil, school), do: school_name(school)
   def page_title(title, _school), do: title
+
+  @spec plausible_domain() :: String.t() | nil
+  def plausible_domain do
+    Application.get_env(:uneebee, :plausible)[:domain]
+  end
+
+  @spec enable_plausible?(map()) :: boolean()
+  def enable_plausible?(assigns) do
+    manager? = assigns[:user_role] == :manager
+
+    # Only the main school doesn't belong to another school and, therefore, doesn't have a school_id.
+    main_school? = is_nil(assigns[:school].school_id)
+
+    # We shouldn't track managers from the main school to avoid skewing the data.
+    track_user? = not main_school? or not manager?
+
+    track_user? and not is_nil(plausible_domain())
+  end
 end

@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang={Plug.Conn.get_session(@conn, :locale)} class="h-full bg-white [scrollbar-gutter:stable]">
   <head>
-    <% plausible = Application.get_env(:uneebee, :plausible)[:domain] %>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="csrf-token" content={get_csrf_token()} />
@@ -12,7 +11,7 @@
     <script defer phx-track-static type="text/javascript" src={~p"/assets/app.js"}>
     </script>
 
-    <script :if={plausible} defer data-domain={plausible} src="https://plausible.io/js/script.js">
+    <script :if={enable_plausible?(assigns)} defer data-domain={plausible_domain()} src="https://plausible.io/js/script.js">
     </script>
 
     <link rel="apple-touch-icon" sizes="180x180" href={~p"/favicon/apple-touch-icon.png"} />
