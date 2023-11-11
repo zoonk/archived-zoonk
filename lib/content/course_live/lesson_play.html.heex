@@ -49,7 +49,7 @@
           for={"select-option-#{option.id}"}
           role="button"
           class={[
-            "flex h-full cursor-pointer flex-col items-center justify-center gap-4 rounded-2xl border bg-white p-4 text-sm text-gray-900 peer-checked:shadow-b-cyan peer-checked:border-cyan-300",
+            "flex h-full cursor-pointer flex-col items-center justify-center gap-4 rounded-2xl border bg-white p-4 text-center text-sm text-gray-900 peer-checked:shadow-b-cyan peer-checked:border-cyan-300",
             (is_nil(@selected_option) || (@selected_option.id != option.id && not option.correct?)) && "shadow-b-gray border-gray-300 active:shadow-b-gray-pressed",
             user_selected_wrong_option?(@selected_option, option) && "shadow-b-pink border-pink-300",
             @selected_option && option.correct? && "shadow-b-teal border-teal-100"
