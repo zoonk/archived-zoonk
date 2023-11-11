@@ -33,7 +33,7 @@ defmodule UneebeeWeb.Components.Content.LessonStep do
       <% default_feedback =
         if @selected.correct?, do: dgettext("courses", "Well done!"), else: dgettext("courses", "That's incorrect.") %>
 
-      <div class="flex h-8 w-8 flex-col items-center justify-center rounded-full bg-white sm:h-12 sm:w-12">
+      <div class="flex h-8 w-8 shrink-0 flex-col items-center justify-center rounded-full bg-white sm:h-12 sm:w-12">
         <.icon
           name={icon}
           class={[
