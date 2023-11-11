@@ -33,11 +33,14 @@ defmodule UneebeeWeb.Layouts do
     manager? = assigns[:user_role] == :manager
 
     # Only the main school doesn't belong to another school and, therefore, doesn't have a school_id.
-    main_school? = is_nil(assigns[:school].school_id)
+    main_school? = is_nil(school_id(assigns[:school]))
 
     # We shouldn't track managers from the main school to avoid skewing the data.
     track_user? = not main_school? or not manager?
 
     track_user? and not is_nil(plausible_domain())
   end
+
+  defp school_id(nil), do: nil
+  defp school_id(%School{} = school), do: school.school_id
 end
