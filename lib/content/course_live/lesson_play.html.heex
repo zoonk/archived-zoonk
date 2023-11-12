@@ -2,7 +2,7 @@
   id="select-option"
   phx-submit="next"
   phx-hook="LessonSoundEffect"
-  class="grid-rows-[min-content_1fr_min-content] absolute top-0 left-0 grid h-full min-h-screen w-full overflow-hidden"
+  class="grid-rows-[min-content_1fr_min-content] absolute top-0 left-0 grid h-full min-h-screen w-full overflow-hidden supports-[height:100dvh]:min-h-[100dvh]"
 >
   <header class="px-4 pt-4">
     <div class="flex gap-x-4">
@@ -79,7 +79,7 @@
       icon={if no_options? || @selected_option, do: "tabler-chevron-right", else: "tabler-checks"}
       phx-disable-with={dgettext("courses", "Confirming...")}
       shadow
-      class="w-full sm:w-fit flex-shrink-0"
+      class="w-full sm:w-fit"
     >
       <%= if no_options? || @selected_option, do: dgettext("courses", "Next step"), else: gettext("Confirm") %>
     </.button>
