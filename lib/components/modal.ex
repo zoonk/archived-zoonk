@@ -47,7 +47,7 @@ defmodule UneebeeWeb.Components.Modal do
               phx-window-keydown={JS.exec("data-cancel", to: "##{@id}")}
               phx-key="escape"
               phx-click-away={JS.exec("data-cancel", to: "##{@id}")}
-              class="shadow-gray-700/10 ring-gray-700/10 relative hidden h-screen bg-white p-8 shadow-lg ring-1 transition lg:h-auto lg:rounded-2xl"
+              class="shadow-gray-700/10 ring-gray-700/10 relative hidden min-h-dvh bg-white p-8 shadow-lg ring-1 transition lg:h-auto lg:rounded-2xl"
             >
               <div class="absolute top-6 right-5">
                 <button phx-click={JS.exec("data-cancel", to: "##{@id}")} type="button" class="-m-3 flex-none p-3 opacity-20 hover:opacity-40" aria-label={gettext("close")}>

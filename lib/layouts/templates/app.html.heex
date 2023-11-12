@@ -6,7 +6,7 @@
   <.app_menu active_page={@active_page} user_role={@user_role} course={@course} lessons={@lessons} lesson={@lesson} first_lesson_id={@first_lesson_id} />
 </.menu_desktop>
 
-<main :if={show_menu?(@active_page)} class="flex min-h-screen flex-col lg:pl-72">
+<main :if={show_menu?(@active_page)} class="min-h-dvh flex flex-col lg:pl-72">
   <header
     :if={not user_settings?(@active_page)}
     class="sticky top-0 z-40 flex h-16 shrink-0 items-center gap-x-4 border-b border-gray-200 bg-white px-4 sm:gap-x-6 sm:px-6 lg:px-8"

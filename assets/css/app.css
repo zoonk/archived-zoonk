@@ -12,3 +12,15 @@
     @apply p-4 lg:p-6 xl:p-8;
   }
 }
+
+@layer utilities {
+  .min-h-dvh {
+    min-height: 100vh;
+  }
+
+  @supports (min-height: 100dvh) {
+    .min-h-dvh {
+      min-height: 100dvh;
+    }
+  }
+}

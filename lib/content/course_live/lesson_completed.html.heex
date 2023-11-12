@@ -1,4 +1,4 @@
-<article class="m-auto my-4 flex h-screen max-w-sm flex-col bg-white p-8 md:justify-center">
+<article class="min-h-dvh m-auto my-4 flex max-w-sm flex-col bg-white p-8 md:justify-center">
   <% score = get_score(@user_lesson) %>
 
   <img src={score_image(score)} alt={dgettext("courses", "Illustration of a green alien")} class="w-1/4 motion-safe:animate-bounce" />
