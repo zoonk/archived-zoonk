@@ -51,6 +51,15 @@ defmodule UneebeeWeb.UserRegistrationLiveTest do
       assert html =~ ~s'<html lang="pt"'
     end
 
+    test "handles an unsupported locale", %{conn: conn} do
+      conn = put_req_header(conn, "accept-language", "ja")
+
+      assert {:ok, _lv, html} = live(conn, ~p"/users/register")
+
+      assert html =~ "Create an account"
+      assert html =~ ~s'<html lang="en"'
+    end
+
     test "creates account and logs the user in", %{conn: conn, school: school} do
       {:ok, lv, _html} = live(conn, ~p"/users/register")
 

@@ -72,7 +72,10 @@ defmodule UneebeeWeb.Plugs.Translate do
   def get_browser_locale(conn) do
     locale = extract_locale(get_req_header(conn, "accept-language"))
 
-    if Enum.member?(supported_locales(), String.to_existing_atom(locale)), do: locale, else: @default_locale
+    # Converted supported locales to string
+    supported = Enum.map(supported_locales(), fn locale -> Atom.to_string(locale) end)
+
+    if Enum.member?(supported, locale), do: locale, else: @default_locale
   end
 
   # Parse the `accept-language` header and extract the first locale there.
