@@ -16,16 +16,12 @@
 //
 
 // Include phoenix_html to handle method=PUT/DELETE in forms and buttons.
-import 'phoenix_html';
+import "phoenix_html";
 // Establish Phoenix Socket and LiveView configuration.
-import { Socket } from 'phoenix';
-import { LiveSocket } from 'phoenix_live_view';
-import topbar from '../vendor/topbar';
-import Sortable from '../vendor/sortable';
-
-function playSound(url) {
-  new Audio(url).play();
-}
+import { Socket } from "phoenix";
+import { LiveSocket } from "phoenix_live_view";
+import topbar from "../vendor/topbar";
+import Sortable from "../vendor/sortable";
 
 let Hooks = {};
 
@@ -33,17 +29,22 @@ Hooks.LocaleTime = {
   mounted() {
     const dt = new Date(this.el.textContent);
     const locale = document.documentElement.lang;
-    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+    const options = { year: "numeric", month: "long", day: "numeric" };
     this.el.textContent = dt.toLocaleString(locale, options);
   },
 };
 
+let correctSound = new Audio("/audios/correct.mp3");
+let incorrectSound = new Audio("/audios/incorrect.mp3");
+
+function playSound(isCorrect) {
+  const sound = isCorrect ? correctSound : incorrectSound;
+  sound.play();
+}
+
 Hooks.LessonSoundEffect = {
   mounted() {
-    this.handleEvent('option-selected', ({ isCorrect }) => {
-      const fileName = isCorrect ? '/correct.mp3' : '/incorrect.mp3';
-      playSound('/audios' + fileName);
-    });
+    this.handleEvent("option-selected", ({ isCorrect }) => playSound(isCorrect));
   },
 };
 
@@ -51,16 +52,13 @@ Hooks.Sortable = {
   mounted() {
     let group = this.el.dataset.group;
     let isDragging = false;
-    this.el.addEventListener(
-      'focusout',
-      (e) => isDragging && e.stopImmediatePropagation()
-    );
+    this.el.addEventListener("focusout", (e) => isDragging && e.stopImmediatePropagation());
     let sorter = new Sortable(this.el, {
       group: group ? { name: group, pull: true, put: true } : undefined,
       animation: 150,
-      filter: '.filtered',
-      dragClass: 'drag-item',
-      ghostClass: 'drag-ghost',
+      filter: ".filtered",
+      dragClass: "drag-item",
+      ghostClass: "drag-ghost",
       onStart: (e) => (isDragging = true), // prevent phx-blur from firing while dragging
       onEnd: (e) => {
         isDragging = false;
@@ -70,11 +68,7 @@ Hooks.Sortable = {
           to: e.to.dataset,
           ...e.item.dataset,
         };
-        this.pushEventTo(
-          this.el,
-          this.el.dataset['drop'] || 'reposition',
-          params
-        );
+        this.pushEventTo(this.el, this.el.dataset["drop"] || "reposition", params);
       },
     });
   },
@@ -85,13 +79,10 @@ Hooks.ClearFlash = {
     const kind = this.el.dataset.kind;
     const delay = 5000;
 
-    setTimeout(() => this.el.classList.add('opacity-0'), delay);
+    setTimeout(() => this.el.classList.add("opacity-0"), delay);
 
     // Make sure we also clear the flash. Otherwise, it will be displayed for other items too.
-    setTimeout(
-      () => this.pushEventTo('#' + this.el.id, 'lv:clear-flash', { key: kind }),
-      delay + 1000
-    );
+    setTimeout(() => this.pushEventTo("#" + this.el.id, "lv:clear-flash", { key: kind }), delay + 1000);
   },
 };
 
@@ -103,13 +94,10 @@ Uploaders.S3 = function (entries, onViewError) {
 
     onViewError(() => xhr.abort());
 
-    xhr.onload = () =>
-      xhr.status >= 200 && xhr.status < 300
-        ? entry.progress(100)
-        : entry.error();
+    xhr.onload = () => (xhr.status >= 200 && xhr.status < 300 ? entry.progress(100) : entry.error());
 
     xhr.onerror = () => entry.error();
-    xhr.upload.addEventListener('progress', (event) => {
+    xhr.upload.addEventListener("progress", (event) => {
       if (event.lengthComputable) {
         let percent = Math.round((event.loaded / event.total) * 100);
         if (percent < 100) {
@@ -118,25 +106,23 @@ Uploaders.S3 = function (entries, onViewError) {
       }
     });
 
-    xhr.open('PUT', url, true);
-    xhr.setRequestHeader('credentials', 'same-origin parameter');
+    xhr.open("PUT", url, true);
+    xhr.setRequestHeader("credentials", "same-origin parameter");
     xhr.send(entry.file);
   });
 };
 
-let csrfToken = document
-  .querySelector("meta[name='csrf-token']")
-  .getAttribute('content');
-let liveSocket = new LiveSocket('/live', Socket, {
+let csrfToken = document.querySelector("meta[name='csrf-token']").getAttribute("content");
+let liveSocket = new LiveSocket("/live", Socket, {
   hooks: Hooks,
   uploaders: Uploaders,
   params: { _csrf_token: csrfToken },
 });
 
 // Show progress bar on live navigation and form submits
-topbar.config({ barColors: { 0: '#29d' }, shadowColor: 'rgba(0, 0, 0, .3)' });
-window.addEventListener('phx:page-loading-start', (_info) => topbar.show(1000));
-window.addEventListener('phx:page-loading-stop', (_info) => topbar.hide());
+topbar.config({ barColors: { 0: "#29d" }, shadowColor: "rgba(0, 0, 0, .3)" });
+window.addEventListener("phx:page-loading-start", (_info) => topbar.show(1000));
+window.addEventListener("phx:page-loading-stop", (_info) => topbar.hide());
 
 // connect if there are any LiveViews on the page
 liveSocket.connect();
