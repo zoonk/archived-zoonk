@@ -5,6 +5,8 @@ defmodule UneebeeWeb.SchoolManagerListLiveTest do
   import Uneebee.Fixtures.Accounts
   import Uneebee.Fixtures.Organizations
 
+  alias Uneebee.Organizations
+
   describe "/dashboard/managers (non-authenticated users)" do
     setup :set_school
 
@@ -87,6 +89,32 @@ defmodule UneebeeWeb.SchoolManagerListLiveTest do
 
       assert html =~ "User rejected!"
       refute has_element?(updated_lv, ~s|span[role="status"]:fl-icontains("pending")|)
+    end
+
+    test "toggles analytics for a user", %{conn: conn} do
+      {:ok, lv, _html} = live(conn, ~p"/dashboard/managers")
+
+      assert {:ok, updated_lv, _html} =
+               lv
+               |> element("button", "Disable analytics")
+               |> render_click()
+               |> follow_redirect(conn, ~p"/dashboard/managers")
+
+      assert {:ok, _updated_lv, _html} =
+               updated_lv
+               |> element("button", "Enable analytics")
+               |> render_click()
+               |> follow_redirect(conn, ~p"/dashboard/managers")
+    end
+
+    test "hides the analytics toggle if the school has a parent school", %{conn: conn, school: school} do
+      parent_school = school_fixture(%{name: "Parent School"})
+      Organizations.update_school(school, %{school_id: parent_school.id})
+
+      {:ok, lv, _html} = live(conn, ~p"/dashboard/managers")
+
+      refute has_element?(lv, ~s|button:fl-icontains("disable analytics")|)
+      refute has_element?(lv, ~s|button:fl-icontains("enable analytics")|)
     end
 
     test "adds a user using their email address", %{conn: conn} do

@@ -310,7 +310,7 @@ defmodule Uneebee.OrganizationsTest do
       user = user_fixture()
       school_user = school_user_fixture(%{school: school, user: user, role: :teacher})
 
-      assert {:ok, %SchoolUser{} = updated_school_user} = Organizations.update_school_user(school_user, %{role: :manager})
+      assert {:ok, %SchoolUser{} = updated_school_user} = Organizations.update_school_user(school_user.id, %{role: :manager})
 
       assert updated_school_user.role == :manager
       assert updated_school_user.school_id == school.id
@@ -322,7 +322,20 @@ defmodule Uneebee.OrganizationsTest do
       user = user_fixture()
       school_user = school_user_fixture(%{school: school, user: user})
 
-      assert {:error, %Ecto.Changeset{}} = Organizations.update_school_user(school_user, %{role: :invalid})
+      assert {:error, %Ecto.Changeset{}} = Organizations.update_school_user(school_user.id, %{role: :invalid})
+    end
+  end
+
+  describe "get_school_user!/1" do
+    test "returns a school user" do
+      school = school_fixture(%{slug: "user-#{System.unique_integer()}"})
+      school_user = school_user_fixture(%{school: school, preload: :user})
+
+      assert Organizations.get_school_user!(school_user.id)
+    end
+
+    test "raises if the school user doesn't exist" do
+      assert_raise Ecto.NoResultsError, fn -> Organizations.get_school_user!(0) end
     end
   end
 

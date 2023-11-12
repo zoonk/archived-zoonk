@@ -20,7 +20,6 @@ swap_size_mb = 512
 [build.args]
   CDN_URL = "https://cdn.uneebee.com"
   CSP_CONNECT_SRC = "https://*.r2.cloudflarestorage.com"
-  PLAUSIBLE_DOMAIN = "app.uneebee.com"
   SENTRY_DSN = "https://a54c82736eef3e6640ff414f83bde12c@o4506042856308736.ingest.sentry.io/4506042856439808"
 
 [http_service]

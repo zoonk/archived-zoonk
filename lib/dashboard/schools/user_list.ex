@@ -8,6 +8,8 @@ defmodule UneebeeWeb.Live.Dashboard.UserList do
   alias Uneebee.Accounts.User
   alias Uneebee.Accounts.UserUtils
   alias Uneebee.Organizations
+  alias Uneebee.Organizations.School
+  alias UneebeeWeb.Shared.Utilities
 
   @impl Phoenix.LiveView
   def mount(_params, _session, socket) do
@@ -72,6 +74,17 @@ defmodule UneebeeWeb.Live.Dashboard.UserList do
   end
 
   @impl Phoenix.LiveView
+  def handle_event("toggle-analytics", %{"school-user-id" => school_user_id, "analytics" => analytics?}, socket) do
+    case Organizations.update_school_user(school_user_id, %{analytics?: !Utilities.string_to_boolean(analytics?)}) do
+      {:ok, _school_user} ->
+        {:noreply, push_navigate(socket, to: get_user_list_route(socket.assigns.live_action))}
+
+      {:error, _changeset} ->
+        {:noreply, put_flash(socket, :error, dgettext("orgs", "Could not toggle analytics tracking!"))}
+    end
+  end
+
+  @impl Phoenix.LiveView
   def handle_event("add-user", %{"email_or_username" => email_or_username}, socket) do
     user = Accounts.get_user_by_email_or_username(email_or_username)
     handle_add_user(user, socket)
@@ -106,4 +119,6 @@ defmodule UneebeeWeb.Live.Dashboard.UserList do
   defp get_add_link_label(:manager), do: dgettext("orgs", "Add manager")
   defp get_add_link_label(:teacher), do: dgettext("orgs", "Add teacher")
   defp get_add_link_label(:student), do: dgettext("orgs", "Add student")
+
+  defp edit_analytics?(%School{} = school), do: is_nil(school.school_id)
 end

@@ -23,7 +23,6 @@ FROM ${BUILDER_IMAGE} as builder
 ARG CSP_CONNECT_SRC
 ARG CDN_URL
 ARG SENTRY_DSN
-ARG PLAUSIBLE_DOMAIN
 
 # install build dependencies
 RUN apt-get update -y && apt-get install -y build-essential git \
@@ -41,7 +40,6 @@ ENV MIX_ENV="prod"
 ENV CSP_CONNECT_SRC="${CSP_CONNECT_SRC}"
 ENV CDN_URL="${CDN_URL}"
 ENV SENTRY_DSN="${SENTRY_DSN}"
-ENV PLAUSIBLE_DOMAIN="${PLAUSIBLE_DOMAIN}"
 
 # install mix dependencies
 COPY mix.exs mix.lock ./

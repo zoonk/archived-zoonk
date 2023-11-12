@@ -10,6 +10,7 @@ defmodule UneebeeWeb.Layouts do
   import UneebeeWeb.Layouts.MenuUtils
 
   alias Uneebee.Organizations.School
+  alias Uneebee.Organizations.SchoolUser
   alias UneebeeWeb.Components.Layouts.CourseSelect
   alias UneebeeWeb.Components.Layouts.LessonSelect
 
@@ -23,24 +24,11 @@ defmodule UneebeeWeb.Layouts do
   def page_title(nil, school), do: school_name(school)
   def page_title(title, _school), do: title
 
-  @spec plausible_domain() :: String.t() | nil
-  def plausible_domain do
-    Application.get_env(:uneebee, :plausible)[:domain]
-  end
+  @spec plausible_domain(School.t()) :: String.t() | nil
+  def plausible_domain(%School{} = host_school), do: host_school.custom_domain
+  def plausible_domain(_school), do: nil
 
-  @spec enable_plausible?(map()) :: boolean()
-  def enable_plausible?(assigns) do
-    manager? = assigns[:user_role] == :manager
-
-    # Only the main school doesn't belong to another school and, therefore, doesn't have a school_id.
-    main_school? = is_nil(school_id(assigns[:school]))
-
-    # We shouldn't track managers from the main school to avoid skewing the data.
-    track_user? = not main_school? or not manager?
-
-    track_user? and not is_nil(plausible_domain())
-  end
-
-  defp school_id(nil), do: nil
-  defp school_id(%School{} = school), do: school.school_id
+  @spec enable_plausible?(SchoolUser.t() | nil) :: boolean()
+  def enable_plausible?(%SchoolUser{} = school_user), do: school_user.analytics?
+  def enable_plausible?(nil), do: false
 end

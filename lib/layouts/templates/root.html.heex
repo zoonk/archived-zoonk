@@ -11,7 +11,7 @@
     <script defer phx-track-static type="text/javascript" src={~p"/assets/app.js"}>
     </script>
 
-    <script :if={enable_plausible?(assigns)} defer data-domain={plausible_domain()} src="https://plausible.io/js/script.js">
+    <script :if={enable_plausible?(assigns[:school_user])} defer data-domain={plausible_domain(assigns[:host_school])} src="https://plausible.io/js/script.js">
     </script>
 
     <link rel="apple-touch-icon" sizes="180x180" href={~p"/favicon/apple-touch-icon.png"} />

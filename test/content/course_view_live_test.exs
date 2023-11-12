@@ -6,6 +6,7 @@ defmodule UneebeeWeb.CourseViewLiveTest do
   import Uneebee.Fixtures.Content
 
   alias Uneebee.Content
+  alias Uneebee.Organizations
 
   describe "/c/:slug (non-authenticated)" do
     setup :set_school
@@ -56,6 +57,23 @@ defmodule UneebeeWeb.CourseViewLiveTest do
 
     test "renders the page", %{conn: conn, course: course} do
       assert_course_view(conn, course)
+    end
+
+    test "displays the analytics tag", %{conn: conn, school: school, course: course} do
+      {:ok, _lv, html} = live(conn, "/c/#{course.slug}")
+
+      assert html =~ "src=\"https://plausible.io/js/script.js\""
+      assert html =~ "data-domain=\"#{school.custom_domain}\""
+    end
+
+    test "hides the analytics tag if the user has disabled it", %{conn: conn, school: school, user: user, course: course} do
+      school_user = Organizations.get_school_user(school.slug, user.username)
+      Organizations.update_school_user(school_user.id, %{analytics?: false})
+
+      {:ok, _lv, html} = live(conn, "/c/#{course.slug}")
+
+      refute html =~ "src=\"https://plausible.io/js/script.js\""
+      refute html =~ "data-domain=\"#{school.custom_domain}\""
     end
   end
 

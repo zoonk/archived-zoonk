@@ -142,16 +142,30 @@ defmodule Uneebee.Organizations do
 
   ## Examples
 
-      iex> update_school_user(school_user, %{role: :student})
+      iex> update_school_user(school_user_id, %{role: :student})
       {:ok, %SchoolUser{}}
 
-      iex> update_school_user(school_user, %{role: :invalid})
+      iex> update_school_user(school_user_id, %{role: :invalid})
       {:error, %Ecto.Changeset{}}
   """
-  @spec update_school_user(SchoolUser.t(), map()) :: school_user_changeset()
-  def update_school_user(%SchoolUser{} = school_user, attrs \\ %{}) do
-    school_user |> SchoolUser.changeset(attrs) |> Repo.update()
+  @spec update_school_user(non_neg_integer(), map()) :: school_user_changeset()
+  def update_school_user(school_user_id, attrs \\ %{}) do
+    school_user_id |> get_school_user!() |> SchoolUser.changeset(attrs) |> Repo.update()
   end
+
+  @doc """
+  Get a school user by id.
+
+  ## Examples
+
+      iex> get_school_user!(123)
+      %SchoolUser{}
+
+      iex> get_school_user!(456)
+      ** (Ecto.NoResultsError)
+  """
+  @spec get_school_user!(non_neg_integer()) :: SchoolUser.t()
+  def get_school_user!(id), do: Repo.get!(SchoolUser, id)
 
   @doc """
   Get a user from a school given their usernames.

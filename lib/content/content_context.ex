@@ -245,7 +245,7 @@ defmodule Uneebee.Content do
   end
 
   defp handle_school_user(_school, _user, %SchoolUser{role: :student} = school_user, %{role: :teacher} = course_attrs) do
-    Organizations.update_school_user(school_user, course_attrs)
+    Organizations.update_school_user(school_user.id, course_attrs)
   end
 
   defp handle_school_user(_school, _user, _su, _course_attrs), do: nil
