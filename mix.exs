@@ -14,13 +14,7 @@ defmodule Uneebee.MixProject do
         plt_add_apps: [:mix],
         plt_file: {:no_warn, "priv/plts/dialyzer.plt"},
         ignore_warnings: ".dialyzer_ignore.exs"
-      ],
-
-      # Docs
-      name: "UneeBee",
-      source_url: "https://github.com/zoonk/uneebee",
-      homepage_url: "https://uneebee.com",
-      docs: docs()
+      ]
     ]
   end
 
@@ -49,7 +43,6 @@ defmodule Uneebee.MixProject do
       {:dialyxir, "~> 1.4.2", only: [:dev, :test], runtime: false},
       {:ecto_sql, "~> 3.10"},
       {:esbuild, "~> 0.8.1", runtime: Mix.env() == :dev},
-      {:ex_doc, "~> 0.30.9", only: :dev, runtime: false},
       {:finch, "~> 0.13"},
       {:floki, "~> 0.35.2", only: :test},
       {:gettext, "~> 0.20"},
@@ -102,38 +95,6 @@ defmodule Uneebee.MixProject do
         "deps.audit",
         "dialyzer"
       ]
-    ]
-  end
-
-  defp docs do
-    [
-      main: "overview",
-      logo: "priv/static/favicon/apple-touch-icon.png",
-      extra_section: "GUIDES",
-      formatters: ["html", "epub"],
-      extras: extras(),
-      groups_for_extras: groups_for_extras(),
-      nest_modules_by_prefix: nest_modules_by_prefix()
-    ]
-  end
-
-  defp extras do
-    [
-      "guides/introduction/overview.md",
-      "guides/introduction/installation.md",
-      "guides/introduction/ssl.md"
-    ]
-  end
-
-  defp groups_for_extras do
-    [
-      Introduction: ~r/guides\/introduction\/.?/
-    ]
-  end
-
-  defp nest_modules_by_prefix do
-    [
-      UneebeeWeb.Components
     ]
   end
 end
