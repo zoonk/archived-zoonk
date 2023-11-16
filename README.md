@@ -21,7 +21,7 @@
 
 Interactive learning is [more effective](https://www.sciencedaily.com/releases/2021/09/210930140710.htm) than traditional methods. [Learners remember](https://www.linkedin.com/pulse/how-does-interactive-learning-boost-outcomes/) 10% of what they hear, 20% of what they read but 80% of what they see and do. That's why 34 hours of Duolingo [are equivalent](https://support.duolingo.com/hc/en-us/articles/115000035183-Are-there-official-studies-about-Duolingo-) to a full university semester of language education.
 
-We love Duolingo. We think those kind of interactive experiences should be used in more fields. That's why we're building UneeBee, an open-source platform to create interactive courses like Duolingo. You can use it at your [organization](https://wikaro.com), [school](https://ikidoo.com), or using [our marketplace](https://mywisek.com) to share your experience in a fun way.
+We love Duolingo. We think those kind of interactive experiences should be used in more fields. That's why we're building UneeBee, an open-source platform to create interactive courses like Duolingo. You can use it at your [organization](https://wikaro.com), [school](https://educasso.com), or using [our marketplace](https://mywisek.com) to share your experience in a fun way.
 
 ## Tech stack
 
