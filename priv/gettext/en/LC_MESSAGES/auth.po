@@ -110,43 +110,43 @@ msgid "You must log in to access this page."
 msgstr ""
 
 #: lib/accounts/user_live/reset_password.html.heex:10
-#: lib/accounts/user_live/user_settings.html.heex:49
+#: lib/accounts/user_live/user_settings.html.heex:52
 #, elixir-autogen, elixir-format
 msgid "Confirm new password"
 msgstr ""
 
-#: lib/accounts/user_live/user_settings.html.heex:43
+#: lib/accounts/user_live/user_settings.html.heex:46
 #, elixir-autogen, elixir-format
 msgid "Current password"
 msgstr ""
 
 #: lib/accounts/user_live/reset_password.html.heex:9
-#: lib/accounts/user_live/user_settings.html.heex:48
+#: lib/accounts/user_live/user_settings.html.heex:51
 #, elixir-autogen, elixir-format
 msgid "New password"
 msgstr ""
 
-#: lib/accounts/user_live/user_settings.ex:107
+#: lib/accounts/user_live/user_settings.ex:108
 #, elixir-autogen, elixir-format
 msgid "A link to confirm your email change has been sent to the new address."
 msgstr ""
 
-#: lib/accounts/user_live/user_settings.ex:15
+#: lib/accounts/user_live/user_settings.ex:16
 #, elixir-autogen, elixir-format
 msgid "Email change link is invalid or it has expired."
 msgstr ""
 
-#: lib/accounts/user_live/user_settings.ex:14
+#: lib/accounts/user_live/user_settings.ex:15
 #, elixir-autogen, elixir-format
 msgid "Email changed successfully."
 msgstr ""
 
-#: lib/accounts/user_live/user_settings.ex:92
+#: lib/accounts/user_live/user_settings.ex:93
 #, elixir-autogen, elixir-format
 msgid "Error updating settings"
 msgstr ""
 
-#: lib/accounts/user_live/user_settings.ex:84
+#: lib/accounts/user_live/user_settings.ex:85
 #, elixir-autogen, elixir-format
 msgid "Settings updated successfully"
 msgstr ""

@@ -15,13 +15,13 @@ msgid "can't be blank"
 msgstr ""
 
 ## From Ecto.Changeset.unique_constraint/3
-#: lib/organizations/school_schema.ex:65
+#: lib/organizations/school_schema.ex:64
 #, elixir-autogen
 msgid "has already been taken"
 msgstr ""
 
 ## From Ecto.Changeset.put_change/3
-#: lib/accounts/user_schema.ex:186
+#: lib/accounts/user_schema.ex:185
 #, elixir-autogen
 msgid "is invalid"
 msgstr ""
@@ -120,38 +120,37 @@ msgstr ""
 msgid "can only contain letters, numbers, dashes and underscores"
 msgstr ""
 
-#: lib/accounts/user_schema.ex:75
+#: lib/accounts/user_schema.ex:74
 #, elixir-autogen, elixir-format
 msgid "at least one digit or punctuation character"
 msgstr ""
 
-#: lib/accounts/user_schema.ex:73
+#: lib/accounts/user_schema.ex:72
 #, elixir-autogen, elixir-format
 msgid "at least one lower case character"
 msgstr ""
 
-#: lib/accounts/user_schema.ex:74
+#: lib/accounts/user_schema.ex:73
 #, elixir-autogen, elixir-format
 msgid "at least one upper case character"
 msgstr ""
 
-#: lib/accounts/user_schema.ex:118
+#: lib/accounts/user_schema.ex:117
 #, elixir-autogen, elixir-format
 msgid "did not change"
 msgstr ""
 
-#: lib/accounts/user_schema.ex:149
+#: lib/accounts/user_schema.ex:148
 #, elixir-autogen, elixir-format
 msgid "does not match password"
 msgstr ""
 
-#: lib/accounts/user_schema.ex:64
-#: lib/organizations/school_schema.ex:44
+#: lib/shared/validators.ex:31
 #, elixir-autogen, elixir-format
 msgid "must have the @ sign and no spaces"
 msgstr ""
 
-#: lib/organizations/school_schema.ex:46
+#: lib/organizations/school_schema.ex:45
 #, elixir-autogen, elixir-format
 msgid "must start with / or https://"
 msgstr ""
@@ -196,8 +195,8 @@ msgstr ""
 msgid "Your enrollment is pending approval"
 msgstr ""
 
+#: lib/organizations/school_schema.ex:46
 #: lib/organizations/school_schema.ex:47
-#: lib/organizations/school_schema.ex:48
 #, elixir-autogen, elixir-format, fuzzy
 msgid "must start with https://"
 msgstr ""
@@ -210,4 +209,9 @@ msgstr ""
 #: lib/content/content_context.ex:428
 #, elixir-autogen, elixir-format, fuzzy
 msgid "cannot delete the only lesson"
+msgstr ""
+
+#: lib/shared/validators.ex:32
+#, elixir-autogen, elixir-format
+msgid "must have a domain name"
 msgstr ""

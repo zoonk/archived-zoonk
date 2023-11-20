@@ -106,7 +106,10 @@ defmodule Uneebee.AccountsTest do
     test "validates email and password when given" do
       {:error, changeset} = Accounts.register_user(%{email: "not valid", password: "not valid"})
 
-      assert %{email: ["must have the @ sign and no spaces"], password: ["at least one digit or punctuation character", "at least one upper case character"]} =
+      assert %{
+               email: ["must have a domain name", "must have the @ sign and no spaces"],
+               password: ["at least one digit or punctuation character", "at least one upper case character"]
+             } =
                errors_on(changeset)
     end
 
@@ -204,7 +207,7 @@ defmodule Uneebee.AccountsTest do
 
     test "validates email", %{user: user} do
       {:error, changeset} = Accounts.apply_user_email(user, valid_user_password(), %{email: "not valid"})
-      assert %{email: ["must have the @ sign and no spaces"]} = errors_on(changeset)
+      assert %{email: ["must have a domain name", "must have the @ sign and no spaces"]} = errors_on(changeset)
     end
 
     test "validates maximum value for email for security", %{user: user} do

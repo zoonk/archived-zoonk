@@ -52,17 +52,16 @@ defmodule Uneebee.Accounts.User do
   def registration_changeset(user, attrs, opts \\ []) do
     user
     |> cast(attrs, [:avatar, :date_of_birth, :email, :first_name, :language, :last_name, :password, :username])
-    |> validate_email(opts)
+    |> validate_user_email(opts)
     |> validate_password(opts)
     |> validate_username(opts)
     |> validate_settings()
   end
 
-  defp validate_email(changeset, opts) do
+  defp validate_user_email(changeset, opts) do
     changeset
     |> validate_required([:email])
-    |> validate_format(:email, ~r/^[^\s]+@[^\s]+$/, message: dgettext("errors", "must have the @ sign and no spaces"))
-    |> validate_length(:email, max: 160)
+    |> validate_email(:email)
     |> maybe_validate_unique_email(opts)
   end
 
@@ -112,7 +111,7 @@ defmodule Uneebee.Accounts.User do
   def email_changeset(user, attrs, opts \\ []) do
     user
     |> cast(attrs, [:email])
-    |> validate_email(opts)
+    |> validate_user_email(opts)
     |> case do
       %{changes: %{email: _}} = changeset -> changeset
       %{} = changeset -> add_error(changeset, :email, dgettext("errors", "did not change"))

@@ -21,4 +21,15 @@ defmodule UneebeeWeb.Shared.Validators do
       changeset
     end
   end
+
+  @doc """
+  Validates an email field.
+  """
+  @spec validate_email(Ecto.Changeset.t(), atom()) :: Ecto.Changeset.t()
+  def validate_email(changeset, field) do
+    changeset
+    |> validate_format(field, ~r/^[^\s]+@[^\s]+$/, message: dgettext("errors", "must have the @ sign and no spaces"))
+    |> validate_format(field, ~r/^[^\s]+@[^\s]+\.[^\s]+$/, message: dgettext("errors", "must have a domain name"))
+    |> validate_length(field, max: 160)
+  end
 end

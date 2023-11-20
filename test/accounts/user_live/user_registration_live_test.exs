@@ -91,6 +91,7 @@ defmodule UneebeeWeb.UserRegistrationLiveTest do
       assert_field_error(lv, "email", "", "can't be blank")
       assert_field_error(lv, "email", "marieatgmail.com", "must have the @ sign and no spaces")
       assert_field_error(lv, "email", "marie@gmail .com", "must have the @ sign and no spaces")
+      assert_field_error(lv, "email", "marie@gmail", "must have a domain name")
       assert_field_error(lv, "email", existing_user.email, "has already been taken")
 
       assert_field_error(lv, "username", "", "can't be blank")

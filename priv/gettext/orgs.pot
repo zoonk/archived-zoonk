@@ -11,20 +11,20 @@
 msgid ""
 msgstr ""
 
-#: lib/organizations/school_live/school_new.html.heex:6
+#: lib/organizations/school_live/school_new.html.heex:7
 #, elixir-autogen, elixir-format
 msgid "Choose a nickname to acess your school profile"
 msgstr ""
 
 #: lib/organizations/school_live/school_new.ex:12
-#: lib/organizations/school_live/school_new.html.heex:2
-#: lib/organizations/school_live/school_new.html.heex:9
+#: lib/organizations/school_live/school_new.html.heex:3
+#: lib/organizations/school_live/school_new.html.heex:10
 #, elixir-autogen, elixir-format
 msgid "Create school"
 msgstr ""
 
 #: lib/dashboard/schools/school_edit.html.heex:11
-#: lib/organizations/school_live/school_new.html.heex:6
+#: lib/organizations/school_live/school_new.html.heex:7
 #, elixir-autogen, elixir-format
 msgid "Nickname"
 msgstr ""
@@ -35,13 +35,13 @@ msgid "School could not be created"
 msgstr ""
 
 #: lib/dashboard/schools/school_edit.html.heex:13
-#: lib/organizations/school_live/school_new.html.heex:5
+#: lib/organizations/school_live/school_new.html.heex:6
 #, elixir-autogen, elixir-format
 msgid "School email"
 msgstr ""
 
 #: lib/dashboard/schools/school_edit.html.heex:12
-#: lib/organizations/school_live/school_new.html.heex:4
+#: lib/organizations/school_live/school_new.html.heex:5
 #, elixir-autogen, elixir-format
 msgid "School name"
 msgstr ""
@@ -61,31 +61,31 @@ msgstr ""
 msgid "Logo updated successfully!"
 msgstr ""
 
-#: lib/dashboard/schools/user_list.ex:106
+#: lib/dashboard/schools/user_list.ex:119
 #, elixir-autogen, elixir-format
 msgid "Add manager"
 msgstr ""
 
 #: lib/dashboard/courses/course_user_list.ex:107
-#: lib/dashboard/schools/user_list.ex:108
+#: lib/dashboard/schools/user_list.ex:121
 #, elixir-autogen, elixir-format
 msgid "Add student"
 msgstr ""
 
 #: lib/dashboard/courses/course_user_list.ex:106
-#: lib/dashboard/schools/user_list.ex:107
+#: lib/dashboard/schools/user_list.ex:120
 #, elixir-autogen, elixir-format
 msgid "Add teacher"
 msgstr ""
 
 #: lib/dashboard/courses/course_user_list.ex:92
-#: lib/dashboard/schools/user_list.ex:90
+#: lib/dashboard/schools/user_list.ex:103
 #, elixir-autogen, elixir-format
 msgid "Could not add user!"
 msgstr ""
 
 #: lib/dashboard/courses/course_user_list.ex:97
-#: lib/dashboard/schools/user_list.ex:95
+#: lib/dashboard/schools/user_list.ex:108
 #, elixir-autogen, elixir-format
 msgid "User not found!"
 msgstr ""
@@ -96,7 +96,7 @@ msgid "Approved by: @%{username}"
 msgstr ""
 
 #: lib/dashboard/courses/course_user_list.html.heex:87
-#: lib/dashboard/schools/user_list.html.heex:70
+#: lib/dashboard/schools/user_list.html.heex:86
 #, elixir-autogen, elixir-format
 msgid "Remove user"
 msgstr ""
@@ -108,19 +108,19 @@ msgid "Approve"
 msgstr ""
 
 #: lib/dashboard/courses/course_user_list.ex:41
-#: lib/dashboard/schools/user_list.ex:43
+#: lib/dashboard/schools/user_list.ex:45
 #, elixir-autogen, elixir-format
 msgid "Could not approve user!"
 msgstr ""
 
 #: lib/dashboard/courses/course_user_list.ex:59
-#: lib/dashboard/schools/user_list.ex:59
+#: lib/dashboard/schools/user_list.ex:61
 #, elixir-autogen, elixir-format
 msgid "Could not reject user!"
 msgstr ""
 
 #: lib/dashboard/courses/course_user_list.ex:72
-#: lib/dashboard/schools/user_list.ex:70
+#: lib/dashboard/schools/user_list.ex:72
 #, elixir-autogen, elixir-format
 msgid "Could not remove user!"
 msgstr ""
@@ -138,18 +138,18 @@ msgid "Reject"
 msgstr ""
 
 #: lib/dashboard/courses/course_user_list.ex:35
-#: lib/dashboard/schools/user_list.ex:37
+#: lib/dashboard/schools/user_list.ex:39
 #, elixir-autogen, elixir-format
 msgid "User approved!"
 msgstr ""
 
 #: lib/dashboard/courses/course_user_list.ex:53
-#: lib/dashboard/schools/user_list.ex:53
+#: lib/dashboard/schools/user_list.ex:55
 #, elixir-autogen, elixir-format
 msgid "User rejected!"
 msgstr ""
 
-#: lib/dashboard/schools/user_list.html.heex:63
+#: lib/dashboard/schools/user_list.html.heex:79
 #, elixir-autogen, elixir-format
 msgid "This will remove %{username} from your school. They won't be able to see your school anymore unless you approve them again."
 msgstr ""
@@ -601,4 +601,19 @@ msgstr ""
 #: lib/dashboard/courses/course_user_list.html.heex:80
 #, elixir-autogen, elixir-format
 msgid "This will remove %{username} from your course. They won't be able to see your course anymore unless you approve them again."
+msgstr ""
+
+#: lib/dashboard/schools/user_list.ex:83
+#, elixir-autogen, elixir-format
+msgid "Could not toggle analytics tracking!"
+msgstr ""
+
+#: lib/dashboard/schools/user_list.html.heex:69
+#, elixir-autogen, elixir-format
+msgid "Disable analytics"
+msgstr ""
+
+#: lib/dashboard/schools/user_list.html.heex:69
+#, elixir-autogen, elixir-format
+msgid "Enable analytics"
 msgstr ""
