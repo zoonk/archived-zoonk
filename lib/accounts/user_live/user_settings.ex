@@ -152,4 +152,5 @@ defmodule UneebeeWeb.Live.UserSettings do
   defp get_page_title(:email), do: gettext("Change email")
   defp get_page_title(:password), do: gettext("Change password")
   defp get_page_title(:avatar), do: gettext("Avatar")
+  defp get_page_title(_live_action), do: gettext("Settings")
 end

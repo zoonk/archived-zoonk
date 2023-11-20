@@ -109,6 +109,7 @@ msgstr ""
 msgid "Logout"
 msgstr "Sair"
 
+#: lib/accounts/user_live/user_settings.ex:155
 #: lib/dashboard/courses/course_edit.html.heex:5
 #: lib/dashboard/schools/school_edit.ex:60
 #: lib/layouts/components/app_menu.ex:32
