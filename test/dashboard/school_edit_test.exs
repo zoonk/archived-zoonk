@@ -62,6 +62,19 @@ defmodule UneebeeWeb.SchoolUpdateLiveTest do
       assert updated_school.name == new_name
       assert updated_school.email == new_email
     end
+
+    test "updates the require_confirmation? field", %{conn: conn, school: school} do
+      {:ok, lv, _html} = live(conn, ~p"/dashboard/edit/settings")
+
+      assert has_element?(lv, ~s|input[name="school[require_confirmation?]"][value="false"]|)
+
+      assert lv
+             |> form(@school_form, school: %{"require_confirmation?" => "false"})
+             |> render_submit() =~ "School updated successfully"
+
+      updated_school = Organizations.get_school_by_slug!(school.slug)
+      assert updated_school.require_confirmation? == false
+    end
   end
 
   describe "/dashboard/edit (non-authenticated users)" do

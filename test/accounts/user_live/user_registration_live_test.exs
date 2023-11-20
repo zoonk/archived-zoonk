@@ -40,7 +40,9 @@ defmodule UneebeeWeb.UserRegistrationLiveTest do
   end
 
   describe "register user (school configured)" do
-    setup :set_school
+    setup do
+      set_school(%{conn: build_conn()}, %{require_confirmation?: true})
+    end
 
     test "use the browser's language", %{conn: conn} do
       conn = put_req_header(conn, "accept-language", "pt-BR")

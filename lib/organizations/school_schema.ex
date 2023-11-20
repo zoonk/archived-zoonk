@@ -23,6 +23,7 @@ defmodule Uneebee.Organizations.School do
     field :name, :string
     field :privacy_policy, :string
     field :public?, :boolean, default: true
+    field :require_confirmation?, :boolean, default: false
     field :slug, :string
     field :terms_of_use, :string
 
@@ -38,7 +39,7 @@ defmodule Uneebee.Organizations.School do
   @spec changeset(Ecto.Schema.t(), map()) :: Ecto.Changeset.t()
   def changeset(school, attrs) do
     school
-    |> cast(attrs, [:created_by_id, :custom_domain, :email, :logo, :name, :privacy_policy, :public?, :terms_of_use, :school_id, :slug])
+    |> cast(attrs, [:created_by_id, :custom_domain, :email, :logo, :name, :privacy_policy, :public?, :require_confirmation?, :terms_of_use, :school_id, :slug])
     |> validate_required([:created_by_id, :email, :name, :public?, :slug])
     |> unique_constraint(:custom_domain)
     |> validate_email(:email)

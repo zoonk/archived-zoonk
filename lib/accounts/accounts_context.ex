@@ -387,7 +387,9 @@ defmodule Uneebee.Accounts do
       {:error, :already_confirmed}
 
   """
-  @spec deliver_user_confirmation_instructions(User.t(), School.t() | nil, (String.t() -> String.t())) :: Mailer.t() | {:error, :already_confirmed}
+  @spec deliver_user_confirmation_instructions(User.t(), School.t() | nil, (String.t() -> String.t())) :: Mailer.t() | {:error, :already_confirmed} | {:error, :not_required}
+  def deliver_user_confirmation_instructions(_user, %School{require_confirmation?: false}, _url), do: {:error, :not_required}
+
   def deliver_user_confirmation_instructions(%User{} = user, school, confirmation_url_fun) when is_function(confirmation_url_fun, 1) do
     if user.confirmed_at do
       {:error, :already_confirmed}

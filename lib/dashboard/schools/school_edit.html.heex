@@ -13,5 +13,13 @@
     <.input :if={@live_action == :settings} field={@form[:email]} type="email" label={dgettext("orgs", "School email")} required />
     <.input :if={@live_action == :settings} field={@form[:terms_of_use]} type="url" label={dgettext("orgs", "Terms of use URL")} />
     <.input :if={@live_action == :settings} field={@form[:privacy_policy]} type="url" label={dgettext("orgs", "Privacy policy URL")} />
+
+    <.input
+      :if={@live_action == :settings}
+      field={@form[:require_confirmation?]}
+      type="checkbox"
+      label={dgettext("orgs", "Require email confirmation?")}
+      helper={dgettext("orgs", "When checked, users will be required to confirm their email address before they can log in.")}
+    />
   </div>
 </.simple_form>

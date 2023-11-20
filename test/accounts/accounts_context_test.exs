@@ -4,6 +4,7 @@ defmodule Uneebee.AccountsTest do
   import Uneebee.Fixtures.Accounts
   import Uneebee.Fixtures.Content
   import Uneebee.Fixtures.Gamification
+  import Uneebee.Fixtures.Organizations
 
   alias Uneebee.Accounts
   alias Uneebee.Accounts.User
@@ -469,13 +470,19 @@ defmodule Uneebee.AccountsTest do
     end
 
     test "sends token through notification", %{user: user} do
-      token = extract_user_token(fn url -> Accounts.deliver_user_confirmation_instructions(user, nil, url) end)
+      school = school_fixture(%{require_confirmation?: true})
+      token = extract_user_token(fn url -> Accounts.deliver_user_confirmation_instructions(user, school, url) end)
 
       assert {:ok, token} = Base.url_decode64(token, padding: false)
       assert user_token = Repo.get_by(UserToken, token: :crypto.hash(:sha256, token))
       assert user_token.user_id == user.id
       assert user_token.sent_to == user.email
       assert user_token.context == "confirm"
+    end
+
+    test "doesn't send a confirmation email when school doesn't require confirmation", %{user: user} do
+      school = school_fixture(%{require_confirmation?: false})
+      assert {:error, :not_required} = Accounts.deliver_user_confirmation_instructions(user, school, "/")
     end
   end
 
