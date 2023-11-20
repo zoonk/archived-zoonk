@@ -12,7 +12,7 @@ msgid "can't be blank"
 msgstr ""
 
 ## From Ecto.Changeset.unique_constraint/3
-#: lib/organizations/school_schema.ex:64
+#: lib/organizations/school_schema.ex:65
 #, elixir-autogen
 msgid "has already been taken"
 msgstr ""
@@ -147,7 +147,7 @@ msgstr ""
 msgid "must have the @ sign and no spaces"
 msgstr ""
 
-#: lib/organizations/school_schema.ex:45
+#: lib/organizations/school_schema.ex:46
 #, elixir-autogen, elixir-format
 msgid "must start with / or https://"
 msgstr ""
@@ -192,8 +192,8 @@ msgstr ""
 msgid "Your enrollment is pending approval"
 msgstr ""
 
-#: lib/organizations/school_schema.ex:46
 #: lib/organizations/school_schema.ex:47
+#: lib/organizations/school_schema.ex:48
 #, elixir-autogen, elixir-format
 msgid "must start with https://"
 msgstr ""

@@ -617,3 +617,13 @@ msgstr ""
 #, elixir-autogen, elixir-format
 msgid "Enable analytics"
 msgstr ""
+
+#: lib/dashboard/schools/school_edit.html.heex:21
+#, elixir-autogen, elixir-format
+msgid "Require email confirmation?"
+msgstr "Exigir confirmação de e-mail?"
+
+#: lib/dashboard/schools/school_edit.html.heex:22
+#, elixir-autogen, elixir-format
+msgid "When checked, users will be required to confirm their email address before they can log in."
+msgstr "Ao marcar, os usuários deverão confirmar o endereço de e-mail antes de poderem fazer login."
