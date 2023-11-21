@@ -2,6 +2,7 @@ defmodule UneebeeWeb.Layouts.MenuUtils do
   @moduledoc false
   use UneebeeWeb, :html
 
+  alias Uneebee.Content.Course
   alias Uneebee.Organizations.School
 
   @spec school_name(School.t() | nil) :: String.t()
@@ -74,6 +75,10 @@ defmodule UneebeeWeb.Layouts.MenuUtils do
   def show_menu?(active_page) do
     active_page not in [:lessonplay, :lessoncompleted, :schoolnew]
   end
+
+  @spec home_page?(atom(), Course.t(), String.t()) :: boolean()
+  def home_page?(:courseview, %Course{slug: slug}, last_course_slug), do: slug == last_course_slug
+  def home_page?(_active_page, _course, _last_course_slug), do: false
 
   @spec dashboard_school_menu() :: list()
   def dashboard_school_menu do

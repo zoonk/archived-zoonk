@@ -152,6 +152,7 @@ defmodule UneebeeWeb.Plugs.School do
       |> Phoenix.Component.assign_new(:lessons, fn -> nil end)
       |> Phoenix.Component.assign_new(:lesson, fn -> nil end)
       |> Phoenix.Component.assign_new(:first_lesson_id, fn -> nil end)
+      |> Phoenix.Component.assign_new(:last_course_slug, fn -> nil end)
 
     {:cont, socket}
   end

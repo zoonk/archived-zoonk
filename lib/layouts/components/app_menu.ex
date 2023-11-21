@@ -11,9 +11,15 @@ defmodule UneebeeWeb.Components.Layouts.AppMenu do
       <ul role="list" class="flex flex-1 flex-col gap-y-7">
         <li>
           <ul role="list" class="-mx-2 space-y-1">
-            <.menu_item href={~p"/"} icon="tabler-home-2" active={@active_page == :courseview} title={gettext("Home")} />
+            <.menu_item href={~p"/"} icon="tabler-home-2" active={home_page?(@active_page, @course, @last_course_slug)} title={gettext("Home")} />
             <.menu_item navigate={~p"/courses/my"} icon="tabler-books" active={@active_page == :mycourses} title={gettext("My courses")} />
-            <.menu_item navigate={~p"/courses"} icon="tabler-ufo" active={@active_page == :courselist} title={gettext("Courses")} />
+
+            <.menu_item
+              navigate={~p"/courses"}
+              icon="tabler-ufo"
+              active={@active_page == :courselist or (@active_page == :courseview and not home_page?(@active_page, @course, @last_course_slug))}
+              title={gettext("Courses")}
+            />
           </ul>
         </li>
 

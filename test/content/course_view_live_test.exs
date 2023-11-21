@@ -118,11 +118,30 @@ defmodule UneebeeWeb.CourseViewLiveTest do
 
       assert has_element?(lv, ~s|span:fl-contains("25%")|)
     end
+
+    test "make the home menu active when it's the latest course", %{conn: conn, course: course, user: user, lesson: lesson} do
+      Content.add_user_lesson(%{user_id: user.id, lesson_id: lesson.id, attempts: 1, correct: 3, total: 4})
+
+      {:ok, lv, _html} = live(conn, "/c/#{course.slug}")
+
+      assert has_element?(lv, ~s|li[aria-current=page] a:fl-icontains("home")|)
+      refute has_element?(lv, ~s|li[aria-current=page] a:fl-icontains("courses")|)
+    end
+
+    test "make the courses menu active when it's not the latest course", %{conn: conn, school: school, user: user, lesson: lesson} do
+      Content.add_user_lesson(%{user_id: user.id, lesson_id: lesson.id, attempts: 1, correct: 3, total: 4})
+
+      other_course = course_fixture(%{school_id: school.id})
+
+      {:ok, lv, _html} = live(conn, "/c/#{other_course.slug}")
+
+      refute has_element?(lv, ~s|li[aria-current=page] a:fl-icontains("home")|)
+      assert has_element?(lv, ~s|li[aria-current=page] a:fl-icontains("courses")|)
+    end
   end
 
   defp assert_course_view(conn, course) do
     {:ok, lv, _html} = live(conn, "/c/#{course.slug}")
-    assert has_element?(lv, ~s|li[aria-current=page] a:fl-icontains("home")|)
     assert has_element?(lv, ~s|h1:fl-icontains("#{course.name}")|)
   end
 end

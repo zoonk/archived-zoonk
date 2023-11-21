@@ -1,9 +1,25 @@
 <.menu_mobile :if={show_menu?(@active_page)} school={@school}>
-  <.app_menu active_page={@active_page} user_role={@user_role} course={@course} lessons={@lessons} lesson={@lesson} first_lesson_id={@first_lesson_id} />
+  <.app_menu
+    active_page={@active_page}
+    user_role={@user_role}
+    course={@course}
+    last_course_slug={@last_course_slug}
+    lessons={@lessons}
+    lesson={@lesson}
+    first_lesson_id={@first_lesson_id}
+  />
 </.menu_mobile>
 
 <.menu_desktop :if={show_menu?(@active_page)} school={@school}>
-  <.app_menu active_page={@active_page} user_role={@user_role} course={@course} lessons={@lessons} lesson={@lesson} first_lesson_id={@first_lesson_id} />
+  <.app_menu
+    active_page={@active_page}
+    user_role={@user_role}
+    course={@course}
+    last_course_slug={@last_course_slug}
+    lessons={@lessons}
+    lesson={@lesson}
+    first_lesson_id={@first_lesson_id}
+  />
 </.menu_desktop>
 
 <main :if={show_menu?(@active_page)} class="min-h-dvh flex flex-col lg:pl-72">

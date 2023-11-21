@@ -1,5 +1,13 @@
 <.menu_desktop :if={show_menu?(@active_page)} school={@school}>
-  <.app_menu active_page={@active_page} user_role={@user_role} course={@course} lessons={@lessons} lesson={@lesson} first_lesson_id={@first_lesson_id} />
+  <.app_menu
+    active_page={@active_page}
+    user_role={@user_role}
+    last_course_slug={@last_course_slug}
+    course={@course}
+    lessons={@lessons}
+    lesson={@lesson}
+    first_lesson_id={@first_lesson_id}
+  />
 </.menu_desktop>
 
 <main class="lg:pl-72">
