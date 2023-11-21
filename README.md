@@ -137,3 +137,9 @@ You need to set the following environment variables on your server:
 - `STORAGE_ACCESS_ID`: Your access ID key.
 - `STORAGE_ACCESS_KEY`: Your access key.
 - `STORAGE_BUCKET_URL`: The URL of your bucket. (i.e. `https://mybucketurl.r2.cloudflarestorage.com`).
+
+## Sponsors
+
+We don't have any sponsors yet. Add your brand here by [sponsoring our project](https://github.com/sponsors/wceolin).
+
+- [See all sponsors and supporters](https://zoonk.org/en/sponsors)
