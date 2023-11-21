@@ -76,8 +76,9 @@ defmodule UneebeeWeb.Plugs.Course do
     {:cont, socket}
   end
 
-  def on_mount(:mount_lesson, %{"lesson_id" => lesson_id}, _session, socket) do
-    lesson = Content.get_lesson!(lesson_id)
+  def on_mount(:mount_lesson, %{"course_slug" => course_slug, "lesson_id" => lesson_id}, _session, socket) do
+    dashboard? = socket.view |> Atom.to_string() |> String.contains?("Dashboard")
+    lesson = Content.get_lesson!(course_slug, lesson_id, public?: not dashboard?)
     socket = Component.assign(socket, :lesson, lesson)
     {:cont, socket}
   end

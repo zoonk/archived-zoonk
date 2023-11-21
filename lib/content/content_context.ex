@@ -530,6 +530,36 @@ defmodule Uneebee.Content do
   end
 
   @doc """
+  Get a lesson from a course.
+
+  If the `public?` option is passed, then it will return the lesson only if it's published.
+
+  ## Examples
+
+      iex> get_lesson!(course_slug, 1)
+      %Lesson{}
+
+      iex> get_lesson!(course_slug, 1, public?: true)
+      %Lesson{}
+
+      iex> get_lesson!(course_slug, 1, public?: true)
+      ** (Ecto.NoResultsError)
+  """
+  @spec get_lesson!(String.t(), non_neg_integer(), list()) :: Lesson.t()
+  def get_lesson!(course_slug, lesson_id, opts \\ []) do
+    public? = Keyword.get(opts, :public?, false)
+
+    Lesson
+    |> join(:inner, [l], c in assoc(l, :course))
+    |> where([l, c], l.id == ^lesson_id and c.slug == ^course_slug)
+    |> maybe_query_published(public?)
+    |> Repo.one!()
+  end
+
+  defp maybe_query_published(query, true), do: where(query, [l, c], l.published?)
+  defp maybe_query_published(query, false), do: query
+
+  @doc """
   Update lessons order.
 
   Reposition all lessons between an interval when a lesson is moved.

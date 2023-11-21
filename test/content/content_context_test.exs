@@ -641,6 +641,44 @@ defmodule Uneebee.ContentTest do
     end
   end
 
+  describe "get_lesson!/3" do
+    test "returns a lesson" do
+      course = course_fixture()
+      lesson = lesson_fixture(%{course: course})
+      assert Content.get_lesson!(course.slug, lesson.id) == lesson
+    end
+
+    test "raises an error if the lesson does not exist" do
+      course = course_fixture()
+      assert_raise Ecto.NoResultsError, fn -> Content.get_lesson!(course.slug, -1) end
+    end
+
+    test "raises an error if trying to access a lesson from another course" do
+      course1 = course_fixture()
+      course2 = course_fixture()
+
+      lesson1 = lesson_fixture(%{course: course1})
+      lesson2 = lesson_fixture(%{course: course2})
+
+      assert_raise Ecto.NoResultsError, fn -> Content.get_lesson!(course1.slug, lesson2.id) end
+      assert_raise Ecto.NoResultsError, fn -> Content.get_lesson!(course2.slug, lesson1.id) end
+    end
+
+    test "raises an error if trying to access an unpublished lesson when public? option is passed" do
+      course = course_fixture()
+      lesson = lesson_fixture(%{course: course, published?: false})
+
+      assert_raise Ecto.NoResultsError, fn -> Content.get_lesson!(course.slug, lesson.id, public?: true) end
+    end
+
+    test "returns the lesson when unpublished and public? option is not passed" do
+      course = course_fixture()
+      lesson = lesson_fixture(%{course: course, published?: false})
+
+      assert Content.get_lesson!(course.slug, lesson.id) == lesson
+    end
+  end
+
   describe "update_lesson_order/3" do
     test "move a lesson up" do
       course = course_fixture()

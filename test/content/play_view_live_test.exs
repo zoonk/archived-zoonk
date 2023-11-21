@@ -79,6 +79,21 @@ defmodule UneebeeWeb.PlayViewLiveTest do
       assert_third_step(lv, lessons)
       assert_fourth_step(conn, lv, lessons, course)
     end
+
+    test "returns an error if trying to play a lesson from another course", %{conn: conn, course: course} do
+      other_course = course_fixture(%{school_id: course.school_id})
+      other_lesson = lesson_fixture(%{course_id: other_course.id})
+      generate_steps(other_lesson)
+
+      assert_error_sent 404, fn -> get(conn, ~p"/c/#{course.slug}/#{other_lesson.id}") end
+    end
+
+    test "returns an error if trying to play an unpublished lesson", %{conn: conn, course: course} do
+      lesson = lesson_fixture(%{course_id: course.id, published?: false})
+      generate_steps(lesson)
+
+      assert_error_sent 404, fn -> get(conn, ~p"/c/#{course.slug}/#{lesson.id}") end
+    end
   end
 
   defp assert_403(conn, course) do

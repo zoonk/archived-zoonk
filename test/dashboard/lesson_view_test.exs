@@ -46,6 +46,14 @@ defmodule UneebeeWeb.DashboardLessonViewLiveTest do
       course_setup(%{conn: build_conn()}, school_user: :teacher, course_user: :teacher)
     end
 
+    test "returns an error if trying to view a lesson from another course", %{conn: conn, course: course} do
+      other_course = course_fixture(%{school_id: course.school_id})
+      lesson = lesson_fixture(%{course: other_course})
+      lesson_step_fixture(%{lesson: lesson, order: 1})
+
+      assert_error_sent(404, fn -> get(conn, ~p"/dashboard/c/#{course.slug}/l/#{lesson.id}/s/1") end)
+    end
+
     test "publishes a lesson", %{conn: conn, course: course} do
       lesson = lesson_fixture(%{course_id: course.id, published?: false})
       lesson_step_fixture(%{lesson: lesson, order: 1})
