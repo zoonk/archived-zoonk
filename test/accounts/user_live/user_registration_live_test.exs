@@ -39,6 +39,27 @@ defmodule UneebeeWeb.UserRegistrationLiveTest do
     end
   end
 
+  describe "register user (without email confirmation)" do
+    setup do
+      set_school(%{conn: build_conn()}, %{require_confirmation?: false})
+    end
+
+    test "creates account and logs the user in", %{conn: conn} do
+      {:ok, lv, _html} = live(conn, ~p"/users/register")
+
+      attrs = valid_user_attributes()
+      form = form(lv, "#registration_form", user: attrs)
+      render_submit(form)
+      conn = follow_trigger_action(form, conn)
+
+      assert redirected_to(conn) == ~p"/"
+
+      # Now do a logged in request
+      response = html_response(get(conn, ~p"/courses"), 200)
+      assert response =~ "Settings"
+    end
+  end
+
   describe "register user (school configured)" do
     setup do
       set_school(%{conn: build_conn()}, %{require_confirmation?: true})
