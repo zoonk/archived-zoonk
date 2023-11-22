@@ -2,7 +2,7 @@
   <.simple_form for={@form} id="school-form" phx-submit="save" phx-change="validate">
     <.header icon="tabler-rocket"><%= dgettext("orgs", "Create school") %></.header>
 
-    <.input type="select" field={@form[:kind]} label={dgettext("orgs", "App type")} options={school_kind_options()} required />
+    <.input :if={is_nil(@host_school)} type="select" field={@form[:kind]} label={dgettext("orgs", "App type")} options={school_kind_options()} required />
     <.input type="text" field={@form[:name]} label={dgettext("orgs", "School name")} required />
     <.input type="email" field={@form[:email]} label={dgettext("orgs", "School email")} required />
     <.input type="text" field={@form[:slug]} label={dgettext("orgs", "Nickname")} helper={dgettext("orgs", "Choose a nickname to acess your school profile")} required />

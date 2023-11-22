@@ -86,7 +86,7 @@ defmodule UneebeeWeb.NewSchoolLiveTest do
   describe "New school page (authenticated users, school configured)" do
     setup :app_setup
 
-    test "renders an error if the school is configured", %{conn: conn} do
+    test "renders an error if the school is configured and it's a white label school", %{conn: conn} do
       school_fixture()
       assert_error_sent 403, fn -> get(conn, ~p"/schools/new") end
     end
@@ -96,6 +96,31 @@ defmodule UneebeeWeb.NewSchoolLiveTest do
     test "redirects to login page", %{conn: conn} do
       result = get(conn, ~p"/schools/new")
       assert redirected_to(result) =~ "/login"
+    end
+  end
+
+  describe "New school (SaaS app)" do
+    setup do
+      app_setup(%{conn: build_conn()}, school_kind: :saas)
+    end
+
+    test "allows to create a school", %{conn: conn, school: school, user: user} do
+      attrs = valid_school_attributes()
+
+      {:ok, lv, _html} = live(conn, ~p"/schools/new")
+
+      refute has_element?(lv, ~s|select[id="school_kind"]|)
+
+      lv
+      |> form(@school_form, school: %{name: attrs.name, email: attrs.email, slug: attrs.slug})
+      |> render_submit()
+      |> follow_redirect(conn, "https://#{attrs.slug}.#{school.custom_domain}")
+
+      child_school = Organizations.get_school_by_slug!(attrs.slug)
+      assert child_school.created_by_id == user.id
+      assert child_school.name == attrs.name
+      assert child_school.kind == :white_label
+      assert child_school.school_id == school.id
     end
   end
 end
