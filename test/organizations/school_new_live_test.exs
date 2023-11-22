@@ -30,6 +30,57 @@ defmodule UneebeeWeb.NewSchoolLiveTest do
       assert school_user.role == :manager
       assert school_user.approved? == true
     end
+
+    test "allows to create a white label school", %{conn: conn, user: user} do
+      attrs = valid_school_attributes()
+      conn = Map.put(conn, :host, attrs.custom_domain)
+
+      {:ok, lv, _html} = live(conn, ~p"/schools/new")
+
+      lv
+      |> form(@school_form, school: %{name: attrs.name, email: attrs.email, slug: attrs.slug, kind: "white_label"})
+      |> render_submit()
+      |> follow_redirect(conn, ~p"/")
+
+      school = Organizations.get_school_by_slug!(attrs.slug)
+      assert school.created_by_id == user.id
+      assert school.name == attrs.name
+      assert school.kind == :white_label
+    end
+
+    test "allows to create a SaaS school", %{conn: conn, user: user} do
+      attrs = valid_school_attributes()
+      conn = Map.put(conn, :host, attrs.custom_domain)
+
+      {:ok, lv, _html} = live(conn, ~p"/schools/new")
+
+      lv
+      |> form(@school_form, school: %{name: attrs.name, email: attrs.email, slug: attrs.slug, kind: "saas"})
+      |> render_submit()
+      |> follow_redirect(conn, ~p"/")
+
+      school = Organizations.get_school_by_slug!(attrs.slug)
+      assert school.created_by_id == user.id
+      assert school.name == attrs.name
+      assert school.kind == :saas
+    end
+
+    test "allows to create a marketplace school", %{conn: conn, user: user} do
+      attrs = valid_school_attributes()
+      conn = Map.put(conn, :host, attrs.custom_domain)
+
+      {:ok, lv, _html} = live(conn, ~p"/schools/new")
+
+      lv
+      |> form(@school_form, school: %{name: attrs.name, email: attrs.email, slug: attrs.slug, kind: "marketplace"})
+      |> render_submit()
+      |> follow_redirect(conn, ~p"/")
+
+      school = Organizations.get_school_by_slug!(attrs.slug)
+      assert school.created_by_id == user.id
+      assert school.name == attrs.name
+      assert school.kind == :marketplace
+    end
   end
 
   describe "New school page (authenticated users, school configured)" do

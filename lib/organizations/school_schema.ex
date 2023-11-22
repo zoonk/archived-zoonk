@@ -19,6 +19,7 @@ defmodule Uneebee.Organizations.School do
   schema "schools" do
     field :custom_domain, :string
     field :email, :string
+    field :kind, Ecto.Enum, values: [:marketplace, :saas, :white_label], default: :white_label
     field :logo, :string
     field :name, :string
     field :privacy_policy, :string
@@ -39,7 +40,7 @@ defmodule Uneebee.Organizations.School do
   @spec changeset(Ecto.Schema.t(), map()) :: Ecto.Changeset.t()
   def changeset(school, attrs) do
     school
-    |> cast(attrs, [:created_by_id, :custom_domain, :email, :logo, :name, :privacy_policy, :public?, :require_confirmation?, :terms_of_use, :school_id, :slug])
+    |> cast(attrs, [:created_by_id, :custom_domain, :email, :kind, :logo, :name, :privacy_policy, :public?, :require_confirmation?, :terms_of_use, :school_id, :slug])
     |> validate_required([:created_by_id, :email, :name, :public?, :slug])
     |> unique_constraint(:custom_domain)
     |> validate_email(:email)

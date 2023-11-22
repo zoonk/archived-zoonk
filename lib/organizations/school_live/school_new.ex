@@ -44,4 +44,8 @@ defmodule UneebeeWeb.Live.SchoolNew do
          |> put_flash(:error, dgettext("orgs", "School could not be created"))}
     end
   end
+
+  defp school_kind_options do
+    [{dgettext("orgs", "White label"), "white_label"}, {dgettext("orgs", "SaaS"), "saas"}, {dgettext("orgs", "Marketplace"), "marketplace"}]
+  end
 end
