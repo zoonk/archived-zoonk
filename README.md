@@ -36,6 +36,8 @@ We're deploying our cloud products to [Fly](https://fly.io/) and [Neon](https://
 
 ## Getting started
 
+Follow the instructions below to get UneeBee up and running on your local machine. We have a `Dockerfile` but that's used for deploying our demo app to [Fly](https://fly.io/). We don't have a Docker setup for local development yet. PRs are welcome!
+
 ### Requirements
 
 - You need `Elixir 1.15` or later and `Erlang 26` or later. Run `elixir -v` to find your current version for [Elixir](https://elixir-lang.org/install.html)
