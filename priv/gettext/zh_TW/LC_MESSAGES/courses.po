@@ -1,0 +1,152 @@
+## "msgid"s in this file come from POT (.pot) files.
+###
+### Do not add, change, or remove "msgid"s manually here as
+### they're tied to the ones in the corresponding POT file
+### (with the same domain).
+###
+### Use "mix gettext.extract --merge" or "mix gettext.merge"
+### to merge POT files into PO files.
+msgid ""
+msgstr ""
+"Language: zh_TW\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: lib/content/course_live/course_view.ex:59
+#, elixir-autogen, elixir-format
+msgid "A request to enroll has been sent to the course teacher."
+msgstr "已向教師報名課程。"
+
+#: lib/content/course_utils.ex:25
+#, elixir-autogen, elixir-format
+msgid "Advanced"
+msgstr "進階"
+
+#: lib/content/course_live/lesson_completed.html.heex:32
+#, elixir-autogen, elixir-format
+msgid "Back to the course"
+msgstr "返回課程"
+
+#: lib/content/course_utils.ex:23
+#, elixir-autogen, elixir-format
+msgid "Beginner"
+msgstr "初級"
+
+#: lib/content/course_live/lesson_play.html.heex:80
+#, elixir-autogen, elixir-format
+msgid "Confirming..."
+msgstr "確認中..."
+
+#: lib/content/course_live/course_view.ex:58
+#, elixir-autogen, elixir-format
+msgid "Enrolled successfully!"
+msgstr "成功報名！"
+
+#: lib/content/course_live/lesson_completed.ex:38
+#, elixir-autogen, elixir-format
+msgid "Excellent!"
+msgstr "優秀！"
+
+#: lib/content/course_utils.ex:26
+#, elixir-autogen, elixir-format
+msgid "Expert"
+msgstr "專家"
+
+#: lib/content/course_live/course_view.ex:43
+#, elixir-autogen, elixir-format
+msgid "Failed to enroll"
+msgstr "報名失敗"
+
+#: lib/content/course_live/lesson_completed.ex:40
+#, elixir-autogen, elixir-format
+msgid "Good!"
+msgstr "好！"
+
+#: lib/content/course_live/lesson_completed.html.heex:4
+#, elixir-autogen, elixir-format
+msgid "Illustration of a green alien"
+msgstr "綠色外星人的插圖"
+
+#: lib/content/course_utils.ex:24
+#, elixir-autogen, elixir-format
+msgid "Intermediate"
+msgstr "中級"
+
+#: lib/content/course_live/lesson_play.html.heex:84
+#, elixir-autogen, elixir-format
+msgid "Next step"
+msgstr "下一步"
+
+#: lib/content/course_live/lesson_completed.ex:41
+#, elixir-autogen, elixir-format
+msgid "Not bad!"
+msgstr "不錯！"
+
+#: lib/content/course_live/lesson_completed.ex:37
+#, elixir-autogen, elixir-format
+msgid "Perfect!"
+msgstr "完美！"
+
+#: lib/content/course_live/course_view.html.heex:37
+#, elixir-autogen, elixir-format
+msgid "Request to join"
+msgstr "請求加入"
+
+#: lib/content/course_live/components/lesson_step.ex:34
+#, elixir-autogen, elixir-format
+msgid "That's incorrect."
+msgstr "這是不正確的。"
+
+#: lib/content/course_live/lesson_completed.ex:42
+#, elixir-autogen, elixir-format
+msgid "There's room for improvement"
+msgstr "有改進的空間"
+
+#: lib/content/course_live/lesson_play.ex:76
+#, elixir-autogen, elixir-format
+msgid "Unable to complete lesson"
+msgstr "無法完成課程"
+
+#: lib/content/course_live/lesson_play.ex:49
+#, elixir-autogen, elixir-format
+msgid "Unable to select option"
+msgstr "無法選擇選項"
+
+#: lib/content/course_live/lesson_completed.ex:39
+#, elixir-autogen, elixir-format
+msgid "Very good!"
+msgstr "非常好！"
+
+#: lib/content/course_live/components/lesson_step.ex:34
+#, elixir-autogen, elixir-format
+msgid "Well done!"
+msgstr "做得好！"
+
+#: lib/content/course_live/lesson_completed.html.heex:11
+#, elixir-autogen, elixir-format
+msgid "You got %{correct} out of %{total} answers right."
+msgstr "您的答案中有 %{correct} 個是正確的，總共有 %{total} 個問題。"
+
+#: lib/content/course_live/course_view.html.heex:13
+#, elixir-autogen, elixir-format, fuzzy
+msgid "Lesson cover"
+msgstr "課程封面"
+
+#: lib/content/course_live/lesson_play.html.heex:15
+#, elixir-autogen, elixir-format
+msgid "Your progress in this lesson will be lost. Would you like to quit?"
+msgstr "您在這堂課的進度將會遺失。您想要退出嗎？"
+
+#: lib/content/course_live/my_courses.html.heex:11
+#, elixir-autogen, elixir-format
+msgid "Browse courses"
+msgstr "瀏覽課程"
+
+#: lib/content/course_live/my_courses.html.heex:9
+#, elixir-autogen, elixir-format
+msgid "Get started by joining a course."
+msgstr "加入課程開始學習。"
+
+#: lib/content/course_live/my_courses.html.heex:8
+#, elixir-autogen, elixir-format, fuzzy
+msgid "No courses"
+msgstr "沒有課程"
