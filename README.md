@@ -104,7 +104,7 @@ By default, we upload files to your local server and store them in the `priv/sta
 
 Go to `Settings` -> `CORS Policy` to add a new CORS policy. You can use the following settings:
 
-```
+```json
 [
   {
     "AllowedOrigins": [
