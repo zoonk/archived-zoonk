@@ -253,6 +253,12 @@ defmodule Uneebee.OrganizationsTest do
       invalid_attrs = valid_school_attributes(%{email: "invalid"})
       assert {:error, %Ecto.Changeset{}} = Organizations.update_school(school, invalid_attrs)
     end
+
+    test "don't allow to update the kind field" do
+      school = school_fixture(%{kind: :white_label})
+      assert {:ok, %School{} = updated_school} = Organizations.update_school(school, %{kind: :saas})
+      assert updated_school.kind == :white_label
+    end
   end
 
   describe "get_school!/1" do
