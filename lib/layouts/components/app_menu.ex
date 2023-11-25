@@ -20,6 +20,8 @@ defmodule UneebeeWeb.Components.Layouts.AppMenu do
               active={@active_page == :courselist or (@active_page == :courseview and not home_page?(@active_page, @course, @last_course_slug))}
               title={gettext("Courses")}
             />
+
+            <.menu_item :if={@host_school && @host_school.kind in [:saas, :marketplace]} navigate={~p"/schools/new"} icon="tabler-rocket" title={gettext("Create school")} />
           </ul>
         </li>
 

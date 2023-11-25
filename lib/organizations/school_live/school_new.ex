@@ -29,13 +29,16 @@ defmodule UneebeeWeb.Live.SchoolNew do
 
   @impl Phoenix.LiveView
   def handle_event("save", %{"school" => school_params}, socket) do
-    %{current_user: user, host: host} = socket.assigns
+    %{current_user: user, host: host, host_school: host_school} = socket.assigns
 
-    attrs = Map.merge(school_params, %{"created_by_id" => user.id, "custom_domain" => host})
+    domain = if is_nil(host_school), do: host
+    school_id = if is_nil(host_school), do: nil, else: host_school.id
+
+    attrs = Map.merge(school_params, %{"created_by_id" => user.id, "custom_domain" => domain, "school_id" => school_id})
 
     case Organizations.create_school_and_manager(user, attrs) do
-      {:ok, _school} ->
-        {:noreply, redirect(socket, to: ~p"/")}
+      {:ok, new_school} ->
+        {:noreply, redirect_to_dashboard(socket, new_school, host_school)}
 
       {:error, %Ecto.Changeset{} = changeset} ->
         {:noreply,
@@ -44,4 +47,13 @@ defmodule UneebeeWeb.Live.SchoolNew do
          |> put_flash(:error, dgettext("orgs", "School could not be created"))}
     end
   end
+
+  defp school_kind_options do
+    [{dgettext("orgs", "White label"), "white_label"}, {dgettext("orgs", "SaaS"), "saas"}, {dgettext("orgs", "Marketplace"), "marketplace"}]
+  end
+
+  defp redirect_to_dashboard(socket, _new_school, nil), do: redirect(socket, to: ~p"/dashboard")
+
+  defp redirect_to_dashboard(socket, %School{} = new_school, %School{} = host_school),
+    do: redirect(socket, external: "https://#{new_school.slug}.#{host_school.custom_domain}/dashboard")
 end

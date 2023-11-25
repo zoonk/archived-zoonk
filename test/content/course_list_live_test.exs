@@ -82,6 +82,37 @@ defmodule UneebeeWeb.CourseListLiveTest do
     end
   end
 
+  describe "/courses (marketplace school)" do
+    setup do
+      app_setup(%{conn: build_conn()}, school_kind: :marketplace)
+    end
+
+    test "displays the create school menu", %{conn: conn} do
+      assert_create_school_menu(conn)
+    end
+  end
+
+  describe "/courses (saas school)" do
+    setup do
+      app_setup(%{conn: build_conn()}, school_kind: :marketplace)
+    end
+
+    test "displays the create school menu", %{conn: conn} do
+      assert_create_school_menu(conn)
+    end
+  end
+
+  describe "/courses (white label school)" do
+    setup do
+      app_setup(%{conn: build_conn()}, school_kind: :white_label)
+    end
+
+    test "doesn't display the create school menu", %{conn: conn} do
+      {:ok, lv, _html} = live(conn, ~p"/courses")
+      refute has_element?(lv, ~s|li a:fl-icontains("create school")|)
+    end
+  end
+
   defp course_el(id, course), do: ~s|#courses-#{id} a[href="/c/#{course.slug}"]|
   defp get_course_el(course), do: course_el("list", course)
 
@@ -106,5 +137,10 @@ defmodule UneebeeWeb.CourseListLiveTest do
     refute has_element?(lv, get_course_el(unpublished_course))
     refute has_element?(lv, get_course_el(private_course))
     assert has_element?(lv, get_course_el(published_course))
+  end
+
+  defp assert_create_school_menu(conn) do
+    {:ok, lv, _html} = live(conn, ~p"/courses")
+    assert has_element?(lv, ~s|li a:fl-icontains("create school")|)
   end
 end

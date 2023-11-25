@@ -19,6 +19,7 @@ defmodule Uneebee.Organizations.School do
   schema "schools" do
     field :custom_domain, :string
     field :email, :string
+    field :kind, Ecto.Enum, values: [:marketplace, :saas, :white_label], default: :white_label
     field :logo, :string
     field :name, :string
     field :privacy_policy, :string
@@ -36,10 +37,23 @@ defmodule Uneebee.Organizations.School do
   end
 
   @doc false
-  @spec changeset(Ecto.Schema.t(), map()) :: Ecto.Changeset.t()
-  def changeset(school, attrs) do
+  @spec create_changeset(Ecto.Schema.t(), map()) :: Ecto.Changeset.t()
+  def create_changeset(school, attrs) do
     school
-    |> cast(attrs, [:created_by_id, :custom_domain, :email, :logo, :name, :privacy_policy, :public?, :require_confirmation?, :terms_of_use, :school_id, :slug])
+    |> cast(attrs, [:kind | shared_cast_fields()])
+    |> default_changeset()
+  end
+
+  @doc false
+  @spec update_changeset(Ecto.Schema.t(), map()) :: Ecto.Changeset.t()
+  def update_changeset(school, attrs) do
+    school
+    |> cast(attrs, shared_cast_fields())
+    |> default_changeset()
+  end
+
+  defp default_changeset(changeset) do
+    changeset
     |> validate_required([:created_by_id, :email, :name, :public?, :slug])
     |> unique_constraint(:custom_domain)
     |> validate_email(:email)
@@ -49,12 +63,29 @@ defmodule Uneebee.Organizations.School do
     |> validate_slug(:slug)
     |> validate_unique_slug()
     |> validate_custom_domain()
+    |> validate_kind()
+  end
+
+  defp shared_cast_fields do
+    [:created_by_id, :custom_domain, :email, :logo, :name, :privacy_policy, :public?, :require_confirmation?, :terms_of_use, :school_id, :slug]
   end
 
   defp validate_unique_slug(changeset) do
     changeset
     |> unsafe_validate_unique(:slug, Uneebee.Repo)
     |> unique_constraint(:slug)
+  end
+
+  # Child schools must have a `white_label` kind. A school has a parent school when `school_id` is not `nil`.
+  defp validate_kind(changeset) do
+    kind = get_field(changeset, :kind)
+    school_id = get_field(changeset, :school_id)
+
+    if school_id && kind != :white_label do
+      add_error(changeset, :kind, dgettext("errors", "must be white_label"))
+    else
+      changeset
+    end
   end
 
   # Don't allow to add a subdomain as `custom_domain` if that domain already exists.

@@ -18,6 +18,7 @@ defmodule UneebeeWeb.Plugs.School do
   alias Phoenix.LiveView
   alias Phoenix.LiveView.Socket
   alias Uneebee.Organizations
+  alias Uneebee.Organizations.School
 
   @doc """
   Fetches the school's data from the database.
@@ -41,12 +42,12 @@ defmodule UneebeeWeb.Plugs.School do
   If so, then we don't want to show the configuration page.
   """
   @spec check_school_setup(Plug.Conn.t(), Keyword.t()) :: Plug.Conn.t()
-  def check_school_setup(%{request_path: "/schools/new"} = conn, opts), do: check_school_setup(conn, opts, is_nil(conn.assigns.school))
+  def check_school_setup(%{request_path: "/schools/new"} = conn, opts), do: check_school_setup(conn, opts, conn.assigns.school)
   def check_school_setup(conn, _opts), do: conn
 
   # If the school is already configured, we don't want to show the configuration page.
-  defp check_school_setup(_conn, _opts, false), do: raise(UneebeeWeb.PermissionError, code: :school_already_configured)
-  defp check_school_setup(conn, _opts, true), do: conn
+  defp check_school_setup(_conn, _opts, %School{kind: :white_label}), do: raise(UneebeeWeb.PermissionError, code: :school_already_configured)
+  defp check_school_setup(conn, _opts, _school), do: conn
 
   @doc """
   Redirect to the setup page if the school isn't configured.

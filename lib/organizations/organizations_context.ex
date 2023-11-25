@@ -25,7 +25,7 @@ defmodule Uneebee.Organizations do
   """
   @spec change_school(School.t(), map()) :: Ecto.Changeset.t()
   def change_school(%School{} = school, attrs \\ %{}) do
-    School.changeset(school, attrs)
+    School.update_changeset(school, attrs)
   end
 
   @doc """
@@ -41,7 +41,7 @@ defmodule Uneebee.Organizations do
   """
   @spec create_school(map()) :: school_changeset()
   def create_school(attrs \\ %{}) do
-    %School{} |> change_school(attrs) |> Repo.insert()
+    %School{} |> School.create_changeset(attrs) |> Repo.insert()
   end
 
   @doc """
@@ -62,7 +62,7 @@ defmodule Uneebee.Organizations do
 
     multi =
       Ecto.Multi.new()
-      |> Ecto.Multi.insert(:school, School.changeset(%School{}, attrs))
+      |> Ecto.Multi.insert(:school, School.create_changeset(%School{}, attrs))
       |> Ecto.Multi.run(:school_user, fn _repo, %{school: school} -> create_school_user(school, user, school_user_attrs) end)
 
     case Repo.transaction(multi) do
