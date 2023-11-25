@@ -11,37 +11,37 @@ msgstr ""
 "Language: en\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: lib/organizations/school_live/school_new.html.heex:7
+#: lib/organizations/school_live/school_new.html.heex:8
 #, elixir-autogen, elixir-format
 msgid "Choose a nickname to acess your school profile"
 msgstr ""
 
 #: lib/organizations/school_live/school_new.ex:12
 #: lib/organizations/school_live/school_new.html.heex:3
-#: lib/organizations/school_live/school_new.html.heex:10
+#: lib/organizations/school_live/school_new.html.heex:11
 #, elixir-autogen, elixir-format
 msgid "Create school"
 msgstr ""
 
 #: lib/dashboard/schools/school_edit.html.heex:11
-#: lib/organizations/school_live/school_new.html.heex:7
+#: lib/organizations/school_live/school_new.html.heex:8
 #, elixir-autogen, elixir-format
 msgid "Nickname"
 msgstr ""
 
-#: lib/organizations/school_live/school_new.ex:44
+#: lib/organizations/school_live/school_new.ex:47
 #, elixir-autogen, elixir-format
 msgid "School could not be created"
 msgstr ""
 
 #: lib/dashboard/schools/school_edit.html.heex:13
-#: lib/organizations/school_live/school_new.html.heex:6
+#: lib/organizations/school_live/school_new.html.heex:7
 #, elixir-autogen, elixir-format
 msgid "School email"
 msgstr ""
 
 #: lib/dashboard/schools/school_edit.html.heex:12
-#: lib/organizations/school_live/school_new.html.heex:5
+#: lib/organizations/school_live/school_new.html.heex:6
 #, elixir-autogen, elixir-format
 msgid "School name"
 msgstr ""
@@ -190,7 +190,7 @@ msgid "Create course"
 msgstr ""
 
 #: lib/dashboard/home.ex:17
-#: lib/layouts/components/app_menu.ex:21
+#: lib/layouts/components/app_menu.ex:29
 #, elixir-autogen, elixir-format
 msgid "Dashboard"
 msgstr ""
@@ -540,12 +540,12 @@ msgstr ""
 msgid "Your image should be 64x64px (or use a 1:1 proportion)."
 msgstr ""
 
-#: lib/layouts/components/app_menu.ex:25
+#: lib/layouts/components/app_menu.ex:33
 #, elixir-autogen, elixir-format
 msgid "Manage courses"
 msgstr ""
 
-#: lib/layouts/components/app_menu.ex:24
+#: lib/layouts/components/app_menu.ex:32
 #, elixir-autogen, elixir-format
 msgid "Manage school"
 msgstr ""
@@ -571,7 +571,7 @@ msgstr ""
 msgid "Approved"
 msgstr ""
 
-#: lib/layouts/templates/dashboard_course.html.heex:21
+#: lib/layouts/templates/dashboard_course.html.heex:30
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Editor"
 msgstr ""
@@ -582,13 +582,13 @@ msgid "Options"
 msgstr ""
 
 #: lib/dashboard/courses/course_view.html.heex:11
-#: lib/dashboard/home.html.heex:19
+#: lib/dashboard/home.html.heex:17
 #, elixir-autogen, elixir-format
 msgid "Private"
 msgstr ""
 
 #: lib/dashboard/courses/course_view.html.heex:11
-#: lib/dashboard/home.html.heex:19
+#: lib/dashboard/home.html.heex:17
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Public"
 msgstr ""
@@ -626,4 +626,24 @@ msgstr ""
 #: lib/dashboard/schools/school_edit.html.heex:22
 #, elixir-autogen, elixir-format
 msgid "When checked, users will be required to confirm their email address before they can log in."
+msgstr ""
+
+#: lib/organizations/school_live/school_new.html.heex:5
+#, elixir-autogen, elixir-format
+msgid "App type"
+msgstr ""
+
+#: lib/organizations/school_live/school_new.ex:52
+#, elixir-autogen, elixir-format
+msgid "Marketplace"
+msgstr ""
+
+#: lib/organizations/school_live/school_new.ex:52
+#, elixir-autogen, elixir-format
+msgid "SaaS"
+msgstr ""
+
+#: lib/organizations/school_live/school_new.ex:52
+#, elixir-autogen, elixir-format
+msgid "White label"
 msgstr ""
