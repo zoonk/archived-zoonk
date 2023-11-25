@@ -50,12 +50,25 @@ defmodule Uneebee.Organizations.School do
     |> validate_slug(:slug)
     |> validate_unique_slug()
     |> validate_custom_domain()
+    |> validate_kind()
   end
 
   defp validate_unique_slug(changeset) do
     changeset
     |> unsafe_validate_unique(:slug, Uneebee.Repo)
     |> unique_constraint(:slug)
+  end
+
+  # Child schools must have a `white_label` kind. A school has a parent school when `school_id` is not `nil`.
+  defp validate_kind(changeset) do
+    kind = get_field(changeset, :kind)
+    school_id = get_field(changeset, :school_id)
+
+    if school_id && kind != :white_label do
+      add_error(changeset, :kind, dgettext("errors", "must be white_label"))
+    else
+      changeset
+    end
   end
 
   # Don't allow to add a subdomain as `custom_domain` if that domain already exists.

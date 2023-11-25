@@ -214,6 +214,27 @@ defmodule Uneebee.OrganizationsTest do
       valid_attrs = Map.delete(valid_school_attributes(), :created_by_id)
       assert {:error, %Ecto.Changeset{}} = Organizations.create_school_and_manager(user, valid_attrs)
     end
+
+    test "a child school cannot have a saas kind" do
+      user = user_fixture()
+      school = school_fixture()
+      valid_attrs = valid_school_attributes(%{created_by_id: user.id, school_id: school.id, kind: :saas})
+      assert {:error, %Ecto.Changeset{}} = Organizations.create_school_and_manager(user, valid_attrs)
+    end
+
+    test "a child school cannot have a marketplace kind" do
+      user = user_fixture()
+      school = school_fixture()
+      valid_attrs = valid_school_attributes(%{created_by_id: user.id, school_id: school.id, kind: :marketplace})
+      assert {:error, %Ecto.Changeset{}} = Organizations.create_school_and_manager(user, valid_attrs)
+    end
+
+    test "a child school can have a white_label kind" do
+      user = user_fixture()
+      school = school_fixture()
+      valid_attrs = valid_school_attributes(%{created_by_id: user.id, school_id: school.id, kind: :white_label})
+      assert {:ok, %School{}} = Organizations.create_school_and_manager(user, valid_attrs)
+    end
   end
 
   describe "update_school/2" do
