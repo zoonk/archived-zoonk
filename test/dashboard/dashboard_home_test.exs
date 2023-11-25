@@ -3,6 +3,7 @@ defmodule UneebeeWeb.DashboardHomeLiveTest do
   use UneebeeWeb.ConnCase, async: true
 
   import Phoenix.LiveViewTest
+  import Uneebee.Fixtures.Organizations
 
   describe "/dashboard (non-authenticated users)" do
     setup :set_school
@@ -29,13 +30,26 @@ defmodule UneebeeWeb.DashboardHomeLiveTest do
     end
 
     test "renders the page", %{conn: conn, school: school} do
-      assert_dashboard(conn, school)
+      {:ok, lv, _html} = live(conn, ~p"/dashboard")
+      assert_dashboard(lv, school, school.custom_domain)
+    end
+
+    test "displays the data for a child school", %{conn: conn, school: school, user: user} do
+      child_school = school_fixture(%{school_id: school.id})
+      school_user_fixture(%{user: user, school: child_school, role: :manager})
+      host = "#{child_school.slug}.#{school.custom_domain}"
+      conn = Map.put(conn, :host, host)
+
+      {:ok, lv, _html} = live(conn, ~p"/dashboard")
+
+      assert_dashboard(lv, child_school, host)
     end
   end
 
-  defp assert_dashboard(conn, school) do
-    {:ok, lv, _html} = live(conn, ~p"/dashboard")
-    assert has_element?(lv, ~s|h1 *:fl-icontains("#{school.name}")|)
+  defp assert_dashboard(lv, school, host) do
     assert has_element?(lv, ~s|li[aria-current=page] a:fl-icontains("manage school")|)
+    assert has_element?(lv, ~s|h1 *:fl-icontains("#{school.name}")|)
+    assert has_element?(lv, ~s|h1 *:fl-icontains("@#{school.slug}")|)
+    assert has_element?(lv, ~s|header p:fl-icontains("#{host}")|)
   end
 end
