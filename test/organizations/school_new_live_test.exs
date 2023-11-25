@@ -20,7 +20,7 @@ defmodule UneebeeWeb.NewSchoolLiveTest do
       lv
       |> form(@school_form, school: %{name: attrs.name, email: attrs.email, slug: attrs.slug})
       |> render_submit()
-      |> follow_redirect(conn, ~p"/")
+      |> follow_redirect(conn, ~p"/dashboard")
 
       school = Organizations.get_school_by_slug!(attrs.slug)
       assert school.created_by_id == user.id
@@ -40,7 +40,7 @@ defmodule UneebeeWeb.NewSchoolLiveTest do
       lv
       |> form(@school_form, school: %{name: attrs.name, email: attrs.email, slug: attrs.slug, kind: "white_label"})
       |> render_submit()
-      |> follow_redirect(conn, ~p"/")
+      |> follow_redirect(conn, ~p"/dashboard")
 
       school = Organizations.get_school_by_slug!(attrs.slug)
       assert school.created_by_id == user.id
@@ -57,7 +57,7 @@ defmodule UneebeeWeb.NewSchoolLiveTest do
       lv
       |> form(@school_form, school: %{name: attrs.name, email: attrs.email, slug: attrs.slug, kind: "saas"})
       |> render_submit()
-      |> follow_redirect(conn, ~p"/")
+      |> follow_redirect(conn, ~p"/dashboard")
 
       school = Organizations.get_school_by_slug!(attrs.slug)
       assert school.created_by_id == user.id
@@ -74,7 +74,7 @@ defmodule UneebeeWeb.NewSchoolLiveTest do
       lv
       |> form(@school_form, school: %{name: attrs.name, email: attrs.email, slug: attrs.slug, kind: "marketplace"})
       |> render_submit()
-      |> follow_redirect(conn, ~p"/")
+      |> follow_redirect(conn, ~p"/dashboard")
 
       school = Organizations.get_school_by_slug!(attrs.slug)
       assert school.created_by_id == user.id
@@ -111,10 +111,12 @@ defmodule UneebeeWeb.NewSchoolLiveTest do
 
       refute has_element?(lv, ~s|select[id="school_kind"]|)
 
-      lv
-      |> form(@school_form, school: %{name: attrs.name, email: attrs.email, slug: attrs.slug})
-      |> render_submit()
-      |> follow_redirect(conn, "https://#{attrs.slug}.#{school.custom_domain}")
+      {:error, {:redirect, %{to: redirected_url}}} =
+        lv
+        |> form(@school_form, school: %{name: attrs.name, email: attrs.email, slug: attrs.slug})
+        |> render_submit()
+
+      assert redirected_url == "https://#{attrs.slug}.#{school.custom_domain}/dashboard"
 
       child_school = Organizations.get_school_by_slug!(attrs.slug)
       assert child_school.created_by_id == user.id
