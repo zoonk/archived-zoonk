@@ -21,7 +21,7 @@ defmodule UneebeeWeb.Components.Layouts.AppMenu do
               title={gettext("Courses")}
             />
 
-            <.menu_item :if={@host_school && @host_school.kind in [:saas, :marketplace]} navigate={~p"/schools/new"} icon="tabler-rocket" title={gettext("Create school")} />
+            <.menu_item :if={@app && @app.kind in [:saas, :marketplace]} navigate={~p"/schools/new"} icon="tabler-rocket" title={gettext("Create school")} />
           </ul>
         </li>
 

@@ -135,7 +135,7 @@ defmodule UneebeeWeb.Plugs.School do
   def on_mount(:mount_school, params, _session, socket) do
     %URI{host: host} = LiveView.get_connect_info(socket, :uri)
     school = get_school_from_socket(params, host)
-    host_school = Organizations.get_school_by_host!(host)
+    app = Organizations.get_school_by_host!(host)
     user = Map.get(socket.assigns, :current_user, nil)
     school_user = get_school_user(school, user)
 
@@ -145,7 +145,7 @@ defmodule UneebeeWeb.Plugs.School do
     socket =
       socket
       |> Phoenix.Component.assign(host: host)
-      |> Phoenix.Component.assign(host_school: host_school)
+      |> Phoenix.Component.assign(app: app)
       |> Phoenix.Component.assign(school: school)
       |> Phoenix.Component.assign(school_user: school_user)
       |> Phoenix.Component.assign(user_role: user_role)

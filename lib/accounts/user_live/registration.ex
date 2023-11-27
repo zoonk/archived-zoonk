@@ -26,7 +26,7 @@ defmodule UneebeeWeb.Live.Registration do
   def handle_event("save", %{"user" => user_params}, socket) do
     case Accounts.register_user(user_params) do
       {:ok, user} ->
-        confirm_account(user, socket.assigns.host_school)
+        confirm_account(user, socket.assigns.app)
 
         maybe_create_school_user(user, socket.assigns.school)
 

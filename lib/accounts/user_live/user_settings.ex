@@ -103,7 +103,7 @@ defmodule UneebeeWeb.Live.UserSettings do
 
     case Accounts.apply_user_email(user, password, user_params) do
       {:ok, applied_user} ->
-        Accounts.deliver_user_update_email_instructions(applied_user, socket.assigns.host_school, user.email, &url(~p"/users/settings/confirm_email/#{&1}"))
+        Accounts.deliver_user_update_email_instructions(applied_user, socket.assigns.app, user.email, &url(~p"/users/settings/confirm_email/#{&1}"))
 
         info = dgettext("auth", "A link to confirm your email change has been sent to the new address.")
 

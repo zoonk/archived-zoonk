@@ -25,7 +25,7 @@ defmodule UneebeeWeb.Layouts do
   def page_title(title, _school), do: title
 
   @spec plausible_domain(School.t()) :: String.t() | nil
-  def plausible_domain(%School{} = host_school), do: host_school.custom_domain
+  def plausible_domain(%School{} = app), do: app.custom_domain
   def plausible_domain(_school), do: nil
 
   @spec enable_plausible?(SchoolUser.t() | nil) :: boolean()
