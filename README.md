@@ -107,19 +107,9 @@ Go to `Settings` -> `CORS Policy` to add a new CORS policy. You can use the foll
 ```json
 [
   {
-    "AllowedOrigins": [
-      "http://localhost:4000",
-      "https://localhost:4001",
-      "https://uneebee.test:4001"
-    ],
-    "AllowedMethods": [
-      "GET",
-      "PUT",
-      "POST"
-    ],
-    "AllowedHeaders": [
-      "*"
-    ],
+    "AllowedOrigins": ["http://localhost:4000", "https://localhost:4001", "https://uneebee.test:4001"],
+    "AllowedMethods": ["GET", "PUT", "POST"],
+    "AllowedHeaders": ["*"],
     "ExposeHeaders": []
   }
 ]
@@ -142,6 +132,4 @@ You need to set the following environment variables on your server:
 
 ## Sponsors
 
-We don't have any sponsors yet. Add your brand here by [sponsoring our project](https://github.com/sponsors/wceolin).
-
-- [See all sponsors and supporters](https://zoonk.org/en/sponsors)
+We don't have any sponsors yet. Add your name or brand here by [sponsoring our project](https://github.com/sponsors/wceolin).
