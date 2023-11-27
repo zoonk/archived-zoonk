@@ -4,10 +4,12 @@ defmodule UneebeeWeb.UserSettingsLiveTest do
   import Phoenix.LiveViewTest
   import Uneebee.Fixtures.Accounts
   import Uneebee.Fixtures.Gamification
+  import Uneebee.Fixtures.Organizations
   import UneebeeWeb.TestHelpers.Upload
 
   alias Uneebee.Accounts
   alias Uneebee.Gamification
+  alias Uneebee.Organizations
 
   @form "#settings-form"
 
@@ -292,6 +294,49 @@ defmodule UneebeeWeb.UserSettingsLiveTest do
       assert result =~ "should be at least 8 character(s)"
       assert result =~ "does not match password"
       assert result =~ "is invalid"
+    end
+  end
+
+  describe "settings" do
+    setup :app_setup
+
+    test "displays the analytics tag", %{conn: conn, school: school} do
+      {:ok, _lv, html} = live(conn, "/users/settings")
+
+      assert html =~ "src=\"https://plausible.io/js/script.js\""
+      assert html =~ "data-domain=\"#{school.custom_domain}\""
+    end
+
+    test "hides the analytics tag if the user has disabled it", %{conn: conn, school: school, user: user} do
+      school_user = Organizations.get_school_user(school.slug, user.username)
+      Organizations.update_school_user(school_user.id, %{analytics?: false})
+
+      {:ok, _lv, html} = live(conn, "/users/settings")
+
+      refute html =~ "src=\"https://plausible.io/js/script.js\""
+      refute html =~ "data-domain=\"#{school.custom_domain}\""
+    end
+
+    test "displays the analytics tag from the parent school when visiting a child school", %{conn: conn, school: school, user: user} do
+      child_school = school_fixture(%{school_id: school.id})
+      school_user_fixture(%{school: child_school, user: user, analytics?: true})
+      conn = Map.put(conn, :host, "#{child_school.slug}.#{school.custom_domain}")
+
+      {:ok, _lv, html} = live(conn, "/users/settings")
+
+      assert html =~ "src=\"https://plausible.io/js/script.js\""
+      assert html =~ "data-domain=\"#{school.custom_domain}\""
+    end
+
+    test "displays the analytics tag from the parent school when visiting a child school using a custom domain", %{conn: conn, school: school, user: user} do
+      child_school = school_fixture(%{school_id: school.id})
+      school_user_fixture(%{school: child_school, user: user, analytics?: true})
+      conn = Map.put(conn, :host, child_school.custom_domain)
+
+      {:ok, _lv, html} = live(conn, "/users/settings")
+
+      assert html =~ "src=\"https://plausible.io/js/script.js\""
+      assert html =~ "data-domain=\"#{school.custom_domain}\""
     end
   end
 

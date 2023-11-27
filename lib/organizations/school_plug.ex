@@ -135,7 +135,7 @@ defmodule UneebeeWeb.Plugs.School do
   def on_mount(:mount_school, params, _session, socket) do
     %URI{host: host} = LiveView.get_connect_info(socket, :uri)
     school = get_school_from_socket(params, host)
-    app = Organizations.get_school_by_host!(host)
+    app = Organizations.get_app_school!(school)
     user = Map.get(socket.assigns, :current_user, nil)
     school_user = get_school_user(school, user)
 

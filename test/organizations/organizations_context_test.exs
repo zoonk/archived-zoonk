@@ -415,6 +415,23 @@ defmodule Uneebee.OrganizationsTest do
     end
   end
 
+  describe "get_app_school/1" do
+    test "returns the parent school" do
+      school1 = school_fixture()
+      school2 = school_fixture(%{school_id: school1.id})
+      assert Organizations.get_app_school!(school2) == school1
+    end
+
+    test "returns the current school when there's no parent school" do
+      school = school_fixture()
+      assert Organizations.get_app_school!(school) == school
+    end
+
+    test "returns nil when the school doesn't exist" do
+      assert Organizations.get_app_school!(nil) == nil
+    end
+  end
+
   describe "get_school_users_count/2" do
     test "returns the number of users in a school" do
       school = school_fixture()

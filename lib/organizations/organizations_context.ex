@@ -230,6 +230,21 @@ defmodule Uneebee.Organizations do
   end
 
   @doc """
+  Get the app school.
+
+  That's the main school used for setting up the app. All other schools are created under this one.
+
+  ## Examples
+
+      iex> get_app_school!(%School{})
+      %School{}
+  """
+  @spec get_app_school!(School.t()) :: School.t() | nil
+  def get_app_school!(%School{school_id: nil} = school), do: school
+  def get_app_school!(%School{school_id: school_id}), do: get_school!(school_id)
+  def get_app_school!(nil), do: nil
+
+  @doc """
   Gets the number of users in a school based on their role.
 
   ## Examples
