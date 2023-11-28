@@ -16,10 +16,32 @@
 
     <.input
       :if={@live_action == :settings}
+      field={@form[:public?]}
+      type="checkbox"
+      label={dgettext("orgs", "Allow anyone to sign up?")}
+      helper={
+        dgettext(
+          "orgs",
+          "When checked, anyone can create an account. When unchecked, they can still sign up but you will have to approve their account before they can use it."
+        )
+      }
+    />
+
+    <.input
+      :if={@live_action == :settings}
       field={@form[:require_confirmation?]}
       type="checkbox"
       label={dgettext("orgs", "Require email confirmation?")}
       helper={dgettext("orgs", "When checked, users will be required to confirm their email address before they can log in.")}
+    />
+
+    <.input
+      :if={@live_action == :settings}
+      disabled={!@form[:public?].value}
+      field={@form[:allow_guests?]}
+      type="checkbox"
+      label={dgettext("orgs", "Allow guest users?")}
+      helper={dgettext("orgs", "When checked, users won't need to create an account to play your courses. Keep it unchecked if you want users to create an account first.")}
     />
   </div>
 </.simple_form>
