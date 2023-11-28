@@ -245,13 +245,16 @@ defmodule UneebeeWeb.Plugs.UserAuth do
   """
   @spec require_authenticated_user(Plug.Conn.t(), Keyword.t()) :: Plug.Conn.t()
   def require_authenticated_user(%Plug.Conn{assigns: %{current_user: user}} = conn, _opts) when not is_nil(user), do: conn
+  def require_authenticated_user(%Plug.Conn{request_path: "/dashboard" <> _rest} = conn, _opts), do: redirect_to_login(conn)
 
   def require_authenticated_user(%Plug.Conn{assigns: %{school: %School{allow_guests?: true}}} = conn, _opts) do
     {:ok, %User{} = user} = Accounts.create_guest_user()
     conn |> put_session(:user_return_to, conn.request_path) |> log_in_user(user, %{"remember_me" => "true"}) |> halt()
   end
 
-  def require_authenticated_user(conn, _opts) do
+  def require_authenticated_user(conn, _opts), do: redirect_to_login(conn)
+
+  defp redirect_to_login(conn) do
     conn
     |> put_flash(:error, dgettext("auth", "You must log in to access this page."))
     |> maybe_store_return_to()

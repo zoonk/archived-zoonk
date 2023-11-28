@@ -14,6 +14,17 @@ defmodule UneebeeWeb.DashboardHomeLiveTest do
     end
   end
 
+  describe "/dashboard (allow guests)" do
+    setup do
+      set_school(%{conn: build_conn()}, allow_guests?: true)
+    end
+
+    test "redirects to the login page", %{conn: conn} do
+      result = get(conn, "/dashboard")
+      assert redirected_to(result) == "/users/login"
+    end
+  end
+
   describe "/dashboard (teachers)" do
     setup do
       app_setup(%{conn: build_conn()}, school_user: :teacher)
