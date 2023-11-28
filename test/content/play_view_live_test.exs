@@ -20,6 +20,24 @@ defmodule UneebeeWeb.PlayViewLiveTest do
     end
   end
 
+  describe "play view (allow guests)" do
+    setup do
+      set_school(%{conn: build_conn()}, %{allow_guests?: true})
+    end
+
+    test "renders the page", %{conn: conn, school: school} do
+      course = course_fixture(%{school_id: school.id})
+      lesson = lesson_fixture(%{course_id: course.id})
+      generate_steps(lesson)
+
+      conn = get(conn, ~p"/c/#{course.slug}/#{lesson.id}")
+      assert redirected_to(conn) == ~p"/c/#{course.slug}/#{lesson.id}"
+
+      {:ok, lv, _html} = live(conn, ~p"/c/#{course.slug}/#{lesson.id}")
+      assert has_element?(lv, ~s|blockquote p:fl-icontains("step 1!")|)
+    end
+  end
+
   describe "play view (private course, non course user)" do
     setup do
       course_setup(%{conn: build_conn()}, public_course?: false, course_user: nil)

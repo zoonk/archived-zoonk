@@ -176,7 +176,8 @@ defmodule Uneebee.Accounts do
   @spec create_guest_user() :: user_changeset()
   def create_guest_user do
     timestamp = System.os_time(:millisecond)
-    username = "#{System.unique_integer()}_#{timestamp}"
+    str = 3 |> :crypto.strong_rand_bytes() |> Base.url_encode64()
+    username = "#{str}_#{timestamp}"
     email = "#{username}@example.com"
     password = Utilities.generate_password()
 

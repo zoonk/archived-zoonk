@@ -15,6 +15,20 @@ defmodule UneebeeWeb.CourseListLiveTest do
     end
   end
 
+  describe "/courses (allow guests)" do
+    setup do
+      set_school(%{conn: build_conn()}, %{allow_guests?: true})
+    end
+
+    test "renders the page", %{conn: conn} do
+      conn = get(conn, ~p"/courses")
+      assert redirected_to(conn) == ~p"/courses"
+
+      {:ok, lv, _html} = live(conn, ~p"/courses")
+      assert has_element?(lv, ~s|li[aria-current=page] a:fl-icontains("courses")|)
+    end
+  end
+
   describe "/courses (public school, students, approved)" do
     setup :app_setup
 

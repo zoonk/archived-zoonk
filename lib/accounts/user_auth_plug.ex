@@ -13,6 +13,7 @@ defmodule UneebeeWeb.Plugs.UserAuth do
   alias Uneebee.Accounts.User
   alias Uneebee.Gamification
   alias Uneebee.Gamification.MissionUtils
+  alias Uneebee.Organizations.School
 
   # Make the remember me cookie valid for 60 days.
   # If you want bump or reduce this value, also change
@@ -243,16 +244,19 @@ defmodule UneebeeWeb.Plugs.UserAuth do
   they use the application at all, here would be a good place.
   """
   @spec require_authenticated_user(Plug.Conn.t(), Keyword.t()) :: Plug.Conn.t()
+  def require_authenticated_user(%Plug.Conn{assigns: %{current_user: user}} = conn, _opts) when not is_nil(user), do: conn
+
+  def require_authenticated_user(%Plug.Conn{assigns: %{school: %School{allow_guests?: true}}} = conn, _opts) do
+    {:ok, %User{} = user} = Accounts.create_guest_user()
+    conn |> put_session(:user_return_to, conn.request_path) |> log_in_user(user, %{"remember_me" => "true"}) |> halt()
+  end
+
   def require_authenticated_user(conn, _opts) do
-    if conn.assigns[:current_user] do
-      conn
-    else
-      conn
-      |> put_flash(:error, dgettext("auth", "You must log in to access this page."))
-      |> maybe_store_return_to()
-      |> redirect(to: ~p"/users/login")
-      |> halt()
-    end
+    conn
+    |> put_flash(:error, dgettext("auth", "You must log in to access this page."))
+    |> maybe_store_return_to()
+    |> redirect(to: ~p"/users/login")
+    |> halt()
   end
 
   defp put_token_in_session(conn, token) do
