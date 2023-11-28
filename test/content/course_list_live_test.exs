@@ -4,6 +4,7 @@ defmodule UneebeeWeb.CourseListLiveTest do
 
   import Phoenix.LiveViewTest
   import Uneebee.Fixtures.Content
+  import Uneebee.Fixtures.Organizations
 
   describe "/courses (non-authenticated users)" do
     setup :set_school
@@ -94,11 +95,19 @@ defmodule UneebeeWeb.CourseListLiveTest do
 
   describe "/courses (saas school)" do
     setup do
-      app_setup(%{conn: build_conn()}, school_kind: :marketplace)
+      app_setup(%{conn: build_conn()}, school_kind: :saas)
     end
 
     test "displays the create school menu", %{conn: conn} do
       assert_create_school_menu(conn)
+    end
+
+    test "doesn't display the create school menu for a child school", %{conn: conn, school: school} do
+      child_school = school_fixture(%{school_id: school.id, kind: :white_label})
+      host = "#{child_school.slug}.#{school.custom_domain}"
+      conn = Map.put(conn, :host, host)
+      {:ok, lv, _html} = live(conn, ~p"/courses")
+      refute has_element?(lv, ~s|li a:fl-icontains("create school")|)
     end
   end
 
