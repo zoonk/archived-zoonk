@@ -244,6 +244,10 @@ defmodule UneebeeWeb.Plugs.UserAuth do
   they use the application at all, here would be a good place.
   """
   @spec require_authenticated_user(Plug.Conn.t(), Keyword.t()) :: Plug.Conn.t()
+  def require_authenticated_user(%Plug.Conn{assigns: %{current_user: %User{guest?: true}, school: %School{allow_guests?: false}}} = conn, _opts) do
+    conn |> log_out_user() |> halt()
+  end
+
   def require_authenticated_user(%Plug.Conn{assigns: %{current_user: user}} = conn, _opts) when not is_nil(user), do: conn
   def require_authenticated_user(%Plug.Conn{request_path: "/dashboard" <> _rest} = conn, _opts), do: redirect_to_login(conn)
 

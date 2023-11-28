@@ -99,7 +99,7 @@ defmodule UneebeeWeb.ConnCase do
   def set_school_with_guest_user(%{conn: conn}, attrs \\ %{}) do
     {:ok, user} = Accounts.create_guest_user()
     conn = log_in_user(conn, user)
-    school_attrs = Map.merge(attrs, %{allow_guests?: true})
+    school_attrs = Enum.into(attrs, %{allow_guests?: true})
     %{conn: school_conn, school: school} = set_school(%{conn: conn}, school_attrs)
     %{conn: school_conn, school: school, user: user}
   end
