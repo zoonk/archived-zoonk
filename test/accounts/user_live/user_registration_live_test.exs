@@ -3,6 +3,7 @@ defmodule UneebeeWeb.UserRegistrationLiveTest do
 
   import Phoenix.LiveViewTest
   import Uneebee.Fixtures.Accounts
+  import Uneebee.Fixtures.Organizations
 
   alias Uneebee.Accounts
   alias Uneebee.Organizations
@@ -193,6 +194,46 @@ defmodule UneebeeWeb.UserRegistrationLiveTest do
         |> element(~s|main a:fl-contains("Sign in")|)
         |> render_click()
         |> follow_redirect(conn, ~p"/users/login")
+    end
+  end
+
+  describe "register user (child school, public)" do
+    setup :set_school
+
+    test "automatically approve user", %{conn: conn, school: school} do
+      child_school = school_fixture(%{school_id: school.id, public?: true})
+      host = "#{child_school.slug}.#{school.custom_domain}"
+      conn = Map.put(conn, :host, host)
+      user_attrs = valid_user_attributes()
+
+      {:ok, lv, _html} = live(conn, ~p"/users/register")
+
+      lv |> form("#registration_form", user: user_attrs) |> render_submit()
+
+      user = Accounts.get_user_by_email(user_attrs.email)
+      school_user = Organizations.get_school_user(child_school.slug, user.username)
+
+      assert school_user.approved?
+    end
+  end
+
+  describe "register user (child school, private)" do
+    setup :set_school
+
+    test "set school user as pending", %{conn: conn, school: school} do
+      child_school = school_fixture(%{school_id: school.id, public?: false})
+      host = "#{child_school.slug}.#{school.custom_domain}"
+      conn = Map.put(conn, :host, host)
+      user_attrs = valid_user_attributes()
+
+      {:ok, lv, _html} = live(conn, ~p"/users/register")
+
+      lv |> form("#registration_form", user: user_attrs) |> render_submit()
+
+      user = Accounts.get_user_by_email(user_attrs.email)
+      school_user = Organizations.get_school_user(child_school.slug, user.username)
+
+      refute school_user.approved?
     end
   end
 
