@@ -16,6 +16,7 @@ defmodule Uneebee.Accounts.User do
     field :date_of_birth, :date
     field :email, :string
     field :first_name, :string
+    field :guest?, :boolean, default: false
     field :hashed_password, :string, redact: true
     field :language, Ecto.Enum, values: Translate.supported_locales(), default: :en
     field :last_name, :string
@@ -51,7 +52,7 @@ defmodule Uneebee.Accounts.User do
   @spec registration_changeset(Ecto.Schema.t(), map(), Keyword.t()) :: Ecto.Changeset.t()
   def registration_changeset(user, attrs, opts \\ []) do
     user
-    |> cast(attrs, [:avatar, :date_of_birth, :email, :first_name, :language, :last_name, :password, :username])
+    |> cast(attrs, [:avatar, :date_of_birth, :email, :first_name, :guest?, :language, :last_name, :password, :username])
     |> validate_user_email(opts)
     |> validate_password(opts)
     |> validate_username(opts)
