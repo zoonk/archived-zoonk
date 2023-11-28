@@ -25,6 +25,7 @@ defmodule UneebeeWeb.NewSchoolLiveTest do
       school = Organizations.get_school_by_slug!(attrs.slug)
       assert school.created_by_id == user.id
       assert school.name == attrs.name
+      assert school.public?
 
       school_user = Organizations.get_school_user(school.slug, user.username)
       assert school_user.role == :manager
@@ -123,6 +124,7 @@ defmodule UneebeeWeb.NewSchoolLiveTest do
       assert child_school.name == attrs.name
       assert child_school.kind == :white_label
       assert child_school.school_id == school.id
+      refute child_school.public?
     end
   end
 end

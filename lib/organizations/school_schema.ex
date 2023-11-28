@@ -23,7 +23,7 @@ defmodule Uneebee.Organizations.School do
     field :logo, :string
     field :name, :string
     field :privacy_policy, :string
-    field :public?, :boolean, default: true
+    field :public?, :boolean, default: false
     field :require_confirmation?, :boolean, default: false
     field :slug, :string
     field :terms_of_use, :string

@@ -33,8 +33,9 @@ defmodule UneebeeWeb.Live.SchoolNew do
 
     domain = if is_nil(app), do: host
     school_id = if is_nil(app), do: nil, else: app.id
+    public? = is_nil(school_id)
 
-    attrs = Map.merge(school_params, %{"created_by_id" => user.id, "custom_domain" => domain, "school_id" => school_id})
+    attrs = Map.merge(school_params, %{"created_by_id" => user.id, "custom_domain" => domain, "school_id" => school_id, "public?" => public?})
 
     case Organizations.create_school_and_manager(user, attrs) do
       {:ok, new_school} ->
