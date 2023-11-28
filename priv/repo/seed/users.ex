@@ -20,7 +20,7 @@ defmodule UserSeed do
       email: "curie@example.com",
       username: "curie",
       date_of_birth: "1967-11-07",
-      language: :pt,
+      language: :en,
       password: "Demo1234",
       avatar: "/uploads/seed/users/curie.jpeg"
     },
@@ -40,7 +40,7 @@ defmodule UserSeed do
       email: "lovelace@example.com",
       username: "lovelace",
       date_of_birth: "1915-12-10",
-      language: :pt,
+      language: :en,
       password: "Demo1234",
       avatar: "/uploads/seed/users/lovelace.jpeg"
     },
@@ -60,7 +60,7 @@ defmodule UserSeed do
       email: "franklin@example.com",
       username: "franklin",
       date_of_birth: "1970-07-25",
-      language: :pt,
+      language: :en,
       password: "Demo1234",
       avatar: "/uploads/seed/users/franklin.jpeg"
     },
@@ -90,7 +90,7 @@ defmodule UserSeed do
       email: "goodall@example.com",
       username: "goodall",
       date_of_birth: "1984-04-03",
-      language: :pt,
+      language: :en,
       password: "Demo1234",
       avatar: "/uploads/seed/users/goodall.jpeg"
     }

@@ -50,7 +50,7 @@ Follow the instructions below to get UneeBee up and running on your local machin
 ### Local development
 
 - Run `mix setup` to install both dependencies and set up both the database and assets.
-- Run `mix seed` to fetch some initial data to the database.
+- Run `mix seed` to fetch some initial data to the database. Use `mix seed --kind=saas` to seed the database with multiple schools.
 - Run `mix phx.server` to start a development server.
 - Run `mix test` to run tests.
 - Run `mix ci` to run our code quality checks.
@@ -61,7 +61,7 @@ Follow the instructions below to get UneeBee up and running on your local machin
 Prefer to do local development using SSL to resemble production as much as possible. You can use [mkcert](https://github.com/FiloSottile/mkcert) to generate a certificate. After you install `mkcert`, follow the steps below:
 
 - Create a `cert` directory under `priv`: `mkdir priv/cert`.
-- Generate a new certificate: `mkcert -key-file priv/cert/selfsigned_key.pem -cert-file priv/cert/selfsigned.pem localhost uneebee.test "*.uneebee.test"`.
+- Generate a new certificate: `mkcert -key-file priv/cert/selfsigned_key.pem -cert-file priv/cert/selfsigned.pem localhost uneebee.test "*.uneebee.test" apple.test`.
 - Run `mkcert -install` to install the certificate in the system trust store.
 - You may also need to enable `Allow invalid certificates for resources loaded from localhost` on [Google Chrome flags](chrome://flags/#allow-insecure-localhost).
 - Restart your local server: `mix phx.server`. You may also need to restart your browser.
@@ -77,10 +77,12 @@ mkdir -pv $(brew --prefix)/etc/
 # Set up your domains
 echo 'address=/uneebee.test/127.0.0.1' >> $(brew --prefix)/etc/dnsmasq.conf
 echo 'address=/.uneebee.test/127.0.0.1' >> $(brew --prefix)/etc/dnsmasq.conf
+echo 'address=/apple.test/127.0.0.1' >> $(brew --prefix)/etc/dnsmasq.conf
 
 # Add dnsmasq to your resolver
 sudo mkdir -v /etc/resolver
 sudo bash -c 'echo "nameserver 127.0.0.1" > /etc/resolver/uneebee.test'
+sudo bash -c 'echo "nameserver 127.0.0.1" > /etc/resolver/apple.test'
 
 # Start dnsmasq
 sudo brew services start dnsmasq

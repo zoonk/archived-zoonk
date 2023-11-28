@@ -22,17 +22,6 @@ defmodule CourseSeed do
       schools: ["uneebee"]
     },
     %{
-      name: "UneeBee for teachers",
-      description: "Learn how you can use UneeBee to teach new skills.",
-      cover: "/uploads/seed/courses/uneebee_for_teachers.avif",
-      language: :en,
-      level: :beginner,
-      public?: true,
-      published?: true,
-      slug: "uneebee-for-teachers",
-      schools: ["uneebee"]
-    },
-    %{
       name: "Accounting processes",
       description: "Learn how to manage accounting processes.",
       cover: "/uploads/seed/courses/accounting_processes.avif",
@@ -53,6 +42,28 @@ defmodule CourseSeed do
       published?: false,
       slug: "gdpr",
       schools: ["uneebee"]
+    },
+    %{
+      name: "Work at Apple",
+      description: "Check if you have what it takes to work at Apple.",
+      cover: nil,
+      language: :en,
+      level: :beginner,
+      public?: true,
+      published?: true,
+      slug: "work-at-apple",
+      schools: ["apple"]
+    },
+    %{
+      name: "Work at Google",
+      description: "Check if you have what it takes to work at Google.",
+      cover: nil,
+      language: :en,
+      level: :beginner,
+      public?: true,
+      published?: true,
+      slug: "work-at-google",
+      schools: ["google"]
     }
   ]
 
