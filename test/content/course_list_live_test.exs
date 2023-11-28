@@ -6,6 +6,8 @@ defmodule UneebeeWeb.CourseListLiveTest do
   import Uneebee.Fixtures.Content
   import Uneebee.Fixtures.Organizations
 
+  alias Uneebee.Accounts
+
   describe "/courses (non-authenticated users)" do
     setup :set_school
 
@@ -26,6 +28,17 @@ defmodule UneebeeWeb.CourseListLiveTest do
 
       {:ok, lv, _html} = live(conn, ~p"/courses")
       assert has_element?(lv, ~s|li[aria-current=page] a:fl-icontains("courses")|)
+      refute has_element?(lv, ~s|a:fl-icontains("update your email address")|)
+    end
+
+    test "displays warning after a user completes a lesson", %{conn: conn} do
+      conn = get(conn, ~p"/courses")
+      token = conn.private[:plug_session]["user_token"]
+      user = Accounts.get_user_by_session_token(token)
+      generate_user_lesson(user.id, 0)
+
+      {:ok, lv, _html} = live(conn, ~p"/courses")
+      assert has_element?(lv, ~s|a:fl-icontains("update your email address")|)
     end
   end
 
