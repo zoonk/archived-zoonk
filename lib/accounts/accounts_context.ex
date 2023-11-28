@@ -12,6 +12,7 @@ defmodule Uneebee.Accounts do
   alias Uneebee.Mailer
   alias Uneebee.Organizations.School
   alias Uneebee.Repo
+  alias UneebeeWeb.Shared.Utilities
 
   @type user_changeset :: {:ok, User.t()} | {:error, Ecto.Changeset.t()}
 
@@ -159,6 +160,27 @@ defmodule Uneebee.Accounts do
   @spec register_user(map()) :: user_changeset()
   def register_user(attrs) do
     %User{} |> User.registration_changeset(attrs) |> Repo.insert()
+  end
+
+  @doc """
+  Creates a guest user.
+
+  This is a temporary user that is created when a user is not logged in.
+  This is useful to allow users to play courses without having to register.
+
+  ## Examples
+
+      iex> create_guest_user()
+      {:ok, %User{}}
+  """
+  @spec create_guest_user() :: user_changeset()
+  def create_guest_user do
+    timestamp = System.os_time(:millisecond)
+    username = "#{System.unique_integer()}_#{timestamp}"
+    email = "#{username}@example.com"
+    password = Utilities.generate_password()
+
+    %User{} |> User.registration_changeset(%{email: email, password: password, username: username, guest?: true}) |> Repo.insert()
   end
 
   @doc """

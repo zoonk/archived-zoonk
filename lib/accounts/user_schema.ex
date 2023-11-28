@@ -190,7 +190,7 @@ defmodule Uneebee.Accounts.User do
   defp validate_username(changeset, opts) do
     changeset
     |> validate_required([:username])
-    |> validate_length(:username, min: 3, max: 30)
+    |> validate_length(:username, min: 3, max: 60)
     |> validate_slug(:username)
     |> maybe_validate_unique_username(opts)
   end
