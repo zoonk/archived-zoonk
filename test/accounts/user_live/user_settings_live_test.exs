@@ -244,6 +244,26 @@ defmodule UneebeeWeb.UserSettingsLiveTest do
     end
   end
 
+  describe "/users/setting/email (guest user)" do
+    setup :set_school_with_guest_user
+
+    test "updates the user email", %{conn: conn, user: user} do
+      new_email = unique_user_email()
+
+      {:ok, lv, _html} = live(conn, ~p"/users/settings/email")
+
+      assert has_element?(lv, ~s|input[type="hidden"][name="current_password]|)
+
+      result =
+        lv
+        |> form(@form, %{"user" => %{"email" => new_email}})
+        |> render_submit()
+
+      assert result =~ "A link to confirm your email"
+      assert Accounts.get_user_by_email(user.email)
+    end
+  end
+
   describe "/users/settings/password" do
     setup :register_and_log_in_user
 

@@ -42,7 +42,7 @@
       field={@form[:current_password]}
       name="current_password"
       id="current_password"
-      type="password"
+      type={if @current_user.guest?, do: "hidden", else: "password"}
       label={dgettext("auth", "Current password")}
       value={@current_password}
       required

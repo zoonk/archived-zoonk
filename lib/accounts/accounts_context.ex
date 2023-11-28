@@ -271,9 +271,12 @@ defmodule Uneebee.Accounts do
   def apply_user_email(user, password, attrs) do
     user
     |> User.email_changeset(attrs)
-    |> User.validate_current_password(password)
+    |> maybe_validate_current_password(user, password)
     |> Ecto.Changeset.apply_action(:update)
   end
+
+  defp maybe_validate_current_password(changeset, %User{guest?: true}, _password), do: changeset
+  defp maybe_validate_current_password(changeset, _user, password), do: User.validate_current_password(changeset, password)
 
   @doc """
   Updates the user email using the given token.
