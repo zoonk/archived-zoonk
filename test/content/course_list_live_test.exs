@@ -29,6 +29,17 @@ defmodule UneebeeWeb.CourseListLiveTest do
     end
   end
 
+  describe "/courses (doesn't allow guests)" do
+    setup do
+      set_school(%{conn: build_conn()}, %{allow_guests?: false})
+    end
+
+    test "redirects to the login page", %{conn: conn} do
+      result = get(conn, ~p"/courses")
+      assert redirected_to(result) == ~p"/users/login"
+    end
+  end
+
   describe "/courses (public school, students, approved)" do
     setup :app_setup
 
