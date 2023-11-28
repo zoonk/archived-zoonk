@@ -42,6 +42,17 @@ defmodule UneebeeWeb.CourseListLiveTest do
     end
   end
 
+  describe "/courses (guest user)" do
+    setup :set_school_with_guest_user
+
+    test "displays warning after a user completes a lesson", %{conn: conn, user: user} do
+      generate_user_lesson(user.id, 0)
+
+      {:ok, lv, _html} = live(conn, ~p"/courses")
+      assert has_element?(lv, ~s|a:fl-icontains("update your email address")|)
+    end
+  end
+
   describe "/courses (doesn't allow guests)" do
     setup do
       set_school(%{conn: build_conn()}, %{allow_guests?: false})

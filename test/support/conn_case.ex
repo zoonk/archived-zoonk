@@ -22,6 +22,7 @@ defmodule UneebeeWeb.ConnCase do
   import Uneebee.Fixtures.Organizations
 
   alias Plug.Conn
+  alias Uneebee.Accounts
   alias Uneebee.Accounts.User
   alias Uneebee.Content.Course
   alias Uneebee.Content.Lesson
@@ -87,6 +88,20 @@ defmodule UneebeeWeb.ConnCase do
     school = school_fixture(attrs)
     conn = conn |> Map.put(:host, school.custom_domain) |> Conn.assign(:school, school)
     %{conn: conn, school: school}
+  end
+
+  @doc """
+  Sets up a school with a guest user.
+
+      setup :set_school_with_guest_user
+  """
+  @spec set_school_with_guest_user(%{conn: Conn.t()}, map()) :: %{conn: Conn.t(), school: School.t(), user: User.t()}
+  def set_school_with_guest_user(%{conn: conn}, attrs \\ %{}) do
+    {:ok, user} = Accounts.create_guest_user()
+    conn = log_in_user(conn, user)
+    school_attrs = Map.merge(attrs, %{allow_guests?: true})
+    %{conn: school_conn, school: school} = set_school(%{conn: conn}, school_attrs)
+    %{conn: school_conn, school: school, user: user}
   end
 
   @doc """
