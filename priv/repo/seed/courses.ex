@@ -1,6 +1,7 @@
 defmodule CourseSeed do
   @moduledoc false
 
+  alias Uneebee.Organizations.School
   alias Uneebee.Content
   alias Uneebee.Content.Course
   alias Uneebee.Content.CourseUser
@@ -120,27 +121,30 @@ defmodule CourseSeed do
   end
 
   defp create_courses(attrs, slug) do
-    school = Organizations.get_school_by_slug!(slug)
-    teachers = Organizations.list_school_users_by_role(school, :teacher)
-    managers = Organizations.list_school_users_by_role(school, :manager)
+    school = Repo.get_by(School, slug: slug)
 
-    attrs = Map.put(attrs, :school_id, school.id)
-    course = %Course{} |> Content.change_course(attrs) |> Repo.insert!()
+    if school do
+      teachers = Organizations.list_school_users_by_role(school, :teacher)
+      managers = Organizations.list_school_users_by_role(school, :manager)
 
-    course_teacher = Enum.random(teachers)
+      attrs = Map.put(attrs, :school_id, school.id)
+      course = %Course{} |> Content.change_course(attrs) |> Repo.insert!()
 
-    course_user_attrs = %{
-      course_id: course.id,
-      user_id: course_teacher.id,
-      role: :teacher,
-      approved?: true,
-      approved_at: DateTime.utc_now(),
-      approved_by_id: Enum.at(managers, 0).id
-    }
+      course_teacher = Enum.random(teachers)
 
-    %CourseUser{} |> CourseUser.changeset(course_user_attrs) |> Repo.insert!()
+      course_user_attrs = %{
+        course_id: course.id,
+        user_id: course_teacher.id,
+        role: :teacher,
+        approved?: true,
+        approved_at: DateTime.utc_now(),
+        approved_by_id: Enum.at(managers, 0).id
+      }
 
-    Enum.each(@lessons, fn lesson_attrs -> create_lessons(lesson_attrs, course) end)
+      %CourseUser{} |> CourseUser.changeset(course_user_attrs) |> Repo.insert!()
+
+      Enum.each(@lessons, fn lesson_attrs -> create_lessons(lesson_attrs, course) end)
+    end
   end
 
   defp create_lessons(attrs, course) do
