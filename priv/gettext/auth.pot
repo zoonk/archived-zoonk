@@ -103,25 +103,25 @@ msgstr ""
 msgid "Password updated successfully!"
 msgstr ""
 
-#: lib/accounts/user_auth_plug.ex:173
-#: lib/accounts/user_auth_plug.ex:251
+#: lib/accounts/user_auth_plug.ex:174
+#: lib/accounts/user_auth_plug.ex:263
 #, elixir-autogen, elixir-format
 msgid "You must log in to access this page."
 msgstr ""
 
 #: lib/accounts/user_live/reset_password.html.heex:10
-#: lib/accounts/user_live/user_settings.html.heex:52
+#: lib/accounts/user_live/user_settings.html.heex:56
 #, elixir-autogen, elixir-format
 msgid "Confirm new password"
 msgstr ""
 
-#: lib/accounts/user_live/user_settings.html.heex:46
+#: lib/accounts/user_live/user_settings.html.heex:50
 #, elixir-autogen, elixir-format
 msgid "Current password"
 msgstr ""
 
 #: lib/accounts/user_live/reset_password.html.heex:9
-#: lib/accounts/user_live/user_settings.html.heex:51
+#: lib/accounts/user_live/user_settings.html.heex:55
 #, elixir-autogen, elixir-format
 msgid "New password"
 msgstr ""
@@ -209,4 +209,9 @@ msgstr ""
 #: lib/accounts/user_live/registration.ex:75
 #, elixir-autogen, elixir-format
 msgid "terms of use"
+msgstr ""
+
+#: lib/accounts/user_live/user_settings.html.heex:38
+#, elixir-autogen, elixir-format
+msgid "You have a guest account. To convert it into a regular account, update your email address below:"
 msgstr ""

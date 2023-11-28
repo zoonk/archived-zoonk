@@ -29,7 +29,7 @@ msgstr "Criar escola"
 msgid "Nickname"
 msgstr "Apelido"
 
-#: lib/organizations/school_live/school_new.ex:47
+#: lib/organizations/school_live/school_new.ex:48
 #, elixir-autogen, elixir-format
 msgid "School could not be created"
 msgstr "Não foi possível criar a escola"
@@ -618,12 +618,12 @@ msgstr ""
 msgid "Enable analytics"
 msgstr ""
 
-#: lib/dashboard/schools/school_edit.html.heex:21
+#: lib/dashboard/schools/school_edit.html.heex:34
 #, elixir-autogen, elixir-format
 msgid "Require email confirmation?"
 msgstr "Exigir confirmação de e-mail?"
 
-#: lib/dashboard/schools/school_edit.html.heex:22
+#: lib/dashboard/schools/school_edit.html.heex:35
 #, elixir-autogen, elixir-format
 msgid "When checked, users will be required to confirm their email address before they can log in."
 msgstr "Ao marcar, os usuários deverão confirmar o endereço de e-mail antes de poderem fazer login."
@@ -633,17 +633,37 @@ msgstr "Ao marcar, os usuários deverão confirmar o endereço de e-mail antes d
 msgid "App type"
 msgstr "Tipo do aplicativo"
 
-#: lib/organizations/school_live/school_new.ex:52
+#: lib/organizations/school_live/school_new.ex:53
 #, elixir-autogen, elixir-format
 msgid "Marketplace"
 msgstr "Loja virtual"
 
-#: lib/organizations/school_live/school_new.ex:52
+#: lib/organizations/school_live/school_new.ex:53
 #, elixir-autogen, elixir-format
 msgid "SaaS"
 msgstr "SaaS"
 
-#: lib/organizations/school_live/school_new.ex:52
+#: lib/organizations/school_live/school_new.ex:53
 #, elixir-autogen, elixir-format
 msgid "White label"
 msgstr "White label"
+
+#: lib/dashboard/schools/school_edit.html.heex:21
+#, elixir-autogen, elixir-format
+msgid "Allow anyone to sign up?"
+msgstr "Permirtir que qualquer um se cadastre?"
+
+#: lib/dashboard/schools/school_edit.html.heex:43
+#, elixir-autogen, elixir-format
+msgid "Allow guest users?"
+msgstr "Permirtir convidados?"
+
+#: lib/dashboard/schools/school_edit.html.heex:23
+#, elixir-autogen, elixir-format
+msgid "When checked, anyone can create an account. When unchecked, they can still sign up but you will have to approve their account before they can use it."
+msgstr "Ao marcar, qualquer pessoa pode criar uma conta. Quando desmarcado, eles ainda podem se cadastrar, mas você terá que aprovar a conta antes."
+
+#: lib/dashboard/schools/school_edit.html.heex:44
+#, elixir-autogen, elixir-format
+msgid "When checked, users won't need to create an account to play your courses. Keep it unchecked if you want users to create an account first."
+msgstr "Ao marcar, os usuários não precisarão criar uma conta para jogar os cursos. Mantenha desmarcado se você quiser que os usuários criem uma conta primeiro."
