@@ -29,7 +29,7 @@ msgstr ""
 msgid "Nickname"
 msgstr ""
 
-#: lib/organizations/school_live/school_new.ex:47
+#: lib/organizations/school_live/school_new.ex:48
 #, elixir-autogen, elixir-format
 msgid "School could not be created"
 msgstr ""
@@ -618,12 +618,12 @@ msgstr ""
 msgid "Enable analytics"
 msgstr ""
 
-#: lib/dashboard/schools/school_edit.html.heex:21
+#: lib/dashboard/schools/school_edit.html.heex:34
 #, elixir-autogen, elixir-format
 msgid "Require email confirmation?"
 msgstr ""
 
-#: lib/dashboard/schools/school_edit.html.heex:22
+#: lib/dashboard/schools/school_edit.html.heex:35
 #, elixir-autogen, elixir-format
 msgid "When checked, users will be required to confirm their email address before they can log in."
 msgstr ""
@@ -633,17 +633,37 @@ msgstr ""
 msgid "App type"
 msgstr ""
 
-#: lib/organizations/school_live/school_new.ex:52
+#: lib/organizations/school_live/school_new.ex:53
 #, elixir-autogen, elixir-format
 msgid "Marketplace"
 msgstr ""
 
-#: lib/organizations/school_live/school_new.ex:52
+#: lib/organizations/school_live/school_new.ex:53
 #, elixir-autogen, elixir-format
 msgid "SaaS"
 msgstr ""
 
-#: lib/organizations/school_live/school_new.ex:52
+#: lib/organizations/school_live/school_new.ex:53
 #, elixir-autogen, elixir-format
 msgid "White label"
+msgstr ""
+
+#: lib/dashboard/schools/school_edit.html.heex:21
+#, elixir-autogen, elixir-format
+msgid "Allow anyone to sign up?"
+msgstr ""
+
+#: lib/dashboard/schools/school_edit.html.heex:43
+#, elixir-autogen, elixir-format
+msgid "Allow guest users?"
+msgstr ""
+
+#: lib/dashboard/schools/school_edit.html.heex:23
+#, elixir-autogen, elixir-format
+msgid "When checked, anyone can create an account. When unchecked, they can still sign up but you will have to approve their account before they can use it."
+msgstr ""
+
+#: lib/dashboard/schools/school_edit.html.heex:44
+#, elixir-autogen, elixir-format
+msgid "When checked, users won't need to create an account to play your courses. Keep it unchecked if you want users to create an account first."
 msgstr ""

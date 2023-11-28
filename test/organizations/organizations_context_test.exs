@@ -259,6 +259,18 @@ defmodule Uneebee.OrganizationsTest do
       assert {:ok, %School{} = updated_school} = Organizations.update_school(school, %{kind: :saas})
       assert updated_school.kind == :white_label
     end
+
+    test "don't allow private schools to allow guests" do
+      school = school_fixture(%{allow_guests?: false, public?: false})
+      assert {:ok, %School{} = updated_school} = Organizations.update_school(school, %{allow_guests?: true})
+      assert updated_school.allow_guests? == false
+    end
+
+    test "public schools can allow guests" do
+      school = school_fixture(%{allow_guests?: false, public?: true})
+      assert {:ok, %School{} = updated_school} = Organizations.update_school(school, %{allow_guests?: true})
+      assert updated_school.allow_guests? == true
+    end
   end
 
   describe "get_school!/1" do

@@ -17,6 +17,7 @@ defmodule Uneebee.Organizations.School do
   @type t :: %__MODULE__{}
 
   schema "schools" do
+    field :allow_guests?, :boolean, default: false
     field :custom_domain, :string
     field :email, :string
     field :kind, Ecto.Enum, values: [:marketplace, :saas, :white_label], default: :white_label
@@ -64,16 +65,24 @@ defmodule Uneebee.Organizations.School do
     |> validate_unique_slug()
     |> validate_custom_domain()
     |> validate_kind()
+    |> validate_allow_guests()
   end
 
   defp shared_cast_fields do
-    [:created_by_id, :custom_domain, :email, :logo, :name, :privacy_policy, :public?, :require_confirmation?, :terms_of_use, :school_id, :slug]
+    [:allow_guests?, :created_by_id, :custom_domain, :email, :logo, :name, :privacy_policy, :public?, :require_confirmation?, :terms_of_use, :school_id, :slug]
   end
 
   defp validate_unique_slug(changeset) do
     changeset
     |> unsafe_validate_unique(:slug, Uneebee.Repo)
     |> unique_constraint(:slug)
+  end
+
+  # Don't allow private schools to allow guests.
+  defp validate_allow_guests(changeset) do
+    public? = get_field(changeset, :public?)
+    allow_guests? = if public?, do: get_field(changeset, :allow_guests?), else: false
+    put_change(changeset, :allow_guests?, allow_guests?)
   end
 
   # Child schools must have a `white_label` kind. A school has a parent school when `school_id` is not `nil`.

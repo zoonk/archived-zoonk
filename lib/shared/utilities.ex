@@ -21,4 +21,35 @@ defmodule UneebeeWeb.Shared.Utilities do
   def string_to_boolean("true"), do: true
   def string_to_boolean("false"), do: false
   def string_to_boolean(_str), do: true
+
+  @doc """
+  Generates a random password.
+
+  It generates a random password that meets the following criteria:
+
+      * At least 8 characters long
+      * At least one uppercase letter
+      * At least one lowercase letter
+      * At least one number
+
+  ## Examples
+
+      iex> random_password()
+      "HelloWorld123"
+
+  """
+  @spec generate_password(non_neg_integer()) :: String.t()
+  def generate_password(length \\ 8) do
+    # This string is appended to the password to meet the criteria
+    criteria = "Zk1"
+
+    # Adjusting the base length to account for the appended string
+    base_length = max(length - String.length(criteria), 0)
+
+    base_length
+    |> :crypto.strong_rand_bytes()
+    |> Base.url_encode64()
+    |> String.slice(0, base_length)
+    |> Kernel.<>(criteria)
+  end
 end

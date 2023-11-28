@@ -12,6 +12,7 @@ defmodule Uneebee.Accounts do
   alias Uneebee.Mailer
   alias Uneebee.Organizations.School
   alias Uneebee.Repo
+  alias UneebeeWeb.Shared.Utilities
 
   @type user_changeset :: {:ok, User.t()} | {:error, Ecto.Changeset.t()}
 
@@ -162,6 +163,28 @@ defmodule Uneebee.Accounts do
   end
 
   @doc """
+  Creates a guest user.
+
+  This is a temporary user that is created when a user is not logged in.
+  This is useful to allow users to play courses without having to register.
+
+  ## Examples
+
+      iex> create_guest_user()
+      {:ok, %User{}}
+  """
+  @spec create_guest_user() :: user_changeset()
+  def create_guest_user do
+    timestamp = System.os_time(:millisecond)
+    str = 3 |> :crypto.strong_rand_bytes() |> Base.url_encode64()
+    username = "#{str}_#{timestamp}"
+    email = "#{username}@example.com"
+    password = Utilities.generate_password()
+
+    %User{} |> User.registration_changeset(%{email: email, password: password, username: username, guest?: true}) |> Repo.insert()
+  end
+
+  @doc """
   Returns an `%Ecto.Changeset{}` for tracking user changes.
 
   ## Examples
@@ -248,9 +271,12 @@ defmodule Uneebee.Accounts do
   def apply_user_email(user, password, attrs) do
     user
     |> User.email_changeset(attrs)
-    |> User.validate_current_password(password)
+    |> maybe_validate_current_password(user, password)
     |> Ecto.Changeset.apply_action(:update)
   end
+
+  defp maybe_validate_current_password(changeset, %User{guest?: true}, _password), do: changeset
+  defp maybe_validate_current_password(changeset, _user, password), do: User.validate_current_password(changeset, password)
 
   @doc """
   Updates the user email using the given token.

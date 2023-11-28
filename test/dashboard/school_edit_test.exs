@@ -69,11 +69,62 @@ defmodule UneebeeWeb.SchoolUpdateLiveTest do
       assert has_element?(lv, ~s|input[name="school[require_confirmation?]"][value="false"]|)
 
       assert lv
-             |> form(@school_form, school: %{"require_confirmation?" => "false"})
+             |> form(@school_form, school: %{"require_confirmation?" => "true"})
              |> render_submit() =~ "School updated successfully"
 
       updated_school = Organizations.get_school_by_slug!(school.slug)
-      assert updated_school.require_confirmation? == false
+      assert updated_school.require_confirmation? == true
+    end
+
+    test "updates the public? field", %{conn: conn, school: school} do
+      {:ok, lv, _html} = live(conn, ~p"/dashboard/edit/settings")
+
+      assert has_element?(lv, ~s|input[name="school[public?]"][value="false"]|)
+
+      assert lv
+             |> form(@school_form, school: %{"public?" => "true"})
+             |> render_submit() =~ "School updated successfully"
+
+      updated_school = Organizations.get_school_by_slug!(school.slug)
+      assert updated_school.public? == true
+    end
+
+    test "updates the allow_guests? field", %{conn: conn, school: school} do
+      {:ok, lv, _html} = live(conn, ~p"/dashboard/edit/settings")
+
+      assert has_element?(lv, ~s|input[name="school[allow_guests?]"][value="false"]|)
+
+      assert lv
+             |> form(@school_form, school: %{"allow_guests?" => "true"})
+             |> render_submit() =~ "School updated successfully"
+
+      updated_school = Organizations.get_school_by_slug!(school.slug)
+      assert updated_school.allow_guests? == true
+    end
+
+    test "don't allow to update allow_guests? when public? is false", %{conn: conn, school: school} do
+      Organizations.update_school(school, %{public?: true})
+
+      {:ok, lv, _html} = live(conn, ~p"/dashboard/edit/settings")
+
+      assert has_element?(lv, ~s|input[name="school[public?]"][value="true"]|)
+      assert has_element?(lv, ~s|input[name="school[allow_guests?]"][value="false"]|)
+
+      assert lv
+             |> form(@school_form, school: %{"public?" => "false", "allow_guests?" => "true"})
+             |> render_submit() =~ "School updated successfully"
+
+      updated_school = Organizations.get_school_by_slug!(school.slug)
+      assert updated_school.allow_guests? == false
+    end
+
+    test "disables the allow_guests? input when public? is false", %{conn: conn, school: school} do
+      Organizations.update_school(school, %{public?: false})
+
+      {:ok, lv, _html} = live(conn, ~p"/dashboard/edit/settings")
+
+      assert has_element?(lv, ~s|input[name="school[public?]"][value="false"]|)
+      assert has_element?(lv, ~s|input[name="school[allow_guests?]"][disabled="disabled"]|)
     end
   end
 

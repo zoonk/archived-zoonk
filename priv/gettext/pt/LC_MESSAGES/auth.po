@@ -103,25 +103,25 @@ msgstr "E-mail ou senha inválidos."
 msgid "Password updated successfully!"
 msgstr "Senha atualizada com sucesso!"
 
-#: lib/accounts/user_auth_plug.ex:173
-#: lib/accounts/user_auth_plug.ex:251
+#: lib/accounts/user_auth_plug.ex:174
+#: lib/accounts/user_auth_plug.ex:263
 #, elixir-autogen, elixir-format
 msgid "You must log in to access this page."
 msgstr "É necessário estar logado para acessar esta página."
 
 #: lib/accounts/user_live/reset_password.html.heex:10
-#: lib/accounts/user_live/user_settings.html.heex:52
+#: lib/accounts/user_live/user_settings.html.heex:56
 #, elixir-autogen, elixir-format
 msgid "Confirm new password"
 msgstr "Confirmar nova senha"
 
-#: lib/accounts/user_live/user_settings.html.heex:46
+#: lib/accounts/user_live/user_settings.html.heex:50
 #, elixir-autogen, elixir-format
 msgid "Current password"
 msgstr "Senha atual"
 
 #: lib/accounts/user_live/reset_password.html.heex:9
-#: lib/accounts/user_live/user_settings.html.heex:51
+#: lib/accounts/user_live/user_settings.html.heex:55
 #, elixir-autogen, elixir-format
 msgid "New password"
 msgstr "Nova senha"
@@ -210,3 +210,8 @@ msgstr "política de privacidade"
 #, elixir-autogen, elixir-format
 msgid "terms of use"
 msgstr "termos de uso"
+
+#: lib/accounts/user_live/user_settings.html.heex:38
+#, elixir-autogen, elixir-format
+msgid "You have a guest account. To convert it into a regular account, update your email address below:"
+msgstr "Você tem uma conta de convidado. Para convertê-la em uma conta comum, atualize o endereço de e-mail abaixo:"

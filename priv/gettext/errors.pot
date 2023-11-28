@@ -12,13 +12,13 @@ msgid "can't be blank"
 msgstr ""
 
 ## From Ecto.Changeset.unique_constraint/3
-#: lib/organizations/school_schema.ex:96
+#: lib/organizations/school_schema.ex:105
 #, elixir-autogen
 msgid "has already been taken"
 msgstr ""
 
 ## From Ecto.Changeset.put_change/3
-#: lib/accounts/user_schema.ex:185
+#: lib/accounts/user_schema.ex:186
 #, elixir-autogen
 msgid "is invalid"
 msgstr ""
@@ -117,27 +117,27 @@ msgstr ""
 msgid "can only contain letters, numbers, dashes and underscores"
 msgstr ""
 
-#: lib/accounts/user_schema.ex:74
+#: lib/accounts/user_schema.ex:75
 #, elixir-autogen, elixir-format
 msgid "at least one digit or punctuation character"
 msgstr ""
 
-#: lib/accounts/user_schema.ex:72
+#: lib/accounts/user_schema.ex:73
 #, elixir-autogen, elixir-format
 msgid "at least one lower case character"
 msgstr ""
 
-#: lib/accounts/user_schema.ex:73
+#: lib/accounts/user_schema.ex:74
 #, elixir-autogen, elixir-format
 msgid "at least one upper case character"
 msgstr ""
 
-#: lib/accounts/user_schema.ex:117
+#: lib/accounts/user_schema.ex:118
 #, elixir-autogen, elixir-format
 msgid "did not change"
 msgstr ""
 
-#: lib/accounts/user_schema.ex:148
+#: lib/accounts/user_schema.ex:149
 #, elixir-autogen, elixir-format
 msgid "does not match password"
 msgstr ""
@@ -147,7 +147,7 @@ msgstr ""
 msgid "must have the @ sign and no spaces"
 msgstr ""
 
-#: lib/organizations/school_schema.ex:60
+#: lib/organizations/school_schema.ex:61
 #, elixir-autogen, elixir-format
 msgid "must start with / or https://"
 msgstr ""
@@ -192,8 +192,8 @@ msgstr ""
 msgid "Your enrollment is pending approval"
 msgstr ""
 
-#: lib/organizations/school_schema.ex:61
 #: lib/organizations/school_schema.ex:62
+#: lib/organizations/school_schema.ex:63
 #, elixir-autogen, elixir-format
 msgid "must start with https://"
 msgstr ""
@@ -213,7 +213,7 @@ msgstr ""
 msgid "must have a domain name"
 msgstr ""
 
-#: lib/organizations/school_schema.ex:85
+#: lib/organizations/school_schema.ex:94
 #, elixir-autogen, elixir-format
 msgid "must be white_label"
 msgstr ""

@@ -141,6 +141,12 @@ defmodule Uneebee.AccountsTest do
     end
   end
 
+  describe "create_guest_user/0" do
+    test "creates a guest user" do
+      assert {:ok, %User{guest?: true}} = Accounts.create_guest_user()
+    end
+  end
+
   describe "change_user_registration/2" do
     test "returns a changeset" do
       assert %Ecto.Changeset{} = changeset = Accounts.change_user_registration(%User{})

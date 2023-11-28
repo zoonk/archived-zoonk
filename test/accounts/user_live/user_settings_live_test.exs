@@ -244,6 +244,26 @@ defmodule UneebeeWeb.UserSettingsLiveTest do
     end
   end
 
+  describe "/users/setting/email (guest user)" do
+    setup :set_school_with_guest_user
+
+    test "updates the user email", %{conn: conn, user: user} do
+      new_email = unique_user_email()
+
+      {:ok, lv, _html} = live(conn, ~p"/users/settings/email")
+
+      assert has_element?(lv, ~s|input[type="hidden"][name="current_password]|)
+
+      result =
+        lv
+        |> form(@form, %{"user" => %{"email" => new_email}})
+        |> render_submit()
+
+      assert result =~ "A link to confirm your email"
+      assert Accounts.get_user_by_email(user.email)
+    end
+  end
+
   describe "/users/settings/password" do
     setup :register_and_log_in_user
 
@@ -384,6 +404,43 @@ defmodule UneebeeWeb.UserSettingsLiveTest do
       assert path == ~p"/users/login"
       assert %{"error" => message} = flash
       assert message == "You must log in to access this page."
+    end
+  end
+
+  describe "confirm email (guest user)" do
+    setup %{conn: conn} do
+      {:ok, user} = Accounts.create_guest_user()
+      email = unique_user_email()
+      token = extract_user_token(fn url -> Accounts.deliver_user_update_email_instructions(%{user | email: email}, nil, user.email, url) end)
+
+      %{conn: log_in_user(conn, user), user: user, token: token, email: email}
+    end
+
+    test "updates the email", %{conn: conn, user: user, token: token, email: email} do
+      assert user.guest?
+      {:error, _redirect} = live(conn, ~p"/users/settings/confirm_email/#{token}")
+      refute Accounts.get_user_by_email(email).guest?
+    end
+  end
+
+  describe "confirm email (guest user, child school)" do
+    setup %{conn: conn} do
+      school = school_fixture(%{allow_guests?: true})
+      child_school = school_fixture(%{school_id: school.id, allow_guests?: true})
+
+      {:ok, user} = Accounts.create_guest_user()
+      email = unique_user_email()
+      token = extract_user_token(fn url -> Accounts.deliver_user_update_email_instructions(%{user | email: email}, nil, user.email, url) end)
+
+      conn = conn |> log_in_user(user) |> Map.put(:host, "#{child_school.slug}.#{school.custom_domain}")
+
+      %{conn: conn, user: user, token: token, email: email}
+    end
+
+    test "updates the email", %{conn: conn, user: user, token: token, email: email} do
+      assert user.guest?
+      {:error, _redirect} = live(conn, ~p"/users/settings/confirm_email/#{token}")
+      refute Accounts.get_user_by_email(email).guest?
     end
   end
 

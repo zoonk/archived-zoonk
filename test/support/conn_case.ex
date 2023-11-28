@@ -22,6 +22,7 @@ defmodule UneebeeWeb.ConnCase do
   import Uneebee.Fixtures.Organizations
 
   alias Plug.Conn
+  alias Uneebee.Accounts
   alias Uneebee.Accounts.User
   alias Uneebee.Content.Course
   alias Uneebee.Content.Lesson
@@ -90,6 +91,20 @@ defmodule UneebeeWeb.ConnCase do
   end
 
   @doc """
+  Sets up a school with a guest user.
+
+      setup :set_school_with_guest_user
+  """
+  @spec set_school_with_guest_user(%{conn: Conn.t()}, map()) :: %{conn: Conn.t(), school: School.t(), user: User.t()}
+  def set_school_with_guest_user(%{conn: conn}, attrs \\ %{}) do
+    {:ok, user} = Accounts.create_guest_user()
+    conn = log_in_user(conn, user)
+    school_attrs = Enum.into(attrs, %{allow_guests?: true})
+    %{conn: school_conn, school: school} = set_school(%{conn: conn}, school_attrs)
+    %{conn: school_conn, school: school, user: user}
+  end
+
+  @doc """
   Setup helper that registers a user, logs them in, and add them to the app school.
 
       setup :app_setup
@@ -99,8 +114,9 @@ defmodule UneebeeWeb.ConnCase do
     public_school? = Keyword.get(opts, :public_school?, true)
     school_id = Keyword.get(opts, :school_id, nil)
     school_kind = Keyword.get(opts, :school_kind, :white_label)
+    allow_guests? = Keyword.get(opts, :allow_guests?, false)
 
-    school_attrs = %{public?: public_school?, school_id: school_id, kind: school_kind}
+    school_attrs = %{public?: public_school?, allow_guests?: allow_guests?, school_id: school_id, kind: school_kind}
     school_user_attrs = opts |> Keyword.get(:school_user, :student) |> get_user_attrs()
 
     %{conn: register_conn, user: user, password: password} = register_and_log_in_user(%{conn: conn})

@@ -6,8 +6,68 @@ defmodule UneebeeWeb.CourseListLiveTest do
   import Uneebee.Fixtures.Content
   import Uneebee.Fixtures.Organizations
 
+  alias Uneebee.Accounts
+
   describe "/courses (non-authenticated users)" do
     setup :set_school
+
+    test "redirects to the login page", %{conn: conn} do
+      result = get(conn, ~p"/courses")
+      assert redirected_to(result) == ~p"/users/login"
+    end
+  end
+
+  describe "/courses (guest user, school doesn't allow guests)" do
+    setup do
+      set_school_with_guest_user(%{conn: build_conn()}, %{allow_guests?: false})
+    end
+
+    test "redirects to the login page", %{conn: conn} do
+      result = get(conn, ~p"/courses")
+      assert redirected_to(result) == ~p"/users/login"
+    end
+  end
+
+  describe "/courses (allow guests)" do
+    setup do
+      set_school(%{conn: build_conn()}, %{allow_guests?: true})
+    end
+
+    test "renders the page", %{conn: conn} do
+      conn = get(conn, ~p"/courses")
+      assert redirected_to(conn) == ~p"/courses"
+
+      {:ok, lv, _html} = live(conn, ~p"/courses")
+      assert has_element?(lv, ~s|li[aria-current=page] a:fl-icontains("courses")|)
+      refute has_element?(lv, ~s|a:fl-icontains("update your email address")|)
+    end
+
+    test "displays warning after a user completes a lesson", %{conn: conn} do
+      conn = get(conn, ~p"/courses")
+      token = conn.private[:plug_session]["user_token"]
+      user = Accounts.get_user_by_session_token(token)
+      generate_user_lesson(user.id, 0)
+
+      {:ok, lv, _html} = live(conn, ~p"/courses")
+      assert has_element?(lv, ~s|a:fl-icontains("update your email address")|)
+    end
+  end
+
+  describe "/courses (guest user)" do
+    setup :set_school_with_guest_user
+
+    test "displays warning after a user completes a lesson", %{conn: conn, user: user} do
+      generate_user_lesson(user.id, 0)
+
+      {:ok, lv, _html} = live(conn, ~p"/courses")
+      assert has_element?(lv, ~s|a:fl-icontains("update your email address")|)
+    end
+  end
+
+  describe "/courses (doesn't allow guests)" do
+    setup do
+      set_school(%{conn: build_conn()}, %{allow_guests?: false})
+    end
 
     test "redirects to the login page", %{conn: conn} do
       result = get(conn, ~p"/courses")

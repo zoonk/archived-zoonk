@@ -16,6 +16,7 @@ defmodule Uneebee.Accounts.User do
     field :date_of_birth, :date
     field :email, :string
     field :first_name, :string
+    field :guest?, :boolean, default: false
     field :hashed_password, :string, redact: true
     field :language, Ecto.Enum, values: Translate.supported_locales(), default: :en
     field :last_name, :string
@@ -51,7 +52,7 @@ defmodule Uneebee.Accounts.User do
   @spec registration_changeset(Ecto.Schema.t(), map(), Keyword.t()) :: Ecto.Changeset.t()
   def registration_changeset(user, attrs, opts \\ []) do
     user
-    |> cast(attrs, [:avatar, :date_of_birth, :email, :first_name, :language, :last_name, :password, :username])
+    |> cast(attrs, [:avatar, :date_of_birth, :email, :first_name, :guest?, :language, :last_name, :password, :username])
     |> validate_user_email(opts)
     |> validate_password(opts)
     |> validate_username(opts)
@@ -155,7 +156,7 @@ defmodule Uneebee.Accounts.User do
   @spec confirm_changeset(Ecto.Schema.t()) :: Ecto.Changeset.t()
   def confirm_changeset(user) do
     now = NaiveDateTime.truncate(NaiveDateTime.utc_now(), :second)
-    change(user, confirmed_at: now)
+    change(user, confirmed_at: now, guest?: false)
   end
 
   @doc """
@@ -189,7 +190,7 @@ defmodule Uneebee.Accounts.User do
   defp validate_username(changeset, opts) do
     changeset
     |> validate_required([:username])
-    |> validate_length(:username, min: 3, max: 30)
+    |> validate_length(:username, min: 3, max: 60)
     |> validate_slug(:username)
     |> maybe_validate_unique_username(opts)
   end

@@ -47,6 +47,21 @@ defmodule UneebeeWeb.UserConfirmationLiveTest do
       assert Repo.all(Accounts.UserToken) == []
     end
 
+    test "confirms a guest user", %{conn: conn} do
+      user = user_fixture(%{guest?: true})
+      token = extract_user_token(fn url -> Accounts.deliver_user_confirmation_instructions(user, nil, url) end)
+
+      {:ok, lv, _html} = live(conn, ~p"/users/confirm/#{token}")
+
+      lv
+      |> form("#confirmation_form")
+      |> render_submit()
+      |> follow_redirect(conn, "/")
+
+      confirmed_user = Accounts.get_user!(user.id)
+      refute confirmed_user.guest?
+    end
+
     test "does not confirm email with invalid token", %{conn: conn} do
       user = user_fixture()
 

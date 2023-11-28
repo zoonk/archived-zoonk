@@ -59,10 +59,10 @@ defmodule UneebeeWeb.Components.Input do
 
     ~H"""
     <div phx-feedback-for={@name} hidden={@type == "hidden"}>
-      <label class="flex items-start gap-2 text-sm text-gray-700" for={@id}>
+      <label class="flex items-start gap-2 text-sm text-gray-700 disabled:opacity-10" for={@id}>
         <input type="hidden" name={@name} value="false" />
-        <input type="checkbox" id={@id} name={@name} value="true" checked={@checked} class="rounded border-gray-200 text-gray-700 focus:ring-0" {@rest} />
-        <span class="flex flex-col gap-2"><span class="font-semibold"><%= @label %></span>
+        <input type="checkbox" id={@id} name={@name} value="true" checked={@checked} class="peer rounded border-gray-200 text-gray-700 focus:ring-0" {@rest} />
+        <span class="flex flex-col gap-2 peer-disabled:cursor-not-allowed peer-disabled:opacity-30"><span class="font-semibold"><%= @label %></span>
           <span class="text-gray-500"><%= @helper %></span></span>
       </label>
       <.error :for={msg <- @errors}><%= msg %></.error>

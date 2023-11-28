@@ -103,7 +103,7 @@ defmodule UneebeeWeb.Live.UserSettings do
 
     case Accounts.apply_user_email(user, password, user_params) do
       {:ok, applied_user} ->
-        Accounts.deliver_user_update_email_instructions(applied_user, socket.assigns.app, user.email, &url(~p"/users/settings/confirm_email/#{&1}"))
+        send_email_confirmation(applied_user, user.email, socket.assigns.app)
 
         info = dgettext("auth", "A link to confirm your email change has been sent to the new address.")
 
@@ -140,6 +140,14 @@ defmodule UneebeeWeb.Live.UserSettings do
 
       {:error, _changeset} ->
         {:noreply, put_flash(socket, :error, gettext("Could not update avatar!"))}
+    end
+  end
+
+  defp send_email_confirmation(user, current_email, app) do
+    Accounts.deliver_user_update_email_instructions(user, app, current_email, &url(~p"/users/settings/confirm_email/#{&1}"))
+
+    if user.guest? do
+      Accounts.deliver_user_reset_password_instructions(user, app, &url(~p"/users/reset_password/#{&1}"))
     end
   end
 
