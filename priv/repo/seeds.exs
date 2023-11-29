@@ -11,4 +11,4 @@ seed_args = %{kind: kind, multiple?: multiple?}
 
 UserSeed.seed(seed_args)
 SchoolSeed.seed(seed_args)
-CourseSeed.seed()
+CourseSeed.seed(seed_args)

@@ -112,39 +112,83 @@ defmodule CourseSeed do
     }
   ]
 
-  def seed do
-    Enum.each(@courses, &handle_course/1)
+  def seed(args \\ %{}) do
+    multiple? = Map.get(args, :multiple?, false)
+    courses = generate_course_attrs(multiple?)
+
+    Enum.each(courses, fn course -> handle_course(course, multiple?) end)
   end
 
-  defp handle_course(attrs) do
-    Enum.each(attrs.schools, fn slug -> create_courses(attrs, slug) end)
+  defp handle_course(attrs, multiple?) do
+    Enum.each(attrs.schools, fn slug -> create_courses(attrs, slug, multiple?) end)
   end
 
-  defp create_courses(attrs, slug) do
+  defp generate_course_attrs(false), do: @courses
+  defp generate_course_attrs(true), do: generate_course_attrs()
+
+  defp generate_course_attrs() do
+    random_courses =
+      Enum.map(1..80, fn idx ->
+        %{
+          name: "Course #{idx}",
+          description: "This is the example of the course #{idx}",
+          cover: nil,
+          language: :en,
+          level: :beginner,
+          public?: true,
+          published?: true,
+          slug: "course-#{idx}",
+          schools: ["apple"]
+        }
+      end)
+
+    @courses ++ random_courses
+  end
+
+  defp create_courses(attrs, slug, multiple?) do
     school = Repo.get_by(School, slug: slug)
+    limit = if multiple?, do: 200, else: 3
 
     if school do
       teachers = Organizations.list_school_users_by_role(school, :teacher)
       managers = Organizations.list_school_users_by_role(school, :manager)
+      students = Organizations.list_school_users_by_role(school, :student, limit: limit)
 
       attrs = Map.put(attrs, :school_id, school.id)
       course = %Course{} |> Content.change_course(attrs) |> Repo.insert!()
 
       course_teacher = Enum.random(teachers)
 
-      course_user_attrs = %{
+      teacher_attrs = %{
         course_id: course.id,
-        user_id: course_teacher.id,
+        user_id: course_teacher.user_id,
         role: :teacher,
         approved?: true,
         approved_at: DateTime.utc_now(),
-        approved_by_id: Enum.at(managers, 0).id
+        approved_by_id: Enum.at(managers, 0).user_id
       }
 
-      %CourseUser{} |> CourseUser.changeset(course_user_attrs) |> Repo.insert!()
+      %CourseUser{} |> CourseUser.changeset(teacher_attrs) |> Repo.insert!()
+
+      Enum.each(students, fn student ->
+        create_student(%{student: student, course: course, manager: Enum.at(managers, 0)})
+      end)
 
       Enum.each(@lessons, fn lesson_attrs -> create_lessons(lesson_attrs, course) end)
     end
+  end
+
+  defp create_student(%{student: student, course: course, manager: manager}) do
+    %CourseUser{}
+    |> CourseUser.changeset(%{
+      course_id: course.id,
+      user_id: student.user_id,
+      role: :student,
+      approved?: true,
+      approved_at: DateTime.utc_now(),
+      approved_by_id: manager.user_id
+    })
+    |> Repo.insert!()
   end
 
   defp create_lessons(attrs, course) do
