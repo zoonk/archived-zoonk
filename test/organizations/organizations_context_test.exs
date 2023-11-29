@@ -295,12 +295,15 @@ defmodule Uneebee.OrganizationsTest do
     test "returns all schools" do
       school1 = school_fixture()
       school2 = school_fixture()
+      school_fixture(%{school_id: school1.id})
+      school_fixture(%{school_id: school1.id})
+      school_fixture(%{school_id: school1.id})
       school3 = school_fixture(%{school_id: school1.id})
       school4 = school_fixture(%{school_id: school1.id})
       school5 = school_fixture(%{school_id: school1.id})
       school_fixture(%{school_id: school2.id})
 
-      assert Organizations.list_schools(school1.id) == [school5, school4, school3]
+      assert Organizations.list_schools(school1.id, limit: 3) == [school5, school4, school3]
     end
   end
 

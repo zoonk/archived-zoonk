@@ -254,9 +254,10 @@ defmodule Uneebee.Organizations do
       iex> list_schools(school_id)
       [%School{}, ...]
   """
-  @spec list_schools(integer()) :: [School.t()]
-  def list_schools(school_id) do
-    School |> where([s], s.school_id == ^school_id) |> order_by(desc: :updated_at) |> Repo.all()
+  @spec list_schools(integer(), list()) :: [School.t()]
+  def list_schools(school_id, opts \\ []) do
+    limit = Keyword.get(opts, :limit, 10)
+    School |> where([s], s.school_id == ^school_id) |> order_by(desc: :updated_at) |> limit(^limit) |> Repo.all()
   end
 
   @doc """

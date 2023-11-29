@@ -1,0 +1,6 @@
+<dl id="school-list" phx-update="stream">
+  <div :for={{dom_id, school} <- @streams.schools} id={dom_id}>
+    <dt><%= school.name %></dt>
+    <dd>@<%= school.slug %></dd>
+  </div>
+</dl>

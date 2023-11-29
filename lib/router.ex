@@ -146,6 +146,8 @@ defmodule UneebeeWeb.Router do
       live "/managers", Dashboard.UserList, :manager
       live "/teachers", Dashboard.UserList, :teacher
       live "/students", Dashboard.UserList, :student
+
+      live "/schools", Dashboard.SchoolList
     end
   end
 

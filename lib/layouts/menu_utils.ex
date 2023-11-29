@@ -84,6 +84,7 @@ defmodule UneebeeWeb.Layouts.MenuUtils do
   def dashboard_school_menu do
     [
       %{link: ~p"/dashboard", view: :dashboard_home, title: gettext("Overview")},
+      %{link: ~p"/dashboard/schools", view: :dashboard_schoollist, title: gettext("Schools")},
       %{link: ~p"/dashboard/managers", view: :dashboard_userlist_manager, title: gettext("Managers")},
       %{link: ~p"/dashboard/teachers", view: :dashboard_userlist_teacher, title: gettext("Teachers")},
       %{link: ~p"/dashboard/students", view: :dashboard_userlist_student, title: gettext("Students")},
