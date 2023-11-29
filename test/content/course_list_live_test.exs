@@ -42,11 +42,11 @@ defmodule UneebeeWeb.CourseListLiveTest do
       refute has_element?(lv, ~s|a:fl-icontains("update your email address")|)
     end
 
-    test "displays warning after a user completes a lesson", %{conn: conn} do
+    test "displays warning after a user completes three learning days", %{conn: conn} do
       conn = get(conn, ~p"/courses")
       token = conn.private[:plug_session]["user_token"]
       user = Accounts.get_user_by_session_token(token)
-      generate_user_lesson(user.id, 0)
+      Enum.each(1..3, fn idx -> generate_user_lesson(user.id, -idx) end)
 
       {:ok, lv, _html} = live(conn, ~p"/courses")
       assert has_element?(lv, ~s|a:fl-icontains("update your email address")|)
@@ -56,11 +56,18 @@ defmodule UneebeeWeb.CourseListLiveTest do
   describe "/courses (guest user)" do
     setup :set_school_with_guest_user
 
-    test "displays warning after a user completes a lesson", %{conn: conn, user: user} do
-      generate_user_lesson(user.id, 0)
+    test "displays warning after a user three learning days", %{conn: conn, user: user} do
+      Enum.each(1..3, fn idx -> generate_user_lesson(user.id, -idx) end)
 
       {:ok, lv, _html} = live(conn, ~p"/courses")
       assert has_element?(lv, ~s|a:fl-icontains("update your email address")|)
+    end
+
+    test "doesn't display warning after completing only two lessons", %{conn: conn, user: user} do
+      Enum.each(1..2, fn idx -> generate_user_lesson(user.id, -idx) end)
+
+      {:ok, lv, _html} = live(conn, ~p"/courses")
+      refute has_element?(lv, ~s|a:fl-icontains("update your email address")|)
     end
   end
 
@@ -90,6 +97,12 @@ defmodule UneebeeWeb.CourseListLiveTest do
 
     test "lists public courses from the host school", %{conn: conn, school: school} do
       assert_course_list(conn, school)
+    end
+
+    test "doesn't display guest warning for regular users", %{conn: conn, user: user} do
+      generate_user_lesson(user.id, 0)
+      {:ok, lv, _html} = live(conn, ~p"/courses")
+      refute has_element?(lv, ~s|a:fl-icontains("update your email address")|)
     end
   end
 

@@ -42,7 +42,7 @@
   </header>
 
   <div
-    :if={not user_settings?(@active_page) && @learning_days > 0}
+    :if={@current_user.guest? && !user_settings?(@active_page) && @learning_days > 2}
     class="sticky top-16 z-40 bg-pink-50 px-4 py-4 text-center text-xs text-pink-600 sm:gap-x-6 sm:px-6 lg:px-8"
     role="alert"
   >
