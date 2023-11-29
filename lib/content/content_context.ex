@@ -339,18 +339,16 @@ defmodule Uneebee.Content do
   end
 
   @doc """
-  Gets the number of students from a course.
+  Gets the number of users in a course based on their role.
 
   ## Examples
 
-      iex> get_course_students_count(%Course{})
-      1
+      iex> get_course_users_count(%Course{}, :student)
+      10
   """
-  @spec get_course_students_count(Course.t()) :: non_neg_integer()
-  def get_course_students_count(course) do
-    CourseUser
-    |> where([cu], cu.course_id == ^course.id and cu.role == :student)
-    |> Repo.aggregate(:count)
+  @spec get_course_users_count(Course.t(), atom()) :: non_neg_integer()
+  def get_course_users_count(course, role) do
+    CourseUser |> where([cu], cu.course_id == ^course.id and cu.role == ^role) |> Repo.aggregate(:count)
   end
 
   @doc """

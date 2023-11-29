@@ -10,7 +10,7 @@ defmodule UneebeeWeb.Live.CourseView do
     %{course: course, current_user: user} = socket.assigns
 
     lessons = Content.list_published_lessons(course, user)
-    student_count = Content.get_course_students_count(course)
+    student_count = Content.get_course_users_count(course, :student)
 
     socket =
       socket

@@ -403,13 +403,21 @@ defmodule Uneebee.ContentTest do
     end
   end
 
-  describe "get_course_students_count/1" do
+  describe "get_course_users_count/2" do
     test "returns the number of students in a course" do
       course = course_fixture()
       Enum.each(1..3, fn _idx -> course_user_fixture(%{role: :student, course: course}) end)
       course_user_fixture(%{role: :teacher, course: course})
 
-      assert Content.get_course_students_count(course) == 3
+      assert Content.get_course_users_count(course, :student) == 3
+    end
+
+    test "returns the number of teachers in a course" do
+      course = course_fixture()
+      Enum.each(1..3, fn _idx -> course_user_fixture(%{role: :teacher, course: course}) end)
+      course_user_fixture(%{role: :student, course: course})
+
+      assert Content.get_course_users_count(course, :teacher) == 3
     end
   end
 
