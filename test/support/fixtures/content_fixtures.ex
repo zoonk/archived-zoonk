@@ -145,7 +145,7 @@ defmodule Uneebee.Fixtures.Content do
     correct = Keyword.get(opts, :correct, 1)
     total = Keyword.get(opts, :total, 1)
     attrs = %{course: course, published?: true}
-    lessons = Enum.map(1..number_of_lessons, fn _idx -> lesson_fixture(attrs) end)
+    lessons = Keyword.get(opts, :lessons, Enum.map(1..number_of_lessons, fn _idx -> lesson_fixture(attrs) end))
 
     Enum.each(lessons, fn lesson ->
       Repo.insert!(%UserLesson{attempts: 1, duration: 5, correct: correct, total: total, user_id: user_id, lesson_id: lesson.id, inserted_at: days_ago, updated_at: days_ago})

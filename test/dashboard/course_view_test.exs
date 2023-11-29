@@ -2,6 +2,7 @@ defmodule UneebeeWeb.DashboardCourseViewLiveTest do
   use UneebeeWeb.ConnCase, async: true
 
   import Phoenix.LiveViewTest
+  import Uneebee.Fixtures.Accounts
   import Uneebee.Fixtures.Content
 
   alias Uneebee.Content
@@ -144,12 +145,17 @@ defmodule UneebeeWeb.DashboardCourseViewLiveTest do
 
   defp assert_course_view(conn, course) do
     lessons = Enum.map(1..3, fn idx -> lesson_fixture(%{course_id: course.id, name: "Lesson #{idx}!"}) end)
+    users = Enum.map(1..3, fn _idx -> user_fixture() end)
+    Enum.each(users, fn user -> generate_user_lesson(user.id, 0, lessons: lessons) end)
 
     {:ok, lv, _html} = live(conn, "/dashboard/c/#{course.slug}")
 
     assert has_element?(lv, "option[selected]", course.name)
     assert has_element?(lv, ~s|li[aria-current=page] a:fl-icontains("overview")|)
 
-    Enum.each(lessons, fn lesson -> assert has_element?(lv, "dt", lesson.name) end)
+    Enum.each(lessons, fn lesson ->
+      assert has_element?(lv, "dt", lesson.name)
+      assert has_element?(lv, ~s|#lesson-#{lesson.id} span:fl-contains("3")|)
+    end)
   end
 end

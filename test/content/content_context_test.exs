@@ -557,6 +557,27 @@ defmodule Uneebee.ContentTest do
     end
   end
 
+  describe "list_lessons_with_stats/1" do
+    test "returns a list of lessons with stats" do
+      course = course_fixture()
+      lessons = Enum.map(1..3, fn _idx -> lesson_fixture(%{course: course}) end)
+      users = Enum.map(1..3, fn _idx -> user_fixture() end)
+
+      Enum.each(lessons, fn lesson ->
+        Enum.each(users, fn user ->
+          {:ok, _ul} = Content.add_user_lesson(%{duration: 5, user_id: user.id, lesson_id: lesson.id, attempts: 1, correct: 3, total: 5})
+        end)
+      end)
+
+      lesson_list = Content.list_lessons_with_stats(course.id)
+      assert length(lesson_list) == 3
+
+      {lesson, stats} = Enum.at(lesson_list, 0)
+      assert stats.users == 3
+      assert lesson.user_lessons == []
+    end
+  end
+
   describe "count_lessons/1" do
     test "returns the number of lessons in a course" do
       course = course_fixture()

@@ -30,6 +30,8 @@ defmodule Uneebee.Content do
   @type user_lesson_changeset :: {:ok, UserLesson.t()} | {:error, Ecto.Changeset.t()}
   @type user_selection_changeset :: {:ok, UserSelection.t()} | {:error, Ecto.Changeset.t()}
 
+  @type lesson_stats :: %{users: non_neg_integer()}
+
   @doc """
   Returns an `%Ecto.Changeset{}` for tracking course changes.
 
@@ -448,6 +450,30 @@ defmodule Uneebee.Content do
   @spec list_lessons(non_neg_integer()) :: [Lesson.t()]
   def list_lessons(course_id) do
     Lesson |> where([l], l.course_id == ^course_id) |> order_by(asc: :order) |> Repo.all()
+  end
+
+  @doc """
+  List course lessons with stats.
+
+  ## Examples
+
+      iex> list_lessons_with_stats(course_id)
+      [%Lesson{}, ...]
+  """
+  @spec list_lessons_with_stats(non_neg_integer()) :: [{Lesson.t(), lesson_stats()}]
+  def list_lessons_with_stats(course_id) do
+    lessons =
+      Lesson
+      |> where([l], l.course_id == ^course_id)
+      |> order_by(asc: :order)
+      |> preload(:user_lessons)
+      |> Repo.all()
+
+    Enum.map(lessons, fn lesson ->
+      stats = %{users: length(lesson.user_lessons)}
+      lesson = Map.replace(lesson, :user_lessons, [])
+      {lesson, stats}
+    end)
   end
 
   @doc """

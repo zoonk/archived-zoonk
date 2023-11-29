@@ -9,7 +9,7 @@ defmodule UneebeeWeb.Live.Dashboard.CourseView do
   def mount(_params, _session, socket) do
     %{course: course} = socket.assigns
 
-    lessons = Content.list_lessons(course.id)
+    lessons = Content.list_lessons_with_stats(course.id)
 
     socket =
       socket

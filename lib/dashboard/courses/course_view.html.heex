@@ -33,7 +33,8 @@
 
   <dl class="mt-4 space-y-4" id="lesson-list" data-group="lessons" phx-hook="Sortable">
     <.link
-      :for={{lesson, index} <- Enum.with_index(@lessons)}
+      :for={{{lesson, stats}, index} <- Enum.with_index(@lessons)}
+      id={"lesson-#{lesson.id}"}
       navigate={~p"/dashboard/c/#{@course.slug}/l/#{lesson.id}/s/1"}
       class="text-gray-700 rounded-2xl border border-gray-300 shadow-sm focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:border-gray-400 flex cursor-grab gap-2 bg-white p-4 drag-ghost:bg-gray-400 drag-ghost:cursor-grabbing drag-ghost:border-0 drag-ghost:ring-0 focus-within:drag-item:ring-0 focus-within:drag-item:ring-offset-0"
     >
@@ -46,6 +47,7 @@
         <div class="mt-4">
           <.badge :if={lesson.published?} color={:success} icon="tabler-eye"><%= dgettext("orgs", "Published") %></.badge>
           <.badge :if={not lesson.published?} color={:alert} icon="tabler-eye-off"><%= dgettext("orgs", "Unpublished") %></.badge>
+          <.badge color={:black} icon="tabler-users"><%= stats.users %></.badge>
         </div>
       </div>
     </.link>
