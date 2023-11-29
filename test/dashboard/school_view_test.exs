@@ -32,12 +32,14 @@ defmodule UneebeeWeb.DashboardSchoolViewTest do
 
     test "displays school", %{conn: conn, school: school} do
       child_school = school_fixture(%{school_id: school.id, custom_domain: "example.com"})
+      Enum.each(1..6, fn _idx -> school_user_fixture(%{school: child_school}) end)
 
       {:ok, lv, _html} = live(conn, "/dashboard/schools/#{child_school.id}")
 
       assert has_element?(lv, "h1", child_school.name)
       assert has_element?(lv, "h1", child_school.slug)
       assert has_element?(lv, "p", child_school.custom_domain)
+      assert has_element?(lv, "span", "6")
     end
   end
 end

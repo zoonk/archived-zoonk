@@ -460,6 +460,14 @@ defmodule Uneebee.OrganizationsTest do
     end
   end
 
+  describe "get_school_users_count/1" do
+    test "returns the number of users in a school" do
+      school = school_fixture()
+      Enum.each(1..4, fn _idx -> school_user_fixture(%{school: school}) end)
+      assert Organizations.get_school_users_count(school) == 4
+    end
+  end
+
   describe "get_school_users_count/2" do
     test "returns the number of users in a school" do
       school = school_fixture()

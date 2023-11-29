@@ -268,6 +268,19 @@ defmodule Uneebee.Organizations do
   end
 
   @doc """
+  Get the number of users in a school.
+
+  ## Examples
+
+      iex> get_school_users_count(school)
+      10
+  """
+  @spec get_school_users_count(School.t()) :: non_neg_integer()
+  def get_school_users_count(school) do
+    SchoolUser |> where([su], su.school_id == ^school.id) |> Repo.aggregate(:count)
+  end
+
+  @doc """
   Gets the number of users in a school based on their role.
 
   ## Examples

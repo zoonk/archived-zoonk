@@ -20,8 +20,12 @@
   </div>
 
   <div class="order-first space-x-1 sm:order-none">
-    <.badge color={if @current_school.public?, do: :success, else: :alert} role="status">
+    <.badge color={if @current_school.public?, do: :success, else: :alert} icon={if @current_school.public?, do: "tabler-eye", else: "tabler-eye-off"} role="status">
       <%= if @current_school.public?, do: dgettext("orgs", "Public"), else: dgettext("orgs", "Private") %>
+    </.badge>
+
+    <.badge color={:black} icon="tabler-users">
+      <span class="sr-only"><%= dgettext("orgs", "Users:") %></span><%= @user_count %>
     </.badge>
   </div>
 </header>
