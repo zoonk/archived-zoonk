@@ -1,6 +1,7 @@
 defmodule UneebeeWeb.Live.Dashboard.CourseUserList do
   @moduledoc false
   use UneebeeWeb, :live_view
+  use UneebeeWeb.Shared.Paginate, as: :users
 
   import UneebeeWeb.Components.Dashboard.UserListHeader
 
@@ -12,15 +13,21 @@ defmodule UneebeeWeb.Live.Dashboard.CourseUserList do
   @impl Phoenix.LiveView
   def mount(_params, _session, socket) do
     %{live_action: role, course: course} = socket.assigns
-    users = Content.list_course_users_by_role(course, role)
+    user_count = Content.get_course_users_count(course, role)
 
     socket =
       socket
       |> assign(:page_title, get_page_title(role))
-      |> stream(:users, users)
-      |> assign(:user_count, length(users))
+      |> assign(:user_count, user_count)
+      |> add_pagination()
 
     {:ok, socket}
+  end
+
+  defp paginate(socket, new_page) when new_page >= 1 do
+    %{live_action: role, per_page: per_page, course: course} = socket.assigns
+    users = Content.list_course_users_by_role(course, role, offset: (new_page - 1) * per_page, limit: per_page)
+    paginate(socket, new_page, users)
   end
 
   @impl Phoenix.LiveView
