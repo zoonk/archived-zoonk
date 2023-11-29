@@ -25,7 +25,7 @@ defmodule UneebeeWeb.Components.Dashboard.OptionList do
       </h3>
 
       <ul class="mt-8 space-y-2">
-        <li :for={option <- @step.options} class="flex items-center gap-2 text-sm">
+        <li :for={option <- @step.options} id={"option-#{option.id}"} class="flex items-center gap-2 text-sm">
           <.link
             id={"option-#{option.id}-image-link"}
             aria-label={dgettext("orgs", "Edit image")}
@@ -44,6 +44,12 @@ defmodule UneebeeWeb.Components.Dashboard.OptionList do
           >
             <%= option.title %>
           </.link>
+
+          <% selected_count = round(option_selections_percent(@selections, option)) %>
+
+          <.badge title={dgettext("orgs", "This option was selected %{count}% of the time.", count: selected_count)}>
+            <%= selected_count %>%
+          </.badge>
 
           <.icon_button
             icon="tabler-x"
@@ -97,12 +103,37 @@ defmodule UneebeeWeb.Components.Dashboard.OptionList do
   @impl Phoenix.LiveComponent
   def update(assigns, socket) do
     changeset = option_changeset(assigns.option)
-    socket = socket |> assign(assigns) |> assign(option_form: to_form(changeset))
+    selections = Content.count_selections_by_lesson_step(assigns.step.id)
+
+    socket =
+      socket
+      |> assign(assigns)
+      |> assign(option_form: to_form(changeset))
+      |> assign(selections: selections)
+
     {:ok, socket}
   end
 
   defp option_changeset(nil), do: Content.change_step_option(%StepOption{})
   defp option_changeset(option), do: Content.change_step_option(option)
+
+  defp option_stats(selections, option) do
+    stats = Enum.find(selections, fn selection -> selection.option_id == option.id end)
+    handle_option_stats(option, stats)
+  end
+
+  defp handle_option_stats(option, nil), do: %{option_id: option.id, count: 0}
+  defp handle_option_stats(_option, stats), do: stats
+
+  defp total_selections(selections) do
+    Enum.reduce(selections, 0, fn selection, acc -> acc + selection.selections end)
+  end
+
+  defp option_selections_percent(selections, option) do
+    total = total_selections(selections)
+    stats = option_stats(selections, option)
+    if total > 0, do: stats.selections / total * 100, else: 0
+  end
 
   @impl Phoenix.LiveComponent
   def handle_event("validate-option", %{"step_option" => step_option_params}, socket) do

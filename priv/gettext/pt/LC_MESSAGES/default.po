@@ -65,11 +65,11 @@ msgstr "Oops, algo deu errado! Por favor, verifique os erros abaixo."
 #: lib/accounts/user_live/user_settings.html.heex:17
 #: lib/dashboard/courses/course_edit.html.heex:7
 #: lib/dashboard/courses/course_new.html.heex:5
-#: lib/dashboard/courses/course_user_list.html.heex:100
+#: lib/dashboard/courses/course_user_list.html.heex:114
 #: lib/dashboard/lessons/components/lesson_edit.ex:28
-#: lib/dashboard/lessons/components/option_list.ex:89
+#: lib/dashboard/lessons/components/option_list.ex:95
 #: lib/dashboard/schools/school_edit.html.heex:7
-#: lib/dashboard/schools/user_list.html.heex:99
+#: lib/dashboard/schools/user_list.html.heex:107
 #: lib/organizations/school_live/school_new.html.heex:10
 #, elixir-autogen, elixir-format
 msgid "Saving..."
@@ -132,7 +132,7 @@ msgstr "Sobrenome"
 #: lib/accounts/user_live/user_settings.html.heex:18
 #: lib/dashboard/courses/course_edit.html.heex:7
 #: lib/dashboard/lessons/components/lesson_edit.ex:29
-#: lib/dashboard/lessons/components/option_list.ex:89
+#: lib/dashboard/lessons/components/option_list.ex:95
 #: lib/dashboard/schools/school_edit.html.heex:7
 #, elixir-autogen, elixir-format
 msgid "Save"
@@ -144,24 +144,24 @@ msgid "Name"
 msgstr "Nome"
 
 #: lib/dashboard/home.ex:25
-#: lib/dashboard/schools/user_list.ex:115
+#: lib/dashboard/schools/user_list.ex:121
 #: lib/layouts/menu_utils.ex:88
 #, elixir-autogen, elixir-format
 msgid "Managers"
 msgstr "Gestores"
 
-#: lib/dashboard/courses/course_user_list.ex:101
+#: lib/dashboard/courses/course_user_list.ex:108
 #: lib/dashboard/home.ex:27
-#: lib/dashboard/schools/user_list.ex:117
+#: lib/dashboard/schools/user_list.ex:123
 #: lib/layouts/menu_utils.ex:90
 #: lib/layouts/templates/dashboard_course.html.heex:38
 #, elixir-autogen, elixir-format
 msgid "Students"
 msgstr "Alunos"
 
-#: lib/dashboard/courses/course_user_list.ex:100
+#: lib/dashboard/courses/course_user_list.ex:107
 #: lib/dashboard/home.ex:26
-#: lib/dashboard/schools/user_list.ex:116
+#: lib/dashboard/schools/user_list.ex:122
 #: lib/layouts/menu_utils.ex:89
 #: lib/layouts/templates/dashboard_course.html.heex:42
 #, elixir-autogen, elixir-format
@@ -221,8 +221,8 @@ msgstr "Meus cursos"
 msgid "Resetting..."
 msgstr "Redefinindo..."
 
-#: lib/dashboard/courses/course_user_list.html.heex:98
-#: lib/dashboard/schools/user_list.html.heex:97
+#: lib/dashboard/courses/course_user_list.html.heex:112
+#: lib/dashboard/schools/user_list.html.heex:105
 #, elixir-autogen, elixir-format
 msgid "Username or email address"
 msgstr "Nome de usuário ou endereço de e-mail"
@@ -258,7 +258,7 @@ msgstr "Enviar"
 msgid "There was an error sending your feedback. Please try again."
 msgstr "Houve um erro ao enviar sua opinião. Por favor, tente novamente."
 
-#: lib/dashboard/lessons/components/option_list.ex:53
+#: lib/dashboard/lessons/components/option_list.ex:59
 #: lib/dashboard/lessons/lesson_view.html.heex:56
 #, elixir-autogen, elixir-format
 msgid "Are you sure?"
@@ -360,8 +360,8 @@ msgid "Create"
 msgstr "Criar"
 
 #: lib/content/course_live/course_view.html.heex:42
-#: lib/dashboard/courses/course_user_list.html.heex:22
-#: lib/dashboard/schools/user_list.html.heex:26
+#: lib/dashboard/courses/course_user_list.html.heex:36
+#: lib/dashboard/schools/user_list.html.heex:34
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Pending"
 msgstr "Pendente"

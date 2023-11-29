@@ -101,12 +101,12 @@ msgstr ""
 msgid "There's room for improvement"
 msgstr ""
 
-#: lib/content/course_live/lesson_play.ex:76
+#: lib/content/course_live/lesson_play.ex:81
 #, elixir-autogen, elixir-format
 msgid "Unable to complete lesson"
 msgstr ""
 
-#: lib/content/course_live/lesson_play.ex:49
+#: lib/content/course_live/lesson_play.ex:52
 #, elixir-autogen, elixir-format
 msgid "Unable to select option"
 msgstr ""

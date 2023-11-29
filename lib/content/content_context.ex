@@ -731,6 +731,24 @@ defmodule Uneebee.Content do
   end
 
   @doc """
+  Count how many times all options from a lesson step have been selected.
+
+  ## Examples
+
+      iex> count_selections_by_lesson_step(lesson_step_id)
+      [%{option_id: 1, selections: 1}, ...]
+  """
+  @spec count_selections_by_lesson_step(non_neg_integer()) :: [%{option_id: non_neg_integer(), selections: non_neg_integer()}]
+  def count_selections_by_lesson_step(lesson_step_id) do
+    StepOption
+    |> where(lesson_step_id: ^lesson_step_id)
+    |> join(:left, [so], us in UserSelection, on: so.id == us.option_id)
+    |> group_by([so, us], so.id)
+    |> select([so, us], %{option_id: so.id, selections: count(us.id)})
+    |> Repo.all()
+  end
+
+  @doc """
   Get the count of steps containing at least one option.
 
   ## Examples

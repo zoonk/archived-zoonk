@@ -2,6 +2,7 @@ defmodule UneebeeWeb.DashboardLessonViewLiveTest do
   use UneebeeWeb.ConnCase, async: true
 
   import Phoenix.LiveViewTest
+  import Uneebee.Fixtures.Accounts
   import Uneebee.Fixtures.Content
   import UneebeeWeb.TestHelpers.Upload
 
@@ -270,6 +271,24 @@ defmodule UneebeeWeb.DashboardLessonViewLiveTest do
       {:ok, lv, _html} = live(conn, ~p"/dashboard/c/#{course.slug}/l/#{lesson.id}/s/1")
 
       assert has_element?(lv, ~s|a:fl-contains("#{option.title}")|)
+    end
+
+    test "renders how many times an option was selected by users", %{conn: conn, course: course} do
+      lesson = lesson_fixture(%{course_id: course.id})
+      lesson_step = lesson_step_fixture(%{lesson_id: lesson.id, order: 1})
+      option1 = step_option_fixture(%{lesson_step_id: lesson_step.id})
+      option2 = step_option_fixture(%{lesson_step_id: lesson_step.id})
+      option3 = step_option_fixture(%{lesson_step_id: lesson_step.id})
+
+      user = user_fixture()
+      Enum.each(1..3, fn _i -> Content.add_user_selection(%{duration: 5, user_id: user.id, option_id: option1.id, lesson_id: lesson.id}) end)
+      Enum.each(1..2, fn _i -> Content.add_user_selection(%{duration: 5, user_id: user.id, option_id: option2.id, lesson_id: lesson.id}) end)
+
+      {:ok, lv, _html} = live(conn, ~p"/dashboard/c/#{course.slug}/l/#{lesson.id}/s/1")
+
+      assert has_element?(lv, ~s|#option-#{option1.id} span[title="This option was selected 60% of the time."]:fl-icontains("60%")|)
+      assert has_element?(lv, ~s|#option-#{option2.id} span[title="This option was selected 40% of the time."]:fl-icontains("40%")|)
+      assert has_element?(lv, ~s|#option-#{option3.id} span[title="This option was selected 0% of the time."]:fl-icontains("0%")|)
     end
 
     test "deletes an option", %{conn: conn, course: course} do

@@ -872,6 +872,30 @@ defmodule Uneebee.ContentTest do
     end
   end
 
+  describe "count_selections_by_lesson_step/1" do
+    test "returns the number for each options of a lesson step" do
+      user = user_fixture()
+      lesson = lesson_fixture()
+      lesson_step = lesson_step_fixture(%{lesson_id: lesson.id})
+      step_option1 = step_option_fixture(%{lesson_step_id: lesson_step.id})
+      step_option2 = step_option_fixture(%{lesson_step_id: lesson_step.id})
+      step_option3 = step_option_fixture(%{lesson_step_id: lesson_step.id})
+
+      Enum.each(1..3, fn _idx -> Content.add_user_selection(%{duration: 5, user_id: user.id, option_id: step_option1.id, lesson_id: lesson.id}) end)
+      Enum.each(1..2, fn _idx -> Content.add_user_selection(%{duration: 5, user_id: user.id, option_id: step_option2.id, lesson_id: lesson.id}) end)
+      Enum.each(1..1, fn _idx -> Content.add_user_selection(%{duration: 5, user_id: user.id, option_id: step_option3.id, lesson_id: lesson.id}) end)
+
+      selections = Content.count_selections_by_lesson_step(lesson_step.id)
+      option1 = Enum.find(selections, fn selection -> selection.option_id == step_option1.id end)
+      option2 = Enum.find(selections, fn selection -> selection.option_id == step_option2.id end)
+      option3 = Enum.find(selections, fn selection -> selection.option_id == step_option3.id end)
+
+      assert option1.selections == 3
+      assert option2.selections == 2
+      assert option3.selections == 1
+    end
+  end
+
   describe "count_lesson_steps_with_options/1" do
     test "returns the number of lesson steps with options" do
       lesson = lesson_fixture()

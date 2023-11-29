@@ -8,6 +8,7 @@ defmodule Uneebee.Content.StepOption do
 
   alias Uneebee.Content.CourseUtils
   alias Uneebee.Content.LessonStep
+  alias Uneebee.Content.UserSelection
 
   @type t :: %__MODULE__{}
 
@@ -18,6 +19,7 @@ defmodule Uneebee.Content.StepOption do
     field :title, :string
 
     belongs_to :lesson_step, LessonStep
+    has_many :user_selections, UserSelection, foreign_key: :option_id
 
     timestamps(type: :utc_datetime_usec)
   end
