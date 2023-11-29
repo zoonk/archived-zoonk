@@ -41,17 +41,44 @@ defmodule SchoolSeed do
   @doc """
   Seeds the database with schools.
   """
-  def seed(kind \\ :white_label) do
+  def seed(args \\ %{}) do
+    kind = Map.get(args, :kind, :white_label)
+    multiple? = Map.get(args, :multiple?, false)
+
     app = create_app(kind)
 
     if kind != :white_label do
-      Enum.each(@schools, fn attrs ->
-        manager = Accounts.get_user_by_username(Enum.at(attrs.managers, 0))
-        attrs = Map.merge(attrs, %{created_by_id: manager.id, school_id: app.id})
-        {:ok, school} = Organizations.create_school(attrs)
-        create_school_users(school, attrs)
-      end)
+      schools = generate_school_attrs(multiple?)
+      Enum.each(schools, fn attrs -> create_school(attrs, app) end)
     end
+  end
+
+  defp generate_school_attrs(false), do: @schools
+  defp generate_school_attrs(true), do: generate_school_attrs()
+
+  defp generate_school_attrs() do
+    random_schools =
+      Enum.map(1..30, fn idx ->
+        %{
+          name: "School #{idx}",
+          custom_domain: nil,
+          email: "noreply@example.com",
+          public?: false,
+          slug: "school-#{idx}",
+          managers: ["lovelace"],
+          teachers: ["tesla"],
+          students: ["franklin"]
+        }
+      end)
+
+    @schools ++ random_schools
+  end
+
+  defp create_school(attrs, app) do
+    manager = Accounts.get_user_by_username(Enum.at(attrs.managers, 0))
+    attrs = Map.merge(attrs, %{created_by_id: manager.id, school_id: app.id})
+    {:ok, school} = Organizations.create_school(attrs)
+    create_school_users(school, attrs)
   end
 
   defp create_app(kind) do

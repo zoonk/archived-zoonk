@@ -1,4 +1,6 @@
 defmodule Seed do
+  alias UneebeeWeb.Shared.Utilities
+
   def get_kind(args) do
     args
     |> Enum.find(fn arg -> String.starts_with?(arg, "--kind=") end)
@@ -8,6 +10,18 @@ defmodule Seed do
     |> String.to_atom()
   end
 
+  def multiple_schools?(args) do
+    args
+    |> Enum.find(fn arg -> String.starts_with?(arg, "--multiple") end)
+    |> get_multiple_arg()
+    |> String.split("=")
+    |> List.last()
+    |> Utilities.string_to_boolean()
+  end
+
   defp get_kind_arg(nil), do: "white_label"
   defp get_kind_arg(kind), do: kind
+
+  defp get_multiple_arg(nil), do: "false"
+  defp get_multiple_arg(multiple), do: multiple
 end

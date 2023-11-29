@@ -5,7 +5,8 @@ Code.require_file("priv/repo/seed/seed.ex")
 
 args = System.argv()
 kind = Seed.get_kind(args)
+multiple? = Seed.multiple_schools?(args)
 
 UserSeed.seed()
-SchoolSeed.seed(kind)
+SchoolSeed.seed(%{kind: kind, multiple?: multiple?})
 CourseSeed.seed()

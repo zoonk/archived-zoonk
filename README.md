@@ -50,7 +50,7 @@ Follow the instructions below to get UneeBee up and running on your local machin
 ### Local development
 
 - Run `mix setup` to install both dependencies and set up both the database and assets.
-- Run `mix seed` to fetch some initial data to the database. Use `mix seed --kind=saas` to seed the database with multiple schools.
+- Run `mix seed` to fetch some initial data to the database ([See options](./priv/repo/seed/README.md)).
 - Run `mix phx.server` to start a development server.
 - Run `mix test` to run tests.
 - Run `mix ci` to run our code quality checks.
