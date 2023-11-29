@@ -38,6 +38,7 @@ defmodule UneebeeWeb.DashboardSchoolListTest do
 
         assert has_element?(lv, "h3", school.name)
         assert has_element?(lv, "#school-#{school.id} span", status)
+        assert has_element?(lv, ~s|a[href="/dashboard/schools/#{school.id}"]|)
       end)
     end
   end
