@@ -1,3 +1,5 @@
+# credo:disable-for-this-file Credo.Check.Readability.Specs
+
 defmodule UneebeeWeb.Shared.Paginate do
   @moduledoc """
   Reusable module for paginating items in a LiveView.
@@ -17,15 +19,12 @@ defmodule UneebeeWeb.Shared.Paginate do
       end
   """
 
-  alias Phoenix.LiveView.Socket
-
   defmacro __using__(opts) do
     as = Keyword.fetch!(opts, :as)
 
     quote do
-      @spec add_pagination(Socket.t()) :: Socket.t()
-      def add_pagination(socket) do
-        socket |> assign(page: 1, per_page: 10) |> paginate(1)
+      def add_pagination(socket, per_page \\ 20) do
+        socket |> assign(page: 1, per_page: per_page) |> paginate(1)
       end
 
       @impl Phoenix.LiveView
