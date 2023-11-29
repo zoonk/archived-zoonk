@@ -360,6 +360,7 @@ msgstr "Descrição para a aula %{order}. Você deve atualizar isso."
 
 #: lib/dashboard/courses/course_user_list.html.heex:61
 #: lib/dashboard/courses/course_user_list.html.heex:70
+#: lib/dashboard/schools/school_list.html.heex:37
 #, elixir-autogen, elixir-format
 msgid "Details"
 msgstr "Detalhes"
@@ -583,12 +584,16 @@ msgstr "Alternativas"
 
 #: lib/dashboard/courses/course_view.html.heex:11
 #: lib/dashboard/home.html.heex:17
+#: lib/dashboard/schools/school_list.html.heex:16
+#: lib/dashboard/schools/school_view.html.heex:24
 #, elixir-autogen, elixir-format
 msgid "Private"
 msgstr "Privado"
 
 #: lib/dashboard/courses/course_view.html.heex:11
 #: lib/dashboard/home.html.heex:17
+#: lib/dashboard/schools/school_list.html.heex:16
+#: lib/dashboard/schools/school_view.html.heex:24
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Public"
 msgstr "Público"
@@ -667,3 +672,18 @@ msgstr "Ao marcar, qualquer pessoa pode criar uma conta. Quando desmarcado, eles
 #, elixir-autogen, elixir-format
 msgid "When checked, users won't need to create an account to play your courses. Keep it unchecked if you want users to create an account first."
 msgstr "Ao marcar, os usuários não precisarão criar uma conta para jogar os cursos. Mantenha desmarcado se você quiser que os usuários criem uma conta primeiro."
+
+#: lib/dashboard/schools/school_list.ex:12
+#, elixir-autogen, elixir-format
+msgid "All schools"
+msgstr "Todos as escolas"
+
+#: lib/dashboard/schools/school_view.html.heex:28
+#, elixir-autogen, elixir-format
+msgid "Users:"
+msgstr "Usuários:"
+
+#: lib/dashboard/schools/school_list.html.heex:45
+#, elixir-autogen, elixir-format
+msgid "You loaded all schools."
+msgstr "Você visualizou todas as escolas."

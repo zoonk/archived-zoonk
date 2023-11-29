@@ -360,6 +360,7 @@ msgstr ""
 
 #: lib/dashboard/courses/course_user_list.html.heex:61
 #: lib/dashboard/courses/course_user_list.html.heex:70
+#: lib/dashboard/schools/school_list.html.heex:37
 #, elixir-autogen, elixir-format
 msgid "Details"
 msgstr ""
@@ -583,12 +584,16 @@ msgstr ""
 
 #: lib/dashboard/courses/course_view.html.heex:11
 #: lib/dashboard/home.html.heex:17
+#: lib/dashboard/schools/school_list.html.heex:16
+#: lib/dashboard/schools/school_view.html.heex:24
 #, elixir-autogen, elixir-format
 msgid "Private"
 msgstr ""
 
 #: lib/dashboard/courses/course_view.html.heex:11
 #: lib/dashboard/home.html.heex:17
+#: lib/dashboard/schools/school_list.html.heex:16
+#: lib/dashboard/schools/school_view.html.heex:24
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Public"
 msgstr ""
@@ -666,4 +671,19 @@ msgstr ""
 #: lib/dashboard/schools/school_edit.html.heex:44
 #, elixir-autogen, elixir-format
 msgid "When checked, users won't need to create an account to play your courses. Keep it unchecked if you want users to create an account first."
+msgstr ""
+
+#: lib/dashboard/schools/school_list.ex:12
+#, elixir-autogen, elixir-format
+msgid "All schools"
+msgstr ""
+
+#: lib/dashboard/schools/school_view.html.heex:28
+#, elixir-autogen, elixir-format
+msgid "Users:"
+msgstr ""
+
+#: lib/dashboard/schools/school_list.html.heex:45
+#, elixir-autogen, elixir-format
+msgid "You loaded all schools."
 msgstr ""
