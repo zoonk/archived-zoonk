@@ -10,7 +10,8 @@ defmodule Seed do
     |> String.to_atom()
   end
 
-  def multiple_schools?(args) do
+  # Generate multiple items. This is ideal for testing infinite scroll.
+  def multiple?(args) do
     args
     |> Enum.find(fn arg -> String.starts_with?(arg, "--multiple") end)
     |> get_multiple_arg()

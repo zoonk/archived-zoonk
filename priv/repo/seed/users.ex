@@ -101,7 +101,26 @@ defmodule UserSeed do
 
   Iterate over the users list and insert each user into the database.
   """
-  def seed do
-    Enum.each(@users, &Accounts.register_user/1)
+  def seed(args \\ %{}) do
+    multiple? = Map.get(args, :multiple?, false)
+    users = generate_user_attrs(multiple?)
+    Enum.each(users, &Accounts.register_user/1)
+  end
+
+  defp generate_user_attrs(false), do: @users
+  defp generate_user_attrs(true), do: generate_user_attrs()
+
+  defp generate_user_attrs() do
+    random_users =
+      Enum.map(1..200, fn idx ->
+        %{
+          email: "user_#{idx}@example.com",
+          username: "user_#{idx}",
+          language: :en,
+          password: "Demo1234"
+        }
+      end)
+
+    @users ++ random_users
   end
 end

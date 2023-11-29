@@ -2,10 +2,10 @@
 
 ## Arguments
 
-| Argument     | Description               | Options               | Default       | Notes                           |
-| ------------ | ------------------------- | --------------------- | ------------- | ------------------------------- |
-| `--kind`     | The kind of data to seed. | `saas`, `white_label` | `white_label` |                                 |
-| `--multiple` | Create multiple schools.  | `boolean`             | `false`       | Ignored for `white_label` kind. |
+| Argument     | Description                                                        | Options               | Default       |
+| ------------ | ------------------------------------------------------------------ | --------------------- | ------------- |
+| `--kind`     | The kind of data to seed.                                          | `saas`, `white_label` | `white_label` |
+| `--multiple` | Create multiple items. This is ideal when testing infinite scroll. | `boolean`             | `false`       |
 
 ## Examples
 

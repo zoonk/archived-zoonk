@@ -49,7 +49,7 @@ defmodule SchoolSeed do
 
     if kind != :white_label do
       schools = generate_school_attrs(multiple?)
-      Enum.each(schools, fn attrs -> create_school(attrs, app) end)
+      Enum.each(schools, fn attrs -> create_school(attrs, app, multiple?: multiple?) end)
     end
   end
 
@@ -74,11 +74,13 @@ defmodule SchoolSeed do
     @schools ++ random_schools
   end
 
-  defp create_school(attrs, app) do
+  defp create_school(attrs, app, opts) do
+    multiple? = Keyword.get(opts, :multiple?, false)
     manager = Accounts.get_user_by_username(Enum.at(attrs.managers, 0))
     attrs = Map.merge(attrs, %{created_by_id: manager.id, school_id: app.id})
     {:ok, school} = Organizations.create_school(attrs)
     create_school_users(school, attrs)
+    create_students(school, multiple?)
   end
 
   defp create_app(kind) do
@@ -93,6 +95,12 @@ defmodule SchoolSeed do
     Enum.each(attrs.managers, fn manager -> create_school_user(school, manager, :manager) end)
     Enum.each(attrs.teachers, fn teacher -> create_school_user(school, teacher, :teacher) end)
     Enum.each(attrs.students, fn student -> create_school_user(school, student, :student) end)
+  end
+
+  defp create_students(_school, false), do: nil
+
+  defp create_students(school, true) do
+    Enum.each(1..200, fn idx -> create_school_user(school, "user_#{idx}", :student) end)
   end
 
   defp create_school_user(school, username, role) do
