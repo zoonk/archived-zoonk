@@ -80,16 +80,16 @@ defmodule UneebeeWeb.Layouts.MenuUtils do
   def home_page?(:courseview, %Course{slug: slug}, last_course_slug), do: slug == last_course_slug
   def home_page?(_active_page, _course, _last_course_slug), do: false
 
-  @spec dashboard_school_menu() :: list()
-  def dashboard_school_menu do
+  @spec dashboard_school_menu(atom()) :: list()
+  def dashboard_school_menu(kind) do
     [
-      %{link: ~p"/dashboard", view: :dashboard_home, title: gettext("Overview")},
-      %{link: ~p"/dashboard/schools", view: :dashboard_schoollist, title: gettext("Schools")},
-      %{link: ~p"/dashboard/managers", view: :dashboard_userlist_manager, title: gettext("Managers")},
-      %{link: ~p"/dashboard/teachers", view: :dashboard_userlist_teacher, title: gettext("Teachers")},
-      %{link: ~p"/dashboard/students", view: :dashboard_userlist_student, title: gettext("Students")},
-      %{link: ~p"/dashboard/edit/logo", view: :dashboard_schooledit_logo, title: gettext("Logo")},
-      %{link: ~p"/dashboard/edit/settings", view: :dashboard_schooledit_settings, title: gettext("Settings")}
+      %{link: ~p"/dashboard", view: :dashboard_home, title: gettext("Overview"), visible?: true},
+      %{link: ~p"/dashboard/schools", view: :dashboard_schoollist, title: gettext("Schools"), visible?: kind != :white_label},
+      %{link: ~p"/dashboard/managers", view: :dashboard_userlist_manager, title: gettext("Managers"), visible?: true},
+      %{link: ~p"/dashboard/teachers", view: :dashboard_userlist_teacher, title: gettext("Teachers"), visible?: true},
+      %{link: ~p"/dashboard/students", view: :dashboard_userlist_student, title: gettext("Students"), visible?: true},
+      %{link: ~p"/dashboard/edit/logo", view: :dashboard_schooledit_logo, title: gettext("Logo"), visible?: true},
+      %{link: ~p"/dashboard/edit/settings", view: :dashboard_schooledit_settings, title: gettext("Settings"), visible?: true}
     ]
   end
 end

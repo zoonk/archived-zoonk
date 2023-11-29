@@ -18,7 +18,7 @@
         <.link href={~p"/"}><%= gettext("Home") %></.link>
       </li>
 
-      <.dashboard_menu_item :for={item <- dashboard_school_menu()} navigate={item.link} active={@active_page == item.view}>
+      <.dashboard_menu_item :for={item <- dashboard_school_menu(@school.kind)} :if={item.visible?} navigate={item.link} active={@active_page == item.view}>
         <%= item.title %>
       </.dashboard_menu_item>
     </ul>
