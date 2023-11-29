@@ -523,6 +523,23 @@ defmodule Uneebee.OrganizationsTest do
     end
   end
 
+  describe "list_school_users_by_role/3" do
+    test "limit and offset users" do
+      school = school_fixture()
+
+      Enum.each(1..3, fn _idx -> school_user_fixture(%{school: school, role: :teacher}) end)
+      school_user_fixture(%{school: school, role: :manager})
+
+      school_user_fixture(%{school: school, role: :student})
+      su1 = school_user_fixture(%{school: school, role: :student, preload: [:user, :approved_by]})
+      su2 = school_user_fixture(%{school: school, role: :student, preload: [:user, :approved_by]})
+      su3 = school_user_fixture(%{school: school, role: :student, preload: [:user, :approved_by]})
+      school_user_fixture(%{school: school, role: :student})
+
+      assert Organizations.list_school_users_by_role(school, :student, limit: 3, offset: 1) == [su3, su2, su1]
+    end
+  end
+
   describe "approve_school_user/2" do
     test "approves a school user" do
       manager_user = user_fixture()

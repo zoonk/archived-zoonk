@@ -56,7 +56,9 @@ defmodule UneebeeWeb.Shared.Paginate do
 
         case items do
           [] ->
-            assign(socket, end_of_timeline?: at == -1)
+            socket
+            |> assign(end_of_timeline?: at == -1)
+            |> maybe_assign_stream()
 
           [_ | _] = items ->
             socket
@@ -65,6 +67,10 @@ defmodule UneebeeWeb.Shared.Paginate do
             |> stream(unquote(as), items, at: at, limit: limit)
         end
       end
+
+      # If the stream doesn't exist, assign it to the socket
+      defp maybe_assign_stream(%{assigns: %{streams: streams}} = socket), do: socket
+      defp maybe_assign_stream(socket), do: stream(socket, unquote(as), [])
     end
   end
 end

@@ -301,15 +301,19 @@ defmodule Uneebee.Organizations do
       iex> list_school_users_by_role(school, :manager)
       [%SchoolUser{}, ...]
   """
-  @spec list_school_users_by_role(School.t(), atom()) :: [SchoolUser.t()]
-  def list_school_users_by_role(%School{} = school, role) do
-    query =
-      from school_user in SchoolUser,
-        where: school_user.role == ^role,
-        order_by: [asc: school_user.approved?],
-        preload: [:approved_by, :user]
+  @spec list_school_users_by_role(School.t(), atom(), list()) :: [SchoolUser.t()]
+  def list_school_users_by_role(%School{} = school, role, opts \\ []) do
+    limit = Keyword.get(opts, :limit, 20)
+    offset = Keyword.get(opts, :offset, 0)
 
-    school |> Repo.preload(users: query) |> Map.get(:users)
+    SchoolUser
+    |> where([su], su.school_id == ^school.id and su.role == ^role)
+    |> order_by([su], asc: su.approved?)
+    |> order_by([su], desc: su.updated_at)
+    |> limit(^limit)
+    |> offset(^offset)
+    |> preload([su], [:approved_by, :user])
+    |> Repo.all()
   end
 
   @doc """
