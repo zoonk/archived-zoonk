@@ -1,0 +1,46 @@
+<ul
+  id="school-list"
+  phx-update="stream"
+  phx-viewport-top={@page > 1 && "prev-page"}
+  phx-viewport-bottom={!@end_of_timeline? && "next-page"}
+  phx-page-loading
+  class="container grid grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-3"
+>
+  <li :for={{id, school} <- @streams.schools} id={id} class="col-span-1 divide-y divide-gray-200 rounded-lg bg-white shadow">
+    <div class="flex w-full items-center justify-between space-x-6 p-6" id={"school-#{school.id}"}>
+      <div class="flex-1 truncate">
+        <div class="flex items-center space-x-3">
+          <h3 class="truncate text-sm font-medium text-gray-900"><%= school.name %></h3>
+
+          <.badge color={if school.public?, do: :success, else: :alert} role="status">
+            <%= if school.public?, do: dgettext("orgs", "Public"), else: dgettext("orgs", "Private") %>
+          </.badge>
+        </div>
+
+        <p class="mt-1 truncate text-sm text-gray-500">
+          @<%= school.slug %>
+          <span class="text-gray-300">/</span>
+          <%= school.email %>
+        </p>
+      </div>
+
+      <.avatar src={school.logo} alt={school.name} size={:large} />
+    </div>
+
+    <div class="-mt-px flex divide-x divide-gray-200">
+      <div class="flex w-0 flex-1">
+        <.link
+          navigate={~p"/dashboard/schools/#{school.id}"}
+          class="relative -mr-px inline-flex w-0 flex-1 items-center justify-center gap-x-3 rounded-bl-lg border border-transparent py-4 text-sm font-semibold text-teal-500 hover:bg-gray-50"
+        >
+          <.icon name="tabler-chart-radar" class="h-5 w-5" />
+          <%= dgettext("orgs", "Details") %>
+        </.link>
+      </div>
+    </div>
+  </li>
+</ul>
+
+<div :if={@end_of_timeline?} class="pb-6 text-center text-xs text-gray-500">
+  <%= dgettext("orgs", "You loaded all schools.") %>
+</div>

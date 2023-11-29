@@ -291,6 +291,22 @@ defmodule Uneebee.OrganizationsTest do
     end
   end
 
+  describe "list_schools/1" do
+    test "returns all schools" do
+      school1 = school_fixture()
+      school2 = school_fixture()
+      school_fixture(%{school_id: school1.id})
+      school_fixture(%{school_id: school1.id})
+      school3 = school_fixture(%{school_id: school1.id})
+      school4 = school_fixture(%{school_id: school1.id})
+      school5 = school_fixture(%{school_id: school1.id})
+      school_fixture(%{school_id: school1.id})
+      school_fixture(%{school_id: school2.id})
+
+      assert Organizations.list_schools(school1.id, limit: 3, offset: 1) == [school5, school4, school3]
+    end
+  end
+
   describe "create_school_user/3" do
     test "add a school student" do
       school = school_fixture()
@@ -441,6 +457,14 @@ defmodule Uneebee.OrganizationsTest do
 
     test "returns nil when the school doesn't exist" do
       assert Organizations.get_app_school!(nil) == nil
+    end
+  end
+
+  describe "get_school_users_count/1" do
+    test "returns the number of users in a school" do
+      school = school_fixture()
+      Enum.each(1..4, fn _idx -> school_user_fixture(%{school: school}) end)
+      assert Organizations.get_school_users_count(school) == 4
     end
   end
 

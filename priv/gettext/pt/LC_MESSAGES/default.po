@@ -91,7 +91,7 @@ msgstr "Início"
 
 #: lib/dashboard/schools/school_edit.ex:61
 #: lib/dashboard/schools/school_edit.html.heex:1
-#: lib/layouts/menu_utils.ex:90
+#: lib/layouts/menu_utils.ex:91
 #: lib/layouts/templates/auth.html.heex:3
 #, elixir-autogen, elixir-format
 msgid "Logo"
@@ -113,7 +113,7 @@ msgstr "Sair"
 #: lib/dashboard/courses/course_edit.html.heex:5
 #: lib/dashboard/schools/school_edit.ex:60
 #: lib/layouts/components/app_menu.ex:40
-#: lib/layouts/menu_utils.ex:91
+#: lib/layouts/menu_utils.ex:92
 #: lib/layouts/templates/dashboard_course.html.heex:46
 #, elixir-autogen, elixir-format
 msgid "Settings"
@@ -145,7 +145,7 @@ msgstr "Nome"
 
 #: lib/dashboard/home.ex:25
 #: lib/dashboard/schools/user_list.ex:115
-#: lib/layouts/menu_utils.ex:87
+#: lib/layouts/menu_utils.ex:88
 #, elixir-autogen, elixir-format
 msgid "Managers"
 msgstr "Gestores"
@@ -153,7 +153,7 @@ msgstr "Gestores"
 #: lib/dashboard/courses/course_user_list.ex:101
 #: lib/dashboard/home.ex:27
 #: lib/dashboard/schools/user_list.ex:117
-#: lib/layouts/menu_utils.ex:89
+#: lib/layouts/menu_utils.ex:90
 #: lib/layouts/templates/dashboard_course.html.heex:38
 #, elixir-autogen, elixir-format
 msgid "Students"
@@ -162,7 +162,7 @@ msgstr "Alunos"
 #: lib/dashboard/courses/course_user_list.ex:100
 #: lib/dashboard/home.ex:26
 #: lib/dashboard/schools/user_list.ex:116
-#: lib/layouts/menu_utils.ex:88
+#: lib/layouts/menu_utils.ex:89
 #: lib/layouts/templates/dashboard_course.html.heex:42
 #, elixir-autogen, elixir-format
 msgid "Teachers"
@@ -397,3 +397,8 @@ msgstr "Não perca o seu progresso. "
 #, elixir-autogen, elixir-format
 msgid "Update your email address"
 msgstr "Atualize o endereço de e-mail"
+
+#: lib/layouts/menu_utils.ex:87
+#, elixir-autogen, elixir-format
+msgid "Schools"
+msgstr "Escolas"

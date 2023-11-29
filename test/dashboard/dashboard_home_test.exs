@@ -57,10 +57,45 @@ defmodule UneebeeWeb.DashboardHomeLiveTest do
     end
   end
 
+  describe "/dashboard (saas)" do
+    setup do
+      app_setup(%{conn: build_conn()}, school_user: :manager, school_kind: :saas)
+    end
+
+    test "renders the schools menu", %{conn: conn} do
+      {:ok, lv, _html} = live(conn, ~p"/dashboard")
+      assert has_element?(lv, schools_el())
+    end
+  end
+
+  describe "/dashboard (marketplace)" do
+    setup do
+      app_setup(%{conn: build_conn()}, school_user: :manager, school_kind: :marketplace)
+    end
+
+    test "renders the schools menu", %{conn: conn} do
+      {:ok, lv, _html} = live(conn, ~p"/dashboard")
+      assert has_element?(lv, schools_el())
+    end
+  end
+
+  describe "/dashboard (white label)" do
+    setup do
+      app_setup(%{conn: build_conn()}, school_user: :manager, school_kind: :white_label)
+    end
+
+    test "renders the schools menu", %{conn: conn} do
+      {:ok, lv, _html} = live(conn, ~p"/dashboard")
+      refute has_element?(lv, schools_el())
+    end
+  end
+
   defp assert_dashboard(lv, school, host) do
     assert has_element?(lv, ~s|li[aria-current=page] a:fl-icontains("manage school")|)
     assert has_element?(lv, ~s|h1 *:fl-icontains("#{school.name}")|)
     assert has_element?(lv, ~s|h1 *:fl-icontains("@#{school.slug}")|)
     assert has_element?(lv, ~s|header p:fl-icontains("#{host}")|)
   end
+
+  defp schools_el, do: ~s|a[href="/dashboard/schools"]:fl-icontains("schools")|
 end

@@ -245,6 +245,42 @@ defmodule Uneebee.Organizations do
   def get_app_school!(nil), do: nil
 
   @doc """
+  List schools.
+
+  Returns all schools that belong to another school.
+
+  ## Examples
+
+      iex> list_schools(school_id)
+      [%School{}, ...]
+  """
+  @spec list_schools(integer(), list()) :: [School.t()]
+  def list_schools(school_id, opts \\ []) do
+    limit = Keyword.get(opts, :limit, 10)
+    offset = Keyword.get(opts, :offset, 0)
+
+    School
+    |> where([s], s.school_id == ^school_id)
+    |> order_by(desc: :updated_at)
+    |> offset(^offset)
+    |> limit(^limit)
+    |> Repo.all()
+  end
+
+  @doc """
+  Get the number of users in a school.
+
+  ## Examples
+
+      iex> get_school_users_count(school)
+      10
+  """
+  @spec get_school_users_count(School.t()) :: non_neg_integer()
+  def get_school_users_count(school) do
+    SchoolUser |> where([su], su.school_id == ^school.id) |> Repo.aggregate(:count)
+  end
+
+  @doc """
   Gets the number of users in a school based on their role.
 
   ## Examples
