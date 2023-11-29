@@ -505,7 +505,7 @@ defmodule Uneebee.ContentTest do
       user = user_fixture()
       lesson_step = lesson_step_fixture(%{lesson: lesson})
       step_option = step_option_fixture(%{lesson_step: lesson_step})
-      Content.add_user_selection(%{user_id: user.id, option_id: step_option.id, lesson_id: lesson.id})
+      Content.add_user_selection(%{duration: 5, user_id: user.id, option_id: step_option.id, lesson_id: lesson.id})
 
       assert length(Content.list_user_selections_by_lesson(user.id, lesson.id, 1)) == 1
       Content.delete_lesson(lesson)
@@ -633,12 +633,12 @@ defmodule Uneebee.ContentTest do
       option2 = step_option_fixture(%{lesson_step_id: lesson_step1.id, correct?: false})
       option3 = step_option_fixture(%{lesson_step_id: lesson_step2.id, correct?: true})
 
-      Content.add_user_selection(%{user_id: user.id, option_id: option1.id, lesson_id: lesson1.id})
-      Content.add_user_selection(%{user_id: user.id, option_id: option2.id, lesson_id: lesson1.id})
-      Content.add_user_selection(%{user_id: user.id, option_id: option3.id, lesson_id: lesson2.id})
+      Content.add_user_selection(%{duration: 5, user_id: user.id, option_id: option1.id, lesson_id: lesson1.id})
+      Content.add_user_selection(%{duration: 5, user_id: user.id, option_id: option2.id, lesson_id: lesson1.id})
+      Content.add_user_selection(%{duration: 5, user_id: user.id, option_id: option3.id, lesson_id: lesson2.id})
 
-      Content.add_user_lesson(%{user_id: user.id, lesson_id: lesson1.id, attempts: 1, correct: 3, total: 5})
-      Content.add_user_lesson(%{user_id: user.id, lesson_id: lesson2.id, attempts: 1, correct: 3, total: 5})
+      Content.add_user_lesson(%{duration: 5, user_id: user.id, lesson_id: lesson1.id, attempts: 1, correct: 3, total: 5})
+      Content.add_user_lesson(%{duration: 5, user_id: user.id, lesson_id: lesson2.id, attempts: 1, correct: 3, total: 5})
 
       lessons = Content.list_published_lessons(course, user, selections?: true)
       first_lesson = Enum.at(lessons, 0)
@@ -974,7 +974,7 @@ defmodule Uneebee.ContentTest do
     test "adds a user selection" do
       user = user_fixture()
       option = step_option_fixture(%{preload: :lesson_step})
-      attrs = %{user_id: user.id, option_id: option.id, lesson_id: option.lesson_step.lesson_id}
+      attrs = %{duration: 5, user_id: user.id, option_id: option.id, lesson_id: option.lesson_step.lesson_id}
       assert {:ok, %UserSelection{} = user_selection} = Content.add_user_selection(attrs)
 
       assert user_selection.user_id == user.id
@@ -989,21 +989,21 @@ defmodule Uneebee.ContentTest do
       lesson_steps1 = Enum.map(1..3, fn idx -> lesson_step_fixture(%{lesson_id: lesson1.id, order: idx}) end)
       options1 = Enum.map(0..2, fn idx -> step_option_fixture(%{lesson_step_id: Enum.at(lesson_steps1, idx).id}) end)
 
-      Content.add_user_selection(%{user_id: user.id, option_id: Enum.at(options1, 0).id, lesson_id: lesson1.id})
-      Content.add_user_selection(%{user_id: user.id, option_id: Enum.at(options1, 1).id, lesson_id: lesson1.id})
-      Content.add_user_selection(%{user_id: user.id, option_id: Enum.at(options1, 2).id, lesson_id: lesson1.id})
+      Content.add_user_selection(%{duration: 5, user_id: user.id, option_id: Enum.at(options1, 0).id, lesson_id: lesson1.id})
+      Content.add_user_selection(%{duration: 5, user_id: user.id, option_id: Enum.at(options1, 1).id, lesson_id: lesson1.id})
+      Content.add_user_selection(%{duration: 5, user_id: user.id, option_id: Enum.at(options1, 2).id, lesson_id: lesson1.id})
 
-      {:ok, us1} = Content.add_user_selection(%{user_id: user.id, option_id: Enum.at(options1, 0).id, lesson_id: lesson1.id})
-      {:ok, us2} = Content.add_user_selection(%{user_id: user.id, option_id: Enum.at(options1, 1).id, lesson_id: lesson1.id})
-      {:ok, us3} = Content.add_user_selection(%{user_id: user.id, option_id: Enum.at(options1, 2).id, lesson_id: lesson1.id})
+      {:ok, us1} = Content.add_user_selection(%{duration: 5, user_id: user.id, option_id: Enum.at(options1, 0).id, lesson_id: lesson1.id})
+      {:ok, us2} = Content.add_user_selection(%{duration: 5, user_id: user.id, option_id: Enum.at(options1, 1).id, lesson_id: lesson1.id})
+      {:ok, us3} = Content.add_user_selection(%{duration: 5, user_id: user.id, option_id: Enum.at(options1, 2).id, lesson_id: lesson1.id})
 
       lesson2 = lesson_fixture()
       lesson_steps2 = Enum.map(1..3, fn idx -> lesson_step_fixture(%{lesson_id: lesson2.id, order: idx}) end)
       options2 = Enum.map(0..2, fn idx -> step_option_fixture(%{lesson_step_id: Enum.at(lesson_steps2, idx).id}) end)
 
-      Content.add_user_selection(%{user_id: user.id, option_id: Enum.at(options2, 0).id, lesson_id: lesson2.id})
-      Content.add_user_selection(%{user_id: user.id, option_id: Enum.at(options2, 1).id, lesson_id: lesson2.id})
-      Content.add_user_selection(%{user_id: user.id, option_id: Enum.at(options2, 2).id, lesson_id: lesson2.id})
+      Content.add_user_selection(%{duration: 5, user_id: user.id, option_id: Enum.at(options2, 0).id, lesson_id: lesson2.id})
+      Content.add_user_selection(%{duration: 5, user_id: user.id, option_id: Enum.at(options2, 1).id, lesson_id: lesson2.id})
+      Content.add_user_selection(%{duration: 5, user_id: user.id, option_id: Enum.at(options2, 2).id, lesson_id: lesson2.id})
 
       user_selection1 = UserSelection |> Repo.get(us1.id) |> Repo.preload(:option)
       user_selection2 = UserSelection |> Repo.get(us2.id) |> Repo.preload(:option)
@@ -1191,7 +1191,7 @@ defmodule Uneebee.ContentTest do
     end
   end
 
-  describe "mark_lesson_as_completed/2" do
+  describe "mark_lesson_as_completed/3" do
     test "marks a lesson as completed" do
       user = user_fixture()
       lesson1 = lesson_fixture()
@@ -1201,16 +1201,17 @@ defmodule Uneebee.ContentTest do
       options1 = Enum.map(0..2, fn idx -> step_option_fixture(%{correct?: false, lesson_step_id: Enum.at(lesson_steps1, idx).id}) end)
       options2 = Enum.map(0..2, fn idx -> step_option_fixture(%{correct?: true, lesson_step_id: Enum.at(lesson_steps1, idx).id}) end)
 
-      Content.add_user_selection(%{user_id: user.id, option_id: Enum.at(options2, 0).id, lesson_id: lesson1.id})
-      Content.add_user_selection(%{user_id: user.id, option_id: Enum.at(options1, 1).id, lesson_id: lesson1.id})
-      Content.add_user_selection(%{user_id: user.id, option_id: Enum.at(options2, 2).id, lesson_id: lesson1.id})
+      Content.add_user_selection(%{duration: 5, user_id: user.id, option_id: Enum.at(options2, 0).id, lesson_id: lesson1.id})
+      Content.add_user_selection(%{duration: 5, user_id: user.id, option_id: Enum.at(options1, 1).id, lesson_id: lesson1.id})
+      Content.add_user_selection(%{duration: 5, user_id: user.id, option_id: Enum.at(options2, 2).id, lesson_id: lesson1.id})
 
-      assert {:ok, %UserLesson{} = user_lesson} = Content.mark_lesson_as_completed(user.id, lesson1.id)
+      assert {:ok, %UserLesson{} = user_lesson} = Content.mark_lesson_as_completed(user.id, lesson1.id, 20)
       assert user_lesson.user_id == user.id
       assert user_lesson.lesson_id == lesson1.id
       assert user_lesson.attempts == 1
       assert user_lesson.correct == 2
       assert user_lesson.total == 3
+      assert user_lesson.duration == 20
     end
   end
 

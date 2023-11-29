@@ -988,18 +988,18 @@ defmodule Uneebee.Content do
 
   ## Examples
 
-      iex> mark_lesson_as_completed(user_id, lesson_id)
+      iex> mark_lesson_as_completed(user_id, lesson_id, duration)
       {:ok, %UserLesson{}}
 
-      iex> mark_lesson_as_completed(user_id, lesson_id)
+      iex> mark_lesson_as_completed(user_id, lesson_id, duration)
       {:error, %Ecto.Changeset{}}
   """
-  @spec mark_lesson_as_completed(non_neg_integer(), non_neg_integer()) :: user_lesson_changeset()
-  def mark_lesson_as_completed(user_id, lesson_id) do
+  @spec mark_lesson_as_completed(non_neg_integer(), non_neg_integer(), non_neg_integer()) :: user_lesson_changeset()
+  def mark_lesson_as_completed(user_id, lesson_id, duration) do
     steps = count_lesson_steps_with_options(lesson_id)
     selections = list_user_selections_by_lesson(user_id, lesson_id, steps)
     correct = get_correct_selections(selections)
-    attrs = %{user_id: user_id, lesson_id: lesson_id, attempts: 1, correct: correct, total: steps}
+    attrs = %{user_id: user_id, lesson_id: lesson_id, attempts: 1, correct: correct, total: steps, duration: duration}
     add_user_lesson(attrs)
   end
 

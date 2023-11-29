@@ -15,6 +15,8 @@ defmodule Uneebee.Content.UserSelection do
   @type t :: %__MODULE__{}
 
   schema "user_selections" do
+    field :duration, :integer
+
     belongs_to :user, User
     belongs_to :lesson, Lesson
     belongs_to :option, StepOption
@@ -26,7 +28,7 @@ defmodule Uneebee.Content.UserSelection do
   @spec changeset(Ecto.Schema.t(), map()) :: Ecto.Changeset.t()
   def changeset(user_selection, attrs \\ %{}) do
     user_selection
-    |> cast(attrs, [:user_id, :option_id, :lesson_id])
-    |> validate_required([:user_id, :option_id, :lesson_id])
+    |> cast(attrs, [:duration, :user_id, :option_id, :lesson_id])
+    |> validate_required([:duration, :user_id, :option_id, :lesson_id])
   end
 end

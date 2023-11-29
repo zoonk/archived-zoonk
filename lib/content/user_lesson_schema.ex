@@ -17,6 +17,7 @@ defmodule Uneebee.Content.UserLesson do
     field :attempts, :integer, default: 0
     field :correct, :integer, default: 0
     field :total, :integer, default: 0
+    field :duration, :integer, default: 0
 
     belongs_to :user, User
     belongs_to :lesson, Lesson
@@ -28,8 +29,8 @@ defmodule Uneebee.Content.UserLesson do
   @spec changeset(Ecto.Schema.t(), map()) :: Ecto.Changeset.t()
   def changeset(user_lesson, attrs \\ %{}) do
     user_lesson
-    |> cast(attrs, [:user_id, :lesson_id, :attempts, :correct, :total])
-    |> validate_required([:user_id, :lesson_id, :attempts, :correct, :total])
+    |> cast(attrs, [:user_id, :lesson_id, :attempts, :correct, :total, :duration])
+    |> validate_required([:user_id, :lesson_id, :attempts, :correct, :total, :duration])
     |> unique_constraint([:user_id, :lesson_id])
   end
 end

@@ -148,7 +148,7 @@ defmodule Uneebee.Fixtures.Content do
     lessons = Enum.map(1..number_of_lessons, fn _idx -> lesson_fixture(attrs) end)
 
     Enum.each(lessons, fn lesson ->
-      Repo.insert!(%UserLesson{attempts: 1, correct: correct, total: total, user_id: user_id, lesson_id: lesson.id, inserted_at: days_ago, updated_at: days_ago})
+      Repo.insert!(%UserLesson{attempts: 1, duration: 5, correct: correct, total: total, user_id: user_id, lesson_id: lesson.id, inserted_at: days_ago, updated_at: days_ago})
     end)
   end
 end

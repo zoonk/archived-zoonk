@@ -23,16 +23,19 @@ defmodule UneebeeWeb.Live.LessonPlay do
       |> assign(:current_step, current_step)
       |> assign(:selected_option, nil)
       |> assign(:options, shuffle_options(current_step))
+      |> assign(:lesson_start, DateTime.utc_now())
+      |> assign(:step_start, DateTime.utc_now())
 
     {:ok, socket}
   end
 
   @impl Phoenix.LiveView
   def handle_event("next", %{"selected_option" => selected_option}, socket) when is_nil(socket.assigns.selected_option) do
-    %{current_user: user, lesson: lesson, current_step: step} = socket.assigns
+    %{current_user: user, lesson: lesson, current_step: step, step_start: step_start} = socket.assigns
 
+    step_duration = DateTime.diff(DateTime.utc_now(), step_start, :second)
     option_id = String.to_integer(selected_option)
-    attrs = %{user_id: user.id, option_id: option_id, lesson_id: lesson.id}
+    attrs = %{user_id: user.id, option_id: option_id, lesson_id: lesson.id, duration: step_duration}
 
     case Content.add_user_selection(attrs) do
       {:ok, _} ->
@@ -66,9 +69,11 @@ defmodule UneebeeWeb.Live.LessonPlay do
   end
 
   defp handle_lesson_completed(socket, nil) do
-    %{course: course, lesson: lesson, current_user: user} = socket.assigns
+    %{course: course, lesson: lesson, current_user: user, lesson_start: lesson_start} = socket.assigns
 
-    case Content.mark_lesson_as_completed(user.id, lesson.id) do
+    lesson_duration = DateTime.diff(DateTime.utc_now(), lesson_start, :second)
+
+    case Content.mark_lesson_as_completed(user.id, lesson.id, lesson_duration) do
       {:ok, _} ->
         redirect(socket, to: ~p"/c/#{course.slug}/#{lesson.id}/completed")
 
@@ -77,7 +82,7 @@ defmodule UneebeeWeb.Live.LessonPlay do
     end
   end
 
-  defp handle_lesson_completed(socket, _next_step), do: socket
+  defp handle_lesson_completed(socket, _next_step), do: assign(socket, :step_start, DateTime.utc_now())
 
   defp get_option(options, option_id), do: Enum.find(options, &(&1.id == option_id))
 
