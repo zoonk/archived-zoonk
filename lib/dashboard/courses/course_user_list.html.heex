@@ -1,4 +1,10 @@
-<.user_list_header title={get_page_title(@live_action)} count={@user_count} add_user_label={get_add_link_label(@live_action)} on_add_user={show_modal("add-user-modal")} />
+<.user_list_header
+  title={get_page_title(@live_action)}
+  course?
+  count={@user_count}
+  add_user_label={get_add_link_label(@live_action)}
+  on_add_user={show_modal("add-user-modal")}
+/>
 
 <ul
   role="list"
