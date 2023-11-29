@@ -368,6 +368,20 @@ defmodule Uneebee.ContentTest do
     end
   end
 
+  describe "list_course_users_by_role/3" do
+    test "limits and offsets course students" do
+      course = course_fixture()
+
+      course_user_fixture(%{role: :student, course: course})
+      course_user1 = course_user_fixture(%{role: :student, course: course, preload: :user})
+      course_user2 = course_user_fixture(%{role: :student, course: course, preload: :user})
+      course_user3 = course_user_fixture(%{role: :student, course: course, preload: :user})
+      course_user_fixture(%{role: :student, course: course})
+
+      assert Content.list_course_users_by_role(course, :student, limit: 3, offset: 1) == [course_user3, course_user2, course_user1]
+    end
+  end
+
   describe "update_course_user/2" do
     test "updates a course user" do
       course_user = course_user_fixture()

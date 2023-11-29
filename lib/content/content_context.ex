@@ -278,12 +278,17 @@ defmodule Uneebee.Content do
       iex> list_course_users_by_role(%Course{}, :student)
       [%CourseUser{}, ...]
   """
-  @spec list_course_users_by_role(Course.t(), atom()) :: [CourseUser.t()]
-  def list_course_users_by_role(course, role) do
+  @spec list_course_users_by_role(Course.t(), atom(), list()) :: [CourseUser.t()]
+  def list_course_users_by_role(course, role, opts \\ []) do
+    limit = Keyword.get(opts, :limit, nil)
+    offset = Keyword.get(opts, :offset, nil)
+
     CourseUser
     |> where([cu], cu.course_id == ^course.id and cu.role == ^role)
     |> order_by(asc: :approved?)
     |> order_by(desc: :inserted_at)
+    |> limit(^limit)
+    |> offset(^offset)
     |> preload(:user)
     |> Repo.all()
   end
