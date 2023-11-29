@@ -5,7 +5,16 @@ defmodule UneebeeWeb.Shared.Paginate do
   ## Usage
 
       use UneebeeWeb.Shared.Paginate, as: :schools
-      use UneebeeWeb.Shared.Paginate, as: :courses
+
+      def mount(_params, _session, socket) do
+        {:ok, add_pagination(socket)}
+      end
+
+      defp paginate(socket, new_page) when new_page >= 1 do
+        %{per_page: per_page, school: school} = socket.assigns
+        schools = Organizations.list_schools(school.id, offset: (new_page - 1) * per_page, limit: per_page)
+        paginate(socket, new_page, schools)
+      end
   """
 
   alias Phoenix.LiveView.Socket
