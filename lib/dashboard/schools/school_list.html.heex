@@ -1,6 +1,17 @@
-<dl id="school-list" phx-update="stream">
-  <div :for={{dom_id, school} <- @streams.schools} id={dom_id}>
+<dl
+  id="school-list"
+  phx-update="stream"
+  phx-viewport-top={@page > 1 && "prev-page"}
+  phx-viewport-bottom={!@end_of_timeline? && "next-page"}
+  phx-page-loading
+  class={["grid grid-cols-1 gap-4", if(@end_of_timeline?, do: "pb-10", else: "pb-[calc(200vh)]"), if(@page == 1, do: "pt-10", else: "pt-[calc(200vh)]")]}
+>
+  <div :for={{id, school} <- @streams.schools} id={id} class="bg-white p-8 shadow">
     <dt><%= school.name %></dt>
     <dd>@<%= school.slug %></dd>
   </div>
 </dl>
+
+<div :if={@end_of_timeline?} class="text-[50px] mt-5 text-center">
+  🎉 You made it to the beginning of time 🎉
+</div>
