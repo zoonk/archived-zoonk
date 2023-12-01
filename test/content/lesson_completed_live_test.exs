@@ -4,6 +4,7 @@ defmodule UneebeeWeb.LessonCompletedLiveTest do
   import Phoenix.LiveViewTest
   import Uneebee.Fixtures.Content
 
+  alias Uneebee.Accounts
   alias Uneebee.Content
   alias Uneebee.Gamification.UserTrophy
   alias Uneebee.Repo
@@ -111,6 +112,26 @@ defmodule UneebeeWeb.LessonCompletedLiveTest do
       {:ok, lv, _html} = live(conn, ~p"/c/#{course.slug}/#{lesson.id}/completed")
 
       refute has_element?(lv, "#trophy-badge")
+    end
+
+    test "plays sound effects when enabled", %{conn: conn, course: course, user: user} do
+      Accounts.update_user_settings(user, %{sound_effects?: true})
+      lesson = lesson_fixture(%{course_id: course.id})
+      Content.add_user_lesson(%{user_id: user.id, lesson_id: lesson.id, attempts: 1, correct: 7, total: 10})
+
+      {:ok, lv, _html} = live(conn, ~p"/c/#{course.slug}/#{lesson.id}/completed")
+
+      assert has_element?(lv, "audio")
+    end
+
+    test "doesn't play sound effects when disabled", %{conn: conn, course: course, user: user} do
+      Accounts.update_user_settings(user, %{sound_effects?: false})
+      lesson = lesson_fixture(%{course_id: course.id})
+      Content.add_user_lesson(%{user_id: user.id, lesson_id: lesson.id, attempts: 1, correct: 7, total: 10})
+
+      {:ok, lv, _html} = live(conn, ~p"/c/#{course.slug}/#{lesson.id}/completed")
+
+      refute has_element?(lv, "audio")
     end
   end
 end

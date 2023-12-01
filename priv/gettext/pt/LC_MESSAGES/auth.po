@@ -110,18 +110,18 @@ msgid "You must log in to access this page."
 msgstr "É necessário estar logado para acessar esta página."
 
 #: lib/accounts/user_live/reset_password.html.heex:10
-#: lib/accounts/user_live/user_settings.html.heex:56
+#: lib/accounts/user_live/user_settings.html.heex:64
 #, elixir-autogen, elixir-format
 msgid "Confirm new password"
 msgstr "Confirmar nova senha"
 
-#: lib/accounts/user_live/user_settings.html.heex:50
+#: lib/accounts/user_live/user_settings.html.heex:58
 #, elixir-autogen, elixir-format
 msgid "Current password"
 msgstr "Senha atual"
 
 #: lib/accounts/user_live/reset_password.html.heex:9
-#: lib/accounts/user_live/user_settings.html.heex:55
+#: lib/accounts/user_live/user_settings.html.heex:63
 #, elixir-autogen, elixir-format
 msgid "New password"
 msgstr "Nova senha"
@@ -211,7 +211,17 @@ msgstr "política de privacidade"
 msgid "terms of use"
 msgstr "termos de uso"
 
-#: lib/accounts/user_live/user_settings.html.heex:38
+#: lib/accounts/user_live/user_settings.html.heex:46
 #, elixir-autogen, elixir-format
 msgid "You have a guest account. To convert it into a regular account, update your email address below:"
 msgstr "Você tem uma conta de convidado. Para convertê-la em uma conta comum, atualize o endereço de e-mail abaixo:"
+
+#: lib/accounts/user_live/user_settings.html.heex:41
+#, elixir-autogen, elixir-format
+msgid "Enable sound effects?"
+msgstr "Habilitar efeitos sonoros?"
+
+#: lib/accounts/user_live/user_settings.html.heex:42
+#, elixir-autogen, elixir-format
+msgid "When checked, courses may play sound effects when you answer questions correctly or incorrectly."
+msgstr "Ao marcar, os cursos podem reproduzir efeitos sonoros quando você responder corretamente ou incorretamente as perguntas."

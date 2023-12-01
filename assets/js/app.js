@@ -25,15 +25,6 @@ import Sortable from "../vendor/sortable";
 
 let Hooks = {};
 
-Hooks.LocaleTime = {
-  mounted() {
-    const dt = new Date(this.el.textContent);
-    const locale = document.documentElement.lang;
-    const options = { year: "numeric", month: "long", day: "numeric" };
-    this.el.textContent = dt.toLocaleString(locale, options);
-  },
-};
-
 let correctSound = new Audio("/audios/correct.mp3");
 let incorrectSound = new Audio("/audios/incorrect.mp3");
 

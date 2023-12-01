@@ -34,6 +34,14 @@
     <.input :if={@live_action == :profile} field={@form[:first_name]} type="text" label={gettext("First Name")} autocomplete="given-name" />
     <.input :if={@live_action == :profile} field={@form[:last_name]} type="text" label={gettext("Last Name")} autocomplete="family-name" />
 
+    <.input
+      :if={@live_action == :profile}
+      field={@form[:sound_effects?]}
+      type="checkbox"
+      label={dgettext("auth", "Enable sound effects?")}
+      helper={dgettext("auth", "When checked, courses may play sound effects when you answer questions correctly or incorrectly.")}
+    />
+
     <span :if={@live_action == :email && @current_user.guest?} class="text-sm text-gray-700">
       <%= dgettext("auth", "You have a guest account. To convert it into a regular account, update your email address below:") %>
     </span>

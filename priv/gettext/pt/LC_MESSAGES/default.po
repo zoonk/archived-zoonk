@@ -40,7 +40,7 @@ msgstr "fechar"
 #: lib/accounts/user_live/confirmation_instructions.html.heex:8
 #: lib/accounts/user_live/forgot_password.html.heex:7
 #: lib/accounts/user_live/registration.html.heex:16
-#: lib/accounts/user_live/user_settings.html.heex:41
+#: lib/accounts/user_live/user_settings.html.heex:49
 #: lib/layouts/templates/app.html.heex:68
 #: lib/support/feedback_live/feedback.html.heex:12
 #, elixir-autogen, elixir-format

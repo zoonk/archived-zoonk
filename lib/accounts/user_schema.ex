@@ -21,6 +21,7 @@ defmodule Uneebee.Accounts.User do
     field :language, Ecto.Enum, values: Translate.supported_locales(), default: :en
     field :last_name, :string
     field :password, :string, virtual: true, redact: true
+    field :sound_effects?, :boolean, default: false
     field :username, :string
 
     timestamps(type: :utc_datetime_usec)
@@ -52,7 +53,7 @@ defmodule Uneebee.Accounts.User do
   @spec registration_changeset(Ecto.Schema.t(), map(), Keyword.t()) :: Ecto.Changeset.t()
   def registration_changeset(user, attrs, opts \\ []) do
     user
-    |> cast(attrs, [:avatar, :date_of_birth, :email, :first_name, :guest?, :language, :last_name, :password, :username])
+    |> cast(attrs, [:avatar, :date_of_birth, :email, :first_name, :guest?, :language, :last_name, :password, :sound_effects?, :username])
     |> validate_user_email(opts)
     |> validate_password(opts)
     |> validate_username(opts)
@@ -125,7 +126,7 @@ defmodule Uneebee.Accounts.User do
   @spec settings_changeset(Ecto.Schema.t(), map(), Keyword.t()) :: Ecto.Changeset.t()
   def settings_changeset(user, attrs, opts \\ []) do
     user
-    |> cast(attrs, [:avatar, :first_name, :last_name, :language, :username])
+    |> cast(attrs, [:avatar, :first_name, :last_name, :language, :sound_effects?, :username])
     |> validate_settings()
     |> validate_username(opts)
   end

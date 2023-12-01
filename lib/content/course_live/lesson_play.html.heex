@@ -1,7 +1,7 @@
 <form
   id="select-option"
   phx-submit="next"
-  phx-hook="LessonSoundEffect"
+  phx-hook={if @current_user.sound_effects?, do: "LessonSoundEffect", else: nil}
   class="grid-rows-[min-content_1fr_min-content] min-h-dvh absolute top-0 left-0 grid h-full w-full overflow-hidden"
 >
   <header class="px-4 pt-4">

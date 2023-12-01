@@ -33,5 +33,5 @@
   </.link_button>
 </article>
 
-<audio :if={win?(score)} src={~p"/audios/win.mp3"} autoplay class="hidden" />
-<audio :if={not win?(score)} src={~p"/audios/loss.mp3"} autoplay class="hidden" />
+<audio :if={@current_user.sound_effects? && win?(score)} src={~p"/audios/win.mp3"} autoplay class="hidden" />
+<audio :if={@current_user.sound_effects? && not win?(score)} src={~p"/audios/loss.mp3"} autoplay class="hidden" />

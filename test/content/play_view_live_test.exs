@@ -4,6 +4,7 @@ defmodule UneebeeWeb.PlayViewLiveTest do
   import Phoenix.LiveViewTest
   import Uneebee.Fixtures.Content
 
+  alias Uneebee.Accounts
   alias Uneebee.Content
 
   @select_form "#select-option"
@@ -77,7 +78,7 @@ defmodule UneebeeWeb.PlayViewLiveTest do
     end
   end
 
-  describe "play view (story, course user)" do
+  describe "play view (course user)" do
     setup :course_setup
 
     test "completes a lesson", %{conn: conn, course: course} do
@@ -111,6 +112,26 @@ defmodule UneebeeWeb.PlayViewLiveTest do
       generate_steps(lesson)
 
       assert_error_sent 404, fn -> get(conn, ~p"/c/#{course.slug}/#{lesson.id}") end
+    end
+
+    test "doesn't play sound effects when disabled", %{conn: conn, course: course, user: user} do
+      Accounts.update_user_settings(user, %{sound_effects?: false})
+      lesson = lesson_fixture(%{course_id: course.id})
+      generate_steps(lesson)
+
+      {:ok, lv, _html} = live(conn, ~p"/c/#{course.slug}/#{lesson.id}")
+
+      refute has_element?(lv, ~s|form[phx-hook="LessonSoundEffect"]|)
+    end
+
+    test "plays sound effects when enabled", %{conn: conn, course: course, user: user} do
+      Accounts.update_user_settings(user, %{sound_effects?: true})
+      lesson = lesson_fixture(%{course_id: course.id})
+      generate_steps(lesson)
+
+      {:ok, lv, _html} = live(conn, ~p"/c/#{course.slug}/#{lesson.id}")
+
+      assert has_element?(lv, ~s|form[phx-hook="LessonSoundEffect"]|)
     end
   end
 

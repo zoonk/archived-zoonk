@@ -19,7 +19,7 @@ msgstr "não pode ficar em branco"
 msgid "has already been taken"
 msgstr "já está em uso"
 
-#: lib/accounts/user_schema.ex:186
+#: lib/accounts/user_schema.ex:187
 #, elixir-autogen
 msgid "is invalid"
 msgstr "é inválido"
@@ -110,27 +110,27 @@ msgstr "deve ser igual a %{number}"
 msgid "can only contain letters, numbers, dashes and underscores"
 msgstr "pode conter apenas letras, números, traços e sublinhados"
 
-#: lib/accounts/user_schema.ex:75
+#: lib/accounts/user_schema.ex:76
 #, elixir-autogen, elixir-format
 msgid "at least one digit or punctuation character"
 msgstr "pelo menos um dígito ou sinal de pontuação"
 
-#: lib/accounts/user_schema.ex:73
+#: lib/accounts/user_schema.ex:74
 #, elixir-autogen, elixir-format
 msgid "at least one lower case character"
 msgstr "pelo menos uma letra minúsculo"
 
-#: lib/accounts/user_schema.ex:74
+#: lib/accounts/user_schema.ex:75
 #, elixir-autogen, elixir-format
 msgid "at least one upper case character"
 msgstr "pelo menos uma letra maiúscula"
 
-#: lib/accounts/user_schema.ex:118
+#: lib/accounts/user_schema.ex:119
 #, elixir-autogen, elixir-format
 msgid "did not change"
 msgstr "não foi alterado"
 
-#: lib/accounts/user_schema.ex:149
+#: lib/accounts/user_schema.ex:150
 #, elixir-autogen, elixir-format
 msgid "does not match password"
 msgstr "não é igual à senha"
@@ -191,12 +191,12 @@ msgstr "A sua matrícula está pendente de aprovação"
 msgid "must start with https://"
 msgstr "deve começar com https://"
 
-#: lib/content/content_context.ex:673
+#: lib/content/content_context.ex:674
 #, elixir-autogen, elixir-format, fuzzy
 msgid "cannot delete the only step"
 msgstr "não pode excluir a única etapa"
 
-#: lib/content/content_context.ex:433
+#: lib/content/content_context.ex:434
 #, elixir-autogen, elixir-format, fuzzy
 msgid "cannot delete the only lesson"
 msgstr "não pode excluir a única aula"

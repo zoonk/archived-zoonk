@@ -110,18 +110,18 @@ msgid "You must log in to access this page."
 msgstr ""
 
 #: lib/accounts/user_live/reset_password.html.heex:10
-#: lib/accounts/user_live/user_settings.html.heex:56
+#: lib/accounts/user_live/user_settings.html.heex:64
 #, elixir-autogen, elixir-format
 msgid "Confirm new password"
 msgstr ""
 
-#: lib/accounts/user_live/user_settings.html.heex:50
+#: lib/accounts/user_live/user_settings.html.heex:58
 #, elixir-autogen, elixir-format
 msgid "Current password"
 msgstr ""
 
 #: lib/accounts/user_live/reset_password.html.heex:9
-#: lib/accounts/user_live/user_settings.html.heex:55
+#: lib/accounts/user_live/user_settings.html.heex:63
 #, elixir-autogen, elixir-format
 msgid "New password"
 msgstr ""
@@ -211,7 +211,17 @@ msgstr ""
 msgid "terms of use"
 msgstr ""
 
-#: lib/accounts/user_live/user_settings.html.heex:38
+#: lib/accounts/user_live/user_settings.html.heex:46
 #, elixir-autogen, elixir-format
 msgid "You have a guest account. To convert it into a regular account, update your email address below:"
+msgstr ""
+
+#: lib/accounts/user_live/user_settings.html.heex:41
+#, elixir-autogen, elixir-format
+msgid "Enable sound effects?"
+msgstr ""
+
+#: lib/accounts/user_live/user_settings.html.heex:42
+#, elixir-autogen, elixir-format
+msgid "When checked, courses may play sound effects when you answer questions correctly or incorrectly."
 msgstr ""

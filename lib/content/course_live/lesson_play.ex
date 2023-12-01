@@ -4,6 +4,7 @@ defmodule UneebeeWeb.Live.LessonPlay do
 
   import UneebeeWeb.Components.Content.LessonStep
 
+  alias Uneebee.Accounts.User
   alias Uneebee.Content
   alias Uneebee.Content.Lesson
   alias Uneebee.Content.LessonStep
@@ -43,7 +44,7 @@ defmodule UneebeeWeb.Live.LessonPlay do
 
         socket =
           socket
-          |> push_event("option-selected", %{isCorrect: selected_option.correct?})
+          |> maybe_play_sound_effect(selected_option.correct?)
           |> assign(:selected_option, selected_option)
 
         {:noreply, socket}
@@ -96,4 +97,7 @@ defmodule UneebeeWeb.Live.LessonPlay do
   defp confirm_color(_opts, %StepOption{correct?: true}), do: :success
   defp confirm_color(_opts, %StepOption{correct?: false}), do: :alert
   defp confirm_color(_opts, nil), do: :alert
+
+  defp maybe_play_sound_effect(%{assigns: %User{sound_effects?: false}} = socket, _correct?), do: socket
+  defp maybe_play_sound_effect(socket, correct?), do: push_event(socket, "option-selected", %{isCorrect: correct?})
 end
