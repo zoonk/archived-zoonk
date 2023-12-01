@@ -31,6 +31,5 @@ defmodule Uneebee.Content.UserLesson do
     user_lesson
     |> cast(attrs, [:user_id, :lesson_id, :attempts, :correct, :total, :duration])
     |> validate_required([:user_id, :lesson_id, :attempts, :correct, :total, :duration])
-    |> unique_constraint([:user_id, :lesson_id])
   end
 end

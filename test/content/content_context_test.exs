@@ -1219,21 +1219,6 @@ defmodule Uneebee.ContentTest do
     end
   end
 
-  describe "update_user_lesson/2" do
-    test "updates a user lesson" do
-      user = user_fixture()
-      lesson = lesson_fixture()
-
-      {:ok, user_lesson} = Content.add_user_lesson(%{user_id: user.id, lesson_id: lesson.id, attempts: 1, correct: 4, total: 10})
-
-      attrs = %{attempts: 2, correct: 5, total: 10}
-      assert {:ok, %UserLesson{} = updated} = Content.update_user_lesson(user_lesson, attrs)
-      assert updated.attempts == 2
-      assert updated.correct == 5
-      assert updated.total == 10
-    end
-  end
-
   describe "get_user_lesson/2" do
     test "returns a user lesson" do
       user = user_fixture()

@@ -960,7 +960,7 @@ defmodule Uneebee.Content do
 
   defp add_user_lesson(attrs, %UserLesson{} = user_lesson) do
     attrs = Map.merge(attrs, %{attempts: user_lesson.attempts + 1})
-    update_user_lesson(user_lesson, attrs)
+    add_user_lesson(attrs, nil)
   end
 
   defp save_lesson(attrs) do
@@ -994,22 +994,6 @@ defmodule Uneebee.Content do
   end
 
   @doc """
-  Update a user lesson.
-
-  ## Examples
-
-      iex> update_user_lesson(%UserLesson{}, %{attempts: 1})
-      {:ok, %UserLesson{}}
-
-      iex> update_user_lesson(%UserLesson{}, %{attempts: 1})
-      {:error, %Ecto.Changeset{}}
-  """
-  @spec update_user_lesson(UserLesson.t(), map()) :: user_lesson_changeset()
-  def update_user_lesson(%UserLesson{} = user_lesson, attrs) do
-    user_lesson |> change_user_lesson(attrs) |> Repo.update()
-  end
-
-  @doc """
   Get a user lesson.
 
   ## Examples
@@ -1022,7 +1006,11 @@ defmodule Uneebee.Content do
   """
   @spec get_user_lesson(non_neg_integer(), non_neg_integer()) :: UserLesson.t() | nil
   def get_user_lesson(user_id, lesson_id) do
-    Repo.get_by(UserLesson, user_id: user_id, lesson_id: lesson_id)
+    UserLesson
+    |> where([ul], ul.user_id == ^user_id and ul.lesson_id == ^lesson_id)
+    |> order_by(desc: :inserted_at)
+    |> limit(1)
+    |> Repo.one()
   end
 
   @doc """
