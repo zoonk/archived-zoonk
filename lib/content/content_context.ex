@@ -178,18 +178,19 @@ defmodule Uneebee.Content do
 
   ## Examples
 
-      iex> list_courses_by_user(user_id, :teacher)
+      iex> list_courses_by_user(school_id, user_id, :teacher)
       [%Course{}, ...]
 
-      iex> list_courses_by_user(user_id, :student, limit: 5)
+      iex> list_courses_by_user(school_id, user_id, :student, limit: 5)
       [%Course{}, ...]
   """
-  @spec list_courses_by_user(non_neg_integer(), atom(), keyword()) :: [Course.t()]
-  def list_courses_by_user(user_id, role, opts \\ []) do
+  @spec list_courses_by_user(non_neg_integer(), non_neg_integer(), atom(), keyword()) :: [Course.t()]
+  def list_courses_by_user(school_id, user_id, role, opts \\ []) do
     limit = Keyword.get(opts, :limit, nil)
 
     Course
-    |> join(:inner, [c], cu in CourseUser, on: c.id == cu.course_id and cu.user_id == ^user_id and cu.role == ^role)
+    |> join(:inner, [c], s in assoc(c, :school), on: s.id == ^school_id)
+    |> join(:inner, [c, _s], cu in CourseUser, on: c.id == cu.course_id and cu.user_id == ^user_id and cu.role == ^role)
     |> preload(:school)
     |> order_by(desc: :updated_at)
     |> limit(^limit)
@@ -1144,8 +1145,10 @@ defmodule Uneebee.Content do
     |> handle_last_edited_course(school)
   end
 
-  def get_last_edited_course(_school, %User{} = user, role) do
-    user.id |> list_courses_by_user(role, limit: 1) |> Enum.at(0)
+  def get_last_edited_course(nil, _user, _role), do: nil
+
+  def get_last_edited_course(school, %User{} = user, role) do
+    school.id |> list_courses_by_user(user.id, role, limit: 1) |> Enum.at(0)
   end
 
   defp handle_last_edited_course(nil, %School{} = school) do

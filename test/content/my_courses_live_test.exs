@@ -3,6 +3,7 @@ defmodule UneebeeWeb.MyCoursesLiveTest do
 
   import Phoenix.LiveViewTest
   import Uneebee.Fixtures.Content
+  import Uneebee.Fixtures.Organizations
 
   describe "my courses (non-authenticated users)" do
     setup :set_school
@@ -16,10 +17,10 @@ defmodule UneebeeWeb.MyCoursesLiveTest do
   describe "my courses (authenticated)" do
     setup :app_setup
 
-    test "lists all courses from the current user", %{conn: conn, user: user} do
-      courses = Enum.map(1..3, fn idx -> course_fixture(%{name: "Course #{idx}!"}) end)
+    test "lists all courses from the current user", %{conn: conn, school: school, user: user} do
+      courses = Enum.map(1..3, fn idx -> course_fixture(%{name: "Course #{idx}!", school: school}) end)
       Enum.each(courses, fn course -> course_user_fixture(%{course: course, user: user}) end)
-      other_course = course_fixture(%{name: "Other course!"})
+      other_course = course_fixture(%{name: "Other course!", school: school})
 
       {:ok, lv, _html} = live(conn, ~p"/courses/my")
 
@@ -34,6 +35,16 @@ defmodule UneebeeWeb.MyCoursesLiveTest do
 
       assert has_element?(lv, ~s|a:fl-icontains("browse courses")|)
       assert has_element?(lv, ~s|p:fl-icontains("get started by joining a course.")|)
+    end
+
+    test "doesn't display courses from a child school", %{conn: conn, school: school, user: user} do
+      child_school = school_fixture(%{school_id: school.id})
+      course = course_fixture(%{school: child_school})
+      course_user_fixture(%{course: course, user: user})
+
+      {:ok, lv, _html} = live(conn, ~p"/courses/my")
+
+      refute has_element?(lv, ~s|a[href="/c/#{course.slug}"]|)
     end
   end
 end

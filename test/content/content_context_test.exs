@@ -182,7 +182,7 @@ defmodule Uneebee.ContentTest do
     end
   end
 
-  describe "list_courses_by_user/2" do
+  describe "list_courses_by_user/3" do
     test "lists all courses a user has enrolled in" do
       user = user_fixture()
       school = school_fixture()
@@ -195,7 +195,7 @@ defmodule Uneebee.ContentTest do
       course_user_fixture(%{user_id: user.id, course_id: enrolled2.id, role: :student})
       course_user_fixture(%{user_id: user.id, course_id: teacher.id, role: :teacher})
 
-      courses = Content.list_courses_by_user(user.id, :student)
+      courses = Content.list_courses_by_user(school.id, user.id, :student)
       assert courses == [enrolled2, enrolled1]
     end
 
@@ -211,7 +211,7 @@ defmodule Uneebee.ContentTest do
       course_user_fixture(%{user_id: user.id, course_id: teacher1.id, role: :teacher})
       course_user_fixture(%{user_id: user.id, course_id: teacher2.id, role: :teacher})
 
-      courses = Content.list_courses_by_user(user.id, :teacher)
+      courses = Content.list_courses_by_user(school.id, user.id, :teacher)
       assert courses == [teacher2, teacher1]
     end
 
@@ -227,8 +227,21 @@ defmodule Uneebee.ContentTest do
       course_user_fixture(%{user_id: user.id, course_id: enrolled2.id, role: :student})
       course_user_fixture(%{user_id: user.id, course_id: teacher.id, role: :teacher})
 
-      courses = Content.list_courses_by_user(user.id, :student, limit: 1)
+      courses = Content.list_courses_by_user(school.id, user.id, :student, limit: 1)
       assert courses == [enrolled2]
+    end
+
+    test "doesn't return courses from another school" do
+      user = user_fixture()
+      school = school_fixture()
+      other_school = school_fixture()
+      enrolled = course_fixture(%{school_id: school.id, preload: :school})
+      course_fixture(%{school_id: other_school.id})
+
+      course_user_fixture(%{user_id: user.id, course_id: enrolled.id, role: :student})
+
+      courses = Content.list_courses_by_user(school.id, user.id, :student)
+      assert courses == [enrolled]
     end
   end
 

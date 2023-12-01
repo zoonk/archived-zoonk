@@ -39,7 +39,7 @@ defmodule UneebeeWeb.Components.Layouts.CourseSelect do
   defp course_link(slug, _page), do: ~p"/dashboard/c/#{slug}"
 
   defp list_courses(school_id, _user, :manager), do: Content.list_courses_by_school(school_id)
-  defp list_courses(_school, user_id, :teacher), do: Content.list_courses_by_user(user_id, :teacher)
+  defp list_courses(school_id, user_id, :teacher), do: Content.list_courses_by_user(school_id, user_id, :teacher)
 
   defp course_options(courses) do
     [{gettext("Create a course"), "new-course"}] ++ Enum.map(courses, fn course -> {course.name, course.slug} end)

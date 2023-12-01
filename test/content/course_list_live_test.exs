@@ -85,7 +85,7 @@ defmodule UneebeeWeb.CourseListLiveTest do
   describe "/courses (public school, students, approved)" do
     setup :app_setup
 
-    test "lists public courses from the host school", %{conn: conn, school: school} do
+    test "lists public courses from the current school", %{conn: conn, school: school} do
       assert_course_list(conn, school)
     end
   end
@@ -95,7 +95,7 @@ defmodule UneebeeWeb.CourseListLiveTest do
       app_setup(%{conn: build_conn()}, public_school?: false)
     end
 
-    test "lists public courses from the host school", %{conn: conn, school: school} do
+    test "lists public courses from the current school", %{conn: conn, school: school} do
       assert_course_list(conn, school)
     end
 
@@ -181,6 +181,13 @@ defmodule UneebeeWeb.CourseListLiveTest do
       conn = Map.put(conn, :host, host)
       {:ok, lv, _html} = live(conn, ~p"/courses")
       refute has_element?(lv, ~s|li a:fl-icontains("create school")|)
+    end
+
+    test "doesn't display courses from child schools", %{conn: conn, school: school} do
+      child_school = school_fixture(%{school_id: school.id, kind: :white_label})
+      course = course_fixture(%{school_id: child_school.id, published?: true})
+      {:ok, lv, _html} = live(conn, ~p"/courses")
+      refute has_element?(lv, get_course_el(course))
     end
   end
 
