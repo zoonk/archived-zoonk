@@ -58,7 +58,7 @@ defmodule Uneebee.MixProject do
       {:plug_cowboy, "~> 2.5"},
       {:postgrex, ">= 0.0.0"},
       {:resend, "~> 0.4.1"},
-      {:sentry, "~> 9.1.0"},
+      {:sentry, "~> 10.0.3"},
       {:sobelow, "~> 0.13.0", only: [:dev, :test], runtime: false},
       {:styler, "~> 0.10.0", only: [:dev, :test], runtime: false},
       {:swoosh, "~> 1.14.0"},
