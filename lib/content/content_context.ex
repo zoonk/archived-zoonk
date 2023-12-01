@@ -1100,12 +1100,15 @@ defmodule Uneebee.Content do
       iex> get_last_completed_course_slug(user)
       "course-slug"
   """
-  @spec get_last_completed_course_slug(User.t() | nil) :: String.t() | nil
-  def get_last_completed_course_slug(nil), do: nil
+  @spec get_last_completed_course_slug(School.t(), User.t() | nil) :: String.t() | nil
+  def get_last_completed_course_slug(nil, _user), do: nil
+  def get_last_completed_course_slug(_school, nil), do: nil
 
-  def get_last_completed_course_slug(%User{id: user_id}) do
+  def get_last_completed_course_slug(%School{id: school_id}, %User{id: user_id}) do
     UserLesson
-    |> where([ul], ul.user_id == ^user_id)
+    |> join(:inner, [ul], l in assoc(ul, :lesson))
+    |> join(:inner, [_, l], c in assoc(l, :course))
+    |> where([ul, _, c], ul.user_id == ^user_id and c.school_id == ^school_id)
     |> order_by(desc: :updated_at)
     |> limit(1)
     |> preload(lesson: [:course])

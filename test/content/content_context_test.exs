@@ -58,7 +58,7 @@ defmodule Uneebee.ContentTest do
     test "returns an error if the slug already exists on the same school" do
       course = course_fixture()
       user = user_fixture()
-      attrs = valid_course_attributes(slug: course.slug, school_id: course.school_id)
+      attrs = valid_course_attributes(%{slug: course.slug, school_id: course.school_id})
 
       assert {:error, %Ecto.Changeset{} = changeset} = Content.create_course(attrs, user)
       assert "has already been taken" in errors_on(changeset).slug
@@ -69,14 +69,14 @@ defmodule Uneebee.ContentTest do
       school2 = school_fixture()
       course1 = course_fixture(%{school_id: school1.id})
       user = user_fixture()
-      attrs = valid_course_attributes(slug: course1.slug, school_id: school2.id)
+      attrs = valid_course_attributes(%{slug: course1.slug, school: school2})
 
       assert {:ok, %Course{} = course} = Content.create_course(attrs, user)
       assert course.slug == attrs.slug
     end
 
     test "returns an error if the slug has spaces" do
-      attrs = valid_course_attributes(slug: "bad slug")
+      attrs = valid_course_attributes(%{slug: "bad slug"})
       user = user_fixture()
 
       assert {:error, %Ecto.Changeset{} = changeset} = Content.create_course(attrs, user)
@@ -84,7 +84,7 @@ defmodule Uneebee.ContentTest do
     end
 
     test "returns an error if the slug has special characters" do
-      attrs = valid_course_attributes(slug: "bad-slug!")
+      attrs = valid_course_attributes(%{slug: "bad-slug!"})
       user = user_fixture()
 
       assert {:error, %Ecto.Changeset{} = changeset} = Content.create_course(attrs, user)
@@ -1298,15 +1298,28 @@ defmodule Uneebee.ContentTest do
     end
   end
 
-  describe "get_last_completed_course_slug/1" do
+  describe "get_last_completed_course_slug/2" do
     test "returns the last completed course slug" do
       user = user_fixture()
-      course1 = course_fixture(%{slug: "course-1"})
-      course2 = course_fixture(%{slug: "course-2"})
+      school = school_fixture()
+      course1 = course_fixture(%{slug: "course-1", school: school})
+      course2 = course_fixture(%{slug: "course-2", school: school})
       generate_user_lesson(user.id, 0, course: course1)
       generate_user_lesson(user.id, 0, course: course2)
 
-      assert Content.get_last_completed_course_slug(user) == course2.slug
+      assert Content.get_last_completed_course_slug(school, user) == course2.slug
+    end
+
+    test "doesn't return courses from another school" do
+      user = user_fixture()
+      school1 = school_fixture()
+      school2 = school_fixture()
+      course1 = course_fixture(%{slug: "course-1", school: school1})
+      course2 = course_fixture(%{slug: "course-2", school: school2})
+      generate_user_lesson(user.id, 0, course: course1)
+      generate_user_lesson(user.id, -1, course: course2)
+
+      assert Content.get_last_completed_course_slug(school2, user) == course2.slug
     end
   end
 

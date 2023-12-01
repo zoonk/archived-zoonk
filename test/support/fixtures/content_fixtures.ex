@@ -19,7 +19,7 @@ defmodule Uneebee.Fixtures.Content do
   """
   @spec valid_course_attributes(map()) :: map()
   def valid_course_attributes(attrs \\ %{}) do
-    school = school_fixture()
+    school = Map.get(attrs, :school, school_fixture())
 
     Enum.into(attrs, %{
       description: "random course description",

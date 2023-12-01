@@ -6,7 +6,8 @@ defmodule UneebeeWeb.Controller.Home do
 
   @spec index(Plug.Conn.t(), map()) :: Plug.Conn.t()
   def index(conn, params) do
-    slug = Content.get_last_completed_course_slug(conn.assigns.current_user)
+    %{current_user: user, school: school} = conn.assigns
+    slug = Content.get_last_completed_course_slug(school, user)
     index(conn, params, slug)
   end
 

@@ -63,7 +63,7 @@ defmodule UneebeeWeb.Plugs.Course do
     course_role = get_course_role(course_user)
     first_lesson = Content.get_first_lesson(course)
     first_lesson_id = if is_nil(first_lesson), do: nil, else: first_lesson.id
-    last_course_slug = get_last_course_slug(user)
+    last_course_slug = get_last_course_slug(school, user)
 
     socket =
       socket
@@ -89,8 +89,8 @@ defmodule UneebeeWeb.Plugs.Course do
   defp get_course_user(nil, _user), do: nil
   defp get_course_user(course, user), do: Content.get_course_user_by_id(course.id, user.id)
 
-  defp get_last_course_slug(nil), do: nil
-  defp get_last_course_slug(user), do: Content.get_last_completed_course_slug(user)
+  defp get_last_course_slug(_school, nil), do: nil
+  defp get_last_course_slug(school, user), do: Content.get_last_completed_course_slug(school, user)
 
   defp get_course_role(nil), do: nil
   defp get_course_role(%{approved?: false}), do: :pending
