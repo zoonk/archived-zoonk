@@ -7,7 +7,7 @@ defmodule UneebeeWeb.Plugs.Translate do
   alias Phoenix.LiveView
   alias Phoenix.LiveView.Socket
 
-  @supported_languages [en: "English", pt: "Português"]
+  @supported_languages [en: "English", pt: "Português", zh_TW: "繁體中文"]
   @default_locale "en"
 
   @doc """

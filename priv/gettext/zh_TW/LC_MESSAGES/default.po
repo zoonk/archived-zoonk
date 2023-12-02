@@ -40,8 +40,8 @@ msgstr "關閉"
 #: lib/accounts/user_live/confirmation_instructions.html.heex:8
 #: lib/accounts/user_live/forgot_password.html.heex:7
 #: lib/accounts/user_live/registration.html.heex:16
-#: lib/accounts/user_live/user_settings.html.heex:37
-#: lib/layouts/templates/app.html.heex:41
+#: lib/accounts/user_live/user_settings.html.heex:49
+#: lib/layouts/templates/app.html.heex:68
 #: lib/support/feedback_live/feedback.html.heex:12
 #, elixir-autogen, elixir-format
 msgid "Email"
@@ -65,12 +65,12 @@ msgstr "哎呀，出了些問題！請檢查以下的錯誤。"
 #: lib/accounts/user_live/user_settings.html.heex:17
 #: lib/dashboard/courses/course_edit.html.heex:7
 #: lib/dashboard/courses/course_new.html.heex:5
-#: lib/dashboard/courses/course_user_list.html.heex:100
+#: lib/dashboard/courses/course_user_list.html.heex:114
 #: lib/dashboard/lessons/components/lesson_edit.ex:28
-#: lib/dashboard/lessons/components/option_list.ex:89
+#: lib/dashboard/lessons/components/option_list.ex:95
 #: lib/dashboard/schools/school_edit.html.heex:7
-#: lib/dashboard/schools/user_list.html.heex:99
-#: lib/organizations/school_live/school_new.html.heex:9
+#: lib/dashboard/schools/user_list.html.heex:107
+#: lib/organizations/school_live/school_new.html.heex:10
 #, elixir-autogen, elixir-format
 msgid "Saving..."
 msgstr "儲存中..."
@@ -82,16 +82,16 @@ msgid "Username"
 msgstr "使用者名稱"
 
 #: lib/layouts/components/app_menu.ex:14
-#: lib/layouts/templates/app.html.heex:29
-#: lib/layouts/templates/dashboard_course.html.heex:9
-#: lib/layouts/templates/dashboard_school.html.heex:9
+#: lib/layouts/templates/app.html.heex:56
+#: lib/layouts/templates/dashboard_course.html.heex:18
+#: lib/layouts/templates/dashboard_school.html.heex:18
 #, elixir-autogen, elixir-format
 msgid "Home"
 msgstr "首頁"
 
 #: lib/dashboard/schools/school_edit.ex:61
 #: lib/dashboard/schools/school_edit.html.heex:1
-#: lib/layouts/menu_utils.ex:85
+#: lib/layouts/menu_utils.ex:91
 #: lib/layouts/templates/auth.html.heex:3
 #, elixir-autogen, elixir-format
 msgid "Logo"
@@ -104,17 +104,17 @@ msgstr "標誌"
 msgid "Sending..."
 msgstr "傳送中..."
 
-#: lib/layouts/templates/app.html.heex:49
+#: lib/layouts/templates/app.html.heex:76
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Logout"
 msgstr "登出"
 
-#: lib/accounts/user_live/user_settings.ex:155
+#: lib/accounts/user_live/user_settings.ex:163
 #: lib/dashboard/courses/course_edit.html.heex:5
 #: lib/dashboard/schools/school_edit.ex:60
-#: lib/layouts/components/app_menu.ex:32
-#: lib/layouts/menu_utils.ex:86
-#: lib/layouts/templates/dashboard_course.html.heex:37
+#: lib/layouts/components/app_menu.ex:40
+#: lib/layouts/menu_utils.ex:92
+#: lib/layouts/templates/dashboard_course.html.heex:46
 #, elixir-autogen, elixir-format
 msgid "Settings"
 msgstr "設定"
@@ -132,7 +132,7 @@ msgstr "姓氏"
 #: lib/accounts/user_live/user_settings.html.heex:18
 #: lib/dashboard/courses/course_edit.html.heex:7
 #: lib/dashboard/lessons/components/lesson_edit.ex:29
-#: lib/dashboard/lessons/components/option_list.ex:89
+#: lib/dashboard/lessons/components/option_list.ex:95
 #: lib/dashboard/schools/school_edit.html.heex:7
 #, elixir-autogen, elixir-format
 msgid "Save"
@@ -144,26 +144,26 @@ msgid "Name"
 msgstr "名稱"
 
 #: lib/dashboard/home.ex:25
-#: lib/dashboard/schools/user_list.ex:115
-#: lib/layouts/menu_utils.ex:82
+#: lib/dashboard/schools/user_list.ex:121
+#: lib/layouts/menu_utils.ex:88
 #, elixir-autogen, elixir-format
 msgid "Managers"
 msgstr "管理員"
 
-#: lib/dashboard/courses/course_user_list.ex:101
+#: lib/dashboard/courses/course_user_list.ex:108
 #: lib/dashboard/home.ex:27
-#: lib/dashboard/schools/user_list.ex:117
-#: lib/layouts/menu_utils.ex:84
-#: lib/layouts/templates/dashboard_course.html.heex:29
+#: lib/dashboard/schools/user_list.ex:123
+#: lib/layouts/menu_utils.ex:90
+#: lib/layouts/templates/dashboard_course.html.heex:38
 #, elixir-autogen, elixir-format
 msgid "Students"
 msgstr "學生"
 
-#: lib/dashboard/courses/course_user_list.ex:100
+#: lib/dashboard/courses/course_user_list.ex:107
 #: lib/dashboard/home.ex:26
-#: lib/dashboard/schools/user_list.ex:116
-#: lib/layouts/menu_utils.ex:83
-#: lib/layouts/templates/dashboard_course.html.heex:33
+#: lib/dashboard/schools/user_list.ex:122
+#: lib/layouts/menu_utils.ex:89
+#: lib/layouts/templates/dashboard_course.html.heex:42
 #, elixir-autogen, elixir-format
 msgid "Teachers"
 msgstr "教師"
@@ -173,7 +173,7 @@ msgstr "教師"
 msgid "Click on the save button to upload your file."
 msgstr "點選儲存按鈕以上傳您的檔案。"
 
-#: lib/layouts/templates/app.html.heex:33
+#: lib/layouts/templates/app.html.heex:60
 #, elixir-autogen, elixir-format
 msgid "Profile"
 msgstr "個人資料"
@@ -189,13 +189,13 @@ msgid "Confirm"
 msgstr "確認"
 
 #: lib/content/course_live/course_list.ex:17
-#: lib/layouts/components/app_menu.ex:16
+#: lib/layouts/components/app_menu.ex:21
 #, elixir-autogen, elixir-format
 msgid "Courses"
 msgstr "課程"
 
 #: lib/content/course_live/course_view.html.heex:30
-#: lib/layouts/templates/dashboard_course.html.heex:41
+#: lib/layouts/templates/dashboard_course.html.heex:50
 #, elixir-autogen, elixir-format
 msgid "Cover"
 msgstr "封面"
@@ -221,8 +221,8 @@ msgstr "我的課程"
 msgid "Resetting..."
 msgstr "重設中..."
 
-#: lib/dashboard/courses/course_user_list.html.heex:98
-#: lib/dashboard/schools/user_list.html.heex:97
+#: lib/dashboard/courses/course_user_list.html.heex:112
+#: lib/dashboard/schools/user_list.html.heex:105
 #, elixir-autogen, elixir-format
 msgid "Username or email address"
 msgstr "使用者名稱或電子郵件地址"
@@ -232,7 +232,7 @@ msgstr "使用者名稱或電子郵件地址"
 msgid "Close"
 msgstr "關閉"
 
-#: lib/layouts/components/app_menu.ex:31
+#: lib/layouts/components/app_menu.ex:39
 #: lib/support/feedback_live/feedback.ex:15
 #, elixir-autogen, elixir-format
 msgid "Feedback"
@@ -258,7 +258,7 @@ msgstr "傳送"
 msgid "There was an error sending your feedback. Please try again."
 msgstr "傳送您的意見回饋時出錯。請再試一次。"
 
-#: lib/dashboard/lessons/components/option_list.ex:53
+#: lib/dashboard/lessons/components/option_list.ex:59
 #: lib/dashboard/lessons/lesson_view.html.heex:56
 #, elixir-autogen, elixir-format
 msgid "Are you sure?"
@@ -284,17 +284,17 @@ msgstr "移除"
 msgid "Deleting..."
 msgstr "刪除中..."
 
-#: lib/accounts/user_live/user_settings.ex:152
+#: lib/accounts/user_live/user_settings.ex:160
 #, elixir-autogen, elixir-format
 msgid "Change email"
 msgstr "更改電子郵件"
 
-#: lib/accounts/user_live/user_settings.ex:153
+#: lib/accounts/user_live/user_settings.ex:161
 #, elixir-autogen, elixir-format
 msgid "Change password"
 msgstr "更改密碼"
 
-#: lib/accounts/user_live/user_settings.ex:151
+#: lib/accounts/user_live/user_settings.ex:159
 #, elixir-autogen, elixir-format
 msgid "Change profile"
 msgstr "更改個人資料"
@@ -306,7 +306,7 @@ msgstr "關閉側邊欄"
 
 #: lib/components/delete_item.ex:17
 #: lib/components/delete_item.ex:21
-#: lib/layouts/templates/dashboard_course.html.heex:45
+#: lib/layouts/templates/dashboard_course.html.heex:54
 #, elixir-autogen, elixir-format
 msgid "Delete"
 msgstr "刪除"
@@ -316,25 +316,25 @@ msgstr "刪除"
 msgid "Edit"
 msgstr "編輯"
 
-#: lib/layouts/templates/dashboard_course.html.heex:13
+#: lib/layouts/templates/dashboard_course.html.heex:22
 #, elixir-autogen, elixir-format
 msgid "New"
 msgstr "新建"
 
-#: lib/layouts/templates/app.html.heex:15
+#: lib/layouts/templates/app.html.heex:33
 #, elixir-autogen, elixir-format
 msgid "Open sidebar"
 msgstr "開啟側邊欄"
 
-#: lib/layouts/menu_utils.ex:81
-#: lib/layouts/templates/dashboard_course.html.heex:17
+#: lib/layouts/menu_utils.ex:86
+#: lib/layouts/templates/dashboard_course.html.heex:26
 #, elixir-autogen, elixir-format
 msgid "Overview"
 msgstr "概覽"
 
 #: lib/accounts/user_live/login.html.heex:6
 #: lib/accounts/user_live/registration.html.heex:18
-#: lib/layouts/templates/app.html.heex:45
+#: lib/layouts/templates/app.html.heex:72
 #, elixir-autogen, elixir-format
 msgid "Password"
 msgstr "密碼"
@@ -360,15 +360,15 @@ msgid "Create"
 msgstr "建立"
 
 #: lib/content/course_live/course_view.html.heex:42
-#: lib/dashboard/courses/course_user_list.html.heex:22
-#: lib/dashboard/schools/user_list.html.heex:26
+#: lib/dashboard/courses/course_user_list.html.heex:36
+#: lib/dashboard/schools/user_list.html.heex:34
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Pending"
 msgstr "待處理"
 
-#: lib/accounts/user_live/user_settings.ex:154
+#: lib/accounts/user_live/user_settings.ex:162
 #: lib/accounts/user_live/user_settings.html.heex:1
-#: lib/layouts/templates/app.html.heex:37
+#: lib/layouts/templates/app.html.heex:64
 #, elixir-autogen, elixir-format
 msgid "Avatar"
 msgstr "大頭貼"
@@ -382,3 +382,23 @@ msgstr "大頭貼更新成功！"
 #, elixir-autogen, elixir-format
 msgid "Could not update avatar!"
 msgstr "無法更新大頭貼！"
+
+#: lib/layouts/components/app_menu.ex:24
+#, elixir-autogen, elixir-format, fuzzy
+msgid "Create school"
+msgstr "建立學校"
+
+#: lib/layouts/templates/app.html.heex:49
+#, elixir-autogen, elixir-format
+msgid "Don't lose your progress. "
+msgstr "不要失去您的進度。"
+
+#: lib/layouts/templates/app.html.heex:50
+#, elixir-autogen, elixir-format
+msgid "Update your email address"
+msgstr "更新您的電子郵件地址"
+
+#: lib/layouts/menu_utils.ex:87
+#, elixir-autogen, elixir-format
+msgid "Schools"
+msgstr "學校"

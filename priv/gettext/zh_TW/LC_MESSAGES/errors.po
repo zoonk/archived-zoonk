@@ -15,13 +15,13 @@ msgid "can't be blank"
 msgstr "不能為空"
 
 ## From Ecto.Changeset.unique_constraint/3
-#: lib/organizations/school_schema.ex:65
+#: lib/organizations/school_schema.ex:105
 #, elixir-autogen
 msgid "has already been taken"
 msgstr "已被使用"
 
 ## From Ecto.Changeset.put_change/3
-#: lib/accounts/user_schema.ex:185
+#: lib/accounts/user_schema.ex:187
 #, elixir-autogen
 msgid "is invalid"
 msgstr "無效"
@@ -120,27 +120,27 @@ msgstr "必須等於 %{number}"
 msgid "can only contain letters, numbers, dashes and underscores"
 msgstr "只能包含字母、數字、破折號和底線"
 
-#: lib/accounts/user_schema.ex:74
+#: lib/accounts/user_schema.ex:76
 #, elixir-autogen, elixir-format
 msgid "at least one digit or punctuation character"
 msgstr "至少一個數字或標點符號"
 
-#: lib/accounts/user_schema.ex:72
+#: lib/accounts/user_schema.ex:74
 #, elixir-autogen, elixir-format
 msgid "at least one lower case character"
 msgstr "至少一個小寫字母"
 
-#: lib/accounts/user_schema.ex:73
+#: lib/accounts/user_schema.ex:75
 #, elixir-autogen, elixir-format
 msgid "at least one upper case character"
 msgstr "至少一個大寫字母"
 
-#: lib/accounts/user_schema.ex:117
+#: lib/accounts/user_schema.ex:119
 #, elixir-autogen, elixir-format
 msgid "did not change"
 msgstr "未變更"
 
-#: lib/accounts/user_schema.ex:148
+#: lib/accounts/user_schema.ex:150
 #, elixir-autogen, elixir-format
 msgid "does not match password"
 msgstr "與密碼不符"
@@ -150,7 +150,7 @@ msgstr "與密碼不符"
 msgid "must have the @ sign and no spaces"
 msgstr "必須有 @ 符號且無空格"
 
-#: lib/organizations/school_schema.ex:46
+#: lib/organizations/school_schema.ex:61
 #, elixir-autogen, elixir-format
 msgid "must start with / or https://"
 msgstr "必須以 / 或 https:// 開頭"
@@ -195,18 +195,18 @@ msgstr "您未註冊此課程"
 msgid "Your enrollment is pending approval"
 msgstr "您的註冊正在等待批准"
 
-#: lib/organizations/school_schema.ex:47
-#: lib/organizations/school_schema.ex:48
+#: lib/organizations/school_schema.ex:62
+#: lib/organizations/school_schema.ex:63
 #, elixir-autogen, elixir-format, fuzzy
 msgid "must start with https://"
 msgstr "必須以 https:// 開頭"
 
-#: lib/content/content_context.ex:614
+#: lib/content/content_context.ex:674
 #, elixir-autogen, elixir-format, fuzzy
 msgid "cannot delete the only step"
 msgstr "不能刪除唯一的步驟"
 
-#: lib/content/content_context.ex:428
+#: lib/content/content_context.ex:434
 #, elixir-autogen, elixir-format, fuzzy
 msgid "cannot delete the only lesson"
 msgstr "不能刪除唯一的課程"
@@ -215,3 +215,8 @@ msgstr "不能刪除唯一的課程"
 #, elixir-autogen, elixir-format
 msgid "must have a domain name"
 msgstr "必須有一個網域名稱"
+
+#: lib/organizations/school_schema.ex:94
+#, elixir-autogen, elixir-format
+msgid "must be white_label"
+msgstr "必須是 white_label"

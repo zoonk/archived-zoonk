@@ -103,25 +103,25 @@ msgstr "電子郵件或密碼無效。"
 msgid "Password updated successfully!"
 msgstr "密碼更新成功！"
 
-#: lib/accounts/user_auth_plug.ex:168
-#: lib/accounts/user_auth_plug.ex:246
+#: lib/accounts/user_auth_plug.ex:174
+#: lib/accounts/user_auth_plug.ex:263
 #, elixir-autogen, elixir-format
 msgid "You must log in to access this page."
 msgstr "您必須登入才能存取此頁面。"
 
 #: lib/accounts/user_live/reset_password.html.heex:10
-#: lib/accounts/user_live/user_settings.html.heex:52
+#: lib/accounts/user_live/user_settings.html.heex:64
 #, elixir-autogen, elixir-format
 msgid "Confirm new password"
 msgstr "確認新密碼"
 
-#: lib/accounts/user_live/user_settings.html.heex:46
+#: lib/accounts/user_live/user_settings.html.heex:58
 #, elixir-autogen, elixir-format
 msgid "Current password"
 msgstr "目前的密碼"
 
 #: lib/accounts/user_live/reset_password.html.heex:9
-#: lib/accounts/user_live/user_settings.html.heex:51
+#: lib/accounts/user_live/user_settings.html.heex:63
 #, elixir-autogen, elixir-format
 msgid "New password"
 msgstr "新密碼"
@@ -186,27 +186,42 @@ msgstr "我們將向您的收件箱傳送新的確認連結"
 msgid "Email or username"
 msgstr "電子郵件或使用者名稱"
 
-#: lib/accounts/user_live/registration.ex:92
+#: lib/accounts/user_live/registration.ex:91
 #, elixir-autogen, elixir-format
 msgid "By signing up, you agree to our %{privacy}."
 msgstr "註冊即表示您同意我們的%{privacy}。"
 
-#: lib/accounts/user_live/registration.ex:96
+#: lib/accounts/user_live/registration.ex:95
 #, elixir-autogen, elixir-format
 msgid "By signing up, you agree to our %{terms} and %{privacy}."
 msgstr "註冊即表示您同意我們的%{terms}和%{privacy}。"
 
-#: lib/accounts/user_live/registration.ex:88
+#: lib/accounts/user_live/registration.ex:87
 #, elixir-autogen, elixir-format
 msgid "By signing up, you agree to our %{terms}."
 msgstr "註冊即表示您同意我們的%{terms}。"
 
-#: lib/accounts/user_live/registration.ex:80
+#: lib/accounts/user_live/registration.ex:79
 #, elixir-autogen, elixir-format
 msgid "privacy policy"
 msgstr "隱私政策"
 
-#: lib/accounts/user_live/registration.ex:76
+#: lib/accounts/user_live/registration.ex:75
 #, elixir-autogen, elixir-format
 msgid "terms of use"
 msgstr "使用條款"
+
+#: lib/accounts/user_live/user_settings.html.heex:46
+#, elixir-autogen, elixir-format
+msgid "You have a guest account. To convert it into a regular account, update your email address below:"
+msgstr "您有一個訪客帳戶。若要將其轉換為常規帳戶，請在下方更新您的電子郵件地址："
+
+#: lib/accounts/user_live/user_settings.html.heex:41
+#, elixir-autogen, elixir-format
+msgid "Enable sound effects?"
+msgstr "啟用音效？"
+
+#: lib/accounts/user_live/user_settings.html.heex:42
+#, elixir-autogen, elixir-format
+msgid "When checked, courses may play sound effects when you answer questions correctly or incorrectly."
+msgstr "勾選時，當您正確或不正確地回答問題時，課程可能會播放音效。"
