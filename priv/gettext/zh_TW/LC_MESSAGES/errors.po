@@ -1,0 +1,217 @@
+## `msgid`s in this file come from POT (.pot) files.
+##
+## Do not add, change, or remove `msgid`s manually here as
+## they're tied to the ones in the corresponding POT file
+## (with the same domain).
+##
+## Use `mix gettext.extract --merge` or `mix gettext.merge`
+## to merge POT files into PO files.
+msgid ""
+msgstr ""
+"Language: zh_TW\n"
+
+## From Ecto.Changeset.cast/4
+msgid "can't be blank"
+msgstr "不能為空"
+
+## From Ecto.Changeset.unique_constraint/3
+#: lib/organizations/school_schema.ex:65
+#, elixir-autogen
+msgid "has already been taken"
+msgstr "已被使用"
+
+## From Ecto.Changeset.put_change/3
+#: lib/accounts/user_schema.ex:185
+#, elixir-autogen
+msgid "is invalid"
+msgstr "無效"
+
+## From Ecto.Changeset.validate_acceptance/3
+msgid "must be accepted"
+msgstr "必須被接受"
+
+## From Ecto.Changeset.validate_format/3
+msgid "has invalid format"
+msgstr "格式無效"
+
+## From Ecto.Changeset.validate_subset/3
+msgid "has an invalid entry"
+msgstr "有無效的項目"
+
+## From Ecto.Changeset.validate_exclusion/3
+msgid "is reserved"
+msgstr "已被保留"
+
+## From Ecto.Changeset.validate_confirmation/3
+msgid "does not match confirmation"
+msgstr "與確認不符"
+
+## From Ecto.Changeset.no_assoc_constraint/3
+msgid "is still associated with this entry"
+msgstr "仍與此項目相關聯"
+
+msgid "are still associated with this entry"
+msgstr "仍與此項目相關聯"
+
+## From Ecto.Changeset.validate_length/3
+msgid "should have %{count} item(s)"
+msgid_plural "should have %{count} item(s)"
+msgstr[0] "應有 %{count} 項"
+msgstr[1] "應有 %{count} 項"
+
+msgid "should be %{count} character(s)"
+msgid_plural "should be %{count} character(s)"
+msgstr[0] "應為 %{count} 字元"
+msgstr[1] "應為 %{count} 字元"
+
+msgid "should be %{count} byte(s)"
+msgid_plural "should be %{count} byte(s)"
+msgstr[0] "應為 %{count} 位元組"
+msgstr[1] "應為 %{count} 位元組"
+
+msgid "should have at least %{count} item(s)"
+msgid_plural "should have at least %{count} item(s)"
+msgstr[0] "至少應有 %{count} 項"
+msgstr[1] "至少應有 %{count} 項"
+
+msgid "should be at least %{count} character(s)"
+msgid_plural "should be at least %{count} character(s)"
+msgstr[0] "至少應為 %{count} 字元"
+msgstr[1] "至少應為 %{count} 字元"
+
+msgid "should be at least %{count} byte(s)"
+msgid_plural "should be at least %{count} byte(s)"
+msgstr[0] "至少應為 %{count} 位元組"
+msgstr[1] "至少應為 %{count} 位元組"
+
+msgid "should have at most %{count} item(s)"
+msgid_plural "should have at most %{count} item(s)"
+msgstr[0] "最多應有 %{count} 項"
+msgstr[1] "最多應有 %{count} 項"
+
+msgid "should be at most %{count} character(s)"
+msgid_plural "should be at most %{count} character(s)"
+msgstr[0] "最多應為 %{count} 字元"
+msgstr[1] "最多應為 %{count} 字元"
+
+msgid "should be at most %{count} byte(s)"
+msgid_plural "should be at most %{count} byte(s)"
+msgstr[0] "最多應為 %{count} 位元組"
+msgstr[1] "最多應為 %{count} 位元組"
+
+## From Ecto.Changeset.validate_number/3
+msgid "must be less than %{number}"
+msgstr "必須小於 %{number}"
+
+msgid "must be greater than %{number}"
+msgstr "必須大於 %{number}"
+
+msgid "must be less than or equal to %{number}"
+msgstr "必須小於或等於 %{number}"
+
+msgid "must be greater than or equal to %{number}"
+msgstr "必須大於或等於 %{number}"
+
+msgid "must be equal to %{number}"
+msgstr "必須等於 %{number}"
+
+#: lib/shared/validators.ex:19
+#, elixir-autogen, elixir-format
+msgid "can only contain letters, numbers, dashes and underscores"
+msgstr "只能包含字母、數字、破折號和底線"
+
+#: lib/accounts/user_schema.ex:74
+#, elixir-autogen, elixir-format
+msgid "at least one digit or punctuation character"
+msgstr "至少一個數字或標點符號"
+
+#: lib/accounts/user_schema.ex:72
+#, elixir-autogen, elixir-format
+msgid "at least one lower case character"
+msgstr "至少一個小寫字母"
+
+#: lib/accounts/user_schema.ex:73
+#, elixir-autogen, elixir-format
+msgid "at least one upper case character"
+msgstr "至少一個大寫字母"
+
+#: lib/accounts/user_schema.ex:117
+#, elixir-autogen, elixir-format
+msgid "did not change"
+msgstr "未變更"
+
+#: lib/accounts/user_schema.ex:148
+#, elixir-autogen, elixir-format
+msgid "does not match password"
+msgstr "與密碼不符"
+
+#: lib/shared/validators.ex:31
+#, elixir-autogen, elixir-format
+msgid "must have the @ sign and no spaces"
+msgstr "必須有 @ 符號且無空格"
+
+#: lib/organizations/school_schema.ex:46
+#, elixir-autogen, elixir-format
+msgid "must start with / or https://"
+msgstr "必須以 / 或 https:// 開頭"
+
+#: lib/components/upload.ex:127
+#, elixir-autogen, elixir-format
+msgid "Too large"
+msgstr "太大"
+
+#: lib/components/upload.ex:129
+#, elixir-autogen, elixir-format
+msgid "You have selected an unacceptable file type"
+msgstr "您選擇了不可接受的檔案類型"
+
+#: lib/components/upload.ex:128
+#, elixir-autogen, elixir-format
+msgid "You have selected too many files"
+msgstr "您選擇了太多檔案"
+
+#: lib/error/permission_error.ex:12
+#, elixir-autogen, elixir-format
+msgid "Only managers and teachers can view this page"
+msgstr "只有管理員和教師可以檢視此頁面"
+
+#: lib/error/permission_error.ex:11
+#, elixir-autogen, elixir-format
+msgid "Only managers can view this page"
+msgstr "只有管理員可以檢視此頁面"
+
+#: lib/error/permission_error.ex:10
+#, elixir-autogen, elixir-format
+msgid "School already configured"
+msgstr "學校已設定"
+
+#: lib/error/permission_error.ex:13
+#, elixir-autogen, elixir-format
+msgid "You are not enrolled in this course"
+msgstr "您未註冊此課程"
+
+#: lib/error/permission_error.ex:14
+#, elixir-autogen, elixir-format
+msgid "Your enrollment is pending approval"
+msgstr "您的註冊正在等待批准"
+
+#: lib/organizations/school_schema.ex:47
+#: lib/organizations/school_schema.ex:48
+#, elixir-autogen, elixir-format, fuzzy
+msgid "must start with https://"
+msgstr "必須以 https:// 開頭"
+
+#: lib/content/content_context.ex:614
+#, elixir-autogen, elixir-format, fuzzy
+msgid "cannot delete the only step"
+msgstr "不能刪除唯一的步驟"
+
+#: lib/content/content_context.ex:428
+#, elixir-autogen, elixir-format, fuzzy
+msgid "cannot delete the only lesson"
+msgstr "不能刪除唯一的課程"
+
+#: lib/shared/validators.ex:32
+#, elixir-autogen, elixir-format
+msgid "must have a domain name"
+msgstr "必須有一個網域名稱"

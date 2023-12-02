@@ -1,0 +1,52 @@
+## "msgid"s in this file come from POT (.pot) files.
+###
+### Do not add, change, or remove "msgid"s manually here as
+### they're tied to the ones in the corresponding POT file
+### (with the same domain).
+###
+### Use "mix gettext.extract --merge" or "mix gettext.merge"
+### to merge POT files into PO files.
+msgid ""
+msgstr ""
+"Language: zh_TW\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: lib/accounts/user_notifier.ex:15
+#, elixir-autogen, elixir-format
+msgid "Confirmation instructions"
+msgstr "確認說明"
+
+#: lib/accounts/user_notifier.ex:70
+#, elixir-autogen, elixir-format
+msgid "Hi %{name},\n\nYou can change your email by visiting the URL below:\n\n%{url}\n\nIf you didn't request this change, please ignore this.\n"
+msgstr "嗨 %{name}，\n\n您可以透過點選下方的網址來變更您的電子郵件：\n\n%{url}\n\n如果您並未要求此變更，請忽略此訊息。\n"
+
+#: lib/accounts/user_notifier.ex:18
+#, elixir-autogen, elixir-format
+msgid "Hi %{name},\n\nYou can confirm your account by visiting the URL below:\n\n%{url}\n\nIf you didn't create an account with us, please ignore this.\n"
+msgstr "嗨 %{name}，\n\n您可以透過點選下方的網址來確認您的帳號：\n\n%{url}\n\n如果您並未在我們這裡註冊帳號，請忽略此訊息。\n"
+
+#: lib/accounts/user_notifier.ex:44
+#, elixir-autogen, elixir-format
+msgid "Hi %{name},\n\nYou can reset your password by visiting the URL below:\n\n%{url}\n\nIf you didn't request this change, please ignore this.\n"
+msgstr "嗨 %{name}，\n\n您可以透過點選下方的網址來重設您的密碼：\n\n%{url}\n\n如果您並未要求此變更，請忽略此訊息。\n"
+
+#: lib/accounts/user_notifier.ex:41
+#, elixir-autogen, elixir-format
+msgid "Reset password instructions"
+msgstr "重設密碼說明"
+
+#: lib/accounts/user_notifier.ex:67
+#, elixir-autogen, elixir-format
+msgid "Update email instructions"
+msgstr "更新電子郵件說明"
+
+#: lib/support/support_context.ex:22
+#, elixir-autogen, elixir-format
+msgid "Feedback from %{name}"
+msgstr "來自 %{name} 的意見"
+
+#: lib/support/support_context.ex:25
+#, elixir-autogen, elixir-format
+msgid "Name: %{name}\nEmail: %{email}\n\n%{message}\n"
+msgstr "名稱： %{name}\n電子郵件： %{email}\n\n%{message}\n"

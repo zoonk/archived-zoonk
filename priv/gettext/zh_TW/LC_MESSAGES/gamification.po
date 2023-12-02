@@ -1,0 +1,226 @@
+## "msgid"s in this file come from POT (.pot) files.
+###
+### Do not add, change, or remove "msgid"s manually here as
+### they're tied to the ones in the corresponding POT file
+### (with the same domain).
+###
+### Use "mix gettext.extract --merge" or "mix gettext.merge"
+### to merge POT files into PO files.
+msgid ""
+msgstr ""
+"Language: zh_TW\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: lib/components/award_badge.ex:32
+#: lib/layouts/components/gamification_menu.ex:14
+#, elixir-autogen, elixir-format
+msgid "Learning days"
+msgstr "學習天數"
+
+#: lib/gamification/medal_utils.ex:32
+#, elixir-autogen, elixir-format
+msgid "Lesson completed"
+msgstr "課程已完成"
+
+#: lib/gamification/medal_live/medal_list.ex:19
+#: lib/layouts/components/gamification_menu.ex:25
+#, elixir-autogen, elixir-format
+msgid "Medals"
+msgstr "獎牌"
+
+#: lib/gamification/medal_utils.ex:20
+#: lib/gamification/medal_utils.ex:26
+#: lib/gamification/mission_utils.ex:33
+#, elixir-autogen, elixir-format
+msgid "Perfect lesson"
+msgstr "完美課程"
+
+#: lib/gamification/medal_utils.ex:33
+#, elixir-autogen, elixir-format
+msgid "You completed a lesson with some errors on your first try."
+msgstr "您在第一次嘗試時完成了一堂課，但有一些錯誤。"
+
+#: lib/gamification/medal_utils.ex:27
+#, elixir-autogen, elixir-format
+msgid "You completed a lesson without any errors after practicing it."
+msgstr "經過練習後，您完美地完成了一堂課。"
+
+#: lib/gamification/medal_utils.ex:21
+#, elixir-autogen, elixir-format
+msgid "You completed a lesson without any errors on your first try."
+msgstr "您在第一次嘗試時完美地完成了一堂課。"
+
+#: lib/gamification/trophy_utils.ex:19
+#, elixir-autogen, elixir-format, fuzzy
+msgid "Course completed"
+msgstr "課程已完成"
+
+#: lib/gamification/trophy_live/trophy_list.ex:18
+#: lib/layouts/components/gamification_menu.ex:21
+#, elixir-autogen, elixir-format
+msgid "Trophies"
+msgstr "獎杯"
+
+#: lib/gamification/trophy_utils.ex:20
+#, elixir-autogen, elixir-format
+msgid "You completed a course."
+msgstr "您已完成一門課程。"
+
+#: lib/gamification/mission_utils.ex:20
+#, elixir-autogen, elixir-format
+msgid "Add your name to your profile."
+msgstr "在您的個人資料中新增您的名字。"
+
+#: lib/gamification/mission_utils.ex:34
+#, elixir-autogen, elixir-format
+msgid "Complete a lesson without errors."
+msgstr "完成一堂沒有錯誤的課。"
+
+#: lib/gamification/mission_utils.ex:27
+#, elixir-autogen, elixir-format
+msgid "Complete your first lesson."
+msgstr "完成您的第一堂課。"
+
+#: lib/gamification/mission_utils.ex:26
+#, elixir-autogen, elixir-format
+msgid "First lesson"
+msgstr "第一堂課"
+
+#: lib/gamification/medal_utils.ex:38
+#: lib/gamification/trophy_utils.ex:24
+#, elixir-autogen, elixir-format, fuzzy
+msgid "Mission completed"
+msgstr "任務已完成"
+
+#: lib/gamification/mission_utils.ex:19
+#, elixir-autogen, elixir-format
+msgid "Profile name"
+msgstr "個人資料名稱"
+
+#: lib/gamification/mission_utils.ex:21
+#, elixir-autogen, elixir-format
+msgid "You added your name to your profile."
+msgstr "您已在個人資料中新增了您的名字。"
+
+#: lib/gamification/mission_utils.ex:35
+#, elixir-autogen, elixir-format, fuzzy
+msgid "You completed a lesson without errors."
+msgstr "您完成了一堂沒有錯誤的課。"
+
+#: lib/gamification/medal_utils.ex:39
+#: lib/gamification/trophy_utils.ex:25
+#, elixir-autogen, elixir-format, fuzzy
+msgid "You completed a mission."
+msgstr "您已完成一項任務。"
+
+#: lib/gamification/mission_utils.ex:28
+#, elixir-autogen, elixir-format, fuzzy
+msgid "You completed your first lesson."
+msgstr "您已完成您的第一堂課。"
+
+#: lib/gamification/mission_utils.ex:40
+#: lib/gamification/mission_utils.ex:47
+#: lib/gamification/mission_utils.ex:54
+#: lib/gamification/mission_utils.ex:61
+#: lib/gamification/mission_utils.ex:68
+#: lib/gamification/mission_utils.ex:75
+#, elixir-autogen, elixir-format
+msgid "%{count} lessons"
+msgstr "%{count} 堂課"
+
+#: lib/gamification/mission_utils.ex:82
+#: lib/gamification/mission_utils.ex:88
+#: lib/gamification/mission_utils.ex:94
+#: lib/gamification/mission_utils.ex:100
+#, elixir-autogen, elixir-format, fuzzy
+msgid "%{count} perfect lessons"
+msgstr "%{count} 堂完美課程"
+
+#: lib/gamification/mission_utils.ex:83
+#: lib/gamification/mission_utils.ex:89
+#: lib/gamification/mission_utils.ex:95
+#: lib/gamification/mission_utils.ex:101
+#, elixir-autogen, elixir-format, fuzzy
+msgid "Complete %{count} lessons without errors."
+msgstr "完美地完成 %{count} 堂課。"
+
+#: lib/gamification/mission_utils.ex:41
+#: lib/gamification/mission_utils.ex:48
+#: lib/gamification/mission_utils.ex:55
+#: lib/gamification/mission_utils.ex:62
+#: lib/gamification/mission_utils.ex:69
+#: lib/gamification/mission_utils.ex:76
+#, elixir-autogen, elixir-format, fuzzy
+msgid "Complete %{count} lessons."
+msgstr "完成 %{count} 堂課。"
+
+#: lib/gamification/mission_utils.ex:42
+#: lib/gamification/mission_utils.ex:49
+#: lib/gamification/mission_utils.ex:56
+#: lib/gamification/mission_utils.ex:63
+#: lib/gamification/mission_utils.ex:70
+#: lib/gamification/mission_utils.ex:77
+#, elixir-autogen, elixir-format, fuzzy
+msgid "You completed %{count} lessons."
+msgstr "您已完成 %{count} 堂課。"
+
+#: lib/gamification/mission_live/mission_list.ex:18
+#: lib/layouts/components/gamification_menu.ex:17
+#, elixir-autogen, elixir-format
+msgid "Missions"
+msgstr "任務"
+
+#: lib/gamification/mission_live/mission_list.html.heex:2
+#, elixir-autogen, elixir-format, fuzzy
+msgid "Completed missions"
+msgstr "已完成的任務"
+
+#: lib/gamification/mission_live/mission_list.html.heex:19
+#, elixir-autogen, elixir-format
+msgid "Congrats! You completed all missions."
+msgstr "恭喜！您已完成所有任務。"
+
+#: lib/gamification/mission_live/mission_list.html.heex:16
+#, elixir-autogen, elixir-format, fuzzy
+msgid "Next missions"
+msgstr "下一個任務"
+
+#: lib/gamification/mission_live/mission_list.html.heex:5
+#, elixir-autogen, elixir-format
+msgid "You didn't complete any missions yet."
+msgstr "您還沒有完成任何任務。"
+
+#: lib/gamification/medal_live/medal_list_component.ex:34
+#, elixir-autogen, elixir-format
+msgid "%{count} bronze medal"
+msgid_plural "%{count} bronze medals"
+msgstr[0] "%{count} 青銅獎牌"
+msgstr[1] "%{count} 青銅獎牌"
+
+#: lib/gamification/medal_live/medal_list_component.ex:32
+#, elixir-autogen, elixir-format
+msgid "%{count} gold medal"
+msgid_plural "%{count} gold medals"
+msgstr[0] "%{count} 金牌"
+msgstr[1] "%{count} 金牌"
+
+#: lib/gamification/medal_live/medal_list_component.ex:33
+#, elixir-autogen, elixir-format
+msgid "%{count} silver medal"
+msgid_plural "%{count} silver medals"
+msgstr[0] "%{count} 銀牌"
+msgstr[1] "%{count} 銀牌"
+
+#: lib/gamification/medal_live/medal_list_component.ex:36
+#, elixir-autogen, elixir-format, fuzzy
+msgid "%{count} time"
+msgid_plural "%{count} times"
+msgstr[0] "%{count} 次"
+msgstr[1] "%{count} 次"
+
+#: lib/components/award_badge.ex:33
+#, elixir-autogen, elixir-format, fuzzy
+msgid "You completed a lesson on %{count} day."
+msgid_plural "You completed a lesson on %{count} days."
+msgstr[0] "您在 %{count} 天內完成了一堂課。"
+msgstr[1] "您在 %{count} 天內完成了課程。"

@@ -1,0 +1,212 @@
+## "msgid"s in this file come from POT (.pot) files.
+###
+### Do not add, change, or remove "msgid"s manually here as
+### they're tied to the ones in the corresponding POT file
+### (with the same domain).
+###
+### Use "mix gettext.extract --merge" or "mix gettext.merge"
+### to merge POT files into PO files.
+msgid ""
+msgstr ""
+"Language: zh_TW\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: lib/accounts/user_live/registration.html.heex:30
+#, elixir-autogen, elixir-format
+msgid "Already registered?"
+msgstr "已經註冊了嗎？"
+
+#: lib/accounts/user_live/registration.html.heex:24
+#, elixir-autogen, elixir-format
+msgid "Create account"
+msgstr "建立帳戶"
+
+#: lib/accounts/user_live/registration.ex:20
+#: lib/accounts/user_live/registration.html.heex:11
+#, elixir-autogen, elixir-format
+msgid "Create an account"
+msgstr "建立一個帳戶"
+
+#: lib/accounts/user_live/confirmation_instructions.html.heex:18
+#: lib/accounts/user_live/login.ex:9
+#: lib/accounts/user_live/login.html.heex:14
+#: lib/accounts/user_live/registration.html.heex:31
+#: lib/accounts/user_live/reset_password.html.heex:20
+#: lib/accounts/user_live/user_confirmation.html.heex:14
+#, elixir-autogen, elixir-format
+msgid "Sign in"
+msgstr "登入"
+
+#: lib/accounts/user_live/forgot_password.html.heex:3
+#: lib/accounts/user_live/login.html.heex:20
+#, elixir-autogen, elixir-format
+msgid "Forgot your password?"
+msgstr "忘記密碼了嗎？"
+
+#: lib/accounts/user_live/login.html.heex:9
+#, elixir-autogen, elixir-format
+msgid "Keep me logged in"
+msgstr "保持登入狀態"
+
+#: lib/accounts/user_live/login.html.heex:3
+#, elixir-autogen, elixir-format
+msgid "Sign in to your account"
+msgstr "登入您的帳戶"
+
+#: lib/accounts/user_live/login.html.heex:13
+#, elixir-autogen, elixir-format
+msgid "Signing in..."
+msgstr "正在登入..."
+
+#: lib/accounts/user_live/confirmation_instructions.html.heex:18
+#: lib/accounts/user_live/login.html.heex:26
+#: lib/accounts/user_live/reset_password.html.heex:20
+#: lib/accounts/user_live/user_confirmation.html.heex:14
+#, elixir-autogen, elixir-format
+msgid "Register"
+msgstr "註冊"
+
+#: lib/accounts/user_live/forgot_password.html.heex:17
+#, elixir-autogen, elixir-format
+msgid "Back to the sign in form"
+msgstr "返回登入表單"
+
+#: lib/accounts/user_live/forgot_password.ex:21
+#, elixir-autogen, elixir-format
+msgid "If your email is in our system, you will receive instructions to reset your password shortly."
+msgstr "如果您的電子郵件在我們的系統中，您將很快收到重設密碼的指示。"
+
+#: lib/accounts/user_live/forgot_password.ex:9
+#: lib/accounts/user_live/reset_password.html.heex:2
+#: lib/accounts/user_live/reset_password.html.heex:14
+#, elixir-autogen, elixir-format, fuzzy
+msgid "Reset Password"
+msgstr "重設密碼"
+
+#: lib/accounts/user_live/forgot_password.html.heex:11
+#, elixir-autogen, elixir-format
+msgid "Send password reset instructions"
+msgstr "傳送重設密碼指示"
+
+#: lib/accounts/user_live/forgot_password.html.heex:4
+#, elixir-autogen, elixir-format
+msgid "We'll send a password reset link to your inbox"
+msgstr "我們將向您的收件箱傳送重設密碼的連結"
+
+#: lib/accounts/user_session_controller.ex:34
+#, elixir-autogen, elixir-format
+msgid "Invalid email or password."
+msgstr "電子郵件或密碼無效。"
+
+#: lib/accounts/user_session_controller.ex:13
+#, elixir-autogen, elixir-format
+msgid "Password updated successfully!"
+msgstr "密碼更新成功！"
+
+#: lib/accounts/user_auth_plug.ex:168
+#: lib/accounts/user_auth_plug.ex:246
+#, elixir-autogen, elixir-format
+msgid "You must log in to access this page."
+msgstr "您必須登入才能存取此頁面。"
+
+#: lib/accounts/user_live/reset_password.html.heex:10
+#: lib/accounts/user_live/user_settings.html.heex:52
+#, elixir-autogen, elixir-format
+msgid "Confirm new password"
+msgstr "確認新密碼"
+
+#: lib/accounts/user_live/user_settings.html.heex:46
+#, elixir-autogen, elixir-format
+msgid "Current password"
+msgstr "目前的密碼"
+
+#: lib/accounts/user_live/reset_password.html.heex:9
+#: lib/accounts/user_live/user_settings.html.heex:51
+#, elixir-autogen, elixir-format
+msgid "New password"
+msgstr "新密碼"
+
+#: lib/accounts/user_live/user_settings.ex:108
+#, elixir-autogen, elixir-format
+msgid "A link to confirm your email change has been sent to the new address."
+msgstr "已向新地址傳送確認電子郵件更改的連結。"
+
+#: lib/accounts/user_live/user_settings.ex:16
+#, elixir-autogen, elixir-format
+msgid "Email change link is invalid or it has expired."
+msgstr "電子郵件更改連結無效或已過期。"
+
+#: lib/accounts/user_live/user_settings.ex:15
+#, elixir-autogen, elixir-format
+msgid "Email changed successfully."
+msgstr "電子郵件更改成功。"
+
+#: lib/accounts/user_live/user_settings.ex:93
+#, elixir-autogen, elixir-format
+msgid "Error updating settings"
+msgstr "更新設定時出錯"
+
+#: lib/accounts/user_live/user_settings.ex:85
+#, elixir-autogen, elixir-format
+msgid "Settings updated successfully"
+msgstr "設定更新成功"
+
+#: lib/accounts/user_live/user_confirmation.html.heex:2
+#, elixir-autogen, elixir-format
+msgid "Confirm Account"
+msgstr "確認帳戶"
+
+#: lib/accounts/user_live/user_confirmation.html.heex:8
+#, elixir-autogen, elixir-format
+msgid "Confirm my account"
+msgstr "確認我的帳戶"
+
+#: lib/accounts/user_live/user_confirmation.html.heex:7
+#, elixir-autogen, elixir-format
+msgid "Confirming..."
+msgstr "正在確認..."
+
+#: lib/accounts/user_live/confirmation_instructions.html.heex:3
+#, elixir-autogen, elixir-format
+msgid "No confirmation instructions received?"
+msgstr "沒有收到確認指示？"
+
+#: lib/accounts/user_live/confirmation_instructions.html.heex:12
+#, elixir-autogen, elixir-format
+msgid "Resend confirmation instructions"
+msgstr "重新傳送確認指示"
+
+#: lib/accounts/user_live/confirmation_instructions.html.heex:4
+#, elixir-autogen, elixir-format, fuzzy
+msgid "We'll send a new confirmation link to your inbox"
+msgstr "我們將向您的收件箱傳送新的確認連結"
+
+#: lib/accounts/user_live/login.html.heex:5
+#, elixir-autogen, elixir-format
+msgid "Email or username"
+msgstr "電子郵件或使用者名稱"
+
+#: lib/accounts/user_live/registration.ex:92
+#, elixir-autogen, elixir-format
+msgid "By signing up, you agree to our %{privacy}."
+msgstr "註冊即表示您同意我們的%{privacy}。"
+
+#: lib/accounts/user_live/registration.ex:96
+#, elixir-autogen, elixir-format
+msgid "By signing up, you agree to our %{terms} and %{privacy}."
+msgstr "註冊即表示您同意我們的%{terms}和%{privacy}。"
+
+#: lib/accounts/user_live/registration.ex:88
+#, elixir-autogen, elixir-format
+msgid "By signing up, you agree to our %{terms}."
+msgstr "註冊即表示您同意我們的%{terms}。"
+
+#: lib/accounts/user_live/registration.ex:80
+#, elixir-autogen, elixir-format
+msgid "privacy policy"
+msgstr "隱私政策"
+
+#: lib/accounts/user_live/registration.ex:76
+#, elixir-autogen, elixir-format
+msgid "terms of use"
+msgstr "使用條款"
