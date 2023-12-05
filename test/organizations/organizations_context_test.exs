@@ -406,6 +406,27 @@ defmodule Uneebee.OrganizationsTest do
     end
   end
 
+  describe "search_school_user/3" do
+    test "search a school user" do
+      school = school_fixture()
+      user = user_fixture(%{first_name: "Albert", last_name: "Einstein", username: "user-#{System.unique_integer()}-einstein"})
+      school_user = school_user_fixture(%{school: school, user: user, role: :student, preload: :user})
+
+      assert Organizations.search_school_user(school.id, :student, user.username) == [school_user]
+      assert Organizations.search_school_user(school.id, :student, "Einstein") == [school_user]
+      assert Organizations.search_school_user(school.id, :student, "eins") == [school_user]
+      assert Organizations.search_school_user(school.id, :student, user.email) == [school_user]
+      assert Organizations.search_school_user(school.id, :student, user.first_name) == [school_user]
+      assert Organizations.search_school_user(school.id, :student, user.last_name) == [school_user]
+      assert Organizations.search_school_user(school.id, :student, "alb") == [school_user]
+      assert Organizations.search_school_user(school.id, :student, "albert einstein") == [school_user]
+
+      assert Organizations.search_school_user(school.id, :student, "invalid") == []
+      assert Organizations.search_school_user(school.id, :teacher, user.username) == []
+      assert Organizations.search_school_user(school.id, :manager, user.username) == []
+    end
+  end
+
   describe "get_school_by_host!/1" do
     test "returns the school depending on the subdomain value" do
       school1 = school_fixture(%{custom_domain: "uneebee.com"})

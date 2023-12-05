@@ -195,6 +195,45 @@ defmodule Uneebee.Organizations do
   end
 
   @doc """
+  Search school user.
+
+  Search a school user by `first_name`, `last_name`, `username`, or `email`.
+
+  ## Examples
+      iex> search_school_user(school_id, :student, "will")
+      [%SchoolUser{}, ...]
+
+      iex> search_school_user(school_id ,:student, "will ceolin")
+      [%SchoolUser{}, ...]
+
+      iex> search_school_user(school_id, :student, "will@zoonk.org")
+      [%SchoolUser{}, ...]
+
+      iex> search_school_user(school_id, :student, "invalid")
+      []
+  """
+  @spec search_school_user(non_neg_integer(), atom(), String.t()) :: [SchoolUser.t()]
+  def search_school_user(school_id, role, term) do
+    search_term = "%#{term}%"
+    combined_name_search_term = search_term |> String.split(" ") |> Enum.join(" ")
+
+    SchoolUser
+    |> join(:inner, [su], u in User, on: su.user_id == u.id)
+    |> where([su, u], su.school_id == ^school_id)
+    |> where([su, u], su.role == ^role)
+    |> where(
+      [su, u],
+      ilike(u.username, ^search_term) or
+        ilike(u.email, ^search_term) or
+        ilike(u.first_name, ^search_term) or
+        ilike(u.last_name, ^search_term) or
+        ilike(fragment("? || ' ' || ?", u.first_name, u.last_name), ^combined_name_search_term)
+    )
+    |> preload([su, u], user: u)
+    |> Repo.all()
+  end
+
+  @doc """
   Gets a single school based on the `host` value.
 
   ## Examples
