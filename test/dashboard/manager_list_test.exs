@@ -113,8 +113,8 @@ defmodule UneebeeWeb.SchoolManagerListLiveTest do
 
       {:ok, lv, _html} = live(conn, ~p"/dashboard/managers")
 
-      refute has_element?(lv, ~s|button:fl-icontains("disable analytics")|)
-      refute has_element?(lv, ~s|button:fl-icontains("enable analytics")|)
+      refute has_element?(lv, ~s|button *:fl-icontains("disable analytics")|)
+      refute has_element?(lv, ~s|button *:fl-icontains("enable analytics")|)
     end
 
     test "adds a user using their email address", %{conn: conn} do

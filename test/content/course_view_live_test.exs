@@ -30,7 +30,7 @@ defmodule UneebeeWeb.CourseViewLiveTest do
       result = lv |> element("button", "Request to join") |> render_click()
 
       assert result =~ "A request to enroll has been sent to the course teacher."
-      refute has_element?(lv, ~s|button:fl-icontains("request to join")|)
+      refute has_element?(lv, ~s|button *:fl-icontains("request to join")|)
       assert has_element?(lv, ~s|span:fl-icontains("pending")|)
       assert has_element?(lv, ~s|span:fl-icontains("locked")|)
     end

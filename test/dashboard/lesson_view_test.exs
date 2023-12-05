@@ -173,7 +173,7 @@ defmodule UneebeeWeb.DashboardLessonViewLiveTest do
     test "does not allow to delete the only lesson", %{conn: conn, course: course, lesson: lesson} do
       {:ok, lv, _html} = live(conn, ~p"/dashboard/c/#{course.slug}/l/#{lesson.id}/s/1")
 
-      refute has_element?(lv, ~s|button:fl-icontains("delete lesson")|)
+      refute has_element?(lv, ~s|button *:fl-icontains("delete lesson")|)
     end
 
     test "hides the remove step button when it's the only step", %{conn: conn, course: course} do
@@ -182,7 +182,7 @@ defmodule UneebeeWeb.DashboardLessonViewLiveTest do
 
       {:ok, lv, _html} = live(conn, ~p"/dashboard/c/#{course.slug}/l/#{lesson.id}/s/1")
 
-      refute has_element?(lv, ~s|button:fl-contains("Remove step")|)
+      refute has_element?(lv, ~s|button *:fl-contains("Remove step")|)
     end
 
     test "updates a step", %{conn: conn, course: course} do
@@ -260,7 +260,7 @@ defmodule UneebeeWeb.DashboardLessonViewLiveTest do
 
       {:ok, lv, _html} = live(conn, ~p"/dashboard/c/#{course.slug}/l/#{lesson.id}/s/1")
 
-      refute has_element?(lv, ~s|button:fl-icontains("+")|)
+      refute has_element?(lv, ~s|button *:fl-icontains("+")|)
     end
 
     test "renders all options for a step", %{conn: conn, course: course} do

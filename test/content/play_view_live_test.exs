@@ -142,7 +142,7 @@ defmodule UneebeeWeb.PlayViewLiveTest do
 
   defp assert_first_step(lv, lessons) do
     assert has_element?(lv, ~s|blockquote p:fl-icontains("step 1!")|)
-    assert has_element?(lv, ~s|button:fl-icontains("confirm")|)
+    assert has_element?(lv, ~s|button *:fl-icontains("confirm")|)
 
     step = hd(lessons)
     first_option = hd(step.options)
@@ -160,7 +160,7 @@ defmodule UneebeeWeb.PlayViewLiveTest do
 
     refute has_element?(lv, ~s|blockquote p:fl-icontains("step 1!")|)
     assert has_element?(lv, ~s|blockquote p:fl-icontains("step 2!")|)
-    assert has_element?(lv, ~s|button:fl-icontains("confirm")|)
+    assert has_element?(lv, ~s|button *:fl-icontains("confirm")|)
 
     step = Enum.at(lessons, 1)
     first_option = hd(step.options)
@@ -188,7 +188,7 @@ defmodule UneebeeWeb.PlayViewLiveTest do
     lv |> form(@select_form) |> render_submit()
 
     assert has_element?(lv, ~s|blockquote p:fl-icontains("step 4!")|)
-    assert has_element?(lv, ~s|button:fl-icontains("next step")|)
+    assert has_element?(lv, ~s|button *:fl-icontains("next step")|)
 
     step = Enum.at(lessons, 3)
 

@@ -27,6 +27,7 @@ defmodule UneebeeWeb.Components.Button do
   attr :size, :atom, default: :md, values: [:md, :lg], doc: "the button size"
   attr :shadow, :boolean, default: false, doc: "whether to add a shadow to the button"
   attr :kind, :atom, values: [:text, :icon], default: :text
+  attr :hide_label_on_mobile, :boolean, default: false, doc: "whether to hide the button label on mobile"
 
   slot :inner_block, required: true, doc: "the inner block that renders the button content"
 
@@ -58,7 +59,8 @@ defmodule UneebeeWeb.Components.Button do
       ]}
       {@rest}
     >
-      <.icon :if={@icon} name={@icon} class={["h-5 w-5", @kind == :text && "-ml-0.5 mr-1"]} /> <%= render_slot(@inner_block) %>
+      <.icon :if={@icon} name={@icon} class={["h-5 w-5", @kind == :text && !@hide_label_on_mobile && "-ml-0.5 mr-1"]} />
+      <span class={[@hide_label_on_mobile && "hidden sm:block"]}><%= render_slot(@inner_block) %></span>
     </button>
     """
   end

@@ -71,7 +71,7 @@ defmodule UneebeeWeb.UserSettingsLiveTest do
                |> follow_redirect(conn, ~p"/users/settings")
 
       assert html =~ "Configurações atualizadas"
-      assert has_element?(updated_lv, ~s|button:fl-icontains("Salvar")|)
+      assert has_element?(updated_lv, ~s|button *:fl-icontains("Salvar")|)
       assert has_element?(updated_lv, ~s|option[value="pt"][selected]|)
       assert Accounts.get_user!(user.id).language == :pt
     end
