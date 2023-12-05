@@ -12,7 +12,7 @@ defmodule UneebeeWeb.DashboardCourseStudentViewLiveTest do
 
     test "redirects to the login page", %{conn: conn, school: school} do
       course = course_fixture(%{school_id: school.id})
-      result = get(conn, ~p"/dashboard/c/#{course.slug}/s/1")
+      result = get(conn, ~p"/dashboard/c/#{course.slug}/u/1")
       assert redirected_to(result) == ~p"/users/login"
     end
   end
@@ -23,7 +23,7 @@ defmodule UneebeeWeb.DashboardCourseStudentViewLiveTest do
     end
 
     test "returns 403", %{conn: conn, course: course} do
-      assert_error_sent(403, fn -> get(conn, ~p"/dashboard/c/#{course.slug}/s/1") end)
+      assert_error_sent(403, fn -> get(conn, ~p"/dashboard/c/#{course.slug}/u/1") end)
     end
   end
 
@@ -33,7 +33,7 @@ defmodule UneebeeWeb.DashboardCourseStudentViewLiveTest do
     end
 
     test "returns 403", %{conn: conn, course: course} do
-      assert_error_sent(403, fn -> get(conn, ~p"/dashboard/c/#{course.slug}/s/1") end)
+      assert_error_sent(403, fn -> get(conn, ~p"/dashboard/c/#{course.slug}/u/1") end)
     end
   end
 
@@ -48,7 +48,7 @@ defmodule UneebeeWeb.DashboardCourseStudentViewLiveTest do
 
     test "returns 404 when the user is not a course user", %{conn: conn, course: course} do
       user = user_fixture()
-      assert_error_sent(403, fn -> get(conn, ~p"/dashboard/c/#{course.slug}/s/#{user.username}") end)
+      assert_error_sent(403, fn -> get(conn, ~p"/dashboard/c/#{course.slug}/u/#{user.username}") end)
     end
   end
 
@@ -66,7 +66,7 @@ defmodule UneebeeWeb.DashboardCourseStudentViewLiveTest do
     user = user_fixture()
     [lesson1, lesson2] = setup_data(user, course)
 
-    {:ok, lv, _html} = live(conn, "/dashboard/c/#{course.slug}/s/#{user.username}")
+    {:ok, lv, _html} = live(conn, "/dashboard/c/#{course.slug}/u/#{user.username}")
 
     assert has_element?(lv, ~s|h1 span:fl-contains("#{user.username}")|)
     assert has_element?(lv, ~s|h1 span:fl-contains("@#{user.username}")|)

@@ -33,7 +33,7 @@
       <.dashboard_menu_item
         :if={@course}
         navigate={~p"/dashboard/c/#{@course.slug}/students"}
-        active={@active_page in [:dashboard_courseuserlist_student, :dashboard_coursestudentview]}
+        active={@active_page in [:dashboard_courseuserlist_student, :dashboard_courseuserview]}
       >
         <%= gettext("Students") %>
       </.dashboard_menu_item>
@@ -56,7 +56,7 @@
     </ul>
 
     <.live_component
-      :if={course_view?(@active_page)}
+      :if={course_view?(@active_page) && @active_page != :dashboard_courseuserview}
       module={CourseSelect}
       id={:course_select}
       school_id={@school.id}

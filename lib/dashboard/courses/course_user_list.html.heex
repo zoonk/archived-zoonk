@@ -68,7 +68,7 @@
       <div class="flex w-0 flex-1">
         <.link
           :if={@live_action == :student}
-          navigate={~p"/dashboard/c/#{@course.slug}/s/#{course_user.user.username}"}
+          navigate={~p"/dashboard/c/#{@course.slug}/u/#{course_user.user.username}"}
           class="relative -mr-px inline-flex w-0 flex-1 items-center justify-center gap-x-3 rounded-bl-lg border border-transparent py-4 text-sm font-semibold text-teal-500 hover:bg-gray-50"
         >
           <.icon name="tabler-chart-radar" class="h-5 w-5" />

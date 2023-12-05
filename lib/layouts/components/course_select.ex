@@ -31,7 +31,6 @@ defmodule UneebeeWeb.Components.Layouts.CourseSelect do
 
   defp course_link("new-course", _page), do: ~p"/dashboard/courses/new"
   defp course_link(slug, :dashboard_courseuserlist_student), do: ~p"/dashboard/c/#{slug}/students"
-  defp course_link(slug, :dashboard_coursestudentview), do: ~p"/dashboard/c/#{slug}/students"
   defp course_link(slug, :dashboard_courseuserlist_teacher), do: ~p"/dashboard/c/#{slug}/teachers"
   defp course_link(slug, :dashboard_courseedit_settings), do: ~p"/dashboard/c/#{slug}/edit/settings"
   defp course_link(slug, :dashboard_courseedit_cover), do: ~p"/dashboard/c/#{slug}/edit/cover"

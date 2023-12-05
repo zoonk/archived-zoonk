@@ -180,7 +180,7 @@ defmodule UneebeeWeb.Router do
 
       live "/c/:course_slug/teachers", CourseUserList, :teacher
       live "/c/:course_slug/students", CourseUserList, :student
-      live "/c/:course_slug/s/:username", CourseStudentView
+      live "/c/:course_slug/u/:username", CourseUserView
 
       live "/c/:course_slug/l/:lesson_id/s/:step_order", LessonView
       live "/c/:course_slug/l/:lesson_id/s/:step_order/edit_step", LessonView, :edit_step

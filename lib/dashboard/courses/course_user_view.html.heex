@@ -3,23 +3,23 @@
 
   <div>
     <div class="flex items-center gap-x-3">
-      <.avatar src={@student.avatar} alt={UserUtils.full_name(@student)} size={:small} />
+      <.avatar src={@user.avatar} alt={UserUtils.full_name(@user)} size={:small} />
 
       <h1 class="flex gap-x-3 text-base leading-7">
-        <span class="font-semibold text-gray-700"><%= UserUtils.full_name(@student) %></span>
+        <span class="font-semibold text-gray-700"><%= UserUtils.full_name(@user) %></span>
         <span class="text-gray-300">/</span>
-        <span class="text-gray-700">@<%= @student.username %></span>
+        <span class="text-gray-700">@<%= @user.username %></span>
       </h1>
     </div>
 
     <p class="mt-2 text-xs leading-6 text-gray-500">
-      <%= @student.email %>
+      <%= @user.email %>
     </p>
   </div>
 
   <div class="order-first space-x-1 sm:order-none">
     <.badge icon="tabler-progress" color={:success}>
-      <%= CourseUtils.course_progress(@lessons, @student) %>%
+      <%= CourseUtils.course_progress(@lessons, @user) %>%
     </.badge>
 
     <.badge :if={score} icon="tabler-check" color={CourseUtils.score_color(score)}><%= score %></.badge>
@@ -28,7 +28,7 @@
 
 <article class="divide-gray-900/10 container space-y-6 divide-y">
   <details :for={lesson <- @lessons} id={"lessons-#{lesson.id}"} class="cursor-pointer pt-6 text-left text-gray-900 first:pt-0">
-    <% score = CourseUtils.lesson_score(@student, lesson.user_lessons) %>
+    <% score = CourseUtils.lesson_score(@user, lesson.user_lessons) %>
 
     <summary class="flex items-center gap-2 font-semibold focus:outline-none">
       <.icon name="tabler-chevrons-down" class="group-open:hidden mr-6 h-6 w-6" />
