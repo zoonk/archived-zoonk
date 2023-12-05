@@ -12,6 +12,11 @@ defmodule UneebeeWeb.Live.Dashboard.CourseStudentView do
     %{course: course} = socket.assigns
 
     student = Accounts.get_user_by_username(params["username"])
+    course_user = Content.get_course_user_by_id(course.id, student.id)
+
+    # Prevent from viewing users who aren't enrolled in the course
+    if is_nil(course_user), do: raise(UneebeeWeb.PermissionError, code: :not_enrolled)
+
     full_name = UserUtils.full_name(student)
     lessons = Content.list_published_lessons(course, student, selections?: true)
 
