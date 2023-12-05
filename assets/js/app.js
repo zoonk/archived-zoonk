@@ -39,6 +39,17 @@ Hooks.LessonSoundEffect = {
   },
 };
 
+Hooks.CmdKShortcut = {
+  mounted() {
+    document.addEventListener("keydown", (e) => {
+      if ((e.metaKey || e.ctrlKey) && e.key === "k") {
+        e.preventDefault();
+        this.pushEventTo(this.el, "cmd-k-shortcut");
+      }
+    });
+  },
+};
+
 Hooks.Sortable = {
   mounted() {
     let group = this.el.dataset.group;

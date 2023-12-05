@@ -402,3 +402,8 @@ msgstr "更新您的電子郵件地址"
 #, elixir-autogen, elixir-format
 msgid "Schools"
 msgstr "學校"
+
+#: lib/components/search_button.ex:39
+#, elixir-autogen, elixir-format
+msgid "Search..."
+msgstr "搜尋..."
