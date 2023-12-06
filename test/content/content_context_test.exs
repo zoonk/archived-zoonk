@@ -259,9 +259,9 @@ defmodule Uneebee.ContentTest do
       course = course_fixture()
       course_user_fixture(%{course: course, user: user})
 
-      assert length(Content.list_course_users_by_role(course, :student)) == 1
+      assert length(Content.list_course_users(course.id)) == 1
       Content.delete_course(course)
-      assert Content.list_course_users_by_role(course, :student) == []
+      assert Content.list_course_users(course.id) == []
     end
 
     test "removes all lessons" do
@@ -356,33 +356,21 @@ defmodule Uneebee.ContentTest do
     end
   end
 
-  describe "list_course_users_by_role/2" do
-    test "list course teachers" do
+  describe "list_course_users/1" do
+    test "list course users" do
       teacher = user_fixture()
       course = course_fixture(%{user: teacher})
 
-      course_user1 = course_user_fixture(%{role: :teacher, course: course, preload: :user})
-      course_user2 = course_user_fixture(%{role: :teacher, course: course, preload: :user})
-      course_user3 = course_user_fixture(%{role: :teacher, course: course, preload: :user})
-      course_user_fixture(%{role: :student, course: course})
-
-      assert Content.list_course_users_by_role(course, :teacher) == [course_user3, course_user2, course_user1]
-    end
-
-    test "list course students" do
-      course = course_fixture()
-
       course_user1 = course_user_fixture(%{role: :student, course: course, preload: :user})
-      course_user2 = course_user_fixture(%{role: :student, approved?: false, approved_by_id: nil, approved_at: nil, course: course, preload: :user})
+      course_user2 = course_user_fixture(%{role: :teacher, course: course, preload: :user})
       course_user3 = course_user_fixture(%{role: :student, course: course, preload: :user})
-      course_user_fixture(%{role: :teacher, course: course})
 
-      assert Content.list_course_users_by_role(course, :student) == [course_user2, course_user3, course_user1]
+      assert Content.list_course_users(course.id) == [course_user3, course_user2, course_user1]
     end
   end
 
-  describe "list_course_users_by_role/3" do
-    test "limits and offsets course students" do
+  describe "list_course_users_by_role/2" do
+    test "limits and offsets course users" do
       course = course_fixture()
 
       course_user_fixture(%{role: :student, course: course})
@@ -391,7 +379,7 @@ defmodule Uneebee.ContentTest do
       course_user3 = course_user_fixture(%{role: :student, course: course, preload: :user})
       course_user_fixture(%{role: :student, course: course})
 
-      assert Content.list_course_users_by_role(course, :student, limit: 3, offset: 1) == [course_user3, course_user2, course_user1]
+      assert Content.list_course_users(course.id, limit: 3, offset: 1) == [course_user3, course_user2, course_user1]
     end
   end
 
@@ -427,6 +415,16 @@ defmodule Uneebee.ContentTest do
       course_user = course_user_fixture()
       assert {:ok, %CourseUser{}} = Content.delete_course_user(course_user.id)
       assert Content.get_course_user_by_id(course_user.course_id, course_user.user_id) == nil
+    end
+  end
+
+  describe "get_course_users_count/1" do
+    test "returns the number of users in a course" do
+      course = course_fixture()
+      Enum.each(1..3, fn _idx -> course_user_fixture(%{role: :student, course: course}) end)
+      course_user_fixture(%{role: :teacher, course: course})
+
+      assert Content.get_course_users_count(course.id) == 4
     end
   end
 

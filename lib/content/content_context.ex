@@ -271,23 +271,23 @@ defmodule Uneebee.Content do
   end
 
   @doc """
-  List all users for a course according to their role.
+  List all users for a course.
 
   ## Examples
 
-      iex> list_course_users_by_role(%Course{}, :teacher)
+      iex> list_course_users(course_id)
       [%CourseUser{}, ...]
 
-      iex> list_course_users_by_role(%Course{}, :student)
+      iex> list_course_users(course_id)
       [%CourseUser{}, ...]
   """
-  @spec list_course_users_by_role(Course.t(), atom(), list()) :: [CourseUser.t()]
-  def list_course_users_by_role(course, role, opts \\ []) do
+  @spec list_course_users(non_neg_integer(), list()) :: [CourseUser.t()]
+  def list_course_users(course_id, opts \\ []) do
     limit = Keyword.get(opts, :limit, nil)
     offset = Keyword.get(opts, :offset, nil)
 
     CourseUser
-    |> where([cu], cu.course_id == ^course.id and cu.role == ^role)
+    |> where([cu], cu.course_id == ^course_id)
     |> order_by(asc: :approved?)
     |> order_by(desc: :inserted_at)
     |> limit(^limit)
@@ -344,6 +344,19 @@ defmodule Uneebee.Content do
   @spec delete_course_user(non_neg_integer()) :: course_user_changeset()
   def delete_course_user(course_user_id) do
     CourseUser |> Repo.get!(course_user_id) |> Repo.delete()
+  end
+
+  @doc """
+  Get the number of users in a course.
+
+  ## Examples
+
+      iex> get_course_users_count(course_id)
+      10
+  """
+  @spec get_course_users_count(non_neg_integer()) :: non_neg_integer()
+  def get_course_users_count(course_id) do
+    CourseUser |> where([cu], cu.course_id == ^course_id) |> Repo.aggregate(:count)
   end
 
   @doc """

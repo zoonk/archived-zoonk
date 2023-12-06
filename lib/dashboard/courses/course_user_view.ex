@@ -25,7 +25,57 @@ defmodule UneebeeWeb.Live.Dashboard.CourseUserView do
       |> assign(:page_title, full_name)
       |> assign(:user, user)
       |> assign(:lessons, lessons)
+      |> assign(:course_user, course_user)
 
     {:ok, socket}
+  end
+
+  @impl Phoenix.LiveView
+  def handle_event("approve", _params, socket) do
+    %{current_user: current_user, course_user: course_user} = socket.assigns
+
+    case Content.approve_course_user(course_user.id, current_user.id) do
+      {:ok, course_user} ->
+        socket =
+          socket
+          |> put_flash(:info, dgettext("orgs", "User approved!"))
+          |> assign(:course_user, course_user)
+
+        {:noreply, socket}
+
+      {:error, _changeset} ->
+        {:noreply, put_flash(socket, :error, dgettext("orgs", "Could not approve user!"))}
+    end
+  end
+
+  @impl Phoenix.LiveView
+  def handle_event("reject", _params, socket) do
+    %{course: course, course_user: course_user} = socket.assigns
+
+    case Content.delete_course_user(course_user.id) do
+      {:ok, _course_user} ->
+        socket =
+          socket
+          |> put_flash(:info, dgettext("orgs", "User rejected!"))
+          |> push_navigate(to: ~p"/dashboard/c/#{course.slug}/users")
+
+        {:noreply, socket}
+
+      {:error, _changeset} ->
+        {:noreply, put_flash(socket, :error, dgettext("orgs", "Could not reject user!"))}
+    end
+  end
+
+  @impl Phoenix.LiveView
+  def handle_event("remove", _params, socket) do
+    %{course: course, course_user: course_user} = socket.assigns
+
+    case Content.delete_course_user(course_user.id) do
+      {:ok, _course_user} ->
+        {:noreply, push_navigate(socket, to: ~p"/dashboard/c/#{course.slug}/users")}
+
+      {:error, _changeset} ->
+        {:noreply, put_flash(socket, :error, dgettext("orgs", "Could not remove user!"))}
+    end
   end
 end

@@ -1,10 +1,4 @@
-<.user_list_header
-  title={get_page_title(@live_action)}
-  course?
-  count={@user_count}
-  add_user_label={get_add_link_label(@live_action)}
-  on_add_user={show_modal("add-user-modal")}
-/>
+<.user_list_header title={dgettext("orgs", "Users")} course? count={@user_count} add_user_label={dgettext("orgs", "Add user")} on_add_user={show_modal("add-user-modal")} />
 
 <ul
   role="list"
@@ -21,9 +15,8 @@
         <div class="flex items-center space-x-3">
           <h3 class="truncate text-sm font-medium text-gray-900"><%= UserUtils.full_name(course_user.user) %></h3>
 
-          <.badge color={if course_user.approved?, do: :success, else: :warning} role="status">
-            <%= if course_user.approved?, do: dgettext("orgs", "Approved"), else: dgettext("orgs", "Pending") %>
-          </.badge>
+          <.badge :if={course_user.approved?} color={:info}><%= get_user_role(course_user) %></.badge>
+          <.badge :if={!course_user.approved?} color={:warning} role="status"><%= dgettext("orgs", "Pending") %></.badge>
         </div>
 
         <p class="mt-1 truncate text-sm text-gray-500">
@@ -31,88 +24,33 @@
           <span class="text-gray-300">/</span>
           <%= course_user.user.email %>
         </p>
-
-        <p :if={not course_user.approved?} class="mt-1 truncate text-xs italic text-gray-500">
-          <%= gettext("Pending") %>
-        </p>
       </div>
 
       <.avatar src={course_user.user.avatar} alt={UserUtils.full_name(course_user.user)} size={:large} />
     </div>
 
-    <div :if={not course_user.approved?} class="-mt-px flex divide-x divide-gray-200">
-      <div class="flex w-0 flex-1">
-        <button
-          phx-click="approve"
-          phx-value-course-user-id={course_user.id}
-          class="relative -mr-px inline-flex w-0 flex-1 items-center justify-center gap-x-3 rounded-bl-lg border border-transparent py-4 text-sm font-semibold text-teal-500 hover:bg-gray-50"
-        >
-          <.icon name="tabler-checks" class="h-5 w-5" />
-          <%= dgettext("orgs", "Approve") %>
-        </button>
-      </div>
-
-      <div class="-ml-px flex w-0 flex-1">
-        <button
-          phx-click="reject"
-          phx-value-course-user-id={course_user.id}
-          class="relative inline-flex w-0 flex-1 items-center justify-center gap-x-3 rounded-br-lg border border-transparent py-4 text-sm font-semibold text-pink-500 hover:bg-gray-50"
-        >
-          <.icon name="tabler-ban" class="h-5 w-5" />
-          <%= dgettext("orgs", "Reject") %>
-        </button>
-      </div>
-    </div>
-
-    <div :if={course_user.approved?} class="-mt-px flex divide-x divide-gray-200">
+    <div class="-mt-px flex divide-x divide-gray-200">
       <div class="flex w-0 flex-1">
         <.link
-          :if={@live_action == :student}
           navigate={~p"/dashboard/c/#{@course.slug}/u/#{course_user.user.username}"}
           class="relative -mr-px inline-flex w-0 flex-1 items-center justify-center gap-x-3 rounded-bl-lg border border-transparent py-4 text-sm font-semibold text-teal-500 hover:bg-gray-50"
         >
           <.icon name="tabler-chart-radar" class="h-5 w-5" />
           <%= dgettext("orgs", "Details") %>
         </.link>
-
-        <button
-          :if={@live_action == :teacher}
-          disabled
-          class="relative -mr-px inline-flex w-0 flex-1 cursor-not-allowed items-center justify-center gap-x-3 rounded-bl-lg border border-transparent py-4 text-sm font-semibold text-gray-200"
-        >
-          <.icon name="tabler-chart-radar" class="h-5 w-5" />
-          <%= dgettext("orgs", "Details") %>
-        </button>
-      </div>
-
-      <div class="-ml-px flex w-0 flex-1">
-        <button
-          id={"remove-user-#{course_user.id}"}
-          phx-click="remove"
-          phx-value-course-user-id={course_user.id}
-          data-confirm={
-            dgettext("orgs", "This will remove %{username} from your course. They won't be able to see your course anymore unless you approve them again.",
-              username: course_user.user.username
-            )
-          }
-          class="relative inline-flex w-0 flex-1 items-center justify-center gap-x-3 rounded-br-lg border border-transparent py-4 text-sm font-semibold text-pink-500 hover:bg-gray-50"
-        >
-          <.icon name="tabler-trash-x" class="h-5 w-5" />
-          <%= dgettext("orgs", "Remove user") %>
-        </button>
       </div>
     </div>
   </li>
 </ul>
 
 <.modal id="add-user-modal" on_cancel={hide_modal("add-user-modal")}>
-  <.header><%= get_add_link_label(@live_action) %></.header>
+  <.header><%= dgettext("orgs", "Add user") %></.header>
 
   <form phx-submit="add-user" id="add-user-form" class="mt-4">
     <.input type="text" label={gettext("Username or email address")} name="email_or_username" id="email_or_username" required value="" />
 
     <.button type="submit" icon="tabler-user-plus" class="mt-4" phx-disable-with={gettext("Saving...")}>
-      <%= get_add_link_label(@live_action) %>
+      <%= dgettext("orgs", "Add user") %>
     </.button>
   </form>
 </.modal>

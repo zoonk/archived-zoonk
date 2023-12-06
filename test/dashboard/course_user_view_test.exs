@@ -60,6 +60,50 @@ defmodule UneebeeWeb.DashboardCourseStudentViewLiveTest do
     test "renders the page", %{conn: conn, course: course} do
       assert_page_render(conn, course)
     end
+
+    test "approves a pending user", %{conn: conn, course: course} do
+      pending_user = user_fixture(%{first_name: "Pending User"})
+      course_user_fixture(%{course: course, user: pending_user, role: :student, approved?: false})
+
+      {:ok, lv, _html} = live(conn, ~p"/dashboard/c/#{course.slug}/u/#{pending_user.username}")
+
+      refute has_element?(lv, ~s|button *:fl-icontains("remove")|)
+      assert lv |> element("button", "Approve") |> render_click() =~ "User approved!"
+      assert has_element?(lv, ~s|button *:fl-icontains("remove")|)
+    end
+
+    test "rejects a pending user", %{conn: conn, course: course} do
+      pending_user = user_fixture(%{first_name: "Pending User"})
+      course_user_fixture(%{course: course, user: pending_user, role: :student, approved?: false})
+
+      {:ok, lv, _html} = live(conn, ~p"/dashboard/c/#{course.slug}/u/#{pending_user.username}")
+
+      refute has_element?(lv, ~s|button *:fl-icontains("remove")|)
+
+      {:ok, _updated_lv, html} =
+        lv
+        |> element("button", "Reject")
+        |> render_click()
+        |> follow_redirect(conn, ~p"/dashboard/c/#{course.slug}/users")
+
+      assert html =~ "User rejected!"
+      refute Content.get_course_user_by_id(course.id, pending_user.id)
+    end
+
+    test "removes a user", %{conn: conn, course: course} do
+      user = user_fixture(%{first_name: "Leo", last_name: "Da Vinci"})
+      course_user_fixture(%{course: course, user: user, role: :student})
+
+      {:ok, lv, _html} = live(conn, ~p"/dashboard/c/#{course.slug}/u/#{user.username}")
+
+      {:ok, _updated_lv, _html} =
+        lv
+        |> element("button", "Remove")
+        |> render_click()
+        |> follow_redirect(conn, ~p"/dashboard/c/#{course.slug}/users")
+
+      refute Content.get_course_user_by_id(course.id, user.id)
+    end
   end
 
   defp assert_page_render(conn, course) do
