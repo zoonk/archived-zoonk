@@ -1,4 +1,4 @@
-defmodule UneebeeWeb.Live.Dashboard.UserList do
+defmodule UneebeeWeb.Live.Dashboard.SchoolUserList do
   @moduledoc false
   use UneebeeWeb, :live_view
   use UneebeeWeb.Shared.Paginate, as: :users
@@ -14,13 +14,13 @@ defmodule UneebeeWeb.Live.Dashboard.UserList do
 
   @impl Phoenix.LiveView
   def mount(_params, _session, socket) do
-    %{live_action: role, school: school} = socket.assigns
-    user_count = Organizations.get_school_users_count(school, role)
+    %{school: school} = socket.assigns
+    user_count = Organizations.get_school_users_count(school)
     can_demote_user? = user_count > 1
 
     socket =
       socket
-      |> assign(:page_title, get_page_title(role))
+      |> assign(:page_title, dgettext("orgs", "Users"))
       |> assign(:can_demote_user?, can_demote_user?)
       |> assign(:user_count, user_count)
       |> add_pagination()
@@ -29,8 +29,8 @@ defmodule UneebeeWeb.Live.Dashboard.UserList do
   end
 
   defp paginate(socket, new_page) when new_page >= 1 do
-    %{live_action: role, per_page: per_page, school: school} = socket.assigns
-    users = Organizations.list_school_users_by_role(school, role, offset: (new_page - 1) * per_page, limit: per_page)
+    %{per_page: per_page, school: school} = socket.assigns
+    users = Organizations.list_school_users(school.id, offset: (new_page - 1) * per_page, limit: per_page)
     paginate(socket, new_page, users)
   end
 
@@ -43,7 +43,7 @@ defmodule UneebeeWeb.Live.Dashboard.UserList do
         socket =
           socket
           |> put_flash(:info, dgettext("orgs", "User approved!"))
-          |> push_navigate(to: get_user_list_route(socket.assigns.live_action))
+          |> push_navigate(to: ~p"/dashboard/users")
 
         {:noreply, socket}
 
@@ -59,7 +59,7 @@ defmodule UneebeeWeb.Live.Dashboard.UserList do
         socket =
           socket
           |> put_flash(:info, dgettext("orgs", "User rejected!"))
-          |> push_navigate(to: get_user_list_route(socket.assigns.live_action))
+          |> push_navigate(to: ~p"/dashboard/users")
 
         {:noreply, socket}
 
@@ -72,7 +72,7 @@ defmodule UneebeeWeb.Live.Dashboard.UserList do
   def handle_event("remove", %{"school-user-id" => school_user_id}, socket) do
     case Organizations.delete_school_user(school_user_id) do
       {:ok, _school_user} ->
-        {:noreply, push_navigate(socket, to: get_user_list_route(socket.assigns.live_action))}
+        {:noreply, push_navigate(socket, to: ~p"/dashboard/users")}
 
       {:error, _changeset} ->
         {:noreply, put_flash(socket, :error, dgettext("orgs", "Could not remove user!"))}
@@ -83,7 +83,7 @@ defmodule UneebeeWeb.Live.Dashboard.UserList do
   def handle_event("toggle-analytics", %{"school-user-id" => school_user_id, "analytics" => analytics?}, socket) do
     case Organizations.update_school_user(school_user_id, %{analytics?: !Utilities.string_to_boolean(analytics?)}) do
       {:ok, _school_user} ->
-        {:noreply, push_navigate(socket, to: get_user_list_route(socket.assigns.live_action))}
+        {:noreply, push_navigate(socket, to: ~p"/dashboard/users")}
 
       {:error, _changeset} ->
         {:noreply, put_flash(socket, :error, dgettext("orgs", "Could not toggle analytics tracking!"))}
@@ -97,13 +97,13 @@ defmodule UneebeeWeb.Live.Dashboard.UserList do
   end
 
   defp handle_add_user(%User{} = user, socket) do
-    %{school: school, live_action: role, current_user: approved_by} = socket.assigns
+    %{school: school, current_user: approved_by} = socket.assigns
 
-    attrs = %{role: role, approved?: true, approved_by_id: approved_by.id, approved_at: DateTime.utc_now()}
+    attrs = %{role: :student, approved?: true, approved_by_id: approved_by.id, approved_at: DateTime.utc_now()}
 
     case Organizations.create_school_user(school, user, attrs) do
       {:ok, _school_user} ->
-        {:noreply, push_navigate(socket, to: get_user_list_route(role))}
+        {:noreply, push_navigate(socket, to: ~p"/dashboard/users")}
 
       {:error, _changeset} ->
         {:noreply, put_flash(socket, :error, dgettext("orgs", "Could not add user!"))}
@@ -113,18 +113,6 @@ defmodule UneebeeWeb.Live.Dashboard.UserList do
   defp handle_add_user(nil, socket) do
     {:noreply, put_flash(socket, :error, dgettext("orgs", "User not found!"))}
   end
-
-  defp get_user_list_route(:manager), do: ~p"/dashboard/managers"
-  defp get_user_list_route(:teacher), do: ~p"/dashboard/teachers"
-  defp get_user_list_route(:student), do: ~p"/dashboard/students"
-
-  defp get_page_title(:manager), do: gettext("Managers")
-  defp get_page_title(:teacher), do: gettext("Teachers")
-  defp get_page_title(:student), do: gettext("Students")
-
-  defp get_add_link_label(:manager), do: dgettext("orgs", "Add manager")
-  defp get_add_link_label(:teacher), do: dgettext("orgs", "Add teacher")
-  defp get_add_link_label(:student), do: dgettext("orgs", "Add student")
 
   defp edit_analytics?(%School{} = school), do: is_nil(school.school_id)
 end

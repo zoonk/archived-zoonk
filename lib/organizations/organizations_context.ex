@@ -337,16 +337,21 @@ defmodule Uneebee.Organizations do
 
   ## Examples
 
-      iex> list_school_users_by_role(school, :manager)
+      iex> list_school_users(school_id)
+      [%SchoolUser{}, ...]
+
+      iex> list_school_users(school_id, limit: 20, offset: 0)
       [%SchoolUser{}, ...]
   """
-  @spec list_school_users_by_role(School.t(), atom(), list()) :: [SchoolUser.t()]
-  def list_school_users_by_role(%School{} = school, role, opts \\ []) do
+  @spec list_school_users(non_neg_integer(), list()) :: [SchoolUser.t()]
+  def list_school_users(school_id, opts \\ []) do
     limit = Keyword.get(opts, :limit, 20)
     offset = Keyword.get(opts, :offset, 0)
+    role = Keyword.get(opts, :role, nil)
 
     SchoolUser
-    |> where([su], su.school_id == ^school.id and su.role == ^role)
+    |> where([su], su.school_id == ^school_id)
+    |> maybe_filter_by_role(role)
     |> order_by([su], asc: su.approved?)
     |> order_by([su], desc: su.updated_at)
     |> limit(^limit)
@@ -354,6 +359,9 @@ defmodule Uneebee.Organizations do
     |> preload([su], [:approved_by, :user])
     |> Repo.all()
   end
+
+  defp maybe_filter_by_role(query, nil), do: query
+  defp maybe_filter_by_role(query, role), do: where(query, [su], su.role == ^role)
 
   @doc """
   Approves a school user.

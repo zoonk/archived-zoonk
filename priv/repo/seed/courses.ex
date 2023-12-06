@@ -150,9 +150,9 @@ defmodule CourseSeed do
     limit = if multiple?, do: 200, else: 3
 
     if school do
-      teachers = Organizations.list_school_users_by_role(school, :teacher)
-      managers = Organizations.list_school_users_by_role(school, :manager)
-      students = Organizations.list_school_users_by_role(school, :student, limit: limit)
+      teachers = Organizations.list_school_users(school.id, role: :teacher)
+      managers = Organizations.list_school_users(school.id, role: :manager)
+      students = Organizations.list_school_users(school.id, role: :student, limit: limit)
 
       attrs = Map.put(attrs, :school_id, school.id)
       course = %Course{} |> Content.change_course(attrs) |> Repo.insert!()

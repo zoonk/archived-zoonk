@@ -502,14 +502,23 @@ defmodule Uneebee.OrganizationsTest do
     end
   end
 
-  describe "list_school_users_by_role/2" do
+  describe "list_school_users/2" do
+    test "list all users" do
+      school = school_fixture()
+      school_user1 = school_user_fixture(%{school: school, role: :manager, preload: [:user, :approved_by]})
+      school_user2 = school_user_fixture(%{school: school, role: :teacher, preload: [:user, :approved_by]})
+      school_user3 = school_user_fixture(%{school: school, role: :student, preload: [:user, :approved_by]})
+
+      assert Organizations.list_school_users(school.id) == [school_user3, school_user2, school_user1]
+    end
+
     test "list all managers from a school" do
       user = user_fixture()
       school = school_fixture()
       school_user = school_user_fixture(%{user: user, school: school, role: :manager, preload: [:approved_by, :user]})
       school_user_fixture(%{school: school, role: :teacher})
 
-      assert Organizations.list_school_users_by_role(school, :manager) == [school_user]
+      assert Organizations.list_school_users(school.id, role: :manager) == [school_user]
     end
 
     test "shows managers pending approval first" do
@@ -520,7 +529,7 @@ defmodule Uneebee.OrganizationsTest do
       approved_user = school_user_fixture(%{user: user1, school: school, role: :manager, preload: [:user, :approved_by]})
       not_approved_user = school_user_fixture(%{user: user2, school: school, role: :manager, approved?: false, preload: [:user, :approved_by]})
 
-      assert Organizations.list_school_users_by_role(school, :manager) == [not_approved_user, approved_user]
+      assert Organizations.list_school_users(school.id, role: :manager) == [not_approved_user, approved_user]
     end
 
     test "list all teachers from a school" do
@@ -529,7 +538,7 @@ defmodule Uneebee.OrganizationsTest do
       teacher_school_user = school_user_fixture(%{user: teacher_user, school: school, role: :teacher, preload: [:user, :approved_by]})
       school_user_fixture(%{school: school})
 
-      assert Organizations.list_school_users_by_role(school, :teacher) == [teacher_school_user]
+      assert Organizations.list_school_users(school.id, role: :teacher) == [teacher_school_user]
     end
 
     test "shows teachers pending approval first" do
@@ -540,11 +549,9 @@ defmodule Uneebee.OrganizationsTest do
       approved_user = school_user_fixture(%{user: user1, school: school, role: :teacher, preload: [:user, :approved_by]})
       not_approved_user = school_user_fixture(%{user: user2, school: school, role: :teacher, approved?: false, preload: [:user, :approved_by]})
 
-      assert Organizations.list_school_users_by_role(school, :teacher) == [not_approved_user, approved_user]
+      assert Organizations.list_school_users(school.id, role: :teacher) == [not_approved_user, approved_user]
     end
-  end
 
-  describe "list_school_users_by_role/3" do
     test "limit and offset users" do
       school = school_fixture()
 
@@ -557,7 +564,7 @@ defmodule Uneebee.OrganizationsTest do
       su3 = school_user_fixture(%{school: school, role: :student, preload: [:user, :approved_by]})
       school_user_fixture(%{school: school, role: :student})
 
-      assert Organizations.list_school_users_by_role(school, :student, limit: 3, offset: 1) == [su3, su2, su1]
+      assert Organizations.list_school_users(school.id, role: :student, limit: 3, offset: 1) == [su3, su2, su1]
     end
   end
 
