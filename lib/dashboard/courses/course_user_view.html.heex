@@ -3,20 +3,20 @@
 
   <div>
     <div class="flex items-center gap-x-3">
-      <.avatar src={@user.avatar} alt={UserUtils.full_name(@user)} size={:small} />
+      <.avatar src={@course_user.user.avatar} alt={UserUtils.full_name(@course_user.user)} size={:small} />
 
       <h1 class="flex gap-x-3 text-base leading-7">
-        <span class="font-semibold text-gray-700"><%= UserUtils.full_name(@user) %></span>
+        <span class="font-semibold text-gray-700"><%= UserUtils.full_name(@course_user.user) %></span>
         <span class="text-gray-300">/</span>
-        <span class="text-gray-700">@<%= @user.username %></span>
+        <span class="text-gray-700">@<%= @course_user.user.username %></span>
       </h1>
     </div>
 
-    <p class="mt-2 text-xs leading-6 text-gray-500"><%= @user.email %></p>
+    <p class="mt-2 text-xs leading-6 text-gray-500"><%= @course_user.user.email %></p>
 
     <div class="mt-4 space-x-1">
       <.badge icon="tabler-progress" color={:success}>
-        <%= CourseUtils.course_progress(@lessons, @user) %>%
+        <%= CourseUtils.course_progress(@lessons, @course_user.user) %>%
       </.badge>
 
       <.badge :if={score} icon="tabler-check" color={CourseUtils.score_color(score)}><%= score %></.badge>
@@ -33,7 +33,7 @@
       icon="tabler-trash-x"
       data-confirm={
         dgettext("orgs", "This will remove %{username} from your course. They won't be able to see your course anymore unless you approve them again.",
-          username: @user.username
+          username: @course_user.user.username
         )
       }
       color={:alert_light}
@@ -47,7 +47,7 @@
 
 <article class="divide-gray-900/10 container space-y-6 divide-y">
   <details :for={lesson <- @lessons} id={"lessons-#{lesson.id}"} class="cursor-pointer pt-6 text-left text-gray-900 first:pt-0">
-    <% score = CourseUtils.lesson_score(@user, lesson.user_lessons) %>
+    <% score = CourseUtils.lesson_score(@course_user.user, lesson.user_lessons) %>
 
     <summary class="flex items-center gap-2 font-semibold focus:outline-none">
       <.icon name="tabler-chevrons-down" class="group-open:hidden mr-6 h-6 w-6" />

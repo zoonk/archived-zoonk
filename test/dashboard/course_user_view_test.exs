@@ -7,7 +7,7 @@ defmodule UneebeeWeb.DashboardCourseStudentViewLiveTest do
 
   alias Uneebee.Content
 
-  describe "student view (non-authenticated users)" do
+  describe "user view (non-authenticated users)" do
     setup :set_school
 
     test "redirects to the login page", %{conn: conn, school: school} do
@@ -17,7 +17,7 @@ defmodule UneebeeWeb.DashboardCourseStudentViewLiveTest do
     end
   end
 
-  describe "student view (school teacher)" do
+  describe "user view (school teacher)" do
     setup do
       course_setup(%{conn: build_conn()}, school_user: :teacher, course_user: nil)
     end
@@ -27,7 +27,7 @@ defmodule UneebeeWeb.DashboardCourseStudentViewLiveTest do
     end
   end
 
-  describe "student view (school student)" do
+  describe "user view (school student)" do
     setup do
       course_setup(%{conn: build_conn()}, school_user: :student, course_user: nil)
     end
@@ -37,7 +37,7 @@ defmodule UneebeeWeb.DashboardCourseStudentViewLiveTest do
     end
   end
 
-  describe "student view (school manager)" do
+  describe "user view (school manager)" do
     setup do
       course_setup(%{conn: build_conn()}, school_user: :manager, course_user: nil)
     end
@@ -48,11 +48,11 @@ defmodule UneebeeWeb.DashboardCourseStudentViewLiveTest do
 
     test "returns 404 when the user is not a course user", %{conn: conn, course: course} do
       user = user_fixture()
-      assert_error_sent(403, fn -> get(conn, ~p"/dashboard/c/#{course.slug}/u/#{user.username}") end)
+      assert_error_sent(403, fn -> get(conn, ~p"/dashboard/c/#{course.slug}/u/#{user.id}") end)
     end
   end
 
-  describe "student view (course teacher)" do
+  describe "user view (course teacher)" do
     setup do
       course_setup(%{conn: build_conn()}, school_user: nil, course_user: :teacher)
     end
@@ -65,7 +65,7 @@ defmodule UneebeeWeb.DashboardCourseStudentViewLiveTest do
       pending_user = user_fixture(%{first_name: "Pending User"})
       course_user_fixture(%{course: course, user: pending_user, role: :student, approved?: false})
 
-      {:ok, lv, _html} = live(conn, ~p"/dashboard/c/#{course.slug}/u/#{pending_user.username}")
+      {:ok, lv, _html} = live(conn, ~p"/dashboard/c/#{course.slug}/u/#{pending_user.id}")
 
       refute has_element?(lv, ~s|button *:fl-icontains("remove")|)
       assert lv |> element("button", "Approve") |> render_click() =~ "User approved!"
@@ -76,7 +76,7 @@ defmodule UneebeeWeb.DashboardCourseStudentViewLiveTest do
       pending_user = user_fixture(%{first_name: "Pending User"})
       course_user_fixture(%{course: course, user: pending_user, role: :student, approved?: false})
 
-      {:ok, lv, _html} = live(conn, ~p"/dashboard/c/#{course.slug}/u/#{pending_user.username}")
+      {:ok, lv, _html} = live(conn, ~p"/dashboard/c/#{course.slug}/u/#{pending_user.id}")
 
       refute has_element?(lv, ~s|button *:fl-icontains("remove")|)
 
@@ -94,7 +94,7 @@ defmodule UneebeeWeb.DashboardCourseStudentViewLiveTest do
       user = user_fixture(%{first_name: "Leo", last_name: "Da Vinci"})
       course_user_fixture(%{course: course, user: user, role: :student})
 
-      {:ok, lv, _html} = live(conn, ~p"/dashboard/c/#{course.slug}/u/#{user.username}")
+      {:ok, lv, _html} = live(conn, ~p"/dashboard/c/#{course.slug}/u/#{user.id}")
 
       {:ok, _updated_lv, _html} =
         lv
@@ -110,7 +110,7 @@ defmodule UneebeeWeb.DashboardCourseStudentViewLiveTest do
     user = user_fixture()
     [lesson1, lesson2] = setup_data(user, course)
 
-    {:ok, lv, _html} = live(conn, "/dashboard/c/#{course.slug}/u/#{user.username}")
+    {:ok, lv, _html} = live(conn, "/dashboard/c/#{course.slug}/u/#{user.id}")
 
     assert has_element?(lv, ~s|h1 span:fl-contains("#{user.username}")|)
     assert has_element?(lv, ~s|h1 span:fl-contains("@#{user.username}")|)
