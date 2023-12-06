@@ -66,25 +66,23 @@ msgstr "標誌更新成功！"
 msgid "Add manager"
 msgstr "新增管理員"
 
-#: lib/dashboard/courses/course_user_list.ex:114
 #: lib/dashboard/schools/user_list.ex:127
 #, elixir-autogen, elixir-format
 msgid "Add student"
 msgstr "新增學生"
 
-#: lib/dashboard/courses/course_user_list.ex:113
 #: lib/dashboard/schools/user_list.ex:126
 #, elixir-autogen, elixir-format
 msgid "Add teacher"
 msgstr "新增教師"
 
-#: lib/dashboard/courses/course_user_list.ex:99
+#: lib/dashboard/courses/course_user_list.ex:50
 #: lib/dashboard/schools/user_list.ex:109
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Could not add user!"
 msgstr "無法新增使用者！"
 
-#: lib/dashboard/courses/course_user_list.ex:104
+#: lib/dashboard/courses/course_user_list.ex:55
 #: lib/dashboard/schools/user_list.ex:114
 #, elixir-autogen, elixir-format
 msgid "User not found!"
@@ -95,55 +93,54 @@ msgstr "找不到使用者！"
 msgid "Approved by: @%{username}"
 msgstr "由 @%{username} 批准"
 
-#: lib/dashboard/courses/course_user_list.html.heex:101
 #: lib/dashboard/schools/user_list.html.heex:94
 #, elixir-autogen, elixir-format
 msgid "Remove user"
 msgstr "移除使用者"
 
-#: lib/dashboard/courses/course_user_list.html.heex:51
+#: lib/dashboard/courses/course_user_view.html.heex:27
 #: lib/dashboard/schools/user_list.html.heex:49
 #, elixir-autogen, elixir-format
 msgid "Approve"
 msgstr "批准"
 
-#: lib/dashboard/courses/course_user_list.ex:48
+#: lib/dashboard/courses/course_user_view.ex:47
 #: lib/dashboard/schools/user_list.ex:51
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Could not approve user!"
 msgstr "無法批准使用者！"
 
-#: lib/dashboard/courses/course_user_list.ex:66
+#: lib/dashboard/courses/course_user_view.ex:65
 #: lib/dashboard/schools/user_list.ex:67
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Could not reject user!"
 msgstr "無法拒絕使用者！"
 
-#: lib/dashboard/courses/course_user_list.ex:79
+#: lib/dashboard/courses/course_user_view.ex:78
 #: lib/dashboard/schools/user_list.ex:78
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Could not remove user!"
 msgstr "無法移除使用者！"
 
-#: lib/dashboard/courses/course_user_list.html.heex:25
+#: lib/dashboard/courses/course_user_list.html.heex:19
 #: lib/dashboard/schools/user_list.html.heex:19
 #, elixir-autogen, elixir-format
 msgid "Pending"
 msgstr "待處理"
 
-#: lib/dashboard/courses/course_user_list.html.heex:62
+#: lib/dashboard/courses/course_user_view.html.heex:28
 #: lib/dashboard/schools/user_list.html.heex:60
 #, elixir-autogen, elixir-format
 msgid "Reject"
 msgstr "拒絕"
 
-#: lib/dashboard/courses/course_user_list.ex:42
+#: lib/dashboard/courses/course_user_view.ex:41
 #: lib/dashboard/schools/user_list.ex:45
 #, elixir-autogen, elixir-format
 msgid "User approved!"
 msgstr "使用者已批准！"
 
-#: lib/dashboard/courses/course_user_list.ex:60
+#: lib/dashboard/courses/course_user_view.ex:59
 #: lib/dashboard/schools/user_list.ex:61
 #, elixir-autogen, elixir-format
 msgid "User rejected!"
@@ -231,7 +228,7 @@ msgstr "為選項新增圖片"
 msgid "Add option"
 msgstr "新增選項"
 
-#: lib/dashboard/courses/course_student_view.html.heex:53
+#: lib/dashboard/courses/course_user_view.html.heex:72
 #, elixir-autogen, elixir-format
 msgid "All answers were correct."
 msgstr "所有答案都是正確的。"
@@ -358,8 +355,7 @@ msgstr "刪除選項"
 msgid "Description for lesson %{order}. You should update this."
 msgstr "課程 %{order} 的描述。您應該更新這個。"
 
-#: lib/dashboard/courses/course_user_list.html.heex:75
-#: lib/dashboard/courses/course_user_list.html.heex:84
+#: lib/dashboard/courses/course_user_list.html.heex:39
 #: lib/dashboard/schools/school_list.html.heex:37
 #, elixir-autogen, elixir-format
 msgid "Details"
@@ -480,7 +476,7 @@ msgstr "使用條款網址"
 msgid "Drag the steps to change their order:"
 msgstr "拖動步驟以更改其順序："
 
-#: lib/content/content_context.ex:392
+#: lib/content/content_context.ex:405
 #: lib/dashboard/lessons/components/step_switch.ex:52
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Untitled step"
@@ -566,7 +562,6 @@ msgstr "建立課程"
 msgid "All content from this lesson will be deleted. This action cannot be undone."
 msgstr "此課程的所有內容將被刪除。此操作無法撤消。"
 
-#: lib/dashboard/courses/course_user_list.html.heex:25
 #: lib/dashboard/schools/user_list.html.heex:19
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Approved"
@@ -603,7 +598,7 @@ msgstr "公開的"
 msgid "These are the options students can select while playing this step."
 msgstr "這些是學生在進行此步驟時可以選擇的選項。"
 
-#: lib/dashboard/courses/course_user_list.html.heex:94
+#: lib/dashboard/courses/course_user_view.html.heex:35
 #, elixir-autogen, elixir-format, fuzzy
 msgid "This will remove %{username} from your course. They won't be able to see your course anymore unless you approve them again."
 msgstr "這將從您的課程中移除 %{username}。除非您再次批准他們，否則他們將無法再看到您的課程。"
@@ -692,3 +687,32 @@ msgstr "您載入了所有學校。"
 #, elixir-autogen, elixir-format
 msgid "This option was selected %{count}% of the time."
 msgstr "此選項被選擇了 %{count}% 的時間。"
+
+#: lib/dashboard/courses/course_user_list.html.heex:1
+#: lib/dashboard/courses/course_user_list.html.heex:47
+#: lib/dashboard/courses/course_user_list.html.heex:53
+#, elixir-autogen, elixir-format
+msgid "Add user"
+msgstr "新增使用者"
+
+#: lib/dashboard/courses/course_user_view.html.heex:43
+#, elixir-autogen, elixir-format, fuzzy
+msgid "Remove"
+msgstr "移除"
+
+#: lib/dashboard/courses/course_user_list.ex:58
+#, elixir-autogen, elixir-format
+msgid "Student"
+msgstr "學生"
+
+#: lib/dashboard/courses/course_user_list.ex:59
+#, elixir-autogen, elixir-format, fuzzy
+msgid "Teacher"
+msgstr "老師"
+
+#: lib/dashboard/courses/course_user_list.ex:21
+#: lib/dashboard/courses/course_user_list.html.heex:1
+#: lib/layouts/templates/dashboard_course.html.heex:34
+#, elixir-autogen, elixir-format, fuzzy
+msgid "Users"
+msgstr "使用者"

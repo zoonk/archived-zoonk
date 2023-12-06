@@ -65,7 +65,7 @@ msgstr ""
 #: lib/accounts/user_live/user_settings.html.heex:17
 #: lib/dashboard/courses/course_edit.html.heex:7
 #: lib/dashboard/courses/course_new.html.heex:5
-#: lib/dashboard/courses/course_user_list.html.heex:114
+#: lib/dashboard/courses/course_user_list.html.heex:52
 #: lib/dashboard/lessons/components/lesson_edit.ex:28
 #: lib/dashboard/lessons/components/option_list.ex:95
 #: lib/dashboard/schools/school_edit.html.heex:7
@@ -114,7 +114,7 @@ msgstr ""
 #: lib/dashboard/schools/school_edit.ex:60
 #: lib/layouts/components/app_menu.ex:40
 #: lib/layouts/menu_utils.ex:92
-#: lib/layouts/templates/dashboard_course.html.heex:46
+#: lib/layouts/templates/dashboard_course.html.heex:38
 #, elixir-autogen, elixir-format
 msgid "Settings"
 msgstr ""
@@ -150,20 +150,16 @@ msgstr ""
 msgid "Managers"
 msgstr ""
 
-#: lib/dashboard/courses/course_user_list.ex:108
 #: lib/dashboard/home.ex:27
 #: lib/dashboard/schools/user_list.ex:123
 #: lib/layouts/menu_utils.ex:90
-#: lib/layouts/templates/dashboard_course.html.heex:38
 #, elixir-autogen, elixir-format
 msgid "Students"
 msgstr ""
 
-#: lib/dashboard/courses/course_user_list.ex:107
 #: lib/dashboard/home.ex:26
 #: lib/dashboard/schools/user_list.ex:122
 #: lib/layouts/menu_utils.ex:89
-#: lib/layouts/templates/dashboard_course.html.heex:42
 #, elixir-autogen, elixir-format
 msgid "Teachers"
 msgstr ""
@@ -195,12 +191,12 @@ msgid "Courses"
 msgstr ""
 
 #: lib/content/course_live/course_view.html.heex:30
-#: lib/layouts/templates/dashboard_course.html.heex:50
+#: lib/layouts/templates/dashboard_course.html.heex:42
 #, elixir-autogen, elixir-format
 msgid "Cover"
 msgstr ""
 
-#: lib/layouts/components/course_select.ex:45
+#: lib/layouts/components/course_select.ex:43
 #, elixir-autogen, elixir-format
 msgid "Create a course"
 msgstr ""
@@ -221,7 +217,7 @@ msgstr ""
 msgid "Resetting..."
 msgstr ""
 
-#: lib/dashboard/courses/course_user_list.html.heex:112
+#: lib/dashboard/courses/course_user_list.html.heex:50
 #: lib/dashboard/schools/user_list.html.heex:105
 #, elixir-autogen, elixir-format
 msgid "Username or email address"
@@ -306,7 +302,7 @@ msgstr ""
 
 #: lib/components/delete_item.ex:17
 #: lib/components/delete_item.ex:21
-#: lib/layouts/templates/dashboard_course.html.heex:54
+#: lib/layouts/templates/dashboard_course.html.heex:46
 #, elixir-autogen, elixir-format
 msgid "Delete"
 msgstr ""
@@ -360,7 +356,6 @@ msgid "Create"
 msgstr ""
 
 #: lib/content/course_live/course_view.html.heex:42
-#: lib/dashboard/courses/course_user_list.html.heex:36
 #: lib/dashboard/schools/user_list.html.heex:34
 #, elixir-autogen, elixir-format
 msgid "Pending"
