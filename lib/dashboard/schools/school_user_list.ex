@@ -10,6 +10,7 @@ defmodule UneebeeWeb.Live.Dashboard.SchoolUserList do
   alias Uneebee.Accounts.UserUtils
   alias Uneebee.Organizations
   alias Uneebee.Organizations.School
+  alias Uneebee.Organizations.SchoolUtils
   alias UneebeeWeb.Shared.Utilities
 
   @impl Phoenix.LiveView

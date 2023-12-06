@@ -15,9 +15,8 @@
         <div class="flex items-center space-x-3">
           <h3 class="truncate text-sm font-medium text-gray-900"><%= UserUtils.full_name(school_user.user) %></h3>
 
-          <.badge color={if school_user.approved?, do: :success, else: :warning} role="status">
-            <%= if school_user.approved?, do: dgettext("orgs", "Approved"), else: dgettext("orgs", "Pending") %>
-          </.badge>
+          <.badge :if={school_user.approved?} color={:info}><%= SchoolUtils.get_user_role(school_user) %></.badge>
+          <.badge :if={!school_user.approved?} color={:warning} role="status"><%= dgettext("orgs", "Pending") %></.badge>
         </div>
 
         <p class="mt-1 truncate text-sm text-gray-500">

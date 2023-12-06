@@ -22,9 +22,9 @@ defmodule UneebeeWeb.Live.Dashboard.Home do
 
   defp school_stats do
     [
-      %{title: gettext("Managers"), icon: "tabler-puzzle", id: :manager},
-      %{title: gettext("Teachers"), icon: "tabler-apple", id: :teacher},
-      %{title: gettext("Students"), icon: "tabler-comet", id: :student}
+      %{title: dgettext("orgs", "Managers"), icon: "tabler-puzzle", id: :manager},
+      %{title: dgettext("orgs", "Teachers"), icon: "tabler-apple", id: :teacher},
+      %{title: dgettext("orgs", "Students"), icon: "tabler-comet", id: :student}
     ]
   end
 end

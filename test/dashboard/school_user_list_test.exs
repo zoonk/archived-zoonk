@@ -53,10 +53,16 @@ defmodule UneebeeWeb.SchoolUserListLiveTest do
       {:ok, lv, _html} = live(conn, ~p"/dashboard/users")
 
       assert has_element?(lv, ~s|h3:fl-icontains("#{user1.first_name}")|)
+      assert has_element?(lv, ~s|#user-#{user1.id} *:fl-icontains("manager")|)
+
       assert has_element?(lv, ~s|h3:fl-icontains("#{user2.first_name}")|)
-      assert has_element?(lv, ~s|span[role="status"]:fl-icontains("pending")|)
+      assert has_element?(lv, ~s|#user-#{user2.id} *:fl-icontains("pending")|)
+
       assert has_element?(lv, ~s|h3:fl-icontains("#{user3.first_name}")|)
+      assert has_element?(lv, ~s|#user-#{user3.id} *:fl-icontains("teacher")|)
+
       assert has_element?(lv, ~s|h3:fl-icontains("#{user4.first_name}")|)
+      assert has_element?(lv, ~s|#user-#{user4.id} *:fl-icontains("student")|)
     end
 
     test "approves a pending user", %{conn: conn, school: school} do
