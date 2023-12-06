@@ -16,7 +16,7 @@ msgstr ""
 msgid "A request to enroll has been sent to the course teacher."
 msgstr "Uma solicitação de matrícula foi enviada ao professor do curso."
 
-#: lib/content/course_utils.ex:25
+#: lib/content/course_utils.ex:26
 #, elixir-autogen, elixir-format
 msgid "Advanced"
 msgstr "Avançado"
@@ -26,7 +26,7 @@ msgstr "Avançado"
 msgid "Back to the course"
 msgstr "Voltar ao curso"
 
-#: lib/content/course_utils.ex:23
+#: lib/content/course_utils.ex:24
 #, elixir-autogen, elixir-format
 msgid "Beginner"
 msgstr "Iniciante"
@@ -46,7 +46,7 @@ msgstr "Matriculado com sucesso!"
 msgid "Excellent!"
 msgstr "Excelente!"
 
-#: lib/content/course_utils.ex:26
+#: lib/content/course_utils.ex:27
 #, elixir-autogen, elixir-format
 msgid "Expert"
 msgstr "Especialista"
@@ -66,7 +66,7 @@ msgstr "Bom!"
 msgid "Illustration of a green alien"
 msgstr "Ilustração de um alienígena verde"
 
-#: lib/content/course_utils.ex:24
+#: lib/content/course_utils.ex:25
 #, elixir-autogen, elixir-format
 msgid "Intermediate"
 msgstr "Intermediário"

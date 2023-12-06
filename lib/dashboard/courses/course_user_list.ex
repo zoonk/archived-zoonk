@@ -9,7 +9,7 @@ defmodule UneebeeWeb.Live.Dashboard.CourseUserList do
   alias Uneebee.Accounts.User
   alias Uneebee.Accounts.UserUtils
   alias Uneebee.Content
-  alias Uneebee.Content.CourseUser
+  alias Uneebee.Content.CourseUtils
 
   @impl Phoenix.LiveView
   def mount(_params, _session, socket) do
@@ -54,7 +54,4 @@ defmodule UneebeeWeb.Live.Dashboard.CourseUserList do
   defp handle_add_user(nil, socket) do
     {:noreply, put_flash(socket, :error, dgettext("orgs", "User not found!"))}
   end
-
-  defp get_user_role(%CourseUser{role: :student}), do: dgettext("orgs", "Student")
-  defp get_user_role(%CourseUser{role: :teacher}), do: dgettext("orgs", "Teacher")
 end

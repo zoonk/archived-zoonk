@@ -98,25 +98,25 @@ msgstr ""
 msgid "Remove user"
 msgstr ""
 
-#: lib/dashboard/courses/course_user_view.html.heex:27
+#: lib/dashboard/courses/course_user_view.html.heex:34
 #: lib/dashboard/schools/user_list.html.heex:49
 #, elixir-autogen, elixir-format
 msgid "Approve"
 msgstr ""
 
-#: lib/dashboard/courses/course_user_view.ex:47
+#: lib/dashboard/courses/course_user_view.ex:44
 #: lib/dashboard/schools/user_list.ex:51
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Could not approve user!"
 msgstr ""
 
-#: lib/dashboard/courses/course_user_view.ex:65
+#: lib/dashboard/courses/course_user_view.ex:62
 #: lib/dashboard/schools/user_list.ex:67
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Could not reject user!"
 msgstr ""
 
-#: lib/dashboard/courses/course_user_view.ex:78
+#: lib/dashboard/courses/course_user_view.ex:75
 #: lib/dashboard/schools/user_list.ex:78
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Could not remove user!"
@@ -128,19 +128,19 @@ msgstr ""
 msgid "Pending"
 msgstr ""
 
-#: lib/dashboard/courses/course_user_view.html.heex:28
+#: lib/dashboard/courses/course_user_view.html.heex:38
 #: lib/dashboard/schools/user_list.html.heex:60
 #, elixir-autogen, elixir-format
 msgid "Reject"
 msgstr ""
 
-#: lib/dashboard/courses/course_user_view.ex:41
+#: lib/dashboard/courses/course_user_view.ex:38
 #: lib/dashboard/schools/user_list.ex:45
 #, elixir-autogen, elixir-format
 msgid "User approved!"
 msgstr ""
 
-#: lib/dashboard/courses/course_user_view.ex:59
+#: lib/dashboard/courses/course_user_view.ex:56
 #: lib/dashboard/schools/user_list.ex:61
 #, elixir-autogen, elixir-format
 msgid "User rejected!"
@@ -228,7 +228,7 @@ msgstr ""
 msgid "Add option"
 msgstr ""
 
-#: lib/dashboard/courses/course_user_view.html.heex:72
+#: lib/dashboard/courses/course_user_view.html.heex:83
 #, elixir-autogen, elixir-format
 msgid "All answers were correct."
 msgstr ""
@@ -598,7 +598,7 @@ msgstr ""
 msgid "These are the options students can select while playing this step."
 msgstr ""
 
-#: lib/dashboard/courses/course_user_view.html.heex:35
+#: lib/dashboard/courses/course_user_view.html.heex:46
 #, elixir-autogen, elixir-format, fuzzy
 msgid "This will remove %{username} from your course. They won't be able to see your course anymore unless you approve them again."
 msgstr ""
@@ -695,17 +695,17 @@ msgstr ""
 msgid "Add user"
 msgstr ""
 
-#: lib/dashboard/courses/course_user_view.html.heex:43
+#: lib/dashboard/courses/course_user_view.html.heex:54
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Remove"
 msgstr ""
 
-#: lib/dashboard/courses/course_user_list.ex:58
+#: lib/content/course_utils.ex:127
 #, elixir-autogen, elixir-format
 msgid "Student"
 msgstr ""
 
-#: lib/dashboard/courses/course_user_list.ex:59
+#: lib/content/course_utils.ex:128
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Teacher"
 msgstr ""
@@ -715,4 +715,19 @@ msgstr ""
 #: lib/layouts/templates/dashboard_course.html.heex:34
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Users"
+msgstr ""
+
+#: lib/dashboard/courses/course_user_view.html.heex:22
+#, elixir-autogen, elixir-format
+msgid "Course progress"
+msgstr ""
+
+#: lib/dashboard/courses/course_user_view.html.heex:18
+#, elixir-autogen, elixir-format, fuzzy
+msgid "Course role"
+msgstr ""
+
+#: lib/dashboard/courses/course_user_view.html.heex:26
+#, elixir-autogen, elixir-format, fuzzy
+msgid "Course score"
 msgstr ""

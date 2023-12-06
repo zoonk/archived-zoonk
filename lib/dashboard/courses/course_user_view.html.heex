@@ -14,18 +14,29 @@
 
     <p class="mt-2 text-xs leading-6 text-gray-500"><%= @course_user.user.email %></p>
 
-    <div class="mt-4 space-x-1">
-      <.badge icon="tabler-progress" color={:success}>
+    <div class="space-x-y mt-4">
+      <.badge :if={@course_user.approved?} color={:info} title={dgettext("orgs", "Course role")}>
+        <%= CourseUtils.get_user_role(@course_user) %>
+      </.badge>
+
+      <.badge :if={@course_user.role == :student} icon="tabler-progress" color={:success} title={dgettext("orgs", "Course progress")}>
         <%= CourseUtils.course_progress(@lessons, @course_user.user) %>%
       </.badge>
 
-      <.badge :if={score} icon="tabler-check" color={CourseUtils.score_color(score)}><%= score %></.badge>
+      <.badge :if={score && @course_user.role == :student} icon="tabler-check" title={dgettext("orgs", "Course score")} color={CourseUtils.score_color(score)}>
+        <%= score %>
+      </.badge>
     </div>
   </div>
 
   <div :if={!@course_user.approved?} class="flex w-full gap-x-4 sm:w-auto">
-    <.button icon="tabler-checks" color={:success} class="flex-1 sm:flex-initial" phx-click="approve"><%= dgettext("orgs", "Approve") %></.button>
-    <.button icon="tabler-ban" color={:alert} class="flex-1 sm:flex-initial" phx-click="reject"><%= dgettext("orgs", "Reject") %></.button>
+    <.button icon="tabler-checks" color={:success} class="flex-1 sm:flex-initial" phx-click="approve">
+      <%= dgettext("orgs", "Approve") %>
+    </.button>
+
+    <.button icon="tabler-ban" color={:alert} class="flex-1 sm:flex-initial" phx-click="reject">
+      <%= dgettext("orgs", "Reject") %>
+    </.button>
   </div>
 
   <div :if={@course_user.approved?}>
@@ -45,7 +56,7 @@
   </div>
 </header>
 
-<article class="divide-gray-900/10 container space-y-6 divide-y">
+<article :if={@course_user.role == :student} class="divide-gray-900/10 container space-y-6 divide-y">
   <details :for={lesson <- @lessons} id={"lessons-#{lesson.id}"} class="cursor-pointer pt-6 text-left text-gray-900 first:pt-0">
     <% score = CourseUtils.lesson_score(@course_user.user, lesson.user_lessons) %>
 

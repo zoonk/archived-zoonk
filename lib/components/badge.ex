@@ -26,6 +26,7 @@ defmodule UneebeeWeb.Components.Badge do
 
   attr :icon, :string, default: nil, doc: "name of the icon to add to the badge"
   attr :class, :string, default: nil, doc: "the optional additional classes to add to the badge element"
+  attr :title, :string, default: nil, doc: "the optional title to add to the badge element"
   attr :rest, :global, doc: "the optional additional attributes to add to the badge element"
 
   slot :inner_block, required: true, doc: "the inner block that renders the badge content"
@@ -44,9 +45,10 @@ defmodule UneebeeWeb.Components.Badge do
         @color == :bronze && "ring-orange-600/20 bg-orange-50 text-orange-700",
         @class
       ]}
+      title={@title}
       {@rest}
     >
-      <.icon :if={@icon} name={@icon} class="h-3 w-3" /> <%= render_slot(@inner_block) %>
+      <.icon :if={@icon} name={@icon} title={@title} class="h-3 w-3" /> <%= render_slot(@inner_block) %>
     </span>
     """
   end

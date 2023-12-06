@@ -6,6 +6,7 @@ defmodule Uneebee.Content.CourseUtils do
   import UneebeeWeb.Gettext
 
   alias Uneebee.Accounts.User
+  alias Uneebee.Content.CourseUser
   alias Uneebee.Content.Lesson
   alias Uneebee.Content.UserLesson
 
@@ -118,4 +119,11 @@ defmodule Uneebee.Content.CourseUtils do
 
   defp score(_correct, 0), do: nil
   defp score(correct, total), do: Float.round(correct / total * 10, 1)
+
+  @doc """
+  Returns the label for a given role.
+  """
+  @spec get_user_role(CourseUser.t()) :: String.t()
+  def get_user_role(%CourseUser{role: :student}), do: dgettext("orgs", "Student")
+  def get_user_role(%CourseUser{role: :teacher}), do: dgettext("orgs", "Teacher")
 end

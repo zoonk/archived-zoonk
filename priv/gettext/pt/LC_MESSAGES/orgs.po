@@ -98,25 +98,25 @@ msgstr "Aprovado por: @%{username}"
 msgid "Remove user"
 msgstr "Remover usuário"
 
-#: lib/dashboard/courses/course_user_view.html.heex:27
+#: lib/dashboard/courses/course_user_view.html.heex:34
 #: lib/dashboard/schools/user_list.html.heex:49
 #, elixir-autogen, elixir-format
 msgid "Approve"
 msgstr "Aprovar"
 
-#: lib/dashboard/courses/course_user_view.ex:47
+#: lib/dashboard/courses/course_user_view.ex:44
 #: lib/dashboard/schools/user_list.ex:51
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Could not approve user!"
 msgstr "Não foi possível aprovar o usuário!"
 
-#: lib/dashboard/courses/course_user_view.ex:65
+#: lib/dashboard/courses/course_user_view.ex:62
 #: lib/dashboard/schools/user_list.ex:67
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Could not reject user!"
 msgstr "Não foi possível rejeitar o usuário!"
 
-#: lib/dashboard/courses/course_user_view.ex:78
+#: lib/dashboard/courses/course_user_view.ex:75
 #: lib/dashboard/schools/user_list.ex:78
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Could not remove user!"
@@ -128,19 +128,19 @@ msgstr "Não foi possível remover o usuário!"
 msgid "Pending"
 msgstr "Pedente"
 
-#: lib/dashboard/courses/course_user_view.html.heex:28
+#: lib/dashboard/courses/course_user_view.html.heex:38
 #: lib/dashboard/schools/user_list.html.heex:60
 #, elixir-autogen, elixir-format
 msgid "Reject"
 msgstr "Rejeitar"
 
-#: lib/dashboard/courses/course_user_view.ex:41
+#: lib/dashboard/courses/course_user_view.ex:38
 #: lib/dashboard/schools/user_list.ex:45
 #, elixir-autogen, elixir-format
 msgid "User approved!"
 msgstr "Usuário aprovado!"
 
-#: lib/dashboard/courses/course_user_view.ex:59
+#: lib/dashboard/courses/course_user_view.ex:56
 #: lib/dashboard/schools/user_list.ex:61
 #, elixir-autogen, elixir-format
 msgid "User rejected!"
@@ -228,7 +228,7 @@ msgstr "Adicionar imagem à alternativa"
 msgid "Add option"
 msgstr "Nova alternativa"
 
-#: lib/dashboard/courses/course_user_view.html.heex:72
+#: lib/dashboard/courses/course_user_view.html.heex:83
 #, elixir-autogen, elixir-format
 msgid "All answers were correct."
 msgstr "Todas as respostas estavam corretas."
@@ -598,7 +598,7 @@ msgstr "Público"
 msgid "These are the options students can select while playing this step."
 msgstr "Estas são as alternativas que os alunos podem selecionar quando jogam esta etapa."
 
-#: lib/dashboard/courses/course_user_view.html.heex:35
+#: lib/dashboard/courses/course_user_view.html.heex:46
 #, elixir-autogen, elixir-format, fuzzy
 msgid "This will remove %{username} from your course. They won't be able to see your course anymore unless you approve them again."
 msgstr "Você está prestes a remover %{username} do seu curso. Eles não poderão mais ver seu curso a menos que você os aprove novamente."
@@ -695,17 +695,17 @@ msgstr "Esta alternativa foi selecionada %{count}% das vezes."
 msgid "Add user"
 msgstr "Novo usuário"
 
-#: lib/dashboard/courses/course_user_view.html.heex:43
+#: lib/dashboard/courses/course_user_view.html.heex:54
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Remove"
 msgstr "Remover"
 
-#: lib/dashboard/courses/course_user_list.ex:58
+#: lib/content/course_utils.ex:127
 #, elixir-autogen, elixir-format
 msgid "Student"
 msgstr "Aluno"
 
-#: lib/dashboard/courses/course_user_list.ex:59
+#: lib/content/course_utils.ex:128
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Teacher"
 msgstr "Professor"
@@ -716,3 +716,18 @@ msgstr "Professor"
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Users"
 msgstr "Usuários"
+
+#: lib/dashboard/courses/course_user_view.html.heex:22
+#, elixir-autogen, elixir-format
+msgid "Course progress"
+msgstr "Progresso do curso"
+
+#: lib/dashboard/courses/course_user_view.html.heex:18
+#, elixir-autogen, elixir-format, fuzzy
+msgid "Course role"
+msgstr "Função no curso"
+
+#: lib/dashboard/courses/course_user_view.html.heex:26
+#, elixir-autogen, elixir-format, fuzzy
+msgid "Course score"
+msgstr "Pontuação no curso"

@@ -104,6 +104,19 @@ defmodule UneebeeWeb.DashboardCourseStudentViewLiveTest do
 
       refute Content.get_course_user_by_id(course.id, user.id)
     end
+
+    test "hide stats for course teachers", %{conn: conn, course: course} do
+      user = user_fixture()
+      course_user_fixture(%{course: course, user: user, role: :teacher})
+
+      {:ok, lv, _html} = live(conn, ~p"/dashboard/c/#{course.slug}/u/#{user.id}")
+
+      assert has_element?(lv, ~s|span:fl-icontains("teacher")|)
+      refute has_element?(lv, ~s|span:fl-icontains("student")|)
+      refute has_element?(lv, ~s|span:fl-icontains("course progress")|)
+      refute has_element?(lv, ~s|span:fl-icontains("course score")|)
+      refute has_element?(lv, ~s|article|)
+    end
   end
 
   defp assert_page_render(conn, course) do
@@ -115,6 +128,8 @@ defmodule UneebeeWeb.DashboardCourseStudentViewLiveTest do
     assert has_element?(lv, ~s|h1 span:fl-contains("#{user.username}")|)
     assert has_element?(lv, ~s|h1 span:fl-contains("@#{user.username}")|)
     assert has_element?(lv, ~s|p:fl-contains("#{user.email}")|)
+    assert has_element?(lv, ~s|span:fl-icontains("course progress")|)
+    assert has_element?(lv, ~s|span:fl-icontains("course score")|)
 
     assert_lesson_render(lv)
     assert_user_selections(lv, lesson1, lesson2)
