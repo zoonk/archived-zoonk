@@ -65,7 +65,7 @@ msgstr "哎呀，出了些問題！請檢查以下的錯誤。"
 #: lib/accounts/user_live/user_settings.html.heex:17
 #: lib/dashboard/courses/course_edit.html.heex:7
 #: lib/dashboard/courses/course_new.html.heex:5
-#: lib/dashboard/courses/course_user_list.html.heex:52
+#: lib/dashboard/courses/course_user_list.html.heex:54
 #: lib/dashboard/lessons/components/lesson_edit.ex:28
 #: lib/dashboard/lessons/components/option_list.ex:95
 #: lib/dashboard/schools/school_edit.html.heex:7

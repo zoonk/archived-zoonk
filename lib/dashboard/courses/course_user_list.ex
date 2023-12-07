@@ -32,15 +32,15 @@ defmodule UneebeeWeb.Live.Dashboard.CourseUserList do
   end
 
   @impl Phoenix.LiveView
-  def handle_event("add-user", %{"email_or_username" => email_or_username}, socket) do
+  def handle_event("add-user", %{"email_or_username" => email_or_username, "role" => role}, socket) do
     user = Accounts.get_user_by_email_or_username(email_or_username)
-    handle_add_user(user, socket)
+    handle_add_user(user, role, socket)
   end
 
-  defp handle_add_user(%User{} = user, socket) do
+  defp handle_add_user(%User{} = user, role, socket) do
     %{course: course, current_user: approved_by} = socket.assigns
 
-    attrs = %{role: :student, approved?: true, approved_by_id: approved_by.id, approved_at: DateTime.utc_now()}
+    attrs = %{role: role, approved?: true, approved_by_id: approved_by.id, approved_at: DateTime.utc_now()}
 
     case Content.create_course_user(course, user, attrs) do
       {:ok, _course_user} ->
@@ -51,7 +51,7 @@ defmodule UneebeeWeb.Live.Dashboard.CourseUserList do
     end
   end
 
-  defp handle_add_user(nil, socket) do
+  defp handle_add_user(nil, _role, socket) do
     {:noreply, put_flash(socket, :error, dgettext("orgs", "User not found!"))}
   end
 end

@@ -6,6 +6,9 @@ defmodule UneebeeWeb.DashboardCourseUserListLiveTest do
   import Uneebee.Fixtures.Content
   import Uneebee.Fixtures.Organizations
 
+  alias Uneebee.Content
+  alias Uneebee.Organizations
+
   describe "user list (non-authenticated users)" do
     setup :set_school
 
@@ -55,7 +58,7 @@ defmodule UneebeeWeb.DashboardCourseUserListLiveTest do
       assert_user_list(conn, school, course)
     end
 
-    test "adds a user using their email address", %{conn: conn, course: course} do
+    test "adds a user using their email address", %{conn: conn, course: course, school: school} do
       user = user_fixture(%{first_name: "Leo", last_name: "Da Vinci"})
       {:ok, lv, _html} = live(conn, ~p"/dashboard/c/#{course.slug}/users")
 
@@ -63,14 +66,16 @@ defmodule UneebeeWeb.DashboardCourseUserListLiveTest do
 
       {:ok, updated_lv, _html} =
         lv
-        |> form("#add-user-form", %{email_or_username: user.email})
+        |> form("#add-user-form", %{email_or_username: user.email, role: "teacher"})
         |> render_submit()
         |> follow_redirect(conn, ~p"/dashboard/c/#{course.slug}/users")
 
       assert has_element?(updated_lv, ~s|h3:fl-icontains("#{user.first_name}")|)
+      assert Content.get_course_user_by_id(course.id, user.id).role == :teacher
+      assert Organizations.get_school_user(school.slug, user.username).role == :teacher
     end
 
-    test "adds a user using their username", %{conn: conn, course: course} do
+    test "adds a user using their username", %{conn: conn, course: course, school: school} do
       user = user_fixture(%{first_name: "Leo", last_name: "Da Vinci"})
       {:ok, lv, _html} = live(conn, ~p"/dashboard/c/#{course.slug}/users")
 
@@ -83,6 +88,8 @@ defmodule UneebeeWeb.DashboardCourseUserListLiveTest do
         |> follow_redirect(conn, ~p"/dashboard/c/#{course.slug}/users")
 
       assert has_element?(updated_lv, ~s|h3:fl-icontains("#{user.first_name}")|)
+      assert Content.get_course_user_by_id(course.id, user.id).role == :student
+      assert Organizations.get_school_user(school.slug, user.username).role == :student
     end
 
     test "displays an error when trying to add an unexisting user", %{conn: conn, course: course} do

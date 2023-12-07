@@ -666,7 +666,7 @@ msgstr "此選項被選擇了 %{count}% 的時間。"
 
 #: lib/dashboard/courses/course_user_list.html.heex:1
 #: lib/dashboard/courses/course_user_list.html.heex:47
-#: lib/dashboard/courses/course_user_list.html.heex:53
+#: lib/dashboard/courses/course_user_list.html.heex:55
 #: lib/dashboard/schools/school_user_list.html.heex:1
 #: lib/dashboard/schools/school_user_list.html.heex:55
 #: lib/dashboard/schools/school_user_list.html.heex:63
@@ -680,13 +680,13 @@ msgstr "新增使用者"
 msgid "Remove"
 msgstr "移除"
 
-#: lib/content/course_utils.ex:127
+#: lib/content/course_utils.ex:130
 #: lib/organizations/school_utils.ex:17
 #, elixir-autogen, elixir-format
 msgid "Student"
 msgstr "學生"
 
-#: lib/content/course_utils.ex:128
+#: lib/content/course_utils.ex:129
 #: lib/organizations/school_utils.ex:16
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Teacher"
@@ -706,6 +706,7 @@ msgstr "使用者"
 msgid "Course progress"
 msgstr "課程進度"
 
+#: lib/dashboard/courses/course_user_list.html.heex:52
 #: lib/dashboard/courses/course_user_view.html.heex:18
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Course role"

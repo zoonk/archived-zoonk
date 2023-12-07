@@ -121,9 +121,27 @@ defmodule Uneebee.Content.CourseUtils do
   defp score(correct, total), do: Float.round(correct / total * 10, 1)
 
   @doc """
+  Returns the list of supported roles for a course.
+  """
+  @spec roles() :: [{atom(), String.t()}]
+  def roles do
+    [
+      teacher: dgettext("orgs", "Teacher"),
+      student: dgettext("orgs", "Student")
+    ]
+  end
+
+  @doc """
+  Role options for displaying on a `select` component where the label is the key and the key is the value.
+  """
+  @spec role_options() :: [{String.t(), atom()}]
+  def role_options do
+    Enum.map(roles(), fn {key, value} -> {value, Atom.to_string(key)} end)
+  end
+
+  @doc """
   Returns the label for a given role.
   """
   @spec get_user_role(CourseUser.t()) :: String.t()
-  def get_user_role(%CourseUser{role: :student}), do: dgettext("orgs", "Student")
-  def get_user_role(%CourseUser{role: :teacher}), do: dgettext("orgs", "Teacher")
+  def get_user_role(%CourseUser{} = course_user), do: Keyword.get(roles(), course_user.role)
 end

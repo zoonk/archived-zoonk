@@ -666,7 +666,7 @@ msgstr ""
 
 #: lib/dashboard/courses/course_user_list.html.heex:1
 #: lib/dashboard/courses/course_user_list.html.heex:47
-#: lib/dashboard/courses/course_user_list.html.heex:53
+#: lib/dashboard/courses/course_user_list.html.heex:55
 #: lib/dashboard/schools/school_user_list.html.heex:1
 #: lib/dashboard/schools/school_user_list.html.heex:55
 #: lib/dashboard/schools/school_user_list.html.heex:63
@@ -680,13 +680,13 @@ msgstr ""
 msgid "Remove"
 msgstr ""
 
-#: lib/content/course_utils.ex:127
+#: lib/content/course_utils.ex:130
 #: lib/organizations/school_utils.ex:17
 #, elixir-autogen, elixir-format
 msgid "Student"
 msgstr ""
 
-#: lib/content/course_utils.ex:128
+#: lib/content/course_utils.ex:129
 #: lib/organizations/school_utils.ex:16
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Teacher"
@@ -706,6 +706,7 @@ msgstr ""
 msgid "Course progress"
 msgstr ""
 
+#: lib/dashboard/courses/course_user_list.html.heex:52
 #: lib/dashboard/courses/course_user_view.html.heex:18
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Course role"

@@ -46,8 +46,10 @@
 <.modal id="add-user-modal" on_cancel={hide_modal("add-user-modal")}>
   <.header><%= dgettext("orgs", "Add user") %></.header>
 
-  <form phx-submit="add-user" id="add-user-form" class="mt-4">
+  <form phx-submit="add-user" id="add-user-form" class="mt-4 space-y-4">
     <.input type="text" label={gettext("Username or email address")} name="email_or_username" id="email_or_username" required value="" />
+
+    <.input type="select" label={dgettext("orgs", "Course role")} name="role" options={CourseUtils.role_options()} value={:student} required />
 
     <.button type="submit" icon="tabler-user-plus" class="mt-4" phx-disable-with={gettext("Saving...")}>
       <%= dgettext("orgs", "Add user") %>
