@@ -5,8 +5,6 @@ defmodule UneebeeWeb.SchoolUserListLiveTest do
   import Uneebee.Fixtures.Accounts
   import Uneebee.Fixtures.Organizations
 
-  alias Uneebee.Organizations
-
   describe "/dashboard/users (non-authenticated users)" do
     setup :set_school
 
@@ -65,64 +63,6 @@ defmodule UneebeeWeb.SchoolUserListLiveTest do
       assert has_element?(lv, ~s|#user-#{user4.id} *:fl-icontains("student")|)
     end
 
-    test "approves a pending user", %{conn: conn, school: school} do
-      pending_user = user_fixture(%{first_name: "Pending User"})
-      school_user_fixture(%{school: school, user: pending_user, role: :manager, approved?: false})
-
-      {:ok, lv, _html} = live(conn, ~p"/dashboard/users")
-
-      {:ok, updated_lv, html} =
-        lv
-        |> element(approve_button_el())
-        |> render_click()
-        |> follow_redirect(conn, ~p"/dashboard/users")
-
-      assert html =~ "User approved!"
-      refute has_element?(updated_lv, ~s|span[role="status"]:fl-icontains("pending")|)
-    end
-
-    test "rejects a pending user", %{conn: conn, school: school} do
-      pending_user = user_fixture(%{first_name: "Pending User"})
-      school_user_fixture(%{school: school, user: pending_user, role: :manager, approved?: false})
-
-      {:ok, lv, _html} = live(conn, ~p"/dashboard/users")
-
-      {:ok, updated_lv, html} =
-        lv
-        |> element(reject_button_el())
-        |> render_click()
-        |> follow_redirect(conn, ~p"/dashboard/users")
-
-      assert html =~ "User rejected!"
-      refute has_element?(updated_lv, ~s|span[role="status"]:fl-icontains("pending")|)
-    end
-
-    test "toggles analytics for a user", %{conn: conn} do
-      {:ok, lv, _html} = live(conn, ~p"/dashboard/users")
-
-      assert {:ok, updated_lv, _html} =
-               lv
-               |> element("button", "Disable analytics")
-               |> render_click()
-               |> follow_redirect(conn, ~p"/dashboard/users")
-
-      assert {:ok, _updated_lv, _html} =
-               updated_lv
-               |> element("button", "Enable analytics")
-               |> render_click()
-               |> follow_redirect(conn, ~p"/dashboard/users")
-    end
-
-    test "hides the analytics toggle if the school has a parent school", %{conn: conn, school: school} do
-      parent_school = school_fixture(%{name: "Parent School"})
-      Organizations.update_school(school, %{school_id: parent_school.id})
-
-      {:ok, lv, _html} = live(conn, ~p"/dashboard/users")
-
-      refute has_element?(lv, ~s|button *:fl-icontains("disable analytics")|)
-      refute has_element?(lv, ~s|button *:fl-icontains("enable analytics")|)
-    end
-
     test "adds a user using their email address", %{conn: conn} do
       user = user_fixture(%{first_name: "Albert", email: "alb@example.com"})
 
@@ -166,7 +106,4 @@ defmodule UneebeeWeb.SchoolUserListLiveTest do
       assert result =~ "User not found!"
     end
   end
-
-  defp approve_button_el, do: ~s|button[phx-click="approve"]|
-  defp reject_button_el, do: ~s|button[phx-click="reject"]|
 end

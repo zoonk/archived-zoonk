@@ -37,61 +37,15 @@
       <.avatar src={school_user.user.avatar} alt={UserUtils.full_name(school_user.user)} size={:large} />
     </div>
 
-    <div :if={not school_user.approved?} class="-mt-px flex divide-x divide-gray-200">
+    <div class="-mt-px flex divide-x divide-gray-200">
       <div class="flex w-0 flex-1">
-        <button
-          phx-click="approve"
-          phx-value-school-user-id={school_user.id}
+        <.link
+          navigate={~p"/dashboard/u/#{school_user.user.username}"}
           class="relative -mr-px inline-flex w-0 flex-1 items-center justify-center gap-x-3 rounded-bl-lg border border-transparent py-4 text-sm font-semibold text-teal-500 hover:bg-gray-50"
         >
-          <.icon name="tabler-checks" class="h-5 w-5" />
-          <%= dgettext("orgs", "Approve") %>
-        </button>
-      </div>
-
-      <div class="-ml-px flex w-0 flex-1">
-        <button
-          phx-click="reject"
-          phx-value-school-user-id={school_user.id}
-          class="relative inline-flex w-0 flex-1 items-center justify-center gap-x-3 rounded-br-lg border border-transparent py-4 text-sm font-semibold text-pink-500 hover:bg-gray-50"
-        >
-          <.icon name="tabler-ban" class="h-5 w-5" />
-          <%= dgettext("orgs", "Reject") %>
-        </button>
-      </div>
-    </div>
-
-    <div :if={school_user.approved?} class={["-mt-px flex", edit_analytics?(@school) && "divide-x divide-gray-200"]}>
-      <div :if={edit_analytics?(@school)} class="flex w-0 flex-1">
-        <button
-          phx-click="toggle-analytics"
-          phx-value-school-user-id={school_user.id}
-          phx-value-analytics={to_string(school_user.analytics?)}
-          class={[
-            "relative -mr-px inline-flex w-0 flex-1 items-center justify-center gap-x-3 rounded-bl-lg border border-transparent py-4 text-sm font-semibold hover:bg-gray-50",
-            school_user.analytics? && "text-pink-500",
-            not school_user.analytics? && "text-teal-500"
-          ]}
-        >
-          <%= if school_user.analytics?, do: dgettext("orgs", "Disable analytics"), else: dgettext("orgs", "Enable analytics") %>
-        </button>
-      </div>
-
-      <div class="-ml-px flex w-0 flex-1">
-        <button
-          id={"remove-user-#{school_user.id}"}
-          phx-click="remove"
-          phx-value-school-user-id={school_user.id}
-          data-confirm={
-            dgettext("orgs", "This will remove %{username} from your school. They won't be able to see your school anymore unless you approve them again.",
-              username: school_user.user.username
-            )
-          }
-          class="relative inline-flex w-0 flex-1 items-center justify-center gap-x-3 rounded-b-lg border border-transparent py-4 text-sm font-semibold text-pink-500 hover:bg-gray-50"
-        >
-          <.icon name="tabler-trash-x" class="h-5 w-5" />
-          <%= dgettext("orgs", "Remove user") %>
-        </button>
+          <.icon name="tabler-chart-radar" class="h-5 w-5" />
+          <%= dgettext("orgs", "Details") %>
+        </.link>
       </div>
     </div>
   </li>

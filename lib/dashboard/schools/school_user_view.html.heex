@@ -1,0 +1,51 @@
+<header class="flex flex-col items-start justify-between gap-x-8 gap-y-4 bg-gray-50 p-4 sm:flex-row sm:items-center sm:px-6 lg:px-8">
+  <div>
+    <div class="flex items-center gap-x-3">
+      <.avatar src={@school_user.user.avatar} alt={UserUtils.full_name(@school_user.user)} size={:small} />
+
+      <h1 class="flex gap-x-3 text-base leading-7">
+        <span class="font-semibold text-gray-700"><%= UserUtils.full_name(@school_user.user) %></span>
+        <span class="text-gray-300">/</span>
+        <span class="text-gray-700">@<%= @school_user.user.username %></span>
+      </h1>
+    </div>
+
+    <p class="mt-2 text-xs leading-6 text-gray-500"><%= @school_user.user.email %></p>
+
+    <div class="space-x-y mt-4">
+      <.badge color={:info} title={dgettext("orgs", "School role")}>
+        <%= SchoolUtils.get_user_role(@school_user) %>
+      </.badge>
+    </div>
+  </div>
+
+  <div :if={!@school_user.approved?} class="flex w-full gap-x-4 sm:w-auto">
+    <.button icon="tabler-checks" color={:success} class="flex-1 sm:flex-initial" phx-click="approve">
+      <%= dgettext("orgs", "Approve") %>
+    </.button>
+
+    <.button icon="tabler-ban" color={:alert} class="flex-1 sm:flex-initial" phx-click="reject">
+      <%= dgettext("orgs", "Reject") %>
+    </.button>
+  </div>
+
+  <div :if={@school_user.approved?} class="flex w-full gap-x-4 sm:w-auto">
+    <.button :if={is_nil(@school.school_id)} icon="tabler-graph" color={if @school_user.analytics?, do: :alert_light, else: :success_light} phx-click="toggle-analytics">
+      <%= if @school_user.analytics?, do: dgettext("orgs", "Disable analytics"), else: dgettext("orgs", "Enable analytics") %>
+    </.button>
+
+    <.button
+      icon="tabler-trash-x"
+      data-confirm={
+        dgettext("orgs", "This will remove %{username} from your school. They won't be able to see your school anymore unless you approve them again.",
+          username: @school_user.user.username
+        )
+      }
+      color={:alert_light}
+      class="flex-1 sm:flex-initial"
+      phx-click="remove"
+    >
+      <%= dgettext("orgs", "Remove") %>
+    </.button>
+  </div>
+</header>

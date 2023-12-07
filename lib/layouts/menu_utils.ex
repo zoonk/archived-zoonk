@@ -85,7 +85,7 @@ defmodule UneebeeWeb.Layouts.MenuUtils do
     [
       %{link: ~p"/dashboard", view: [:dashboard_home], title: gettext("Overview"), visible?: true},
       %{link: ~p"/dashboard/schools", view: [:dashboard_schoollist, :dashboard_schoolview], title: gettext("Schools"), visible?: kind != :white_label},
-      %{link: ~p"/dashboard/users", view: [:dashboard_schooluserlist], title: dgettext("orgs", "Users"), visible?: true},
+      %{link: ~p"/dashboard/users", view: [:dashboard_schooluserlist, :dashboard_schooluserview], title: dgettext("orgs", "Users"), visible?: true},
       %{link: ~p"/dashboard/edit/logo", view: [:dashboard_schooledit_logo], title: gettext("Logo"), visible?: true},
       %{link: ~p"/dashboard/edit/settings", view: [:dashboard_schooledit_settings], title: gettext("Settings"), visible?: true}
     ]

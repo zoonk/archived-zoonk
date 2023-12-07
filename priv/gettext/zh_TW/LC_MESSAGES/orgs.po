@@ -62,13 +62,13 @@ msgid "Logo updated successfully!"
 msgstr "標誌更新成功！"
 
 #: lib/dashboard/courses/course_user_list.ex:50
-#: lib/dashboard/schools/school_user_list.ex:110
+#: lib/dashboard/schools/school_user_list.ex:52
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Could not add user!"
 msgstr "無法新增使用者！"
 
 #: lib/dashboard/courses/course_user_list.ex:55
-#: lib/dashboard/schools/school_user_list.ex:115
+#: lib/dashboard/schools/school_user_list.ex:57
 #, elixir-autogen, elixir-format
 msgid "User not found!"
 msgstr "找不到使用者！"
@@ -78,31 +78,26 @@ msgstr "找不到使用者！"
 msgid "Approved by: @%{username}"
 msgstr "由 @%{username} 批准"
 
-#: lib/dashboard/schools/school_user_list.html.heex:93
-#, elixir-autogen, elixir-format
-msgid "Remove user"
-msgstr "移除使用者"
-
 #: lib/dashboard/courses/course_user_view.html.heex:34
-#: lib/dashboard/schools/school_user_list.html.heex:48
+#: lib/dashboard/schools/school_user_view.html.heex:24
 #, elixir-autogen, elixir-format
 msgid "Approve"
 msgstr "批准"
 
 #: lib/dashboard/courses/course_user_view.ex:44
-#: lib/dashboard/schools/school_user_list.ex:52
+#: lib/dashboard/schools/school_user_view.ex:42
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Could not approve user!"
 msgstr "無法批准使用者！"
 
 #: lib/dashboard/courses/course_user_view.ex:62
-#: lib/dashboard/schools/school_user_list.ex:68
+#: lib/dashboard/schools/school_user_view.ex:60
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Could not reject user!"
 msgstr "無法拒絕使用者！"
 
 #: lib/dashboard/courses/course_user_view.ex:75
-#: lib/dashboard/schools/school_user_list.ex:79
+#: lib/dashboard/schools/school_user_view.ex:73
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Could not remove user!"
 msgstr "無法移除使用者！"
@@ -114,24 +109,24 @@ msgid "Pending"
 msgstr "待處理"
 
 #: lib/dashboard/courses/course_user_view.html.heex:38
-#: lib/dashboard/schools/school_user_list.html.heex:59
+#: lib/dashboard/schools/school_user_view.html.heex:28
 #, elixir-autogen, elixir-format
 msgid "Reject"
 msgstr "拒絕"
 
 #: lib/dashboard/courses/course_user_view.ex:38
-#: lib/dashboard/schools/school_user_list.ex:46
+#: lib/dashboard/schools/school_user_view.ex:36
 #, elixir-autogen, elixir-format
 msgid "User approved!"
 msgstr "使用者已批准！"
 
 #: lib/dashboard/courses/course_user_view.ex:56
-#: lib/dashboard/schools/school_user_list.ex:62
+#: lib/dashboard/schools/school_user_view.ex:54
 #, elixir-autogen, elixir-format
 msgid "User rejected!"
 msgstr "使用者已拒絕！"
 
-#: lib/dashboard/schools/school_user_list.html.heex:86
+#: lib/dashboard/schools/school_user_view.html.heex:40
 #, elixir-autogen, elixir-format
 msgid "This will remove %{username} from your school. They won't be able to see your school anymore unless you approve them again."
 msgstr "這將從您的學校中移除 %{username}。除非您再次批准他們，否則他們將無法再看到您的學校。"
@@ -342,6 +337,7 @@ msgstr "課程 %{order} 的描述。您應該更新這個。"
 
 #: lib/dashboard/courses/course_user_list.html.heex:39
 #: lib/dashboard/schools/school_list.html.heex:37
+#: lib/dashboard/schools/school_user_list.html.heex:47
 #, elixir-autogen, elixir-format
 msgid "Details"
 msgstr "詳情"
@@ -583,17 +579,17 @@ msgstr "這些是學生在進行此步驟時可以選擇的選項。"
 msgid "This will remove %{username} from your course. They won't be able to see your course anymore unless you approve them again."
 msgstr "這將從您的課程中移除 %{username}。除非您再次批准他們，否則他們將無法再看到您的課程。"
 
-#: lib/dashboard/schools/school_user_list.ex:90
+#: lib/dashboard/schools/school_user_view.ex:86
 #, elixir-autogen, elixir-format
 msgid "Could not toggle analytics tracking!"
 msgstr "無法切換分析追蹤！"
 
-#: lib/dashboard/schools/school_user_list.html.heex:76
+#: lib/dashboard/schools/school_user_view.html.heex:34
 #, elixir-autogen, elixir-format
 msgid "Disable analytics"
 msgstr "停用分析"
 
-#: lib/dashboard/schools/school_user_list.html.heex:76
+#: lib/dashboard/schools/school_user_view.html.heex:34
 #, elixir-autogen, elixir-format
 msgid "Enable analytics"
 msgstr "啟用分析"
@@ -672,13 +668,14 @@ msgstr "此選項被選擇了 %{count}% 的時間。"
 #: lib/dashboard/courses/course_user_list.html.heex:47
 #: lib/dashboard/courses/course_user_list.html.heex:53
 #: lib/dashboard/schools/school_user_list.html.heex:1
-#: lib/dashboard/schools/school_user_list.html.heex:101
-#: lib/dashboard/schools/school_user_list.html.heex:107
+#: lib/dashboard/schools/school_user_list.html.heex:55
+#: lib/dashboard/schools/school_user_list.html.heex:61
 #, elixir-autogen, elixir-format
 msgid "Add user"
 msgstr "新增使用者"
 
 #: lib/dashboard/courses/course_user_view.html.heex:54
+#: lib/dashboard/schools/school_user_view.html.heex:48
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Remove"
 msgstr "移除"
@@ -697,7 +694,7 @@ msgstr "老師"
 
 #: lib/dashboard/courses/course_user_list.ex:21
 #: lib/dashboard/courses/course_user_list.html.heex:1
-#: lib/dashboard/schools/school_user_list.ex:24
+#: lib/dashboard/schools/school_user_list.ex:22
 #: lib/layouts/menu_utils.ex:88
 #: lib/layouts/templates/dashboard_course.html.heex:34
 #, elixir-autogen, elixir-format, fuzzy
@@ -738,3 +735,8 @@ msgstr "學生"
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Teachers"
 msgstr "教師"
+
+#: lib/dashboard/schools/school_user_view.html.heex:16
+#, elixir-autogen, elixir-format, fuzzy
+msgid "School role"
+msgstr "學校角色"

@@ -46,7 +46,7 @@ defmodule UneebeeWeb.DashboardCourseStudentViewLiveTest do
       assert_page_render(conn, course)
     end
 
-    test "returns 404 when the user is not a course user", %{conn: conn, course: course} do
+    test "returns 403 when the user is not a course user", %{conn: conn, course: course} do
       user = user_fixture()
       assert_error_sent(403, fn -> get(conn, ~p"/dashboard/c/#{course.slug}/u/#{user.id}") end)
     end
