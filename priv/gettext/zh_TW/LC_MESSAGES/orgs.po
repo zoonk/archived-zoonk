@@ -669,7 +669,7 @@ msgstr "此選項被選擇了 %{count}% 的時間。"
 #: lib/dashboard/courses/course_user_list.html.heex:53
 #: lib/dashboard/schools/school_user_list.html.heex:1
 #: lib/dashboard/schools/school_user_list.html.heex:55
-#: lib/dashboard/schools/school_user_list.html.heex:61
+#: lib/dashboard/schools/school_user_list.html.heex:63
 #, elixir-autogen, elixir-format
 msgid "Add user"
 msgstr "新增使用者"
@@ -681,13 +681,13 @@ msgid "Remove"
 msgstr "移除"
 
 #: lib/content/course_utils.ex:127
-#: lib/organizations/school_utils.ex:15
+#: lib/organizations/school_utils.ex:17
 #, elixir-autogen, elixir-format
 msgid "Student"
 msgstr "學生"
 
 #: lib/content/course_utils.ex:128
-#: lib/organizations/school_utils.ex:14
+#: lib/organizations/school_utils.ex:16
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Teacher"
 msgstr "老師"
@@ -716,7 +716,7 @@ msgstr "課程角色"
 msgid "Course score"
 msgstr "課程分數"
 
-#: lib/organizations/school_utils.ex:13
+#: lib/organizations/school_utils.ex:15
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Manager"
 msgstr "管理員"
@@ -736,6 +736,7 @@ msgstr "學生"
 msgid "Teachers"
 msgstr "教師"
 
+#: lib/dashboard/schools/school_user_list.html.heex:60
 #: lib/dashboard/schools/school_user_view.html.heex:16
 #, elixir-autogen, elixir-format, fuzzy
 msgid "School role"

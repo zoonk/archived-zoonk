@@ -5,6 +5,8 @@ defmodule UneebeeWeb.SchoolUserListLiveTest do
   import Uneebee.Fixtures.Accounts
   import Uneebee.Fixtures.Organizations
 
+  alias Uneebee.Organizations
+
   describe "/dashboard/users (non-authenticated users)" do
     setup :set_school
 
@@ -63,7 +65,7 @@ defmodule UneebeeWeb.SchoolUserListLiveTest do
       assert has_element?(lv, ~s|#user-#{user4.id} *:fl-icontains("student")|)
     end
 
-    test "adds a user using their email address", %{conn: conn} do
+    test "adds a user using their email address", %{conn: conn, school: school} do
       user = user_fixture(%{first_name: "Albert", email: "alb@example.com"})
 
       {:ok, lv, _html} = live(conn, ~p"/dashboard/users")
@@ -72,14 +74,32 @@ defmodule UneebeeWeb.SchoolUserListLiveTest do
 
       {:ok, updated_lv, _html} =
         lv
-        |> form("#add-user-form", %{email_or_username: user.email})
+        |> form("#add-user-form", %{email_or_username: user.email, role: "manager"})
         |> render_submit()
         |> follow_redirect(conn, ~p"/dashboard/users")
 
       assert has_element?(updated_lv, ~s|h3:fl-icontains("#{user.first_name}")|)
+      assert Organizations.get_school_user(school.slug, user.username).role == :manager
     end
 
-    test "adds a user using their username", %{conn: conn} do
+    test "adds a user using their username", %{conn: conn, school: school} do
+      user = user_fixture(%{first_name: "Albert", username: "albert"})
+
+      {:ok, lv, _html} = live(conn, ~p"/dashboard/users")
+
+      refute has_element?(lv, ~s|h3:fl-icontains("#{user.first_name}")|)
+
+      {:ok, updated_lv, _html} =
+        lv
+        |> form("#add-user-form", %{email_or_username: user.username, role: "teacher"})
+        |> render_submit()
+        |> follow_redirect(conn, ~p"/dashboard/users")
+
+      assert has_element?(updated_lv, ~s|h3:fl-icontains("#{user.first_name}")|)
+      assert Organizations.get_school_user(school.slug, user.username).role == :teacher
+    end
+
+    test "uses student as the default role when adding a user", %{conn: conn, school: school} do
       user = user_fixture(%{first_name: "Albert", username: "albert"})
 
       {:ok, lv, _html} = live(conn, ~p"/dashboard/users")
@@ -93,6 +113,7 @@ defmodule UneebeeWeb.SchoolUserListLiveTest do
         |> follow_redirect(conn, ~p"/dashboard/users")
 
       assert has_element?(updated_lv, ~s|h3:fl-icontains("#{user.first_name}")|)
+      assert Organizations.get_school_user(school.slug, user.username).role == :student
     end
 
     test "displays an error when trying to add an unexisting user", %{conn: conn} do

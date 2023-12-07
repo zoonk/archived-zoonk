@@ -69,7 +69,7 @@ msgstr "Oops, algo deu errado! Por favor, verifique os erros abaixo."
 #: lib/dashboard/lessons/components/lesson_edit.ex:28
 #: lib/dashboard/lessons/components/option_list.ex:95
 #: lib/dashboard/schools/school_edit.html.heex:7
-#: lib/dashboard/schools/school_user_list.html.heex:60
+#: lib/dashboard/schools/school_user_list.html.heex:62
 #: lib/organizations/school_live/school_new.html.heex:10
 #, elixir-autogen, elixir-format
 msgid "Saving..."

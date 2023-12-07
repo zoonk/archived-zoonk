@@ -669,7 +669,7 @@ msgstr "Esta alternativa foi selecionada %{count}% das vezes."
 #: lib/dashboard/courses/course_user_list.html.heex:53
 #: lib/dashboard/schools/school_user_list.html.heex:1
 #: lib/dashboard/schools/school_user_list.html.heex:55
-#: lib/dashboard/schools/school_user_list.html.heex:61
+#: lib/dashboard/schools/school_user_list.html.heex:63
 #, elixir-autogen, elixir-format
 msgid "Add user"
 msgstr "Novo usuário"
@@ -681,13 +681,13 @@ msgid "Remove"
 msgstr "Remover"
 
 #: lib/content/course_utils.ex:127
-#: lib/organizations/school_utils.ex:15
+#: lib/organizations/school_utils.ex:17
 #, elixir-autogen, elixir-format
 msgid "Student"
 msgstr "Aluno"
 
 #: lib/content/course_utils.ex:128
-#: lib/organizations/school_utils.ex:14
+#: lib/organizations/school_utils.ex:16
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Teacher"
 msgstr "Professor"
@@ -716,7 +716,7 @@ msgstr "Função no curso"
 msgid "Course score"
 msgstr "Pontuação no curso"
 
-#: lib/organizations/school_utils.ex:13
+#: lib/organizations/school_utils.ex:15
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Manager"
 msgstr "Gestor"
@@ -736,6 +736,7 @@ msgstr "Alunos"
 msgid "Teachers"
 msgstr "Professores"
 
+#: lib/dashboard/schools/school_user_list.html.heex:60
 #: lib/dashboard/schools/school_user_view.html.heex:16
 #, elixir-autogen, elixir-format, fuzzy
 msgid "School role"
