@@ -18,11 +18,22 @@ defmodule UneebeeWeb.Live.Dashboard.CourseUserList do
 
     socket =
       socket
-      |> assign(:page_title, dgettext("orgs", "Users"))
       |> assign(:user_count, user_count)
       |> add_pagination()
 
     {:ok, socket}
+  end
+
+  @impl Phoenix.LiveView
+  def handle_params(params, _uri, socket) do
+    %{live_action: live_action, course: course} = socket.assigns
+
+    socket =
+      socket
+      |> assign(:page_title, page_title(live_action))
+      |> assign(:search_results, search_users(course, params["term"]))
+
+    {:noreply, socket}
   end
 
   defp paginate(socket, new_page) when new_page >= 1 do
@@ -35,6 +46,11 @@ defmodule UneebeeWeb.Live.Dashboard.CourseUserList do
   def handle_event("add-user", %{"email_or_username" => email_or_username, "role" => role}, socket) do
     user = Accounts.get_user_by_email_or_username(email_or_username)
     handle_add_user(user, role, socket)
+  end
+
+  def handle_event("search", %{"term" => search_term}, socket) do
+    %{course: course} = socket.assigns
+    {:noreply, push_patch(socket, to: ~p"/dashboard/c/#{course.slug}/users/search?term=#{search_term}")}
   end
 
   defp handle_add_user(%User{} = user, role, socket) do
@@ -54,4 +70,10 @@ defmodule UneebeeWeb.Live.Dashboard.CourseUserList do
   defp handle_add_user(nil, _role, socket) do
     {:noreply, put_flash(socket, :error, dgettext("orgs", "User not found!"))}
   end
+
+  defp page_title(:search), do: dgettext("orgs", "Search users")
+  defp page_title(_live_action), do: dgettext("orgs", "Users")
+
+  defp search_users(_course, nil), do: []
+  defp search_users(course, term), do: Content.search_course_users(course.id, term)
 end

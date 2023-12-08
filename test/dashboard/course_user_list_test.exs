@@ -102,6 +102,22 @@ defmodule UneebeeWeb.DashboardCourseUserListLiveTest do
 
       assert result =~ "User not found!"
     end
+
+    test "search course users", %{conn: conn, course: course} do
+      users = Enum.map(1..10, fn i -> user_fixture(%{first_name: "Albert", last_name: "#{i}"}) end)
+      other_user = user_fixture(%{first_name: "Marie", last_name: "Curie"})
+
+      Enum.each(users, fn user -> course_user_fixture(%{course: course, user: user}) end)
+      course_user_fixture(%{course: course, user: other_user})
+
+      {:ok, lv, _html} = live(conn, ~p"/dashboard/c/#{course.slug}/users")
+
+      lv |> element("a", "Search...") |> render_click()
+      lv |> form("#user-search") |> render_change(%{term: "alb"})
+
+      Enum.each(users, fn user -> assert has_element?(lv, search_result_el(course, user)) end)
+      refute has_element?(lv, search_result_el(course, other_user))
+    end
   end
 
   describe "user list (course student)" do
@@ -137,4 +153,6 @@ defmodule UneebeeWeb.DashboardCourseUserListLiveTest do
     assert has_element?(lv, ~s|#users-#{cu3.id} span[role="status"]:fl-icontains("pending")|)
     refute has_element?(lv, ~s|#users-#{cu2.id} span[role="status"]:fl-icontains("pending")|)
   end
+
+  defp search_result_el(course, user), do: ~s|#user-search-#{user.id} a[href="/dashboard/c/#{course.slug}/u/#{user.id}"]:fl-icontains("#{user.first_name} #{user.last_name}")|
 end
