@@ -7,6 +7,7 @@ defmodule UneebeeWeb.Components.SearchBox do
   use Phoenix.Component
 
   import UneebeeWeb.Components.Utils
+  import UneebeeWeb.Gettext
 
   alias Phoenix.LiveView.JS
 
@@ -53,7 +54,7 @@ defmodule UneebeeWeb.Components.SearchBox do
                   type="text"
                   name="term"
                   class="h-12 w-full border-0 bg-transparent pr-4 pl-11 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm"
-                  placeholder="Search..."
+                  placeholder={gettext("Search...")}
                   role="combobox"
                   aria-expanded="false"
                   aria-controls="options"
@@ -65,7 +66,7 @@ defmodule UneebeeWeb.Components.SearchBox do
                 <%= render_slot(@inner_block) %>
               </ul>
 
-              <p :if={@empty} class="p-4 text-sm text-gray-500">No people found.</p>
+              <p :if={@empty} class="p-4 text-sm text-gray-500"><%= gettext("No results found.") %></p>
             </.focus_wrap>
           </div>
         </div>
@@ -76,7 +77,7 @@ defmodule UneebeeWeb.Components.SearchBox do
 
   def search_item(assigns) do
     ~H"""
-    <li class="cursor-default select-none px-4 py-2" id={@id} role="option" tabindex="-1">
+    <li class="select-none px-4 py-2" id={@id} role="option" tabindex="-1">
       <.link navigate={@navigate}><%= @name %></.link>
     </li>
     """

@@ -62,18 +62,18 @@ msgid "Logo updated successfully!"
 msgstr "Logo atualizado!"
 
 #: lib/dashboard/courses/course_user_list.ex:50
-#: lib/dashboard/schools/school_user_list.ex:52
+#: lib/dashboard/schools/school_user_list.ex:67
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Could not add user!"
 msgstr "Não foi possível cadastrar o usuário!"
 
 #: lib/dashboard/courses/course_user_list.ex:55
-#: lib/dashboard/schools/school_user_list.ex:57
+#: lib/dashboard/schools/school_user_list.ex:72
 #, elixir-autogen, elixir-format
 msgid "User not found!"
 msgstr "Usuário não encontrado!"
 
-#: lib/dashboard/schools/school_user_list.html.heex:29
+#: lib/dashboard/schools/school_user_list.html.heex:35
 #, elixir-autogen, elixir-format
 msgid "Approved by: @%{username}"
 msgstr "Aprovado por: @%{username}"
@@ -103,7 +103,7 @@ msgid "Could not remove user!"
 msgstr "Não foi possível remover o usuário!"
 
 #: lib/dashboard/courses/course_user_list.html.heex:19
-#: lib/dashboard/schools/school_user_list.html.heex:19
+#: lib/dashboard/schools/school_user_list.html.heex:25
 #, elixir-autogen, elixir-format
 msgid "Pending"
 msgstr "Pedente"
@@ -337,7 +337,7 @@ msgstr "Descrição para a aula %{order}. Você deve atualizar isso."
 
 #: lib/dashboard/courses/course_user_list.html.heex:39
 #: lib/dashboard/schools/school_list.html.heex:37
-#: lib/dashboard/schools/school_user_list.html.heex:47
+#: lib/dashboard/schools/school_user_list.html.heex:53
 #, elixir-autogen, elixir-format
 msgid "Details"
 msgstr "Detalhes"
@@ -667,9 +667,9 @@ msgstr "Esta alternativa foi selecionada %{count}% das vezes."
 #: lib/dashboard/courses/course_user_list.html.heex:1
 #: lib/dashboard/courses/course_user_list.html.heex:47
 #: lib/dashboard/courses/course_user_list.html.heex:55
-#: lib/dashboard/schools/school_user_list.html.heex:1
-#: lib/dashboard/schools/school_user_list.html.heex:55
-#: lib/dashboard/schools/school_user_list.html.heex:63
+#: lib/dashboard/schools/school_user_list.html.heex:5
+#: lib/dashboard/schools/school_user_list.html.heex:61
+#: lib/dashboard/schools/school_user_list.html.heex:69
 #, elixir-autogen, elixir-format
 msgid "Add user"
 msgstr "Novo usuário"
@@ -694,7 +694,8 @@ msgstr "Professor"
 
 #: lib/dashboard/courses/course_user_list.ex:21
 #: lib/dashboard/courses/course_user_list.html.heex:1
-#: lib/dashboard/schools/school_user_list.ex:22
+#: lib/dashboard/schools/school_user_list.ex:76
+#: lib/dashboard/schools/school_user_list.html.heex:2
 #: lib/layouts/menu_utils.ex:88
 #: lib/layouts/templates/dashboard_course.html.heex:34
 #, elixir-autogen, elixir-format, fuzzy
@@ -737,8 +738,13 @@ msgstr "Alunos"
 msgid "Teachers"
 msgstr "Professores"
 
-#: lib/dashboard/schools/school_user_list.html.heex:60
+#: lib/dashboard/schools/school_user_list.html.heex:66
 #: lib/dashboard/schools/school_user_view.html.heex:16
 #, elixir-autogen, elixir-format, fuzzy
 msgid "School role"
 msgstr "Função na escola"
+
+#: lib/dashboard/schools/school_user_list.ex:75
+#, elixir-autogen, elixir-format
+msgid "Search users"
+msgstr "Pesquisar usuários"
