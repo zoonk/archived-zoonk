@@ -12,7 +12,7 @@ defmodule UneebeeWeb.Components.SearchButton do
   @impl Phoenix.LiveComponent
   def render(assigns) do
     ~H"""
-    <div id="search-button" phx-hook="CmdKShortcut" phx-target={@myself} class={@class}>
+    <div id="search-button" phx-target={@myself} phx-window-keydown="open" class={@class}>
       <.link
         patch={@patch}
         class="ring-slate-900/10 flex h-10 sm:w-60 items-center space-x-3 rounded-lg bg-white px-2 sm:px-4 text-left text-slate-400 shadow-sm ring-1 hover:ring-slate-300 focus:outline-none focus:ring-2 focus:ring-sky-500"
@@ -42,7 +42,15 @@ defmodule UneebeeWeb.Components.SearchButton do
   end
 
   @impl Phoenix.LiveComponent
-  def handle_event("cmd-k-shortcut", _params, socket) do
+  def handle_event("open", %{"ctrlKey" => true, "key" => "k"}, socket) do
     {:noreply, push_patch(socket, to: socket.assigns.patch)}
+  end
+
+  def handle_event("open", %{"metaKey" => true, "key" => "k"}, socket) do
+    {:noreply, push_patch(socket, to: socket.assigns.patch)}
+  end
+
+  def handle_event("open", _params, socket) do
+    {:noreply, socket}
   end
 end

@@ -39,17 +39,6 @@ Hooks.LessonSoundEffect = {
   },
 };
 
-Hooks.CmdKShortcut = {
-  mounted() {
-    document.addEventListener("keydown", (e) => {
-      if ((e.metaKey || e.ctrlKey) && e.key === "k") {
-        e.preventDefault();
-        this.pushEventTo(this.el, "cmd-k-shortcut");
-      }
-    });
-  },
-};
-
 Hooks.Sortable = {
   mounted() {
     let group = this.el.dataset.group;
@@ -119,6 +108,11 @@ let liveSocket = new LiveSocket("/live", Socket, {
   hooks: Hooks,
   uploaders: Uploaders,
   params: { _csrf_token: csrfToken },
+  metadata: {
+    keydown: (e, el) => {
+      return { key: e.key, metaKey: e.metaKey, ctrlKey: e.ctrlKey };
+    },
+  },
 });
 
 // Show progress bar on live navigation and form submits
