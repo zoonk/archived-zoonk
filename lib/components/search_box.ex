@@ -32,7 +32,7 @@ defmodule UneebeeWeb.Components.SearchBox do
 
       <div class="fixed inset-0 overflow-y-auto" aria-labelledby={"#{@id}-title"} aria-describedby={"#{@id}-description"} role="dialog" aria-modal="true" tabindex="0">
         <div class="min-h-dvh flex items-center justify-center">
-          <div class="w-full max-w-3xl sm:p-6 lg:py-8">
+          <div class="w-full max-w-3xl p-4 sm:p-6 lg:py-8">
             <.focus_wrap
               id={"#{@id}-container"}
               phx-window-keydown={JS.exec("data-cancel", to: "##{@id}")}
