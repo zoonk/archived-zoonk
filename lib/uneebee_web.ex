@@ -105,6 +105,7 @@ defmodule UneebeeWeb do
       import UneebeeWeb.Components.Modal
       import UneebeeWeb.Components.Progress
       import UneebeeWeb.Components.SearchBox
+      import UneebeeWeb.Components.Utils
 
       # i18n
       import UneebeeWeb.Gettext

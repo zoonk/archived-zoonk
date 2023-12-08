@@ -126,5 +126,23 @@ defmodule UneebeeWeb.SchoolUserListLiveTest do
 
       assert result =~ "User not found!"
     end
+
+    test "search school users", %{conn: conn, school: school} do
+      users = Enum.map(1..10, fn i -> user_fixture(%{first_name: "Albert", last_name: "#{i}"}) end)
+      other_user = user_fixture(%{first_name: "Marie", last_name: "Curie"})
+
+      Enum.each(users, fn user -> school_user_fixture(%{school: school, user: user}) end)
+      school_user_fixture(%{school: school, user: other_user})
+
+      {:ok, lv, _html} = live(conn, ~p"/dashboard/users")
+
+      lv |> element("a", "Search...") |> render_click()
+      lv |> form("#user-search") |> render_change(%{term: "alb"})
+
+      Enum.each(users, fn user -> assert has_element?(lv, search_result_el(user)) end)
+      refute has_element?(lv, search_result_el(other_user))
+    end
   end
+
+  defp search_result_el(user), do: ~s|#user-search-#{user.id} a[href="/dashboard/u/#{user.username}"]:fl-icontains("#{user.first_name} #{user.last_name}")|
 end

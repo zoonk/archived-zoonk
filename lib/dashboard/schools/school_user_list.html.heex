@@ -82,7 +82,7 @@
 >
   <.search_item
     :for={school_user <- @search_results}
-    id={"user-search-#{school_user.id}"}
+    id={"user-search-#{school_user.user.id}"}
     navigate={~p"/dashboard/u/#{school_user.user.username}"}
     name={UserUtils.full_name(school_user.user)}
   />

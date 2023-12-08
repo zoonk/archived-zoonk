@@ -21,14 +21,7 @@ defmodule UneebeeWeb.Components.SearchBox do
 
   def search_box(assigns) do
     ~H"""
-    <form
-      id={@id}
-      phx-mounted={@show && show_search_box(@id)}
-      phx-remove={hide_search_box(@id)}
-      data-cancel={JS.exec(@on_cancel, "phx-remove")}
-      class="relative z-50 hidden"
-      {@rest}
-    >
+    <form id={@id} phx-mounted={@show && show_modal(@id)} phx-remove={hide_modal(@id)} data-cancel={JS.exec(@on_cancel, "phx-remove")} class="relative z-50 hidden" {@rest}>
       <div id={"#{@id}-bg"} class="bg-gray-50/90 fixed inset-0 transition-opacity" aria-hidden="true" />
 
       <div class="fixed inset-0 overflow-y-auto" aria-labelledby={"#{@id}-title"} aria-describedby={"#{@id}-description"} role="dialog" aria-modal="true" tabindex="0">
@@ -81,35 +74,5 @@ defmodule UneebeeWeb.Components.SearchBox do
       <.link navigate={@navigate}><%= @name %></.link>
     </li>
     """
-  end
-
-  @doc """
-  Shows a search box.
-  """
-  def show_search_box(js \\ %JS{}, id) when is_binary(id) do
-    js
-    |> JS.show(to: "##{id}")
-    |> JS.show(
-      to: "##{id}-bg",
-      transition: {"transition-all transform ease-out duration-300", "opacity-0", "opacity-100"}
-    )
-    |> show("##{id}-container")
-    |> JS.add_class("overflow-hidden", to: "body")
-    |> JS.focus_first(to: "##{id}-content")
-  end
-
-  @doc """
-  Hides a search box.
-  """
-  def hide_search_box(js \\ %JS{}, id) do
-    js
-    |> JS.hide(
-      to: "##{id}-bg",
-      transition: {"transition-all transform ease-in duration-200", "opacity-100", "opacity-0"}
-    )
-    |> hide("##{id}-container")
-    |> JS.hide(to: "##{id}", transition: {"block", "block", "hidden"})
-    |> JS.remove_class("overflow-hidden", to: "body")
-    |> JS.pop_focus()
   end
 end
