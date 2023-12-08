@@ -200,20 +200,20 @@ defmodule Uneebee.Organizations do
   Search a school user by `first_name`, `last_name`, `username`, or `email`.
 
   ## Examples
-      iex> search_school_user(school_id, "will")
+      iex> search_school_users(school_id, "will")
       [%SchoolUser{}, ...]
 
-      iex> search_school_user(school_id ,"will ceolin")
+      iex> search_school_users(school_id ,"will ceolin")
       [%SchoolUser{}, ...]
 
-      iex> search_school_user(school_id, "will@zoonk.org")
+      iex> search_school_users(school_id, "will@zoonk.org")
       [%SchoolUser{}, ...]
 
-      iex> search_school_user(school_id, "invalid")
+      iex> search_school_users(school_id, "invalid")
       []
   """
-  @spec search_school_user(non_neg_integer(), String.t()) :: [SchoolUser.t()]
-  def search_school_user(school_id, term) do
+  @spec search_school_users(non_neg_integer(), String.t()) :: [SchoolUser.t()]
+  def search_school_users(school_id, term) do
     search_term = "%#{term}%"
     combined_name_search_term = search_term |> String.split(" ") |> Enum.join(" ")
 

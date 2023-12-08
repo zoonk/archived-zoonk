@@ -76,5 +76,5 @@ defmodule UneebeeWeb.Live.Dashboard.SchoolUserList do
   defp page_title(_live_action), do: dgettext("orgs", "Users")
 
   defp search_users(_school, nil), do: []
-  defp search_users(school, term), do: Organizations.search_school_user(school.id, term)
+  defp search_users(school, term), do: Organizations.search_school_users(school.id, term)
 end

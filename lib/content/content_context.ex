@@ -271,6 +271,45 @@ defmodule Uneebee.Content do
   end
 
   @doc """
+  Search course users.
+
+  Search a course user by `first_name`, `last_name`, `username` or `email`.
+
+  ## Examples
+
+      iex> search_course_users(course_id, "will")
+      [%CourseUser{}, ...]
+
+      iex> search_course_users(course_id, "will ceolin")
+      [%CourseUser{}, ...]
+
+      iex> search_course_users(course_id, "will@zoonk.org")
+      [%CourseUser{}, ...]
+
+      iex> search_course_users(course_id, "invalid)
+      []
+  """
+  @spec search_course_users(non_neg_integer(), String.t()) :: [CourseUser.t()]
+  def search_course_users(course_id, term) do
+    search_term = "%#{term}%"
+    combined_name_search_term = search_term |> String.split(" ") |> Enum.join(" ")
+
+    CourseUser
+    |> join(:inner, [cu], u in User, on: cu.user_id == u.id)
+    |> where([cu, u], cu.course_id == ^course_id)
+    |> where(
+      [cu, u],
+      ilike(u.username, ^search_term) or
+        ilike(u.email, ^search_term) or
+        ilike(u.first_name, ^search_term) or
+        ilike(u.last_name, ^search_term) or
+        ilike(fragment("? || ' ' || ?", u.first_name, u.last_name), ^combined_name_search_term)
+    )
+    |> preload([cu, u], user: u)
+    |> Repo.all()
+  end
+
+  @doc """
   List all users for a course.
 
   ## Examples

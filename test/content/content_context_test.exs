@@ -356,6 +356,24 @@ defmodule Uneebee.ContentTest do
     end
   end
 
+  describe "search_course_users/2" do
+    test "search a course user" do
+      course = course_fixture()
+      user = user_fixture(%{first_name: "Albert", last_name: "Einstein", username: "user-#{System.unique_integer()}-einstein"})
+      course_user = course_user_fixture(%{course: course, user: user, preload: :user})
+
+      assert Content.search_course_users(course.id, user.username) == [course_user]
+      assert Content.search_course_users(course.id, "Einstein") == [course_user]
+      assert Content.search_course_users(course.id, "eins") == [course_user]
+      assert Content.search_course_users(course.id, user.email) == [course_user]
+      assert Content.search_course_users(course.id, user.first_name) == [course_user]
+      assert Content.search_course_users(course.id, user.last_name) == [course_user]
+      assert Content.search_course_users(course.id, "alb") == [course_user]
+      assert Content.search_course_users(course.id, "albert einstein") == [course_user]
+      assert Content.search_course_users(course.id, "invalid") == []
+    end
+  end
+
   describe "list_course_users/1" do
     test "list course users" do
       teacher = user_fixture()
