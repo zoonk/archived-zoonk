@@ -14,12 +14,20 @@ defmodule UneebeeWeb.Components.SearchBox do
   attr :show, :boolean, default: false, doc: "whether to show the search box on mount"
   attr :on_cancel, JS, default: %JS{}, doc: "the JS command to run when the search box is canceled"
   attr :empty, :boolean, default: true, doc: "whether the search results are empty"
+  attr :rest, :global, doc: "the rest of the attributes"
 
   slot :inner_block, required: true, doc: "the inner block that renders the search box content"
 
   def search_box(assigns) do
     ~H"""
-    <div id={@id} phx-mounted={@show && show_search_box(@id)} phx-remove={hide_search_box(@id)} data-cancel={JS.exec(@on_cancel, "phx-remove")} class="relative z-50 hidden">
+    <form
+      id={@id}
+      phx-mounted={@show && show_search_box(@id)}
+      phx-remove={hide_search_box(@id)}
+      data-cancel={JS.exec(@on_cancel, "phx-remove")}
+      class="relative z-50 hidden"
+      {@rest}
+    >
       <div id={"#{@id}-bg"} class="bg-gray-50/90 fixed inset-0 transition-opacity" aria-hidden="true" />
 
       <div class="fixed inset-0 overflow-y-auto" aria-labelledby={"#{@id}-title"} aria-describedby={"#{@id}-description"} role="dialog" aria-modal="true" tabindex="0">
@@ -43,11 +51,13 @@ defmodule UneebeeWeb.Components.SearchBox do
 
                 <input
                   type="text"
+                  name="term"
                   class="h-12 w-full border-0 bg-transparent pr-4 pl-11 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm"
                   placeholder="Search..."
                   role="combobox"
                   aria-expanded="false"
                   aria-controls="options"
+                  phx-debounce
                 />
               </div>
 
@@ -60,7 +70,15 @@ defmodule UneebeeWeb.Components.SearchBox do
           </div>
         </div>
       </div>
-    </div>
+    </form>
+    """
+  end
+
+  def search_item(assigns) do
+    ~H"""
+    <li class="cursor-default select-none px-4 py-2" id={@id} role="option" tabindex="-1">
+      <.link navigate={@navigate}><%= @name %></.link>
+    </li>
     """
   end
 

@@ -71,6 +71,19 @@
   </form>
 </.modal>
 
-<.search_box :if={@live_action == :search} id="user-search" show on_cancel={JS.patch(~p"/dashboard/users")}>
-  search
+<.search_box
+  :if={@live_action == :search}
+  phx-change="search"
+  phx-submit="search"
+  empty={@search_results == []}
+  id="user-search"
+  show
+  on_cancel={JS.patch(~p"/dashboard/users")}
+>
+  <.search_item
+    :for={school_user <- @search_results}
+    id={"user-search-#{school_user.id}"}
+    navigate={~p"/dashboard/u/#{school_user.user.username}"}
+    name={UserUtils.full_name(school_user.user)}
+  />
 </.search_box>

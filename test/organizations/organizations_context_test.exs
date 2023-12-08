@@ -406,24 +406,21 @@ defmodule Uneebee.OrganizationsTest do
     end
   end
 
-  describe "search_school_user/3" do
+  describe "search_school_user/2" do
     test "search a school user" do
       school = school_fixture()
       user = user_fixture(%{first_name: "Albert", last_name: "Einstein", username: "user-#{System.unique_integer()}-einstein"})
       school_user = school_user_fixture(%{school: school, user: user, role: :student, preload: :user})
 
-      assert Organizations.search_school_user(school.id, :student, user.username) == [school_user]
-      assert Organizations.search_school_user(school.id, :student, "Einstein") == [school_user]
-      assert Organizations.search_school_user(school.id, :student, "eins") == [school_user]
-      assert Organizations.search_school_user(school.id, :student, user.email) == [school_user]
-      assert Organizations.search_school_user(school.id, :student, user.first_name) == [school_user]
-      assert Organizations.search_school_user(school.id, :student, user.last_name) == [school_user]
-      assert Organizations.search_school_user(school.id, :student, "alb") == [school_user]
-      assert Organizations.search_school_user(school.id, :student, "albert einstein") == [school_user]
-
-      assert Organizations.search_school_user(school.id, :student, "invalid") == []
-      assert Organizations.search_school_user(school.id, :teacher, user.username) == []
-      assert Organizations.search_school_user(school.id, :manager, user.username) == []
+      assert Organizations.search_school_user(school.id, user.username) == [school_user]
+      assert Organizations.search_school_user(school.id, "Einstein") == [school_user]
+      assert Organizations.search_school_user(school.id, "eins") == [school_user]
+      assert Organizations.search_school_user(school.id, user.email) == [school_user]
+      assert Organizations.search_school_user(school.id, user.first_name) == [school_user]
+      assert Organizations.search_school_user(school.id, user.last_name) == [school_user]
+      assert Organizations.search_school_user(school.id, "alb") == [school_user]
+      assert Organizations.search_school_user(school.id, "albert einstein") == [school_user]
+      assert Organizations.search_school_user(school.id, "invalid") == []
     end
   end
 

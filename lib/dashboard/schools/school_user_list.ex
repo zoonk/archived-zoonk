@@ -27,10 +27,13 @@ defmodule UneebeeWeb.Live.Dashboard.SchoolUserList do
   end
 
   @impl Phoenix.LiveView
-  def handle_params(_params, _uri, socket) do
-    %{live_action: live_action} = socket.assigns
+  def handle_params(params, _uri, socket) do
+    %{live_action: live_action, school: school} = socket.assigns
 
-    socket = assign(socket, :page_title, page_title(live_action))
+    socket =
+      socket
+      |> assign(:page_title, page_title(live_action))
+      |> assign(:search_results, search_users(school, params["term"]))
 
     {:noreply, socket}
   end
@@ -45,6 +48,10 @@ defmodule UneebeeWeb.Live.Dashboard.SchoolUserList do
   def handle_event("add-user", %{"email_or_username" => email_or_username, "role" => role}, socket) do
     user = Accounts.get_user_by_email_or_username(email_or_username)
     handle_add_user(user, role, socket)
+  end
+
+  def handle_event("search", %{"term" => search_term}, socket) do
+    {:noreply, push_patch(socket, to: ~p"/dashboard/users/search?term=#{search_term}")}
   end
 
   defp handle_add_user(%User{} = user, role, socket) do
@@ -67,4 +74,7 @@ defmodule UneebeeWeb.Live.Dashboard.SchoolUserList do
 
   defp page_title(:search), do: dgettext("orgs", "Search users")
   defp page_title(_live_action), do: dgettext("orgs", "Users")
+
+  defp search_users(_school, nil), do: []
+  defp search_users(school, term), do: Organizations.search_school_user(school.id, term)
 end
