@@ -1,4 +1,10 @@
-<.user_list_header title={@page_title} count={@user_count} add_user_label={dgettext("orgs", "Add user")} on_add_user={show_modal("add-user-modal")} />
+<.user_list_header
+  title={dgettext("orgs", "Users")}
+  count={@user_count}
+  search_link={~p"/dashboard/users/search"}
+  add_user_label={dgettext("orgs", "Add user")}
+  on_add_user={show_modal("add-user-modal")}
+/>
 
 <ul
   role="list"
@@ -64,3 +70,20 @@
     </.button>
   </form>
 </.modal>
+
+<.search_box
+  :if={@live_action == :search}
+  phx-change="search"
+  phx-submit="search"
+  empty={@search_results == []}
+  id="user-search"
+  show
+  on_cancel={JS.patch(~p"/dashboard/users")}
+>
+  <.search_item
+    :for={school_user <- @search_results}
+    id={"user-search-#{school_user.user.id}"}
+    navigate={~p"/dashboard/u/#{school_user.user.username}"}
+    name={UserUtils.full_name(school_user.user)}
+  />
+</.search_box>

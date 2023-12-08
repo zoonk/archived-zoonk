@@ -62,18 +62,18 @@ msgid "Logo updated successfully!"
 msgstr "標誌更新成功！"
 
 #: lib/dashboard/courses/course_user_list.ex:50
-#: lib/dashboard/schools/school_user_list.ex:52
+#: lib/dashboard/schools/school_user_list.ex:67
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Could not add user!"
 msgstr "無法新增使用者！"
 
 #: lib/dashboard/courses/course_user_list.ex:55
-#: lib/dashboard/schools/school_user_list.ex:57
+#: lib/dashboard/schools/school_user_list.ex:72
 #, elixir-autogen, elixir-format
 msgid "User not found!"
 msgstr "找不到使用者！"
 
-#: lib/dashboard/schools/school_user_list.html.heex:29
+#: lib/dashboard/schools/school_user_list.html.heex:35
 #, elixir-autogen, elixir-format
 msgid "Approved by: @%{username}"
 msgstr "由 @%{username} 批准"
@@ -103,7 +103,7 @@ msgid "Could not remove user!"
 msgstr "無法移除使用者！"
 
 #: lib/dashboard/courses/course_user_list.html.heex:19
-#: lib/dashboard/schools/school_user_list.html.heex:19
+#: lib/dashboard/schools/school_user_list.html.heex:25
 #, elixir-autogen, elixir-format
 msgid "Pending"
 msgstr "待處理"
@@ -337,7 +337,7 @@ msgstr "課程 %{order} 的描述。您應該更新這個。"
 
 #: lib/dashboard/courses/course_user_list.html.heex:39
 #: lib/dashboard/schools/school_list.html.heex:37
-#: lib/dashboard/schools/school_user_list.html.heex:47
+#: lib/dashboard/schools/school_user_list.html.heex:53
 #, elixir-autogen, elixir-format
 msgid "Details"
 msgstr "詳情"
@@ -667,9 +667,9 @@ msgstr "此選項被選擇了 %{count}% 的時間。"
 #: lib/dashboard/courses/course_user_list.html.heex:1
 #: lib/dashboard/courses/course_user_list.html.heex:47
 #: lib/dashboard/courses/course_user_list.html.heex:55
-#: lib/dashboard/schools/school_user_list.html.heex:1
-#: lib/dashboard/schools/school_user_list.html.heex:55
-#: lib/dashboard/schools/school_user_list.html.heex:63
+#: lib/dashboard/schools/school_user_list.html.heex:5
+#: lib/dashboard/schools/school_user_list.html.heex:61
+#: lib/dashboard/schools/school_user_list.html.heex:69
 #, elixir-autogen, elixir-format
 msgid "Add user"
 msgstr "新增使用者"
@@ -694,7 +694,8 @@ msgstr "老師"
 
 #: lib/dashboard/courses/course_user_list.ex:21
 #: lib/dashboard/courses/course_user_list.html.heex:1
-#: lib/dashboard/schools/school_user_list.ex:22
+#: lib/dashboard/schools/school_user_list.ex:76
+#: lib/dashboard/schools/school_user_list.html.heex:2
 #: lib/layouts/menu_utils.ex:88
 #: lib/layouts/templates/dashboard_course.html.heex:34
 #, elixir-autogen, elixir-format, fuzzy
@@ -737,8 +738,13 @@ msgstr "學生"
 msgid "Teachers"
 msgstr "教師"
 
-#: lib/dashboard/schools/school_user_list.html.heex:60
+#: lib/dashboard/schools/school_user_list.html.heex:66
 #: lib/dashboard/schools/school_user_view.html.heex:16
 #, elixir-autogen, elixir-format, fuzzy
 msgid "School role"
 msgstr "學校角色"
+
+#: lib/dashboard/schools/school_user_list.ex:75
+#, elixir-autogen, elixir-format
+msgid "Search users"
+msgstr "搜尋使用者"
