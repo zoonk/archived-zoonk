@@ -7,18 +7,15 @@ defmodule UneebeeWeb.Components.SearchButton do
   use UneebeeWeb, :live_component
 
   attr :class, :string, default: nil, doc: "the optional additional classes to add to the button element"
-  attr :navigate, :string, required: true, doc: "the path to navigate to when the button is clicked"
+  attr :patch, :string, required: true, doc: "the path to patch to when the button is clicked"
 
   @impl Phoenix.LiveComponent
   def render(assigns) do
     ~H"""
-    <div id="search-button" phx-hook="CmdKShortcut" phx-target={@myself}>
+    <div id="search-button" phx-hook="CmdKShortcut" phx-target={@myself} class={@class}>
       <.link
-        navigate={@navigate}
-        class={[
-          "ring-slate-900/10 flex h-10 sm:w-60 items-center space-x-3 rounded-lg bg-white px-2 sm:px-4 text-left text-slate-400 shadow-sm ring-1 hover:ring-slate-300 focus:outline-none focus:ring-2 focus:ring-sky-500",
-          @class
-        ]}
+        patch={@patch}
+        class="ring-slate-900/10 flex h-10 sm:w-60 items-center space-x-3 rounded-lg bg-white px-2 sm:px-4 text-left text-slate-400 shadow-sm ring-1 hover:ring-slate-300 focus:outline-none focus:ring-2 focus:ring-sky-500"
       >
         <svg
           width="24"
@@ -46,6 +43,6 @@ defmodule UneebeeWeb.Components.SearchButton do
 
   @impl Phoenix.LiveComponent
   def handle_event("cmd-k-shortcut", _params, socket) do
-    {:noreply, push_navigate(socket, to: socket.assigns.navigate)}
+    {:noreply, push_patch(socket, to: socket.assigns.patch)}
   end
 end

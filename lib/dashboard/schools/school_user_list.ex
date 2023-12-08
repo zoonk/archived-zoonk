@@ -19,12 +19,20 @@ defmodule UneebeeWeb.Live.Dashboard.SchoolUserList do
 
     socket =
       socket
-      |> assign(:page_title, dgettext("orgs", "Users"))
       |> assign(:can_demote_user?, can_demote_user?)
       |> assign(:user_count, user_count)
       |> add_pagination()
 
     {:ok, socket}
+  end
+
+  @impl Phoenix.LiveView
+  def handle_params(_params, _uri, socket) do
+    %{live_action: live_action} = socket.assigns
+
+    socket = assign(socket, :page_title, page_title(live_action))
+
+    {:noreply, socket}
   end
 
   defp paginate(socket, new_page) when new_page >= 1 do
@@ -56,4 +64,7 @@ defmodule UneebeeWeb.Live.Dashboard.SchoolUserList do
   defp handle_add_user(nil, _role, socket) do
     {:noreply, put_flash(socket, :error, dgettext("orgs", "User not found!"))}
   end
+
+  defp page_title(:search), do: dgettext("orgs", "Search users")
+  defp page_title(_live_action), do: dgettext("orgs", "Users")
 end
