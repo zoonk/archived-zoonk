@@ -1,4 +1,4 @@
-defmodule UneebeeWeb.Live.Feedback do
+defmodule UneebeeWeb.Live.Contact do
   @moduledoc false
   use UneebeeWeb, :live_view
 
@@ -12,7 +12,7 @@ defmodule UneebeeWeb.Live.Feedback do
 
     socket =
       socket
-      |> assign(:page_title, gettext("Feedback"))
+      |> assign(:page_title, gettext("Contact us"))
       |> assign(:name, get_name(user))
       |> assign(:email, get_email(user))
 
@@ -23,10 +23,10 @@ defmodule UneebeeWeb.Live.Feedback do
   def handle_event("send", %{"name" => name, "email" => email, "message" => message}, socket) do
     case Support.send_feedback(socket.assigns.school, name, email, message) do
       {:ok, _mailer} ->
-        {:noreply, put_flash(socket, :info, gettext("Feedback sent!"))}
+        {:noreply, put_flash(socket, :info, gettext("Message sent!"))}
 
       {:error, _reason} ->
-        {:noreply, put_flash(socket, :error, gettext("There was an error sending your feedback. Please try again."))}
+        {:noreply, put_flash(socket, :error, gettext("There was an error sending your message. Please try again."))}
     end
   end
 

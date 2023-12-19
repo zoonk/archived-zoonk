@@ -7,6 +7,7 @@ defmodule Uneebee.Repo.Migrations.AddSubscriptionsTable do
       add :payment_status, :string, default: "pending", null: false
       add :plan, :string, default: "free", null: false
       add :stripe_payment_intent_id, :string
+      add :stripe_subscription_id, :string
       add :school_id, references(:schools, on_delete: :delete_all), null: false
 
       timestamps(type: :utc_datetime_usec)

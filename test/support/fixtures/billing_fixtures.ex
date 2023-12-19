@@ -16,7 +16,8 @@ defmodule Uneebee.Fixtures.Billing do
     Enum.into(attrs, %{
       payment_status: :pending,
       plan: :flexible,
-      school_id: school_fixture().id
+      school_id: school_fixture().id,
+      stripe_subscription_id: "sub_123"
     })
   end
 

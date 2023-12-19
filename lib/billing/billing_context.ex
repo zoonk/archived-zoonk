@@ -77,4 +77,42 @@ defmodule Uneebee.Billing do
   def get_subscription_by_school_id(school_id) do
     Repo.get_by(Subscription, school_id: school_id)
   end
+
+  @doc """
+  Get the subscription price based on the lookup key set on Stripe.
+
+  ## Examples
+
+      iex> Billing.get_subscription_price(lookup_key)
+      %Stripe.Price{}
+  """
+  @spec get_subscription_price(String.t()) :: any()
+  def get_subscription_price(lookup_key) do
+    {:ok, %Stripe.List{data: data}} = Stripe.Price.list(%{"limit" => 1, "lookup_keys" => [lookup_key], "type" => "recurring", "expand" => ["data.currency_options"]})
+    price = Enum.at(data, 0)
+
+    %{id: price.id, default: price.currency, currency_options: convert_currency_options(price.currency_options)}
+  end
+
+  defp convert_currency_options(currency_options) do
+    Map.new(currency_options, fn {key, val} ->
+      unit_amount = Map.get(val, :unit_amount, 0) / 100
+      {key, unit_amount}
+    end)
+  end
+
+  @doc """
+  Delete a school subscription.
+
+  ## Examples
+
+      iex> Billing.delete_school_subscription(school_id)
+      {:ok, %Subscription{}}
+  """
+  @spec delete_school_subscription(non_neg_integer()) :: subscription_changeset()
+  def delete_school_subscription(school_id) do
+    subscription = get_subscription_by_school_id(school_id)
+    Stripe.Subscription.cancel(subscription.stripe_subscription_id)
+    Repo.delete(subscription)
+  end
 end

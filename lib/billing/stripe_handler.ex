@@ -33,7 +33,7 @@ defmodule Uneebee.Billing.StripeHandler do
 
     session.client_reference_id
     |> Billing.get_subscription_by_school_id()
-    |> Billing.update_subscription(%{payment_status: :confirmed, paid_at: DateTime.utc_now()})
+    |> Billing.update_subscription(%{payment_status: :confirmed, paid_at: DateTime.utc_now(), stripe_subscription_id: session.subscription})
 
     :ok
   end
@@ -46,6 +46,7 @@ defmodule Uneebee.Billing.StripeHandler do
       plan: String.to_existing_atom(session.metadata["plan"]),
       payment_status: get_payment_status(session.payment_status),
       stripe_payment_intent_id: session.payment_intent,
+      stripe_subscription_id: session.subscription,
       paid_at: get_paid_at(session.payment_status)
     })
   end
@@ -54,6 +55,7 @@ defmodule Uneebee.Billing.StripeHandler do
     Billing.update_subscription(subscription, %{
       payment_status: get_payment_status(session.payment_status),
       stripe_payment_intent_id: session.payment_intent,
+      stripe_subscription_id: session.subscription,
       paid_at: get_paid_at(session.payment_status)
     })
   end

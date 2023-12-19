@@ -2,6 +2,7 @@ defmodule Uneebee.BillingTest do
   use Uneebee.DataCase, async: true
 
   import Uneebee.Fixtures.Accounts
+  import Uneebee.Fixtures.Billing
   import Uneebee.Fixtures.Organizations
 
   alias Uneebee.Billing
@@ -65,6 +66,15 @@ defmodule Uneebee.BillingTest do
 
       assert {:ok, %Subscription{} = subscription} = Billing.create_subscription(%{school_id: school.id})
       assert Billing.get_subscription_by_school_id(school.id) == subscription
+    end
+  end
+
+  describe "delete_school_subscription/1" do
+    test "deletes a school's subscription" do
+      subscription = subscription_fixture()
+
+      assert {:ok, %Subscription{} = subscription} = Billing.delete_school_subscription(subscription.school_id)
+      assert Billing.get_subscription_by_school_id(subscription.school_id) == nil
     end
   end
 end
