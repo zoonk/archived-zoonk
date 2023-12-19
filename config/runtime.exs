@@ -23,7 +23,7 @@ end
 if config_env() in [:prod, :dev] do
   config :stripity_stripe,
     api_key: System.get_env("STRIPE_API_KEY"),
-    signing_secret: System.get_env("STRIPE_SIGNING_SECRET")
+    webhook_secret: System.get_env("STRIPE_WEBHOOK_SECRET")
 end
 
 if config_env() == :prod do
