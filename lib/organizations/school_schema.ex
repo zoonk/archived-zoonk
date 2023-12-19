@@ -27,6 +27,7 @@ defmodule Uneebee.Organizations.School do
     field :public?, :boolean, default: false
     field :require_confirmation?, :boolean, default: false
     field :slug, :string
+    field :stripe_customer_id, :string
     field :terms_of_use, :string
 
     belongs_to :created_by, User
@@ -69,7 +70,21 @@ defmodule Uneebee.Organizations.School do
   end
 
   defp shared_cast_fields do
-    [:allow_guests?, :created_by_id, :custom_domain, :email, :logo, :name, :privacy_policy, :public?, :require_confirmation?, :terms_of_use, :school_id, :slug]
+    [
+      :allow_guests?,
+      :created_by_id,
+      :custom_domain,
+      :email,
+      :logo,
+      :name,
+      :privacy_policy,
+      :public?,
+      :require_confirmation?,
+      :terms_of_use,
+      :school_id,
+      :slug,
+      :stripe_customer_id
+    ]
   end
 
   defp validate_unique_slug(changeset) do
