@@ -15,7 +15,6 @@ defmodule Uneebee.Billing.Subscription do
     field :payment_status, Ecto.Enum, values: [:pending, :error, :confirmed], default: :pending
     field :plan, Ecto.Enum, values: [:free, :flexible, :enterprise], default: :free
     field :stripe_payment_intent_id, :string
-    field :stripe_session_id, :string
 
     belongs_to :school, School
 
@@ -26,7 +25,8 @@ defmodule Uneebee.Billing.Subscription do
   @spec changeset(Ecto.Schema.t(), map()) :: Ecto.Changeset.t()
   def changeset(subscription, attrs) do
     subscription
-    |> cast(attrs, [:paid_at, :payment_status, :plan, :stripe_payment_intent_id, :stripe_session_id, :school_id])
+    |> cast(attrs, [:paid_at, :payment_status, :plan, :stripe_payment_intent_id, :school_id])
     |> validate_required([:payment_status, :plan, :school_id])
+    |> unique_constraint(:school_id)
   end
 end

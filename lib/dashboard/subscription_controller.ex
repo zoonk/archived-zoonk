@@ -23,6 +23,7 @@ defmodule UneebeeWeb.Controller.SchoolSubscription do
         customer: customer_id,
         success_url: billing_url,
         cancel_url: billing_url,
+        client_reference_id: school.id,
         line_items: [%{price: price_id}],
         metadata: %{"school_id" => school.id, "user_id" => user.id, "plan" => "flexible"}
       })
