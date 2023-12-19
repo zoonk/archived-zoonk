@@ -32,7 +32,6 @@ defmodule Uneebee.BillingTest do
   describe "create_subscription/1" do
     test "creates a subscription for a school" do
       school = school_fixture()
-      manager = user_fixture()
 
       assert {:ok, %Subscription{} = subscription} = Billing.create_subscription(%{school_id: school.id})
       assert subscription.school_id == school.id
@@ -42,7 +41,6 @@ defmodule Uneebee.BillingTest do
 
     test "doesn't allow to create multiple subscriptions for a school" do
       school = school_fixture()
-      manager = user_fixture()
 
       assert {:ok, %Subscription{} = subscription} = Billing.create_subscription(%{school_id: school.id})
       assert {:error, _error} = Billing.create_subscription(%{school_id: school.id})
@@ -54,7 +52,6 @@ defmodule Uneebee.BillingTest do
   describe "update_subscription/2" do
     test "updates a subscription" do
       school = school_fixture()
-      manager = user_fixture()
 
       assert {:ok, %Subscription{} = subscription} = Billing.create_subscription(%{school_id: school.id})
       assert {:ok, %Subscription{} = subscription} = Billing.update_subscription(subscription, %{plan: :flexible})

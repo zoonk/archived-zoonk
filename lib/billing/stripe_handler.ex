@@ -23,7 +23,7 @@ defmodule Uneebee.Billing.StripeHandler do
 
     session.client_reference_id
     |> Billing.get_subscription_by_school_id()
-    |> Billing.update_subscription(%{payment_status: :failed})
+    |> Billing.update_subscription(%{payment_status: :error})
 
     :ok
   end

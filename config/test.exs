@@ -38,4 +38,5 @@ config :phoenix, :plug_init_mode, :runtime
 # Stripe test keys
 config :stripity_stripe,
   api_key: "sk_test_thisisaboguskey",
+  webhook_secret: "whsec_thisisaboguskey",
   api_base_url: "http://localhost:12111"
