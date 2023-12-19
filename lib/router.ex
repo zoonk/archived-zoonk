@@ -152,6 +152,12 @@ defmodule UneebeeWeb.Router do
     end
   end
 
+  scope "/dashboard", UneebeeWeb.Controller do
+    pipe_through [:browser, :require_authenticated_user, :require_manager]
+
+    get "/billing/:price_id", SchoolSubscription, :show
+  end
+
   # These routes are only available to managers and teachers.
   scope "/dashboard", UneebeeWeb.Controller.Dashboard do
     pipe_through [:browser, :require_authenticated_user, :fetch_course, :require_manager_or_teacher]
