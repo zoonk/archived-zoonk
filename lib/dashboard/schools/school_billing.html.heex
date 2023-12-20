@@ -3,11 +3,11 @@
     <.input type="select" name="currency" label={dgettext("orgs", "Select your currency")} value={@currency} options={currency_options(@flexible_pricing.currency_options)} />
   </form>
 
-  <ul class="isolate mx-auto grid max-w-md grid-cols-1 gap-y-8 lg:mx-0 lg:max-w-none lg:grid-cols-3">
+  <ul class="isolate mx-auto grid max-w-md grid-cols-1 gap-y-8 sm:mx-0 sm:max-w-none sm:grid-cols-3">
     <li
       :for={plan <- billing_plans()}
       :if={plan != :flexible or (@subscription && @subscription.plan != :enterprise)}
-      class="flex flex-col justify-between bg-white p-8 ring-1 ring-gray-200 first:rounded-l-lg last:rounded-r-lg xl:p-10"
+      class="flex flex-col justify-between rounded-lg bg-white p-8 ring-1 ring-gray-200 sm:[&:not(:first-child)]:rounded-l-none sm:[&:not(:last-child)]:rounded-r-none xl:p-10"
     >
       <div>
         <div class="flex items-center justify-between gap-x-4">
