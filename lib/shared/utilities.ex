@@ -56,7 +56,7 @@ defmodule UneebeeWeb.Shared.Utilities do
   @doc """
   Rounds a currency when the decimal is 0.
   """
-  @spec round_currency(float()) :: number()
-  def round_currency(currency) when currency == round(currency), do: round(currency)
-  def round_currency(currency), do: currency
+  @spec round_currency(float()) :: String.t()
+  def round_currency(currency) when currency == round(currency), do: currency |> round() |> Integer.to_string()
+  def round_currency(currency), do: :erlang.float_to_binary(currency, decimals: 2)
 end
