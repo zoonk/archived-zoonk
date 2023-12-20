@@ -10,13 +10,13 @@ defmodule UneebeeWeb.Billing.Utils do
       dgettext("orgs", "2 users"),
       dgettext("orgs", "Unlimited lessons"),
       dgettext("orgs", "Custom logo"),
-      dgettext("orgs", "Custom domain"),
-      dgettext("orgs", "Cancel anytime")
+      dgettext("orgs", "Custom domain")
     ],
     flexible: [
       dgettext("orgs", "Everything in Hobby"),
       dgettext("orgs", "Unlimited users"),
-      dgettext("orgs", "Faster support")
+      dgettext("orgs", "Faster support"),
+      dgettext("orgs", "Cancel anytime")
     ],
     enterprise: [
       dgettext("orgs", "Everything in Flexible"),
@@ -40,7 +40,7 @@ defmodule UneebeeWeb.Billing.Utils do
       %{
         key: :enterprise,
         name: dgettext("orgs", "Enterprise"),
-        description: dgettext("orgs", "Dedicated support and infrastructure for your organization."),
+        description: dgettext("orgs", "Priority support and dedicated infrastructure."),
         features: @plan_features[:enterprise]
       }
     ]
