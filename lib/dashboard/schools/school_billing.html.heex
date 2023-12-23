@@ -1,12 +1,13 @@
 <section class="container">
-  <form class="w-full pb-4 sm:max-w-xs" phx-change="change-currency">
+  <form id="change-currency" class="w-full pb-4 sm:max-w-xs" phx-change="change-currency">
     <.input type="select" name="currency" label={dgettext("orgs", "Select your currency")} value={@currency} options={currency_options(@flexible_pricing.currency_options)} />
   </form>
 
   <ul class="isolate mx-auto grid max-w-md grid-cols-1 gap-y-8 sm:mx-0 sm:max-w-none sm:grid-cols-3">
     <li
       :for={plan <- billing_plans()}
-      :if={plan != :flexible or (@subscription && @subscription.plan != :enterprise)}
+      :if={plan.key != :flexible or is_nil(@subscription) or @subscription.plan != :enterprise}
+      id={"plan-#{plan.key}"}
       class="flex flex-col justify-between rounded-lg bg-white p-8 ring-1 ring-gray-200 sm:[&:not(:first-child)]:rounded-l-none sm:[&:not(:last-child)]:rounded-r-none xl:p-10"
     >
       <div>
@@ -22,7 +23,7 @@
 
         <p class="mt-6 flex items-baseline gap-x-1">
           <span class="text-4xl font-bold tracking-tight text-gray-900">
-            <span :if={plan.key == :flexible}><%= currency_symbol(@currency) %></span><%= get_price(plan.key, @flexible_pricing, @currency) %>
+            <%= if plan.key == :flexible, do: currency_symbol(@currency) %><%= get_price(plan.key, @flexible_pricing, @currency) %>
           </span>
 
           <span :if={plan.key == :flexible} class="text-sm font-semibold leading-6 text-gray-600">

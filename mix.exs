@@ -49,6 +49,7 @@ defmodule Uneebee.MixProject do
       {:hackney, "~> 1.20.1"},
       {:jason, "~> 1.2"},
       {:mix_audit, "~> 2.1.1", only: [:dev, :test], runtime: false},
+      {:mock, "~> 0.3.0", only: :test},
       {:money, "~> 1.12.3"},
       {:phoenix_ecto, "~> 4.4.3"},
       {:phoenix_html, "~> 3.3.3"},
