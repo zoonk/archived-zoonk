@@ -132,6 +132,17 @@ You need to set the following environment variables on your server:
 - `STORAGE_ACCESS_KEY`: Your access key.
 - `STORAGE_BUCKET_URL`: The URL of your bucket. (i.e. `https://mybucketurl.r2.cloudflarestorage.com`).
 
+## Stripe
+
+We use Stripe for processing payments. If you want to enable subscriptions, you need to set the following environment variables on your server:
+
+- `STRIPE_API_KEY`: Your Stripe API key.
+- `STRIPE_WEBHOOK_SECRET`: Your Stripe webhook secret.
+
+Plus, you need to create a product for your subscription. We call this plan `flexible` and you can't customize plans at the moment. We fetch the price from the Stripe API, so make sure you add the `uneebee_flexible` [lookup key](https://stripe.com/docs/products-prices/manage-prices#lookup-keys) to your price.
+
+Stripe can only be enabled for `saas` and `marketplace` apps. Make sure to choose one of those options when you first run this app.
+
 ## Sponsors
 
 We don't have any sponsors yet. Add your name or brand here by [sponsoring our project](https://github.com/sponsors/wceolin).
