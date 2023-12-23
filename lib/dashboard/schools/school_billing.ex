@@ -7,6 +7,8 @@ defmodule UneebeeWeb.Live.Dashboard.SchoolBilling do
 
   alias Uneebee.Billing
   alias Uneebee.Billing.Subscription
+  alias Uneebee.Organizations
+  alias Uneebee.Organizations.School
 
   @impl Phoenix.LiveView
   def mount(_params, _session, socket) do
@@ -14,7 +16,7 @@ defmodule UneebeeWeb.Live.Dashboard.SchoolBilling do
 
     subscription = Billing.get_subscription_by_school_id(school.id)
     flexible_pricing = Billing.get_subscription_price("uneebee_flexible")
-    currency = flexible_pricing.default
+    currency = default_currency(school, flexible_pricing)
 
     socket =
       socket
@@ -28,6 +30,7 @@ defmodule UneebeeWeb.Live.Dashboard.SchoolBilling do
 
   @impl Phoenix.LiveView
   def handle_event("change-currency", params, socket) do
+    Organizations.update_school(socket.assigns.school, %{currency: params["currency"]})
     {:noreply, assign(socket, currency: String.to_existing_atom(params["currency"]))}
   end
 
@@ -63,4 +66,7 @@ defmodule UneebeeWeb.Live.Dashboard.SchoolBilling do
 
   defp buy_link(:enterprise, %Subscription{plan: :enterprise}, _currency, _price), do: "#"
   defp buy_link(:enterprise, _subscription, _currency, _price), do: ~p"/contact"
+
+  defp default_currency(%School{currency: nil}, pricing), do: pricing.default
+  defp default_currency(%School{currency: currency}, _pricing), do: currency
 end

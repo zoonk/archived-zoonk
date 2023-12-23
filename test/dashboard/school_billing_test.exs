@@ -6,6 +6,7 @@ defmodule UneebeeWeb.SchoolBillingLiveTest do
   import Uneebee.Fixtures.Billing
 
   alias Uneebee.Billing
+  alias Uneebee.Organizations
   alias Uneebee.Organizations.School
   alias Uneebee.Repo
 
@@ -56,15 +57,23 @@ defmodule UneebeeWeb.SchoolBillingLiveTest do
       refute has_element?(lv, "li", "Billing")
     end
 
-    test "updates the currency", %{conn: conn} do
+    test "updates the currency", %{conn: conn, school: school} do
       {:ok, lv, _html} = live(conn, ~p"/dashboard/billing")
       assert has_element?(lv, "span", "$10")
 
       lv |> element("#change-currency") |> render_change(%{"currency" => "eur"})
       assert has_element?(lv, "span", "€9")
+      assert Organizations.get_school!(school.id).currency == "eur"
 
       lv |> element("#change-currency") |> render_change(%{"currency" => "brl"})
       assert has_element?(lv, "span", "R$49.99")
+      assert Organizations.get_school!(school.id).currency == "brl"
+    end
+
+    test "use the default currency", %{conn: conn, school: school} do
+      Organizations.update_school(school, %{currency: "eur"})
+      {:ok, lv, _html} = live(conn, ~p"/dashboard/billing")
+      assert has_element?(lv, "span", "€9")
     end
 
     test "displays all plans when there's no existing subscription", %{conn: conn} do

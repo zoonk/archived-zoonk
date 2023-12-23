@@ -18,6 +18,7 @@ defmodule Uneebee.Organizations.School do
 
   schema "schools" do
     field :allow_guests?, :boolean, default: false
+    field :currency, :string
     field :custom_domain, :string
     field :email, :string
     field :kind, Ecto.Enum, values: [:marketplace, :saas, :white_label], default: :white_label
@@ -73,6 +74,7 @@ defmodule Uneebee.Organizations.School do
     [
       :allow_guests?,
       :created_by_id,
+      :currency,
       :custom_domain,
       :email,
       :logo,
