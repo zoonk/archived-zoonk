@@ -6,6 +6,8 @@ defmodule UneebeeWeb.SchoolBillingLiveTest do
   import Uneebee.Fixtures.Billing
 
   alias Uneebee.Billing
+  alias Uneebee.Organizations.School
+  alias Uneebee.Repo
 
   @subscription_price %{default: "usd", id: "pri_123", currency_options: %{usd: 10.0, eur: 9.0, brl: 49.99}}
 
@@ -39,6 +41,19 @@ defmodule UneebeeWeb.SchoolBillingLiveTest do
   describe "school billing (managers)" do
     setup_with_mocks([{Billing, [:passthrough], get_subscription_price: fn _plan -> @subscription_price end}]) do
       app_setup(%{conn: build_conn()}, school_user: :manager)
+    end
+
+    test "sets the billing menu as active", %{conn: conn, school: school} do
+      assert {:ok, lv, _html} = live(conn, ~p"/dashboard/billing")
+      assert has_element?(lv, "li[aria-current=page]", "Billing")
+
+      school |> School.create_changeset(%{kind: :saas}) |> Repo.update()
+      assert {:ok, lv, _html} = live(conn, ~p"/dashboard/billing")
+      refute has_element?(lv, "li", "Billing")
+
+      school |> School.create_changeset(%{kind: :marketplace}) |> Repo.update()
+      assert {:ok, lv, _html} = live(conn, ~p"/dashboard/billing")
+      refute has_element?(lv, "li", "Billing")
     end
 
     test "updates the currency", %{conn: conn} do
