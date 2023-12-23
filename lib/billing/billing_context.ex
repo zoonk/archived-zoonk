@@ -3,6 +3,8 @@ defmodule Uneebee.Billing do
   Billing context.
   """
 
+  import UneebeeWeb.Billing.Utils
+
   alias Uneebee.Accounts.User
   alias Uneebee.Billing.Subscription
   alias Uneebee.Organizations
@@ -115,4 +117,21 @@ defmodule Uneebee.Billing do
     Stripe.Subscription.cancel(subscription.stripe_subscription_id)
     Repo.delete(subscription)
   end
+
+  @doc """
+  Check if a school has an active subscription.
+
+  ## Examples
+
+      iex> Billing.active_subscription?(%School{})
+      true
+
+      iex> Billing.active_subscription?(%School{})
+      false
+  """
+  @spec active_subscription?(School.t()) :: boolean()
+  def active_subscription?(%School{school_id: nil}), do: true
+  def active_subscription?(%School{} = school), do: active_subscription?(school, get_subscription_by_school_id(school.id))
+  defp active_subscription?(_school, %Subscription{payment_status: :confirmed}), do: true
+  defp active_subscription?(%School{} = school, _subs), do: Organizations.get_school_users_count(school) <= max_free_users()
 end

@@ -77,4 +77,77 @@ defmodule Uneebee.BillingTest do
       assert Billing.get_subscription_by_school_id(subscription.school_id) == nil
     end
   end
+
+  describe "active_subscription?/1" do
+    test "returns true if the school is the main school" do
+      school = school_fixture(%{school_id: nil})
+      assert Billing.active_subscription?(school)
+    end
+
+    test "returns true if the payment is confirmed" do
+      parent_school = school_fixture(%{school_id: nil})
+      school = school_fixture(%{school_id: parent_school.id})
+      subscription_fixture(%{school_id: parent_school.id, payment_status: :confirmed})
+
+      assert Billing.active_subscription?(school)
+    end
+
+    test "returns false if the payment is pending and the school has more than 2 users" do
+      parent_school = school_fixture(%{school_id: nil})
+      school = school_fixture(%{school_id: parent_school.id})
+      subscription_fixture(%{school_id: parent_school.id, payment_status: :pending})
+
+      Enum.each(1..3, fn _idx -> school_user_fixture(%{school: school}) end)
+
+      refute Billing.active_subscription?(school)
+    end
+
+    test "returns true if the payment is pending and the school has 2 or less users" do
+      parent_school = school_fixture(%{school_id: nil})
+      school = school_fixture(%{school_id: parent_school.id})
+      subscription_fixture(%{school_id: parent_school.id, payment_status: :pending})
+
+      Enum.each(1..2, fn _idx -> school_user_fixture(%{school: school}) end)
+
+      assert Billing.active_subscription?(school)
+    end
+
+    test "returns false if the payment has error and the school has more than 2 users" do
+      parent_school = school_fixture(%{school_id: nil})
+      school = school_fixture(%{school_id: parent_school.id})
+      subscription_fixture(%{school_id: parent_school.id, payment_status: :error})
+
+      Enum.each(1..3, fn _idx -> school_user_fixture(%{school: school}) end)
+
+      refute Billing.active_subscription?(school)
+    end
+
+    test "returns true if the payment has error and the school has 2 or less users" do
+      parent_school = school_fixture(%{school_id: nil})
+      school = school_fixture(%{school_id: parent_school.id})
+      subscription_fixture(%{school_id: parent_school.id, payment_status: :error})
+
+      Enum.each(1..2, fn _idx -> school_user_fixture(%{school: school}) end)
+
+      assert Billing.active_subscription?(school)
+    end
+
+    test "returns false if there is no subscription and the school has more than 2 users" do
+      parent_school = school_fixture(%{school_id: nil})
+      school = school_fixture(%{school_id: parent_school.id})
+
+      Enum.each(1..3, fn _idx -> school_user_fixture(%{school: school}) end)
+
+      refute Billing.active_subscription?(school)
+    end
+
+    test "returns true if there is no subscription and the school has 2 or less users" do
+      parent_school = school_fixture(%{school_id: nil})
+      school = school_fixture(%{school_id: parent_school.id})
+
+      Enum.each(1..2, fn _idx -> school_user_fixture(%{school: school}) end)
+
+      assert Billing.active_subscription?(school)
+    end
+  end
 end

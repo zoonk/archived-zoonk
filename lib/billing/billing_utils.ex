@@ -5,9 +5,11 @@ defmodule UneebeeWeb.Billing.Utils do
 
   import UneebeeWeb.Gettext
 
+  @max_free_users 2
+
   @plan_features %{
     free: [
-      dgettext("orgs", "2 users"),
+      dgettext("orgs", "%{count} users", count: @max_free_users),
       dgettext("orgs", "Unlimited lessons"),
       dgettext("orgs", "Custom logo"),
       dgettext("orgs", "Custom domain")
@@ -50,4 +52,7 @@ defmodule UneebeeWeb.Billing.Utils do
   def currency_symbol(currency_code) do
     currency_code |> Atom.to_string() |> String.upcase() |> Money.Currency.symbol()
   end
+
+  @spec max_free_users() :: non_neg_integer()
+  def max_free_users, do: @max_free_users
 end
