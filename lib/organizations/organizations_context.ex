@@ -310,12 +310,12 @@ defmodule Uneebee.Organizations do
 
   ## Examples
 
-      iex> get_school_users_count(school)
+      iex> get_school_users_count(123)
       10
   """
-  @spec get_school_users_count(School.t()) :: non_neg_integer()
-  def get_school_users_count(school) do
-    SchoolUser |> where([su], su.school_id == ^school.id) |> Repo.aggregate(:count)
+  @spec get_school_users_count(non_neg_integer()) :: non_neg_integer()
+  def get_school_users_count(school_id) do
+    SchoolUser |> where([su], su.school_id == ^school_id) |> Repo.aggregate(:count)
   end
 
   @doc """
@@ -323,12 +323,12 @@ defmodule Uneebee.Organizations do
 
   ## Examples
 
-      iex> get_school_users_count(school, :manager)
+      iex> get_school_users_count(123, :manager)
       10
   """
-  @spec get_school_users_count(School.t(), atom()) :: non_neg_integer()
-  def get_school_users_count(school, role) do
-    SchoolUser |> where([su], su.school_id == ^school.id and su.role == ^role) |> Repo.aggregate(:count)
+  @spec get_school_users_count(non_neg_integer(), atom()) :: non_neg_integer()
+  def get_school_users_count(school_id, role) do
+    SchoolUser |> where([su], su.school_id == ^school_id and su.role == ^role) |> Repo.aggregate(:count)
   end
 
   @doc """

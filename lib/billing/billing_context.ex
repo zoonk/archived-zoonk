@@ -133,7 +133,7 @@ defmodule Uneebee.Billing do
   def active_subscription?(%School{school_id: nil}), do: true
   def active_subscription?(%School{} = school), do: active_subscription?(school, get_subscription_by_school_id(school.id))
   defp active_subscription?(_school, %Subscription{payment_status: :confirmed}), do: true
-  defp active_subscription?(%School{} = school, _subs), do: Organizations.get_school_users_count(school) <= max_free_users()
+  defp active_subscription?(%School{} = school, _subs), do: Organizations.get_school_users_count(school.id) <= max_free_users()
 
   @doc """
   Get Stripe's subscription item ID from a Stripe subscription ID.

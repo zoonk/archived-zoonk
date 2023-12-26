@@ -7,7 +7,7 @@ defmodule UneebeeWeb.Live.Dashboard.SchoolView do
   @impl Phoenix.LiveView
   def mount(params, _session, socket) do
     current_school = Organizations.get_school!(params["id"])
-    user_count = Organizations.get_school_users_count(current_school)
+    user_count = Organizations.get_school_users_count(current_school.id)
 
     socket =
       socket
