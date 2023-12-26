@@ -17,7 +17,8 @@ defmodule Uneebee.Fixtures.Billing do
       payment_status: :pending,
       plan: :flexible,
       school_id: school_fixture().id,
-      stripe_subscription_id: "sub_123"
+      stripe_subscription_id: "sub_123",
+      stripe_subscription_item_id: "si_123"
     })
   end
 

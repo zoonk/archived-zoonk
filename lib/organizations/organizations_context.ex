@@ -5,6 +5,8 @@ defmodule Uneebee.Organizations do
   import Ecto.Query, warn: false
 
   alias Uneebee.Accounts.User
+  alias Uneebee.Billing
+  alias Uneebee.Billing.Subscription
   alias Uneebee.Content.Course
   alias Uneebee.Content.CourseUser
   alias Uneebee.Organizations.School
@@ -134,7 +136,31 @@ defmodule Uneebee.Organizations do
   @spec create_school_user(School.t(), User.t(), map()) :: school_user_changeset()
   def create_school_user(%School{} = school, %User{} = user, attrs \\ %{}) do
     school_user_attrs = Enum.into(attrs, %{user_id: user.id, school_id: school.id})
-    %SchoolUser{} |> SchoolUser.changeset(school_user_attrs) |> Repo.insert()
+
+    multi =
+      Ecto.Multi.new()
+      |> Ecto.Multi.insert(:school_user, SchoolUser.changeset(%SchoolUser{}, school_user_attrs))
+      |> Ecto.Multi.run(:usage, fn _repo, _su -> update_stripe_usage_record(school) end)
+
+    case Repo.transaction(multi) do
+      {:ok, %{school_user: school_user}} -> {:ok, school_user}
+      {:error, _failed_operation, changeset, _changes_so_far} -> {:error, changeset}
+    end
+  end
+
+  # Don't do anything if the school is the main app school.
+  defp update_stripe_usage_record(%School{school_id: nil}), do: {:ok, nil}
+
+  # If there's a parent school, then check if they have a subscription.
+  defp update_stripe_usage_record(school), do: update_stripe_usage_record(school, Billing.get_subscription_by_school_id(school.id))
+
+  # If there's no subscription, then don't do anything.
+  defp update_stripe_usage_record(_school, nil), do: {:ok, nil}
+
+  # If there's a subscription, then update the usage record.
+  defp update_stripe_usage_record(_school, %Subscription{} = subscription) do
+    school_users = get_school_users_count(subscription.school_id)
+    Stripe.UsageRecord.create(subscription.stripe_subscription_item_id, %{quantity: school_users})
   end
 
   @doc """
@@ -397,6 +423,7 @@ defmodule Uneebee.Organizations do
     Repo.transaction(fn ->
       Repo.delete(school_user)
       delete_course_users(school_user.user_id, school_user.school_id)
+      update_stripe_usage_record(get_school!(school_user.school_id))
     end)
   end
 

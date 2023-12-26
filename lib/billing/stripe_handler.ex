@@ -10,6 +10,7 @@ defmodule Uneebee.Billing.StripeHandler do
   alias Stripe.Checkout.Session
   alias Uneebee.Billing
   alias Uneebee.Billing.Subscription
+  alias Uneebee.Organizations
 
   @impl Stripe.WebhookHandler
   def handle_event(%Stripe.Event{type: "checkout.session.completed"} = event) do
@@ -41,15 +42,20 @@ defmodule Uneebee.Billing.StripeHandler do
   def handle_event(_event), do: :ok
 
   defp handle_subscription(nil, %Session{} = session) do
+    subscription_item_id = Billing.get_subscription_item_id(session.subscription)
+
     Billing.create_subscription(%{
       school_id: session.client_reference_id,
       plan: String.to_existing_atom(session.metadata["plan"]),
       payment_status: get_payment_status(session.payment_status),
       stripe_payment_intent_id: session.payment_intent,
       stripe_subscription_id: session.subscription,
-      stripe_subscription_item_id: Billing.get_subscription_item_id(session.subscription),
+      stripe_subscription_item_id: subscription_item_id,
       paid_at: get_paid_at(session.payment_status)
     })
+
+    school_users = Organizations.get_school_users_count(session.client_reference_id)
+    Stripe.UsageRecord.create(subscription_item_id, %{quantity: school_users})
   end
 
   defp handle_subscription(%Subscription{} = subscription, %Session{} = session) do
