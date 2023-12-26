@@ -134,4 +134,19 @@ defmodule Uneebee.Billing do
   def active_subscription?(%School{} = school), do: active_subscription?(school, get_subscription_by_school_id(school.id))
   defp active_subscription?(_school, %Subscription{payment_status: :confirmed}), do: true
   defp active_subscription?(%School{} = school, _subs), do: Organizations.get_school_users_count(school) <= max_free_users()
+
+  @doc """
+  Get Stripe's subscription item ID from a Stripe subscription ID.
+
+  ## Examples
+
+      iex> Billing.get_subscription_item_id(sub_123)
+      "si_123"
+  """
+  @spec get_subscription_item_id(String.t()) :: String.t()
+  def get_subscription_item_id(subscription_id) do
+    {:ok, %Stripe.Subscription{items: items}} = Stripe.Subscription.retrieve(subscription_id)
+    item = Enum.at(items.data, 0)
+    item.id
+  end
 end

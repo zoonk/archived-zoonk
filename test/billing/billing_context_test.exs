@@ -150,4 +150,11 @@ defmodule Uneebee.BillingTest do
       assert Billing.active_subscription?(school)
     end
   end
+
+  describe "get_subscription_item_id/1" do
+    test "gets a subscription item ID from a subscription ID" do
+      subscription_item = Billing.get_subscription_item_id("sub_123")
+      assert String.starts_with?(subscription_item, "si_")
+    end
+  end
 end

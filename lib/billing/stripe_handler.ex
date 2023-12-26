@@ -47,6 +47,7 @@ defmodule Uneebee.Billing.StripeHandler do
       payment_status: get_payment_status(session.payment_status),
       stripe_payment_intent_id: session.payment_intent,
       stripe_subscription_id: session.subscription,
+      stripe_subscription_item_id: Billing.get_subscription_item_id(session.subscription),
       paid_at: get_paid_at(session.payment_status)
     })
   end
@@ -56,6 +57,7 @@ defmodule Uneebee.Billing.StripeHandler do
       payment_status: get_payment_status(session.payment_status),
       stripe_payment_intent_id: session.payment_intent,
       stripe_subscription_id: session.subscription,
+      stripe_subscription_item_id: Billing.get_subscription_item_id(session.subscription),
       paid_at: get_paid_at(session.payment_status)
     })
   end

@@ -20,13 +20,23 @@ defmodule UneebeeWeb.StripeHandlerTest do
             client_reference_id: school.id,
             payment_status: "unpaid",
             payment_intent: "pi_mockintent",
-            metadata: %{"plan" => "flexible"}
+            metadata: %{"plan" => "flexible"},
+            subscription: "sub_mocksubscription"
           }
         }
       }
 
       assert StripeHandler.handle_event(params) == :ok
-      assert Billing.get_subscription_by_school_id(school.id) != nil
+
+      subscription = Billing.get_subscription_by_school_id(school.id)
+
+      assert subscription.school_id == school.id
+      assert subscription.plan == :flexible
+      assert subscription.payment_status == :pending
+      assert subscription.stripe_payment_intent_id == "pi_mockintent"
+      assert subscription.stripe_subscription_id == "sub_mocksubscription"
+      assert String.starts_with?(subscription.stripe_subscription_item_id, "si_")
+      assert subscription.paid_at == nil
     end
 
     test "updates an existing subscription" do
@@ -39,7 +49,8 @@ defmodule UneebeeWeb.StripeHandlerTest do
             client_reference_id: subscription.school_id,
             payment_status: "paid",
             payment_intent: "pi_mockintent",
-            metadata: %{"plan" => "flexible"}
+            metadata: %{"plan" => "flexible"},
+            subscription: "sub_mocksubscription"
           }
         }
       }
