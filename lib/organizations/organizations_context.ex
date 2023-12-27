@@ -47,6 +47,22 @@ defmodule Uneebee.Organizations do
   end
 
   @doc """
+  Deletes a school.
+
+  ## Examples
+
+      iex> delete_school(school)
+      {:ok, %School{}}
+
+      iex> delete_school(school)
+      {:error, %Ecto.Changeset{}}
+  """
+  @spec delete_school(School.t()) :: school_changeset()
+  def delete_school(%School{} = school) do
+    Repo.delete(school)
+  end
+
+  @doc """
   Creates a school and adds a user as school manager.
 
   ## Examples

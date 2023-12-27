@@ -6,6 +6,7 @@ defmodule Uneebee.OrganizationsTest do
   import Uneebee.Fixtures.Content
   import Uneebee.Fixtures.Organizations
 
+  alias Uneebee.Billing
   alias Uneebee.Content
   alias Uneebee.Organizations
   alias Uneebee.Organizations.School
@@ -179,6 +180,24 @@ defmodule Uneebee.OrganizationsTest do
 
       assert {:error, %Ecto.Changeset{}} = Organizations.create_school(attrs1)
       assert {:error, %Ecto.Changeset{}} = Organizations.create_school(attrs2)
+    end
+  end
+
+  describe "delete_school/1" do
+    test "deletes the school and all its associated data" do
+      school = school_fixture()
+      child_school = school_fixture(%{school_id: school.id})
+      school_user = school_user_fixture(%{school: school})
+      course = course_fixture(%{school_id: school.id})
+      subscription_fixture(%{school_id: school.id})
+
+      assert {:ok, _deleted} = Organizations.delete_school(school)
+
+      assert_raise Ecto.NoResultsError, fn -> Organizations.get_school!(school.id) end
+      assert_raise Ecto.NoResultsError, fn -> Organizations.get_school!(child_school.id) end
+      assert_raise Ecto.NoResultsError, fn -> Organizations.get_school_user!(school_user.id) end
+      assert_raise Ecto.NoResultsError, fn -> Content.get_course!(course.id) end
+      refute Billing.get_subscription_by_school_id(school.id)
     end
   end
 
