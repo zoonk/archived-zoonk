@@ -71,6 +71,23 @@ defmodule UneebeeWeb.Live.Dashboard.SchoolView do
     end
   end
 
+  def handle_event("delete_school", _params, socket) do
+    %{current_school: current_school} = socket.assigns
+
+    case Organizations.delete_school(current_school) do
+      {:ok, _} ->
+        socket =
+          socket
+          |> put_flash(:info, dgettext("orgs", "School deleted"))
+          |> push_navigate(to: ~p"/dashboard/schools")
+
+        {:noreply, socket}
+
+      {:error, _} ->
+        {:noreply, put_flash(socket, :error, dgettext("orgs", "School could not be deleted"))}
+    end
+  end
+
   defp subscription_changeset(nil), do: Billing.change_subscription(%Subscription{})
   defp subscription_changeset(subscription), do: Billing.change_subscription(subscription)
 end

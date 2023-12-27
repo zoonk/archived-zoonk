@@ -557,7 +557,7 @@ msgstr "選項"
 #: lib/dashboard/courses/course_view.html.heex:11
 #: lib/dashboard/home.html.heex:17
 #: lib/dashboard/schools/school_list.html.heex:16
-#: lib/dashboard/schools/school_view.html.heex:24
+#: lib/dashboard/schools/school_view.html.heex:13
 #, elixir-autogen, elixir-format
 msgid "Private"
 msgstr "私人的"
@@ -565,7 +565,7 @@ msgstr "私人的"
 #: lib/dashboard/courses/course_view.html.heex:11
 #: lib/dashboard/home.html.heex:17
 #: lib/dashboard/schools/school_list.html.heex:16
-#: lib/dashboard/schools/school_view.html.heex:24
+#: lib/dashboard/schools/school_view.html.heex:13
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Public"
 msgstr "公開的"
@@ -650,7 +650,7 @@ msgstr "勾選後，使用者不需要建立帳戶來玩您的課程。如果您
 msgid "All schools"
 msgstr "所有學校"
 
-#: lib/dashboard/schools/school_view.html.heex:28
+#: lib/dashboard/schools/school_view.html.heex:17
 #, elixir-autogen, elixir-format
 msgid "Users:"
 msgstr "使用者："
@@ -797,7 +797,7 @@ msgstr "聯絡我們"
 #: lib/dashboard/schools/school_billing.ex:50
 #: lib/dashboard/schools/school_billing.ex:55
 #: lib/dashboard/schools/school_billing.html.heex:18
-#: lib/dashboard/schools/school_view.html.heex:38
+#: lib/dashboard/schools/school_view.html.heex:42
 #, elixir-autogen, elixir-format
 msgid "Current plan"
 msgstr "目前方案"
@@ -878,7 +878,7 @@ msgstr "Hobby"
 msgid "Pay as you go."
 msgstr "按使用量付費。"
 
-#: lib/dashboard/schools/school_view.html.heex:39
+#: lib/dashboard/schools/school_view.html.heex:43
 #, elixir-autogen, elixir-format
 msgid "Payment status"
 msgstr "付款狀態"
@@ -898,7 +898,7 @@ msgstr "優先支援和專用基礎架構。"
 msgid "Select your currency"
 msgstr "選擇您的貨幣"
 
-#: lib/dashboard/schools/school_view.html.heex:34
+#: lib/dashboard/schools/school_view.html.heex:38
 #, elixir-autogen, elixir-format
 msgid "Subscription"
 msgstr "訂閱"
@@ -919,7 +919,7 @@ msgstr "無限課程"
 msgid "Unlimited users"
 msgstr "無限使用者"
 
-#: lib/dashboard/schools/school_view.html.heex:43
+#: lib/dashboard/schools/school_view.html.heex:47
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Update subscription"
 msgstr "更新訂閱"
@@ -929,3 +929,23 @@ msgstr "更新訂閱"
 #, elixir-autogen, elixir-format
 msgid "Upgrade"
 msgstr "升級"
+
+#: lib/dashboard/schools/school_view.html.heex:33
+#, elixir-autogen, elixir-format, fuzzy
+msgid "Delete"
+msgstr "刪除"
+
+#: lib/dashboard/schools/school_view.ex:87
+#, elixir-autogen, elixir-format, fuzzy
+msgid "School could not be deleted"
+msgstr "無法刪除學校"
+
+#: lib/dashboard/schools/school_view.ex:81
+#, elixir-autogen, elixir-format
+msgid "School deleted"
+msgstr "學校已刪除"
+
+#: lib/dashboard/schools/school_view.html.heex:32
+#, elixir-autogen, elixir-format
+msgid "You're going to delete this school and all its associated data"
+msgstr "您將刪除此學校及其所有相關資料"

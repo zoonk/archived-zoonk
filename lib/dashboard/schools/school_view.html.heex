@@ -7,6 +7,16 @@
         <span class="font-semibold text-gray-700"><%= @current_school.name %></span>
         <span class="text-gray-300">/</span>
         <span class="text-gray-700">@<%= @current_school.slug %></span>
+
+        <div class="space-x-1">
+          <.badge color={if @current_school.public?, do: :success, else: :alert} icon={if @current_school.public?, do: "tabler-eye", else: "tabler-eye-off"} role="status">
+            <%= if @current_school.public?, do: dgettext("orgs", "Public"), else: dgettext("orgs", "Private") %>
+          </.badge>
+
+          <.badge color={:black} icon="tabler-users">
+            <span class="sr-only"><%= dgettext("orgs", "Users:") %></span><%= @user_count %>
+          </.badge>
+        </div>
       </h1>
     </div>
 
@@ -19,15 +29,9 @@
     </p>
   </div>
 
-  <div class="order-first space-x-1 sm:order-none">
-    <.badge color={if @current_school.public?, do: :success, else: :alert} icon={if @current_school.public?, do: "tabler-eye", else: "tabler-eye-off"} role="status">
-      <%= if @current_school.public?, do: dgettext("orgs", "Public"), else: dgettext("orgs", "Private") %>
-    </.badge>
-
-    <.badge color={:black} icon="tabler-users">
-      <span class="sr-only"><%= dgettext("orgs", "Users:") %></span><%= @user_count %>
-    </.badge>
-  </div>
+  <.button icon="tabler-trash" color={:alert} phx-click="delete_school" data-confirm={dgettext("orgs", "You're going to delete this school and all its associated data")}>
+    <%= dgettext("orgs", "Delete") %>
+  </.button>
 </header>
 
 <section class="m-4 bg-white p-4 sm:rounded-lg sm:shadow">

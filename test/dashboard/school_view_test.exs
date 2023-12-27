@@ -4,6 +4,8 @@ defmodule UneebeeWeb.DashboardSchoolViewTest do
   import Phoenix.LiveViewTest
   import Uneebee.Fixtures.Organizations
 
+  alias Uneebee.Organizations
+
   describe "/dashboard/schools/:id (non-authenticated users)" do
     setup :set_school
 
@@ -46,6 +48,20 @@ defmodule UneebeeWeb.DashboardSchoolViewTest do
     test "doesn't allow to view a child school from another school", %{conn: conn} do
       another_school = school_fixture()
       assert_error_sent(403, fn -> get(conn, ~p"/dashboard/schools/#{another_school.id}") end)
+    end
+
+    test "deletes a school", %{conn: conn, school: school} do
+      child_school = school_fixture(%{school_id: school.id})
+
+      {:ok, lv, _html} = live(conn, "/dashboard/schools/#{child_school.id}")
+
+      assert {:ok, _updated_lv, _html} =
+               lv
+               |> element("button", "Delete")
+               |> render_click()
+               |> follow_redirect(conn, ~p"/dashboard/schools")
+
+      assert_raise Ecto.NoResultsError, fn -> Organizations.get_school!(child_school.id) end
     end
   end
 end

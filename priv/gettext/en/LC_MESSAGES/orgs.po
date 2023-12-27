@@ -557,7 +557,7 @@ msgstr ""
 #: lib/dashboard/courses/course_view.html.heex:11
 #: lib/dashboard/home.html.heex:17
 #: lib/dashboard/schools/school_list.html.heex:16
-#: lib/dashboard/schools/school_view.html.heex:24
+#: lib/dashboard/schools/school_view.html.heex:13
 #, elixir-autogen, elixir-format
 msgid "Private"
 msgstr ""
@@ -565,7 +565,7 @@ msgstr ""
 #: lib/dashboard/courses/course_view.html.heex:11
 #: lib/dashboard/home.html.heex:17
 #: lib/dashboard/schools/school_list.html.heex:16
-#: lib/dashboard/schools/school_view.html.heex:24
+#: lib/dashboard/schools/school_view.html.heex:13
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Public"
 msgstr ""
@@ -650,7 +650,7 @@ msgstr ""
 msgid "All schools"
 msgstr ""
 
-#: lib/dashboard/schools/school_view.html.heex:28
+#: lib/dashboard/schools/school_view.html.heex:17
 #, elixir-autogen, elixir-format
 msgid "Users:"
 msgstr ""
@@ -797,7 +797,7 @@ msgstr ""
 #: lib/dashboard/schools/school_billing.ex:50
 #: lib/dashboard/schools/school_billing.ex:55
 #: lib/dashboard/schools/school_billing.html.heex:18
-#: lib/dashboard/schools/school_view.html.heex:38
+#: lib/dashboard/schools/school_view.html.heex:42
 #, elixir-autogen, elixir-format
 msgid "Current plan"
 msgstr ""
@@ -878,7 +878,7 @@ msgstr ""
 msgid "Pay as you go."
 msgstr ""
 
-#: lib/dashboard/schools/school_view.html.heex:39
+#: lib/dashboard/schools/school_view.html.heex:43
 #, elixir-autogen, elixir-format
 msgid "Payment status"
 msgstr ""
@@ -898,7 +898,7 @@ msgstr ""
 msgid "Select your currency"
 msgstr ""
 
-#: lib/dashboard/schools/school_view.html.heex:34
+#: lib/dashboard/schools/school_view.html.heex:38
 #, elixir-autogen, elixir-format
 msgid "Subscription"
 msgstr ""
@@ -919,7 +919,7 @@ msgstr ""
 msgid "Unlimited users"
 msgstr ""
 
-#: lib/dashboard/schools/school_view.html.heex:43
+#: lib/dashboard/schools/school_view.html.heex:47
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Update subscription"
 msgstr ""
@@ -928,4 +928,24 @@ msgstr ""
 #: lib/dashboard/schools/school_billing.ex:51
 #, elixir-autogen, elixir-format
 msgid "Upgrade"
+msgstr ""
+
+#: lib/dashboard/schools/school_view.html.heex:33
+#, elixir-autogen, elixir-format, fuzzy
+msgid "Delete"
+msgstr ""
+
+#: lib/dashboard/schools/school_view.ex:87
+#, elixir-autogen, elixir-format, fuzzy
+msgid "School could not be deleted"
+msgstr ""
+
+#: lib/dashboard/schools/school_view.ex:81
+#, elixir-autogen, elixir-format
+msgid "School deleted"
+msgstr ""
+
+#: lib/dashboard/schools/school_view.html.heex:32
+#, elixir-autogen, elixir-format
+msgid "You're going to delete this school and all its associated data"
 msgstr ""

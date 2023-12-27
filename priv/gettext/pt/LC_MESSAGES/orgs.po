@@ -557,7 +557,7 @@ msgstr "Alternativas"
 #: lib/dashboard/courses/course_view.html.heex:11
 #: lib/dashboard/home.html.heex:17
 #: lib/dashboard/schools/school_list.html.heex:16
-#: lib/dashboard/schools/school_view.html.heex:24
+#: lib/dashboard/schools/school_view.html.heex:13
 #, elixir-autogen, elixir-format
 msgid "Private"
 msgstr "Privado"
@@ -565,7 +565,7 @@ msgstr "Privado"
 #: lib/dashboard/courses/course_view.html.heex:11
 #: lib/dashboard/home.html.heex:17
 #: lib/dashboard/schools/school_list.html.heex:16
-#: lib/dashboard/schools/school_view.html.heex:24
+#: lib/dashboard/schools/school_view.html.heex:13
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Public"
 msgstr "Público"
@@ -650,7 +650,7 @@ msgstr "Ao marcar, os usuários não precisarão criar uma conta para jogar os c
 msgid "All schools"
 msgstr "Todos as escolas"
 
-#: lib/dashboard/schools/school_view.html.heex:28
+#: lib/dashboard/schools/school_view.html.heex:17
 #, elixir-autogen, elixir-format
 msgid "Users:"
 msgstr "Usuários:"
@@ -797,7 +797,7 @@ msgstr "Fale conosco"
 #: lib/dashboard/schools/school_billing.ex:50
 #: lib/dashboard/schools/school_billing.ex:55
 #: lib/dashboard/schools/school_billing.html.heex:18
-#: lib/dashboard/schools/school_view.html.heex:38
+#: lib/dashboard/schools/school_view.html.heex:42
 #, elixir-autogen, elixir-format
 msgid "Current plan"
 msgstr "Plano atual"
@@ -878,7 +878,7 @@ msgstr "Hobby"
 msgid "Pay as you go."
 msgstr "Pagamento conforme o uso."
 
-#: lib/dashboard/schools/school_view.html.heex:39
+#: lib/dashboard/schools/school_view.html.heex:43
 #, elixir-autogen, elixir-format
 msgid "Payment status"
 msgstr "Status do pagamento"
@@ -898,7 +898,7 @@ msgstr "Suporte prioritário e infraestrutura dedicada."
 msgid "Select your currency"
 msgstr "Selecione a moeda"
 
-#: lib/dashboard/schools/school_view.html.heex:34
+#: lib/dashboard/schools/school_view.html.heex:38
 #, elixir-autogen, elixir-format
 msgid "Subscription"
 msgstr "Assinatura"
@@ -919,7 +919,7 @@ msgstr "Aulas ilimitadas"
 msgid "Unlimited users"
 msgstr "Usuários ilimitados"
 
-#: lib/dashboard/schools/school_view.html.heex:43
+#: lib/dashboard/schools/school_view.html.heex:47
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Update subscription"
 msgstr "Atualizar assinatura"
@@ -929,3 +929,23 @@ msgstr "Atualizar assinatura"
 #, elixir-autogen, elixir-format
 msgid "Upgrade"
 msgstr "Melhorar plano"
+
+#: lib/dashboard/schools/school_view.html.heex:33
+#, elixir-autogen, elixir-format, fuzzy
+msgid "Delete"
+msgstr "Apagar"
+
+#: lib/dashboard/schools/school_view.ex:87
+#, elixir-autogen, elixir-format, fuzzy
+msgid "School could not be deleted"
+msgstr "Não foi possível excluir a escola"
+
+#: lib/dashboard/schools/school_view.ex:81
+#, elixir-autogen, elixir-format
+msgid "School deleted"
+msgstr "Escola excluída"
+
+#: lib/dashboard/schools/school_view.html.heex:32
+#, elixir-autogen, elixir-format
+msgid "You're going to delete this school and all its associated data"
+msgstr "Você está prestes a excluir esta escola e todos os seus dados associados"
