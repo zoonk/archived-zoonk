@@ -47,7 +47,7 @@
     role="alert"
   >
     <span><%= gettext("Don't lose your progress. ") %></span>
-    <.link navigate={~p"/users/settings/email"} class="font-semibold underline"><%= gettext("Update your email address") %></.link>
+    <.link navigate={~p"/users/settings"} class="font-semibold underline"><%= gettext("Update your email address") %></.link>
   </div>
 
   <nav :if={user_settings?(@active_page)} class="border-gray-900/10 sticky top-0 z-40 w-full border-b bg-white">
@@ -56,23 +56,27 @@
         <.link href={~p"/"}><%= gettext("Home") %></.link>
       </li>
 
-      <.dashboard_menu_item active={@active_page == :usersettings_profile} navigate={~p"/users/settings"}>
+      <.dashboard_menu_item :if={@current_user.guest?} active={@active_page == :usersettings_profile} navigate={~p"/users/settings"}>
+        <%= gettext("Setup") %>
+      </.dashboard_menu_item>
+
+      <.dashboard_menu_item :if={!@current_user.guest?} active={@active_page == :usersettings_profile} navigate={~p"/users/settings"}>
         <%= gettext("Profile") %>
       </.dashboard_menu_item>
 
-      <.dashboard_menu_item active={@active_page == :usersettings_avatar} navigate={~p"/users/settings/avatar"}>
+      <.dashboard_menu_item :if={!@current_user.guest?} active={@active_page == :usersettings_avatar} navigate={~p"/users/settings/avatar"}>
         <%= gettext("Avatar") %>
       </.dashboard_menu_item>
 
-      <.dashboard_menu_item active={@active_page == :usersettings_email} navigate={~p"/users/settings/email"}>
+      <.dashboard_menu_item :if={!@current_user.guest?} active={@active_page == :usersettings_email} navigate={~p"/users/settings/email"}>
         <%= gettext("Email") %>
       </.dashboard_menu_item>
 
-      <.dashboard_menu_item active={@active_page == :usersettings_password} navigate={~p"/users/settings/password"}>
+      <.dashboard_menu_item :if={!@current_user.guest?} active={@active_page == :usersettings_password} navigate={~p"/users/settings/password"}>
         <%= gettext("Password") %>
       </.dashboard_menu_item>
 
-      <.dashboard_menu_item method="delete" href={~p"/users/logout"}>
+      <.dashboard_menu_item :if={!@current_user.guest?} method="delete" href={~p"/users/logout"}>
         <%= gettext("Logout") %>
       </.dashboard_menu_item>
 

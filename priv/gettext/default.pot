@@ -40,8 +40,9 @@ msgstr ""
 #: lib/accounts/user_live/confirmation_instructions.html.heex:8
 #: lib/accounts/user_live/forgot_password.html.heex:7
 #: lib/accounts/user_live/registration.html.heex:16
-#: lib/accounts/user_live/user_settings.html.heex:49
-#: lib/layouts/templates/app.html.heex:68
+#: lib/accounts/user_live/user_settings.html.heex:45
+#: lib/accounts/user_live/user_settings.html.heex:80
+#: lib/layouts/templates/app.html.heex:72
 #: lib/support/contact_live/contact.html.heex:12
 #, elixir-autogen, elixir-format
 msgid "Email"
@@ -49,6 +50,7 @@ msgstr ""
 
 #: lib/accounts/user_live/registration.html.heex:15
 #: lib/accounts/user_live/user_settings.html.heex:27
+#: lib/accounts/user_live/user_settings.html.heex:78
 #: lib/dashboard/courses/course_edit.html.heex:15
 #: lib/dashboard/courses/course_new.html.heex:11
 #, elixir-autogen, elixir-format
@@ -63,6 +65,7 @@ msgstr ""
 
 #: lib/accounts/user_live/registration.html.heex:23
 #: lib/accounts/user_live/user_settings.html.heex:17
+#: lib/accounts/user_live/user_settings.html.heex:68
 #: lib/dashboard/courses/course_edit.html.heex:7
 #: lib/dashboard/courses/course_new.html.heex:5
 #: lib/dashboard/courses/course_user_list.html.heex:61
@@ -77,6 +80,7 @@ msgstr ""
 
 #: lib/accounts/user_live/registration.html.heex:17
 #: lib/accounts/user_live/user_settings.html.heex:33
+#: lib/accounts/user_live/user_settings.html.heex:79
 #, elixir-autogen, elixir-format
 msgid "Username"
 msgstr ""
@@ -104,12 +108,12 @@ msgstr ""
 msgid "Sending..."
 msgstr ""
 
-#: lib/layouts/templates/app.html.heex:76
+#: lib/layouts/templates/app.html.heex:80
 #, elixir-autogen, elixir-format
 msgid "Logout"
 msgstr ""
 
-#: lib/accounts/user_live/user_settings.ex:177
+#: lib/accounts/user_live/user_settings.ex:192
 #: lib/dashboard/courses/course_edit.html.heex:5
 #: lib/dashboard/schools/school_edit.ex:74
 #: lib/layouts/components/app_menu.ex:40
@@ -130,6 +134,7 @@ msgid "Last Name"
 msgstr ""
 
 #: lib/accounts/user_live/user_settings.html.heex:18
+#: lib/accounts/user_live/user_settings.html.heex:69
 #: lib/dashboard/courses/course_edit.html.heex:7
 #: lib/dashboard/lessons/components/lesson_edit.ex:29
 #: lib/dashboard/lessons/components/option_list.ex:95
@@ -148,7 +153,7 @@ msgstr ""
 msgid "Click on the save button to upload your file."
 msgstr ""
 
-#: lib/layouts/templates/app.html.heex:60
+#: lib/layouts/templates/app.html.heex:64
 #, elixir-autogen, elixir-format
 msgid "Profile"
 msgstr ""
@@ -243,17 +248,17 @@ msgstr ""
 msgid "Deleting..."
 msgstr ""
 
-#: lib/accounts/user_live/user_settings.ex:173
+#: lib/accounts/user_live/user_settings.ex:188
 #, elixir-autogen, elixir-format
 msgid "Change email"
 msgstr ""
 
-#: lib/accounts/user_live/user_settings.ex:174
+#: lib/accounts/user_live/user_settings.ex:189
 #, elixir-autogen, elixir-format
 msgid "Change password"
 msgstr ""
 
-#: lib/accounts/user_live/user_settings.ex:172
+#: lib/accounts/user_live/user_settings.ex:187
 #, elixir-autogen, elixir-format
 msgid "Change profile"
 msgstr ""
@@ -263,12 +268,12 @@ msgstr ""
 msgid "Close sidebar"
 msgstr ""
 
-#: lib/accounts/user_live/user_settings.ex:176
+#: lib/accounts/user_live/user_settings.ex:191
 #: lib/components/delete_item.ex:17
 #: lib/components/delete_item.ex:21
 #: lib/dashboard/schools/school_edit.ex:76
 #: lib/layouts/menu_utils.ex:92
-#: lib/layouts/templates/app.html.heex:80
+#: lib/layouts/templates/app.html.heex:84
 #: lib/layouts/templates/dashboard_course.html.heex:50
 #, elixir-autogen, elixir-format
 msgid "Delete"
@@ -297,7 +302,8 @@ msgstr ""
 
 #: lib/accounts/user_live/login.html.heex:6
 #: lib/accounts/user_live/registration.html.heex:18
-#: lib/layouts/templates/app.html.heex:72
+#: lib/accounts/user_live/user_settings.html.heex:81
+#: lib/layouts/templates/app.html.heex:76
 #, elixir-autogen, elixir-format
 msgid "Password"
 msgstr ""
@@ -323,19 +329,19 @@ msgstr ""
 msgid "Pending"
 msgstr ""
 
-#: lib/accounts/user_live/user_settings.ex:175
+#: lib/accounts/user_live/user_settings.ex:190
 #: lib/accounts/user_live/user_settings.html.heex:1
-#: lib/layouts/templates/app.html.heex:64
+#: lib/layouts/templates/app.html.heex:68
 #, elixir-autogen, elixir-format
 msgid "Avatar"
 msgstr ""
 
-#: lib/accounts/user_live/user_settings.ex:140
+#: lib/accounts/user_live/user_settings.ex:159
 #, elixir-autogen, elixir-format
 msgid "Avatar updated successfully!"
 msgstr ""
 
-#: lib/accounts/user_live/user_settings.ex:143
+#: lib/accounts/user_live/user_settings.ex:162
 #, elixir-autogen, elixir-format
 msgid "Could not update avatar!"
 msgstr ""
@@ -403,4 +409,9 @@ msgstr ""
 #: lib/content/course_live/lesson_play.html.heex:95
 #, elixir-autogen, elixir-format
 msgid "Your school manager needs to renew their subscription. Please, contact them."
+msgstr ""
+
+#: lib/layouts/templates/app.html.heex:60
+#, elixir-autogen, elixir-format
+msgid "Setup"
 msgstr ""

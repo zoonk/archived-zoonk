@@ -70,6 +70,25 @@ defmodule UneebeeWeb.Live.UserSettings do
   end
 
   @impl Phoenix.LiveView
+  def handle_event("update", %{"user" => user_params}, socket) when socket.assigns.live_action == :profile and socket.assigns.current_user.guest? do
+    user = socket.assigns.current_user
+
+    case Accounts.register_guest_user(user, user_params) do
+      {:ok, applied_user} ->
+        send_email_confirmation(applied_user, user.email, socket.assigns.app)
+
+        {:noreply, put_flash(socket, :info, dgettext("auth", "A link to confirm your email change has been sent to the new address."))}
+
+      {:error, changeset} ->
+        socket =
+          socket
+          |> put_flash(:error, dgettext("auth", "Error setting up account"))
+          |> assign(form: to_form(changeset))
+
+        {:noreply, socket}
+    end
+  end
+
   def handle_event("update", %{"user" => user_params}, socket) when socket.assigns.live_action == :profile do
     user = socket.assigns.current_user
     changeset = Accounts.change_user_settings(user, user_params)
@@ -158,10 +177,6 @@ defmodule UneebeeWeb.Live.UserSettings do
 
   defp send_email_confirmation(user, current_email, app) do
     Accounts.deliver_user_update_email_instructions(user, app, current_email, &url(~p"/users/settings/confirm_email/#{&1}"))
-
-    if user.guest? do
-      Accounts.deliver_user_reset_password_instructions(user, app, &url(~p"/users/reset_password/#{&1}"))
-    end
   end
 
   defp get_changeset(:profile, user), do: Accounts.change_user_settings(user)

@@ -110,23 +110,24 @@ msgid "You must log in to access this page."
 msgstr ""
 
 #: lib/accounts/user_live/reset_password.html.heex:10
-#: lib/accounts/user_live/user_settings.html.heex:64
+#: lib/accounts/user_live/user_settings.html.heex:60
 #, elixir-autogen, elixir-format
 msgid "Confirm new password"
 msgstr ""
 
-#: lib/accounts/user_live/user_settings.html.heex:58
+#: lib/accounts/user_live/user_settings.html.heex:54
 #, elixir-autogen, elixir-format
 msgid "Current password"
 msgstr ""
 
 #: lib/accounts/user_live/reset_password.html.heex:9
-#: lib/accounts/user_live/user_settings.html.heex:63
+#: lib/accounts/user_live/user_settings.html.heex:59
 #, elixir-autogen, elixir-format
 msgid "New password"
 msgstr ""
 
-#: lib/accounts/user_live/user_settings.ex:109
+#: lib/accounts/user_live/user_settings.ex:80
+#: lib/accounts/user_live/user_settings.ex:128
 #, elixir-autogen, elixir-format
 msgid "A link to confirm your email change has been sent to the new address."
 msgstr ""
@@ -141,12 +142,12 @@ msgstr ""
 msgid "Email changed successfully."
 msgstr ""
 
-#: lib/accounts/user_live/user_settings.ex:94
+#: lib/accounts/user_live/user_settings.ex:113
 #, elixir-autogen, elixir-format
 msgid "Error updating settings"
 msgstr ""
 
-#: lib/accounts/user_live/user_settings.ex:86
+#: lib/accounts/user_live/user_settings.ex:105
 #, elixir-autogen, elixir-format
 msgid "Settings updated successfully"
 msgstr ""
@@ -211,7 +212,7 @@ msgstr ""
 msgid "terms of use"
 msgstr ""
 
-#: lib/accounts/user_live/user_settings.html.heex:46
+#: lib/accounts/user_live/user_settings.html.heex:75
 #, elixir-autogen, elixir-format
 msgid "You have a guest account. To convert it into a regular account, update your email address below:"
 msgstr ""
@@ -226,7 +227,12 @@ msgstr ""
 msgid "When checked, courses may play sound effects when you answer questions correctly or incorrectly."
 msgstr ""
 
-#: lib/accounts/user_live/user_settings.ex:155
+#: lib/accounts/user_live/user_settings.ex:174
 #, elixir-autogen, elixir-format
 msgid "Unable to delete your account"
+msgstr ""
+
+#: lib/accounts/user_live/user_settings.ex:85
+#, elixir-autogen, elixir-format, fuzzy
+msgid "Error setting up account"
 msgstr ""

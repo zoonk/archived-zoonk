@@ -163,6 +163,28 @@ defmodule Uneebee.Accounts do
   end
 
   @doc """
+  Convert a guest account to a registered account.
+
+  ## Examples
+
+      iex> register_guest_user(user, %{field: value})
+      {:ok, %User{}}
+
+      iex> register_guest_user(user, %{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+  """
+  @spec register_guest_user(User.t(), map()) :: user_changeset()
+  def register_guest_user(%User{} = user, attrs) do
+    email = attrs["email"]
+    attrs = Map.delete(attrs, "email")
+    user |> User.registration_changeset(attrs) |> Repo.update()
+
+    user
+    |> User.email_changeset(%{email: email})
+    |> Ecto.Changeset.apply_action(:update)
+  end
+
+  @doc """
   Creates a guest user.
 
   This is a temporary user that is created when a user is not logged in.

@@ -247,20 +247,24 @@ defmodule UneebeeWeb.UserSettingsLiveTest do
   describe "/users/setting/email (guest user)" do
     setup :set_school_with_guest_user
 
-    test "updates the user email", %{conn: conn, user: user} do
-      new_email = unique_user_email()
+    test "converts a guest account into a real account", %{conn: conn} do
+      attrs = valid_user_attributes()
 
-      {:ok, lv, _html} = live(conn, ~p"/users/settings/email")
+      {:ok, lv, _html} = live(conn, ~p"/users/settings")
 
-      assert has_element?(lv, ~s|input[type="hidden"][name="current_password]|)
+      refute has_element?(lv, "li", "Profile")
+      refute has_element?(lv, "li", "Avatar")
+      refute has_element?(lv, "li", "Email")
+      refute has_element?(lv, "li", "Password")
+      refute has_element?(lv, "li", "Logout")
+      assert has_element?(lv, "li[aria-current=page]", "Setup")
 
       result =
         lv
-        |> form(@form, %{"user" => %{"email" => new_email}})
+        |> form(@form, %{"user" => attrs})
         |> render_submit()
 
       assert result =~ "A link to confirm your email"
-      assert Accounts.get_user_by_email(user.email)
     end
   end
 

@@ -1,7 +1,7 @@
 <.live_component :if={@live_action == :avatar} module={Upload} id={:user_avatar} current_img={@current_user.avatar} label={gettext("Avatar")} />
 
 <.simple_form
-  :if={@live_action not in [:avatar, :delete]}
+  :if={@live_action not in [:avatar, :delete] and !@current_user.guest?}
   unstyled
   for={@form}
   phx-trigger-action={if @live_action == :password, do: @trigger_submit, else: nil}
@@ -42,10 +42,6 @@
       helper={dgettext("auth", "When checked, courses may play sound effects when you answer questions correctly or incorrectly.")}
     />
 
-    <span :if={@live_action == :email && @current_user.guest?} class="text-sm text-gray-700">
-      <%= dgettext("auth", "You have a guest account. To convert it into a regular account, update your email address below:") %>
-    </span>
-
     <.input :if={@live_action == :email} field={@form[:email]} type="email" label={gettext("Email")} required />
     <.input :if={@live_action == :password} field={@form[:email]} type="hidden" value={@current_user.email} />
 
@@ -54,7 +50,7 @@
       field={@form[:current_password]}
       name="current_password"
       id="current_password"
-      type={if @current_user.guest?, do: "hidden", else: "password"}
+      type="password"
       label={dgettext("auth", "Current password")}
       value={@current_password}
       required
@@ -62,6 +58,27 @@
 
     <.input :if={@live_action == :password} field={@form[:password]} type="password" label={dgettext("auth", "New password")} autocomplete="new-password" required />
     <.input :if={@live_action == :password} field={@form[:password_confirmation]} type="password" label={dgettext("auth", "Confirm new password")} autocomplete="new-password" />
+  </div>
+</.simple_form>
+
+<.simple_form :if={@live_action == :profile and @current_user.guest?} unstyled for={@form} id="settings-form" phx-submit="update" phx-change="validate">
+  <div class="top-[57px] sticky flex flex-wrap items-center gap-2 bg-gray-50 p-4 sm:flex-nowrap sm:px-6 lg:px-8">
+    <h1 class="text-base font-semibold leading-7 text-gray-900"><%= get_page_title(@live_action) %></h1>
+
+    <.button type="submit" icon="tabler-checks" class="ml-auto" phx-disable-with={gettext("Saving...")}>
+      <%= gettext("Save") %>
+    </.button>
+  </div>
+
+  <div class="container max-w-3xl space-y-8">
+    <span class="text-sm text-gray-700">
+      <%= dgettext("auth", "You have a guest account. To convert it into a regular account, update your email address below:") %>
+    </span>
+
+    <.input field={@form[:language]} type="select" label={gettext("Language")} options={UneebeeWeb.Plugs.Translate.language_options()} required />
+    <.input field={@form[:username]} type="text" label={gettext("Username")} autocomplete="username" required />
+    <.input field={@form[:email]} type="email" label={gettext("Email")} required />
+    <.input field={@form[:password]} type="password" label={gettext("Password")} autocomplete="new-password" required />
   </div>
 </.simple_form>
 
