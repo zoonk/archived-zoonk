@@ -2,6 +2,7 @@ defmodule Uneebee.OrganizationsTest do
   use Uneebee.DataCase, async: true
 
   import Uneebee.Fixtures.Accounts
+  import Uneebee.Fixtures.Billing
   import Uneebee.Fixtures.Content
   import Uneebee.Fixtures.Organizations
 
@@ -356,6 +357,15 @@ defmodule Uneebee.OrganizationsTest do
 
       school_user = Organizations.get_school_user(school.slug, user.username)
       assert school_user.role == :teacher
+    end
+
+    test "only updates stripe record if stripe is enabled" do
+      parent_school = school_fixture()
+      school = school_fixture(%{school_id: parent_school.id})
+      user = user_fixture()
+      subscription_fixture(%{school_id: school.id, stripe_subscription_item_id: nil})
+
+      assert {:ok, %SchoolUser{} = school_user} = Organizations.create_school_user(school, user, %{role: :student})
     end
   end
 

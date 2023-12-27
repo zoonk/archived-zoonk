@@ -157,6 +157,9 @@ defmodule Uneebee.Organizations do
   # If there's no subscription, then don't do anything.
   defp update_stripe_usage_record(_school, nil), do: {:ok, nil}
 
+  # If Stripe isn't enable, then don't do anything.
+  defp update_stripe_usage_record(_school, %Subscription{stripe_subscription_item_id: nil}), do: {:ok, nil}
+
   # If there's a subscription, then update the usage record.
   defp update_stripe_usage_record(_school, %Subscription{} = subscription) do
     school_users = get_school_users_count(subscription.school_id)
