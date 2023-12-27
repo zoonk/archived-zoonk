@@ -2,8 +2,11 @@ defmodule UneebeeWeb.Live.Dashboard.SchoolUserView do
   @moduledoc false
   use UneebeeWeb, :live_view
 
+  alias Phoenix.LiveView.Socket
+  alias Uneebee.Accounts
   alias Uneebee.Accounts.UserUtils
   alias Uneebee.Organizations
+  alias Uneebee.Organizations.School
   alias Uneebee.Organizations.SchoolUtils
 
   @impl Phoenix.LiveView
@@ -61,7 +64,19 @@ defmodule UneebeeWeb.Live.Dashboard.SchoolUserView do
     end
   end
 
-  @impl Phoenix.LiveView
+  # When it's the main school, then we delete the whole account.
+  def handle_event("remove", _params, %Socket{assigns: %{school: %School{school_id: nil}}} = socket) do
+    %{school_user: school_user} = socket.assigns
+
+    case Accounts.delete_user(school_user.user) do
+      {:ok, _user} ->
+        {:noreply, push_navigate(socket, to: ~p"/dashboard/users")}
+
+      {:error, _changeset} ->
+        {:noreply, put_flash(socket, :error, dgettext("orgs", "Could not remove user!"))}
+    end
+  end
+
   def handle_event("remove", _params, socket) do
     %{school_user: school_user} = socket.assigns
 

@@ -5,6 +5,7 @@ defmodule UneebeeWeb.DashboardSchoolUserViewLiveTest do
   import Uneebee.Fixtures.Accounts
   import Uneebee.Fixtures.Organizations
 
+  alias Uneebee.Accounts
   alias Uneebee.Organizations
 
   describe "user view (non-authenticated users)" do
@@ -99,6 +100,27 @@ defmodule UneebeeWeb.DashboardSchoolUserViewLiveTest do
         |> follow_redirect(conn, ~p"/dashboard/users")
 
       refute Organizations.get_school_user(school.slug, user.username)
+      assert_raise Ecto.NoResultsError, fn -> Accounts.get_user!(user.id) end
+    end
+
+    test "removing a user from a child school doesn't delete their account", %{conn: conn, school: school, user: user} do
+      child_school = school_fixture(%{school_id: school.id})
+      student = user_fixture()
+      school_user_fixture(%{school: child_school, user: user, role: :manager})
+      school_user_fixture(%{school: child_school, user: student})
+
+      conn = Map.put(conn, :host, "#{child_school.slug}.#{school.custom_domain}")
+
+      {:ok, lv, _html} = live(conn, ~p"/dashboard/u/#{student.username}")
+
+      {:ok, _updated_lv, _html} =
+        lv
+        |> element("button", "Remove")
+        |> render_click()
+        |> follow_redirect(conn, ~p"/dashboard/users")
+
+      refute Organizations.get_school_user(child_school.slug, student.username)
+      assert Accounts.get_user!(student.id)
     end
 
     test "toggles analytics for a user", %{conn: conn, school: school} do
