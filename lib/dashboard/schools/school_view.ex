@@ -20,6 +20,7 @@ defmodule UneebeeWeb.Live.Dashboard.SchoolView do
     user_count = Organizations.get_school_users_count(current_school.id)
     subscription = Billing.get_subscription_by_school_id(current_school.id)
     subscription_changeset = subscription_changeset(subscription)
+    managers = Organizations.list_school_users(current_school.id, role: :manager)
 
     socket =
       socket
@@ -28,6 +29,7 @@ defmodule UneebeeWeb.Live.Dashboard.SchoolView do
       |> assign(:user_count, user_count)
       |> assign(:subscription, subscription)
       |> assign(:subscription_form, to_form(subscription_changeset))
+      |> assign(:managers, managers)
 
     {:ok, socket}
   end

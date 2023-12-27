@@ -85,19 +85,20 @@ msgid "Approve"
 msgstr ""
 
 #: lib/dashboard/courses/course_user_view.ex:44
-#: lib/dashboard/schools/school_user_view.ex:42
+#: lib/dashboard/schools/school_user_view.ex:45
 #, elixir-autogen, elixir-format
 msgid "Could not approve user!"
 msgstr ""
 
 #: lib/dashboard/courses/course_user_view.ex:62
-#: lib/dashboard/schools/school_user_view.ex:60
+#: lib/dashboard/schools/school_user_view.ex:63
 #, elixir-autogen, elixir-format
 msgid "Could not reject user!"
 msgstr ""
 
 #: lib/dashboard/courses/course_user_view.ex:75
-#: lib/dashboard/schools/school_user_view.ex:73
+#: lib/dashboard/schools/school_user_view.ex:76
+#: lib/dashboard/schools/school_user_view.ex:88
 #, elixir-autogen, elixir-format
 msgid "Could not remove user!"
 msgstr ""
@@ -116,13 +117,13 @@ msgid "Reject"
 msgstr ""
 
 #: lib/dashboard/courses/course_user_view.ex:38
-#: lib/dashboard/schools/school_user_view.ex:36
+#: lib/dashboard/schools/school_user_view.ex:39
 #, elixir-autogen, elixir-format
 msgid "User approved!"
 msgstr ""
 
 #: lib/dashboard/courses/course_user_view.ex:56
-#: lib/dashboard/schools/school_user_view.ex:54
+#: lib/dashboard/schools/school_user_view.ex:57
 #, elixir-autogen, elixir-format
 msgid "User rejected!"
 msgstr ""
@@ -580,7 +581,7 @@ msgstr ""
 msgid "This will remove %{username} from your course. They won't be able to see your course anymore unless you approve them again."
 msgstr ""
 
-#: lib/dashboard/schools/school_user_view.ex:86
+#: lib/dashboard/schools/school_user_view.ex:101
 #, elixir-autogen, elixir-format
 msgid "Could not toggle analytics tracking!"
 msgstr ""
@@ -797,7 +798,7 @@ msgstr ""
 #: lib/dashboard/schools/school_billing.ex:50
 #: lib/dashboard/schools/school_billing.ex:55
 #: lib/dashboard/schools/school_billing.html.heex:18
-#: lib/dashboard/schools/school_view.html.heex:42
+#: lib/dashboard/schools/school_view.html.heex:46
 #, elixir-autogen, elixir-format
 msgid "Current plan"
 msgstr ""
@@ -878,7 +879,7 @@ msgstr ""
 msgid "Pay as you go."
 msgstr ""
 
-#: lib/dashboard/schools/school_view.html.heex:43
+#: lib/dashboard/schools/school_view.html.heex:47
 #, elixir-autogen, elixir-format
 msgid "Payment status"
 msgstr ""
@@ -898,13 +899,13 @@ msgstr ""
 msgid "Select your currency"
 msgstr ""
 
-#: lib/dashboard/schools/school_view.html.heex:38
+#: lib/dashboard/schools/school_view.html.heex:42
 #, elixir-autogen, elixir-format
 msgid "Subscription"
 msgstr ""
 
-#: lib/dashboard/schools/school_view.ex:47
-#: lib/dashboard/schools/school_view.ex:65
+#: lib/dashboard/schools/school_view.ex:49
+#: lib/dashboard/schools/school_view.ex:67
 #, elixir-autogen, elixir-format
 msgid "Subscription updated"
 msgstr ""
@@ -919,7 +920,7 @@ msgstr ""
 msgid "Unlimited users"
 msgstr ""
 
-#: lib/dashboard/schools/school_view.html.heex:47
+#: lib/dashboard/schools/school_view.html.heex:51
 #, elixir-autogen, elixir-format
 msgid "Update subscription"
 msgstr ""
@@ -930,23 +931,23 @@ msgstr ""
 msgid "Upgrade"
 msgstr ""
 
-#: lib/dashboard/schools/school_view.html.heex:33
+#: lib/dashboard/schools/school_view.html.heex:37
 #, elixir-autogen, elixir-format
 msgid "Delete"
 msgstr ""
 
 #: lib/dashboard/schools/school_edit.ex:66
-#: lib/dashboard/schools/school_view.ex:87
+#: lib/dashboard/schools/school_view.ex:89
 #, elixir-autogen, elixir-format
 msgid "School could not be deleted"
 msgstr ""
 
-#: lib/dashboard/schools/school_view.ex:81
+#: lib/dashboard/schools/school_view.ex:83
 #, elixir-autogen, elixir-format
 msgid "School deleted"
 msgstr ""
 
-#: lib/dashboard/schools/school_view.html.heex:32
+#: lib/dashboard/schools/school_view.html.heex:36
 #, elixir-autogen, elixir-format
 msgid "You're going to delete this school and all its associated data"
 msgstr ""

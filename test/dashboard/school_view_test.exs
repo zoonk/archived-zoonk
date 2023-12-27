@@ -2,6 +2,7 @@ defmodule UneebeeWeb.DashboardSchoolViewTest do
   use UneebeeWeb.ConnCase, async: true
 
   import Phoenix.LiveViewTest
+  import Uneebee.Fixtures.Accounts
   import Uneebee.Fixtures.Organizations
 
   alias Uneebee.Organizations
@@ -48,6 +49,18 @@ defmodule UneebeeWeb.DashboardSchoolViewTest do
     test "doesn't allow to view a child school from another school", %{conn: conn} do
       another_school = school_fixture()
       assert_error_sent(403, fn -> get(conn, ~p"/dashboard/schools/#{another_school.id}") end)
+    end
+
+    test "lists school managers", %{conn: conn, school: school} do
+      child_school = school_fixture(%{school_id: school.id})
+      users = Enum.map(1..3, fn idx -> user_fixture(%{username: "manager_#{idx}"}) end)
+      Enum.each(users, fn user -> school_user_fixture(%{school: child_school, user: user, role: :manager}) end)
+
+      {:ok, lv, _html} = live(conn, "/dashboard/schools/#{child_school.id}")
+
+      Enum.each(users, fn user ->
+        assert has_element?(lv, "span", "@#{user.username}")
+      end)
     end
 
     test "deletes a school", %{conn: conn, school: school} do

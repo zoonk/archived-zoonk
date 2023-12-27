@@ -85,19 +85,20 @@ msgid "Approve"
 msgstr "批准"
 
 #: lib/dashboard/courses/course_user_view.ex:44
-#: lib/dashboard/schools/school_user_view.ex:42
+#: lib/dashboard/schools/school_user_view.ex:45
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Could not approve user!"
 msgstr "無法批准使用者！"
 
 #: lib/dashboard/courses/course_user_view.ex:62
-#: lib/dashboard/schools/school_user_view.ex:60
+#: lib/dashboard/schools/school_user_view.ex:63
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Could not reject user!"
 msgstr "無法拒絕使用者！"
 
 #: lib/dashboard/courses/course_user_view.ex:75
-#: lib/dashboard/schools/school_user_view.ex:73
+#: lib/dashboard/schools/school_user_view.ex:76
+#: lib/dashboard/schools/school_user_view.ex:88
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Could not remove user!"
 msgstr "無法移除使用者！"
@@ -116,13 +117,13 @@ msgid "Reject"
 msgstr "拒絕"
 
 #: lib/dashboard/courses/course_user_view.ex:38
-#: lib/dashboard/schools/school_user_view.ex:36
+#: lib/dashboard/schools/school_user_view.ex:39
 #, elixir-autogen, elixir-format
 msgid "User approved!"
 msgstr "使用者已批准！"
 
 #: lib/dashboard/courses/course_user_view.ex:56
-#: lib/dashboard/schools/school_user_view.ex:54
+#: lib/dashboard/schools/school_user_view.ex:57
 #, elixir-autogen, elixir-format
 msgid "User rejected!"
 msgstr "使用者已拒絕！"
@@ -580,7 +581,7 @@ msgstr "這些是學生在進行此步驟時可以選擇的選項。"
 msgid "This will remove %{username} from your course. They won't be able to see your course anymore unless you approve them again."
 msgstr "這將從您的課程中移除 %{username}。除非您再次批准他們，否則他們將無法再看到您的課程。"
 
-#: lib/dashboard/schools/school_user_view.ex:86
+#: lib/dashboard/schools/school_user_view.ex:101
 #, elixir-autogen, elixir-format
 msgid "Could not toggle analytics tracking!"
 msgstr "無法切換分析追蹤！"
@@ -797,7 +798,7 @@ msgstr "聯絡我們"
 #: lib/dashboard/schools/school_billing.ex:50
 #: lib/dashboard/schools/school_billing.ex:55
 #: lib/dashboard/schools/school_billing.html.heex:18
-#: lib/dashboard/schools/school_view.html.heex:42
+#: lib/dashboard/schools/school_view.html.heex:46
 #, elixir-autogen, elixir-format
 msgid "Current plan"
 msgstr "目前方案"
@@ -878,7 +879,7 @@ msgstr "Hobby"
 msgid "Pay as you go."
 msgstr "按使用量付費。"
 
-#: lib/dashboard/schools/school_view.html.heex:43
+#: lib/dashboard/schools/school_view.html.heex:47
 #, elixir-autogen, elixir-format
 msgid "Payment status"
 msgstr "付款狀態"
@@ -898,13 +899,13 @@ msgstr "優先支援和專用基礎架構。"
 msgid "Select your currency"
 msgstr "選擇您的貨幣"
 
-#: lib/dashboard/schools/school_view.html.heex:38
+#: lib/dashboard/schools/school_view.html.heex:42
 #, elixir-autogen, elixir-format
 msgid "Subscription"
 msgstr "訂閱"
 
-#: lib/dashboard/schools/school_view.ex:47
-#: lib/dashboard/schools/school_view.ex:65
+#: lib/dashboard/schools/school_view.ex:49
+#: lib/dashboard/schools/school_view.ex:67
 #, elixir-autogen, elixir-format
 msgid "Subscription updated"
 msgstr "訂閱已更新"
@@ -919,7 +920,7 @@ msgstr "無限課程"
 msgid "Unlimited users"
 msgstr "無限使用者"
 
-#: lib/dashboard/schools/school_view.html.heex:47
+#: lib/dashboard/schools/school_view.html.heex:51
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Update subscription"
 msgstr "更新訂閱"
@@ -930,23 +931,23 @@ msgstr "更新訂閱"
 msgid "Upgrade"
 msgstr "升級"
 
-#: lib/dashboard/schools/school_view.html.heex:33
+#: lib/dashboard/schools/school_view.html.heex:37
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Delete"
 msgstr "刪除"
 
 #: lib/dashboard/schools/school_edit.ex:66
-#: lib/dashboard/schools/school_view.ex:87
+#: lib/dashboard/schools/school_view.ex:89
 #, elixir-autogen, elixir-format, fuzzy
 msgid "School could not be deleted"
 msgstr "無法刪除學校"
 
-#: lib/dashboard/schools/school_view.ex:81
+#: lib/dashboard/schools/school_view.ex:83
 #, elixir-autogen, elixir-format
 msgid "School deleted"
 msgstr "學校已刪除"
 
-#: lib/dashboard/schools/school_view.html.heex:32
+#: lib/dashboard/schools/school_view.html.heex:36
 #, elixir-autogen, elixir-format
 msgid "You're going to delete this school and all its associated data"
 msgstr "您將刪除此學校及其所有相關資料"

@@ -27,6 +27,10 @@
     <p :if={@current_school.custom_domain} class="mt-2 text-xs leading-6 text-gray-500">
       <%= @current_school.custom_domain %>
     </p>
+
+    <div class="mt-4 flex gap-1">
+      <.badge :for={manager <- @managers}>@<%= manager.user.username %></.badge>
+    </div>
   </div>
 
   <.button icon="tabler-trash" color={:alert_light} phx-click="delete_school" data-confirm={dgettext("orgs", "You're going to delete this school and all its associated data")}>
