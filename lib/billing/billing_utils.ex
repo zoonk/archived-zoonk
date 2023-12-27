@@ -48,6 +48,20 @@ defmodule UneebeeWeb.Billing.Utils do
     ]
   end
 
+  @spec billing_options() :: list()
+  def billing_options do
+    Enum.map(billing_plans(), fn %{key: key, name: name} -> {name, key} end)
+  end
+
+  @spec payment_options() :: list()
+  def payment_options do
+    [
+      {dgettext("orgs", "Confirmed"), :confirmed},
+      {dgettext("orgs", "Pending"), :pending},
+      {dgettext("orgs", "Failed"), :error}
+    ]
+  end
+
   @spec currency_symbol(atom()) :: String.t()
   def currency_symbol(currency_code) do
     currency_code |> Atom.to_string() |> String.upcase() |> Money.Currency.symbol()

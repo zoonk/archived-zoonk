@@ -39,6 +39,20 @@ defmodule Uneebee.Billing do
   def create_stripe_customer(%School{} = school, _manager), do: school.stripe_customer_id
 
   @doc """
+  Returns an `%Ecto.Changeset{}` for tracking subscription changes.
+
+  ## Examples
+
+      iex> change_subscription(subscription)
+      %Ecto.Changeset{data: %Subscription{}}
+
+  """
+  @spec change_subscription(Subscription.t(), map()) :: Ecto.Changeset.t()
+  def change_subscription(%Subscription{} = subscription, attrs \\ %{}) do
+    Subscription.changeset(subscription, attrs)
+  end
+
+  @doc """
   Create a subscription for a school.
 
   ## Examples
@@ -48,7 +62,7 @@ defmodule Uneebee.Billing do
   """
   @spec create_subscription(map()) :: subscription_changeset()
   def create_subscription(attrs) do
-    %Subscription{} |> Subscription.changeset(attrs) |> Repo.insert()
+    %Subscription{} |> change_subscription(attrs) |> Repo.insert()
   end
 
   @doc """
@@ -61,7 +75,7 @@ defmodule Uneebee.Billing do
   """
   @spec update_subscription(Subscription.t(), map()) :: subscription_changeset()
   def update_subscription(subscription, attrs) do
-    subscription |> Subscription.changeset(attrs) |> Repo.update()
+    subscription |> change_subscription(attrs) |> Repo.update()
   end
 
   @doc """
