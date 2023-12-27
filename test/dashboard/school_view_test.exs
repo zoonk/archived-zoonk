@@ -27,7 +27,7 @@ defmodule UneebeeWeb.DashboardSchoolViewTest do
 
   describe "/dashboard/schools/:id (managers)" do
     setup do
-      app_setup(%{conn: build_conn()}, school_user: :manager)
+      app_setup(%{conn: build_conn()}, school_user: :manager, school_kind: :saas)
     end
 
     test "displays school", %{conn: conn, school: school} do
@@ -36,6 +36,7 @@ defmodule UneebeeWeb.DashboardSchoolViewTest do
 
       {:ok, lv, _html} = live(conn, "/dashboard/schools/#{child_school.id}")
 
+      refute has_element?(lv, "li", "Billing")
       assert has_element?(lv, "h1", child_school.name)
       assert has_element?(lv, "h1", child_school.slug)
       assert has_element?(lv, "p", child_school.custom_domain)

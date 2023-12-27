@@ -20,6 +20,12 @@ if System.get_env("PHX_SERVER") do
   config :uneebee, UneebeeWeb.Endpoint, server: true
 end
 
+if config_env() in [:prod, :dev] do
+  config :stripity_stripe,
+    api_key: System.get_env("STRIPE_API_KEY"),
+    webhook_secret: System.get_env("STRIPE_WEBHOOK_SECRET")
+end
+
 if config_env() == :prod do
   database_host =
     System.get_env("DATABASE_HOST") ||

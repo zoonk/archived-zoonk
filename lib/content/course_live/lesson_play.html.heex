@@ -1,4 +1,5 @@
 <form
+  :if={@active_subscription?}
   id="select-option"
   phx-submit="next"
   phx-hook={if @current_user.sound_effects?, do: "LessonSoundEffect", else: nil}
@@ -85,3 +86,17 @@
     </.button>
   </div>
 </form>
+
+<article :if={not @active_subscription?}>
+  <div class="min-h-dvh flex flex-col items-center justify-center gap-4 text-gray-600">
+    <h1 class="text-center text-2xl font-bold"><%= gettext("Subscription expired") %></h1>
+
+    <p class="text-center">
+      <%= gettext("Your school manager needs to renew their subscription. Please, contact them.") %>
+    </p>
+
+    <.link_button navigate={~p"/contact"} color={:primary} class="mt-8" icon="tabler-mail">
+      <%= gettext("Contact school") %>
+    </.link_button>
+  </div>
+</article>

@@ -31,7 +31,7 @@ msgstr ""
 msgid "Beginner"
 msgstr ""
 
-#: lib/content/course_live/lesson_play.html.heex:80
+#: lib/content/course_live/lesson_play.html.heex:81
 #, elixir-autogen, elixir-format
 msgid "Confirming..."
 msgstr ""
@@ -71,7 +71,7 @@ msgstr ""
 msgid "Intermediate"
 msgstr ""
 
-#: lib/content/course_live/lesson_play.html.heex:84
+#: lib/content/course_live/lesson_play.html.heex:85
 #, elixir-autogen, elixir-format
 msgid "Next step"
 msgstr ""
@@ -101,12 +101,12 @@ msgstr ""
 msgid "There's room for improvement"
 msgstr ""
 
-#: lib/content/course_live/lesson_play.ex:82
+#: lib/content/course_live/lesson_play.ex:85
 #, elixir-autogen, elixir-format
 msgid "Unable to complete lesson"
 msgstr ""
 
-#: lib/content/course_live/lesson_play.ex:53
+#: lib/content/course_live/lesson_play.ex:56
 #, elixir-autogen, elixir-format
 msgid "Unable to select option"
 msgstr ""
@@ -131,7 +131,7 @@ msgstr ""
 msgid "Lesson cover"
 msgstr ""
 
-#: lib/content/course_live/lesson_play.html.heex:15
+#: lib/content/course_live/lesson_play.html.heex:16
 #, elixir-autogen, elixir-format
 msgid "Your progress in this lesson will be lost. Would you like to quit?"
 msgstr ""

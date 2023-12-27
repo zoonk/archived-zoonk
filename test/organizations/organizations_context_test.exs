@@ -2,6 +2,7 @@ defmodule Uneebee.OrganizationsTest do
   use Uneebee.DataCase, async: true
 
   import Uneebee.Fixtures.Accounts
+  import Uneebee.Fixtures.Billing
   import Uneebee.Fixtures.Content
   import Uneebee.Fixtures.Organizations
 
@@ -357,6 +358,15 @@ defmodule Uneebee.OrganizationsTest do
       school_user = Organizations.get_school_user(school.slug, user.username)
       assert school_user.role == :teacher
     end
+
+    test "only updates stripe record if stripe is enabled" do
+      parent_school = school_fixture()
+      school = school_fixture(%{school_id: parent_school.id})
+      user = user_fixture()
+      subscription_fixture(%{school_id: school.id, stripe_subscription_item_id: nil})
+
+      assert {:ok, %SchoolUser{}} = Organizations.create_school_user(school, user, %{role: :student})
+    end
   end
 
   describe "update_school_user/2" do
@@ -482,7 +492,7 @@ defmodule Uneebee.OrganizationsTest do
     test "returns the number of users in a school" do
       school = school_fixture()
       Enum.each(1..4, fn _idx -> school_user_fixture(%{school: school}) end)
-      assert Organizations.get_school_users_count(school) == 4
+      assert Organizations.get_school_users_count(school.id) == 4
     end
   end
 
@@ -493,9 +503,9 @@ defmodule Uneebee.OrganizationsTest do
       Enum.each(1..3, fn _idx -> school_user_fixture(%{school: school, role: :teacher}) end)
       school_user_fixture(%{school: school, role: :manager})
 
-      assert Organizations.get_school_users_count(school, :student) == 4
-      assert Organizations.get_school_users_count(school, :teacher) == 3
-      assert Organizations.get_school_users_count(school, :manager) == 1
+      assert Organizations.get_school_users_count(school.id, :student) == 4
+      assert Organizations.get_school_users_count(school.id, :teacher) == 3
+      assert Organizations.get_school_users_count(school.id, :manager) == 1
     end
   end
 

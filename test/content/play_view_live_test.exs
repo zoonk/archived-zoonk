@@ -3,9 +3,11 @@ defmodule UneebeeWeb.PlayViewLiveTest do
 
   import Phoenix.LiveViewTest
   import Uneebee.Fixtures.Content
+  import Uneebee.Fixtures.Organizations
 
   alias Uneebee.Accounts
   alias Uneebee.Content
+  alias Uneebee.Organizations
 
   @select_form "#select-option"
 
@@ -74,7 +76,7 @@ defmodule UneebeeWeb.PlayViewLiveTest do
 
       assert Content.get_course_user_by_id(course.id, user.id) != nil
 
-      assert has_element?(lv, ~s|blockquote p:fl-icontains("step 1!")|)
+      assert has_element?(lv, "blockquote p", "step 1!")
     end
   end
 
@@ -132,6 +134,21 @@ defmodule UneebeeWeb.PlayViewLiveTest do
       {:ok, lv, _html} = live(conn, ~p"/c/#{course.slug}/#{lesson.id}")
 
       assert has_element?(lv, ~s|form[phx-hook="LessonSoundEffect"]|)
+    end
+
+    test "doesn't show the play page if the school doesn't have a subscription", %{conn: conn, school: school, course: course} do
+      parent_school = school_fixture(%{school_id: school.id})
+      Organizations.update_school(school, %{school_id: parent_school.id})
+
+      Enum.each(1..3, fn _idx -> school_user_fixture(%{school: school}) end)
+
+      lesson = lesson_fixture(%{course_id: course.id})
+      generate_steps(lesson)
+
+      {:ok, lv, _html} = live(conn, ~p"/c/#{course.slug}/#{lesson.id}")
+
+      refute has_element?(lv, "blockquote p", "step 1!")
+      assert has_element?(lv, "h1", "Subscription expired")
     end
   end
 

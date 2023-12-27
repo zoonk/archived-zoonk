@@ -96,7 +96,7 @@ defmodule UneebeeWeb.Router do
         {UneebeeWeb.Plugs.Course, :mount_course},
         {UneebeeWeb.Plugs.Course, :mount_lesson}
       ] do
-      live "/feedback", Feedback
+      live "/contact", Contact
 
       live "/missions", MissionList
       live "/trophies", TrophyList
@@ -143,6 +143,8 @@ defmodule UneebeeWeb.Router do
       live "/edit/logo", Dashboard.SchoolEdit, :logo
       live "/edit/settings", Dashboard.SchoolEdit, :settings
 
+      live "/billing", Dashboard.SchoolBilling
+
       live "/users", Dashboard.SchoolUserList
       live "/users/search", Dashboard.SchoolUserList, :search
       live "/u/:username", Dashboard.SchoolUserView
@@ -150,6 +152,12 @@ defmodule UneebeeWeb.Router do
       live "/schools", Dashboard.SchoolList
       live "/schools/:id", Dashboard.SchoolView
     end
+  end
+
+  scope "/dashboard", UneebeeWeb.Controller do
+    pipe_through [:browser, :require_authenticated_user, :require_manager]
+
+    get "/billing/:from/:to/:currency/:price_id", SchoolSubscription, :show
   end
 
   # These routes are only available to managers and teachers.

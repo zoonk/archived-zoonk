@@ -14,7 +14,7 @@ defmodule UneebeeWeb.Live.Dashboard.SchoolUserList do
   @impl Phoenix.LiveView
   def mount(_params, _session, socket) do
     %{school: school} = socket.assigns
-    user_count = Organizations.get_school_users_count(school)
+    user_count = Organizations.get_school_users_count(school.id)
     can_demote_user? = user_count > 1
 
     socket =

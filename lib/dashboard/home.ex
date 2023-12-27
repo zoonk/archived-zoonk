@@ -8,9 +8,9 @@ defmodule UneebeeWeb.Live.Dashboard.Home do
   def mount(_params, _session, socket) do
     %{school: school} = socket.assigns
 
-    manager_count = Organizations.get_school_users_count(school, :manager)
-    teacher_count = Organizations.get_school_users_count(school, :teacher)
-    student_count = Organizations.get_school_users_count(school, :student)
+    manager_count = Organizations.get_school_users_count(school.id, :manager)
+    teacher_count = Organizations.get_school_users_count(school.id, :teacher)
+    student_count = Organizations.get_school_users_count(school.id, :student)
 
     socket =
       socket
