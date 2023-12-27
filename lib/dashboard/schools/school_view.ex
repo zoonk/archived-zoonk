@@ -11,7 +11,12 @@ defmodule UneebeeWeb.Live.Dashboard.SchoolView do
 
   @impl Phoenix.LiveView
   def mount(params, _session, socket) do
+    %{school: school} = socket.assigns
+
     current_school = Organizations.get_school!(params["id"])
+
+    if school.id != current_school.school_id, do: raise(UneebeeWeb.PermissionError, code: :permission_denied)
+
     user_count = Organizations.get_school_users_count(current_school.id)
     subscription = Billing.get_subscription_by_school_id(current_school.id)
     subscription_changeset = subscription_changeset(subscription)

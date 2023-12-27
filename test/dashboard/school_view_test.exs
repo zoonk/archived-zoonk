@@ -42,5 +42,10 @@ defmodule UneebeeWeb.DashboardSchoolViewTest do
       assert has_element?(lv, "p", child_school.custom_domain)
       assert has_element?(lv, "span", "6")
     end
+
+    test "doesn't allow to view a child school from another school", %{conn: conn} do
+      another_school = school_fixture()
+      assert_error_sent(403, fn -> get(conn, ~p"/dashboard/schools/#{another_school.id}") end)
+    end
   end
 end

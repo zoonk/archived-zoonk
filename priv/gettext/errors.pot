@@ -217,3 +217,8 @@ msgstr ""
 #, elixir-autogen, elixir-format
 msgid "must be white_label"
 msgstr ""
+
+#: lib/error/permission_error.ex:15
+#, elixir-autogen, elixir-format
+msgid "Permission denied"
+msgstr ""

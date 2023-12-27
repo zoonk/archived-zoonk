@@ -210,3 +210,8 @@ msgstr "deve ter um nome de domínio"
 #, elixir-autogen, elixir-format
 msgid "must be white_label"
 msgstr "precisa ser white_label"
+
+#: lib/error/permission_error.ex:15
+#, elixir-autogen, elixir-format
+msgid "Permission denied"
+msgstr "Permissão negada"

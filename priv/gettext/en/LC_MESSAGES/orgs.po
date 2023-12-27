@@ -903,8 +903,8 @@ msgstr ""
 msgid "Subscription"
 msgstr ""
 
-#: lib/dashboard/schools/school_view.ex:42
-#: lib/dashboard/schools/school_view.ex:60
+#: lib/dashboard/schools/school_view.ex:47
+#: lib/dashboard/schools/school_view.ex:65
 #, elixir-autogen, elixir-format
 msgid "Subscription updated"
 msgstr ""
