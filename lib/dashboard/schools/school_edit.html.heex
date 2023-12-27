@@ -1,6 +1,6 @@
 <.live_component :if={@live_action == :logo} module={Upload} id={:school_logo} current_img={@school.logo} label={gettext("Logo")} />
 
-<.simple_form :if={@live_action != :logo} for={@form} id="school-form" phx-change="validate" unstyled phx-submit="save">
+<.simple_form :if={@live_action == :settings} for={@form} id="school-form" phx-change="validate" unstyled phx-submit="save">
   <div class="top-[57px] sticky flex flex-wrap items-center gap-2 bg-gray-50 p-4 sm:flex-nowrap sm:px-6 lg:px-8">
     <h1 class="text-base font-semibold leading-7 text-gray-900"><%= get_page_title(@live_action) %></h1>
 
@@ -45,3 +45,5 @@
     />
   </div>
 </.simple_form>
+
+<.live_component :if={@live_action == :delete} id={:delete_school} module={DeleteItem} name={@school.name} />

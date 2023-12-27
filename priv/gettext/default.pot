@@ -89,7 +89,7 @@ msgstr ""
 msgid "Home"
 msgstr ""
 
-#: lib/dashboard/schools/school_edit.ex:61
+#: lib/dashboard/schools/school_edit.ex:75
 #: lib/dashboard/schools/school_edit.html.heex:1
 #: lib/layouts/menu_utils.ex:89
 #: lib/layouts/templates/auth.html.heex:3
@@ -111,7 +111,7 @@ msgstr ""
 
 #: lib/accounts/user_live/user_settings.ex:163
 #: lib/dashboard/courses/course_edit.html.heex:5
-#: lib/dashboard/schools/school_edit.ex:60
+#: lib/dashboard/schools/school_edit.ex:74
 #: lib/layouts/components/app_menu.ex:40
 #: lib/layouts/menu_utils.ex:90
 #: lib/layouts/templates/dashboard_course.html.heex:42
@@ -265,6 +265,8 @@ msgstr ""
 
 #: lib/components/delete_item.ex:17
 #: lib/components/delete_item.ex:21
+#: lib/dashboard/schools/school_edit.ex:76
+#: lib/layouts/menu_utils.ex:92
 #: lib/layouts/templates/dashboard_course.html.heex:50
 #, elixir-autogen, elixir-format
 msgid "Delete"

@@ -126,6 +126,35 @@ defmodule UneebeeWeb.SchoolUpdateLiveTest do
       assert has_element?(lv, ~s|input[name="school[public?]"][value="false"]|)
       assert has_element?(lv, ~s|input[name="school[allow_guests?]"][disabled="disabled"]|)
     end
+
+    test "doesn't show the delete school menu for the main school", %{conn: conn} do
+      {:ok, lv, _html} = live(conn, ~p"/dashboard/edit/settings")
+      refute has_element?(lv, "li", "Delete")
+    end
+  end
+
+  describe "/dashboard/edit/delete" do
+    setup do
+      app_setup(%{conn: build_conn()}, school_user: :manager)
+    end
+
+    test "deletes the school", %{conn: conn, school: school, user: user} do
+      child_school = school_fixture(%{school_id: school.id})
+      school_user_fixture(%{school: child_school, user: user, role: :manager})
+
+      conn = Map.put(conn, :host, "#{child_school.slug}.#{school.custom_domain}")
+
+      {:ok, lv, _html} = live(conn, ~p"/dashboard/edit/delete")
+
+      assert has_element?(lv, "li[aria-current=page]", "Manage school")
+      assert has_element?(lv, "li[aria-current=page]", "Delete")
+
+      lv
+      |> form("#delete-form", %{confirmation: "CONFIRM"})
+      |> render_submit()
+
+      assert_raise Ecto.NoResultsError, fn -> Organizations.get_school!(child_school.id) end
+    end
   end
 
   describe "/dashboard/edit (non-authenticated users)" do

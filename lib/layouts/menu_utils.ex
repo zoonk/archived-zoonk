@@ -80,15 +80,16 @@ defmodule UneebeeWeb.Layouts.MenuUtils do
   def home_page?(:courseview, %Course{slug: slug}, last_course_slug), do: slug == last_course_slug
   def home_page?(_active_page, _course, _last_course_slug), do: false
 
-  @spec dashboard_school_menu(atom()) :: list()
-  def dashboard_school_menu(kind) do
+  @spec dashboard_school_menu(School.t()) :: list()
+  def dashboard_school_menu(%School{kind: kind, school_id: school_id}) do
     [
       %{link: ~p"/dashboard", view: [:dashboard_home], title: gettext("Overview"), visible?: true},
       %{link: ~p"/dashboard/schools", view: [:dashboard_schoollist, :dashboard_schoolview], title: gettext("Schools"), visible?: kind != :white_label},
       %{link: ~p"/dashboard/users", view: [:dashboard_schooluserlist, :dashboard_schooluserview], title: dgettext("orgs", "Users"), visible?: true},
       %{link: ~p"/dashboard/edit/logo", view: [:dashboard_schooledit_logo], title: gettext("Logo"), visible?: true},
       %{link: ~p"/dashboard/edit/settings", view: [:dashboard_schooledit_settings], title: gettext("Settings"), visible?: true},
-      %{link: ~p"/dashboard/billing", view: [:dashboard_schoolbilling], title: dgettext("orgs", "Billing"), visible?: kind == :white_label and stripe_enabled?()}
+      %{link: ~p"/dashboard/billing", view: [:dashboard_schoolbilling], title: dgettext("orgs", "Billing"), visible?: kind == :white_label and stripe_enabled?()},
+      %{link: ~p"/dashboard/edit/delete", view: [:dashboard_schooledit_delete], title: gettext("Delete"), visible?: !is_nil(school_id)}
     ]
   end
 

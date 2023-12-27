@@ -46,17 +46,17 @@ msgstr "E-mail da escola"
 msgid "School name"
 msgstr "Nome da escola"
 
-#: lib/dashboard/schools/school_edit.ex:35
+#: lib/dashboard/schools/school_edit.ex:36
 #, elixir-autogen, elixir-format, fuzzy
 msgid "School updated successfully"
 msgstr "Escola atualizada"
 
-#: lib/dashboard/schools/school_edit.ex:52
+#: lib/dashboard/schools/school_edit.ex:53
 #, elixir-autogen, elixir-format
 msgid "Could not update logo!"
 msgstr "Não foi possível atualizar o logo!"
 
-#: lib/dashboard/schools/school_edit.ex:48
+#: lib/dashboard/schools/school_edit.ex:49
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Logo updated successfully!"
 msgstr "Logo atualizado!"
@@ -935,6 +935,7 @@ msgstr "Melhorar plano"
 msgid "Delete"
 msgstr "Apagar"
 
+#: lib/dashboard/schools/school_edit.ex:66
 #: lib/dashboard/schools/school_view.ex:87
 #, elixir-autogen, elixir-format, fuzzy
 msgid "School could not be deleted"

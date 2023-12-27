@@ -3,6 +3,7 @@ defmodule UneebeeWeb.Live.Dashboard.SchoolEdit do
   use UneebeeWeb, :live_view
 
   alias Uneebee.Organizations
+  alias UneebeeWeb.Components.DeleteItem
   alias UneebeeWeb.Components.Upload
 
   @impl Phoenix.LiveView
@@ -53,10 +54,24 @@ defmodule UneebeeWeb.Live.Dashboard.SchoolEdit do
     end
   end
 
+  @impl Phoenix.LiveView
+  def handle_info({DeleteItem}, socket) do
+    %{app: app, school: school} = socket.assigns
+
+    case Organizations.delete_school(school) do
+      {:ok, _school} ->
+        {:noreply, redirect(socket, external: "https://#{app.custom_domain}")}
+
+      {:error, _changeset} ->
+        {:noreply, put_flash(socket, :error, dgettext("orgs", "School could not be deleted"))}
+    end
+  end
+
   defp assign_form(socket, %Ecto.Changeset{} = changeset) do
     assign(socket, :form, to_form(changeset))
   end
 
   defp get_page_title(:settings), do: gettext("Settings")
   defp get_page_title(:logo), do: gettext("Logo")
+  defp get_page_title(:delete), do: gettext("Delete")
 end
