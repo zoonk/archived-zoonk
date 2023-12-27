@@ -152,16 +152,27 @@ defmodule Uneebee.Organizations do
   @spec create_school_user(School.t(), User.t(), map()) :: school_user_changeset()
   def create_school_user(%School{} = school, %User{} = user, attrs \\ %{}) do
     school_user_attrs = Enum.into(attrs, %{user_id: user.id, school_id: school.id})
+    parent_school_user_attrs = Enum.into(attrs, %{user_id: user.id, school_id: school.school_id})
 
     multi =
       Ecto.Multi.new()
       |> Ecto.Multi.insert(:school_user, SchoolUser.changeset(%SchoolUser{}, school_user_attrs))
       |> Ecto.Multi.run(:usage, fn _repo, _su -> update_stripe_usage_record(school) end)
+      |> Ecto.Multi.run(:parent_su, fn _repo, _su -> maybe_add_parent_school_user(parent_school_user_attrs) end)
 
     case Repo.transaction(multi) do
       {:ok, %{school_user: school_user}} -> {:ok, school_user}
       {:error, _failed_operation, changeset, _changes_so_far} -> {:error, changeset}
     end
+  end
+
+  # Don't add a parent school user when the school_id is nil
+  defp maybe_add_parent_school_user(%{school_id: nil}), do: {:ok, nil}
+
+  # If there's a parent school, then add a parent school user.
+  defp maybe_add_parent_school_user(attrs) do
+    attrs = Map.put(attrs, :role, :student)
+    %SchoolUser{} |> SchoolUser.changeset(attrs) |> Repo.insert(on_conflict: :nothing)
   end
 
   # Don't do anything if the school is the main app school.

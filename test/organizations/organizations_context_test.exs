@@ -386,6 +386,23 @@ defmodule Uneebee.OrganizationsTest do
 
       assert {:ok, %SchoolUser{}} = Organizations.create_school_user(school, user, %{role: :student})
     end
+
+    test "adds a user to the parent school too" do
+      parent_school = school_fixture()
+      school = school_fixture(%{school_id: parent_school.id})
+      user = user_fixture()
+
+      assert {:ok, %SchoolUser{} = school_user} = Organizations.create_school_user(school, user, %{role: :manager})
+
+      assert school_user.role == :manager
+      assert school_user.school_id == school.id
+      assert school_user.user_id == user.id
+
+      parent_school_user = Organizations.get_school_user(parent_school.slug, user.username)
+      assert parent_school_user.role == :student
+      assert parent_school_user.school_id == parent_school.id
+      assert parent_school_user.user_id == user.id
+    end
   end
 
   describe "update_school_user/2" do
