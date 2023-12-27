@@ -365,7 +365,7 @@ defmodule Uneebee.OrganizationsTest do
       user = user_fixture()
       subscription_fixture(%{school_id: school.id, stripe_subscription_item_id: nil})
 
-      assert {:ok, %SchoolUser{} = school_user} = Organizations.create_school_user(school, user, %{role: :student})
+      assert {:ok, %SchoolUser{}} = Organizations.create_school_user(school, user, %{role: :student})
     end
   end
 

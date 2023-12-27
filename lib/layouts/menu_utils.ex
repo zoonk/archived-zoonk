@@ -88,7 +88,9 @@ defmodule UneebeeWeb.Layouts.MenuUtils do
       %{link: ~p"/dashboard/users", view: [:dashboard_schooluserlist, :dashboard_schooluserview], title: dgettext("orgs", "Users"), visible?: true},
       %{link: ~p"/dashboard/edit/logo", view: [:dashboard_schooledit_logo], title: gettext("Logo"), visible?: true},
       %{link: ~p"/dashboard/edit/settings", view: [:dashboard_schooledit_settings], title: gettext("Settings"), visible?: true},
-      %{link: ~p"/dashboard/billing", view: [:dashboard_schoolbilling], title: dgettext("orgs", "Billing"), visible?: kind == :white_label}
+      %{link: ~p"/dashboard/billing", view: [:dashboard_schoolbilling], title: dgettext("orgs", "Billing"), visible?: kind == :white_label and stripe_enabled?()}
     ]
   end
+
+  defp stripe_enabled?, do: Application.get_env(:stripity_stripe, :api_key) != nil
 end
