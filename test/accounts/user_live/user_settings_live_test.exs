@@ -360,6 +360,38 @@ defmodule UneebeeWeb.UserSettingsLiveTest do
     end
   end
 
+  describe "/users/settings/delete" do
+    setup :app_setup
+
+    test "deletes the user account", %{conn: conn, user: user} do
+      {:ok, lv, _html} = live(conn, ~p"/users/settings/delete")
+
+      assert has_element?(lv, "li[aria-current=page]", "Settings")
+      assert has_element?(lv, "li[aria-current=page]", "Delete")
+
+      lv
+      |> form("#delete-form", %{confirmation: "CONFIRM"})
+      |> render_submit()
+
+      assert_raise Ecto.NoResultsError, fn -> Accounts.get_user!(user.id) end
+    end
+
+    test "doesn't delete if confirmation message doesn't match", %{conn: conn, user: user} do
+      {:ok, lv, _html} = live(conn, ~p"/users/settings/delete")
+
+      assert has_element?(lv, "li[aria-current=page]", "Delete")
+
+      result =
+        lv
+        |> form("#delete-form", %{confirmation: "WRONG"})
+        |> render_submit()
+
+      assert result =~ "Confirmation message does not match."
+
+      assert Accounts.get_user!(user.id).username == user.username
+    end
+  end
+
   describe "confirm email" do
     setup %{conn: conn} do
       user = user_fixture()

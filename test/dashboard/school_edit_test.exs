@@ -155,6 +155,24 @@ defmodule UneebeeWeb.SchoolUpdateLiveTest do
 
       assert_raise Ecto.NoResultsError, fn -> Organizations.get_school!(child_school.id) end
     end
+
+    test "doesn't delete the school if the confirmation is wrong", %{conn: conn, school: school, user: user} do
+      child_school = school_fixture(%{school_id: school.id})
+      school_user_fixture(%{school: child_school, user: user, role: :manager})
+
+      conn = Map.put(conn, :host, "#{child_school.slug}.#{school.custom_domain}")
+
+      {:ok, lv, _html} = live(conn, ~p"/dashboard/edit/delete")
+
+      assert has_element?(lv, "li[aria-current=page]", "Manage school")
+      assert has_element?(lv, "li[aria-current=page]", "Delete")
+
+      lv
+      |> form("#delete-form", %{confirmation: "WRONG"})
+      |> render_submit()
+
+      assert Organizations.get_school!(child_school.id)
+    end
   end
 
   describe "/dashboard/edit (non-authenticated users)" do

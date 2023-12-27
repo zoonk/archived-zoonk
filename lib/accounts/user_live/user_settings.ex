@@ -3,6 +3,7 @@ defmodule UneebeeWeb.Live.UserSettings do
   use UneebeeWeb, :live_view
 
   alias Uneebee.Accounts
+  alias UneebeeWeb.Components.DeleteItem
   alias UneebeeWeb.Components.Upload
 
   # When users change their email address, we send them a link to confirm their new email.
@@ -143,6 +144,18 @@ defmodule UneebeeWeb.Live.UserSettings do
     end
   end
 
+  def handle_info({DeleteItem}, socket) do
+    %{current_user: user} = socket.assigns
+
+    case Accounts.delete_user(user) do
+      {:ok, _school} ->
+        {:noreply, redirect(socket, to: ~p"/users/register")}
+
+      {:error, _changeset} ->
+        {:noreply, put_flash(socket, :error, dgettext("auth", "Unable to delete your account"))}
+    end
+  end
+
   defp send_email_confirmation(user, current_email, app) do
     Accounts.deliver_user_update_email_instructions(user, app, current_email, &url(~p"/users/settings/confirm_email/#{&1}"))
 
@@ -160,5 +173,6 @@ defmodule UneebeeWeb.Live.UserSettings do
   defp get_page_title(:email), do: gettext("Change email")
   defp get_page_title(:password), do: gettext("Change password")
   defp get_page_title(:avatar), do: gettext("Avatar")
+  defp get_page_title(:delete), do: gettext("Delete")
   defp get_page_title(_live_action), do: gettext("Settings")
 end

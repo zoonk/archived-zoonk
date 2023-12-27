@@ -109,7 +109,7 @@ msgstr ""
 msgid "Logout"
 msgstr ""
 
-#: lib/accounts/user_live/user_settings.ex:163
+#: lib/accounts/user_live/user_settings.ex:177
 #: lib/dashboard/courses/course_edit.html.heex:5
 #: lib/dashboard/schools/school_edit.ex:74
 #: lib/layouts/components/app_menu.ex:40
@@ -243,17 +243,17 @@ msgstr ""
 msgid "Deleting..."
 msgstr ""
 
-#: lib/accounts/user_live/user_settings.ex:160
+#: lib/accounts/user_live/user_settings.ex:173
 #, elixir-autogen, elixir-format
 msgid "Change email"
 msgstr ""
 
-#: lib/accounts/user_live/user_settings.ex:161
+#: lib/accounts/user_live/user_settings.ex:174
 #, elixir-autogen, elixir-format
 msgid "Change password"
 msgstr ""
 
-#: lib/accounts/user_live/user_settings.ex:159
+#: lib/accounts/user_live/user_settings.ex:172
 #, elixir-autogen, elixir-format
 msgid "Change profile"
 msgstr ""
@@ -263,10 +263,12 @@ msgstr ""
 msgid "Close sidebar"
 msgstr ""
 
+#: lib/accounts/user_live/user_settings.ex:176
 #: lib/components/delete_item.ex:17
 #: lib/components/delete_item.ex:21
 #: lib/dashboard/schools/school_edit.ex:76
 #: lib/layouts/menu_utils.ex:92
+#: lib/layouts/templates/app.html.heex:80
 #: lib/layouts/templates/dashboard_course.html.heex:50
 #, elixir-autogen, elixir-format
 msgid "Delete"
@@ -321,19 +323,19 @@ msgstr ""
 msgid "Pending"
 msgstr ""
 
-#: lib/accounts/user_live/user_settings.ex:162
+#: lib/accounts/user_live/user_settings.ex:175
 #: lib/accounts/user_live/user_settings.html.heex:1
 #: lib/layouts/templates/app.html.heex:64
 #, elixir-autogen, elixir-format
 msgid "Avatar"
 msgstr ""
 
-#: lib/accounts/user_live/user_settings.ex:139
+#: lib/accounts/user_live/user_settings.ex:140
 #, elixir-autogen, elixir-format
 msgid "Avatar updated successfully!"
 msgstr ""
 
-#: lib/accounts/user_live/user_settings.ex:142
+#: lib/accounts/user_live/user_settings.ex:143
 #, elixir-autogen, elixir-format
 msgid "Could not update avatar!"
 msgstr ""

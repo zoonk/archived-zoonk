@@ -75,6 +75,10 @@
       <.dashboard_menu_item method="delete" href={~p"/users/logout"}>
         <%= gettext("Logout") %>
       </.dashboard_menu_item>
+
+      <.dashboard_menu_item active={@active_page == :usersettings_delete} navigate={~p"/users/settings/delete"}>
+        <%= gettext("Delete") %>
+      </.dashboard_menu_item>
     </ul>
   </nav>
 

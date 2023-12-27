@@ -1,7 +1,7 @@
 <.live_component :if={@live_action == :avatar} module={Upload} id={:user_avatar} current_img={@current_user.avatar} label={gettext("Avatar")} />
 
 <.simple_form
-  :if={@live_action != :avatar}
+  :if={@live_action not in [:avatar, :delete]}
   unstyled
   for={@form}
   phx-trigger-action={if @live_action == :password, do: @trigger_submit, else: nil}
@@ -64,3 +64,5 @@
     <.input :if={@live_action == :password} field={@form[:password_confirmation]} type="password" label={dgettext("auth", "Confirm new password")} autocomplete="new-password" />
   </div>
 </.simple_form>
+
+<.live_component :if={@live_action == :delete} id={:delete_user} module={DeleteItem} name={get_page_title(@live_action)} />

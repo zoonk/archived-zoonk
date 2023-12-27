@@ -126,27 +126,27 @@ msgstr "Senha atual"
 msgid "New password"
 msgstr "Nova senha"
 
-#: lib/accounts/user_live/user_settings.ex:108
+#: lib/accounts/user_live/user_settings.ex:109
 #, elixir-autogen, elixir-format
 msgid "A link to confirm your email change has been sent to the new address."
 msgstr "Enviamos um link para confirmar a alteração do seu e-mail para o novo endereço."
 
-#: lib/accounts/user_live/user_settings.ex:16
+#: lib/accounts/user_live/user_settings.ex:17
 #, elixir-autogen, elixir-format
 msgid "Email change link is invalid or it has expired."
 msgstr "O link para alterar o e-mail é inválido ou expirou."
 
-#: lib/accounts/user_live/user_settings.ex:15
+#: lib/accounts/user_live/user_settings.ex:16
 #, elixir-autogen, elixir-format
 msgid "Email changed successfully."
 msgstr "E-mail alterado."
 
-#: lib/accounts/user_live/user_settings.ex:93
+#: lib/accounts/user_live/user_settings.ex:94
 #, elixir-autogen, elixir-format
 msgid "Error updating settings"
 msgstr "Erro ao atualizar configurações"
 
-#: lib/accounts/user_live/user_settings.ex:85
+#: lib/accounts/user_live/user_settings.ex:86
 #, elixir-autogen, elixir-format
 msgid "Settings updated successfully"
 msgstr "Configurações atualizadas"
@@ -225,3 +225,8 @@ msgstr "Habilitar efeitos sonoros?"
 #, elixir-autogen, elixir-format
 msgid "When checked, courses may play sound effects when you answer questions correctly or incorrectly."
 msgstr "Ao marcar, os cursos podem reproduzir efeitos sonoros quando você responder corretamente ou incorretamente as perguntas."
+
+#: lib/accounts/user_live/user_settings.ex:155
+#, elixir-autogen, elixir-format
+msgid "Unable to delete your account"
+msgstr "Não foi possível excluir sua conta"
