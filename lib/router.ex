@@ -86,7 +86,14 @@ defmodule UneebeeWeb.Router do
   end
 
   scope "/", UneebeeWeb.Live do
-    pipe_through [:browser, :require_authenticated_user, :require_subscription_for_private_schools, :fetch_course, :require_course_user_for_lesson]
+    pipe_through [
+      :browser,
+      :require_authenticated_user,
+      :prevent_guest_to_create_school,
+      :require_subscription_for_private_schools,
+      :fetch_course,
+      :require_course_user_for_lesson
+    ]
 
     live_session :requires_authentication,
       on_mount: [

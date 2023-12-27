@@ -60,6 +60,15 @@ defmodule UneebeeWeb.Plugs.School do
   defp setup_school(conn, _opts, true), do: conn |> Controller.redirect(to: ~p"/schools/new") |> halt()
 
   @doc """
+  Don't allow a guest user to create a school. Redirect them to the settings page instead.
+  """
+  @spec prevent_guest_to_create_school(Plug.Conn.t(), Keyword.t()) :: Plug.Conn.t()
+  def prevent_guest_to_create_school(%{request_path: "/schools/new", assigns: %{current_user: %{guest?: true}}} = conn, _opts),
+    do: conn |> Controller.redirect(to: ~p"/users/settings") |> halt()
+
+  def prevent_guest_to_create_school(conn, _opts), do: conn
+
+  @doc """
   Requires a subscription for private schools.
   """
   @spec require_subscription_for_private_schools(Plug.Conn.t(), Keyword.t()) :: Plug.Conn.t()

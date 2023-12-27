@@ -100,6 +100,17 @@ defmodule UneebeeWeb.NewSchoolLiveTest do
     end
   end
 
+  describe "New school page (guest user)" do
+    setup do
+      set_school_with_guest_user(%{conn: build_conn()}, %{kind: :saas})
+    end
+
+    test "redirects to the setup page", %{conn: conn} do
+      result = get(conn, ~p"/schools/new")
+      assert redirected_to(result) =~ "/users/settings"
+    end
+  end
+
   describe "New school (SaaS app)" do
     setup do
       app_setup(%{conn: build_conn()}, school_kind: :saas)
