@@ -31,7 +31,7 @@ msgstr "Voltar ao curso"
 msgid "Beginner"
 msgstr "Iniciante"
 
-#: lib/content/course_live/lesson_play.html.heex:80
+#: lib/content/course_live/lesson_play.html.heex:81
 #, elixir-autogen, elixir-format
 msgid "Confirming..."
 msgstr "Confirmando..."
@@ -71,7 +71,7 @@ msgstr "Ilustração de um alienígena verde"
 msgid "Intermediate"
 msgstr "Intermediário"
 
-#: lib/content/course_live/lesson_play.html.heex:84
+#: lib/content/course_live/lesson_play.html.heex:85
 #, elixir-autogen, elixir-format
 msgid "Next step"
 msgstr "Próxima etapa"
@@ -101,12 +101,12 @@ msgstr "Está incorreto."
 msgid "There's room for improvement"
 msgstr "Tem espaço para melhorar"
 
-#: lib/content/course_live/lesson_play.ex:82
+#: lib/content/course_live/lesson_play.ex:85
 #, elixir-autogen, elixir-format
 msgid "Unable to complete lesson"
 msgstr "Não foi possível concluir a aula"
 
-#: lib/content/course_live/lesson_play.ex:53
+#: lib/content/course_live/lesson_play.ex:56
 #, elixir-autogen, elixir-format
 msgid "Unable to select option"
 msgstr "Não foi possível selecionar a alternativa"
@@ -131,7 +131,7 @@ msgstr "Você acertou %{correct} de %{total} respostas."
 msgid "Lesson cover"
 msgstr "Capa da aula"
 
-#: lib/content/course_live/lesson_play.html.heex:15
+#: lib/content/course_live/lesson_play.html.heex:16
 #, elixir-autogen, elixir-format
 msgid "Your progress in this lesson will be lost. Would you like to quit?"
 msgstr "O seu progresso nesta aula será perdido. Você gostaria de sair?"

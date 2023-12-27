@@ -31,7 +31,7 @@ msgstr "返回課程"
 msgid "Beginner"
 msgstr "初級"
 
-#: lib/content/course_live/lesson_play.html.heex:80
+#: lib/content/course_live/lesson_play.html.heex:81
 #, elixir-autogen, elixir-format
 msgid "Confirming..."
 msgstr "確認中..."
@@ -71,7 +71,7 @@ msgstr "綠色外星人的插圖"
 msgid "Intermediate"
 msgstr "中級"
 
-#: lib/content/course_live/lesson_play.html.heex:84
+#: lib/content/course_live/lesson_play.html.heex:85
 #, elixir-autogen, elixir-format
 msgid "Next step"
 msgstr "下一步"
@@ -101,12 +101,12 @@ msgstr "這是不正確的。"
 msgid "There's room for improvement"
 msgstr "有改進的空間"
 
-#: lib/content/course_live/lesson_play.ex:82
+#: lib/content/course_live/lesson_play.ex:85
 #, elixir-autogen, elixir-format
 msgid "Unable to complete lesson"
 msgstr "無法完成課程"
 
-#: lib/content/course_live/lesson_play.ex:53
+#: lib/content/course_live/lesson_play.ex:56
 #, elixir-autogen, elixir-format
 msgid "Unable to select option"
 msgstr "無法選擇選項"
@@ -131,7 +131,7 @@ msgstr "您的答案中有 %{correct} 個是正確的，總共有 %{total} 個�
 msgid "Lesson cover"
 msgstr "課程封面"
 
-#: lib/content/course_live/lesson_play.html.heex:15
+#: lib/content/course_live/lesson_play.html.heex:16
 #, elixir-autogen, elixir-format
 msgid "Your progress in this lesson will be lost. Would you like to quit?"
 msgstr "您在這堂課的進度將會遺失。您想要退出嗎？"
