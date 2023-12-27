@@ -24,6 +24,17 @@ defmodule UneebeeWeb.UserLoginLiveTest do
     end
   end
 
+  describe "login page (with school configured)" do
+    setup do
+      set_school(%{conn: build_conn()}, %{allow_guests?: true})
+    end
+
+    test "renders the page even when guests are allowed", %{conn: conn} do
+      assert {:ok, _lv, html} = live(conn, ~p"/users/login")
+      assert html =~ "Sign in to your account"
+    end
+  end
+
   describe "user login" do
     test "redirects if user login with valid credentials", %{conn: conn} do
       password = "ValidPassword123"

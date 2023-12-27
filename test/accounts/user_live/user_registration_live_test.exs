@@ -40,6 +40,17 @@ defmodule UneebeeWeb.UserRegistrationLiveTest do
     end
   end
 
+  describe "register user (with school configured)" do
+    setup do
+      set_school(%{conn: build_conn()}, %{allow_guests?: true})
+    end
+
+    test "renders the page even when guests are allowed", %{conn: conn} do
+      assert {:ok, lv, _html} = live(conn, ~p"/users/register")
+      assert has_element?(lv, "h1", "Create an account")
+    end
+  end
+
   describe "register user (without email confirmation)" do
     setup do
       set_school(%{conn: build_conn()}, %{require_confirmation?: false})
