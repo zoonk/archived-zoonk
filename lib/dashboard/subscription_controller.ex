@@ -34,6 +34,7 @@ defmodule UneebeeWeb.Controller.SchoolSubscription do
         cancel_url: attrs.billing_url,
         client_reference_id: attrs.school.id,
         line_items: [%{price: attrs.price_id}],
+        allow_promotion_codes: true,
         metadata: %{"school_id" => attrs.school.id, "user_id" => attrs.user.id, "plan" => "flexible"}
       })
 
