@@ -19,6 +19,6 @@ defmodule UneebeeWeb.Live.ForgotPassword do
     {:noreply,
      socket
      |> put_flash(:info, dgettext("auth", "If your email is in our system, you will receive instructions to reset your password shortly."))
-     |> redirect(to: ~p"/")}
+     |> redirect(to: ~p"/users/login")}
   end
 end
