@@ -4,25 +4,24 @@ defmodule UneebeeWeb.Layouts.MenuUtils do
 
   alias Uneebee.Content.Course
   alias Uneebee.Organizations.School
-  alias UneebeeWeb.Shared.ImageOptimizer
 
   @spec school_name(School.t() | nil) :: String.t()
   def school_name(nil), do: "UneeBee"
   def school_name(%School{} = school), do: school.name
 
-  @spec school_logo(School.t() | nil) :: String.t()
-  def school_logo(nil), do: ~p"/images/logo.svg"
-  def school_logo(%School{logo: nil}), do: school_logo(nil)
-  def school_logo(%School{} = school), do: get_image_url(school.logo, "logo")
+  @spec school_logo(School.t() | nil, School.t() | nil) :: String.t()
+  def school_logo(nil, _app), do: ~p"/images/logo.svg"
+  def school_logo(%School{logo: nil}, nil), do: school_logo(nil, nil)
+  def school_logo(%School{logo: nil}, %School{logo: nil}), do: school_logo(nil, nil)
+  def school_logo(%School{logo: nil}, %School{logo: logo}), do: get_image_url(logo, "logo")
+  def school_logo(%School{} = school, _app), do: get_image_url(school.logo, "logo")
 
-  @spec school_icon(School.t() | nil, non_neg_integer()) :: String.t()
-  def school_icon(nil, size), do: "/favicon/#{size}.png"
-  def school_icon(%School{icon: nil}, size), do: school_icon(nil, size)
-
-  def school_icon(%School{} = school, size) do
-    url = ImageOptimizer.raw_image_url(school.icon)
-    "#{url}/w=#{size},h=#{size},sharpen=1"
-  end
+  @spec school_icon(School.t() | nil, School.t() | nil, non_neg_integer()) :: String.t()
+  def school_icon(nil, _app, size), do: "/favicon/#{size}.png"
+  def school_icon(%School{icon: nil}, nil, size), do: school_icon(nil, nil, size)
+  def school_icon(%School{icon: nil}, %School{icon: nil}, size), do: school_icon(nil, nil, size)
+  def school_icon(%School{icon: nil}, %School{icon: icon}, size), do: get_image_url(icon, size, flexible: true)
+  def school_icon(%School{} = school, _app, size), do: get_image_url(school.icon, size, flexible: true)
 
   @spec user_settings?(atom()) :: boolean()
   def user_settings?(active_page) do

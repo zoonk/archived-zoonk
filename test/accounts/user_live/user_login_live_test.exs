@@ -3,6 +3,7 @@ defmodule UneebeeWeb.UserLoginLiveTest do
 
   import Phoenix.LiveViewTest
   import Uneebee.Fixtures.Accounts
+  import Uneebee.Fixtures.Organizations
 
   describe "Log in page" do
     test "renders log in page", %{conn: conn} do
@@ -26,12 +27,22 @@ defmodule UneebeeWeb.UserLoginLiveTest do
 
   describe "login page (with school configured)" do
     setup do
-      set_school(%{conn: build_conn()}, %{allow_guests?: true})
+      set_school(%{conn: build_conn()}, %{allow_guests?: true, logo: "/m_logo.png", icon: "/m_icon.png"})
     end
 
     test "renders the page even when guests are allowed", %{conn: conn} do
       assert {:ok, _lv, html} = live(conn, ~p"/users/login")
       assert html =~ "Sign in to your account"
+    end
+
+    test "displays the logo and icon from the app school when it has one", %{conn: conn, school: school} do
+      child_school = school_fixture(%{school_id: school.id, logo: nil})
+      conn = Map.put(conn, :host, "#{child_school.slug}.#{school.custom_domain}")
+
+      {:ok, lv, html} = live(conn, ~p"/users/login")
+
+      assert has_element?(lv, ~s|img[src="/m_logo.png"]|)
+      assert html =~ "sizes=\"16x16\" href=\"/m_icon.png\"/>"
     end
   end
 

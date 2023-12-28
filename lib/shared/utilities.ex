@@ -72,9 +72,16 @@ defmodule UneebeeWeb.Shared.Utilities do
   In both cases, we should just load the image. However, when it's an optimized image using Cloudflare Images,
   then we should use the `image_url` function from `UneebeeWeb.Shared.ImageOptimizer`.
   """
-  @spec get_image_url(String.t() | nil, String.t()) :: String.t()
-  def get_image_url(nil, _variant), do: nil
-  def get_image_url("/" <> _rest = image, _variant), do: image
-  def get_image_url("https://" <> _rest = image, _variant), do: image
-  def get_image_url(image, variant), do: ImageOptimizer.image_url(image, variant)
+  @spec get_image_url(String.t() | nil, String.t(), list()) :: String.t()
+  def get_image_url(image, variant, opts \\ [])
+  def get_image_url(nil, _variant, _opts), do: nil
+  def get_image_url("/" <> _rest = image, _variant, _opts), do: image
+  def get_image_url("https://" <> _rest = image, _variant, _opts), do: image
+
+  def get_image_url(image, variant, flexible: true) do
+    url = ImageOptimizer.raw_image_url(image)
+    "#{url}/w=#{variant},h=#{variant},sharpen=1"
+  end
+
+  def get_image_url(image, variant, _opts), do: ImageOptimizer.image_url(image, variant)
 end

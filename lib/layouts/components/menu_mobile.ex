@@ -10,7 +10,7 @@ defmodule UneebeeWeb.Components.Layouts.MenuMobile do
     <.drawer id="mobile-menu">
       <div class="flex grow flex-col gap-y-5 overflow-y-auto bg-white px-6 pb-4">
         <div class="flex h-16 shrink-0 items-center">
-          <img class="h-8 w-auto" src={school_logo(@school)} alt={school_name(@school)} />
+          <img class="h-8 w-auto" src={school_logo(@school, @app)} alt={school_name(@school)} />
         </div>
 
         <%= render_slot(@inner_block) %>

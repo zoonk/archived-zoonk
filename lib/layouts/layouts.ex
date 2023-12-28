@@ -17,7 +17,7 @@ defmodule UneebeeWeb.Layouts do
   embed_templates "templates/*"
 
   @spec social_image(String.t() | nil, School.t() | nil) :: String.t()
-  def social_image(nil, school), do: school_logo(school)
+  def social_image(nil, school), do: school_logo(school, nil)
   def social_image(img, _school), do: img
 
   @spec page_title(String.t() | nil, School.t() | nil) :: String.t()

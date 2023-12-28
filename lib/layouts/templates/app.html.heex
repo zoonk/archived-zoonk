@@ -1,4 +1,4 @@
-<.menu_mobile :if={show_menu?(@active_page)} school={@school}>
+<.menu_mobile :if={show_menu?(@active_page)} school={@school} app={@app}>
   <.app_menu
     active_page={@active_page}
     user_role={@user_role}
@@ -11,7 +11,7 @@
   />
 </.menu_mobile>
 
-<.menu_desktop :if={show_menu?(@active_page)} school={@school}>
+<.menu_desktop :if={show_menu?(@active_page)} school={@school} app={@app}>
   <.app_menu
     active_page={@active_page}
     user_role={@user_role}

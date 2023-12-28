@@ -14,9 +14,9 @@
     <script :if={enable_plausible?(assigns[:school_user])} defer data-domain={plausible_domain(assigns[:app])} src="https://plausible.io/js/script.js">
     </script>
 
-    <link rel="apple-touch-icon" sizes="180x180" href={school_icon(assigns.school, 180)} />
-    <link rel="icon" type="image/png" sizes="32x32" href={school_icon(assigns.school, 32)} />
-    <link rel="icon" type="image/png" sizes="16x16" href={school_icon(assigns.school, 16)} />
+    <link rel="apple-touch-icon" sizes="180x180" href={school_icon(assigns.school, assigns.app, 180)} />
+    <link rel="icon" type="image/png" sizes="32x32" href={school_icon(assigns.school, assigns.app, 32)} />
+    <link rel="icon" type="image/png" sizes="16x16" href={school_icon(assigns.school, assigns.app, 16)} />
     <meta name="msapplication-TileColor" content="#ffc40d" />
     <meta name="theme-color" content="#ffc40d" />
 
