@@ -23,7 +23,7 @@ msgstr "選擇一個暱稱以存取您的學校資料"
 msgid "Create school"
 msgstr "建立學校"
 
-#: lib/dashboard/schools/school_edit.html.heex:11
+#: lib/dashboard/schools/school_edit.html.heex:12
 #: lib/organizations/school_live/school_new.html.heex:8
 #, elixir-autogen, elixir-format
 msgid "Nickname"
@@ -34,13 +34,13 @@ msgstr "暱稱"
 msgid "School could not be created"
 msgstr "無法建立學校"
 
-#: lib/dashboard/schools/school_edit.html.heex:13
+#: lib/dashboard/schools/school_edit.html.heex:14
 #: lib/organizations/school_live/school_new.html.heex:7
 #, elixir-autogen, elixir-format
 msgid "School email"
 msgstr "學校電子郵件"
 
-#: lib/dashboard/schools/school_edit.html.heex:12
+#: lib/dashboard/schools/school_edit.html.heex:13
 #: lib/organizations/school_live/school_new.html.heex:6
 #, elixir-autogen, elixir-format
 msgid "School name"
@@ -444,12 +444,12 @@ msgstr "使用者回答此問題後顯示的回饋訊息。您可以提供一些
 msgid "When checked this course will be visible to all students from your school. Keep it unchecked if you want this course to be visible only to invited students."
 msgstr "勾選此選項，您的學校的所有學生都可以看到這門課程。如果您希望只有被邀請的學生能看到這門課程，請不要勾選。"
 
-#: lib/dashboard/schools/school_edit.html.heex:15
+#: lib/dashboard/schools/school_edit.html.heex:16
 #, elixir-autogen, elixir-format
 msgid "Privacy policy URL"
 msgstr "隱私政策網址"
 
-#: lib/dashboard/schools/school_edit.html.heex:14
+#: lib/dashboard/schools/school_edit.html.heex:15
 #, elixir-autogen, elixir-format
 msgid "Terms of use URL"
 msgstr "使用條款網址"
@@ -596,12 +596,12 @@ msgstr "停用分析"
 msgid "Enable analytics"
 msgstr "啟用分析"
 
-#: lib/dashboard/schools/school_edit.html.heex:34
+#: lib/dashboard/schools/school_edit.html.heex:35
 #, elixir-autogen, elixir-format
 msgid "Require email confirmation?"
 msgstr "需要電子郵件確認？"
 
-#: lib/dashboard/schools/school_edit.html.heex:35
+#: lib/dashboard/schools/school_edit.html.heex:36
 #, elixir-autogen, elixir-format
 msgid "When checked, users will be required to confirm their email address before they can log in."
 msgstr "勾選後，使用者在登入前必須確認他們的電子郵件地址。"
@@ -626,22 +626,22 @@ msgstr "軟體作為服務"
 msgid "White label"
 msgstr "白色標籤"
 
-#: lib/dashboard/schools/school_edit.html.heex:21
+#: lib/dashboard/schools/school_edit.html.heex:22
 #, elixir-autogen, elixir-format
 msgid "Allow anyone to sign up?"
 msgstr "允許任何人註冊？"
 
-#: lib/dashboard/schools/school_edit.html.heex:43
+#: lib/dashboard/schools/school_edit.html.heex:44
 #, elixir-autogen, elixir-format
 msgid "Allow guest users?"
 msgstr "允許訪客使用者？"
 
-#: lib/dashboard/schools/school_edit.html.heex:23
+#: lib/dashboard/schools/school_edit.html.heex:24
 #, elixir-autogen, elixir-format
 msgid "When checked, anyone can create an account. When unchecked, they can still sign up but you will have to approve their account before they can use it."
 msgstr "勾選後，任何人都可以建立帳戶。取消勾選後，他們仍然可以註冊，但您必須在他們使用帳戶之前批准他們的帳戶。"
 
-#: lib/dashboard/schools/school_edit.html.heex:44
+#: lib/dashboard/schools/school_edit.html.heex:45
 #, elixir-autogen, elixir-format
 msgid "When checked, users won't need to create an account to play your courses. Keep it unchecked if you want users to create an account first."
 msgstr "勾選後，使用者不需要建立帳戶來玩您的課程。如果您希望使用者先建立帳戶，請不要勾選。"
@@ -698,7 +698,7 @@ msgstr "老師"
 #: lib/dashboard/courses/course_user_list.html.heex:2
 #: lib/dashboard/schools/school_user_list.ex:76
 #: lib/dashboard/schools/school_user_list.html.heex:2
-#: lib/layouts/menu_utils.ex:88
+#: lib/layouts/menu_utils.ex:98
 #: lib/layouts/templates/dashboard_course.html.heex:38
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Users"
@@ -773,7 +773,7 @@ msgid "25% off add-ons"
 msgstr "25% 折扣附加元件"
 
 #: lib/dashboard/schools/school_billing.ex:25
-#: lib/layouts/menu_utils.ex:91
+#: lib/layouts/menu_utils.ex:102
 #, elixir-autogen, elixir-format
 msgid "Billing"
 msgstr "帳單"
@@ -936,7 +936,7 @@ msgstr "升級"
 msgid "Delete"
 msgstr "刪除"
 
-#: lib/dashboard/schools/school_edit.ex:66
+#: lib/dashboard/schools/school_edit.ex:79
 #: lib/dashboard/schools/school_view.ex:89
 #, elixir-autogen, elixir-format, fuzzy
 msgid "School could not be deleted"
@@ -951,3 +951,13 @@ msgstr "學校已刪除"
 #, elixir-autogen, elixir-format
 msgid "You're going to delete this school and all its associated data"
 msgstr "您將刪除此學校及其所有相關資料"
+
+#: lib/dashboard/schools/school_edit.ex:66
+#, elixir-autogen, elixir-format, fuzzy
+msgid "Could not update icon!"
+msgstr "無法更新標誌！"
+
+#: lib/dashboard/schools/school_edit.ex:62
+#, elixir-autogen, elixir-format, fuzzy
+msgid "Icon updated successfully!"
+msgstr "標誌已成功更新！"

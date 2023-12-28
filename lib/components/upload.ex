@@ -48,7 +48,7 @@ defmodule UneebeeWeb.Components.Upload do
 
   @impl Phoenix.LiveComponent
   def mount(socket) do
-    {:ok, allow_upload(socket, :file, accept: ~w(image/*), max_entries: 1, max_file_size: 2_056_392, auto_upload: true, progress: &handle_progress/3)}
+    {:ok, allow_upload(socket, :file, accept: ~w(.jpg .jpeg .png .avif .gif .webp), max_entries: 1, max_file_size: 2_056_392, auto_upload: true, progress: &handle_progress/3)}
   end
 
   @impl Phoenix.LiveComponent

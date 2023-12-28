@@ -149,6 +149,7 @@ defmodule UneebeeWeb.Router do
       ] do
       live "/", Dashboard.Home
       live "/edit/logo", Dashboard.SchoolEdit, :logo
+      live "/edit/icon", Dashboard.SchoolEdit, :icon
       live "/edit/settings", Dashboard.SchoolEdit, :settings
       live "/edit/delete", Dashboard.SchoolEdit, :delete
 

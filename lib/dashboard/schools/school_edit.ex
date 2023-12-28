@@ -54,6 +54,19 @@ defmodule UneebeeWeb.Live.Dashboard.SchoolEdit do
     end
   end
 
+  def handle_info({Upload, :school_icon, new_path}, socket) do
+    case Organizations.update_school(socket.assigns.school, %{icon: new_path}) do
+      {:ok, school} ->
+        {:noreply,
+         socket
+         |> put_flash(:info, dgettext("orgs", "Icon updated successfully!"))
+         |> assign(school: school)}
+
+      {:error, _changeset} ->
+        {:noreply, put_flash(socket, :error, dgettext("orgs", "Could not update icon!"))}
+    end
+  end
+
   @impl Phoenix.LiveView
   def handle_info({DeleteItem}, socket) do
     %{app: app, school: school} = socket.assigns
@@ -74,4 +87,5 @@ defmodule UneebeeWeb.Live.Dashboard.SchoolEdit do
   defp get_page_title(:settings), do: gettext("Settings")
   defp get_page_title(:logo), do: gettext("Logo")
   defp get_page_title(:delete), do: gettext("Delete")
+  defp get_page_title(:icon), do: gettext("Icon")
 end

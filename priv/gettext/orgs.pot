@@ -23,7 +23,7 @@ msgstr ""
 msgid "Create school"
 msgstr ""
 
-#: lib/dashboard/schools/school_edit.html.heex:11
+#: lib/dashboard/schools/school_edit.html.heex:12
 #: lib/organizations/school_live/school_new.html.heex:8
 #, elixir-autogen, elixir-format
 msgid "Nickname"
@@ -34,13 +34,13 @@ msgstr ""
 msgid "School could not be created"
 msgstr ""
 
-#: lib/dashboard/schools/school_edit.html.heex:13
+#: lib/dashboard/schools/school_edit.html.heex:14
 #: lib/organizations/school_live/school_new.html.heex:7
 #, elixir-autogen, elixir-format
 msgid "School email"
 msgstr ""
 
-#: lib/dashboard/schools/school_edit.html.heex:12
+#: lib/dashboard/schools/school_edit.html.heex:13
 #: lib/organizations/school_live/school_new.html.heex:6
 #, elixir-autogen, elixir-format
 msgid "School name"
@@ -444,12 +444,12 @@ msgstr ""
 msgid "When checked this course will be visible to all students from your school. Keep it unchecked if you want this course to be visible only to invited students."
 msgstr ""
 
-#: lib/dashboard/schools/school_edit.html.heex:15
+#: lib/dashboard/schools/school_edit.html.heex:16
 #, elixir-autogen, elixir-format
 msgid "Privacy policy URL"
 msgstr ""
 
-#: lib/dashboard/schools/school_edit.html.heex:14
+#: lib/dashboard/schools/school_edit.html.heex:15
 #, elixir-autogen, elixir-format
 msgid "Terms of use URL"
 msgstr ""
@@ -596,12 +596,12 @@ msgstr ""
 msgid "Enable analytics"
 msgstr ""
 
-#: lib/dashboard/schools/school_edit.html.heex:34
+#: lib/dashboard/schools/school_edit.html.heex:35
 #, elixir-autogen, elixir-format
 msgid "Require email confirmation?"
 msgstr ""
 
-#: lib/dashboard/schools/school_edit.html.heex:35
+#: lib/dashboard/schools/school_edit.html.heex:36
 #, elixir-autogen, elixir-format
 msgid "When checked, users will be required to confirm their email address before they can log in."
 msgstr ""
@@ -626,22 +626,22 @@ msgstr ""
 msgid "White label"
 msgstr ""
 
-#: lib/dashboard/schools/school_edit.html.heex:21
+#: lib/dashboard/schools/school_edit.html.heex:22
 #, elixir-autogen, elixir-format
 msgid "Allow anyone to sign up?"
 msgstr ""
 
-#: lib/dashboard/schools/school_edit.html.heex:43
+#: lib/dashboard/schools/school_edit.html.heex:44
 #, elixir-autogen, elixir-format
 msgid "Allow guest users?"
 msgstr ""
 
-#: lib/dashboard/schools/school_edit.html.heex:23
+#: lib/dashboard/schools/school_edit.html.heex:24
 #, elixir-autogen, elixir-format
 msgid "When checked, anyone can create an account. When unchecked, they can still sign up but you will have to approve their account before they can use it."
 msgstr ""
 
-#: lib/dashboard/schools/school_edit.html.heex:44
+#: lib/dashboard/schools/school_edit.html.heex:45
 #, elixir-autogen, elixir-format
 msgid "When checked, users won't need to create an account to play your courses. Keep it unchecked if you want users to create an account first."
 msgstr ""
@@ -698,7 +698,7 @@ msgstr ""
 #: lib/dashboard/courses/course_user_list.html.heex:2
 #: lib/dashboard/schools/school_user_list.ex:76
 #: lib/dashboard/schools/school_user_list.html.heex:2
-#: lib/layouts/menu_utils.ex:88
+#: lib/layouts/menu_utils.ex:98
 #: lib/layouts/templates/dashboard_course.html.heex:38
 #, elixir-autogen, elixir-format
 msgid "Users"
@@ -773,7 +773,7 @@ msgid "25% off add-ons"
 msgstr ""
 
 #: lib/dashboard/schools/school_billing.ex:25
-#: lib/layouts/menu_utils.ex:91
+#: lib/layouts/menu_utils.ex:102
 #, elixir-autogen, elixir-format
 msgid "Billing"
 msgstr ""
@@ -936,7 +936,7 @@ msgstr ""
 msgid "Delete"
 msgstr ""
 
-#: lib/dashboard/schools/school_edit.ex:66
+#: lib/dashboard/schools/school_edit.ex:79
 #: lib/dashboard/schools/school_view.ex:89
 #, elixir-autogen, elixir-format
 msgid "School could not be deleted"
@@ -950,4 +950,14 @@ msgstr ""
 #: lib/dashboard/schools/school_view.html.heex:36
 #, elixir-autogen, elixir-format
 msgid "You're going to delete this school and all its associated data"
+msgstr ""
+
+#: lib/dashboard/schools/school_edit.ex:66
+#, elixir-autogen, elixir-format
+msgid "Could not update icon!"
+msgstr ""
+
+#: lib/dashboard/schools/school_edit.ex:62
+#, elixir-autogen, elixir-format
+msgid "Icon updated successfully!"
 msgstr ""

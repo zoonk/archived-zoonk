@@ -44,6 +44,9 @@ defmodule UneebeeWeb.Shared.ImageOptimizer do
   @spec image_url(String.t(), String.t()) :: String.t()
   def image_url(image_id, variant), do: "https://imagedelivery.net/#{account_hash()}/#{image_id}/#{variant}"
 
+  @spec raw_image_url(String.t()) :: String.t()
+  def raw_image_url(image_id), do: "https://imagedelivery.net/#{account_hash()}/#{image_id}"
+
   defp handle_result({:ok, %Req.Response{status: 200, body: body}}) do
     %{"result" => %{"id" => id}} = body
     {:ok, id}

@@ -4,6 +4,7 @@ defmodule UneebeeWeb.Layouts.MenuUtils do
 
   alias Uneebee.Content.Course
   alias Uneebee.Organizations.School
+  alias UneebeeWeb.Shared.ImageOptimizer
 
   @spec school_name(School.t() | nil) :: String.t()
   def school_name(nil), do: "UneeBee"
@@ -13,6 +14,15 @@ defmodule UneebeeWeb.Layouts.MenuUtils do
   def school_logo(nil), do: ~p"/images/logo.svg"
   def school_logo(%School{logo: nil}), do: school_logo(nil)
   def school_logo(%School{} = school), do: get_image_url(school.logo, "logo")
+
+  @spec school_icon(School.t() | nil, non_neg_integer()) :: String.t()
+  def school_icon(nil, size), do: "/favicon/#{size}.png"
+  def school_icon(%School{icon: nil}, size), do: school_icon(nil, size)
+
+  def school_icon(%School{} = school, size) do
+    url = ImageOptimizer.raw_image_url(school.icon)
+    "#{url}/w=#{size},h=#{size},sharpen=1"
+  end
 
   @spec user_settings?(atom()) :: boolean()
   def user_settings?(active_page) do
@@ -87,6 +97,7 @@ defmodule UneebeeWeb.Layouts.MenuUtils do
       %{link: ~p"/dashboard/schools", view: [:dashboard_schoollist, :dashboard_schoolview], title: gettext("Schools"), visible?: kind != :white_label},
       %{link: ~p"/dashboard/users", view: [:dashboard_schooluserlist, :dashboard_schooluserview], title: dgettext("orgs", "Users"), visible?: true},
       %{link: ~p"/dashboard/edit/logo", view: [:dashboard_schooledit_logo], title: gettext("Logo"), visible?: true},
+      %{link: ~p"/dashboard/edit/icon", view: [:dashboard_schooledit_icon], title: gettext("Icon"), visible?: true},
       %{link: ~p"/dashboard/edit/settings", view: [:dashboard_schooledit_settings], title: gettext("Settings"), visible?: true},
       %{link: ~p"/dashboard/billing", view: [:dashboard_schoolbilling], title: dgettext("orgs", "Billing"), visible?: kind == :white_label and stripe_enabled?()},
       %{link: ~p"/dashboard/edit/delete", view: [:dashboard_schooledit_delete], title: gettext("Delete"), visible?: !is_nil(school_id)}

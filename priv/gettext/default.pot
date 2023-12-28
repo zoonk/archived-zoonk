@@ -71,7 +71,7 @@ msgstr ""
 #: lib/dashboard/courses/course_user_list.html.heex:61
 #: lib/dashboard/lessons/components/lesson_edit.ex:28
 #: lib/dashboard/lessons/components/option_list.ex:95
-#: lib/dashboard/schools/school_edit.html.heex:7
+#: lib/dashboard/schools/school_edit.html.heex:8
 #: lib/dashboard/schools/school_user_list.html.heex:68
 #: lib/organizations/school_live/school_new.html.heex:10
 #, elixir-autogen, elixir-format
@@ -93,9 +93,9 @@ msgstr ""
 msgid "Home"
 msgstr ""
 
-#: lib/dashboard/schools/school_edit.ex:75
+#: lib/dashboard/schools/school_edit.ex:88
 #: lib/dashboard/schools/school_edit.html.heex:1
-#: lib/layouts/menu_utils.ex:89
+#: lib/layouts/menu_utils.ex:99
 #: lib/layouts/templates/auth.html.heex:3
 #, elixir-autogen, elixir-format
 msgid "Logo"
@@ -115,9 +115,9 @@ msgstr ""
 
 #: lib/accounts/user_live/user_settings.ex:192
 #: lib/dashboard/courses/course_edit.html.heex:5
-#: lib/dashboard/schools/school_edit.ex:74
+#: lib/dashboard/schools/school_edit.ex:87
 #: lib/layouts/components/app_menu.ex:40
-#: lib/layouts/menu_utils.ex:90
+#: lib/layouts/menu_utils.ex:101
 #: lib/layouts/templates/dashboard_course.html.heex:42
 #, elixir-autogen, elixir-format
 msgid "Settings"
@@ -138,7 +138,7 @@ msgstr ""
 #: lib/dashboard/courses/course_edit.html.heex:7
 #: lib/dashboard/lessons/components/lesson_edit.ex:29
 #: lib/dashboard/lessons/components/option_list.ex:95
-#: lib/dashboard/schools/school_edit.html.heex:7
+#: lib/dashboard/schools/school_edit.html.heex:8
 #, elixir-autogen, elixir-format
 msgid "Save"
 msgstr ""
@@ -261,8 +261,8 @@ msgstr ""
 #: lib/accounts/user_live/user_settings.ex:191
 #: lib/components/delete_item.ex:17
 #: lib/components/delete_item.ex:21
-#: lib/dashboard/schools/school_edit.ex:76
-#: lib/layouts/menu_utils.ex:92
+#: lib/dashboard/schools/school_edit.ex:89
+#: lib/layouts/menu_utils.ex:103
 #: lib/layouts/templates/app.html.heex:84
 #: lib/layouts/templates/dashboard_course.html.heex:50
 #, elixir-autogen, elixir-format
@@ -284,7 +284,7 @@ msgstr ""
 msgid "Open sidebar"
 msgstr ""
 
-#: lib/layouts/menu_utils.ex:86
+#: lib/layouts/menu_utils.ex:96
 #: lib/layouts/templates/dashboard_course.html.heex:26
 #, elixir-autogen, elixir-format
 msgid "Overview"
@@ -341,7 +341,7 @@ msgstr ""
 msgid "Update your email address"
 msgstr ""
 
-#: lib/layouts/menu_utils.ex:87
+#: lib/layouts/menu_utils.ex:97
 #, elixir-autogen, elixir-format
 msgid "Schools"
 msgstr ""
@@ -394,4 +394,11 @@ msgstr ""
 #: lib/layouts/templates/app.html.heex:60
 #, elixir-autogen, elixir-format
 msgid "Setup"
+msgstr ""
+
+#: lib/dashboard/schools/school_edit.ex:90
+#: lib/dashboard/schools/school_edit.html.heex:2
+#: lib/layouts/menu_utils.ex:100
+#, elixir-autogen, elixir-format
+msgid "Icon"
 msgstr ""

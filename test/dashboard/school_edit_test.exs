@@ -23,6 +23,14 @@ defmodule UneebeeWeb.SchoolUpdateLiveTest do
       assert String.starts_with?(updated_school.logo, "/uploads/")
     end
 
+    test "updates icon", %{conn: conn, school: school} do
+      {:ok, lv, _html} = live(conn, ~p"/dashboard/edit/icon")
+      assert_file_upload(lv, "school_icon")
+
+      updated_school = Organizations.get_school_by_slug!(school.slug)
+      assert String.starts_with?(updated_school.icon, "/uploads/")
+    end
+
     test "updates slug", %{conn: conn, school: school} do
       existing_school = school_fixture()
       new_slug = "new_#{System.unique_integer()}"

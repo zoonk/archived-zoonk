@@ -22,6 +22,7 @@ defmodule Uneebee.Organizations.School do
     field :custom_domain, :string
     field :email, :string
     field :kind, Ecto.Enum, values: [:marketplace, :saas, :white_label], default: :white_label
+    field :icon, :string
     field :logo, :string
     field :name, :string
     field :privacy_policy, :string
@@ -76,6 +77,7 @@ defmodule Uneebee.Organizations.School do
       :currency,
       :custom_domain,
       :email,
+      :icon,
       :logo,
       :name,
       :privacy_policy,
