@@ -24,6 +24,12 @@ if config_env() in [:prod, :dev] do
   config :stripity_stripe,
     api_key: System.get_env("STRIPE_API_KEY"),
     webhook_secret: System.get_env("STRIPE_WEBHOOK_SECRET")
+
+  # Cloudflare images
+  config :uneebee, :cloudflare,
+    account_id: System.get_env("CLOUDFLARE_ACCOUNT_ID"),
+    api_token: System.get_env("CLOUDFLARE_API_TOKEN"),
+    account_hash: System.get_env("CLOUDFLARE_ACCOUNT_HASH")
 end
 
 if config_env() == :prod do
@@ -111,11 +117,4 @@ if config_env() == :prod do
   config :uneebee, Uneebee.Mailer,
     adapter: Resend.Swoosh.Adapter,
     api_key: System.get_env("RESEND_API_KEY")
-
-  # Cloud storage configuration
-  config :uneebee, :storage,
-    bucket: System.get_env("STORAGE_BUCKET"),
-    access_key_id: System.get_env("STORAGE_ACCESS_KEY_ID"),
-    secret_access_key: System.get_env("STORAGE_SECRET_ACCESS_KEY"),
-    bucket_url: System.get_env("STORAGE_BUCKET_URL")
 end

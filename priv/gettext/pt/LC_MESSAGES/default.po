@@ -148,20 +148,10 @@ msgstr "Salvar"
 msgid "Name"
 msgstr "Nome"
 
-#: lib/components/upload.ex:54
-#, elixir-autogen, elixir-format
-msgid "Click on the save button to upload your file."
-msgstr "Clique no botão salvar para enviar seu arquivo."
-
 #: lib/layouts/templates/app.html.heex:64
 #, elixir-autogen, elixir-format
 msgid "Profile"
 msgstr "Perfil"
-
-#: lib/components/upload.ex:53
-#, elixir-autogen, elixir-format
-msgid "Uploading file: %{progress}% concluded."
-msgstr "Enviando arquivo: %{progress}% concluído."
 
 #: lib/content/course_live/lesson_play.html.heex:85
 #, elixir-autogen, elixir-format
@@ -238,7 +228,7 @@ msgstr "Atualizar"
 msgid "Updating..."
 msgstr "Atualizando..."
 
-#: lib/components/upload.ex:25
+#: lib/components/upload.ex:23
 #, elixir-autogen, elixir-format
 msgid "Remove"
 msgstr "Remover"
@@ -308,16 +298,6 @@ msgstr "Visão geral"
 msgid "Password"
 msgstr "Senha"
 
-#: lib/components/upload.ex:28
-#, elixir-autogen, elixir-format
-msgid "Upload"
-msgstr "Enviar"
-
-#: lib/components/upload.ex:28
-#, elixir-autogen, elixir-format, fuzzy
-msgid "Uploading..."
-msgstr "Enviando..."
-
 #: lib/dashboard/courses/course_new.html.heex:6
 #, elixir-autogen, elixir-format
 msgid "Create"
@@ -382,8 +362,8 @@ msgstr "Nenhum resultado encontrado."
 msgid "Contact school"
 msgstr "Falar com a escola"
 
-#: lib/dashboard/schools/school_billing.ex:54
-#: lib/dashboard/schools/school_billing.ex:56
+#: lib/dashboard/schools/school_billing.ex:53
+#: lib/dashboard/schools/school_billing.ex:55
 #: lib/layouts/components/app_menu.ex:39
 #: lib/support/contact_live/contact.ex:15
 #: lib/support/contact_live/contact.html.heex:3

@@ -14,7 +14,7 @@ msgstr ""
 msgid "can't be blank"
 msgstr "não pode ficar em branco"
 
-#: lib/organizations/school_schema.ex:122
+#: lib/organizations/school_schema.ex:121
 #, elixir-autogen
 msgid "has already been taken"
 msgstr "já está em uso"
@@ -140,26 +140,6 @@ msgstr "não é igual à senha"
 msgid "must have the @ sign and no spaces"
 msgstr "deve ter arroba (@) e nenhum espaço"
 
-#: lib/organizations/school_schema.ex:63
-#, elixir-autogen, elixir-format
-msgid "must start with / or https://"
-msgstr "devem começar com / ou https://"
-
-#: lib/components/upload.ex:127
-#, elixir-autogen, elixir-format
-msgid "Too large"
-msgstr "Muito grande"
-
-#: lib/components/upload.ex:129
-#, elixir-autogen, elixir-format
-msgid "You have selected an unacceptable file type"
-msgstr "Você selecionou um tipo de arquivo não aceito"
-
-#: lib/components/upload.ex:128
-#, elixir-autogen, elixir-format
-msgid "You have selected too many files"
-msgstr "Você selecionou muitos arquivos"
-
 #: lib/error/permission_error.ex:12
 #, elixir-autogen, elixir-format
 msgid "Only managers and teachers can view this page"
@@ -185,8 +165,8 @@ msgstr "Você não está matriculado neste curso"
 msgid "Your enrollment is pending approval"
 msgstr "A sua matrícula está pendente de aprovação"
 
+#: lib/organizations/school_schema.ex:63
 #: lib/organizations/school_schema.ex:64
-#: lib/organizations/school_schema.ex:65
 #, elixir-autogen, elixir-format, fuzzy
 msgid "must start with https://"
 msgstr "deve começar com https://"
@@ -206,7 +186,7 @@ msgstr "não pode excluir a única aula"
 msgid "must have a domain name"
 msgstr "deve ter um nome de domínio"
 
-#: lib/organizations/school_schema.ex:111
+#: lib/organizations/school_schema.ex:110
 #, elixir-autogen, elixir-format
 msgid "must be white_label"
 msgstr "precisa ser white_label"

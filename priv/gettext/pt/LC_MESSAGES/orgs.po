@@ -772,7 +772,7 @@ msgstr "/mês por usuário"
 msgid "25% off add-ons"
 msgstr "25% de desconto em complementos"
 
-#: lib/dashboard/schools/school_billing.ex:26
+#: lib/dashboard/schools/school_billing.ex:25
 #: lib/layouts/menu_utils.ex:91
 #, elixir-autogen, elixir-format
 msgid "Billing"
@@ -788,15 +788,15 @@ msgstr "Cancele a qualquer momento"
 msgid "Confirmed"
 msgstr "Confirmado"
 
-#: lib/dashboard/schools/school_billing.ex:39
+#: lib/dashboard/schools/school_billing.ex:38
 #, elixir-autogen, elixir-format
 msgid "Contact us"
 msgstr "Fale conosco"
 
+#: lib/dashboard/schools/school_billing.ex:44
 #: lib/dashboard/schools/school_billing.ex:45
-#: lib/dashboard/schools/school_billing.ex:46
-#: lib/dashboard/schools/school_billing.ex:50
-#: lib/dashboard/schools/school_billing.ex:55
+#: lib/dashboard/schools/school_billing.ex:49
+#: lib/dashboard/schools/school_billing.ex:54
 #: lib/dashboard/schools/school_billing.html.heex:18
 #: lib/dashboard/schools/school_view.html.heex:46
 #, elixir-autogen, elixir-format
@@ -823,8 +823,8 @@ msgstr "Infraestrutura dedicada *"
 msgid "Discounted pricing for 1,000+ users"
 msgstr "Preços com desconto para mais de 1.000 usuários"
 
-#: lib/dashboard/schools/school_billing.ex:47
-#: lib/dashboard/schools/school_billing.ex:52
+#: lib/dashboard/schools/school_billing.ex:46
+#: lib/dashboard/schools/school_billing.ex:51
 #, elixir-autogen, elixir-format
 msgid "Downgrade"
 msgstr "Diminuir plano"
@@ -859,7 +859,7 @@ msgstr "Suporte mais rápido"
 msgid "Flexible"
 msgstr "Flexível"
 
-#: lib/dashboard/schools/school_billing.ex:37
+#: lib/dashboard/schools/school_billing.ex:36
 #, elixir-autogen, elixir-format
 msgid "Free"
 msgstr "Gratuito"
@@ -925,8 +925,8 @@ msgstr "Usuários ilimitados"
 msgid "Update subscription"
 msgstr "Atualizar assinatura"
 
-#: lib/dashboard/schools/school_billing.ex:49
-#: lib/dashboard/schools/school_billing.ex:51
+#: lib/dashboard/schools/school_billing.ex:48
+#: lib/dashboard/schools/school_billing.ex:50
 #, elixir-autogen, elixir-format
 msgid "Upgrade"
 msgstr "Melhorar plano"

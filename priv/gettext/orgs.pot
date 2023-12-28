@@ -772,7 +772,7 @@ msgstr ""
 msgid "25% off add-ons"
 msgstr ""
 
-#: lib/dashboard/schools/school_billing.ex:26
+#: lib/dashboard/schools/school_billing.ex:25
 #: lib/layouts/menu_utils.ex:91
 #, elixir-autogen, elixir-format
 msgid "Billing"
@@ -788,15 +788,15 @@ msgstr ""
 msgid "Confirmed"
 msgstr ""
 
-#: lib/dashboard/schools/school_billing.ex:39
+#: lib/dashboard/schools/school_billing.ex:38
 #, elixir-autogen, elixir-format
 msgid "Contact us"
 msgstr ""
 
+#: lib/dashboard/schools/school_billing.ex:44
 #: lib/dashboard/schools/school_billing.ex:45
-#: lib/dashboard/schools/school_billing.ex:46
-#: lib/dashboard/schools/school_billing.ex:50
-#: lib/dashboard/schools/school_billing.ex:55
+#: lib/dashboard/schools/school_billing.ex:49
+#: lib/dashboard/schools/school_billing.ex:54
 #: lib/dashboard/schools/school_billing.html.heex:18
 #: lib/dashboard/schools/school_view.html.heex:46
 #, elixir-autogen, elixir-format
@@ -823,8 +823,8 @@ msgstr ""
 msgid "Discounted pricing for 1,000+ users"
 msgstr ""
 
-#: lib/dashboard/schools/school_billing.ex:47
-#: lib/dashboard/schools/school_billing.ex:52
+#: lib/dashboard/schools/school_billing.ex:46
+#: lib/dashboard/schools/school_billing.ex:51
 #, elixir-autogen, elixir-format
 msgid "Downgrade"
 msgstr ""
@@ -859,7 +859,7 @@ msgstr ""
 msgid "Flexible"
 msgstr ""
 
-#: lib/dashboard/schools/school_billing.ex:37
+#: lib/dashboard/schools/school_billing.ex:36
 #, elixir-autogen, elixir-format
 msgid "Free"
 msgstr ""
@@ -925,8 +925,8 @@ msgstr ""
 msgid "Update subscription"
 msgstr ""
 
-#: lib/dashboard/schools/school_billing.ex:49
-#: lib/dashboard/schools/school_billing.ex:51
+#: lib/dashboard/schools/school_billing.ex:48
+#: lib/dashboard/schools/school_billing.ex:50
 #, elixir-autogen, elixir-format
 msgid "Upgrade"
 msgstr ""

@@ -109,6 +109,7 @@ defmodule UneebeeWeb do
 
       # i18n
       import UneebeeWeb.Gettext
+      import UneebeeWeb.Shared.Utilities
 
       alias Phoenix.LiveView.JS
 

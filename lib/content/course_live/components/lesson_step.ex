@@ -13,7 +13,7 @@ defmodule UneebeeWeb.Components.Content.LessonStep do
   def lesson_step(assigns) do
     ~H"""
     <div class="flex w-full flex-col items-center justify-center gap-4">
-      <img :if={@step.image} src={@step.image} class="aspect-square w-1/2 object-cover sm:w-1/3" />
+      <img :if={@step.image} src={get_image_url(@step.image, "lessonStep")} class="aspect-square w-1/2 object-cover sm:w-1/3" />
 
       <blockquote class="w-fit rounded-2xl bg-gray-50 p-4 text-sm leading-6 text-gray-900 sm:text-lg">
         <p><%= @step.content %></p>

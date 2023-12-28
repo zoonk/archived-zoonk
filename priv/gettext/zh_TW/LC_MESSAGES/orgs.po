@@ -772,7 +772,7 @@ msgstr "/月 每位使用者"
 msgid "25% off add-ons"
 msgstr "25% 折扣附加元件"
 
-#: lib/dashboard/schools/school_billing.ex:26
+#: lib/dashboard/schools/school_billing.ex:25
 #: lib/layouts/menu_utils.ex:91
 #, elixir-autogen, elixir-format
 msgid "Billing"
@@ -788,15 +788,15 @@ msgstr "隨時取消"
 msgid "Confirmed"
 msgstr "已確認"
 
-#: lib/dashboard/schools/school_billing.ex:39
+#: lib/dashboard/schools/school_billing.ex:38
 #, elixir-autogen, elixir-format
 msgid "Contact us"
 msgstr "聯絡我們"
 
+#: lib/dashboard/schools/school_billing.ex:44
 #: lib/dashboard/schools/school_billing.ex:45
-#: lib/dashboard/schools/school_billing.ex:46
-#: lib/dashboard/schools/school_billing.ex:50
-#: lib/dashboard/schools/school_billing.ex:55
+#: lib/dashboard/schools/school_billing.ex:49
+#: lib/dashboard/schools/school_billing.ex:54
 #: lib/dashboard/schools/school_billing.html.heex:18
 #: lib/dashboard/schools/school_view.html.heex:46
 #, elixir-autogen, elixir-format
@@ -823,8 +823,8 @@ msgstr "專用基礎架構 *"
 msgid "Discounted pricing for 1,000+ users"
 msgstr "1,000+ 使用者的折扣價格"
 
-#: lib/dashboard/schools/school_billing.ex:47
-#: lib/dashboard/schools/school_billing.ex:52
+#: lib/dashboard/schools/school_billing.ex:46
+#: lib/dashboard/schools/school_billing.ex:51
 #, elixir-autogen, elixir-format
 msgid "Downgrade"
 msgstr "降級"
@@ -859,7 +859,7 @@ msgstr "更快的支援"
 msgid "Flexible"
 msgstr "Flexible"
 
-#: lib/dashboard/schools/school_billing.ex:37
+#: lib/dashboard/schools/school_billing.ex:36
 #, elixir-autogen, elixir-format
 msgid "Free"
 msgstr "免費"
@@ -925,8 +925,8 @@ msgstr "無限使用者"
 msgid "Update subscription"
 msgstr "更新訂閱"
 
-#: lib/dashboard/schools/school_billing.ex:49
-#: lib/dashboard/schools/school_billing.ex:51
+#: lib/dashboard/schools/school_billing.ex:48
+#: lib/dashboard/schools/school_billing.ex:50
 #, elixir-autogen, elixir-format
 msgid "Upgrade"
 msgstr "升級"

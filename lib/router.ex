@@ -19,7 +19,7 @@ defmodule UneebeeWeb.Router do
 
     plug :put_secure_browser_headers, %{
       "content-security-policy" =>
-        "default-src 'self'; script-src-elem 'self' https://plausible.io; connect-src 'self' https://plausible.io #{@csp_connect_src}; img-src 'self' #{@cdn_url} data: blob:;"
+        "default-src 'self'; script-src-elem 'self' https://plausible.io; connect-src 'self' https://plausible.io #{@csp_connect_src}; img-src 'self' #{@cdn_url} imagedelivery.net data: blob:;"
     }
 
     plug :fetch_current_user

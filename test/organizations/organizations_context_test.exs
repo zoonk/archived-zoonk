@@ -48,18 +48,6 @@ defmodule Uneebee.OrganizationsTest do
       assert changeset.valid?
     end
 
-    test "logo cannot start with http" do
-      school = school_fixture()
-      changeset = Organizations.change_school(school, %{logo: "http://logo.png"})
-      assert "must start with / or https://" in errors_on(changeset).logo
-    end
-
-    test "logo cannot start with the image name" do
-      school = school_fixture()
-      changeset = Organizations.change_school(school, %{logo: "logo.png"})
-      assert "must start with / or https://" in errors_on(changeset).logo
-    end
-
     test "slug is unique" do
       school1 = school_fixture()
       school2 = school_fixture()

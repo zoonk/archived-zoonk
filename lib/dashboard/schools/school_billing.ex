@@ -3,7 +3,6 @@ defmodule UneebeeWeb.Live.Dashboard.SchoolBilling do
   use UneebeeWeb, :live_view
 
   import UneebeeWeb.Billing.Utils
-  import UneebeeWeb.Shared.Utilities
 
   alias Uneebee.Billing
   alias Uneebee.Billing.Subscription

@@ -12,7 +12,7 @@ defmodule UneebeeWeb.Layouts.MenuUtils do
   @spec school_logo(School.t() | nil) :: String.t()
   def school_logo(nil), do: ~p"/images/logo.svg"
   def school_logo(%School{logo: nil}), do: school_logo(nil)
-  def school_logo(%School{} = school), do: school.logo
+  def school_logo(%School{} = school), do: get_image_url(school.logo, "logo")
 
   @spec user_settings?(atom()) :: boolean()
   def user_settings?(active_page) do

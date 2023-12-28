@@ -22,7 +22,7 @@ defmodule UneebeeWeb.Components.Dashboard.StepImage do
         patch={~p"/dashboard/c/#{@course.slug}/l/#{@lesson.id}/s/#{@step.order}/image"}
         class="block"
       >
-        <img src={@step.image} class="aspect-square w-full object-cover sm:w-[250px]" />
+        <img src={get_image_url(@step.image, "lessonStep")} class="aspect-square w-full object-cover sm:w-[250px]" />
       </.link>
 
       <.link

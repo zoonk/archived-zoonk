@@ -9,14 +9,12 @@ defmodule UneebeeWeb.TestHelpers.Upload do
   @doc """
   Asserts a file is being uploaded.
   """
-  @spec assert_file_upload(Phoenix.LiveView.live(), String.t()) :: boolean()
+  @spec assert_file_upload(Phoenix.LiveView.live(), String.t()) :: String.t()
   def assert_file_upload(lv, id) do
     files = get_files()
     input = file_input(lv, "#upload-form-#{id}", :file, files)
 
-    assert render_upload(input, "robot.png") =~ "Uploading file: 100% concluded"
-
-    lv |> element("#upload-form-#{id}") |> render_submit()
+    render_upload(input, "robot.png")
   end
 
   defp get_files do

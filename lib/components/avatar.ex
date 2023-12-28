@@ -6,6 +6,8 @@ defmodule UneebeeWeb.Components.Avatar do
   """
   use Phoenix.Component
 
+  import UneebeeWeb.Shared.Utilities
+
   @doc """
   Renders an avatar element.
 
@@ -29,7 +31,7 @@ defmodule UneebeeWeb.Components.Avatar do
   # Handle the case where the image is available.
   def avatar(%{src: src} = assigns) when is_binary(src) do
     ~H"""
-    <img src={@src} class={avatar_class(@size, @class)} alt={@alt} />
+    <img src={get_image_url(@src, "avatar")} class={avatar_class(@size, @class)} alt={@alt} />
     """
   end
 

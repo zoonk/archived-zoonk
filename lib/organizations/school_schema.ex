@@ -60,7 +60,6 @@ defmodule Uneebee.Organizations.School do
     |> validate_required([:created_by_id, :email, :name, :public?, :slug])
     |> unique_constraint(:custom_domain)
     |> validate_email(:email)
-    |> validate_format(:logo, ~r/^(\/|https:\/\/)/, message: dgettext("errors", "must start with / or https://"))
     |> validate_format(:privacy_policy, ~r/^https:\/\//, message: dgettext("errors", "must start with https://"))
     |> validate_format(:terms_of_use, ~r/^https:\/\//, message: dgettext("errors", "must start with https://"))
     |> validate_slug(:slug)

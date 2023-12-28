@@ -4,7 +4,7 @@ defmodule UneebeeWeb.Components.Upload do
   """
   use UneebeeWeb, :live_component
 
-  alias UneebeeWeb.Shared.CloudStorage
+  alias UneebeeWeb.Shared.ImageOptimizer
 
   attr :current_img, :string, default: nil
   attr :label, :string, default: nil
@@ -14,9 +14,7 @@ defmodule UneebeeWeb.Components.Upload do
   @impl Phoenix.LiveComponent
   def render(assigns) do
     ~H"""
-    <form id={"upload-form-#{@id}"} phx-submit="save" class={[@unstyled && "flex flex-col-reverse"]} phx-change="validate" phx-drop-target={@uploads.file.ref} phx-target={@myself}>
-      <% entry = List.first(@uploads.file.entries) %>
-
+    <form id={"upload-form-#{@id}"} class={[@unstyled && "flex flex-col-reverse"]} phx-change="validate" phx-target={@myself} phx-drop-target={@uploads.file.ref}>
       <div class={["flex flex-wrap items-center gap-2", not @unstyled && "top-[57px] sticky bg-gray-50 p-4 sm:flex-nowrap sm:px-6 lg:px-8"]}>
         <h1 :if={not @unstyled} class="text-base font-semibold leading-7 text-gray-900"><%= @label %></h1>
 
@@ -24,16 +22,12 @@ defmodule UneebeeWeb.Components.Upload do
           <.button :if={@current_img} id={"remove-#{@id}"} phx-click="remove" phx-target={@myself} icon="tabler-trash" type="button" color={:alert_light}>
             <%= gettext("Remove") %>
           </.button>
-
-          <.button type="submit" icon="tabler-cloud-upload" disabled={is_nil(entry)} phx-disable-with={gettext("Uploading...")}><%= gettext("Upload") %></.button>
         </div>
       </div>
 
       <div class="container flex flex-col space-y-8">
         <div class="flex items-center space-x-6">
-          <.live_img_preview :if={entry} entry={entry} class="h-16 rounded-2xl object-cover" />
-
-          <img :if={is_binary(@current_img) and is_nil(entry)} alt={@label} src={@current_img} class="w-16 rounded-xl object-cover" />
+          <img :if={is_binary(@current_img)} alt={@label} src={get_image_url(@current_img, "thumbnail")} class="w-16 rounded-xl object-cover" />
 
           <.live_file_input
             upload={@uploads.file}
@@ -47,14 +41,6 @@ defmodule UneebeeWeb.Components.Upload do
             ]}
           />
         </div>
-
-        <p :if={entry} class="text-sm text-gray-500">
-          <%= if entry.progress > 0,
-            do: gettext("Uploading file: %{progress}% concluded.", progress: entry.progress),
-            else: gettext("Click on the save button to upload your file.") %>
-        </p>
-
-        <p :for={err <- upload_errors(@uploads.file)}><%= error_to_string(err) %></p>
       </div>
     </form>
     """
@@ -62,7 +48,7 @@ defmodule UneebeeWeb.Components.Upload do
 
   @impl Phoenix.LiveComponent
   def mount(socket) do
-    {:ok, upload_opts(socket, internal_storage?())}
+    {:ok, allow_upload(socket, :file, accept: ~w(image/*), max_entries: 1, max_file_size: 2_056_392, auto_upload: true, progress: &handle_progress/3)}
   end
 
   @impl Phoenix.LiveComponent
@@ -70,22 +56,6 @@ defmodule UneebeeWeb.Components.Upload do
     {:noreply, socket}
   end
 
-  @impl Phoenix.LiveComponent
-  def handle_event("cancel", %{"ref" => ref, "value" => _value}, socket) do
-    {:noreply, cancel_upload(socket, :file, ref)}
-  end
-
-  @impl Phoenix.LiveComponent
-  def handle_event("save", _params, socket) do
-    case consume_uploaded_entries(socket, :file, &consume_entry/2) do
-      [] -> :ok
-      [upload_path] -> notify_parent(socket, upload_path)
-    end
-
-    {:noreply, socket}
-  end
-
-  @impl Phoenix.LiveComponent
   def handle_event("remove", _params, socket) do
     notify_parent(socket, nil)
     {:noreply, socket}
@@ -94,6 +64,33 @@ defmodule UneebeeWeb.Components.Upload do
   defp notify_parent(socket, upload_path) do
     send(self(), {__MODULE__, socket.assigns.id, upload_path})
     :ok
+  end
+
+  defp handle_progress(_image_key, entry, socket) do
+    if entry.done? do
+      if ImageOptimizer.enabled?(), do: cloud_upload(socket), else: local_upload(socket)
+      {:noreply, socket}
+    else
+      {:noreply, socket}
+    end
+  end
+
+  # sobelow_skip ["Traversal.FileModule"]
+  defp cloud_upload(socket) do
+    result =
+      consume_uploaded_entries(socket, :file, fn %{path: path}, entry ->
+        byte_content = File.read!(path)
+        ImageOptimizer.upload(entry.client_name, byte_content)
+      end)
+
+    notify_parent(socket, Enum.at(result, 0))
+  end
+
+  defp local_upload(socket) do
+    case consume_uploaded_entries(socket, :file, &consume_entry/2) do
+      [] -> :ok
+      [upload_path] -> notify_parent(socket, upload_path)
+    end
   end
 
   # sobelow_skip ["Traversal.FileModule"]
@@ -105,33 +102,4 @@ defmodule UneebeeWeb.Components.Upload do
 
     {:ok, ~p"/uploads/#{file_name}"}
   end
-
-  defp consume_entry(%{key: key}, _entry) do
-    {:ok, Application.get_env(:uneebee, :cdn)[:url] <> "/" <> key}
-  end
-
-  defp presign_upload(entry, socket) do
-    %{uploads: uploads} = socket.assigns
-    current_timestamp = DateTime.to_unix(DateTime.utc_now(), :second)
-    key = "#{current_timestamp}_#{entry.client_name}"
-
-    config = %{region: "auto", access_key_id: CloudStorage.access_key_id(), secret_access_key: CloudStorage.secret_access_key(), url: CloudStorage.bucket_url()}
-
-    {:ok, presigned_url} = CloudStorage.presigned_put(config, key: key, content_type: entry.client_type, max_file_size: uploads[entry.upload_config].max_file_size)
-
-    meta = %{uploader: "S3", key: key, url: presigned_url}
-
-    {:ok, meta, socket}
-  end
-
-  defp error_to_string(:too_large), do: dgettext("errors", "Too large")
-  defp error_to_string(:too_many_files), do: dgettext("errors", "You have selected too many files")
-  defp error_to_string(:not_accepted), do: dgettext("errors", "You have selected an unacceptable file type")
-
-  defp internal_storage?, do: is_nil(CloudStorage.bucket())
-
-  defp upload_opts(socket, true), do: allow_upload(socket, :file, accept: accept_files(), max_entries: 1)
-  defp upload_opts(socket, false), do: allow_upload(socket, :file, accept: accept_files(), max_entries: 1, external: &presign_upload/2)
-
-  defp accept_files, do: ~w(.jpg .jpeg .png .avif .gif .webp .svg)
 end
