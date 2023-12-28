@@ -44,6 +44,8 @@ if config_env() == :prod do
     username: System.fetch_env!("DATABASE_USERNAME"),
     password: System.fetch_env!("DATABASE_PASSWORD"),
     hostname: database_host,
+    timeout: 30_000,
+    queue_target: 5_000,
     ssl: true,
     ssl_opts: [
       cacertfile: System.fetch_env!("CERT_PATH"),
@@ -100,9 +102,11 @@ if config_env() == :prod do
   # Check `Plug.SSL` for all available options in `force_ssl`.
   host = System.get_env("PHX_HOST") || "app.uneebee.com"
   port = String.to_integer(System.get_env("PORT") || "8080")
+  check_origin = ["https://*.#{System.get_env("PHX_HOST")}"]
 
   config :uneebee, UneebeeWeb.Endpoint,
     url: [host: host, port: 443, scheme: "https"],
+    check_origin: check_origin,
     http: [
       # Enable IPv6 and bind on all interfaces.
       # Set it to  {0, 0, 0, 0, 0, 0, 0, 1} for local network only access.
@@ -117,4 +121,12 @@ if config_env() == :prod do
   config :uneebee, Uneebee.Mailer,
     adapter: Resend.Swoosh.Adapter,
     api_key: System.get_env("RESEND_API_KEY")
+
+  # Sentry configuration
+  config :sentry,
+    dsn: System.get_env("SENTRY_DSN"),
+    environment_name: :prod,
+    enable_source_code_context: true,
+    root_source_code_paths: [File.cwd!()],
+    tags: %{env: :prod}
 end

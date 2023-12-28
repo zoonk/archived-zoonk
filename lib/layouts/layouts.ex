@@ -30,5 +30,5 @@ defmodule UneebeeWeb.Layouts do
 
   @spec enable_plausible?(SchoolUser.t() | nil) :: boolean()
   def enable_plausible?(%SchoolUser{} = school_user), do: school_user.analytics?
-  def enable_plausible?(nil), do: false
+  def enable_plausible?(nil), do: true
 end

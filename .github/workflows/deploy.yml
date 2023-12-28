@@ -5,12 +5,22 @@ on:
     types: [published]
 
 jobs:
-  deploy:
-    name: Deploy app
+  deploy_uneebee:
+    name: Deploy UneeBee
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: superfly/flyctl-actions/setup-flyctl@master
-      - run: flyctl deploy --remote-only
+      - run: flyctl deploy -a uneebee -c fly_uneebee.toml
         env:
           FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
+
+  deploy_wikaro:
+    name: Deploy Wikaro
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: superfly/flyctl-actions/setup-flyctl@master
+      - run: flyctl deploy -a wikaro -c fly_wikaro.toml
+        env:
+          FLY_API_TOKEN: ${{ secrets.FLY_WIKARO_TOKEN }}

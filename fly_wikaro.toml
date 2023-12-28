@@ -3,7 +3,7 @@
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
 
-app = "uneebee"
+app = "wikaro"
 primary_region = "iad"
 kill_signal = "SIGTERM"
 swap_size_mb = 512
@@ -14,12 +14,8 @@ swap_size_mb = 512
   release_command = "/app/bin/migrate"
 
 [env]
-  PHX_HOST = "app.uneebee.com"
+  PHX_HOST = "wikaro.io"
   PORT = "8080"
-
-[build.args]
-  CDN_URL = "https://cdn.uneebee.com"
-  SENTRY_DSN = "https://a54c82736eef3e6640ff414f83bde12c@o4506042856308736.ingest.sentry.io/4506042856439808"
 
 [http_service]
   internal_port = 8080
