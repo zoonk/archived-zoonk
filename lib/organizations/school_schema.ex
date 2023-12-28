@@ -12,6 +12,7 @@ defmodule Uneebee.Organizations.School do
   alias Uneebee.Accounts.User
   alias Uneebee.Organizations.School
   alias Uneebee.Organizations.SchoolUser
+  alias Uneebee.Organizations.SchoolUtils
   alias Uneebee.Repo
 
   @type t :: %__MODULE__{}
@@ -61,6 +62,7 @@ defmodule Uneebee.Organizations.School do
     |> validate_required([:created_by_id, :email, :name, :public?, :slug])
     |> unique_constraint(:custom_domain)
     |> validate_email(:email)
+    |> validate_format(:slug, SchoolUtils.blocked_subdomain_regex(), message: dgettext("errors", "is not allowed"))
     |> validate_format(:privacy_policy, ~r/^https:\/\//, message: dgettext("errors", "must start with https://"))
     |> validate_format(:terms_of_use, ~r/^https:\/\//, message: dgettext("errors", "must start with https://"))
     |> validate_slug(:slug)

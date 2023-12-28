@@ -12,7 +12,7 @@ msgid "can't be blank"
 msgstr ""
 
 ## From Ecto.Changeset.unique_constraint/3
-#: lib/organizations/school_schema.ex:123
+#: lib/organizations/school_schema.ex:125
 #, elixir-autogen
 msgid "has already been taken"
 msgstr ""
@@ -172,8 +172,8 @@ msgstr ""
 msgid "Your enrollment is pending approval"
 msgstr ""
 
-#: lib/organizations/school_schema.ex:64
-#: lib/organizations/school_schema.ex:65
+#: lib/organizations/school_schema.ex:66
+#: lib/organizations/school_schema.ex:67
 #, elixir-autogen, elixir-format
 msgid "must start with https://"
 msgstr ""
@@ -193,7 +193,7 @@ msgstr ""
 msgid "must have a domain name"
 msgstr ""
 
-#: lib/organizations/school_schema.ex:112
+#: lib/organizations/school_schema.ex:114
 #, elixir-autogen, elixir-format
 msgid "must be white_label"
 msgstr ""
@@ -201,4 +201,9 @@ msgstr ""
 #: lib/error/permission_error.ex:15
 #, elixir-autogen, elixir-format
 msgid "Permission denied"
+msgstr ""
+
+#: lib/organizations/school_schema.ex:65
+#, elixir-autogen, elixir-format
+msgid "is not allowed"
 msgstr ""

@@ -11,6 +11,7 @@ defmodule Uneebee.Organizations do
   alias Uneebee.Content.CourseUser
   alias Uneebee.Organizations.School
   alias Uneebee.Organizations.SchoolUser
+  alias Uneebee.Organizations.SchoolUtils
   alias Uneebee.Repo
 
   @type school_changeset :: {:ok, School.t()} | {:error, Ecto.Changeset.t()} | {:error, String.t()}
@@ -304,13 +305,14 @@ defmodule Uneebee.Organizations do
   """
   @spec get_school_by_host!(String.t()) :: School.t() | nil
   def get_school_by_host!(host) do
-    [subdomain | domain_parts] = String.split(host, ".")
+    app_host = SchoolUtils.remove_blocked_subdomain(host)
+    [subdomain | domain_parts] = String.split(app_host, ".")
     domain = Enum.join(domain_parts, ".")
 
     school =
       School
       # Try to find a match for either the full `host` value or the `domain` without the subdomain.
-      |> where([school], school.custom_domain in [^host, ^domain])
+      |> where([school], school.custom_domain in [^app_host, ^domain])
       |> Repo.one()
 
     # If it matches the `domain` value, we need to check if the subdomain is a valid slug.

@@ -169,6 +169,23 @@ defmodule Uneebee.OrganizationsTest do
       assert {:error, %Ecto.Changeset{}} = Organizations.create_school(attrs1)
       assert {:error, %Ecto.Changeset{}} = Organizations.create_school(attrs2)
     end
+
+    test "cannot use a blocked subdomain as the slug" do
+      assert {:error, %Ecto.Changeset{}} = %{slug: "www"} |> valid_school_attributes() |> Organizations.create_school()
+      assert {:error, %Ecto.Changeset{}} = %{slug: "mail"} |> valid_school_attributes() |> Organizations.create_school()
+      assert {:error, %Ecto.Changeset{}} = %{slug: "smtp"} |> valid_school_attributes() |> Organizations.create_school()
+      assert {:error, %Ecto.Changeset{}} = %{slug: "pop"} |> valid_school_attributes() |> Organizations.create_school()
+      assert {:error, %Ecto.Changeset{}} = %{slug: "ftp"} |> valid_school_attributes() |> Organizations.create_school()
+      assert {:error, %Ecto.Changeset{}} = %{slug: "api"} |> valid_school_attributes() |> Organizations.create_school()
+      assert {:error, %Ecto.Changeset{}} = %{slug: "admin"} |> valid_school_attributes() |> Organizations.create_school()
+      assert {:error, %Ecto.Changeset{}} = %{slug: "ns1"} |> valid_school_attributes() |> Organizations.create_school()
+      assert {:error, %Ecto.Changeset{}} = %{slug: "ns2"} |> valid_school_attributes() |> Organizations.create_school()
+      assert {:error, %Ecto.Changeset{}} = %{slug: "webmail"} |> valid_school_attributes() |> Organizations.create_school()
+      assert {:error, %Ecto.Changeset{}} = %{slug: "autodiscover"} |> valid_school_attributes() |> Organizations.create_school()
+      assert {:error, %Ecto.Changeset{}} = %{slug: "test"} |> valid_school_attributes() |> Organizations.create_school()
+      assert {:error, %Ecto.Changeset{}} = %{slug: "localhost"} |> valid_school_attributes() |> Organizations.create_school()
+      assert {:error, %Ecto.Changeset{}} = %{slug: "support"} |> valid_school_attributes() |> Organizations.create_school()
+    end
   end
 
   describe "delete_school/1" do
@@ -464,6 +481,27 @@ defmodule Uneebee.OrganizationsTest do
       school2 = school_fixture(%{slug: "unisc", school_id: school1.id})
 
       assert Organizations.get_school_by_host!("unisc.uneebee.com") == school2
+    end
+
+    test "ignores blocked subdomains from the subdomain" do
+      school1 = school_fixture(%{custom_domain: "uneebee.com"})
+      school2 = school_fixture(%{slug: "unisc", school_id: school1.id})
+
+      assert Organizations.get_school_by_host!("www.uneebee.com") == school1
+      assert Organizations.get_school_by_host!("www.unisc.uneebee.com") == school2
+      assert Organizations.get_school_by_host!("mail.uneebee.com") == school1
+      assert Organizations.get_school_by_host!("smtp.uneebee.com") == school1
+      assert Organizations.get_school_by_host!("pop.uneebee.com") == school1
+      assert Organizations.get_school_by_host!("ftp.uneebee.com") == school1
+      assert Organizations.get_school_by_host!("api.uneebee.com") == school1
+      assert Organizations.get_school_by_host!("admin.uneebee.com") == school1
+      assert Organizations.get_school_by_host!("ns1.uneebee.com") == school1
+      assert Organizations.get_school_by_host!("ns2.uneebee.com") == school1
+      assert Organizations.get_school_by_host!("webmail.uneebee.com") == school1
+      assert Organizations.get_school_by_host!("autodiscover.uneebee.com") == school1
+      assert Organizations.get_school_by_host!("test.uneebee.com") == school1
+      assert Organizations.get_school_by_host!("localhost.uneebee.com") == school1
+      assert Organizations.get_school_by_host!("support.uneebee.com") == school1
     end
 
     test "raises if the slug doesn't match the parent school" do

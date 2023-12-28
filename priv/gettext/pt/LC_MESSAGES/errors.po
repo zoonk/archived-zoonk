@@ -14,7 +14,7 @@ msgstr ""
 msgid "can't be blank"
 msgstr "não pode ficar em branco"
 
-#: lib/organizations/school_schema.ex:123
+#: lib/organizations/school_schema.ex:125
 #, elixir-autogen
 msgid "has already been taken"
 msgstr "já está em uso"
@@ -165,8 +165,8 @@ msgstr "Você não está matriculado neste curso"
 msgid "Your enrollment is pending approval"
 msgstr "A sua matrícula está pendente de aprovação"
 
-#: lib/organizations/school_schema.ex:64
-#: lib/organizations/school_schema.ex:65
+#: lib/organizations/school_schema.ex:66
+#: lib/organizations/school_schema.ex:67
 #, elixir-autogen, elixir-format, fuzzy
 msgid "must start with https://"
 msgstr "deve começar com https://"
@@ -186,7 +186,7 @@ msgstr "não pode excluir a única aula"
 msgid "must have a domain name"
 msgstr "deve ter um nome de domínio"
 
-#: lib/organizations/school_schema.ex:112
+#: lib/organizations/school_schema.ex:114
 #, elixir-autogen, elixir-format
 msgid "must be white_label"
 msgstr "precisa ser white_label"
@@ -195,3 +195,8 @@ msgstr "precisa ser white_label"
 #, elixir-autogen, elixir-format
 msgid "Permission denied"
 msgstr "Permissão negada"
+
+#: lib/organizations/school_schema.ex:65
+#, elixir-autogen, elixir-format
+msgid "is not allowed"
+msgstr "não é permitido"

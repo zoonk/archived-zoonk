@@ -15,7 +15,7 @@ msgid "can't be blank"
 msgstr "不能為空"
 
 ## From Ecto.Changeset.unique_constraint/3
-#: lib/organizations/school_schema.ex:123
+#: lib/organizations/school_schema.ex:125
 #, elixir-autogen
 msgid "has already been taken"
 msgstr "已被使用"
@@ -175,8 +175,8 @@ msgstr "您未註冊此課程"
 msgid "Your enrollment is pending approval"
 msgstr "您的註冊正在等待批准"
 
-#: lib/organizations/school_schema.ex:64
-#: lib/organizations/school_schema.ex:65
+#: lib/organizations/school_schema.ex:66
+#: lib/organizations/school_schema.ex:67
 #, elixir-autogen, elixir-format, fuzzy
 msgid "must start with https://"
 msgstr "必須以 https:// 開頭"
@@ -196,7 +196,7 @@ msgstr "不能刪除唯一的課程"
 msgid "must have a domain name"
 msgstr "必須有一個網域名稱"
 
-#: lib/organizations/school_schema.ex:112
+#: lib/organizations/school_schema.ex:114
 #, elixir-autogen, elixir-format
 msgid "must be white_label"
 msgstr "必須是 white_label"
@@ -205,3 +205,8 @@ msgstr "必須是 white_label"
 #, elixir-autogen, elixir-format
 msgid "Permission denied"
 msgstr "權限不足"
+
+#: lib/organizations/school_schema.ex:65
+#, elixir-autogen, elixir-format
+msgid "is not allowed"
+msgstr "不允許"

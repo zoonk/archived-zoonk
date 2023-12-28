@@ -6,6 +6,8 @@ defmodule Uneebee.Organizations.SchoolUtils do
 
   alias Uneebee.Organizations.SchoolUser
 
+  @blocked_subdomains ["www", "mail", "smtp", "pop", "ftp", "api", "admin", "ns1", "ns2", "webmail", "autodiscover", "test", "localhost", "support"]
+
   @doc """
   Returns the list of supported roles for a school.
   """
@@ -31,4 +33,21 @@ defmodule Uneebee.Organizations.SchoolUtils do
   """
   @spec get_user_role(SchoolUser.t()) :: String.t()
   def get_user_role(%SchoolUser{} = school_user), do: Keyword.get(roles(), school_user.role)
+
+  @doc """
+  Remove a blocked subdomain from a given host.
+  """
+  @spec remove_blocked_subdomain(String.t()) :: String.t()
+  def remove_blocked_subdomain(host) do
+    String.replace(host, ~r/^(#{Enum.join(@blocked_subdomains, "|")})\./, "")
+  end
+
+  @doc """
+  Returns a regex that validates a string doesn't contain any of the blocked subdomains.
+  """
+  @spec blocked_subdomain_regex() :: Regex.t()
+  def blocked_subdomain_regex do
+    blocked = Enum.join(@blocked_subdomains, "|")
+    ~r/^(?!#{blocked})/
+  end
 end

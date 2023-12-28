@@ -683,13 +683,13 @@ msgid "Remove"
 msgstr "移除"
 
 #: lib/content/course_utils.ex:130
-#: lib/organizations/school_utils.ex:17
+#: lib/organizations/school_utils.ex:19
 #, elixir-autogen, elixir-format
 msgid "Student"
 msgstr "學生"
 
 #: lib/content/course_utils.ex:129
-#: lib/organizations/school_utils.ex:16
+#: lib/organizations/school_utils.ex:18
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Teacher"
 msgstr "老師"
@@ -698,7 +698,7 @@ msgstr "老師"
 #: lib/dashboard/courses/course_user_list.html.heex:2
 #: lib/dashboard/schools/school_user_list.ex:76
 #: lib/dashboard/schools/school_user_list.html.heex:2
-#: lib/layouts/menu_utils.ex:98
+#: lib/layouts/menu_utils.ex:97
 #: lib/layouts/templates/dashboard_course.html.heex:38
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Users"
@@ -720,7 +720,7 @@ msgstr "課程角色"
 msgid "Course score"
 msgstr "課程分數"
 
-#: lib/organizations/school_utils.ex:15
+#: lib/organizations/school_utils.ex:17
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Manager"
 msgstr "管理員"
@@ -773,7 +773,7 @@ msgid "25% off add-ons"
 msgstr "25% 折扣附加元件"
 
 #: lib/dashboard/schools/school_billing.ex:25
-#: lib/layouts/menu_utils.ex:102
+#: lib/layouts/menu_utils.ex:101
 #, elixir-autogen, elixir-format
 msgid "Billing"
 msgstr "帳單"
