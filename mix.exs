@@ -62,7 +62,7 @@ defmodule Uneebee.MixProject do
       {:postgrex, ">= 0.0.0"},
       {:req, "~> 0.4.8"},
       {:resend, "~> 0.4.1"},
-      {:sentry, "~> 10.0.3"},
+      {:sentry, "~> 10.1.0"},
       {:sobelow, "~> 0.13.0", only: [:dev, :test], runtime: false},
       {:stripity_stripe, "~> 3.1.1"},
       {:styler, "~> 0.10.0", only: [:dev, :test], runtime: false},
