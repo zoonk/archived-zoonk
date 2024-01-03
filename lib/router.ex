@@ -177,6 +177,12 @@ defmodule UneebeeWeb.Router do
     get "/courses", Courses, :index
   end
 
+  scope "/dashboard", UneebeeWeb.Controller do
+    pipe_through [:browser, :require_authenticated_user, :fetch_course, :require_manager_or_teacher]
+
+    get "/c/:course_slug/l/:lesson_id/s/:step_order/suggested_course/:course_id", LessonStep, :add_suggested_course
+  end
+
   scope "/dashboard", UneebeeWeb.Live.Dashboard do
     pipe_through [:browser, :require_authenticated_user, :fetch_course, :require_manager_or_teacher]
 
@@ -205,6 +211,7 @@ defmodule UneebeeWeb.Router do
       live "/c/:course_slug/l/:lesson_id/s/:step_order/cover", LessonEditor, :cover
       live "/c/:course_slug/l/:lesson_id/s/:step_order/edit", LessonEditor, :edit
       live "/c/:course_slug/l/:lesson_id/s/:step_order/image", LessonEditor, :step_img
+      live "/c/:course_slug/l/:lesson_id/s/:step_order/search", LessonEditor, :search
       live "/c/:course_slug/l/:lesson_id/s/:step_order/o/:option_id", LessonEditor, :option
       live "/c/:course_slug/l/:lesson_id/s/:step_order/o/:option_id/image", LessonEditor, :option_img
     end

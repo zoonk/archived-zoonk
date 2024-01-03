@@ -68,10 +68,14 @@ defmodule UneebeeWeb.Components.SearchBox do
     """
   end
 
+  attr :id, :string, required: true, doc: "the id of the search item"
+  attr :name, :string, required: true, doc: "the label of the search item"
+  attr :rest, :global, include: ~w(href method navigate patch)
+
   def search_item(assigns) do
     ~H"""
     <li class="select-none px-4 py-2" id={@id} role="option" tabindex="-1">
-      <.link navigate={@navigate}><%= @name %></.link>
+      <.link {@rest}><%= @name %></.link>
     </li>
     """
   end

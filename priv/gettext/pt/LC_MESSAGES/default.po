@@ -213,7 +213,7 @@ msgid "Send"
 msgstr "Enviar"
 
 #: lib/dashboard/lessons/components/option_list.ex:59
-#: lib/dashboard/lessons/lesson_view.html.heex:56
+#: lib/dashboard/lessons/lesson_editor.html.heex:56
 #, elixir-autogen, elixir-format
 msgid "Are you sure?"
 msgstr "Tem certeza?"

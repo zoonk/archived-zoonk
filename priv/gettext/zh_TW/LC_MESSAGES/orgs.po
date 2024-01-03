@@ -153,7 +153,7 @@ msgstr "確認訊息不符。您輸入的是：%{confirmation}，但您需要輸
 #: lib/dashboard/lessons/components/lesson_edit.ex:14
 #: lib/dashboard/lessons/lesson_cover.ex:10
 #: lib/dashboard/lessons/lesson_cover.html.heex:1
-#: lib/dashboard/lessons/lesson_view.html.heex:95
+#: lib/dashboard/lessons/lesson_editor.html.heex:117
 #, elixir-autogen, elixir-format
 msgid "Cover"
 msgstr "封面"
@@ -200,12 +200,12 @@ msgstr "未發布"
 msgid "+ Lesson"
 msgstr "+ 課程"
 
-#: lib/dashboard/lessons/lesson_view.html.heex:88
+#: lib/dashboard/lessons/lesson_editor.html.heex:110
 #, elixir-autogen, elixir-format
 msgid "Add image to option"
 msgstr "為選項新增圖片"
 
-#: lib/dashboard/lessons/lesson_view.html.heex:67
+#: lib/dashboard/lessons/lesson_editor.html.heex:67
 #, elixir-autogen, elixir-format
 msgid "Add option"
 msgstr "新增選項"
@@ -220,7 +220,7 @@ msgstr "所有答案都是正確的。"
 msgid "Check this option if this is the correct answer."
 msgstr "如果這是正確答案，請選擇此選項。"
 
-#: lib/dashboard/lessons/lesson_view.ex:78
+#: lib/dashboard/lessons/lesson_editor.ex:85
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Could not add option!"
 msgstr "無法新增選項！"
@@ -251,7 +251,7 @@ msgstr "無法建立步驟！"
 msgid "Could not delete course!"
 msgstr "無法刪除課程！"
 
-#: lib/dashboard/lessons/lesson_view.ex:93
+#: lib/dashboard/lessons/lesson_editor.ex:99
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Could not delete lesson!"
 msgstr "無法刪除課程！"
@@ -261,14 +261,14 @@ msgstr "無法刪除課程！"
 msgid "Could not delete option!"
 msgstr "無法刪除選項！"
 
-#: lib/dashboard/lessons/lesson_view.ex:63
+#: lib/dashboard/lessons/lesson_editor.ex:66
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Could not delete step!"
 msgstr "無法刪除步驟！"
 
 #: lib/dashboard/courses/course_edit.ex:78
 #: lib/dashboard/lessons/lesson_cover.ex:28
-#: lib/dashboard/lessons/lesson_view.ex:145
+#: lib/dashboard/lessons/lesson_editor.ex:163
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Could not update cover!"
 msgstr "無法更新封面！"
@@ -280,7 +280,7 @@ msgid "Could not update lesson!"
 msgstr "無法更新課程！"
 
 #: lib/dashboard/lessons/components/option_list.ex:153
-#: lib/dashboard/lessons/lesson_view.ex:121
+#: lib/dashboard/lessons/lesson_editor.ex:139
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Could not update option!"
 msgstr "無法更新選項！"
@@ -315,12 +315,12 @@ msgstr "課程已成功更新！"
 
 #: lib/dashboard/courses/course_edit.ex:74
 #: lib/dashboard/lessons/lesson_cover.ex:22
-#: lib/dashboard/lessons/lesson_view.ex:139
+#: lib/dashboard/lessons/lesson_editor.ex:157
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Cover updated successfully!"
 msgstr "封面已成功更新！"
 
-#: lib/dashboard/lessons/lesson_view.html.heex:37
+#: lib/dashboard/lessons/lesson_editor.html.heex:37
 #, elixir-autogen, elixir-format
 msgid "Delete lesson"
 msgstr "刪除課程"
@@ -330,7 +330,7 @@ msgstr "刪除課程"
 msgid "Delete option"
 msgstr "刪除選項"
 
-#: lib/content/content_context.ex:72
+#: lib/content/content_context.ex:74
 #: lib/dashboard/courses/course_view.ex:32
 #: lib/layouts/components/lesson_select.ex:30
 #, elixir-autogen, elixir-format
@@ -370,7 +370,7 @@ msgstr "是否正確？"
 msgid "Is public?"
 msgstr "是否公開？"
 
-#: lib/content/content_context.ex:71
+#: lib/content/content_context.ex:73
 #: lib/dashboard/courses/course_view.ex:31
 #: lib/layouts/components/lesson_select.ex:29
 #, elixir-autogen, elixir-format
@@ -413,7 +413,7 @@ msgstr "選項標題"
 msgid "Publish"
 msgstr "發布"
 
-#: lib/dashboard/lessons/lesson_view.html.heex:59
+#: lib/dashboard/lessons/lesson_editor.html.heex:59
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Remove step"
 msgstr "移除步驟"
@@ -424,7 +424,7 @@ msgstr "移除步驟"
 msgid "Unpublish"
 msgstr "取消發布"
 
-#: lib/dashboard/lessons/lesson_view.ex:71
+#: lib/dashboard/lessons/lesson_editor.ex:78
 #, elixir-autogen, elixir-format
 msgid "Untitled option"
 msgstr "無標題選項"
@@ -459,7 +459,7 @@ msgstr "使用條款網址"
 msgid "Drag the steps to change their order:"
 msgstr "拖動步驟以更改其順序："
 
-#: lib/content/content_context.ex:444
+#: lib/content/content_context.ex:476
 #: lib/dashboard/lessons/components/step_switch.ex:52
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Untitled step"
@@ -470,7 +470,7 @@ msgstr "無標題步驟"
 msgid "A lesson has multiple steps. Use them to tell a story, explain a concept or ask a question. Keep them short and simple."
 msgstr "一堂課有多個步驟。使用它們來講故事，解釋概念或提問。保持簡短和簡單。"
 
-#: lib/dashboard/lessons/lesson_view.html.heex:78
+#: lib/dashboard/lessons/lesson_editor.html.heex:100
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Add image to step"
 msgstr "為步驟新增圖片"
@@ -480,7 +480,7 @@ msgstr "為步驟新增圖片"
 msgid "Click to add an image to this step."
 msgstr "點選以為此步驟新增圖片。"
 
-#: lib/dashboard/lessons/lesson_view.ex:106
+#: lib/dashboard/lessons/lesson_editor.ex:124
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Could not update image!"
 msgstr "無法更新圖片！"
@@ -515,7 +515,7 @@ msgstr "編輯步驟圖片"
 msgid "Could not update course!"
 msgstr "無法更新課程！"
 
-#: lib/dashboard/lessons/lesson_view.html.heex:89
+#: lib/dashboard/lessons/lesson_editor.html.heex:111
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Your image should be 64x64px (or use a 1:1 proportion)."
 msgstr "您的圖片應為 64x64px（或使用 1:1 的比例）。"
@@ -530,7 +530,7 @@ msgstr "管理課程"
 msgid "Manage school"
 msgstr "管理學校"
 
-#: lib/dashboard/lessons/lesson_view.html.heex:79
+#: lib/dashboard/lessons/lesson_editor.html.heex:101
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Your image should be 250x250px (or use a 1:1 proportion)."
 msgstr "您的圖片應為 250x250px（或使用 1:1 的比例）。"
@@ -540,7 +540,7 @@ msgstr "您的圖片應為 250x250px（或使用 1:1 的比例）。"
 msgid "Create a lesson"
 msgstr "建立課程"
 
-#: lib/dashboard/lessons/lesson_view.html.heex:35
+#: lib/dashboard/lessons/lesson_editor.html.heex:35
 #, elixir-autogen, elixir-format
 msgid "All content from this lesson will be deleted. This action cannot be undone."
 msgstr "此課程的所有內容將被刪除。此操作無法撤消。"
@@ -961,3 +961,38 @@ msgstr "無法更新標誌！"
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Icon updated successfully!"
 msgstr "標誌已成功更新！"
+
+#: lib/dashboard/lessons/lesson_editor.html.heex:73
+#, elixir-autogen, elixir-format
+msgid "Add courses that are relevant to this step. This will help students find the right course for them."
+msgstr "新增與此步驟相關的課程。這將幫助學生找到適合他們的正確課程。"
+
+#: lib/dashboard/lessons/lesson_editor.ex:111
+#, elixir-autogen, elixir-format, fuzzy
+msgid "Could not delete suggested course!"
+msgstr "無法刪除課程！"
+
+#: lib/dashboard/lessons/lesson_editor.html.heex:89
+#, elixir-autogen, elixir-format, fuzzy
+msgid "Search course"
+msgstr "搜尋課程"
+
+#: lib/dashboard/lessons/lesson_step_controller.ex:14
+#, elixir-autogen, elixir-format
+msgid "Suggested course added successfully."
+msgstr "建議的課程已成功新增。"
+
+#: lib/dashboard/lessons/lesson_step_controller.ex:19
+#, elixir-autogen, elixir-format
+msgid "Suggested course could not be added."
+msgstr "無法新增建議的課程。"
+
+#: lib/dashboard/lessons/lesson_editor.html.heex:72
+#, elixir-autogen, elixir-format
+msgid "Suggested courses"
+msgstr "建議的課程"
+
+#: lib/dashboard/lessons/lesson_editor.html.heex:80
+#, elixir-autogen, elixir-format
+msgid "Would you like to remove this course from the list of suggested courses?"
+msgstr "您是否要將此課程從建議課程列表中移除？"

@@ -28,16 +28,19 @@ defmodule UneebeeWeb.Live.Dashboard.LessonEditor do
 
   @impl Phoenix.LiveView
   def handle_params(params, _url, socket) do
-    %{lesson: lesson, course: course} = socket.assigns
+    %{lesson: lesson, course: course, school: school} = socket.assigns
 
-    step = Content.get_lesson_step_by_order(lesson, params["step_order"])
+    step = Content.get_lesson_step_by_order(lesson.id, params["step_order"])
     lessons = Content.list_lessons(course.id)
+    suggested_courses = Content.list_step_suggested_courses(step.id)
 
     socket =
       socket
       |> assign(:selected_step, step)
       |> get_option(params["option_id"])
       |> assign(:lessons, lessons)
+      |> assign(:suggested_courses, suggested_courses)
+      |> assign(:search_results, search_courses(school.id, params["term"]))
 
     {:noreply, socket}
   end
@@ -64,7 +67,11 @@ defmodule UneebeeWeb.Live.Dashboard.LessonEditor do
     end
   end
 
-  @impl Phoenix.LiveView
+  def handle_event("search", %{"term" => search_term}, socket) do
+    %{course: course, lesson: lesson, selected_step: step} = socket.assigns
+    {:noreply, push_patch(socket, to: ~p"/dashboard/c/#{course.slug}/l/#{lesson.id}/s/#{step.order}/search?term=#{search_term}")}
+  end
+
   def handle_event("add-option", %{"step-id" => step_id}, socket) do
     %{course: course, lesson: lesson, selected_step: step} = socket.assigns
 
@@ -79,7 +86,6 @@ defmodule UneebeeWeb.Live.Dashboard.LessonEditor do
     end
   end
 
-  @impl Phoenix.LiveView
   def handle_event("delete-lesson", _params, socket) do
     %{lesson: lesson, course: course} = socket.assigns
 
@@ -91,6 +97,18 @@ defmodule UneebeeWeb.Live.Dashboard.LessonEditor do
 
       {:error, _changeset} ->
         {:noreply, put_flash(socket, :error, dgettext("orgs", "Could not delete lesson!"))}
+    end
+  end
+
+  def handle_event("delete-suggested-course", %{"suggested-course-id" => suggested_course_id}, socket) do
+    %{course: course, lesson: lesson, selected_step: step} = socket.assigns
+
+    case Content.delete_step_suggested_course(suggested_course_id) do
+      {:ok, _suggested_course} ->
+        {:noreply, push_patch(socket, to: step_link(course, lesson, step.order))}
+
+      {:error, _changeset} ->
+        {:noreply, put_flash(socket, :error, dgettext("orgs", "Could not delete suggested course!"))}
     end
   end
 
@@ -147,4 +165,7 @@ defmodule UneebeeWeb.Live.Dashboard.LessonEditor do
   end
 
   defp step_link(course, lesson, order), do: ~p"/dashboard/c/#{course.slug}/l/#{lesson.id}/s/#{order}"
+
+  defp search_courses(_school_id, nil), do: []
+  defp search_courses(school_id, term), do: Content.search_courses_by_school(school_id, term)
 end

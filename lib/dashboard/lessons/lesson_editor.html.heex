@@ -67,6 +67,28 @@
         <%= dgettext("orgs", "Add option") %>
       </.button>
     </div>
+
+    <div class="ring-gray-900/5 rounded-lg p-4 text-sm text-gray-600 shadow-sm ring-1">
+      <h3 class="font-semibold"><%= dgettext("orgs", "Suggested courses") %></h3>
+      <p class="mt-2"><%= dgettext("orgs", "Add courses that are relevant to this step. This will help students find the right course for them.") %></p>
+
+      <dl class="flex gap-1 py-4">
+        <button
+          :for={suggestion <- @suggested_courses}
+          phx-click="delete-suggested-course"
+          phx-value-suggested-course-id={suggestion.id}
+          data-confirm={dgettext("orgs", "Would you like to remove this course from the list of suggested courses?")}
+          class="flex items-center gap-1 rounded-2xl border border-slate-300 px-2 py-1 hover:bg-slate-50"
+        >
+          <dt><%= suggestion.course.name %></dt>
+          <.icon name="tabler-x" class="h-3 w-3 text-pink-600" />
+        </button>
+      </dl>
+
+      <.link_button patch={~p"/dashboard/c/#{@course.slug}/l/#{@lesson.id}/s/#{@selected_step.order}/search"} color={:info_light} icon="tabler-search" class="w-full mt-4">
+        <%= dgettext("orgs", "Search course") %>
+      </.link_button>
+    </div>
   </div>
 
   <.modal :if={@live_action == :step_img} show id="img-step-modal" on_cancel={JS.patch(step_link(@course, @lesson, @selected_step.order))}>
@@ -94,4 +116,21 @@
   <.modal :if={@live_action == :cover} show id="cover-modal" on_cancel={JS.patch(step_link(@course, @lesson, @selected_step.order))}>
     <.live_component module={Upload} id={:lesson_cover} current_img={@lesson.cover} unstyled label={dgettext("orgs", "Cover")} />
   </.modal>
+
+  <.search_box
+    :if={@live_action == :search}
+    phx-change="search"
+    phx-submit="search"
+    empty={@search_results == []}
+    id="course-search"
+    show
+    on_cancel={JS.patch(step_link(@course, @lesson, @selected_step.order))}
+  >
+    <.search_item
+      :for={course <- @search_results}
+      href={~p"/dashboard/c/#{@course.slug}/l/#{@lesson.id}/s/#{@selected_step.order}/suggested_course/#{course.id}"}
+      id={"course-search-#{course.id}"}
+      name={course.name}
+    />
+  </.search_box>
 </div>

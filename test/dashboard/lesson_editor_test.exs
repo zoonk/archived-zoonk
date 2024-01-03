@@ -195,7 +195,7 @@ defmodule UneebeeWeb.DashboardLessonEditorLiveTest do
       lv |> form("#step-form", lesson_step: %{content: "Updated step!"}) |> render_submit()
 
       assert has_element?(lv, ~s|a span:fl-contains("Updated step!")|)
-      assert Content.get_lesson_step_by_order(lesson, 1).content == "Updated step!"
+      assert Content.get_lesson_step_by_order(lesson.id, 1).content == "Updated step!"
     end
 
     test "updates a step image", %{conn: conn, course: course} do
@@ -210,7 +210,7 @@ defmodule UneebeeWeb.DashboardLessonEditorLiveTest do
       assert has_element?(lv, "button", "Remove")
       assert_file_upload(lv, "step_img_upload")
 
-      updated_step = Content.get_lesson_step_by_order(lesson, 1)
+      updated_step = Content.get_lesson_step_by_order(lesson.id, 1)
       assert String.starts_with?(updated_step.image, "/uploads")
     end
 
@@ -225,7 +225,7 @@ defmodule UneebeeWeb.DashboardLessonEditorLiveTest do
       refute has_element?(lv, "#remove-step_img_upload")
       assert_file_upload(lv, "step_img_upload")
 
-      updated_step = Content.get_lesson_step_by_order(lesson, 1)
+      updated_step = Content.get_lesson_step_by_order(lesson.id, 1)
       assert String.starts_with?(updated_step.image, "/uploads")
     end
 
@@ -237,7 +237,7 @@ defmodule UneebeeWeb.DashboardLessonEditorLiveTest do
 
       lv |> element("#remove-step_img_upload") |> render_click()
 
-      updated_step = Content.get_lesson_step_by_order(lesson, 1)
+      updated_step = Content.get_lesson_step_by_order(lesson.id, 1)
       assert updated_step.image == nil
     end
 
@@ -406,6 +406,43 @@ defmodule UneebeeWeb.DashboardLessonEditorLiveTest do
 
       updated_lesson = Content.get_lesson!(lesson.id)
       assert String.starts_with?(updated_lesson.cover, "/uploads")
+    end
+
+    test "adds a suggested course", %{conn: conn, school: school, course: course} do
+      lesson = lesson_fixture(%{course_id: course.id})
+      lesson_step_fixture(%{lesson_id: lesson.id, order: 1})
+      course2 = course_fixture(%{school_id: school.id, name: "Test course"})
+
+      {:ok, lv, _html} = live(conn, ~p"/dashboard/c/#{course.slug}/l/#{lesson.id}/s/1")
+
+      lv |> element("a", "Search course") |> render_click()
+      lv |> form("#course-search") |> render_change(%{term: "test"})
+
+      assert {:ok, conn} =
+               lv
+               |> element("a", course2.name)
+               |> render_click()
+               |> follow_redirect(conn, ~p"/dashboard/c/#{course.slug}/l/#{lesson.id}/s/1/suggested_course/#{course2.id}")
+
+      assert redirected_to(conn) == "/dashboard/c/#{course.slug}/l/#{lesson.id}/s/1"
+
+      {:ok, updated_lv, _html} = live(conn, ~p"/dashboard/c/#{course.slug}/l/#{lesson.id}/s/1")
+
+      assert has_element?(updated_lv, "dt", course2.name)
+    end
+
+    test "removes a suggested course", %{conn: conn, school: school, course: course} do
+      lesson = lesson_fixture(%{course_id: course.id})
+      step = lesson_step_fixture(%{lesson_id: lesson.id, order: 1})
+      course2 = course_fixture(%{school_id: school.id})
+      Content.add_step_suggested_course(%{lesson_step_id: step.id, course_id: course2.id})
+
+      {:ok, lv, _html} = live(conn, ~p"/dashboard/c/#{course.slug}/l/#{lesson.id}/s/1")
+
+      lv |> element("button", course2.name) |> render_click()
+
+      refute has_element?(lv, "dt", course2.name)
+      assert Content.list_step_suggested_courses(step.id) == []
     end
   end
 

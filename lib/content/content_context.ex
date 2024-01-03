@@ -194,7 +194,7 @@ defmodule Uneebee.Content do
     combined_name_search_term = search_term |> String.split(" ") |> Enum.join(" ")
 
     Course
-    |> where([c], c.school_id == ^school_id)
+    |> where([c], c.school_id == ^school_id and c.published?)
     |> where(
       [c],
       ilike(c.name, ^search_term) or
@@ -794,12 +794,12 @@ defmodule Uneebee.Content do
 
   ## Examples
 
-      iex> get_lesson_step_by_order(%Lesson{}, 1)
+      iex> get_lesson_step_by_order(lesson_id, 1)
       %LessonStep{}
   """
-  @spec get_lesson_step_by_order(Lesson.t(), non_neg_integer()) :: LessonStep.t() | nil
-  def get_lesson_step_by_order(%Lesson{} = lesson, order) do
-    LessonStep |> Repo.get_by(lesson_id: lesson.id, order: order) |> Repo.preload(:options)
+  @spec get_lesson_step_by_order(non_neg_integer(), non_neg_integer()) :: LessonStep.t() | nil
+  def get_lesson_step_by_order(lesson_id, order) do
+    LessonStep |> Repo.get_by(lesson_id: lesson_id, order: order) |> Repo.preload(:options)
   end
 
   @doc """

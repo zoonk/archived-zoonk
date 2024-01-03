@@ -181,12 +181,12 @@ msgstr ""
 msgid "must start with https://"
 msgstr ""
 
-#: lib/content/content_context.ex:726
+#: lib/content/content_context.ex:758
 #, elixir-autogen, elixir-format, fuzzy
 msgid "cannot delete the only step"
 msgstr ""
 
-#: lib/content/content_context.ex:486
+#: lib/content/content_context.ex:518
 #, elixir-autogen, elixir-format, fuzzy
 msgid "cannot delete the only lesson"
 msgstr ""

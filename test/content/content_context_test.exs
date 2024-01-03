@@ -512,10 +512,10 @@ defmodule Uneebee.ContentTest do
       lesson_step_fixture(%{lesson: lesson, order: 1})
       lesson_fixture(%{course_id: lesson.course_id})
 
-      assert Content.get_lesson_step_by_order(lesson, 1)
+      assert Content.get_lesson_step_by_order(lesson.id, 1)
       assert {:ok, %Lesson{}} = Content.delete_lesson(lesson)
       assert_raise Ecto.NoResultsError, fn -> Content.get_lesson!(lesson.id) end
-      refute Content.get_lesson_step_by_order(lesson, 1)
+      refute Content.get_lesson_step_by_order(lesson.id, 1)
     end
 
     test "deletes all user lessons" do
@@ -837,7 +837,7 @@ defmodule Uneebee.ContentTest do
 
       assert {:error, %Ecto.Changeset{} = changeset} = Content.delete_lesson_step(lesson_step.id)
       assert "cannot delete the only step" in errors_on(changeset).base
-      assert Content.get_lesson_step_by_order(lesson, lesson_step.order) == lesson_step
+      assert Content.get_lesson_step_by_order(lesson.id, lesson_step.order) == lesson_step
     end
 
     test "update the order field when deleting a step" do
@@ -849,10 +849,10 @@ defmodule Uneebee.ContentTest do
       lesson_step5 = lesson_step_fixture(%{lesson: lesson, order: 5, content: "Step 5"})
 
       assert {:ok, %LessonStep{}} = Content.delete_lesson_step(lesson_step3.id)
-      assert Content.get_lesson_step_by_order(lesson, 1).id == lesson_step1.id
-      assert Content.get_lesson_step_by_order(lesson, 2).id == lesson_step2.id
-      assert Content.get_lesson_step_by_order(lesson, 3).id == lesson_step4.id
-      assert Content.get_lesson_step_by_order(lesson, 4).id == lesson_step5.id
+      assert Content.get_lesson_step_by_order(lesson.id, 1).id == lesson_step1.id
+      assert Content.get_lesson_step_by_order(lesson.id, 2).id == lesson_step2.id
+      assert Content.get_lesson_step_by_order(lesson.id, 3).id == lesson_step4.id
+      assert Content.get_lesson_step_by_order(lesson.id, 4).id == lesson_step5.id
     end
   end
 
@@ -884,12 +884,12 @@ defmodule Uneebee.ContentTest do
     test "returns a lesson step" do
       lesson = lesson_fixture()
       lesson_step = lesson_step_fixture(%{lesson: lesson, order: 1})
-      assert Content.get_lesson_step_by_order(lesson, lesson_step.order) == lesson_step
+      assert Content.get_lesson_step_by_order(lesson.id, lesson_step.order) == lesson_step
     end
 
     test "returns nil if the lesson step does not exist" do
       lesson = lesson_fixture()
-      assert Content.get_lesson_step_by_order(lesson, 1) == nil
+      assert Content.get_lesson_step_by_order(lesson.id, 1) == nil
     end
   end
 
@@ -1455,8 +1455,9 @@ defmodule Uneebee.ContentTest do
   describe "search_courses_by_school/2" do
     test "returns a list of courses" do
       school = school_fixture()
-      course = course_fixture(%{school_id: school.id, name: "Course 123", slug: "course_123"})
+      course = course_fixture(%{school_id: school.id, name: "Course 123", published?: true, slug: "course_123"})
       course_fixture(%{name: "Course 123", slug: "course_123"})
+      course_fixture(%{school_id: school.id, name: "Course 123", slug: "course_1234", published?: false})
 
       assert Content.search_courses_by_school(school.id, "course") == [course]
       assert Content.search_courses_by_school(school.id, "123") == [course]
