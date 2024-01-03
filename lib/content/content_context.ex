@@ -14,6 +14,7 @@ defmodule Uneebee.Content do
   alias Uneebee.Content.Lesson
   alias Uneebee.Content.LessonStep
   alias Uneebee.Content.StepOption
+  alias Uneebee.Content.StepSuggestedCourse
   alias Uneebee.Content.UserLesson
   alias Uneebee.Content.UserSelection
   alias Uneebee.Gamification
@@ -27,6 +28,7 @@ defmodule Uneebee.Content do
   @type lesson_changeset :: {:ok, Lesson.t()} | {:error, Ecto.Changeset.t()}
   @type lesson_step_changeset :: {:ok, LessonStep.t()} | {:error, Ecto.Changeset.t()}
   @type step_option_changeset :: {:ok, StepOption.t()} | {:error, Ecto.Changeset.t()}
+  @type step_suggested_course_changeset :: {:ok, StepSuggestedCourse.t()} | {:error, Ecto.Changeset.t()}
   @type user_lesson_changeset :: {:ok, UserLesson.t()} | {:error, Ecto.Changeset.t()}
   @type user_selection_changeset :: {:ok, UserSelection.t()} | {:error, Ecto.Changeset.t()}
 
@@ -171,6 +173,36 @@ defmodule Uneebee.Content do
       |> Repo.all()
 
     Enum.map(courses, fn {course, student_count} -> %CourseData{id: course.id, data: course, student_count: student_count} end)
+  end
+
+  @doc """
+  Search courses by name and slug.
+
+  It displays only courses from the specified school.
+
+  ## Examples
+
+      iex> search_courses_by_school(school_id, "course")
+      [%Course{}, ...]
+
+      iex> search_courses_by_school(school_id, "invalid")
+      []
+  """
+  @spec search_courses_by_school(non_neg_integer(), String.t()) :: [Course.t()]
+  def search_courses_by_school(school_id, term) do
+    search_term = "%#{term}%"
+    combined_name_search_term = search_term |> String.split(" ") |> Enum.join(" ")
+
+    Course
+    |> where([c], c.school_id == ^school_id)
+    |> where(
+      [c],
+      ilike(c.name, ^search_term) or
+        ilike(c.slug, ^search_term) or
+        ilike(fragment("? || ' ' || ?", c.name, c.slug), ^combined_name_search_term)
+    )
+    |> order_by(desc: :updated_at)
+    |> Repo.all()
   end
 
   @doc """
@@ -1200,4 +1232,51 @@ defmodule Uneebee.Content do
   end
 
   defp handle_last_edited_course(%Lesson{} = lesson, _school), do: lesson.course
+
+  @doc """
+  Add a suggested course to a lesson step.
+
+  ## Examples
+
+      iex> add_step_suggested_course(%{lesson_step_id: 123, course_id: 456})
+      {:ok, %StepSuggestedCourse{}}
+
+      iex> add_step_suggested_course(%{})
+      {:error, %Ecto.Changeset{}}
+  """
+  @spec add_step_suggested_course(map()) :: step_suggested_course_changeset()
+  def add_step_suggested_course(attrs \\ %{}) do
+    %StepSuggestedCourse{} |> StepSuggestedCourse.changeset(attrs) |> Repo.insert()
+  end
+
+  @doc """
+  Delete a suggested course from a lesson step.
+
+  ## Examples
+
+      iex> delete_step_suggested_course(123)
+      {:ok, %StepSuggestedCourse{}}
+
+      iex> delete_step_suggested_course(123)
+      {:error, %Ecto.Changeset{}}
+  """
+  @spec delete_step_suggested_course(non_neg_integer()) :: step_suggested_course_changeset()
+  def delete_step_suggested_course(step_suggested_course_id) do
+    StepSuggestedCourse |> Repo.get!(step_suggested_course_id) |> Repo.delete()
+  end
+
+  @doc """
+  List all suggested courses for a lesson step.
+
+  It preloads the course data.
+
+  ## Examples
+
+      iex> list_step_suggested_courses(lesson_step_id)
+      [%StepSuggestedCourse{}, ...]
+  """
+  @spec list_step_suggested_courses(non_neg_integer()) :: [StepSuggestedCourse.t()]
+  def list_step_suggested_courses(lesson_step_id) do
+    StepSuggestedCourse |> where([ssc], ssc.lesson_step_id == ^lesson_step_id) |> preload(:course) |> Repo.all()
+  end
 end

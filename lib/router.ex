@@ -200,13 +200,13 @@ defmodule UneebeeWeb.Router do
       live "/c/:course_slug/users/search", CourseUserList, :search
       live "/c/:course_slug/u/:user_id", CourseUserView
 
-      live "/c/:course_slug/l/:lesson_id/s/:step_order", LessonView
-      live "/c/:course_slug/l/:lesson_id/s/:step_order/edit_step", LessonView, :edit_step
-      live "/c/:course_slug/l/:lesson_id/s/:step_order/cover", LessonView, :cover
-      live "/c/:course_slug/l/:lesson_id/s/:step_order/edit", LessonView, :edit
-      live "/c/:course_slug/l/:lesson_id/s/:step_order/image", LessonView, :step_img
-      live "/c/:course_slug/l/:lesson_id/s/:step_order/o/:option_id", LessonView, :option
-      live "/c/:course_slug/l/:lesson_id/s/:step_order/o/:option_id/image", LessonView, :option_img
+      live "/c/:course_slug/l/:lesson_id/s/:step_order", LessonEditor
+      live "/c/:course_slug/l/:lesson_id/s/:step_order/edit_step", LessonEditor, :edit_step
+      live "/c/:course_slug/l/:lesson_id/s/:step_order/cover", LessonEditor, :cover
+      live "/c/:course_slug/l/:lesson_id/s/:step_order/edit", LessonEditor, :edit
+      live "/c/:course_slug/l/:lesson_id/s/:step_order/image", LessonEditor, :step_img
+      live "/c/:course_slug/l/:lesson_id/s/:step_order/o/:option_id", LessonEditor, :option
+      live "/c/:course_slug/l/:lesson_id/s/:step_order/o/:option_id/image", LessonEditor, :option_img
     end
   end
 

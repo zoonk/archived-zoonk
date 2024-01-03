@@ -26,7 +26,7 @@
         <%= gettext("Overview") %>
       </.dashboard_menu_item>
 
-      <.dashboard_menu_item :if={@course} active={@active_page == :dashboard_lessonview} navigate={~p"/dashboard/c/#{@course.slug}/l/#{@first_lesson_id}/s/1"}>
+      <.dashboard_menu_item :if={@course} active={@active_page == :dashboard_lessoneditor} navigate={~p"/dashboard/c/#{@course.slug}/l/#{@first_lesson_id}/s/1"}>
         <%= dgettext("orgs", "Editor") %>
       </.dashboard_menu_item>
 

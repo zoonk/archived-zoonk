@@ -15,6 +15,7 @@ defmodule Uneebee.ContentTest do
   alias Uneebee.Content.Lesson
   alias Uneebee.Content.LessonStep
   alias Uneebee.Content.StepOption
+  alias Uneebee.Content.StepSuggestedCourse
   alias Uneebee.Content.UserLesson
   alias Uneebee.Content.UserSelection
   alias Uneebee.Gamification
@@ -1388,6 +1389,78 @@ defmodule Uneebee.ContentTest do
       course_user_fixture(%{course: course1, user: user, role: :student})
 
       assert Content.get_last_edited_course(school, user, :teacher) == nil
+    end
+  end
+
+  describe "add_step_suggested_course/1" do
+    test "adds a step suggested course" do
+      step = lesson_step_fixture()
+      course = course_fixture()
+
+      assert {:ok, %StepSuggestedCourse{} = step_suggested_course} = Content.add_step_suggested_course(%{lesson_step_id: step.id, course_id: course.id})
+      assert step_suggested_course.lesson_step_id == step.id
+      assert step_suggested_course.course_id == course.id
+    end
+
+    test "doesn't allow empty course_id" do
+      step = lesson_step_fixture()
+
+      assert {:error, %Ecto.Changeset{} = changeset} = Content.add_step_suggested_course(%{lesson_step_id: step.id, course_id: nil})
+      assert "can't be blank" in errors_on(changeset).course_id
+    end
+
+    test "doesn't allow empty lesson_step_id" do
+      course = course_fixture()
+
+      assert {:error, %Ecto.Changeset{} = changeset} = Content.add_step_suggested_course(%{lesson_step_id: nil, course_id: course.id})
+      assert "can't be blank" in errors_on(changeset).lesson_step_id
+    end
+
+    test "doesn't allow duplicate step suggested courses" do
+      step = lesson_step_fixture()
+      course = course_fixture()
+
+      assert {:ok, %StepSuggestedCourse{}} = Content.add_step_suggested_course(%{lesson_step_id: step.id, course_id: course.id})
+      assert {:error, %Ecto.Changeset{} = changeset} = Content.add_step_suggested_course(%{lesson_step_id: step.id, course_id: course.id})
+      assert "has already been taken" in errors_on(changeset).lesson_step_id
+    end
+  end
+
+  describe "delete_step_suggested_course/1" do
+    test "deletes a step suggested course" do
+      step = lesson_step_fixture()
+      course = course_fixture()
+      {:ok, %StepSuggestedCourse{} = step_suggested_course} = Content.add_step_suggested_course(%{lesson_step_id: step.id, course_id: course.id})
+
+      assert {:ok, %StepSuggestedCourse{}} = Content.delete_step_suggested_course(step_suggested_course.id)
+      assert_raise Ecto.NoResultsError, fn -> Uneebee.Repo.get!(StepSuggestedCourse, step.id) end
+    end
+  end
+
+  describe "list_step_suggested_courses/1" do
+    test "returns a list of step suggested courses" do
+      step = lesson_step_fixture()
+      course1 = course_fixture()
+      course2 = course_fixture()
+
+      {:ok, %StepSuggestedCourse{} = step_suggested_course1} = Content.add_step_suggested_course(%{lesson_step_id: step.id, course_id: course1.id})
+      {:ok, %StepSuggestedCourse{} = step_suggested_course2} = Content.add_step_suggested_course(%{lesson_step_id: step.id, course_id: course2.id})
+
+      courses = Content.list_step_suggested_courses(step.id)
+      assert Enum.at(courses, 0).id == step_suggested_course1.id
+      assert Enum.at(courses, 1).id == step_suggested_course2.id
+    end
+  end
+
+  describe "search_courses_by_school/2" do
+    test "returns a list of courses" do
+      school = school_fixture()
+      course = course_fixture(%{school_id: school.id, name: "Course 123", slug: "course_123"})
+      course_fixture(%{name: "Course 123", slug: "course_123"})
+
+      assert Content.search_courses_by_school(school.id, "course") == [course]
+      assert Content.search_courses_by_school(school.id, "123") == [course]
+      assert Content.search_courses_by_school(school.id, "course_123") == [course]
     end
   end
 end

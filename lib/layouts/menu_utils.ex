@@ -52,12 +52,12 @@ defmodule UneebeeWeb.Layouts.MenuUtils do
   def lesson_view?(active_page) do
     option? =
       active_page in [
-        :dashboard_lessonview_option,
-        :dashboard_lessonview_option_img,
-        :dashboard_lessonview_step_img,
-        :dashboard_lessonview_edit,
-        :dashboard_lessonview_edit_step,
-        :dashboard_lessonview_cover
+        :dashboard_lessoneditor_option,
+        :dashboard_lessoneditor_option_img,
+        :dashboard_lessoneditor_step_img,
+        :dashboard_lessoneditor_edit,
+        :dashboard_lessoneditor_edit_step,
+        :dashboard_lessoneditor_cover
       ]
 
     lesson_view_page? = active_page |> Atom.to_string() |> String.starts_with?("dashboard_lesson")

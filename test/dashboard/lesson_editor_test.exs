@@ -1,4 +1,4 @@
-defmodule UneebeeWeb.DashboardLessonViewLiveTest do
+defmodule UneebeeWeb.DashboardLessonEditorLiveTest do
   use UneebeeWeb.ConnCase, async: true
 
   import Phoenix.LiveViewTest

@@ -1,4 +1,4 @@
-defmodule UneebeeWeb.Live.Dashboard.LessonView do
+defmodule UneebeeWeb.Live.Dashboard.LessonEditor do
   @moduledoc false
   use UneebeeWeb, :live_view
 
