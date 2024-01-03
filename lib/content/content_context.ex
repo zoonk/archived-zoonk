@@ -786,7 +786,10 @@ defmodule Uneebee.Content do
   """
   @spec get_next_step(Lesson.t(), non_neg_integer()) :: LessonStep.t() | nil
   def get_next_step(%Lesson{} = lesson, order) do
-    LessonStep |> where([ls], ls.lesson_id == ^lesson.id and ls.order == ^order + 1) |> preload(:options) |> Repo.one()
+    LessonStep
+    |> where([ls], ls.lesson_id == ^lesson.id and ls.order == ^order + 1)
+    |> preload([:options, suggested_courses: :course])
+    |> Repo.one()
   end
 
   @doc """

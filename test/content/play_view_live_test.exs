@@ -150,6 +150,22 @@ defmodule UneebeeWeb.PlayViewLiveTest do
       refute has_element?(lv, "blockquote p", "step 1!")
       assert has_element?(lv, "h1", "Subscription expired")
     end
+
+    test "displays suggested courses when available", %{conn: conn, school: school, course: course1} do
+      course2 = course_fixture(%{school_id: school.id})
+      course3 = course_fixture(%{school_id: school.id})
+
+      lesson = lesson_fixture(%{course_id: course1.id})
+      step = lesson_step_fixture(%{lesson_id: lesson.id})
+
+      Content.add_step_suggested_course(%{lesson_step_id: step.id, course_id: course2.id})
+      Content.add_step_suggested_course(%{lesson_step_id: step.id, course_id: course3.id})
+
+      {:ok, lv, _html} = live(conn, ~p"/c/#{course1.slug}/#{lesson.id}")
+
+      assert has_element?(lv, "a", course2.name)
+      assert has_element?(lv, "a", course3.name)
+    end
   end
 
   defp assert_403(conn, course) do

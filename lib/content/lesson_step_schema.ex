@@ -9,6 +9,7 @@ defmodule Uneebee.Content.LessonStep do
   alias Uneebee.Content.CourseUtils
   alias Uneebee.Content.Lesson
   alias Uneebee.Content.StepOption
+  alias Uneebee.Content.StepSuggestedCourse
 
   @type t :: %__MODULE__{}
 
@@ -19,6 +20,7 @@ defmodule Uneebee.Content.LessonStep do
 
     belongs_to :lesson, Lesson
     has_many :options, StepOption
+    has_many :suggested_courses, StepSuggestedCourse
 
     timestamps(type: :utc_datetime_usec)
   end

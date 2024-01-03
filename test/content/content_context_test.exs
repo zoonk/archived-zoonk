@@ -871,8 +871,8 @@ defmodule Uneebee.ContentTest do
     test "returns the next lesson step" do
       lesson = lesson_fixture()
       lesson_step_fixture(%{lesson: lesson, order: 1})
-      lesson_step2 = lesson_step_fixture(%{lesson: lesson, order: 2, preload: :options})
-      lesson_step3 = lesson_step_fixture(%{lesson: lesson, order: 3, preload: :options})
+      lesson_step2 = lesson_step_fixture(%{lesson: lesson, order: 2, preload: [:options, suggested_courses: :course]})
+      lesson_step3 = lesson_step_fixture(%{lesson: lesson, order: 3, preload: [:options, suggested_courses: :course]})
 
       assert Content.get_next_step(lesson, 1) == lesson_step2
       assert Content.get_next_step(lesson, 2) == lesson_step3
