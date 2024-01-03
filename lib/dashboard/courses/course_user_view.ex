@@ -36,7 +36,7 @@ defmodule UneebeeWeb.Live.Dashboard.CourseUserView do
         socket =
           socket
           |> put_flash(:info, dgettext("orgs", "User approved!"))
-          |> assign(:course_user, Map.merge(updated_cu, %{user: course_user.user}))
+          |> assign(:course_user, Map.put(updated_cu, :user, course_user.user))
 
         {:noreply, socket}
 

@@ -37,7 +37,7 @@ defmodule UneebeeWeb.Live.Dashboard.SchoolUserView do
         socket =
           socket
           |> put_flash(:info, dgettext("orgs", "User approved!"))
-          |> assign(:school_user, Map.merge(updated_su, %{user: user}))
+          |> assign(:school_user, Map.put(updated_su, :user, user))
 
         {:noreply, socket}
 
@@ -95,7 +95,7 @@ defmodule UneebeeWeb.Live.Dashboard.SchoolUserView do
 
     case Organizations.update_school_user(school_user.id, %{analytics?: !school_user.analytics?}) do
       {:ok, updated_su} ->
-        {:noreply, assign(socket, :school_user, Map.merge(updated_su, %{user: school_user.user}))}
+        {:noreply, assign(socket, :school_user, Map.put(updated_su, :user, school_user.user))}
 
       {:error, _changeset} ->
         {:noreply, put_flash(socket, :error, dgettext("orgs", "Could not toggle analytics tracking!"))}

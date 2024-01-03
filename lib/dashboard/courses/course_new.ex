@@ -28,7 +28,7 @@ defmodule UneebeeWeb.Live.Dashboard.CourseNew do
   def handle_event("save", %{"course" => course_params}, socket) do
     school = socket.assigns.school
     user = socket.assigns.current_user
-    params = Map.merge(course_params, %{"school_id" => school.id})
+    params = Map.put(course_params, "school_id", school.id)
 
     case Content.create_course(params, user) do
       {:ok, course} ->

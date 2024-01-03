@@ -1011,7 +1011,7 @@ defmodule Uneebee.Content do
   end
 
   defp add_user_lesson(attrs, %UserLesson{} = user_lesson) do
-    attrs = Map.merge(attrs, %{attempts: user_lesson.attempts + 1})
+    attrs = Map.put(attrs, :attempts, user_lesson.attempts + 1)
     add_user_lesson(attrs, nil)
   end
 
