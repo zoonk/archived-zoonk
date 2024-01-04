@@ -153,7 +153,7 @@ msgstr ""
 #: lib/dashboard/lessons/components/lesson_edit.ex:14
 #: lib/dashboard/lessons/lesson_cover.ex:10
 #: lib/dashboard/lessons/lesson_cover.html.heex:1
-#: lib/dashboard/lessons/lesson_editor.html.heex:117
+#: lib/dashboard/lessons/lesson_editor.html.heex:143
 #, elixir-autogen, elixir-format
 msgid "Cover"
 msgstr ""
@@ -200,12 +200,12 @@ msgstr ""
 msgid "+ Lesson"
 msgstr ""
 
-#: lib/dashboard/lessons/lesson_editor.html.heex:110
+#: lib/dashboard/lessons/lesson_editor.html.heex:136
 #, elixir-autogen, elixir-format
 msgid "Add image to option"
 msgstr ""
 
-#: lib/dashboard/lessons/lesson_editor.html.heex:67
+#: lib/dashboard/lessons/lesson_editor.html.heex:93
 #, elixir-autogen, elixir-format
 msgid "Add option"
 msgstr ""
@@ -251,7 +251,7 @@ msgstr ""
 msgid "Could not delete course!"
 msgstr ""
 
-#: lib/dashboard/lessons/lesson_editor.ex:99
+#: lib/dashboard/lessons/lesson_editor.ex:111
 #, elixir-autogen, elixir-format
 msgid "Could not delete lesson!"
 msgstr ""
@@ -268,7 +268,7 @@ msgstr ""
 
 #: lib/dashboard/courses/course_edit.ex:78
 #: lib/dashboard/lessons/lesson_cover.ex:28
-#: lib/dashboard/lessons/lesson_editor.ex:163
+#: lib/dashboard/lessons/lesson_editor.ex:175
 #, elixir-autogen, elixir-format
 msgid "Could not update cover!"
 msgstr ""
@@ -280,7 +280,7 @@ msgid "Could not update lesson!"
 msgstr ""
 
 #: lib/dashboard/lessons/components/option_list.ex:153
-#: lib/dashboard/lessons/lesson_editor.ex:139
+#: lib/dashboard/lessons/lesson_editor.ex:151
 #, elixir-autogen, elixir-format
 msgid "Could not update option!"
 msgstr ""
@@ -315,7 +315,7 @@ msgstr ""
 
 #: lib/dashboard/courses/course_edit.ex:74
 #: lib/dashboard/lessons/lesson_cover.ex:22
-#: lib/dashboard/lessons/lesson_editor.ex:157
+#: lib/dashboard/lessons/lesson_editor.ex:169
 #, elixir-autogen, elixir-format
 msgid "Cover updated successfully!"
 msgstr ""
@@ -470,7 +470,7 @@ msgstr ""
 msgid "A lesson has multiple steps. Use them to tell a story, explain a concept or ask a question. Keep them short and simple."
 msgstr ""
 
-#: lib/dashboard/lessons/lesson_editor.html.heex:100
+#: lib/dashboard/lessons/lesson_editor.html.heex:126
 #, elixir-autogen, elixir-format
 msgid "Add image to step"
 msgstr ""
@@ -480,7 +480,7 @@ msgstr ""
 msgid "Click to add an image to this step."
 msgstr ""
 
-#: lib/dashboard/lessons/lesson_editor.ex:124
+#: lib/dashboard/lessons/lesson_editor.ex:136
 #, elixir-autogen, elixir-format
 msgid "Could not update image!"
 msgstr ""
@@ -515,7 +515,7 @@ msgstr ""
 msgid "Could not update course!"
 msgstr ""
 
-#: lib/dashboard/lessons/lesson_editor.html.heex:111
+#: lib/dashboard/lessons/lesson_editor.html.heex:137
 #, elixir-autogen, elixir-format
 msgid "Your image should be 64x64px (or use a 1:1 proportion)."
 msgstr ""
@@ -530,7 +530,7 @@ msgstr ""
 msgid "Manage school"
 msgstr ""
 
-#: lib/dashboard/lessons/lesson_editor.html.heex:101
+#: lib/dashboard/lessons/lesson_editor.html.heex:127
 #, elixir-autogen, elixir-format
 msgid "Your image should be 250x250px (or use a 1:1 proportion)."
 msgstr ""
@@ -962,17 +962,17 @@ msgstr ""
 msgid "Icon updated successfully!"
 msgstr ""
 
-#: lib/dashboard/lessons/lesson_editor.html.heex:73
+#: lib/dashboard/lessons/lesson_editor.html.heex:99
 #, elixir-autogen, elixir-format
 msgid "Add courses that are relevant to this step. This will help students find the right course for them."
 msgstr ""
 
-#: lib/dashboard/lessons/lesson_editor.ex:111
+#: lib/dashboard/lessons/lesson_editor.ex:123
 #, elixir-autogen, elixir-format
 msgid "Could not delete suggested course!"
 msgstr ""
 
-#: lib/dashboard/lessons/lesson_editor.html.heex:89
+#: lib/dashboard/lessons/lesson_editor.html.heex:115
 #, elixir-autogen, elixir-format
 msgid "Search course"
 msgstr ""
@@ -987,12 +987,62 @@ msgstr ""
 msgid "Suggested course could not be added."
 msgstr ""
 
-#: lib/dashboard/lessons/lesson_editor.html.heex:72
+#: lib/dashboard/lessons/lesson_editor.html.heex:98
 #, elixir-autogen, elixir-format
 msgid "Suggested courses"
 msgstr ""
 
-#: lib/dashboard/lessons/lesson_editor.html.heex:80
+#: lib/dashboard/lessons/lesson_editor.html.heex:106
 #, elixir-autogen, elixir-format
 msgid "Would you like to remove this course from the list of suggested courses?"
+msgstr ""
+
+#: lib/dashboard/lessons/lesson_editor.html.heex:64
+#, elixir-autogen, elixir-format
+msgid "Answer type"
+msgstr ""
+
+#: lib/dashboard/lessons/lesson_editor.ex:97
+#, elixir-autogen, elixir-format
+msgid "Could not update step kind!"
+msgstr ""
+
+#: lib/dashboard/lessons/lesson_editor.ex:201
+#, elixir-autogen, elixir-format
+msgid "Open-ended"
+msgstr ""
+
+#: lib/dashboard/lessons/lesson_editor.html.heex:85
+#, elixir-autogen, elixir-format
+msgid "Open-ended question"
+msgstr ""
+
+#: lib/dashboard/lessons/lesson_editor.ex:195
+#, elixir-autogen, elixir-format
+msgid "Quiz"
+msgstr ""
+
+#: lib/dashboard/lessons/lesson_editor.ex:189
+#, elixir-autogen, elixir-format
+msgid "Read-only"
+msgstr ""
+
+#: lib/dashboard/lessons/lesson_editor.ex:190
+#, elixir-autogen, elixir-format
+msgid "Users can only read the content. No options are displayed."
+msgstr ""
+
+#: lib/dashboard/lessons/lesson_editor.html.heex:86
+#, elixir-autogen, elixir-format
+msgid "Users can write in their own answer to this step."
+msgstr ""
+
+#: lib/dashboard/lessons/lesson_editor.ex:202
+#, elixir-autogen, elixir-format
+msgid "Users can write their own answer."
+msgstr ""
+
+#: lib/dashboard/lessons/lesson_editor.ex:196
+#, elixir-autogen, elixir-format
+msgid "You can add multiple options and users can select one of them."
 msgstr ""

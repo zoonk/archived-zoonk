@@ -16,6 +16,7 @@ defmodule Uneebee.Content.LessonStep do
   schema "lesson_steps" do
     field :content, :string
     field :image, :string
+    field :kind, Ecto.Enum, values: [:readonly, :quiz, :open_ended], default: :readonly
     field :order, :integer
 
     belongs_to :lesson, Lesson
@@ -29,8 +30,8 @@ defmodule Uneebee.Content.LessonStep do
   @spec changeset(Ecto.Schema.t(), map()) :: Ecto.Changeset.t()
   def changeset(lesson_step, attrs) do
     lesson_step
-    |> cast(attrs, [:content, :image, :lesson_id, :order])
-    |> validate_required([:content, :lesson_id, :order])
+    |> cast(attrs, [:content, :image, :kind, :lesson_id, :order])
+    |> validate_required([:content, :kind, :lesson_id, :order])
     |> validate_length(:content, max: CourseUtils.max_length(:step_content))
   end
 end

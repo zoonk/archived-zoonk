@@ -31,7 +31,7 @@ msgstr ""
 msgid "Beginner"
 msgstr ""
 
-#: lib/content/course_live/lesson_play.html.heex:81
+#: lib/content/course_live/lesson_play.html.heex:91
 #, elixir-autogen, elixir-format
 msgid "Confirming..."
 msgstr ""
@@ -71,7 +71,7 @@ msgstr ""
 msgid "Intermediate"
 msgstr ""
 
-#: lib/content/course_live/lesson_play.html.heex:85
+#: lib/content/course_live/lesson_play.html.heex:95
 #, elixir-autogen, elixir-format
 msgid "Next step"
 msgstr ""

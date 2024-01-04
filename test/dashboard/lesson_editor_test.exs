@@ -444,6 +444,50 @@ defmodule UneebeeWeb.DashboardLessonEditorLiveTest do
       refute has_element?(lv, "dt", course2.name)
       assert Content.list_step_suggested_courses(step.id) == []
     end
+
+    test "adding a new step makes it read-only", %{conn: conn, course: course} do
+      lesson = lesson_fixture(%{course_id: course.id})
+      lesson_step_fixture(%{lesson_id: lesson.id, kind: :quiz, order: 1})
+
+      {:ok, lv, _html} = live(conn, ~p"/dashboard/c/#{course.slug}/l/#{lesson.id}/s/1")
+
+      refute has_element?(lv, "h3", "Answer type")
+
+      lv |> element("button", "+") |> render_click()
+
+      assert has_element?(lv, "h3", "Answer type")
+      assert Content.get_lesson_step_by_order(lesson.id, 2).kind == :readonly
+    end
+
+    test "updates a step to a quiz kind", %{conn: conn, course: course} do
+      lesson = lesson_fixture(%{course_id: course.id})
+      lesson_step_fixture(%{lesson_id: lesson.id, kind: :readonly, order: 1})
+
+      {:ok, lv, _html} = live(conn, ~p"/dashboard/c/#{course.slug}/l/#{lesson.id}/s/1")
+
+      assert has_element?(lv, "h3", "Answer type")
+      refute has_element?(lv, "button", "Add option")
+
+      lv |> element("button", "Quiz") |> render_click()
+
+      assert has_element?(lv, "button", "Add option")
+      assert Content.get_lesson_step_by_order(lesson.id, 1).kind == :quiz
+    end
+
+    test "updates a step to an open ended kind", %{conn: conn, course: course} do
+      lesson = lesson_fixture(%{course_id: course.id})
+      lesson_step_fixture(%{lesson_id: lesson.id, kind: :readonly, order: 1})
+
+      {:ok, lv, _html} = live(conn, ~p"/dashboard/c/#{course.slug}/l/#{lesson.id}/s/1")
+
+      assert has_element?(lv, "h3", "Answer type")
+      refute has_element?(lv, "h3", "Open-ended question")
+
+      lv |> element("button", "Open-ended") |> render_click()
+
+      assert has_element?(lv, "h3", "Open-ended question")
+      assert Content.get_lesson_step_by_order(lesson.id, 1).kind == :open_ended
+    end
   end
 
   defp assert_403(conn, course) do

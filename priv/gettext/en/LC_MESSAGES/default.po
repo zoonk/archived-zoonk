@@ -153,7 +153,7 @@ msgstr ""
 msgid "Profile"
 msgstr ""
 
-#: lib/content/course_live/lesson_play.html.heex:85
+#: lib/content/course_live/lesson_play.html.heex:95
 #, elixir-autogen, elixir-format
 msgid "Confirm"
 msgstr ""
@@ -357,7 +357,7 @@ msgstr ""
 msgid "No results found."
 msgstr ""
 
-#: lib/content/course_live/lesson_play.html.heex:99
+#: lib/content/course_live/lesson_play.html.heex:109
 #, elixir-autogen, elixir-format
 msgid "Contact school"
 msgstr ""
@@ -376,7 +376,7 @@ msgstr ""
 msgid "Message sent!"
 msgstr ""
 
-#: lib/content/course_live/lesson_play.html.heex:92
+#: lib/content/course_live/lesson_play.html.heex:102
 #, elixir-autogen, elixir-format
 msgid "Subscription expired"
 msgstr ""
@@ -386,7 +386,7 @@ msgstr ""
 msgid "There was an error sending your message. Please try again."
 msgstr ""
 
-#: lib/content/course_live/lesson_play.html.heex:95
+#: lib/content/course_live/lesson_play.html.heex:105
 #, elixir-autogen, elixir-format
 msgid "Your school manager needs to renew their subscription. Please, contact them."
 msgstr ""

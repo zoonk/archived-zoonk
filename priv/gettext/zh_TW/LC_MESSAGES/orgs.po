@@ -153,7 +153,7 @@ msgstr "確認訊息不符。您輸入的是：%{confirmation}，但您需要輸
 #: lib/dashboard/lessons/components/lesson_edit.ex:14
 #: lib/dashboard/lessons/lesson_cover.ex:10
 #: lib/dashboard/lessons/lesson_cover.html.heex:1
-#: lib/dashboard/lessons/lesson_editor.html.heex:117
+#: lib/dashboard/lessons/lesson_editor.html.heex:143
 #, elixir-autogen, elixir-format
 msgid "Cover"
 msgstr "封面"
@@ -200,12 +200,12 @@ msgstr "未發布"
 msgid "+ Lesson"
 msgstr "+ 課程"
 
-#: lib/dashboard/lessons/lesson_editor.html.heex:110
+#: lib/dashboard/lessons/lesson_editor.html.heex:136
 #, elixir-autogen, elixir-format
 msgid "Add image to option"
 msgstr "為選項新增圖片"
 
-#: lib/dashboard/lessons/lesson_editor.html.heex:67
+#: lib/dashboard/lessons/lesson_editor.html.heex:93
 #, elixir-autogen, elixir-format
 msgid "Add option"
 msgstr "新增選項"
@@ -251,7 +251,7 @@ msgstr "無法建立步驟！"
 msgid "Could not delete course!"
 msgstr "無法刪除課程！"
 
-#: lib/dashboard/lessons/lesson_editor.ex:99
+#: lib/dashboard/lessons/lesson_editor.ex:111
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Could not delete lesson!"
 msgstr "無法刪除課程！"
@@ -268,7 +268,7 @@ msgstr "無法刪除步驟！"
 
 #: lib/dashboard/courses/course_edit.ex:78
 #: lib/dashboard/lessons/lesson_cover.ex:28
-#: lib/dashboard/lessons/lesson_editor.ex:163
+#: lib/dashboard/lessons/lesson_editor.ex:175
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Could not update cover!"
 msgstr "無法更新封面！"
@@ -280,7 +280,7 @@ msgid "Could not update lesson!"
 msgstr "無法更新課程！"
 
 #: lib/dashboard/lessons/components/option_list.ex:153
-#: lib/dashboard/lessons/lesson_editor.ex:139
+#: lib/dashboard/lessons/lesson_editor.ex:151
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Could not update option!"
 msgstr "無法更新選項！"
@@ -315,7 +315,7 @@ msgstr "課程已成功更新！"
 
 #: lib/dashboard/courses/course_edit.ex:74
 #: lib/dashboard/lessons/lesson_cover.ex:22
-#: lib/dashboard/lessons/lesson_editor.ex:157
+#: lib/dashboard/lessons/lesson_editor.ex:169
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Cover updated successfully!"
 msgstr "封面已成功更新！"
@@ -470,7 +470,7 @@ msgstr "無標題步驟"
 msgid "A lesson has multiple steps. Use them to tell a story, explain a concept or ask a question. Keep them short and simple."
 msgstr "一堂課有多個步驟。使用它們來講故事，解釋概念或提問。保持簡短和簡單。"
 
-#: lib/dashboard/lessons/lesson_editor.html.heex:100
+#: lib/dashboard/lessons/lesson_editor.html.heex:126
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Add image to step"
 msgstr "為步驟新增圖片"
@@ -480,7 +480,7 @@ msgstr "為步驟新增圖片"
 msgid "Click to add an image to this step."
 msgstr "點選以為此步驟新增圖片。"
 
-#: lib/dashboard/lessons/lesson_editor.ex:124
+#: lib/dashboard/lessons/lesson_editor.ex:136
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Could not update image!"
 msgstr "無法更新圖片！"
@@ -515,7 +515,7 @@ msgstr "編輯步驟圖片"
 msgid "Could not update course!"
 msgstr "無法更新課程！"
 
-#: lib/dashboard/lessons/lesson_editor.html.heex:111
+#: lib/dashboard/lessons/lesson_editor.html.heex:137
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Your image should be 64x64px (or use a 1:1 proportion)."
 msgstr "您的圖片應為 64x64px（或使用 1:1 的比例）。"
@@ -530,7 +530,7 @@ msgstr "管理課程"
 msgid "Manage school"
 msgstr "管理學校"
 
-#: lib/dashboard/lessons/lesson_editor.html.heex:101
+#: lib/dashboard/lessons/lesson_editor.html.heex:127
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Your image should be 250x250px (or use a 1:1 proportion)."
 msgstr "您的圖片應為 250x250px（或使用 1:1 的比例）。"
@@ -962,17 +962,17 @@ msgstr "無法更新標誌！"
 msgid "Icon updated successfully!"
 msgstr "標誌已成功更新！"
 
-#: lib/dashboard/lessons/lesson_editor.html.heex:73
+#: lib/dashboard/lessons/lesson_editor.html.heex:99
 #, elixir-autogen, elixir-format
 msgid "Add courses that are relevant to this step. This will help students find the right course for them."
 msgstr "新增與此步驟相關的課程。這將幫助學生找到適合他們的正確課程。"
 
-#: lib/dashboard/lessons/lesson_editor.ex:111
+#: lib/dashboard/lessons/lesson_editor.ex:123
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Could not delete suggested course!"
 msgstr "無法刪除課程！"
 
-#: lib/dashboard/lessons/lesson_editor.html.heex:89
+#: lib/dashboard/lessons/lesson_editor.html.heex:115
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Search course"
 msgstr "搜尋課程"
@@ -987,12 +987,62 @@ msgstr "建議的課程已成功新增。"
 msgid "Suggested course could not be added."
 msgstr "無法新增建議的課程。"
 
-#: lib/dashboard/lessons/lesson_editor.html.heex:72
+#: lib/dashboard/lessons/lesson_editor.html.heex:98
 #, elixir-autogen, elixir-format
 msgid "Suggested courses"
 msgstr "建議的課程"
 
-#: lib/dashboard/lessons/lesson_editor.html.heex:80
+#: lib/dashboard/lessons/lesson_editor.html.heex:106
 #, elixir-autogen, elixir-format
 msgid "Would you like to remove this course from the list of suggested courses?"
 msgstr "您是否要將此課程從建議課程列表中移除？"
+
+#: lib/dashboard/lessons/lesson_editor.html.heex:64
+#, elixir-autogen, elixir-format
+msgid "Answer type"
+msgstr "答案類型"
+
+#: lib/dashboard/lessons/lesson_editor.ex:97
+#, elixir-autogen, elixir-format, fuzzy
+msgid "Could not update step kind!"
+msgstr "無法更新步驟！"
+
+#: lib/dashboard/lessons/lesson_editor.ex:201
+#, elixir-autogen, elixir-format
+msgid "Open-ended"
+msgstr "開放式"
+
+#: lib/dashboard/lessons/lesson_editor.html.heex:85
+#, elixir-autogen, elixir-format
+msgid "Open-ended question"
+msgstr "開放式問題"
+
+#: lib/dashboard/lessons/lesson_editor.ex:195
+#, elixir-autogen, elixir-format
+msgid "Quiz"
+msgstr "測驗"
+
+#: lib/dashboard/lessons/lesson_editor.ex:189
+#, elixir-autogen, elixir-format
+msgid "Read-only"
+msgstr "唯讀"
+
+#: lib/dashboard/lessons/lesson_editor.ex:190
+#, elixir-autogen, elixir-format
+msgid "Users can only read the content. No options are displayed."
+msgstr "使用者只能閱讀內容。不顯示任何選項。"
+
+#: lib/dashboard/lessons/lesson_editor.html.heex:86
+#, elixir-autogen, elixir-format
+msgid "Users can write in their own answer to this step."
+msgstr "使用者可以在此步驟中撰寫自己的答案。"
+
+#: lib/dashboard/lessons/lesson_editor.ex:202
+#, elixir-autogen, elixir-format
+msgid "Users can write their own answer."
+msgstr "使用者可以撰寫自己的答案。"
+
+#: lib/dashboard/lessons/lesson_editor.ex:196
+#, elixir-autogen, elixir-format
+msgid "You can add multiple options and users can select one of them."
+msgstr "您可以新增多個選項，使用者可以選擇其中一個。"

@@ -86,6 +86,18 @@ defmodule UneebeeWeb.Live.Dashboard.LessonEditor do
     end
   end
 
+  def handle_event("update-step-kind", %{"kind" => kind}, socket) do
+    %{selected_step: step, course: course, lesson: lesson} = socket.assigns
+
+    case Content.update_lesson_step(step, %{kind: kind}) do
+      {:ok, _lesson_step} ->
+        {:noreply, push_patch(socket, to: step_link(course, lesson, step.order))}
+
+      {:error, _changeset} ->
+        {:noreply, put_flash(socket, :error, dgettext("orgs", "Could not update step kind!"))}
+    end
+  end
+
   def handle_event("delete-lesson", _params, socket) do
     %{lesson: lesson, course: course} = socket.assigns
 
@@ -168,4 +180,27 @@ defmodule UneebeeWeb.Live.Dashboard.LessonEditor do
 
   defp search_courses(_school_id, nil), do: []
   defp search_courses(school_id, term), do: Content.search_courses_by_school(school_id, term)
+
+  defp answer_types do
+    [
+      %{
+        kind: :readonly,
+        icon: "tabler-dialpad-off",
+        title: dgettext("orgs", "Read-only"),
+        description: dgettext("orgs", "Users can only read the content. No options are displayed.")
+      },
+      %{
+        kind: :quiz,
+        icon: "tabler-dialpad",
+        title: dgettext("orgs", "Quiz"),
+        description: dgettext("orgs", "You can add multiple options and users can select one of them.")
+      },
+      %{
+        kind: :open_ended,
+        icon: "tabler-writing",
+        title: dgettext("orgs", "Open-ended"),
+        description: dgettext("orgs", "Users can write their own answer.")
+      }
+    ]
+  end
 end

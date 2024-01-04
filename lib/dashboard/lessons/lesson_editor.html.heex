@@ -60,7 +60,33 @@
       </.button>
     </div>
 
-    <div class="ring-gray-900/5 flex flex-col justify-between rounded-lg p-4 shadow-sm ring-1">
+    <div :if={@selected_step.kind == :readonly} class="ring-gray-900/5 rounded-lg p-4 text-sm text-gray-600 shadow-sm ring-1">
+      <h3 class="font-semibold"><%= dgettext("orgs", "Answer type") %></h3>
+
+      <div class="grid grid-cols-1 gap-4 pt-4 xl:grid-cols-2 2xl:grid-cols-3">
+        <button
+          :for={item <- answer_types()}
+          phx-click="update-step-kind"
+          phx-value-kind={item.kind}
+          class={[
+            "flex flex-col items-center justify-center gap-2 rounded-lg border-2 p-4 text-center hover:bg-slate-50 focus:outline-2 focus:outline-offset-4 focus:outline-indigo-500",
+            item.kind == :readonly && "border-indigo-500",
+            item.kind != :readonly && "border-slate-300"
+          ]}
+        >
+          <.icon name={item.icon} class="text-indigo-500" />
+          <span class="font-semibold text-indigo-500"><%= item.title %></span>
+          <span><%= item.description %></span>
+        </button>
+      </div>
+    </div>
+
+    <div :if={@selected_step.kind == :open_ended} class="ring-gray-900/5 rounded-lg p-4 text-sm text-gray-600 shadow-sm ring-1">
+      <h3 class="font-semibold"><%= dgettext("orgs", "Open-ended question") %></h3>
+      <p class="mt-2"><%= dgettext("orgs", "Users can write in their own answer to this step.") %></p>
+    </div>
+
+    <div :if={@selected_step.kind == :quiz} class="ring-gray-900/5 flex flex-col justify-between rounded-lg p-4 shadow-sm ring-1">
       <.live_component module={OptionList} id={:option_list} action={@live_action} option={@selected_option} course={@course} lesson={@lesson} step={@selected_step} />
 
       <.button phx-click="add-option" phx-value-step-id={@selected_step.id} class="mt-8" icon="tabler-layout-grid-add" color={:info_light}>
@@ -68,11 +94,11 @@
       </.button>
     </div>
 
-    <div class="ring-gray-900/5 rounded-lg p-4 text-sm text-gray-600 shadow-sm ring-1">
+    <div class="ring-gray-900/5 flex flex-col rounded-lg p-4 text-sm text-gray-600 shadow-sm ring-1">
       <h3 class="font-semibold"><%= dgettext("orgs", "Suggested courses") %></h3>
       <p class="mt-2"><%= dgettext("orgs", "Add courses that are relevant to this step. This will help students find the right course for them.") %></p>
 
-      <dl class="flex gap-1 py-4">
+      <dl class="flex flex-1 gap-1 py-4">
         <button
           :for={suggestion <- @suggested_courses}
           phx-click="delete-suggested-course"

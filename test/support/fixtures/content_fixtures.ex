@@ -58,6 +58,7 @@ defmodule Uneebee.Fixtures.Content do
     Enum.into(attrs, %{
       content: "random lesson step content",
       lesson_id: lesson.id,
+      kind: :quiz,
       order: 1
     })
   end

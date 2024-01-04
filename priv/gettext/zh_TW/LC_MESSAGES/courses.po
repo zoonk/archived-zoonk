@@ -31,7 +31,7 @@ msgstr "返回課程"
 msgid "Beginner"
 msgstr "初級"
 
-#: lib/content/course_live/lesson_play.html.heex:81
+#: lib/content/course_live/lesson_play.html.heex:91
 #, elixir-autogen, elixir-format
 msgid "Confirming..."
 msgstr "確認中..."
@@ -71,7 +71,7 @@ msgstr "綠色外星人的插圖"
 msgid "Intermediate"
 msgstr "中級"
 
-#: lib/content/course_live/lesson_play.html.heex:85
+#: lib/content/course_live/lesson_play.html.heex:95
 #, elixir-autogen, elixir-format
 msgid "Next step"
 msgstr "下一步"

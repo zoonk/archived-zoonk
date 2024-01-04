@@ -35,7 +35,7 @@ defmodule UneebeeWeb.Components.Button do
     ~H"""
     <button
       class={[
-        "inline-flex flex-shrink-0 items-center justify-center gap-2",
+        "inline-flex flex-shrink-0 items-center justify-center",
         "rounded-lg px-4 focus:outline-offset-2 phx-submit-loading:opacity-75",
         "text-sm font-semibold leading-6",
         "disabled:cursor-not-allowed disabled:bg-gray-200 disabled:text-gray-400",
