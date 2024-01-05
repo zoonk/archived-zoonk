@@ -21,7 +21,7 @@ defmodule UneebeeWeb.UserLoginLiveTest do
 
     test "displays a default logo when the school doesn't have one", %{conn: conn} do
       {:ok, lv, _html} = live(conn, ~p"/users/login")
-      assert has_element?(lv, ~s|img[src="/images/logo.svg"]|)
+      assert has_element?(lv, ~s|img[src="/favicon/180.png"]|)
     end
   end
 
@@ -41,7 +41,7 @@ defmodule UneebeeWeb.UserLoginLiveTest do
 
       {:ok, lv, html} = live(conn, ~p"/users/login")
 
-      assert has_element?(lv, ~s|img[src="/m_logo.png"]|)
+      assert has_element?(lv, ~s|img[src="/m_icon.png"]|)
       assert html =~ "sizes=\"16x16\" href=\"/m_icon.png\"/>"
     end
   end
