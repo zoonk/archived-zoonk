@@ -7,9 +7,11 @@ defmodule UneebeeWeb.PlayViewLiveTest do
 
   alias Uneebee.Accounts
   alias Uneebee.Content
+  alias Uneebee.Content.UserSelection
   alias Uneebee.Organizations
+  alias Uneebee.Repo
 
-  @select_form "#select-option"
+  @select_form "#play"
 
   describe "play view (non-authenticated user)" do
     setup :set_school
@@ -166,6 +168,24 @@ defmodule UneebeeWeb.PlayViewLiveTest do
       assert has_element?(lv, "a", course2.name)
       assert has_element?(lv, "a", course3.name)
     end
+
+    test "answers an open-ended question", %{conn: conn, course: course, user: user} do
+      lesson = lesson_fixture(%{course_id: course.id})
+      step = lesson_step_fixture(%{lesson_id: lesson.id, content: "question?", kind: :open_ended, order: 1})
+      lesson_step_fixture(%{lesson_id: lesson.id, content: "step 2 question", kind: :readonly, order: 2})
+
+      refute Repo.get_by(UserSelection, user_id: user.id, step_id: step.id)
+
+      {:ok, lv, _html} = live(conn, ~p"/c/#{course.slug}/#{lesson.id}")
+
+      assert has_element?(lv, "blockquote p", "question?")
+      refute has_element?(lv, "blockquote p", "step 2 question")
+
+      lv |> form(@select_form, %{answer: "answer!"}) |> render_submit()
+
+      assert has_element?(lv, "blockquote p", "step 2 question")
+      assert Repo.get_by(UserSelection, user_id: user.id, step_id: step.id).answer == "answer!"
+    end
   end
 
   defp assert_403(conn, course) do
@@ -181,6 +201,7 @@ defmodule UneebeeWeb.PlayViewLiveTest do
     first_option = hd(step.options)
 
     assert has_element?(lv, ~s|input[id="select-option-#{first_option.id}"]|)
+    refute has_element?(lv, "textarea")
 
     lv |> form(@select_form, %{selected_option: get_correct_option(step.options)}) |> render_submit()
 
@@ -225,7 +246,7 @@ defmodule UneebeeWeb.PlayViewLiveTest do
 
     step = Enum.at(lessons, 3)
 
-    assert {:ok, _conn} =
+    assert {:ok, _lv, _html} =
              lv
              |> form(@select_form)
              |> render_submit()
@@ -236,8 +257,9 @@ defmodule UneebeeWeb.PlayViewLiveTest do
     Enum.each(1..4, fn order ->
       content = "step #{order}!"
       image = if order == 3, do: "/uploads/img.png"
+      kind = if order == 4, do: :readonly, else: :quiz
 
-      step = lesson_step_fixture(%{lesson_id: lesson.id, content: content, image: image, order: order})
+      step = lesson_step_fixture(%{lesson_id: lesson.id, kind: kind, content: content, image: image, order: order})
 
       # Make sure it works even when the last step doesn't have options.
       if order != 4, do: generate_options(step, order)

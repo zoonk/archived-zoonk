@@ -1,6 +1,6 @@
 <form
   :if={@active_subscription?}
-  id="select-option"
+  id="play"
   phx-submit="next"
   phx-hook={if @current_user.sound_effects?, do: "LessonSoundEffect", else: nil}
   class="grid-rows-[min-content_1fr_min-content] min-h-dvh absolute top-0 left-0 grid h-full w-full overflow-hidden"
@@ -34,10 +34,14 @@
       </.link>
     </section>
 
-    <% no_options? = @current_step.options == [] %>
+    <div :if={@current_step.kind == :open_ended} class="w-full pt-8">
+      <.input type="textarea" name="answer" value="" />
+    </div>
+
+    <% next? = @current_step.kind == :readonly || @selected_option %>
 
     <section
-      :if={@current_step.options != []}
+      :if={@current_step.kind == :quiz and @current_step.options != []}
       class={[
         "mt-8 grid w-full gap-4",
         length(@current_step.options) == 2 && "grid-cols-2",
@@ -87,12 +91,12 @@
       type="submit"
       size={:lg}
       color={confirm_color(@current_step.options, @selected_option)}
-      icon={if no_options? || @selected_option, do: "tabler-chevron-right", else: "tabler-checks"}
+      icon={if next?, do: "tabler-chevron-right", else: "tabler-checks"}
       phx-disable-with={dgettext("courses", "Confirming...")}
       shadow
       class="w-full sm:w-fit"
     >
-      <%= if no_options? || @selected_option, do: dgettext("courses", "Next step"), else: gettext("Confirm") %>
+      <%= if next?, do: dgettext("courses", "Next step"), else: gettext("Confirm") %>
     </.button>
   </div>
 </form>

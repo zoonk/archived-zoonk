@@ -454,7 +454,7 @@ defmodule Uneebee.AccountsTest do
       step = lesson_step_fixture(%{lesson: lesson})
       option = step_option_fixture(%{lesson_step: step})
 
-      Content.add_user_selection(%{duration: 5, user_id: user.id, option_id: option.id, lesson_id: lesson.id})
+      Content.add_user_selection(%{duration: 5, user_id: user.id, option_id: option.id, lesson_id: lesson.id, step_id: step.id})
       assert length(Content.list_user_selections_by_lesson(user.id, lesson.id, 1)) == 1
       Accounts.delete_user(user)
       assert Content.list_user_selections_by_lesson(user.id, lesson.id, 1) == []

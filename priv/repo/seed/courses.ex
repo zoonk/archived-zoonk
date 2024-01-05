@@ -92,10 +92,15 @@ defmodule CourseSeed do
   ]
 
   @lesson_steps [
-    %{content: "This is the first step of the lesson.", order: 1},
-    %{content: "We can also have images:", image: "/uploads/seed/courses/robot.png", order: 2},
-    %{content: "Now should we ask users a question?", order: 3},
-    %{content: "Great stuff! Lesson completed!", order: 4}
+    %{content: "This is the first step of the lesson.", kind: :quiz, order: 1},
+    %{
+      content: "We can also have images:",
+      kind: :quiz,
+      image: "/uploads/seed/courses/robot.png",
+      order: 2
+    },
+    %{content: "Now should we ask users a question?", kind: :quiz, order: 3},
+    %{content: "Great stuff! Lesson completed!", kind: :quiz, order: 4}
   ]
 
   @step_options [

@@ -281,8 +281,8 @@ defmodule UneebeeWeb.DashboardLessonEditorLiveTest do
       option3 = step_option_fixture(%{lesson_step_id: lesson_step.id})
 
       user = user_fixture()
-      Enum.each(1..3, fn _i -> Content.add_user_selection(%{duration: 5, user_id: user.id, option_id: option1.id, lesson_id: lesson.id}) end)
-      Enum.each(1..2, fn _i -> Content.add_user_selection(%{duration: 5, user_id: user.id, option_id: option2.id, lesson_id: lesson.id}) end)
+      Enum.each(1..3, fn _i -> Content.add_user_selection(%{duration: 5, user_id: user.id, option_id: option1.id, lesson_id: lesson.id, step_id: lesson_step.id}) end)
+      Enum.each(1..2, fn _i -> Content.add_user_selection(%{duration: 5, user_id: user.id, option_id: option2.id, lesson_id: lesson.id, step_id: lesson_step.id}) end)
 
       {:ok, lv, _html} = live(conn, ~p"/dashboard/c/#{course.slug}/l/#{lesson.id}/s/1")
 

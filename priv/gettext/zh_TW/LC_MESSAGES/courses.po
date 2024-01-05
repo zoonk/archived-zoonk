@@ -31,7 +31,7 @@ msgstr "返回課程"
 msgid "Beginner"
 msgstr "初級"
 
-#: lib/content/course_live/lesson_play.html.heex:91
+#: lib/content/course_live/lesson_play.html.heex:95
 #, elixir-autogen, elixir-format
 msgid "Confirming..."
 msgstr "確認中..."
@@ -71,7 +71,7 @@ msgstr "綠色外星人的插圖"
 msgid "Intermediate"
 msgstr "中級"
 
-#: lib/content/course_live/lesson_play.html.heex:95
+#: lib/content/course_live/lesson_play.html.heex:99
 #, elixir-autogen, elixir-format
 msgid "Next step"
 msgstr "下一步"
@@ -101,7 +101,7 @@ msgstr "這是不正確的。"
 msgid "There's room for improvement"
 msgstr "有改進的空間"
 
-#: lib/content/course_live/lesson_play.ex:85
+#: lib/content/course_live/lesson_play.ex:93
 #, elixir-autogen, elixir-format
 msgid "Unable to complete lesson"
 msgstr "無法完成課程"
@@ -150,3 +150,8 @@ msgstr "加入課程開始學習。"
 #, elixir-autogen, elixir-format, fuzzy
 msgid "No courses"
 msgstr "沒有課程"
+
+#: lib/content/course_live/lesson_play.ex:79
+#, elixir-autogen, elixir-format
+msgid "Unable to send answer"
+msgstr "無法傳送答案"

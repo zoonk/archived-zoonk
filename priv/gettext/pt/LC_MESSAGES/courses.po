@@ -31,7 +31,7 @@ msgstr "Voltar ao curso"
 msgid "Beginner"
 msgstr "Iniciante"
 
-#: lib/content/course_live/lesson_play.html.heex:91
+#: lib/content/course_live/lesson_play.html.heex:95
 #, elixir-autogen, elixir-format
 msgid "Confirming..."
 msgstr "Confirmando..."
@@ -71,7 +71,7 @@ msgstr "Ilustração de um alienígena verde"
 msgid "Intermediate"
 msgstr "Intermediário"
 
-#: lib/content/course_live/lesson_play.html.heex:95
+#: lib/content/course_live/lesson_play.html.heex:99
 #, elixir-autogen, elixir-format
 msgid "Next step"
 msgstr "Próxima etapa"
@@ -101,7 +101,7 @@ msgstr "Está incorreto."
 msgid "There's room for improvement"
 msgstr "Tem espaço para melhorar"
 
-#: lib/content/course_live/lesson_play.ex:85
+#: lib/content/course_live/lesson_play.ex:93
 #, elixir-autogen, elixir-format
 msgid "Unable to complete lesson"
 msgstr "Não foi possível concluir a aula"
@@ -150,3 +150,8 @@ msgstr "Para começar, entre em um curso."
 #, elixir-autogen, elixir-format, fuzzy
 msgid "No courses"
 msgstr "Nenhum curso"
+
+#: lib/content/course_live/lesson_play.ex:79
+#, elixir-autogen, elixir-format
+msgid "Unable to send answer"
+msgstr "Não foi possível enviar a resposta"

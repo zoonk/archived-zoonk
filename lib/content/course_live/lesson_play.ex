@@ -39,7 +39,7 @@ defmodule UneebeeWeb.Live.LessonPlay do
 
     step_duration = DateTime.diff(DateTime.utc_now(), step_start, :second)
     option_id = String.to_integer(selected_option)
-    attrs = %{user_id: user.id, option_id: option_id, lesson_id: lesson.id, duration: step_duration}
+    attrs = %{user_id: user.id, option_id: option_id, lesson_id: lesson.id, step_id: step.id, duration: step_duration}
 
     case Content.add_user_selection(attrs) do
       {:ok, _} ->
@@ -57,19 +57,27 @@ defmodule UneebeeWeb.Live.LessonPlay do
     end
   end
 
-  @impl Phoenix.LiveView
-  def handle_event("next", _params, socket) do
-    %{lesson: lesson, current_step: current_step} = socket.assigns
+  def handle_event("next", params, socket) do
+    %{current_user: user, lesson: lesson, current_step: current_step, step_start: step_start} = socket.assigns
+    step_duration = DateTime.diff(DateTime.utc_now(), step_start, :second)
     next_step = Content.get_next_step(lesson, current_step.order)
 
-    socket =
-      socket
-      |> assign(:selected_option, nil)
-      |> assign(:current_step, next_step)
-      |> assign(:options, shuffle_options(next_step))
-      |> handle_lesson_completed(next_step)
+    attrs = %{user_id: user.id, lesson_id: lesson.id, step_id: current_step.id, answer: params["answer"], duration: step_duration}
 
-    {:noreply, socket}
+    case Content.add_user_selection(attrs) do
+      {:ok, _} ->
+        socket =
+          socket
+          |> assign(:selected_option, nil)
+          |> assign(:current_step, next_step)
+          |> assign(:options, shuffle_options(next_step))
+          |> handle_lesson_completed(next_step)
+
+        {:noreply, socket}
+
+      {:error, _} ->
+        {:noreply, put_flash(socket, :error, dgettext("courses", "Unable to send answer"))}
+    end
   end
 
   defp handle_lesson_completed(socket, nil) do
@@ -79,7 +87,7 @@ defmodule UneebeeWeb.Live.LessonPlay do
 
     case Content.mark_lesson_as_completed(user.id, lesson.id, lesson_duration) do
       {:ok, _} ->
-        redirect(socket, to: ~p"/c/#{course.slug}/#{lesson.id}/completed")
+        push_navigate(socket, to: ~p"/c/#{course.slug}/#{lesson.id}/completed")
 
       {:error, _} ->
         {:noreply, put_flash(socket, :error, dgettext("courses", "Unable to complete lesson"))}

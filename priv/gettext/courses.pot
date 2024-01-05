@@ -31,7 +31,7 @@ msgstr ""
 msgid "Beginner"
 msgstr ""
 
-#: lib/content/course_live/lesson_play.html.heex:91
+#: lib/content/course_live/lesson_play.html.heex:95
 #, elixir-autogen, elixir-format
 msgid "Confirming..."
 msgstr ""
@@ -71,7 +71,7 @@ msgstr ""
 msgid "Intermediate"
 msgstr ""
 
-#: lib/content/course_live/lesson_play.html.heex:95
+#: lib/content/course_live/lesson_play.html.heex:99
 #, elixir-autogen, elixir-format
 msgid "Next step"
 msgstr ""
@@ -101,7 +101,7 @@ msgstr ""
 msgid "There's room for improvement"
 msgstr ""
 
-#: lib/content/course_live/lesson_play.ex:85
+#: lib/content/course_live/lesson_play.ex:93
 #, elixir-autogen, elixir-format
 msgid "Unable to complete lesson"
 msgstr ""
@@ -149,4 +149,9 @@ msgstr ""
 #: lib/content/course_live/my_courses.html.heex:8
 #, elixir-autogen, elixir-format
 msgid "No courses"
+msgstr ""
+
+#: lib/content/course_live/lesson_play.ex:79
+#, elixir-autogen, elixir-format
+msgid "Unable to send answer"
 msgstr ""
