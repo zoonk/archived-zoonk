@@ -1,0 +1,52 @@
+## "msgid"s in this file come from POT (.pot) files.
+###
+### Do not add, change, or remove "msgid"s manually here as
+### they're tied to the ones in the corresponding POT file
+### (with the same domain).
+###
+### Use "mix gettext.extract --merge" or "mix gettext.merge"
+### to merge POT files into PO files.
+msgid ""
+msgstr ""
+"Language: de\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: lib/accounts/user_notifier.ex:15
+#, elixir-autogen, elixir-format
+msgid "Confirmation instructions"
+msgstr "Bestätigungsanweisungen"
+
+#: lib/accounts/user_notifier.ex:70
+#, elixir-autogen, elixir-format
+msgid "Hi %{name},\n\nYou can change your email by visiting the URL below:\n\n%{url}\n\nIf you didn't request this change, please ignore this.\n"
+msgstr "Hallo %{name},\n\nSie können Ihre E-Mail-Adresse ändern, indem Sie die folgende URL besuchen:\n\n%{url}\n\nWenn Sie diese Änderung nicht angefordert haben, ignorieren Sie dies bitte.\n"
+
+#: lib/accounts/user_notifier.ex:18
+#, elixir-autogen, elixir-format
+msgid "Hi %{name},\n\nYou can confirm your account by visiting the URL below:\n\n%{url}\n\nIf you didn't create an account with us, please ignore this.\n"
+msgstr "Hallo %{name},\n\nSie können Ihr Konto bestätigen, indem Sie die folgende URL besuchen:\n\n%{url}\n\nWenn Sie kein Konto bei uns erstellt haben, ignorieren Sie dies bitte.\n"
+
+#: lib/accounts/user_notifier.ex:44
+#, elixir-autogen, elixir-format
+msgid "Hi %{name},\n\nYou can reset your password by visiting the URL below:\n\n%{url}\n\nIf you didn't request this change, please ignore this.\n"
+msgstr "Hallo %{name},\n\nSie können Ihr Passwort zurücksetzen, indem Sie die folgende URL besuchen:\n\n%{url}\n\nWenn Sie diese Änderung nicht angefordert haben, ignorieren Sie dies bitte.\n"
+
+#: lib/accounts/user_notifier.ex:41
+#, elixir-autogen, elixir-format
+msgid "Reset password instructions"
+msgstr "Anweisungen zum Zurücksetzen des Passworts"
+
+#: lib/accounts/user_notifier.ex:67
+#, elixir-autogen, elixir-format
+msgid "Update email instructions"
+msgstr "E-Mail-Anweisungen aktualisieren"
+
+#: lib/support/support_context.ex:22
+#, elixir-autogen, elixir-format
+msgid "Feedback from %{name}"
+msgstr "Feedback von %{name}"
+
+#: lib/support/support_context.ex:25
+#, elixir-autogen, elixir-format
+msgid "Name: %{name}\nEmail: %{email}\n\n%{message}\n"
+msgstr "Name: %{name}\nE-Mail: %{email}\n\n%{message}\n"

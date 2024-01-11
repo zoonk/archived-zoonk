@@ -1,0 +1,157 @@
+## "msgid"s in this file come from POT (.pot) files.
+###
+### Do not add, change, or remove "msgid"s manually here as
+### they're tied to the ones in the corresponding POT file
+### (with the same domain).
+###
+### Use "mix gettext.extract --merge" or "mix gettext.merge"
+### to merge POT files into PO files.
+msgid ""
+msgstr ""
+"Language: de\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: lib/content/course_live/course_view.ex:59
+#, elixir-autogen, elixir-format
+msgid "A request to enroll has been sent to the course teacher."
+msgstr "Ein Antrag auf Einschreibung wurde an den Kursleiter geschickt."
+
+#: lib/content/course_utils.ex:26
+#, elixir-autogen, elixir-format
+msgid "Advanced"
+msgstr "Erweitert"
+
+#: lib/content/course_live/lesson_completed.html.heex:32
+#, elixir-autogen, elixir-format
+msgid "Back to the course"
+msgstr "Zurück zum Kurs"
+
+#: lib/content/course_utils.ex:24
+#, elixir-autogen, elixir-format
+msgid "Beginner"
+msgstr "Anfänger"
+
+#: lib/content/course_live/lesson_play.html.heex:95
+#, elixir-autogen, elixir-format
+msgid "Confirming..."
+msgstr "Bestätigen..."
+
+#: lib/content/course_live/course_view.ex:58
+#, elixir-autogen, elixir-format
+msgid "Enrolled successfully!"
+msgstr "Erfolgreich eingeschrieben!"
+
+#: lib/content/course_live/lesson_completed.ex:38
+#, elixir-autogen, elixir-format
+msgid "Excellent!"
+msgstr "Ausgezeichnet!"
+
+#: lib/content/course_utils.ex:27
+#, elixir-autogen, elixir-format
+msgid "Expert"
+msgstr "Experte"
+
+#: lib/content/course_live/course_view.ex:43
+#, elixir-autogen, elixir-format
+msgid "Failed to enroll"
+msgstr "Einschreibung fehlgeschlagen"
+
+#: lib/content/course_live/lesson_completed.ex:40
+#, elixir-autogen, elixir-format
+msgid "Good!"
+msgstr "Gut!"
+
+#: lib/content/course_live/lesson_completed.html.heex:4
+#, elixir-autogen, elixir-format
+msgid "Illustration of a green alien"
+msgstr "Illustration eines grünen Außerirdischen"
+
+#: lib/content/course_utils.ex:25
+#, elixir-autogen, elixir-format
+msgid "Intermediate"
+msgstr "Zwischenbericht"
+
+#: lib/content/course_live/lesson_play.html.heex:99
+#, elixir-autogen, elixir-format
+msgid "Next step"
+msgstr "Nächster Schritt"
+
+#: lib/content/course_live/lesson_completed.ex:41
+#, elixir-autogen, elixir-format
+msgid "Not bad!"
+msgstr "Nicht schlecht!"
+
+#: lib/content/course_live/lesson_completed.ex:37
+#, elixir-autogen, elixir-format
+msgid "Perfect!"
+msgstr "Perfekt!"
+
+#: lib/content/course_live/course_view.html.heex:37
+#, elixir-autogen, elixir-format
+msgid "Request to join"
+msgstr "Antrag auf Beitritt"
+
+#: lib/content/course_live/components/lesson_step.ex:34
+#, elixir-autogen, elixir-format
+msgid "That's incorrect."
+msgstr "Das ist nicht richtig."
+
+#: lib/content/course_live/lesson_completed.ex:42
+#, elixir-autogen, elixir-format
+msgid "There's room for improvement"
+msgstr "Es gibt Raum für Verbesserungen"
+
+#: lib/content/course_live/lesson_play.ex:93
+#, elixir-autogen, elixir-format
+msgid "Unable to complete lesson"
+msgstr "Lektion kann nicht abgeschlossen werden"
+
+#: lib/content/course_live/lesson_play.ex:56
+#, elixir-autogen, elixir-format
+msgid "Unable to select option"
+msgstr "Option kann nicht ausgewählt werden"
+
+#: lib/content/course_live/lesson_completed.ex:39
+#, elixir-autogen, elixir-format
+msgid "Very good!"
+msgstr "Sehr gut!"
+
+#: lib/content/course_live/components/lesson_step.ex:34
+#, elixir-autogen, elixir-format
+msgid "Well done!"
+msgstr "Gut gemacht!"
+
+#: lib/content/course_live/lesson_completed.html.heex:11
+#, elixir-autogen, elixir-format
+msgid "You got %{correct} out of %{total} answers right."
+msgstr "Du hast %{correct} von %{total} der Antworten richtig."
+
+#: lib/content/course_live/course_view.html.heex:13
+#, elixir-autogen, elixir-format, fuzzy
+msgid "Lesson cover"
+msgstr "Lektions Cover"
+
+#: lib/content/course_live/lesson_play.html.heex:16
+#, elixir-autogen, elixir-format
+msgid "Your progress in this lesson will be lost. Would you like to quit?"
+msgstr "Ihr Fortschritt in dieser Lektion wird verloren gehen. Möchten Sie aufhören?"
+
+#: lib/content/course_live/my_courses.html.heex:11
+#, elixir-autogen, elixir-format
+msgid "Browse courses"
+msgstr "Kurse durchsuchen"
+
+#: lib/content/course_live/my_courses.html.heex:9
+#, elixir-autogen, elixir-format
+msgid "Get started by joining a course."
+msgstr "Beginnen Sie mit der Teilnahme an einem Kurs."
+
+#: lib/content/course_live/my_courses.html.heex:8
+#, elixir-autogen, elixir-format, fuzzy
+msgid "No courses"
+msgstr "Keine Kurse"
+
+#: lib/content/course_live/lesson_play.ex:79
+#, elixir-autogen, elixir-format
+msgid "Unable to send answer"
+msgstr "Senden der Antwort fehlgeschlagen"

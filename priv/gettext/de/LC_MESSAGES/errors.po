@@ -1,0 +1,212 @@
+## `msgid`s in this file come from POT (.pot) files.
+##
+## Do not add, change, or remove `msgid`s manually here as
+## they're tied to the ones in the corresponding POT file
+## (with the same domain).
+##
+## Use `mix gettext.extract --merge` or `mix gettext.merge`
+## to merge POT files into PO files.
+msgid ""
+msgstr ""
+"Language: de\n"
+
+## From Ecto.Changeset.cast/4
+msgid "can't be blank"
+msgstr "darf nicht leer sein"
+
+## From Ecto.Changeset.unique_constraint/3
+#: lib/organizations/school_schema.ex:125
+#, elixir-autogen
+msgid "has already been taken"
+msgstr "ist bereits vergeben"
+
+## From Ecto.Changeset.put_change/3
+#: lib/accounts/user_schema.ex:187
+#, elixir-autogen
+msgid "is invalid"
+msgstr "ist ungültig"
+
+## From Ecto.Changeset.validate_acceptance/3
+msgid "must be accepted"
+msgstr "muss akzeptiert werden"
+
+## From Ecto.Changeset.validate_format/3
+msgid "has invalid format"
+msgstr "hat ein ungültiges Format"
+
+## From Ecto.Changeset.validate_subset/3
+msgid "has an invalid entry"
+msgstr "hat einen ungültigen Eintrag"
+
+## From Ecto.Changeset.validate_exclusion/3
+msgid "is reserved"
+msgstr "ist reserviert"
+
+## From Ecto.Changeset.validate_confirmation/3
+msgid "does not match confirmation"
+msgstr "stimmt nicht mit der Bestätigung überein"
+
+## From Ecto.Changeset.no_assoc_constraint/3
+msgid "is still associated with this entry"
+msgstr "ist immer noch mit diesem Eintrag verknüpft"
+
+msgid "are still associated with this entry"
+msgstr "sind immer noch mit diesem Eintrag verknüpft"
+
+## From Ecto.Changeset.validate_length/3
+msgid "should have %{count} item(s)"
+msgid_plural "should have %{count} item(s)"
+msgstr[0] "sollte %{count} Artikel haben"
+msgstr[1] "sollte %{count} Artikel haben"
+
+msgid "should be %{count} character(s)"
+msgid_plural "should be %{count} character(s)"
+msgstr[0] "sollte aus %{count} Zeichen bestehen"
+msgstr[1] "sollte aus %{count} Zeichen bestehen"
+
+msgid "should be %{count} byte(s)"
+msgid_plural "should be %{count} byte(s)"
+msgstr[0] "sollte %{count} Byte(s) sein"
+msgstr[1] "sollte %{count} Byte(s) sein"
+
+msgid "should have at least %{count} item(s)"
+msgid_plural "should have at least %{count} item(s)"
+msgstr[0] "sollte mindestens %{count} Artikel enthalten"
+msgstr[1] "sollte mindestens %{count} Artikel enthalten"
+
+msgid "should be at least %{count} character(s)"
+msgid_plural "should be at least %{count} character(s)"
+msgstr[0] "sollte mindestens %{count} Zeichen umfassen"
+msgstr[1] "sollte mindestens %{count} Zeichen umfassen"
+
+msgid "should be at least %{count} byte(s)"
+msgid_plural "should be at least %{count} byte(s)"
+msgstr[0] "sollte mindestens %{count} Byte(s) umfassen"
+msgstr[1] "sollte mindestens %{count} Byte(s) umfassen"
+
+msgid "should have at most %{count} item(s)"
+msgid_plural "should have at most %{count} item(s)"
+msgstr[0] "sollte höchstens %{count} Artikel enthalten"
+msgstr[1] "sollte höchstens %{count} Artikel enthalten"
+
+msgid "should be at most %{count} character(s)"
+msgid_plural "should be at most %{count} character(s)"
+msgstr[0] "sollte höchstens %{count} Zeichen lang sein"
+msgstr[1] "sollte höchstens %{count} Zeichen lang sein"
+
+msgid "should be at most %{count} byte(s)"
+msgid_plural "should be at most %{count} byte(s)"
+msgstr[0] "sollte höchstens %{count} Byte(s) umfassen"
+msgstr[1] "sollte höchstens %{count} Byte(s) umfassen"
+
+## From Ecto.Changeset.validate_number/3
+msgid "must be less than %{number}"
+msgstr "muss kleiner sein als %{number}"
+
+msgid "must be greater than %{number}"
+msgstr "muss größer sein als %{number}"
+
+msgid "must be less than or equal to %{number}"
+msgstr "muss kleiner oder gleich %{number} sein"
+
+msgid "must be greater than or equal to %{number}"
+msgstr "muss größer oder gleich %{number} sein"
+
+msgid "must be equal to %{number}"
+msgstr "muss gleich %{number} sein"
+
+#: lib/shared/validators.ex:19
+#, elixir-autogen, elixir-format
+msgid "can only contain letters, numbers, dashes and underscores"
+msgstr "darf nur Buchstaben, Zahlen, Bindestriche und Unterstriche enthalten"
+
+#: lib/accounts/user_schema.ex:76
+#, elixir-autogen, elixir-format
+msgid "at least one digit or punctuation character"
+msgstr "mindestens eine Ziffer oder ein Satzzeichen"
+
+#: lib/accounts/user_schema.ex:74
+#, elixir-autogen, elixir-format
+msgid "at least one lower case character"
+msgstr "mindestens ein Kleinbuchstabe"
+
+#: lib/accounts/user_schema.ex:75
+#, elixir-autogen, elixir-format
+msgid "at least one upper case character"
+msgstr "mindestens ein Großbuchstabe"
+
+#: lib/accounts/user_schema.ex:119
+#, elixir-autogen, elixir-format
+msgid "did not change"
+msgstr "hat sich nicht verändert"
+
+#: lib/accounts/user_schema.ex:150
+#, elixir-autogen, elixir-format
+msgid "does not match password"
+msgstr "stimmt nicht mit dem Passwort überein"
+
+#: lib/shared/validators.ex:31
+#, elixir-autogen, elixir-format
+msgid "must have the @ sign and no spaces"
+msgstr "muss das @-Zeichen und keine Leerzeichen enthalten"
+
+#: lib/error/permission_error.ex:12
+#, elixir-autogen, elixir-format
+msgid "Only managers and teachers can view this page"
+msgstr "Nur Manager und Lehrer können diese Seite sehen"
+
+#: lib/error/permission_error.ex:11
+#, elixir-autogen, elixir-format
+msgid "Only managers can view this page"
+msgstr "Nur Manager können diese Seite sehen"
+
+#: lib/error/permission_error.ex:10
+#, elixir-autogen, elixir-format
+msgid "School already configured"
+msgstr "Schule bereits konfiguriert"
+
+#: lib/error/permission_error.ex:13
+#, elixir-autogen, elixir-format
+msgid "You are not enrolled in this course"
+msgstr "Sie sind für diesen Kurs nicht eingeschrieben"
+
+#: lib/error/permission_error.ex:14
+#, elixir-autogen, elixir-format
+msgid "Your enrollment is pending approval"
+msgstr "Ihre Anmeldung muss noch genehmigt werden"
+
+#: lib/organizations/school_schema.ex:66
+#: lib/organizations/school_schema.ex:67
+#, elixir-autogen, elixir-format, fuzzy
+msgid "must start with https://"
+msgstr "muss mit https:// beginnen"
+
+#: lib/content/content_context.ex:758
+#, elixir-autogen, elixir-format, fuzzy
+msgid "cannot delete the only step"
+msgstr "Der einzige Schritt kann nicht gelöscht werden"
+
+#: lib/content/content_context.ex:518
+#, elixir-autogen, elixir-format, fuzzy
+msgid "cannot delete the only lesson"
+msgstr "Die einzige Lektion kann nicht gelöscht werden"
+
+#: lib/shared/validators.ex:32
+#, elixir-autogen, elixir-format
+msgid "must have a domain name"
+msgstr "muss einen Domänennamen haben"
+
+#: lib/organizations/school_schema.ex:114
+#, elixir-autogen, elixir-format
+msgid "must be white_label"
+msgstr "muss white_label sein"
+
+#: lib/error/permission_error.ex:15
+#, elixir-autogen, elixir-format
+msgid "Permission denied"
+msgstr "Zugriff verweigert"
+
+#: lib/organizations/school_schema.ex:65
+#, elixir-autogen, elixir-format
+msgid "is not allowed"
+msgstr "ist nicht erlaubt"
