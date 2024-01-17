@@ -1,0 +1,238 @@
+## "msgid"s in this file come from POT (.pot) files.
+###
+### Do not add, change, or remove "msgid"s manually here as
+### they're tied to the ones in the corresponding POT file
+### (with the same domain).
+###
+### Use "mix gettext.extract --merge" or "mix gettext.merge"
+### to merge POT files into PO files.
+msgid ""
+msgstr ""
+"Language: de\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: lib/accounts/user_live/registration.html.heex:30
+#, elixir-autogen, elixir-format
+msgid "Already registered?"
+msgstr "Bereits Registriert ?"
+
+#: lib/accounts/user_live/registration.html.heex:24
+#, elixir-autogen, elixir-format
+msgid "Create account"
+msgstr "Konto erstellen"
+
+#: lib/accounts/user_live/registration.ex:20
+#: lib/accounts/user_live/registration.html.heex:11
+#, elixir-autogen, elixir-format
+msgid "Create an account"
+msgstr "Ein Konto erstellen"
+
+#: lib/accounts/user_live/confirmation_instructions.html.heex:18
+#: lib/accounts/user_live/login.ex:9
+#: lib/accounts/user_live/login.html.heex:14
+#: lib/accounts/user_live/registration.html.heex:31
+#: lib/accounts/user_live/reset_password.html.heex:20
+#: lib/accounts/user_live/user_confirmation.html.heex:14
+#, elixir-autogen, elixir-format
+msgid "Sign in"
+msgstr "Anmelden"
+
+#: lib/accounts/user_live/forgot_password.html.heex:3
+#: lib/accounts/user_live/login.html.heex:20
+#, elixir-autogen, elixir-format
+msgid "Forgot your password?"
+msgstr "Passwort vergessen ?"
+
+#: lib/accounts/user_live/login.html.heex:9
+#, elixir-autogen, elixir-format
+msgid "Keep me logged in"
+msgstr "Angemeldet bleiben"
+
+#: lib/accounts/user_live/login.html.heex:3
+#, elixir-autogen, elixir-format
+msgid "Sign in to your account"
+msgstr "Anmelden bei Ihrem Konto"
+
+#: lib/accounts/user_live/login.html.heex:13
+#, elixir-autogen, elixir-format
+msgid "Signing in..."
+msgstr "Anmelden..."
+
+#: lib/accounts/user_live/confirmation_instructions.html.heex:18
+#: lib/accounts/user_live/login.html.heex:26
+#: lib/accounts/user_live/reset_password.html.heex:20
+#: lib/accounts/user_live/user_confirmation.html.heex:14
+#, elixir-autogen, elixir-format
+msgid "Register"
+msgstr "Registrieren"
+
+#: lib/accounts/user_live/forgot_password.html.heex:17
+#, elixir-autogen, elixir-format
+msgid "Back to the sign in form"
+msgstr "Zurück zum Anmeldeformular"
+
+#: lib/accounts/user_live/forgot_password.ex:21
+#, elixir-autogen, elixir-format
+msgid "If your email is in our system, you will receive instructions to reset your password shortly."
+msgstr "Wenn Ihre E-Mail in unserem System vorhanden ist, erhalten Sie in Kürze Anweisungen zum Zurücksetzen Ihres Passworts."
+
+#: lib/accounts/user_live/forgot_password.ex:9
+#: lib/accounts/user_live/reset_password.html.heex:2
+#: lib/accounts/user_live/reset_password.html.heex:14
+#, elixir-autogen, elixir-format, fuzzy
+msgid "Reset Password"
+msgstr "Passwort Zurücksetzen"
+
+#: lib/accounts/user_live/forgot_password.html.heex:11
+#, elixir-autogen, elixir-format
+msgid "Send password reset instructions"
+msgstr "Anweisungen zum Zurücksetzen des Passworts senden"
+
+#: lib/accounts/user_live/forgot_password.html.heex:4
+#, elixir-autogen, elixir-format
+msgid "We'll send a password reset link to your inbox"
+msgstr "Wir senden Ihnen einen Link zum Zurücksetzen des Passworts an Ihre E-Mail."
+
+#: lib/accounts/user_session_controller.ex:34
+#, elixir-autogen, elixir-format
+msgid "Invalid email or password."
+msgstr "Ungültige E-Mail oder Passwort."
+
+#: lib/accounts/user_session_controller.ex:13
+#, elixir-autogen, elixir-format
+msgid "Password updated successfully!"
+msgstr "Ungültige E-Mail oder ungültiges Passwort."
+
+#: lib/accounts/user_auth_plug.ex:174
+#: lib/accounts/user_auth_plug.ex:263
+#, elixir-autogen, elixir-format
+msgid "You must log in to access this page."
+msgstr "Sie müssen sich einloggen, um auf diese Seite zuzugreifen."
+
+#: lib/accounts/user_live/reset_password.html.heex:10
+#: lib/accounts/user_live/user_settings.html.heex:60
+#, elixir-autogen, elixir-format
+msgid "Confirm new password"
+msgstr "Neues Passwort bestätigen"
+
+#: lib/accounts/user_live/user_settings.html.heex:54
+#, elixir-autogen, elixir-format
+msgid "Current password"
+msgstr "Aktuelles Passwort"
+
+#: lib/accounts/user_live/reset_password.html.heex:9
+#: lib/accounts/user_live/user_settings.html.heex:59
+#, elixir-autogen, elixir-format
+msgid "New password"
+msgstr "Neues Passwort"
+
+#: lib/accounts/user_live/user_settings.ex:80
+#: lib/accounts/user_live/user_settings.ex:128
+#, elixir-autogen, elixir-format
+msgid "A link to confirm your email change has been sent to the new address."
+msgstr "Ein Link zur Bestätigung Ihrer E-Mail-Änderung wurde an die neue Adresse gesendet."
+
+#: lib/accounts/user_live/user_settings.ex:17
+#, elixir-autogen, elixir-format
+msgid "Email change link is invalid or it has expired."
+msgstr "Der Link zum Ändern der E-Mail ist ungültig oder abgelaufen."
+
+#: lib/accounts/user_live/user_settings.ex:16
+#, elixir-autogen, elixir-format
+msgid "Email changed successfully."
+msgstr "E-Mail erfolgreich geändert."
+
+#: lib/accounts/user_live/user_settings.ex:113
+#, elixir-autogen, elixir-format
+msgid "Error updating settings"
+msgstr "Fehler beim Aktualisieren der Einstellungen"
+
+#: lib/accounts/user_live/user_settings.ex:105
+#, elixir-autogen, elixir-format
+msgid "Settings updated successfully"
+msgstr "Einstellungen erfolgreich aktualisiert"
+
+#: lib/accounts/user_live/user_confirmation.html.heex:2
+#, elixir-autogen, elixir-format
+msgid "Confirm Account"
+msgstr "Konto bestätigen"
+
+#: lib/accounts/user_live/user_confirmation.html.heex:8
+#, elixir-autogen, elixir-format
+msgid "Confirm my account"
+msgstr "Bestätigen Sie mein Konto"
+
+#: lib/accounts/user_live/user_confirmation.html.heex:7
+#, elixir-autogen, elixir-format
+msgid "Confirming..."
+msgstr "Bestätigen..."
+
+#: lib/accounts/user_live/confirmation_instructions.html.heex:3
+#, elixir-autogen, elixir-format
+msgid "No confirmation instructions received?"
+msgstr "Keine Bestätigungsanweisungen erhalten?"
+
+#: lib/accounts/user_live/confirmation_instructions.html.heex:12
+#, elixir-autogen, elixir-format
+msgid "Resend confirmation instructions"
+msgstr "Bestätigungsanweisungen erneut senden"
+
+#: lib/accounts/user_live/confirmation_instructions.html.heex:4
+#, elixir-autogen, elixir-format, fuzzy
+msgid "We'll send a new confirmation link to your inbox"
+msgstr "Anweisungen zur Bestätigung erneut senden"
+
+#: lib/accounts/user_live/login.html.heex:5
+#, elixir-autogen, elixir-format
+msgid "Email or username"
+msgstr "E-Mail oder Nutzername"
+
+#: lib/accounts/user_live/registration.ex:91
+#, elixir-autogen, elixir-format
+msgid "By signing up, you agree to our %{privacy}."
+msgstr "Mit der Anmeldung erklären Sie sich mit unserem %{privacy} einverstanden."
+
+#: lib/accounts/user_live/registration.ex:95
+#, elixir-autogen, elixir-format
+msgid "By signing up, you agree to our %{terms} and %{privacy}."
+msgstr "Mit der Anmeldung erklären Sie sich mit unseren %{terms} und %{privacy} einverstanden."
+
+#: lib/accounts/user_live/registration.ex:87
+#, elixir-autogen, elixir-format
+msgid "By signing up, you agree to our %{terms}."
+msgstr "Mit der Anmeldung erklären Sie sich mit unseren %{terms} einverstanden."
+
+#: lib/accounts/user_live/registration.ex:79
+#, elixir-autogen, elixir-format
+msgid "privacy policy"
+msgstr "Datenschutzbestimmungen"
+
+#: lib/accounts/user_live/registration.ex:75
+#, elixir-autogen, elixir-format
+msgid "terms of use"
+msgstr "Nutzungsbedingungen"
+
+#: lib/accounts/user_live/user_settings.html.heex:75
+#, elixir-autogen, elixir-format
+msgid "You have a guest account. To convert it into a regular account, update your email address below:"
+msgstr "Sie haben ein Gastkonto. Um es in ein reguläres Konto umzuwandeln, aktualisieren Sie Ihre E-Mail-Adresse unten:"
+
+#: lib/accounts/user_live/user_settings.html.heex:41
+#, elixir-autogen, elixir-format
+msgid "Enable sound effects?"
+msgstr "Soundeffekte einschalten?"
+
+#: lib/accounts/user_live/user_settings.html.heex:42
+#, elixir-autogen, elixir-format
+msgid "When checked, courses may play sound effects when you answer questions correctly or incorrectly."
+msgstr "Wenn diese Option aktiviert ist, können Kurse Soundeffekte abspielen, wenn Sie Fragen richtig oder falsch beantworten."
+
+#: lib/accounts/user_live/user_settings.ex:174
+#, elixir-autogen, elixir-format
+msgid "Unable to delete your account"
+msgstr "Sie können Ihr Konto nicht löschen"
+
+#: lib/accounts/user_live/user_settings.ex:85
+#, elixir-autogen, elixir-format, fuzzy
+msgid "Error setting up account"
+msgstr "Fehler beim Einrichten des Kontos"
