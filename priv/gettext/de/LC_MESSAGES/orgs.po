@@ -207,7 +207,7 @@ msgstr "Bild zur Option hinzufügen"
 
 #: lib/dashboard/lessons/lesson_editor.html.heex:93
 #, elixir-autogen, elixir-format
-msgid "Option hinzufügen"
+msgid "Add option"
 msgstr "Option hinzufügen"
 
 #: lib/dashboard/courses/course_user_view.html.heex:83
