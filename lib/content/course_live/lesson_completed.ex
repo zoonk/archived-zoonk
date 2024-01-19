@@ -14,6 +14,9 @@ defmodule UneebeeWeb.Live.LessonCompleted do
     %{lesson: lesson, current_user: user} = socket.assigns
 
     user_lesson = Content.get_user_lesson(user.id, lesson.id)
+
+    if is_nil(user_lesson), do: raise(UneebeeWeb.PermissionError, code: :permission_denied)
+
     first_lesson_today? = Gamification.first_lesson_today?(user.id)
     learning_days = Gamification.learning_days_count(user.id)
     medal = get_medal(user_lesson)

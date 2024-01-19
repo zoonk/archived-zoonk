@@ -24,6 +24,11 @@ defmodule UneebeeWeb.LessonCompletedLiveTest do
   describe "completed view (course user)" do
     setup :course_setup
 
+    test "returns an 403 error when the user didn't complete the lesson", %{conn: conn, course: course} do
+      lesson = lesson_fixture(%{course_id: course.id})
+      assert_error_sent 403, fn -> get(conn, ~p"/c/#{course.slug}/#{lesson.id}/completed") end
+    end
+
     test "displays the lesson results", %{conn: conn, course: course, user: user} do
       lesson = lesson_fixture(%{course_id: course.id})
       Content.add_user_lesson(%{user_id: user.id, lesson_id: lesson.id, attempts: 1, correct: 7, total: 10})
