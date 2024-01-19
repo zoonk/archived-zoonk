@@ -608,7 +608,7 @@ defmodule Uneebee.Content do
 
   def list_published_lessons(%Course{} = course, %User{} = user, opts \\ []) do
     preload_selections? = Keyword.get(opts, :selections?, false)
-    user_lessons_query = where(UserLesson, [ul], ul.user_id == ^user.id)
+    user_lessons_query = UserLesson |> where([ul], ul.user_id == ^user.id) |> order_by(desc: :inserted_at)
 
     Lesson
     |> where([l], l.course_id == ^course.id and l.published?)

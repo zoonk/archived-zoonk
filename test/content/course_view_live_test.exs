@@ -120,6 +120,19 @@ defmodule UneebeeWeb.CourseViewLiveTest do
       refute has_element?(lv, ~s|li[aria-current=page] a:fl-icontains("home")|)
       assert has_element?(lv, ~s|li[aria-current=page] a:fl-icontains("courses")|)
     end
+
+    test "displays the lesson score for completed lessons", %{conn: conn, course: course, user: user, lesson: lesson} do
+      Enum.each(1..3, fn _idx -> lesson_fixture(%{course_id: course.id, published?: true}) end)
+      Content.add_user_lesson(%{user_id: user.id, lesson_id: lesson.id, attempts: 1, correct: 2, total: 4})
+
+      assert {:ok, lv, _html} = live(conn, "/c/#{course.slug}")
+      assert has_element?(lv, "span", "5.0")
+
+      Content.add_user_lesson(%{user_id: user.id, lesson_id: lesson.id, attempts: 2, correct: 4, total: 4})
+
+      assert {:ok, lv, _html} = live(conn, "/c/#{course.slug}")
+      assert has_element?(lv, "span", "10.0")
+    end
   end
 
   defp assert_course_view(conn, course) do

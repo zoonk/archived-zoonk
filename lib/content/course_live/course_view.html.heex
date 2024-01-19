@@ -10,6 +10,8 @@
     >
       <% score = CourseUtils.lesson_score(@current_user, lesson.user_lessons) %>
 
+      <% if lesson.id == 2, do: IO.inspect(lesson.user_lessons) %>
+
       <.avatar src={lesson.cover} alt={if is_nil(lesson.cover), do: index + 1, else: dgettext("courses", "Lesson cover")} class="mt-1" />
 
       <div class="w-full min-w-0">
