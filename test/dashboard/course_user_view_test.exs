@@ -143,6 +143,7 @@ defmodule UneebeeWeb.DashboardCourseStudentViewLiveTest do
 
     lesson_step1 = lesson_step_fixture(%{lesson_id: lesson1.id, content: "Step 1!", published?: true})
     lesson_step2 = lesson_step_fixture(%{lesson_id: lesson2.id, content: "Step 2!", published?: true})
+    lesson_step3 = lesson_step_fixture(%{lesson_id: lesson1.id, content: "Step 3!", kind: :open_ended})
 
     option1 = step_option_fixture(%{lesson_step_id: lesson_step1.id, title: "Option 1!", correct?: true})
     option2 = step_option_fixture(%{lesson_step_id: lesson_step1.id, title: "Option 2!", correct?: false})
@@ -154,22 +155,24 @@ defmodule UneebeeWeb.DashboardCourseStudentViewLiveTest do
     Content.add_user_selection(%{duration: 5, user_id: user.id, option_id: option1.id, lesson_id: lesson1.id, step_id: lesson_step1.id})
     Content.add_user_selection(%{duration: 5, user_id: user.id, option_id: option2.id, lesson_id: lesson1.id, step_id: lesson_step1.id})
     Content.add_user_selection(%{duration: 5, user_id: user.id, option_id: option3.id, lesson_id: lesson2.id, step_id: lesson_step2.id})
+    Content.add_user_selection(%{duration: 5, user_id: user.id, answer: "test answer", lesson_id: lesson1.id, step_id: lesson_step3.id})
 
     [lesson1, lesson2]
   end
 
   defp assert_lesson_render(lv) do
-    assert has_element?(lv, ~s|h3:fl-icontains("lesson 1!")|)
-    assert has_element?(lv, ~s|h3:fl-icontains("lesson 2!")|)
-    assert has_element?(lv, ~s|span:fl-icontains("3.0")|)
-    assert has_element?(lv, ~s|span:fl-icontains("7.0")|)
+    assert has_element?(lv, "h3", "Lesson 1!")
+    assert has_element?(lv, "h3", "Lesson 2!")
+    assert has_element?(lv, "span", "3.0")
+    assert has_element?(lv, "span", "7.0")
   end
 
   defp assert_user_selections(lv, lesson1, lesson2) do
-    assert has_element?(lv, ~s|#lessons-#{lesson1.id} p:fl-icontains("option 2!")|)
-    refute has_element?(lv, ~s|#lessons-#{lesson1.id} p:fl-icontains("option 1!")|)
+    assert has_element?(lv, "#lessons-#{lesson1.id} p", "Option 2!")
+    assert has_element?(lv, "#lessons-#{lesson1.id} p", "test answer")
+    refute has_element?(lv, "#lessons-#{lesson1.id} p", "Option 1!")
 
-    refute has_element?(lv, ~s|#lessons-#{lesson2.id} p:fl-icontains("option 3!")|)
-    assert has_element?(lv, ~s|#lessons-#{lesson2.id} h4:fl-icontains("all answers were correct.")|)
+    refute has_element?(lv, "#lessons-#{lesson2.id} p", "Option 3!")
+    assert has_element?(lv, "#lessons-#{lesson2.id} h4", "All answers were correct.")
   end
 end

@@ -623,9 +623,10 @@ defmodule Uneebee.Content do
   defp maybe_preload_user_selections(query, user_id, true) do
     user_selections_query =
       UserSelection
-      |> join(:inner, [us], o in assoc(us, :option))
-      |> where([us, o], us.user_id == ^user_id and not o.correct?)
-      |> preload(option: [:lesson_step])
+      |> join(:left, [us], o in assoc(us, :option))
+      |> where([us, o], us.user_id == ^user_id)
+      |> where([us, o], not is_nil(us.answer) or not o.correct?)
+      |> preload([:step, :option])
 
     preload(query, [l], user_selections: ^user_selections_query)
   end

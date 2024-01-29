@@ -678,7 +678,8 @@ defmodule Uneebee.ContentTest do
       lesson2 = lesson_fixture(%{course_id: course.id, order: 2, published?: true})
 
       lesson_step1 = lesson_step_fixture(%{lesson_id: lesson1.id, order: 1})
-      lesson_step2 = lesson_step_fixture(%{lesson_id: lesson2.id, order: 2})
+      lesson_step2 = lesson_step_fixture(%{lesson_id: lesson2.id, order: 1})
+      lesson_step3 = lesson_step_fixture(%{lesson_id: lesson2.id, order: 2, kind: :open_ended})
 
       option1 = step_option_fixture(%{lesson_step_id: lesson_step1.id, correct?: true})
       option2 = step_option_fixture(%{lesson_step_id: lesson_step1.id, correct?: false})
@@ -687,6 +688,7 @@ defmodule Uneebee.ContentTest do
       Content.add_user_selection(%{duration: 5, user_id: user.id, option_id: option1.id, lesson_id: lesson1.id, step_id: lesson_step1.id})
       Content.add_user_selection(%{duration: 5, user_id: user.id, option_id: option2.id, lesson_id: lesson1.id, step_id: lesson_step1.id})
       Content.add_user_selection(%{duration: 5, user_id: user.id, option_id: option3.id, lesson_id: lesson2.id, step_id: lesson_step2.id})
+      Content.add_user_selection(%{duration: 5, user_id: user.id, answer: "test", lesson_id: lesson2.id, step_id: lesson_step3.id})
 
       Content.add_user_lesson(%{duration: 5, user_id: user.id, lesson_id: lesson1.id, attempts: 1, correct: 3, total: 5})
       Content.add_user_lesson(%{duration: 5, user_id: user.id, lesson_id: lesson2.id, attempts: 1, correct: 3, total: 5})
@@ -696,7 +698,7 @@ defmodule Uneebee.ContentTest do
       second_lesson = Enum.at(lessons, 1)
 
       assert length(first_lesson.user_selections) == 1
-      assert second_lesson.user_selections == []
+      assert Enum.at(second_lesson.user_selections, 0).answer == "test"
 
       assert length(first_lesson.user_lessons) == 1
       assert length(second_lesson.user_lessons) == 1
