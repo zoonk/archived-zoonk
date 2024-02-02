@@ -72,14 +72,17 @@ defmodule UneebeeWeb.Live.Registration do
   defp get_school_user_attrs(_user, false), do: %{role: :student}
 
   defp get_terms(terms_of_use) do
-    "auth" |> dgettext("terms of use") |> get_terms_link(terms_of_use) |> HTML.safe_to_string()
+    "auth" |> dgettext("terms of use") |> get_terms_link(terms_of_use)
   end
 
   defp get_privacy(privacy_policy) do
-    "auth" |> dgettext("privacy policy") |> get_terms_link(privacy_policy) |> HTML.safe_to_string()
+    "auth" |> dgettext("privacy policy") |> get_terms_link(privacy_policy)
   end
 
-  defp get_terms_link(label, link), do: HTML.Link.link(label, to: URI.parse(link), class: "text-indigo-500 hover:underline")
+  defp get_terms_link(label, link) do
+    escaped_link = link |> HTML.html_escape() |> HTML.safe_to_string()
+    "<a href=\"#{escaped_link}\" class=\"text-indigo-500 hover:underline\">#{label}</a>"
+  end
 
   defp terms_label(%School{terms_of_use: nil, privacy_policy: nil}), do: nil
 
