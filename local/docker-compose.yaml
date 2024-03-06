@@ -1,0 +1,27 @@
+version: '3'
+
+services:
+  phoenix_app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      - postgres
+    ports:
+      - "4000:4000"
+    networks:
+      - your_network
+
+  postgres:
+    image: postgres:latest
+    environment:
+      POSTGRES_DB: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"  # Add this line for port mapping
+    networks:
+      - your_network
+
+networks:
+  your_network:
