@@ -156,7 +156,7 @@ defmodule Uneebee.Accounts.User do
   """
   @spec confirm_changeset(Ecto.Schema.t()) :: Ecto.Changeset.t()
   def confirm_changeset(user) do
-    now = NaiveDateTime.truncate(NaiveDateTime.utc_now(), :second)
+    now = NaiveDateTime.utc_now(:second)
     change(user, confirmed_at: now, guest?: false)
   end
 

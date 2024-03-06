@@ -116,6 +116,7 @@
           {Credo.Check.Refactor.Nesting, []},
           {Credo.Check.Refactor.FilterFilter, []},
           {Credo.Check.Refactor.RejectReject, []},
+          {Credo.Check.Refactor.UtcNowTruncate, []},
 
           #
           ## Warnings
