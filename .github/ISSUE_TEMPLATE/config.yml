@@ -1,8 +1,6 @@
-blank_issues_enabled: false
-
 contact_links:
   - name: 🐛 Report a bug
-    url: https://github.com/orgs/zoonk/discussions/new?category=bugs-issues
+    url: https://github.com/zoonk/uneebee/issues/new
     about: Report a bug that needs to be fixed.
 
   - name: 💡 Make a suggestion
