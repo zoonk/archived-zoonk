@@ -70,6 +70,9 @@ defmodule UneebeeWeb.Plugs.UserAuth do
   #     end
   #
   defp renew_session(conn) do
+    # Prevent a CSRF fixation attack. See https://hexdocs.pm/plug/Plug.CSRFProtection.html and https://github.com/phoenixframework/phoenix/pull/5725
+    delete_csrf_token()
+
     conn |> configure_session(renew: true) |> clear_session()
   end
 
