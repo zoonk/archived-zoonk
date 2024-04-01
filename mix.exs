@@ -62,14 +62,14 @@ defmodule Uneebee.MixProject do
       {:postgrex, "~> 0.17.5"},
       {:req, "~> 0.4.12"},
       {:resend, "~> 0.4.1"},
-      {:sentry, "~> 10.1.0"},
+      {:sentry, "~> 10.3.0"},
       {:sobelow, "~> 0.13.0", only: [:dev, :test], runtime: false},
       {:stripity_stripe, "~> 3.1.1"},
       {:styler, "~> 0.11.9", only: [:dev, :test], runtime: false},
-      {:swoosh, "~> 1.15.3"},
+      {:swoosh, "~> 1.16.3"},
       {:tailwind, "~> 0.2.2", runtime: Mix.env() == :dev},
       {:tailwind_formatter, "~> 0.4.0", only: [:dev, :test], runtime: false},
-      {:telemetry_metrics, "~> 0.6.2"},
+      {:telemetry_metrics, "~> 1.0.0"},
       {:telemetry_poller, "~> 1.0"}
     ]
   end
