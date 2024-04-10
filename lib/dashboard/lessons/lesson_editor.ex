@@ -176,6 +176,12 @@ defmodule UneebeeWeb.Live.Dashboard.LessonEditor do
     end
   end
 
+  @impl Phoenix.LiveView
+  def handle_info({LessonEdit, :lesson_edit, updated_socket}, socket) do
+    %{lesson: lesson} = updated_socket.assigns
+    {:noreply, assign(socket, lesson: lesson)}
+  end
+
   defp step_link(course, lesson, order), do: ~p"/dashboard/c/#{course.slug}/l/#{lesson.id}/s/#{order}"
 
   defp search_courses(_school_id, nil), do: []

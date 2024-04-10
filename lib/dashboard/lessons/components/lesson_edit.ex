@@ -54,6 +54,8 @@ defmodule UneebeeWeb.Components.Dashboard.LessonEdit do
 
     case Content.update_lesson(lesson, lesson_params) do
       {:ok, updated_lesson} ->
+        notify_parent(socket, updated_lesson)
+
         socket =
           socket
           |> put_flash(:info, dgettext("orgs", "Lesson updated successfully!"))
@@ -67,4 +69,9 @@ defmodule UneebeeWeb.Components.Dashboard.LessonEdit do
   end
 
   defp lesson_link(course, lesson, order), do: ~p"/dashboard/c/#{course.slug}/l/#{lesson.id}/s/#{order}"
+
+  defp notify_parent(socket, updated_lesson) do
+    send(self(), {__MODULE__, :lesson_edit, %{socket | assigns: %{socket.assigns | lesson: Map.merge(socket.assigns.lesson, updated_lesson)}}})
+    :ok
+  end
 end
