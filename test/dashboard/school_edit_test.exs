@@ -48,6 +48,22 @@ defmodule UneebeeWeb.SchoolUpdateLiveTest do
       assert Organizations.get_school_by_slug!(new_slug).slug == new_slug
     end
 
+    test "redirects when updating the slug for a child school", %{conn: conn, school: school, user: user} do
+      child_school = school_fixture(%{school_id: school.id})
+      school_user_fixture(%{school: child_school, user: user, role: :manager})
+      conn = Map.put(conn, :host, "#{child_school.slug}.#{school.custom_domain}")
+      new_slug = "new_#{System.unique_integer()}"
+
+      {:ok, lv, _html} = live(conn, ~p"/dashboard/edit/settings")
+
+      {:error, {:redirect, %{to: redirected_url}}} =
+        lv
+        |> form(@school_form, school: %{slug: new_slug})
+        |> render_submit()
+
+      assert redirected_url == "https://#{new_slug}.#{school.custom_domain}/dashboard/edit/settings"
+    end
+
     test "updates information", %{conn: conn, school: school} do
       {:ok, lv, _html} = live(conn, ~p"/dashboard/edit/settings")
 

@@ -31,9 +31,13 @@ defmodule UneebeeWeb.Live.Dashboard.SchoolEdit do
 
   @impl Phoenix.LiveView
   def handle_event("save", %{"school" => school_params}, socket) do
-    case Organizations.update_school(socket.assigns.school, school_params) do
+    %{school: school} = socket.assigns
+
+    slug_changed? = school_params["slug"] != school.slug
+
+    case Organizations.update_school(school, school_params) do
       {:ok, _school} ->
-        {:noreply, put_flash(socket, :info, dgettext("orgs", "School updated successfully"))}
+        {:noreply, maybe_redirect(socket, slug_changed?, school_params["slug"])}
 
       {:error, %Ecto.Changeset{} = changeset} ->
         {:noreply, assign_form(socket, changeset)}
@@ -88,4 +92,8 @@ defmodule UneebeeWeb.Live.Dashboard.SchoolEdit do
   defp get_page_title(:logo), do: gettext("Logo")
   defp get_page_title(:delete), do: gettext("Delete")
   defp get_page_title(:icon), do: gettext("Icon")
+
+  defp maybe_redirect(socket, false, _new_slug), do: put_flash(socket, :info, dgettext("orgs", "School updated successfully"))
+  defp maybe_redirect(socket, true, _new_slug) when is_nil(socket.assigns.school.school_id), do: put_flash(socket, :info, dgettext("orgs", "School updated successfully"))
+  defp maybe_redirect(socket, true, new_slug), do: redirect(socket, external: "https://#{new_slug}.#{socket.assigns.app.custom_domain}/dashboard/edit/settings")
 end
