@@ -210,7 +210,7 @@ msgstr ""
 msgid "Add option"
 msgstr ""
 
-#: lib/dashboard/courses/course_user_view.html.heex:83
+#: lib/dashboard/courses/course_user_view.html.heex:85
 #, elixir-autogen, elixir-format
 msgid "All answers were correct."
 msgstr ""

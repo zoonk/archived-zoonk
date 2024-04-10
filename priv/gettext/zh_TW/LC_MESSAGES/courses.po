@@ -41,7 +41,7 @@ msgstr "確認中..."
 msgid "Enrolled successfully!"
 msgstr "成功報名！"
 
-#: lib/content/course_live/lesson_completed.ex:38
+#: lib/content/course_live/lesson_completed.ex:41
 #, elixir-autogen, elixir-format
 msgid "Excellent!"
 msgstr "優秀！"
@@ -56,7 +56,7 @@ msgstr "專家"
 msgid "Failed to enroll"
 msgstr "報名失敗"
 
-#: lib/content/course_live/lesson_completed.ex:40
+#: lib/content/course_live/lesson_completed.ex:43
 #, elixir-autogen, elixir-format
 msgid "Good!"
 msgstr "好！"
@@ -76,12 +76,12 @@ msgstr "中級"
 msgid "Next step"
 msgstr "下一步"
 
-#: lib/content/course_live/lesson_completed.ex:41
+#: lib/content/course_live/lesson_completed.ex:44
 #, elixir-autogen, elixir-format
 msgid "Not bad!"
 msgstr "不錯！"
 
-#: lib/content/course_live/lesson_completed.ex:37
+#: lib/content/course_live/lesson_completed.ex:40
 #, elixir-autogen, elixir-format
 msgid "Perfect!"
 msgstr "完美！"
@@ -96,7 +96,7 @@ msgstr "請求加入"
 msgid "That's incorrect."
 msgstr "這是不正確的。"
 
-#: lib/content/course_live/lesson_completed.ex:42
+#: lib/content/course_live/lesson_completed.ex:45
 #, elixir-autogen, elixir-format
 msgid "There's room for improvement"
 msgstr "有改進的空間"
@@ -111,7 +111,7 @@ msgstr "無法完成課程"
 msgid "Unable to select option"
 msgstr "無法選擇選項"
 
-#: lib/content/course_live/lesson_completed.ex:39
+#: lib/content/course_live/lesson_completed.ex:42
 #, elixir-autogen, elixir-format
 msgid "Very good!"
 msgstr "非常好！"

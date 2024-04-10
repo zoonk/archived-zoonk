@@ -103,8 +103,8 @@ msgstr "電子郵件或密碼無效。"
 msgid "Password updated successfully!"
 msgstr "密碼更新成功！"
 
-#: lib/accounts/user_auth_plug.ex:174
-#: lib/accounts/user_auth_plug.ex:263
+#: lib/accounts/user_auth_plug.ex:177
+#: lib/accounts/user_auth_plug.ex:266
 #, elixir-autogen, elixir-format
 msgid "You must log in to access this page."
 msgstr "您必須登入才能存取此頁面。"
@@ -187,17 +187,17 @@ msgstr "我們將向您的收件箱傳送新的確認連結"
 msgid "Email or username"
 msgstr "電子郵件或使用者名稱"
 
-#: lib/accounts/user_live/registration.ex:91
+#: lib/accounts/user_live/registration.ex:94
 #, elixir-autogen, elixir-format
 msgid "By signing up, you agree to our %{privacy}."
 msgstr "註冊即表示您同意我們的%{privacy}。"
 
-#: lib/accounts/user_live/registration.ex:95
+#: lib/accounts/user_live/registration.ex:98
 #, elixir-autogen, elixir-format
 msgid "By signing up, you agree to our %{terms} and %{privacy}."
 msgstr "註冊即表示您同意我們的%{terms}和%{privacy}。"
 
-#: lib/accounts/user_live/registration.ex:87
+#: lib/accounts/user_live/registration.ex:90
 #, elixir-autogen, elixir-format
 msgid "By signing up, you agree to our %{terms}."
 msgstr "註冊即表示您同意我們的%{terms}。"
