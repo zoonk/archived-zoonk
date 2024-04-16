@@ -389,6 +389,29 @@ defmodule UneebeeWeb.DashboardLessonEditorLiveTest do
       assert updated_lesson.description == attrs.description
     end
 
+    test "edits a lesson information in realtime", %{conn: conn, course: course} do
+      lesson = lesson_fixture(%{course_id: course.id})
+      lesson_step_fixture(%{lesson_id: lesson.id, order: 1})
+      lesson_step_fixture(%{lesson_id: lesson.id, order: 2})
+
+      {:ok, lv, _html} = live(conn, ~p"/dashboard/c/#{course.slug}/l/#{lesson.id}/s/2")
+
+      {:ok, updated_lv, _html} =
+        lv
+        |> element(~s|a[href="/dashboard/c/#{course.slug}/l/#{lesson.id}/s/2/edit_step"]:fl-icontains("edit")|)
+        |> render_click()
+        |> follow_redirect(conn, ~p"/dashboard/c/#{course.slug}/l/#{lesson.id}/s/2/edit_step")
+
+      assert_lesson_name(updated_lv)
+      assert_lesson_description(updated_lv)
+
+      attrs = %{name: "Updated lesson name", description: "Updated lesson description"}
+      updated_lv |> form(@lesson_form, lesson: attrs) |> render_submit()
+
+      assert render(updated_lv) =~ "Updated lesson name"
+      assert render(updated_lv) =~ "Updated lesson description"
+    end
+
     test "uploads a cover image", %{conn: conn, course: course} do
       lesson = lesson_fixture(%{course_id: course.id})
       lesson_step_fixture(%{lesson_id: lesson.id, order: 1})
