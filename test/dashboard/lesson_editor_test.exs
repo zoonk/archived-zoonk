@@ -374,7 +374,7 @@ defmodule UneebeeWeb.DashboardLessonEditorLiveTest do
         lv
         |> element(~s|a[href="/dashboard/c/#{course.slug}/l/#{lesson.id}/s/2/edit_step"]:fl-icontains("edit")|)
         |> render_click()
-        |> follow_redirect(conn, ~p"/dashboard/c/#{course.slug}/l/#{lesson.id}/s/2/edit_step")
+        |> follow_redirect(conn, edit_lesson_redirect_link(course, lesson))
 
       assert_lesson_name(updated_lv)
       assert_lesson_description(updated_lv)
@@ -396,20 +396,20 @@ defmodule UneebeeWeb.DashboardLessonEditorLiveTest do
 
       {:ok, lv, _html} = live(conn, ~p"/dashboard/c/#{course.slug}/l/#{lesson.id}/s/2")
 
-      {:ok, updated_lv, _html} =
+      {:ok, view, _html} =
         lv
         |> element(~s|a[href="/dashboard/c/#{course.slug}/l/#{lesson.id}/s/2/edit_step"]:fl-icontains("edit")|)
         |> render_click()
-        |> follow_redirect(conn, ~p"/dashboard/c/#{course.slug}/l/#{lesson.id}/s/2/edit_step")
+        |> follow_redirect(conn, edit_lesson_redirect_link(course, lesson))
 
-      assert_lesson_name(updated_lv)
-      assert_lesson_description(updated_lv)
+      assert_lesson_name(view)
+      assert_lesson_description(view)
 
       attrs = %{name: "Updated lesson name", description: "Updated lesson description"}
-      updated_lv |> form(@lesson_form, lesson: attrs) |> render_submit()
+      view |> form(@lesson_form, lesson: attrs) |> render_submit()
 
-      assert render(updated_lv) =~ "Updated lesson name"
-      assert render(updated_lv) =~ "Updated lesson description"
+      assert render(view) =~ "Updated lesson name"
+      assert render(view) =~ "Updated lesson description"
     end
 
     test "uploads a cover image", %{conn: conn, course: course} do
@@ -527,5 +527,9 @@ defmodule UneebeeWeb.DashboardLessonEditorLiveTest do
   defp assert_lesson_description(lv) do
     lv |> element(@lesson_form) |> render_change(lesson: %{description: ""})
     assert has_element?(lv, ~s|div[phx-feedback-for="lesson[description]"] p:fl-icontains("can't be blank")|)
+  end
+
+  defp edit_lesson_redirect_link(course, lesson) do
+    ~p"/dashboard/c/#{course.slug}/l/#{lesson.id}/s/2/edit_step"
   end
 end
