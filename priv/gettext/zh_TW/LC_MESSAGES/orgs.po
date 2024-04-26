@@ -210,7 +210,7 @@ msgstr "為選項新增圖片"
 msgid "Add option"
 msgstr "新增選項"
 
-#: lib/dashboard/courses/course_user_view.html.heex:83
+#: lib/dashboard/courses/course_user_view.html.heex:85
 #, elixir-autogen, elixir-format
 msgid "All answers were correct."
 msgstr "所有答案都是正確的。"

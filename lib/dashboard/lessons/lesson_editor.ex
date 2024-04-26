@@ -33,6 +33,7 @@ defmodule UneebeeWeb.Live.Dashboard.LessonEditor do
     step = Content.get_lesson_step_by_order(lesson.id, params["step_order"])
     lessons = Content.list_lessons(course.id)
     suggested_courses = Content.list_step_suggested_courses(step.id)
+    updated_lesson = Enum.find(lessons, fn l -> l.id == lesson.id end)
 
     socket =
       socket
@@ -41,6 +42,7 @@ defmodule UneebeeWeb.Live.Dashboard.LessonEditor do
       |> assign(:lessons, lessons)
       |> assign(:suggested_courses, suggested_courses)
       |> assign(:search_results, search_courses(school.id, params["term"]))
+      |> assign(:lesson, updated_lesson)
 
     {:noreply, socket}
   end

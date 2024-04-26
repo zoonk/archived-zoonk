@@ -41,7 +41,7 @@ msgstr "Bestätigen..."
 msgid "Enrolled successfully!"
 msgstr "Erfolgreich eingeschrieben!"
 
-#: lib/content/course_live/lesson_completed.ex:38
+#: lib/content/course_live/lesson_completed.ex:41
 #, elixir-autogen, elixir-format
 msgid "Excellent!"
 msgstr "Ausgezeichnet!"
@@ -56,7 +56,7 @@ msgstr "Experte"
 msgid "Failed to enroll"
 msgstr "Einschreibung fehlgeschlagen"
 
-#: lib/content/course_live/lesson_completed.ex:40
+#: lib/content/course_live/lesson_completed.ex:43
 #, elixir-autogen, elixir-format
 msgid "Good!"
 msgstr "Gut!"
@@ -76,12 +76,12 @@ msgstr "Zwischenbericht"
 msgid "Next step"
 msgstr "Nächster Schritt"
 
-#: lib/content/course_live/lesson_completed.ex:41
+#: lib/content/course_live/lesson_completed.ex:44
 #, elixir-autogen, elixir-format
 msgid "Not bad!"
 msgstr "Nicht schlecht!"
 
-#: lib/content/course_live/lesson_completed.ex:37
+#: lib/content/course_live/lesson_completed.ex:40
 #, elixir-autogen, elixir-format
 msgid "Perfect!"
 msgstr "Perfekt!"
@@ -96,7 +96,7 @@ msgstr "Antrag auf Beitritt"
 msgid "That's incorrect."
 msgstr "Das ist nicht richtig."
 
-#: lib/content/course_live/lesson_completed.ex:42
+#: lib/content/course_live/lesson_completed.ex:45
 #, elixir-autogen, elixir-format
 msgid "There's room for improvement"
 msgstr "Es gibt Raum für Verbesserungen"
@@ -111,7 +111,7 @@ msgstr "Lektion kann nicht abgeschlossen werden"
 msgid "Unable to select option"
 msgstr "Option kann nicht ausgewählt werden"
 
-#: lib/content/course_live/lesson_completed.ex:39
+#: lib/content/course_live/lesson_completed.ex:42
 #, elixir-autogen, elixir-format
 msgid "Very good!"
 msgstr "Sehr gut!"

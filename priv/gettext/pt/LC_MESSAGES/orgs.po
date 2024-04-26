@@ -210,7 +210,7 @@ msgstr "Adicionar imagem à alternativa"
 msgid "Add option"
 msgstr "Nova alternativa"
 
-#: lib/dashboard/courses/course_user_view.html.heex:83
+#: lib/dashboard/courses/course_user_view.html.heex:85
 #, elixir-autogen, elixir-format
 msgid "All answers were correct."
 msgstr "Todas as respostas estavam corretas."

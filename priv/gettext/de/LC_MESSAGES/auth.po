@@ -103,8 +103,8 @@ msgstr "Ungültige E-Mail oder Passwort."
 msgid "Password updated successfully!"
 msgstr "Ungültige E-Mail oder ungültiges Passwort."
 
-#: lib/accounts/user_auth_plug.ex:174
-#: lib/accounts/user_auth_plug.ex:263
+#: lib/accounts/user_auth_plug.ex:177
+#: lib/accounts/user_auth_plug.ex:266
 #, elixir-autogen, elixir-format
 msgid "You must log in to access this page."
 msgstr "Sie müssen sich einloggen, um auf diese Seite zuzugreifen."
@@ -187,17 +187,17 @@ msgstr "Anweisungen zur Bestätigung erneut senden"
 msgid "Email or username"
 msgstr "E-Mail oder Nutzername"
 
-#: lib/accounts/user_live/registration.ex:91
+#: lib/accounts/user_live/registration.ex:94
 #, elixir-autogen, elixir-format
 msgid "By signing up, you agree to our %{privacy}."
 msgstr "Mit der Anmeldung erklären Sie sich mit unserem %{privacy} einverstanden."
 
-#: lib/accounts/user_live/registration.ex:95
+#: lib/accounts/user_live/registration.ex:98
 #, elixir-autogen, elixir-format
 msgid "By signing up, you agree to our %{terms} and %{privacy}."
 msgstr "Mit der Anmeldung erklären Sie sich mit unseren %{terms} und %{privacy} einverstanden."
 
-#: lib/accounts/user_live/registration.ex:87
+#: lib/accounts/user_live/registration.ex:90
 #, elixir-autogen, elixir-format
 msgid "By signing up, you agree to our %{terms}."
 msgstr "Mit der Anmeldung erklären Sie sich mit unseren %{terms} einverstanden."

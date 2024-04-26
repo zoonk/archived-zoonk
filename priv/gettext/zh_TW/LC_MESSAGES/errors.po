@@ -181,7 +181,7 @@ msgstr "您的註冊正在等待批准"
 msgid "must start with https://"
 msgstr "必須以 https:// 開頭"
 
-#: lib/content/content_context.ex:758
+#: lib/content/content_context.ex:759
 #, elixir-autogen, elixir-format, fuzzy
 msgid "cannot delete the only step"
 msgstr "不能刪除唯一的步驟"

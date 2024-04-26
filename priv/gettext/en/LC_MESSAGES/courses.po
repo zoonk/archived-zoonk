@@ -41,7 +41,7 @@ msgstr ""
 msgid "Enrolled successfully!"
 msgstr ""
 
-#: lib/content/course_live/lesson_completed.ex:38
+#: lib/content/course_live/lesson_completed.ex:41
 #, elixir-autogen, elixir-format
 msgid "Excellent!"
 msgstr ""
@@ -56,7 +56,7 @@ msgstr ""
 msgid "Failed to enroll"
 msgstr ""
 
-#: lib/content/course_live/lesson_completed.ex:40
+#: lib/content/course_live/lesson_completed.ex:43
 #, elixir-autogen, elixir-format
 msgid "Good!"
 msgstr ""
@@ -76,12 +76,12 @@ msgstr ""
 msgid "Next step"
 msgstr ""
 
-#: lib/content/course_live/lesson_completed.ex:41
+#: lib/content/course_live/lesson_completed.ex:44
 #, elixir-autogen, elixir-format
 msgid "Not bad!"
 msgstr ""
 
-#: lib/content/course_live/lesson_completed.ex:37
+#: lib/content/course_live/lesson_completed.ex:40
 #, elixir-autogen, elixir-format
 msgid "Perfect!"
 msgstr ""
@@ -96,7 +96,7 @@ msgstr ""
 msgid "That's incorrect."
 msgstr ""
 
-#: lib/content/course_live/lesson_completed.ex:42
+#: lib/content/course_live/lesson_completed.ex:45
 #, elixir-autogen, elixir-format
 msgid "There's room for improvement"
 msgstr ""
@@ -111,7 +111,7 @@ msgstr ""
 msgid "Unable to select option"
 msgstr ""
 
-#: lib/content/course_live/lesson_completed.ex:39
+#: lib/content/course_live/lesson_completed.ex:42
 #, elixir-autogen, elixir-format
 msgid "Very good!"
 msgstr ""
