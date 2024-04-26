@@ -33,6 +33,7 @@ defmodule UneebeeWeb.Live.Dashboard.LessonEditor do
     step = Content.get_lesson_step_by_order(lesson.id, params["step_order"])
     lessons = Content.list_lessons(course.id)
     suggested_courses = Content.list_step_suggested_courses(step.id)
+    updated_lesson = Enum.find(lessons, fn l -> l.id == lesson.id end)
 
     socket =
       socket
@@ -41,6 +42,7 @@ defmodule UneebeeWeb.Live.Dashboard.LessonEditor do
       |> assign(:lessons, lessons)
       |> assign(:suggested_courses, suggested_courses)
       |> assign(:search_results, search_courses(school.id, params["term"]))
+      |> assign(:lesson, updated_lesson)
 
     {:noreply, socket}
   end
@@ -174,12 +176,6 @@ defmodule UneebeeWeb.Live.Dashboard.LessonEditor do
       {:error, _changeset} ->
         {:noreply, put_flash(socket, :error, dgettext("orgs", "Could not update cover!"))}
     end
-  end
-
-  @impl Phoenix.LiveView
-  def handle_info({LessonEdit, :lesson_edit, updated_socket}, socket) do
-    %{lesson: lesson} = updated_socket.assigns
-    {:noreply, assign(socket, lesson: lesson)}
   end
 
   defp step_link(course, lesson, order), do: ~p"/dashboard/c/#{course.slug}/l/#{lesson.id}/s/#{order}"

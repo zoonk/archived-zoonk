@@ -408,8 +408,8 @@ defmodule UneebeeWeb.DashboardLessonEditorLiveTest do
       attrs = %{name: "Updated lesson name", description: "Updated lesson description"}
       view |> form(@lesson_form, lesson: attrs) |> render_submit()
 
-      assert render(view) =~ "Updated lesson name"
-      assert render(view) =~ "Updated lesson description"
+      assert has_element?(view, "h1", "Updated lesson name")
+      assert has_element?(view, "p", "Updated lesson description")
     end
 
     test "uploads a cover image", %{conn: conn, course: course} do
