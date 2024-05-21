@@ -1,11 +1,11 @@
-defmodule UneebeeWeb.SchoolUserListLiveTest do
-  use UneebeeWeb.ConnCase, async: true
+defmodule ZoonkWeb.SchoolUserListLiveTest do
+  use ZoonkWeb.ConnCase, async: true
 
   import Phoenix.LiveViewTest
-  import Uneebee.Fixtures.Accounts
-  import Uneebee.Fixtures.Organizations
+  import Zoonk.Fixtures.Accounts
+  import Zoonk.Fixtures.Organizations
 
-  alias Uneebee.Organizations
+  alias Zoonk.Organizations
 
   describe "/dashboard/users (non-authenticated users)" do
     setup :set_school

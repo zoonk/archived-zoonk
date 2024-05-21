@@ -1,26 +1,26 @@
 defmodule CourseSeed do
   @moduledoc false
 
-  alias Uneebee.Organizations.School
-  alias Uneebee.Content
-  alias Uneebee.Content.Course
-  alias Uneebee.Content.CourseUser
-  alias Uneebee.Content.Lesson
-  alias Uneebee.Content.LessonStep
-  alias Uneebee.Organizations
-  alias Uneebee.Repo
+  alias Zoonk.Organizations.School
+  alias Zoonk.Content
+  alias Zoonk.Content.Course
+  alias Zoonk.Content.CourseUser
+  alias Zoonk.Content.Lesson
+  alias Zoonk.Content.LessonStep
+  alias Zoonk.Organizations
+  alias Zoonk.Repo
 
   @courses [
     %{
-      name: "UneeBee for learners",
-      description: "Learn how you can use UneeBee to learn new skills.",
-      cover: "/uploads/seed/courses/uneebee_for_learners.avif",
+      name: "Zoonk for learners",
+      description: "Learn how you can use Zoonk to learn new skills.",
+      cover: "/uploads/seed/courses/zoonk_for_learners.avif",
       language: :en,
       level: :beginner,
       public?: true,
       published?: true,
-      slug: "uneebee-for-learners",
-      schools: ["uneebee"]
+      slug: "zoonk-for-learners",
+      schools: ["zoonk"]
     },
     %{
       name: "Accounting processes",
@@ -31,7 +31,7 @@ defmodule CourseSeed do
       public?: false,
       published?: true,
       slug: "accounting-processes",
-      schools: ["uneebee"]
+      schools: ["zoonk"]
     },
     %{
       name: "GDPR",
@@ -42,7 +42,7 @@ defmodule CourseSeed do
       public?: false,
       published?: false,
       slug: "gdpr",
-      schools: ["uneebee"]
+      schools: ["zoonk"]
     },
     %{
       name: "Work at Apple",

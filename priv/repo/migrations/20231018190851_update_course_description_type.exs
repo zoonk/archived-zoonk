@@ -1,4 +1,4 @@
-defmodule Uneebee.Repo.Migrations.UpdateCourseDescriptionType do
+defmodule Zoonk.Repo.Migrations.UpdateCourseDescriptionType do
   use Ecto.Migration
 
   def change do

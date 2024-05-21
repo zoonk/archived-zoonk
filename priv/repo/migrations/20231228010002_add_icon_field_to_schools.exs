@@ -1,4 +1,4 @@
-defmodule Uneebee.Repo.Migrations.AddIconFieldToSchools do
+defmodule Zoonk.Repo.Migrations.AddIconFieldToSchools do
   use Ecto.Migration
 
   def change do

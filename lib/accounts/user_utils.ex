@@ -1,8 +1,8 @@
-defmodule Uneebee.Accounts.UserUtils do
+defmodule Zoonk.Accounts.UserUtils do
   @moduledoc """
   This module contains functions that are used to manipulate user data.
   """
-  alias Uneebee.Accounts.User
+  alias Zoonk.Accounts.User
 
   @doc """
   Get the user's full name.

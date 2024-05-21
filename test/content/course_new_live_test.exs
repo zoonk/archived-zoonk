@@ -1,13 +1,13 @@
-defmodule UneebeeWeb.CourseNewLiveTest do
+defmodule ZoonkWeb.CourseNewLiveTest do
   @moduledoc false
-  use UneebeeWeb.ConnCase, async: true
+  use ZoonkWeb.ConnCase, async: true
 
   import Phoenix.LiveViewTest
-  import Uneebee.Fixtures.Content
-  import UneebeeWeb.Shared.Slug
+  import Zoonk.Fixtures.Content
+  import ZoonkWeb.Shared.Slug
 
-  alias Uneebee.Accounts
-  alias Uneebee.Content
+  alias Zoonk.Accounts
+  alias Zoonk.Content
 
   @course_form "#course-form"
 

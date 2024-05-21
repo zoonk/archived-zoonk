@@ -1,9 +1,9 @@
 # credo:disable-for-this-file Credo.Check.Readability.Specs
-defmodule UneebeeWeb.Components.Layouts.AppMenu do
+defmodule ZoonkWeb.Components.Layouts.AppMenu do
   @moduledoc false
-  use UneebeeWeb, :html
+  use ZoonkWeb, :html
 
-  import UneebeeWeb.Layouts.MenuUtils
+  import ZoonkWeb.Layouts.MenuUtils
 
   def app_menu(assigns) do
     ~H"""

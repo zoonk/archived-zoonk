@@ -1,10 +1,10 @@
-defmodule UneebeeWeb.Live.MyCourses do
+defmodule ZoonkWeb.Live.MyCourses do
   @moduledoc false
-  use UneebeeWeb, :live_view
+  use ZoonkWeb, :live_view
 
-  import UneebeeWeb.Components.Content.CourseList
+  import ZoonkWeb.Components.Content.CourseList
 
-  alias Uneebee.Content
+  alias Zoonk.Content
 
   @impl Phoenix.LiveView
   def mount(_params, _session, socket) do

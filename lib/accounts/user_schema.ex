@@ -1,12 +1,12 @@
-defmodule Uneebee.Accounts.User do
+defmodule Zoonk.Accounts.User do
   @moduledoc false
   use Ecto.Schema
 
   import Ecto.Changeset
-  import UneebeeWeb.Gettext
-  import UneebeeWeb.Shared.Validators
+  import ZoonkWeb.Gettext
+  import ZoonkWeb.Shared.Validators
 
-  alias UneebeeWeb.Plugs.Translate
+  alias ZoonkWeb.Plugs.Translate
 
   @type t() :: %__MODULE__{}
 
@@ -97,7 +97,7 @@ defmodule Uneebee.Accounts.User do
   defp maybe_validate_unique_email(changeset, opts) do
     if Keyword.get(opts, :validate_email, true) do
       changeset
-      |> unsafe_validate_unique(:email, Uneebee.Repo)
+      |> unsafe_validate_unique(:email, Zoonk.Repo)
       |> unique_constraint(:email)
     else
       changeset
@@ -167,7 +167,7 @@ defmodule Uneebee.Accounts.User do
   `Bcrypt.no_user_verify/0` to avoid timing attacks.
   """
   @spec valid_password?(Ecto.Schema.t(), String.t()) :: boolean()
-  def valid_password?(%Uneebee.Accounts.User{hashed_password: hashed_password}, password) when is_binary(hashed_password) and byte_size(password) > 0 do
+  def valid_password?(%Zoonk.Accounts.User{hashed_password: hashed_password}, password) when is_binary(hashed_password) and byte_size(password) > 0 do
     Bcrypt.verify_pass(password, hashed_password)
   end
 
@@ -198,7 +198,7 @@ defmodule Uneebee.Accounts.User do
 
   defp maybe_validate_unique_username(changeset, opts) do
     if Keyword.get(opts, :validate_username, true) do
-      changeset |> unsafe_validate_unique(:username, Uneebee.Repo) |> unique_constraint(:username)
+      changeset |> unsafe_validate_unique(:username, Zoonk.Repo) |> unique_constraint(:username)
     else
       changeset
     end

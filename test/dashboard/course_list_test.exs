@@ -1,7 +1,7 @@
-defmodule UneebeeWeb.DashboardCourseListLiveTest do
-  use UneebeeWeb.ConnCase, async: true
+defmodule ZoonkWeb.DashboardCourseListLiveTest do
+  use ZoonkWeb.ConnCase, async: true
 
-  import Uneebee.Fixtures.Content
+  import Zoonk.Fixtures.Content
 
   describe "/dashboard/courses (non-authenticated users)" do
     setup :set_school

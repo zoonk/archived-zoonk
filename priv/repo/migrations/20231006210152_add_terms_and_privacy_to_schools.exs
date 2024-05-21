@@ -1,4 +1,4 @@
-defmodule Uneebee.Repo.Migrations.AddTermsAndPrivacyToSchools do
+defmodule Zoonk.Repo.Migrations.AddTermsAndPrivacyToSchools do
   use Ecto.Migration
 
   def change do

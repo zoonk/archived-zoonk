@@ -1,4 +1,4 @@
-defmodule Uneebee.Organizations.SchoolUser do
+defmodule Zoonk.Organizations.SchoolUser do
   @moduledoc """
   Schema for the relationship between schools and users.
   """
@@ -6,8 +6,8 @@ defmodule Uneebee.Organizations.SchoolUser do
 
   import Ecto.Changeset
 
-  alias Uneebee.Accounts.User
-  alias Uneebee.Organizations.School
+  alias Zoonk.Accounts.User
+  alias Zoonk.Organizations.School
 
   @type t :: %__MODULE__{}
 

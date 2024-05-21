@@ -1,10 +1,10 @@
-defmodule Uneebee.Fixtures.Accounts do
+defmodule Zoonk.Fixtures.Accounts do
   @moduledoc """
   This module defines test helpers for creating
-  entities via the `Uneebee.Accounts` context.
+  entities via the `Zoonk.Accounts` context.
   """
 
-  alias Uneebee.Accounts.User
+  alias Zoonk.Accounts.User
 
   @spec unique_user_email() :: String.t()
   def unique_user_email, do: "user#{System.unique_integer()}@example.com"
@@ -29,7 +29,7 @@ defmodule Uneebee.Fixtures.Accounts do
     {:ok, user} =
       attrs
       |> valid_user_attributes()
-      |> Uneebee.Accounts.register_user()
+      |> Zoonk.Accounts.register_user()
 
     user
   end

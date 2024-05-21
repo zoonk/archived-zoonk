@@ -1,4 +1,4 @@
-defmodule Uneebee.Repo.Migrations.CreateIndexForUserIdAndMedalForMedals do
+defmodule Zoonk.Repo.Migrations.CreateIndexForUserIdAndMedalForMedals do
   use Ecto.Migration
 
   def change do

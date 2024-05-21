@@ -1,4 +1,4 @@
-defmodule Uneebee.Repo.Migrations.AddAnalyticsToSchoolUsers do
+defmodule Zoonk.Repo.Migrations.AddAnalyticsToSchoolUsers do
   use Ecto.Migration
 
   def change do

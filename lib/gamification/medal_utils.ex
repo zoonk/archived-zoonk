@@ -1,10 +1,10 @@
-defmodule Uneebee.Gamification.MedalUtils do
+defmodule Zoonk.Gamification.MedalUtils do
   @moduledoc """
   Medal configuration and utilities.
   """
-  import UneebeeWeb.Gettext
+  import ZoonkWeb.Gettext
 
-  alias Uneebee.Gamification.Medal
+  alias Zoonk.Gamification.Medal
 
   @doc """
   Supported reasons for receiving a medal.

@@ -7,17 +7,17 @@
 # General application configuration
 import Config
 
-config :uneebee,
-  ecto_repos: [Uneebee.Repo]
+config :zoonk,
+  ecto_repos: [Zoonk.Repo]
 
 # Configures the endpoint
-config :uneebee, UneebeeWeb.Endpoint,
+config :zoonk, ZoonkWeb.Endpoint,
   url: [host: "localhost"],
   render_errors: [
-    formats: [html: UneebeeWeb.ErrorHTML, json: UneebeeWeb.ErrorJSON],
+    formats: [html: ZoonkWeb.ErrorHTML, json: ZoonkWeb.ErrorJSON],
     layout: false
   ],
-  pubsub_server: Uneebee.PubSub,
+  pubsub_server: Zoonk.PubSub,
   live_view: [signing_salt: "18a5Hr6d"]
 
 # Configures the mailer
@@ -27,10 +27,10 @@ config :uneebee, UneebeeWeb.Endpoint,
 #
 # For production it's recommended to configure a different adapter
 # at the `config/runtime.exs`.
-config :uneebee, Uneebee.Mailer, adapter: Swoosh.Adapters.Local
+config :zoonk, Zoonk.Mailer, adapter: Swoosh.Adapters.Local
 
 # Configure translation
-config :uneebee, UneebeeWeb.Gettext, default_locale: "en", locales: ~w(en pt)
+config :zoonk, ZoonkWeb.Gettext, default_locale: "en", locales: ~w(en pt)
 
 # Configure esbuild (the version is required)
 config :esbuild,

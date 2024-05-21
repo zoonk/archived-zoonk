@@ -1,8 +1,8 @@
-defmodule UneebeeWeb.Live.ResetPassword do
+defmodule ZoonkWeb.Live.ResetPassword do
   @moduledoc false
-  use UneebeeWeb, :live_view
+  use ZoonkWeb, :live_view
 
-  alias Uneebee.Accounts
+  alias Zoonk.Accounts
 
   @impl Phoenix.LiveView
   def mount(params, _session, socket) do

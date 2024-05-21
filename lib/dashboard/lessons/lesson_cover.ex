@@ -1,9 +1,9 @@
-defmodule UneebeeWeb.Live.Dashboard.LessonCover do
+defmodule ZoonkWeb.Live.Dashboard.LessonCover do
   @moduledoc false
-  use UneebeeWeb, :live_view
+  use ZoonkWeb, :live_view
 
-  alias Uneebee.Content
-  alias UneebeeWeb.Components.Upload
+  alias Zoonk.Content
+  alias ZoonkWeb.Components.Upload
 
   @impl Phoenix.LiveView
   def mount(_params, _session, socket) do

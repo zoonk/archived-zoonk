@@ -1,9 +1,9 @@
-defmodule UneebeeWeb.Billing.Utils do
+defmodule ZoonkWeb.Billing.Utils do
   @moduledoc """
   Reusable configuration and utilities for billing.
   """
 
-  import UneebeeWeb.Gettext
+  import ZoonkWeb.Gettext
 
   @max_free_users 2
 

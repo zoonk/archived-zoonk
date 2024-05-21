@@ -1,9 +1,9 @@
-defmodule UneebeeWeb.UserLoginLiveTest do
-  use UneebeeWeb.ConnCase, async: true
+defmodule ZoonkWeb.UserLoginLiveTest do
+  use ZoonkWeb.ConnCase, async: true
 
   import Phoenix.LiveViewTest
-  import Uneebee.Fixtures.Accounts
-  import Uneebee.Fixtures.Organizations
+  import Zoonk.Fixtures.Accounts
+  import Zoonk.Fixtures.Organizations
 
   describe "Log in page" do
     test "renders log in page", %{conn: conn} do

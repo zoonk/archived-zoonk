@@ -1,12 +1,12 @@
 # credo:disable-for-this-file Credo.Check.Readability.Specs
 
-defmodule UneebeeWeb.Components.Link do
+defmodule ZoonkWeb.Components.Link do
   @moduledoc """
   Link components.
   """
   use Phoenix.Component
 
-  import UneebeeWeb.Components.Icon
+  import ZoonkWeb.Components.Icon
 
   @doc """
   Renders a styled link using our default style guide.

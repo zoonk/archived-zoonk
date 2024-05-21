@@ -1,9 +1,9 @@
-defmodule UneebeeWeb.Components.Dashboard.LessonPublish do
+defmodule ZoonkWeb.Components.Dashboard.LessonPublish do
   @moduledoc false
-  use UneebeeWeb, :live_component
+  use ZoonkWeb, :live_component
 
-  alias Uneebee.Content
-  alias Uneebee.Content.Lesson
+  alias Zoonk.Content
+  alias Zoonk.Content.Lesson
 
   attr :lesson, Lesson, required: true
 

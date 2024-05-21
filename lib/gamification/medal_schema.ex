@@ -1,4 +1,4 @@
-defmodule Uneebee.Gamification.UserMedal do
+defmodule Zoonk.Gamification.UserMedal do
   @moduledoc """
   UserMedal schema.
 
@@ -9,10 +9,10 @@ defmodule Uneebee.Gamification.UserMedal do
 
   import Ecto.Changeset
 
-  alias Uneebee.Accounts.User
-  alias Uneebee.Content.Lesson
-  alias Uneebee.Gamification.MedalUtils
-  alias Uneebee.Gamification.UserMission
+  alias Zoonk.Accounts.User
+  alias Zoonk.Content.Lesson
+  alias Zoonk.Gamification.MedalUtils
+  alias Zoonk.Gamification.UserMission
 
   @type t :: %__MODULE__{}
 

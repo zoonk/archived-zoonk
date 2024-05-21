@@ -1,12 +1,12 @@
-defmodule UneebeeWeb.DashboardCourseEditLiveTest do
+defmodule ZoonkWeb.DashboardCourseEditLiveTest do
   @moduledoc false
-  use UneebeeWeb.ConnCase, async: true
+  use ZoonkWeb.ConnCase, async: true
 
   import Phoenix.LiveViewTest
-  import Uneebee.Fixtures.Content
-  import UneebeeWeb.TestHelpers.Upload
+  import Zoonk.Fixtures.Content
+  import ZoonkWeb.TestHelpers.Upload
 
-  alias Uneebee.Content
+  alias Zoonk.Content
 
   @course_form "#course-form"
 

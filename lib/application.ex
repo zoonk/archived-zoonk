@@ -1,4 +1,4 @@
-defmodule Uneebee.Application do
+defmodule Zoonk.Application do
   # See https://hexdocs.pm/elixir/Application.html
   # for more information on OTP Applications
   @moduledoc false
@@ -9,17 +9,17 @@ defmodule Uneebee.Application do
   def start(_type, _args) do
     children = [
       # Start the Telemetry supervisor
-      UneebeeWeb.Telemetry,
+      ZoonkWeb.Telemetry,
       # Start the Ecto repository
-      Uneebee.Repo,
+      Zoonk.Repo,
       # Start the PubSub system
-      {Phoenix.PubSub, name: Uneebee.PubSub},
+      {Phoenix.PubSub, name: Zoonk.PubSub},
       # Start Finch
-      {Finch, name: Uneebee.Finch},
+      {Finch, name: Zoonk.Finch},
       # Start the Endpoint (http/https)
-      UneebeeWeb.Endpoint
-      # Start a worker by calling: Uneebee.Worker.start_link(arg)
-      # {Uneebee.Worker, arg}
+      ZoonkWeb.Endpoint
+      # Start a worker by calling: Zoonk.Worker.start_link(arg)
+      # {Zoonk.Worker, arg}
     ]
 
     # Sentry logging
@@ -27,7 +27,7 @@ defmodule Uneebee.Application do
 
     # See https://hexdocs.pm/elixir/Supervisor.html
     # for other strategies and supported options
-    opts = [strategy: :one_for_one, name: Uneebee.Supervisor]
+    opts = [strategy: :one_for_one, name: Zoonk.Supervisor]
     Supervisor.start_link(children, opts)
   end
 
@@ -35,7 +35,7 @@ defmodule Uneebee.Application do
   # whenever the application is updated.
   @impl Application
   def config_change(changed, _new, removed) do
-    UneebeeWeb.Endpoint.config_change(changed, removed)
+    ZoonkWeb.Endpoint.config_change(changed, removed)
     :ok
   end
 end

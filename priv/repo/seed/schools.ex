@@ -1,15 +1,15 @@
 defmodule SchoolSeed do
   @moduledoc false
 
-  alias Uneebee.Accounts
-  alias Uneebee.Organizations
+  alias Zoonk.Accounts
+  alias Zoonk.Organizations
 
   @app %{
-    name: "UneeBee",
-    custom_domain: "uneebee.test",
-    email: "noreply@uneebee.com",
+    name: "Zoonk",
+    custom_domain: "zoonk.test",
+    email: "noreply@zoonk.org",
     public?: true,
-    slug: "uneebee",
+    slug: "zoonk",
     managers: ["einstein"],
     teachers: ["curie"],
     students: ["newton"]

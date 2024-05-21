@@ -1,4 +1,4 @@
-defmodule Uneebee.Repo.Migrations.AddAllowGuestsFieldToSchools do
+defmodule Zoonk.Repo.Migrations.AddAllowGuestsFieldToSchools do
   use Ecto.Migration
 
   def change do

@@ -1,4 +1,4 @@
-defmodule Uneebee.Repo.Migrations.UseTextTypeForOptionFeedback do
+defmodule Zoonk.Repo.Migrations.UseTextTypeForOptionFeedback do
   use Ecto.Migration
 
   def change do

@@ -1,12 +1,12 @@
 # credo:disable-for-this-file Credo.Check.Readability.Specs
 
-defmodule UneebeeWeb.Components.Menu do
+defmodule ZoonkWeb.Components.Menu do
   @moduledoc """
   Menu components.
   """
   use Phoenix.Component
 
-  import UneebeeWeb.Components.Icon
+  import ZoonkWeb.Components.Icon
 
   @doc """
   Renders a menu item.

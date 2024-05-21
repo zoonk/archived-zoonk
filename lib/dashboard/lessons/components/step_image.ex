@@ -1,12 +1,12 @@
 # credo:disable-for-this-file Credo.Check.Readability.Specs
 
-defmodule UneebeeWeb.Components.Dashboard.StepImage do
+defmodule ZoonkWeb.Components.Dashboard.StepImage do
   @moduledoc false
-  use UneebeeWeb, :html
+  use ZoonkWeb, :html
 
-  alias Uneebee.Content.Course
-  alias Uneebee.Content.Lesson
-  alias Uneebee.Content.LessonStep
+  alias Zoonk.Content.Course
+  alias Zoonk.Content.Lesson
+  alias Zoonk.Content.LessonStep
 
   attr :course, Course, required: true
   attr :lesson, Lesson, required: true

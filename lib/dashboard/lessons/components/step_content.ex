@@ -1,11 +1,11 @@
-defmodule UneebeeWeb.Components.Dashboard.StepContent do
+defmodule ZoonkWeb.Components.Dashboard.StepContent do
   @moduledoc false
-  use UneebeeWeb, :live_component
+  use ZoonkWeb, :live_component
 
-  alias Uneebee.Content
-  alias Uneebee.Content.Course
-  alias Uneebee.Content.Lesson
-  alias Uneebee.Content.LessonStep
+  alias Zoonk.Content
+  alias Zoonk.Content.Course
+  alias Zoonk.Content.Lesson
+  alias Zoonk.Content.LessonStep
 
   attr :action, :atom, default: nil
   attr :course, Course, required: true

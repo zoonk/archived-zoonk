@@ -1,20 +1,20 @@
-defmodule UneebeeWeb.Live.Dashboard.SchoolBilling do
+defmodule ZoonkWeb.Live.Dashboard.SchoolBilling do
   @moduledoc false
-  use UneebeeWeb, :live_view
+  use ZoonkWeb, :live_view
 
-  import UneebeeWeb.Billing.Utils
+  import ZoonkWeb.Billing.Utils
 
-  alias Uneebee.Billing
-  alias Uneebee.Billing.Subscription
-  alias Uneebee.Organizations
-  alias Uneebee.Organizations.School
+  alias Zoonk.Billing
+  alias Zoonk.Billing.Subscription
+  alias Zoonk.Organizations
+  alias Zoonk.Organizations.School
 
   @impl Phoenix.LiveView
   def mount(_params, _session, socket) do
     %{school: school} = socket.assigns
 
     subscription = Billing.get_subscription_by_school_id(school.id)
-    flexible_pricing = Billing.get_subscription_price("uneebee_flexible")
+    flexible_pricing = Billing.get_subscription_price("zoonk_flexible")
     currency = default_currency(school, flexible_pricing)
 
     socket =

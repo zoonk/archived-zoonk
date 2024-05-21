@@ -1,8 +1,8 @@
-defmodule UneebeeWeb.Controller.LessonStep do
+defmodule ZoonkWeb.Controller.LessonStep do
   @moduledoc false
-  use UneebeeWeb, :controller
+  use ZoonkWeb, :controller
 
-  alias Uneebee.Content
+  alias Zoonk.Content
 
   @spec add_suggested_course(Plug.Conn.t(), map()) :: Plug.Conn.t()
   def add_suggested_course(conn, %{"course_slug" => course_slug, "lesson_id" => lesson_id, "step_order" => order, "course_id" => course_id}) do

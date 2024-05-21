@@ -1,5 +1,5 @@
 # credo:disable-for-this-file Credo.Check.Readability.Specs
-defmodule Uneebee.DataCase do
+defmodule Zoonk.DataCase do
   @moduledoc """
   This module defines the setup for tests requiring
   access to the application's data layer.
@@ -11,7 +11,7 @@ defmodule Uneebee.DataCase do
   we enable the SQL sandbox, so changes done to the database
   are reverted at the end of every test. If you are using
   PostgreSQL, you can even run database tests asynchronously
-  by setting `use Uneebee.DataCase, async: true`, although
+  by setting `use Zoonk.DataCase, async: true`, although
   this option is not recommended for other databases.
   """
 
@@ -24,14 +24,14 @@ defmodule Uneebee.DataCase do
       import Ecto
       import Ecto.Changeset
       import Ecto.Query
-      import Uneebee.DataCase
+      import Zoonk.DataCase
 
-      alias Uneebee.Repo
+      alias Zoonk.Repo
     end
   end
 
   setup tags do
-    Uneebee.DataCase.setup_sandbox(tags)
+    Zoonk.DataCase.setup_sandbox(tags)
     :ok
   end
 
@@ -39,7 +39,7 @@ defmodule Uneebee.DataCase do
   Sets up the sandbox based on the test tags.
   """
   def setup_sandbox(tags) do
-    pid = Sandbox.start_owner!(Uneebee.Repo, shared: not tags[:async])
+    pid = Sandbox.start_owner!(Zoonk.Repo, shared: not tags[:async])
     on_exit(fn -> Sandbox.stop_owner(pid) end)
   end
 

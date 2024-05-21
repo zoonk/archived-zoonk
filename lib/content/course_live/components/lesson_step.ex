@@ -1,11 +1,11 @@
 # credo:disable-for-this-file Credo.Check.Readability.Specs
 
-defmodule UneebeeWeb.Components.Content.LessonStep do
+defmodule ZoonkWeb.Components.Content.LessonStep do
   @moduledoc false
-  use UneebeeWeb, :html
+  use ZoonkWeb, :html
 
-  alias Uneebee.Content.LessonStep
-  alias Uneebee.Content.StepOption
+  alias Zoonk.Content.LessonStep
+  alias Zoonk.Content.StepOption
 
   attr :step, LessonStep, required: true
   attr :selected, StepOption, default: nil

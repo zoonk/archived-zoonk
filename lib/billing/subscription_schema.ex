@@ -1,4 +1,4 @@
-defmodule Uneebee.Billing.Subscription do
+defmodule Zoonk.Billing.Subscription do
   @moduledoc """
   Subscription schema.
   """
@@ -6,7 +6,7 @@ defmodule Uneebee.Billing.Subscription do
 
   import Ecto.Changeset
 
-  alias Uneebee.Organizations.School
+  alias Zoonk.Organizations.School
 
   @type t :: %__MODULE__{}
 

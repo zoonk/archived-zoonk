@@ -1,4 +1,4 @@
-defmodule Uneebee.Repo.Migrations.RemoveKindFromLessons do
+defmodule Zoonk.Repo.Migrations.RemoveKindFromLessons do
   use Ecto.Migration
 
   def change do

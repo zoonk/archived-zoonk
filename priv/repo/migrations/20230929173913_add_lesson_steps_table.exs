@@ -1,4 +1,4 @@
-defmodule Uneebee.Repo.Migrations.AddLessonStepsTable do
+defmodule Zoonk.Repo.Migrations.AddLessonStepsTable do
   use Ecto.Migration
 
   def change do

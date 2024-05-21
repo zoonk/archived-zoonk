@@ -1,13 +1,13 @@
-defmodule UneebeeWeb.Live.Dashboard.SchoolView do
+defmodule ZoonkWeb.Live.Dashboard.SchoolView do
   @moduledoc false
-  use UneebeeWeb, :live_view
+  use ZoonkWeb, :live_view
 
-  import UneebeeWeb.Billing.Utils
+  import ZoonkWeb.Billing.Utils
 
   alias Phoenix.LiveView.Socket
-  alias Uneebee.Billing
-  alias Uneebee.Billing.Subscription
-  alias Uneebee.Organizations
+  alias Zoonk.Billing
+  alias Zoonk.Billing.Subscription
+  alias Zoonk.Organizations
 
   @impl Phoenix.LiveView
   def mount(params, _session, socket) do
@@ -15,7 +15,7 @@ defmodule UneebeeWeb.Live.Dashboard.SchoolView do
 
     current_school = Organizations.get_school!(params["id"])
 
-    if school.id != current_school.school_id, do: raise(UneebeeWeb.PermissionError, code: :permission_denied)
+    if school.id != current_school.school_id, do: raise(ZoonkWeb.PermissionError, code: :permission_denied)
 
     user_count = Organizations.get_school_users_count(current_school.id)
     subscription = Billing.get_subscription_by_school_id(current_school.id)

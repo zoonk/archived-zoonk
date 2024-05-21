@@ -1,15 +1,15 @@
-defmodule UneebeeWeb.PlayViewLiveTest do
-  use UneebeeWeb.ConnCase, async: true
+defmodule ZoonkWeb.PlayViewLiveTest do
+  use ZoonkWeb.ConnCase, async: true
 
   import Phoenix.LiveViewTest
-  import Uneebee.Fixtures.Content
-  import Uneebee.Fixtures.Organizations
+  import Zoonk.Fixtures.Content
+  import Zoonk.Fixtures.Organizations
 
-  alias Uneebee.Accounts
-  alias Uneebee.Content
-  alias Uneebee.Content.UserSelection
-  alias Uneebee.Organizations
-  alias Uneebee.Repo
+  alias Zoonk.Accounts
+  alias Zoonk.Content
+  alias Zoonk.Content.UserSelection
+  alias Zoonk.Organizations
+  alias Zoonk.Repo
 
   @select_form "#play"
 

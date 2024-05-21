@@ -1,27 +1,27 @@
-defmodule Uneebee.Content do
+defmodule Zoonk.Content do
   @moduledoc """
   Content context.
   """
   import Ecto.Query, warn: false
-  import UneebeeWeb.Gettext
+  import ZoonkWeb.Gettext
 
-  alias Uneebee.Accounts
-  alias Uneebee.Accounts.User
-  alias Uneebee.Content.Course
-  alias Uneebee.Content.CourseData
-  alias Uneebee.Content.CourseUser
-  alias Uneebee.Content.CourseUtils
-  alias Uneebee.Content.Lesson
-  alias Uneebee.Content.LessonStep
-  alias Uneebee.Content.StepOption
-  alias Uneebee.Content.StepSuggestedCourse
-  alias Uneebee.Content.UserLesson
-  alias Uneebee.Content.UserSelection
-  alias Uneebee.Gamification
-  alias Uneebee.Organizations
-  alias Uneebee.Organizations.School
-  alias Uneebee.Organizations.SchoolUser
-  alias Uneebee.Repo
+  alias Zoonk.Accounts
+  alias Zoonk.Accounts.User
+  alias Zoonk.Content.Course
+  alias Zoonk.Content.CourseData
+  alias Zoonk.Content.CourseUser
+  alias Zoonk.Content.CourseUtils
+  alias Zoonk.Content.Lesson
+  alias Zoonk.Content.LessonStep
+  alias Zoonk.Content.StepOption
+  alias Zoonk.Content.StepSuggestedCourse
+  alias Zoonk.Content.UserLesson
+  alias Zoonk.Content.UserSelection
+  alias Zoonk.Gamification
+  alias Zoonk.Organizations
+  alias Zoonk.Organizations.School
+  alias Zoonk.Organizations.SchoolUser
+  alias Zoonk.Repo
 
   @type course_changeset :: {:ok, Course.t()} | {:error, Ecto.Changeset.t()}
   @type course_user_changeset :: {:ok, CourseUser.t()} | {:error, Ecto.Changeset.t()}

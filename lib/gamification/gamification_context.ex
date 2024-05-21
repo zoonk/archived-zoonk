@@ -1,4 +1,4 @@
-defmodule Uneebee.Gamification do
+defmodule Zoonk.Gamification do
   @moduledoc """
   This module is responsible for the gamification context.
 
@@ -7,15 +7,15 @@ defmodule Uneebee.Gamification do
   """
   import Ecto.Query, warn: false
 
-  alias Uneebee.Accounts.User
-  alias Uneebee.Content
-  alias Uneebee.Content.UserLesson
-  alias Uneebee.Gamification.MedalUtils
-  alias Uneebee.Gamification.MissionUtils
-  alias Uneebee.Gamification.UserMedal
-  alias Uneebee.Gamification.UserMission
-  alias Uneebee.Gamification.UserTrophy
-  alias Uneebee.Repo
+  alias Zoonk.Accounts.User
+  alias Zoonk.Content
+  alias Zoonk.Content.UserLesson
+  alias Zoonk.Gamification.MedalUtils
+  alias Zoonk.Gamification.MissionUtils
+  alias Zoonk.Gamification.UserMedal
+  alias Zoonk.Gamification.UserMission
+  alias Zoonk.Gamification.UserTrophy
+  alias Zoonk.Repo
 
   @type user_medal_changeset :: {:ok, UserMedal.t()} | {:error, Ecto.Changeset.t()}
   @type user_mission_changeset :: {:ok, UserMission.t()} | {:error, Ecto.Changeset.t()}

@@ -1,12 +1,12 @@
 # credo:disable-for-this-file Credo.Check.Readability.Specs
 
-defmodule UneebeeWeb.Components.Header do
+defmodule ZoonkWeb.Components.Header do
   @moduledoc """
   Header components.
   """
   use Phoenix.Component
 
-  import UneebeeWeb.Components.Icon
+  import ZoonkWeb.Components.Icon
 
   @doc """
   Renders a header with title.

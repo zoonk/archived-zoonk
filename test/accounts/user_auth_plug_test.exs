@@ -1,18 +1,18 @@
-defmodule UneebeeWeb.Plugs.UserAuthTest do
-  use UneebeeWeb.ConnCase, async: true
+defmodule ZoonkWeb.Plugs.UserAuthTest do
+  use ZoonkWeb.ConnCase, async: true
 
-  import Uneebee.Fixtures.Accounts
+  import Zoonk.Fixtures.Accounts
 
   alias Phoenix.LiveView
-  alias Uneebee.Accounts
-  alias UneebeeWeb.Plugs.UserAuth
+  alias Zoonk.Accounts
+  alias ZoonkWeb.Plugs.UserAuth
 
-  @remember_me_cookie "_uneebee_web_user_remember_me"
+  @remember_me_cookie "_zoonk_web_user_remember_me"
 
   setup %{conn: conn} do
     conn =
       conn
-      |> Map.replace!(:secret_key_base, UneebeeWeb.Endpoint.config(:secret_key_base))
+      |> Map.replace!(:secret_key_base, ZoonkWeb.Endpoint.config(:secret_key_base))
       |> init_test_session(%{})
 
     %{user: user_fixture(), conn: conn}
@@ -69,7 +69,7 @@ defmodule UneebeeWeb.Plugs.UserAuthTest do
 
     test "broadcasts to the given live_socket_id", %{conn: conn} do
       live_socket_id = "users_sessions:abcdef-token"
-      UneebeeWeb.Endpoint.subscribe(live_socket_id)
+      ZoonkWeb.Endpoint.subscribe(live_socket_id)
       conn |> put_session(:live_socket_id, live_socket_id) |> UserAuth.log_out_user()
 
       assert_receive %Phoenix.Socket.Broadcast{event: "disconnect", topic: ^live_socket_id}
@@ -157,7 +157,7 @@ defmodule UneebeeWeb.Plugs.UserAuthTest do
       user_token = "invalid_token"
       session = conn |> put_session(:user_token, user_token) |> get_session()
 
-      socket = %LiveView.Socket{endpoint: UneebeeWeb.Endpoint, assigns: %{__changed__: %{}, flash: %{}}}
+      socket = %LiveView.Socket{endpoint: ZoonkWeb.Endpoint, assigns: %{__changed__: %{}, flash: %{}}}
 
       {:halt, updated_socket} = UserAuth.on_mount(:ensure_authenticated, %{}, session, socket)
       assert updated_socket.assigns.current_user == nil
@@ -166,7 +166,7 @@ defmodule UneebeeWeb.Plugs.UserAuthTest do
     test "redirects to login page if there isn't a user_token", %{conn: conn} do
       session = get_session(conn)
 
-      socket = %LiveView.Socket{endpoint: UneebeeWeb.Endpoint, assigns: %{__changed__: %{}, flash: %{}}}
+      socket = %LiveView.Socket{endpoint: ZoonkWeb.Endpoint, assigns: %{__changed__: %{}, flash: %{}}}
 
       {:halt, updated_socket} = UserAuth.on_mount(:ensure_authenticated, %{}, session, socket)
       assert updated_socket.assigns.current_user == nil

@@ -1,4 +1,4 @@
-defmodule UneebeeWeb.Plugs.Translate do
+defmodule ZoonkWeb.Plugs.Translate do
   @moduledoc """
   Reusable functions for setting up multiple languages and translations.
   """
@@ -35,7 +35,7 @@ defmodule UneebeeWeb.Plugs.Translate do
     user = socket.assigns.current_user
     locale = if user, do: Atom.to_string(user.language), else: Map.get(session, "locale")
 
-    Gettext.put_locale(UneebeeWeb.Gettext, locale)
+    Gettext.put_locale(ZoonkWeb.Gettext, locale)
 
     {:cont, socket}
   end
@@ -58,7 +58,7 @@ defmodule UneebeeWeb.Plugs.Translate do
   # Add the locale to the session and to `Gettext`
   @spec set_locale(Plug.Conn.t(), String.t()) :: Plug.Conn.t()
   defp set_locale(conn, locale) do
-    Gettext.put_locale(UneebeeWeb.Gettext, locale)
+    Gettext.put_locale(ZoonkWeb.Gettext, locale)
     put_session(conn, :locale, locale)
   end
 

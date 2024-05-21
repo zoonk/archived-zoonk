@@ -1,18 +1,18 @@
-defmodule Uneebee.Organizations do
+defmodule Zoonk.Organizations do
   @moduledoc """
   Organizations context.
   """
   import Ecto.Query, warn: false
 
-  alias Uneebee.Accounts.User
-  alias Uneebee.Billing
-  alias Uneebee.Billing.Subscription
-  alias Uneebee.Content.Course
-  alias Uneebee.Content.CourseUser
-  alias Uneebee.Organizations.School
-  alias Uneebee.Organizations.SchoolUser
-  alias Uneebee.Organizations.SchoolUtils
-  alias Uneebee.Repo
+  alias Zoonk.Accounts.User
+  alias Zoonk.Billing
+  alias Zoonk.Billing.Subscription
+  alias Zoonk.Content.Course
+  alias Zoonk.Content.CourseUser
+  alias Zoonk.Organizations.School
+  alias Zoonk.Organizations.SchoolUser
+  alias Zoonk.Organizations.SchoolUtils
+  alias Zoonk.Repo
 
   @type school_changeset :: {:ok, School.t()} | {:error, Ecto.Changeset.t()} | {:error, String.t()}
   @type school_user_changeset :: {:ok, SchoolUser.t()} | {:error, Ecto.Changeset.t()} | {:error, String.t()}
@@ -229,10 +229,10 @@ defmodule Uneebee.Organizations do
 
   ## Examples
 
-      iex> get_school_user("uneebee", "will")
+      iex> get_school_user("zoonk", "will")
       %SchoolUser{}
 
-      iex> get_school_user("uneebee", "invalid")
+      iex> get_school_user("zoonk", "invalid")
       nil
   """
   @spec get_school_user(String.t(), String.t(), list()) :: SchoolUser.t() | nil
@@ -294,7 +294,7 @@ defmodule Uneebee.Organizations do
 
   ## Examples
 
-      iex> get_school_by_host!("unisc.uneebee.com")
+      iex> get_school_by_host!("unisc.zoonk.io")
       %School{}
 
       iex> get_school_by_host!("interactive.rug.nl")

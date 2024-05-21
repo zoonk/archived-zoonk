@@ -1,9 +1,9 @@
-# fly.toml app configuration file generated for uneebee on 2023-10-09T14:28:39-03:00
+# fly.toml app configuration file generated for zoonk on 2023-10-09T14:28:39-03:00
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
 
-app = "wikaro"
+app = "zoonk"
 primary_region = "iad"
 kill_signal = "SIGTERM"
 swap_size_mb = 512
@@ -14,8 +14,11 @@ swap_size_mb = 512
   release_command = "/app/bin/migrate"
 
 [env]
-  PHX_HOST = "wikaro.io"
+  PHX_HOST = "zoonk.io"
   PORT = "8080"
+
+[build.args]
+  CDN_URL = "https://cdn.zoonk.io"
 
 [http_service]
   internal_port = 8080

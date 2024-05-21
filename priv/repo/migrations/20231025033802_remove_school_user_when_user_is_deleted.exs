@@ -1,4 +1,4 @@
-defmodule Uneebee.Repo.Migrations.RemoveSchoolUserWhenUserIsDeleted do
+defmodule Zoonk.Repo.Migrations.RemoveSchoolUserWhenUserIsDeleted do
   use Ecto.Migration
 
   def change do

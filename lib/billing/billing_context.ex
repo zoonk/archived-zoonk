@@ -1,15 +1,15 @@
-defmodule Uneebee.Billing do
+defmodule Zoonk.Billing do
   @moduledoc """
   Billing context.
   """
 
-  import UneebeeWeb.Billing.Utils
+  import ZoonkWeb.Billing.Utils
 
-  alias Uneebee.Accounts.User
-  alias Uneebee.Billing.Subscription
-  alias Uneebee.Organizations
-  alias Uneebee.Organizations.School
-  alias Uneebee.Repo
+  alias Zoonk.Accounts.User
+  alias Zoonk.Billing.Subscription
+  alias Zoonk.Organizations
+  alias Zoonk.Organizations.School
+  alias Zoonk.Repo
 
   @type subscription_changeset :: {:ok, Subscription.t()} | {:error, Ecto.Changeset.t()}
 

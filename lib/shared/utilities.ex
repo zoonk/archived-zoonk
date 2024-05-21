@@ -1,9 +1,9 @@
-defmodule UneebeeWeb.Shared.Utilities do
+defmodule ZoonkWeb.Shared.Utilities do
   @moduledoc """
   Shared utilities for common use cases.
   """
 
-  alias UneebeeWeb.Shared.ImageOptimizer
+  alias ZoonkWeb.Shared.ImageOptimizer
 
   @doc """
   Convert a string into a boolean.
@@ -70,7 +70,7 @@ defmodule UneebeeWeb.Shared.Utilities do
   When it starts with `https`, then it means it's a remote image.
 
   In both cases, we should just load the image. However, when it's an optimized image using Cloudflare Images,
-  then we should use the `image_url` function from `UneebeeWeb.Shared.ImageOptimizer`.
+  then we should use the `image_url` function from `ZoonkWeb.Shared.ImageOptimizer`.
   """
   @spec get_image_url(String.t() | nil, String.t(), list()) :: String.t()
   def get_image_url(image, variant, opts \\ [])

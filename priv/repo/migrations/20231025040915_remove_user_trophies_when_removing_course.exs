@@ -1,4 +1,4 @@
-defmodule Uneebee.Repo.Migrations.RemoveUserTrophiesWhenRemovingCourse do
+defmodule Zoonk.Repo.Migrations.RemoveUserTrophiesWhenRemovingCourse do
   use Ecto.Migration
 
   def change do

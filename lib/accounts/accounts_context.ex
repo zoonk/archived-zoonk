@@ -1,18 +1,18 @@
-defmodule Uneebee.Accounts do
+defmodule Zoonk.Accounts do
   @moduledoc """
   The Accounts context.
   """
 
   import Ecto.Query, warn: false
 
-  alias Uneebee.Accounts.User
-  alias Uneebee.Accounts.UserNotifier
-  alias Uneebee.Accounts.UserToken
-  alias Uneebee.Gamification
-  alias Uneebee.Mailer
-  alias Uneebee.Organizations.School
-  alias Uneebee.Repo
-  alias UneebeeWeb.Shared.Utilities
+  alias Zoonk.Accounts.User
+  alias Zoonk.Accounts.UserNotifier
+  alias Zoonk.Accounts.UserToken
+  alias Zoonk.Gamification
+  alias Zoonk.Mailer
+  alias Zoonk.Organizations.School
+  alias Zoonk.Repo
+  alias ZoonkWeb.Shared.Utilities
 
   @type user_changeset :: {:ok, User.t()} | {:error, Ecto.Changeset.t()}
 

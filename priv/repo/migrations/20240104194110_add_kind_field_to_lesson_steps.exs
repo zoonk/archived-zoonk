@@ -1,4 +1,4 @@
-defmodule Uneebee.Repo.Migrations.AddKindFieldToLessonSteps do
+defmodule Zoonk.Repo.Migrations.AddKindFieldToLessonSteps do
   use Ecto.Migration
 
   def change do

@@ -1,11 +1,11 @@
-defmodule UneebeeWeb.CourseViewLiveTest do
+defmodule ZoonkWeb.CourseViewLiveTest do
   @moduledoc false
-  use UneebeeWeb.ConnCase, async: true
+  use ZoonkWeb.ConnCase, async: true
 
   import Phoenix.LiveViewTest
-  import Uneebee.Fixtures.Content
+  import Zoonk.Fixtures.Content
 
-  alias Uneebee.Content
+  alias Zoonk.Content
 
   describe "/c/:slug (non-authenticated)" do
     setup :set_school

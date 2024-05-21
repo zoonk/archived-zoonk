@@ -1,12 +1,12 @@
-defmodule UneebeeWeb.ErrorHTML do
-  use UneebeeWeb, :html
+defmodule ZoonkWeb.ErrorHTML do
+  use ZoonkWeb, :html
 
   # If you want to customize your error pages,
   # uncomment the embed_templates/1 call below
   # and add pages to the error directory:
   #
-  #   * lib/uneebee_web/controllers/error_html/404.html.heex
-  #   * lib/uneebee_web/controllers/error_html/500.html.heex
+  #   * lib/zoonk_web/controllers/error_html/404.html.heex
+  #   * lib/zoonk_web/controllers/error_html/500.html.heex
   #
   # embed_templates "error_html/*"
 

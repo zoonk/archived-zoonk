@@ -1,6 +1,6 @@
-defmodule UneebeeWeb.Live.Login do
+defmodule ZoonkWeb.Live.Login do
   @moduledoc false
-  use UneebeeWeb, :live_view
+  use ZoonkWeb, :live_view
 
   @impl Phoenix.LiveView
   def mount(_params, _session, socket) do

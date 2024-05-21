@@ -1,7 +1,7 @@
 defmodule UserSeed do
   @moduledoc false
 
-  alias Uneebee.Accounts
+  alias Zoonk.Accounts
 
   @users [
     %{

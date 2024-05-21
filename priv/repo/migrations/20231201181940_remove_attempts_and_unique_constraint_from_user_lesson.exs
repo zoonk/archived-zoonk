@@ -1,4 +1,4 @@
-defmodule Uneebee.Repo.Migrations.RemoveAttemptsAndUniqueConstraintFromUserLesson do
+defmodule Zoonk.Repo.Migrations.RemoveAttemptsAndUniqueConstraintFromUserLesson do
   use Ecto.Migration
 
   def change do

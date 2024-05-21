@@ -1,4 +1,4 @@
-defmodule Uneebee.Repo.Migrations.DeleteMedalWhenDeletingLesson do
+defmodule Zoonk.Repo.Migrations.DeleteMedalWhenDeletingLesson do
   use Ecto.Migration
 
   def change do

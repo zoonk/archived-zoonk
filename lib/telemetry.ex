@@ -1,4 +1,4 @@
-defmodule UneebeeWeb.Telemetry do
+defmodule ZoonkWeb.Telemetry do
   @moduledoc false
   use Supervisor
 
@@ -36,11 +36,11 @@ defmodule UneebeeWeb.Telemetry do
       summary("phoenix.channel_handled_in.duration", tags: [:event], unit: {:native, :millisecond}),
 
       # Database Metrics
-      summary("uneebee.repo.query.total_time", unit: {:native, :millisecond}, description: "The sum of the other measurements"),
-      summary("uneebee.repo.query.decode_time", unit: {:native, :millisecond}, description: "The time spent decoding the data received from the database"),
-      summary("uneebee.repo.query.query_time", unit: {:native, :millisecond}, description: "The time spent executing the query"),
-      summary("uneebee.repo.query.queue_time", unit: {:native, :millisecond}, description: "The time spent waiting for a database connection"),
-      summary("uneebee.repo.query.idle_time", unit: {:native, :millisecond}, description: "The time the connection spent waiting before being checked out for the query"),
+      summary("zoonk.repo.query.total_time", unit: {:native, :millisecond}, description: "The sum of the other measurements"),
+      summary("zoonk.repo.query.decode_time", unit: {:native, :millisecond}, description: "The time spent decoding the data received from the database"),
+      summary("zoonk.repo.query.query_time", unit: {:native, :millisecond}, description: "The time spent executing the query"),
+      summary("zoonk.repo.query.queue_time", unit: {:native, :millisecond}, description: "The time spent waiting for a database connection"),
+      summary("zoonk.repo.query.idle_time", unit: {:native, :millisecond}, description: "The time the connection spent waiting before being checked out for the query"),
 
       # VM Metrics
       summary("vm.memory.total", unit: {:byte, :kilobyte}),
@@ -54,7 +54,7 @@ defmodule UneebeeWeb.Telemetry do
     [
       # A module, function and arguments to be invoked periodically.
       # This function must call :telemetry.execute/3 and a metric must be added above.
-      # {UneebeeWeb, :count_users, []}
+      # {ZoonkWeb, :count_users, []}
     ]
   end
 end

@@ -1,4 +1,4 @@
-defmodule Uneebee.Repo.Migrations.AddSoundEffectsToUsers do
+defmodule Zoonk.Repo.Migrations.AddSoundEffectsToUsers do
   use Ecto.Migration
 
   def change do

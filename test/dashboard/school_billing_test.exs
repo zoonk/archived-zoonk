@@ -1,14 +1,14 @@
-defmodule UneebeeWeb.SchoolBillingLiveTest do
-  use UneebeeWeb.ConnCase, async: true
+defmodule ZoonkWeb.SchoolBillingLiveTest do
+  use ZoonkWeb.ConnCase, async: true
 
   import Mock
   import Phoenix.LiveViewTest
-  import Uneebee.Fixtures.Billing
+  import Zoonk.Fixtures.Billing
 
-  alias Uneebee.Billing
-  alias Uneebee.Organizations
-  alias Uneebee.Organizations.School
-  alias Uneebee.Repo
+  alias Zoonk.Billing
+  alias Zoonk.Organizations
+  alias Zoonk.Organizations.School
+  alias Zoonk.Repo
 
   @subscription_price %{default: "usd", id: "pri_123", currency_options: %{usd: 10.0, eur: 9.0, brl: 49.99}}
 

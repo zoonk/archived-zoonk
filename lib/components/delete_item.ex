@@ -1,10 +1,10 @@
-defmodule UneebeeWeb.Components.DeleteItem do
+defmodule ZoonkWeb.Components.DeleteItem do
   @moduledoc """
   Reusable component for deleting items.
   """
-  use UneebeeWeb, :live_component
+  use ZoonkWeb, :live_component
 
-  import UneebeeWeb.Components.Input
+  import ZoonkWeb.Components.Input
 
   attr :id, :string, required: true
   attr :name, :string, required: true

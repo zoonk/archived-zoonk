@@ -1,7 +1,7 @@
 # credo:disable-for-this-file Credo.Check.Readability.Specs
-defmodule UneebeeWeb.Components.Layouts.DashboardMenuItem do
+defmodule ZoonkWeb.Components.Layouts.DashboardMenuItem do
   @moduledoc false
-  use UneebeeWeb, :html
+  use ZoonkWeb, :html
 
   attr :active, :boolean, default: false
   attr :rest, :global, include: ~w(href method navigate)

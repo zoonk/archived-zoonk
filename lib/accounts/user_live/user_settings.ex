@@ -1,10 +1,10 @@
-defmodule UneebeeWeb.Live.UserSettings do
+defmodule ZoonkWeb.Live.UserSettings do
   @moduledoc false
-  use UneebeeWeb, :live_view
+  use ZoonkWeb, :live_view
 
-  alias Uneebee.Accounts
-  alias UneebeeWeb.Components.DeleteItem
-  alias UneebeeWeb.Components.Upload
+  alias Zoonk.Accounts
+  alias ZoonkWeb.Components.DeleteItem
+  alias ZoonkWeb.Components.Upload
 
   # When users change their email address, we send them a link to confirm their new email.
   # That link contains a `token` parameter that we use to confirm their email when they
@@ -96,7 +96,7 @@ defmodule UneebeeWeb.Live.UserSettings do
 
     case Accounts.update_user_settings(user, user_params) do
       {:ok, updated_user} ->
-        if changed_language?, do: Gettext.put_locale(UneebeeWeb.Gettext, user_params["language"])
+        if changed_language?, do: Gettext.put_locale(ZoonkWeb.Gettext, user_params["language"])
 
         socket =
           socket

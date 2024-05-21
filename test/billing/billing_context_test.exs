@@ -1,13 +1,13 @@
-defmodule Uneebee.BillingTest do
-  use Uneebee.DataCase, async: true
+defmodule Zoonk.BillingTest do
+  use Zoonk.DataCase, async: true
 
-  import Uneebee.Fixtures.Accounts
-  import Uneebee.Fixtures.Billing
-  import Uneebee.Fixtures.Organizations
+  import Zoonk.Fixtures.Accounts
+  import Zoonk.Fixtures.Billing
+  import Zoonk.Fixtures.Organizations
 
-  alias Uneebee.Billing
-  alias Uneebee.Billing.Subscription
-  alias Uneebee.Organizations
+  alias Zoonk.Billing
+  alias Zoonk.Billing.Subscription
+  alias Zoonk.Organizations
 
   describe "create_stripe_customer/2" do
     test "creates a Stripe customer for a school" do

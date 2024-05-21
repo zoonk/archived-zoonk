@@ -1,11 +1,11 @@
 import Config
 
 # Configure your database
-config :uneebee, Uneebee.Repo,
+config :zoonk, Zoonk.Repo,
   username: "postgres",
   password: "postgres",
   hostname: "localhost",
-  database: "uneebee_dev",
+  database: "zoonk_dev",
   stacktrace: true,
   show_sensitive_data_on_connection_error: true,
   pool_size: 10
@@ -16,7 +16,7 @@ config :uneebee, Uneebee.Repo,
 # The watchers configuration can be used to run external
 # watchers to your application. For example, we can use it
 # to bundle .js and .css sources.
-config :uneebee, UneebeeWeb.Endpoint,
+config :zoonk, ZoonkWeb.Endpoint,
   # Binding to loopback ipv4 address prevents access from other machines.
   # Change to `ip: {0, 0, 0, 0}` to allow access from other machines.
   http: [ip: {0, 0, 0, 0}, port: 4000],
@@ -37,7 +37,7 @@ config :uneebee, UneebeeWeb.Endpoint,
   ]
 
 # Watch static and templates for browser reloading.
-config :uneebee, UneebeeWeb.Endpoint,
+config :zoonk, ZoonkWeb.Endpoint,
   live_reload: [
     patterns: [
       ## Ignore user uploads
@@ -48,7 +48,7 @@ config :uneebee, UneebeeWeb.Endpoint,
   ]
 
 # Enable dev routes for dashboard and mailbox
-config :uneebee, dev_routes: true
+config :zoonk, dev_routes: true
 
 # Do not include metadata nor timestamps in development logs
 config :logger, :console, format: "[$level] $message\n"

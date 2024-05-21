@@ -1,12 +1,12 @@
-defmodule UneebeeWeb.SchoolUpdateLiveTest do
+defmodule ZoonkWeb.SchoolUpdateLiveTest do
   @moduledoc false
-  use UneebeeWeb.ConnCase, async: true
+  use ZoonkWeb.ConnCase, async: true
 
   import Phoenix.LiveViewTest
-  import Uneebee.Fixtures.Organizations
-  import UneebeeWeb.TestHelpers.Upload
+  import Zoonk.Fixtures.Organizations
+  import ZoonkWeb.TestHelpers.Upload
 
-  alias Uneebee.Organizations
+  alias Zoonk.Organizations
 
   @school_form "#school-form"
 

@@ -1,15 +1,15 @@
-defmodule UneebeeWeb.Live.Dashboard.SchoolUserList do
+defmodule ZoonkWeb.Live.Dashboard.SchoolUserList do
   @moduledoc false
-  use UneebeeWeb, :live_view
-  use UneebeeWeb.Shared.Paginate, as: :users
+  use ZoonkWeb, :live_view
+  use ZoonkWeb.Shared.Paginate, as: :users
 
-  import UneebeeWeb.Components.Dashboard.UserListHeader
+  import ZoonkWeb.Components.Dashboard.UserListHeader
 
-  alias Uneebee.Accounts
-  alias Uneebee.Accounts.User
-  alias Uneebee.Accounts.UserUtils
-  alias Uneebee.Organizations
-  alias Uneebee.Organizations.SchoolUtils
+  alias Zoonk.Accounts
+  alias Zoonk.Accounts.User
+  alias Zoonk.Accounts.UserUtils
+  alias Zoonk.Organizations
+  alias Zoonk.Organizations.SchoolUtils
 
   @impl Phoenix.LiveView
   def mount(_params, _session, socket) do

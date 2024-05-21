@@ -1,4 +1,4 @@
-defmodule Uneebee.Repo.Migrations.AddCurrencyFieldToSchools do
+defmodule Zoonk.Repo.Migrations.AddCurrencyFieldToSchools do
   use Ecto.Migration
 
   def change do

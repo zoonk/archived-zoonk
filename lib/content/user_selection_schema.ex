@@ -1,4 +1,4 @@
-defmodule Uneebee.Content.UserSelection do
+defmodule Zoonk.Content.UserSelection do
   @moduledoc """
   User selection schema.
 
@@ -8,10 +8,10 @@ defmodule Uneebee.Content.UserSelection do
 
   import Ecto.Changeset
 
-  alias Uneebee.Accounts.User
-  alias Uneebee.Content.Lesson
-  alias Uneebee.Content.LessonStep
-  alias Uneebee.Content.StepOption
+  alias Zoonk.Accounts.User
+  alias Zoonk.Content.Lesson
+  alias Zoonk.Content.LessonStep
+  alias Zoonk.Content.StepOption
 
   @type t :: %__MODULE__{}
 

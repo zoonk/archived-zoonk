@@ -1,9 +1,9 @@
-defmodule Uneebee.UserUtilsTest do
-  use Uneebee.DataCase, async: true
+defmodule Zoonk.UserUtilsTest do
+  use Zoonk.DataCase, async: true
 
-  import Uneebee.Fixtures.Accounts
+  import Zoonk.Fixtures.Accounts
 
-  alias Uneebee.Accounts.UserUtils
+  alias Zoonk.Accounts.UserUtils
 
   describe "full_name/1" do
     test "returns the user's full name" do

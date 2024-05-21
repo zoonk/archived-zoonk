@@ -1,12 +1,12 @@
-defmodule UneebeeWeb.Live.Registration do
+defmodule ZoonkWeb.Live.Registration do
   @moduledoc false
-  use UneebeeWeb, :live_view
+  use ZoonkWeb, :live_view
 
   alias Phoenix.HTML
-  alias Uneebee.Accounts
-  alias Uneebee.Accounts.User
-  alias Uneebee.Organizations
-  alias Uneebee.Organizations.School
+  alias Zoonk.Accounts
+  alias Zoonk.Accounts.User
+  alias Zoonk.Organizations
+  alias Zoonk.Organizations.School
 
   @impl Phoenix.LiveView
   def mount(_params, session, socket) do

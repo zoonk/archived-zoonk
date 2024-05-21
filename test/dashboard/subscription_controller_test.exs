@@ -1,10 +1,10 @@
-defmodule UneebeeWeb.SubscriptionControllerTest do
-  use UneebeeWeb.ConnCase, async: true
+defmodule ZoonkWeb.SubscriptionControllerTest do
+  use ZoonkWeb.ConnCase, async: true
 
-  import Uneebee.Fixtures.Billing
-  import Uneebee.Fixtures.Organizations
+  import Zoonk.Fixtures.Billing
+  import Zoonk.Fixtures.Organizations
 
-  alias Uneebee.Billing
+  alias Zoonk.Billing
 
   describe "GET /dashboard/billing/:price_id (non-authenticated users)" do
     setup :set_school

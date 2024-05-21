@@ -1,4 +1,4 @@
-defmodule Uneebee.Repo.Migrations.AddDurationToUserSelections do
+defmodule Zoonk.Repo.Migrations.AddDurationToUserSelections do
   use Ecto.Migration
 
   def change do

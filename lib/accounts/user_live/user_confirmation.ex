@@ -1,8 +1,8 @@
-defmodule UneebeeWeb.Live.UserConfirmation do
+defmodule ZoonkWeb.Live.UserConfirmation do
   @moduledoc false
-  use UneebeeWeb, :live_view
+  use ZoonkWeb, :live_view
 
-  alias Uneebee.Accounts
+  alias Zoonk.Accounts
 
   @impl Phoenix.LiveView
   def mount(%{"token" => token}, _session, socket) do

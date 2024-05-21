@@ -1,10 +1,10 @@
-defmodule UneebeeWeb.Shared.Validators do
+defmodule ZoonkWeb.Shared.Validators do
   @moduledoc """
   Shared validators to be used with Ecto changesets.
   """
 
   import Ecto.Changeset
-  import UneebeeWeb.Gettext
+  import ZoonkWeb.Gettext
 
   @doc """
   Validates a field doesn't contain spaces or special characters other than `-` and `_`.

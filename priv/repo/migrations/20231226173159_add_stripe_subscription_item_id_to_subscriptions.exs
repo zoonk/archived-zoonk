@@ -1,4 +1,4 @@
-defmodule Uneebee.Repo.Migrations.AddStripeSubscriptionItemIdToSubscriptions do
+defmodule Zoonk.Repo.Migrations.AddStripeSubscriptionItemIdToSubscriptions do
   use Ecto.Migration
 
   def change do

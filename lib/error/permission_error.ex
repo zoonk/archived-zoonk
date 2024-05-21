@@ -1,8 +1,8 @@
-defmodule UneebeeWeb.PermissionError do
+defmodule ZoonkWeb.PermissionError do
   @moduledoc """
   Raises a permission error with a 403 status code.
   """
-  import UneebeeWeb.Gettext
+  import ZoonkWeb.Gettext
 
   defexception [:message, :code, plug_status: 403]
 

@@ -1,10 +1,10 @@
-defmodule UneebeeWeb.Live.MedalList do
+defmodule ZoonkWeb.Live.MedalList do
   @moduledoc false
-  use UneebeeWeb, :live_view
+  use ZoonkWeb, :live_view
 
-  import UneebeeWeb.Components.MedalList
+  import ZoonkWeb.Components.MedalList
 
-  alias Uneebee.Gamification
+  alias Zoonk.Gamification
 
   @impl Phoenix.LiveView
   def mount(_params, _session, socket) do

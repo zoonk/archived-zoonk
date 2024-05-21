@@ -1,8 +1,8 @@
-defmodule UneebeeWeb.Plugs.Course do
+defmodule ZoonkWeb.Plugs.Course do
   @moduledoc """
   Mounts the course data and permissions.
   """
-  use UneebeeWeb, :verified_routes
+  use ZoonkWeb, :verified_routes
 
   import Plug.Conn
 
@@ -10,7 +10,7 @@ defmodule UneebeeWeb.Plugs.Course do
   alias Phoenix.Controller
   alias Phoenix.LiveView
   alias Phoenix.LiveView.Socket
-  alias Uneebee.Content
+  alias Zoonk.Content
 
   @doc """
   Fetches the course's data from the database.
@@ -35,8 +35,8 @@ defmodule UneebeeWeb.Plugs.Course do
   def require_course_user_for_lesson(%Plug.Conn{params: %{"lesson_id" => _lesson_id}} = conn, opts), do: require_course_user_for_lesson(conn, opts, conn.assigns.course_user)
   def require_course_user_for_lesson(conn, _opts), do: conn
   defp require_course_user_for_lesson(%Plug.Conn{assigns: %{current_user: nil}} = conn, _opts, nil), do: redirect_to_login(conn)
-  defp require_course_user_for_lesson(_conn, _opts, nil), do: raise(UneebeeWeb.PermissionError, code: :not_enrolled)
-  defp require_course_user_for_lesson(_conn, _opts, %{approved?: false}), do: raise(UneebeeWeb.PermissionError, code: :pending_approval)
+  defp require_course_user_for_lesson(_conn, _opts, nil), do: raise(ZoonkWeb.PermissionError, code: :not_enrolled)
+  defp require_course_user_for_lesson(_conn, _opts, %{approved?: false}), do: raise(ZoonkWeb.PermissionError, code: :pending_approval)
   defp require_course_user_for_lesson(conn, _opts, _cu), do: conn
 
   defp maybe_create_course_user(%Plug.Conn{assigns: %{course: course, current_user: user, course_user: nil}} = conn) do

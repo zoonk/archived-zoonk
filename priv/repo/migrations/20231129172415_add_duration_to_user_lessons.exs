@@ -1,4 +1,4 @@
-defmodule Uneebee.Repo.Migrations.AddDurationToUserLessons do
+defmodule Zoonk.Repo.Migrations.AddDurationToUserLessons do
   use Ecto.Migration
 
   def change do

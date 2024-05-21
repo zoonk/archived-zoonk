@@ -1,10 +1,10 @@
-defmodule UneebeeWeb.Live.Dashboard.CourseUserView do
+defmodule ZoonkWeb.Live.Dashboard.CourseUserView do
   @moduledoc false
-  use UneebeeWeb, :live_view
+  use ZoonkWeb, :live_view
 
-  alias Uneebee.Accounts.UserUtils
-  alias Uneebee.Content
-  alias Uneebee.Content.CourseUtils
+  alias Zoonk.Accounts.UserUtils
+  alias Zoonk.Content
+  alias Zoonk.Content.CourseUtils
 
   @impl Phoenix.LiveView
   def mount(params, _session, socket) do
@@ -13,7 +13,7 @@ defmodule UneebeeWeb.Live.Dashboard.CourseUserView do
     course_user = Content.get_course_user_by_id(course.id, params["user_id"], preload: :user)
 
     # Prevent from viewing users who aren't enrolled in the course
-    if is_nil(course_user), do: raise(UneebeeWeb.PermissionError, code: :not_enrolled)
+    if is_nil(course_user), do: raise(ZoonkWeb.PermissionError, code: :not_enrolled)
 
     full_name = UserUtils.full_name(course_user.user)
     lessons = Content.list_published_lessons(course, course_user.user, selections?: true)

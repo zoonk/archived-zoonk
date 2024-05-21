@@ -1,10 +1,10 @@
-defmodule Uneebee.Repo.Migrations.RemoveTrophiesWithoutMissionId do
+defmodule Zoonk.Repo.Migrations.RemoveTrophiesWithoutMissionId do
   use Ecto.Migration
 
   import Ecto.Query
 
-  alias Uneebee.Gamification.UserTrophy
-  alias Uneebee.Repo
+  alias Zoonk.Gamification.UserTrophy
+  alias Zoonk.Repo
 
   def up do
     UserTrophy

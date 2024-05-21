@@ -1,10 +1,10 @@
-defmodule UneebeeWeb.Live.Dashboard.SchoolEdit do
+defmodule ZoonkWeb.Live.Dashboard.SchoolEdit do
   @moduledoc false
-  use UneebeeWeb, :live_view
+  use ZoonkWeb, :live_view
 
-  alias Uneebee.Organizations
-  alias UneebeeWeb.Components.DeleteItem
-  alias UneebeeWeb.Components.Upload
+  alias Zoonk.Organizations
+  alias ZoonkWeb.Components.DeleteItem
+  alias ZoonkWeb.Components.Upload
 
   @impl Phoenix.LiveView
   def mount(_params, _session, socket) do

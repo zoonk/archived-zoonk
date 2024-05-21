@@ -1,9 +1,9 @@
 # credo:disable-for-this-file Credo.Check.Readability.Specs
-defmodule UneebeeWeb.Components.MedalList do
+defmodule ZoonkWeb.Components.MedalList do
   @moduledoc false
-  use UneebeeWeb, :html
+  use ZoonkWeb, :html
 
-  alias Uneebee.Gamification.MedalUtils
+  alias Zoonk.Gamification.MedalUtils
 
   attr :kind, :atom, values: [:gold, :silver, :bronze], required: true
   attr :medals, :list, required: true

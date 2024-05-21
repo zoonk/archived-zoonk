@@ -1,9 +1,9 @@
-defmodule UneebeeWeb.Live.SchoolNew do
+defmodule ZoonkWeb.Live.SchoolNew do
   @moduledoc false
-  use UneebeeWeb, :live_view
+  use ZoonkWeb, :live_view
 
-  alias Uneebee.Organizations
-  alias Uneebee.Organizations.School
+  alias Zoonk.Organizations
+  alias Zoonk.Organizations.School
 
   @impl Phoenix.LiveView
   def mount(_params, _session, socket) do

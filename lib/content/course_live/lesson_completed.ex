@@ -1,13 +1,13 @@
-defmodule UneebeeWeb.Live.LessonCompleted do
+defmodule ZoonkWeb.Live.LessonCompleted do
   @moduledoc false
-  use UneebeeWeb, :live_view
+  use ZoonkWeb, :live_view
 
-  alias Uneebee.Content
-  alias Uneebee.Content.UserLesson
-  alias Uneebee.Gamification
-  alias Uneebee.Gamification.MedalUtils
-  alias Uneebee.Gamification.TrophyUtils
-  alias Uneebee.Gamification.UserTrophy
+  alias Zoonk.Content
+  alias Zoonk.Content.UserLesson
+  alias Zoonk.Gamification
+  alias Zoonk.Gamification.MedalUtils
+  alias Zoonk.Gamification.TrophyUtils
+  alias Zoonk.Gamification.UserTrophy
 
   @impl Phoenix.LiveView
   def mount(_params, _session, socket) do
@@ -15,7 +15,7 @@ defmodule UneebeeWeb.Live.LessonCompleted do
 
     user_lesson = Content.get_user_lesson(user.id, lesson.id)
 
-    if is_nil(user_lesson), do: raise(UneebeeWeb.PermissionError, code: :permission_denied)
+    if is_nil(user_lesson), do: raise(ZoonkWeb.PermissionError, code: :permission_denied)
 
     first_lesson_today? = Gamification.first_lesson_today?(user.id)
     learning_days = Gamification.learning_days_count(user.id)

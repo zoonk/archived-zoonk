@@ -1,4 +1,4 @@
-defmodule Uneebee.Gamification.UserTrophy do
+defmodule Zoonk.Gamification.UserTrophy do
   @moduledoc """
   UserTrophy schema.
 
@@ -8,10 +8,10 @@ defmodule Uneebee.Gamification.UserTrophy do
 
   import Ecto.Changeset
 
-  alias Uneebee.Accounts.User
-  alias Uneebee.Content.Course
-  alias Uneebee.Gamification.TrophyUtils
-  alias Uneebee.Gamification.UserMission
+  alias Zoonk.Accounts.User
+  alias Zoonk.Content.Course
+  alias Zoonk.Gamification.TrophyUtils
+  alias Zoonk.Gamification.UserMission
 
   @type t :: %__MODULE__{}
 

@@ -1,2 +1,2 @@
 ExUnit.start()
-Ecto.Adapters.SQL.Sandbox.mode(Uneebee.Repo, :manual)
+Ecto.Adapters.SQL.Sandbox.mode(Zoonk.Repo, :manual)

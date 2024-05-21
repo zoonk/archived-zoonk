@@ -1,8 +1,8 @@
 # credo:disable-for-this-file Credo.Check.Readability.Specs
 
-defmodule UneebeeWeb.Components.Layouts.GamificationMenu do
+defmodule ZoonkWeb.Components.Layouts.GamificationMenu do
   @moduledoc false
-  use UneebeeWeb, :html
+  use ZoonkWeb, :html
 
   attr :learning_days, :integer, required: true
   attr :mission_progress, :integer, required: true

@@ -1,4 +1,4 @@
-defmodule Uneebee.Repo.Migrations.AddStepOptionsTable do
+defmodule Zoonk.Repo.Migrations.AddStepOptionsTable do
   use Ecto.Migration
 
   def change do

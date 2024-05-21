@@ -1,8 +1,8 @@
-defmodule UneebeeWeb.Live.Dashboard.Home do
+defmodule ZoonkWeb.Live.Dashboard.Home do
   @moduledoc false
-  use UneebeeWeb, :live_view
+  use ZoonkWeb, :live_view
 
-  alias Uneebee.Organizations
+  alias Zoonk.Organizations
 
   @impl Phoenix.LiveView
   def mount(_params, _session, socket) do

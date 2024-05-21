@@ -1,14 +1,14 @@
 # credo:disable-for-this-file Credo.Check.Readability.Specs
 
-defmodule UneebeeWeb.Components.Modal do
+defmodule ZoonkWeb.Components.Modal do
   @moduledoc """
   Modal components.
   """
   use Phoenix.Component
 
-  import UneebeeWeb.Components.Icon
-  import UneebeeWeb.Components.Utils
-  import UneebeeWeb.Gettext
+  import ZoonkWeb.Components.Icon
+  import ZoonkWeb.Components.Utils
+  import ZoonkWeb.Gettext
 
   alias Phoenix.LiveView.JS
 

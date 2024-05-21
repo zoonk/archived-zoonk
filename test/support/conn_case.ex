@@ -1,4 +1,4 @@
-defmodule UneebeeWeb.ConnCase do
+defmodule ZoonkWeb.ConnCase do
   @moduledoc """
   This module defines the test case to be used by
   tests that require setting up a connection.
@@ -11,41 +11,41 @@ defmodule UneebeeWeb.ConnCase do
   we enable the SQL sandbox, so changes done to the database
   are reverted at the end of every test. If you are using
   PostgreSQL, you can even run database tests asynchronously
-  by setting `use UneebeeWeb.ConnCase, async: true`, although
+  by setting `use ZoonkWeb.ConnCase, async: true`, although
   this option is not recommended for other databases.
   """
 
   use ExUnit.CaseTemplate
 
-  import Uneebee.Fixtures.Accounts
-  import Uneebee.Fixtures.Content
-  import Uneebee.Fixtures.Organizations
+  import Zoonk.Fixtures.Accounts
+  import Zoonk.Fixtures.Content
+  import Zoonk.Fixtures.Organizations
 
   alias Plug.Conn
-  alias Uneebee.Accounts
-  alias Uneebee.Accounts.User
-  alias Uneebee.Content.Course
-  alias Uneebee.Content.Lesson
-  alias Uneebee.Content.LessonStep
-  alias Uneebee.Organizations.School
+  alias Zoonk.Accounts
+  alias Zoonk.Accounts.User
+  alias Zoonk.Content.Course
+  alias Zoonk.Content.Lesson
+  alias Zoonk.Content.LessonStep
+  alias Zoonk.Organizations.School
 
   using do
     quote do
-      use UneebeeWeb, :verified_routes
+      use ZoonkWeb, :verified_routes
 
       import Phoenix.ConnTest
 
       # Import conveniences for testing with connections
       import Plug.Conn
-      import UneebeeWeb.ConnCase
+      import ZoonkWeb.ConnCase
 
       # The default endpoint for testing
-      @endpoint UneebeeWeb.Endpoint
+      @endpoint ZoonkWeb.Endpoint
     end
   end
 
   setup tags do
-    Uneebee.DataCase.setup_sandbox(tags)
+    Zoonk.DataCase.setup_sandbox(tags)
     {:ok, conn: Phoenix.ConnTest.build_conn()}
   end
 
@@ -71,7 +71,7 @@ defmodule UneebeeWeb.ConnCase do
   """
   @spec log_in_user(Conn.t(), User.t()) :: Conn.t()
   def log_in_user(conn, user) do
-    token = Uneebee.Accounts.generate_user_session_token(user)
+    token = Zoonk.Accounts.generate_user_session_token(user)
 
     conn
     |> Phoenix.ConnTest.init_test_session(%{})

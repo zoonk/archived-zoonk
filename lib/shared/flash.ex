@@ -1,4 +1,4 @@
-defmodule UneebeeWeb.Flash do
+defmodule ZoonkWeb.Flash do
   @moduledoc """
   Allow to display flash messages in LiveView components.
 

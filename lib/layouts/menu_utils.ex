@@ -1,12 +1,12 @@
-defmodule UneebeeWeb.Layouts.MenuUtils do
+defmodule ZoonkWeb.Layouts.MenuUtils do
   @moduledoc false
-  use UneebeeWeb, :html
+  use ZoonkWeb, :html
 
-  alias Uneebee.Content.Course
-  alias Uneebee.Organizations.School
+  alias Zoonk.Content.Course
+  alias Zoonk.Organizations.School
 
   @spec school_name(School.t() | nil) :: String.t()
-  def school_name(nil), do: "UneeBee"
+  def school_name(nil), do: "Zoonk"
   def school_name(%School{} = school), do: school.name
 
   @spec school_logo(School.t() | nil, School.t() | nil) :: String.t()

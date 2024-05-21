@@ -1,11 +1,11 @@
-defmodule UneebeeWeb.Live.TrophyList do
+defmodule ZoonkWeb.Live.TrophyList do
   @moduledoc false
-  use UneebeeWeb, :live_view
+  use ZoonkWeb, :live_view
 
-  alias Uneebee.Gamification
-  alias Uneebee.Gamification.MissionUtils
-  alias Uneebee.Gamification.TrophyUtils
-  alias Uneebee.Gamification.UserTrophy
+  alias Zoonk.Gamification
+  alias Zoonk.Gamification.MissionUtils
+  alias Zoonk.Gamification.TrophyUtils
+  alias Zoonk.Gamification.UserTrophy
 
   @impl Phoenix.LiveView
   def mount(_params, _session, socket) do

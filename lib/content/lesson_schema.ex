@@ -1,4 +1,4 @@
-defmodule Uneebee.Content.Lesson do
+defmodule Zoonk.Content.Lesson do
   @moduledoc """
   Lesson schema.
   """
@@ -6,8 +6,8 @@ defmodule Uneebee.Content.Lesson do
 
   import Ecto.Changeset
 
-  alias Uneebee.Content.UserLesson
-  alias Uneebee.Content.UserSelection
+  alias Zoonk.Content.UserLesson
+  alias Zoonk.Content.UserSelection
 
   @type t :: %__MODULE__{}
 
@@ -18,7 +18,7 @@ defmodule Uneebee.Content.Lesson do
     field :order, :integer
     field :published?, :boolean, default: false
 
-    belongs_to :course, Uneebee.Content.Course
+    belongs_to :course, Zoonk.Content.Course
 
     has_many :user_lessons, UserLesson
     has_many :user_selections, UserSelection

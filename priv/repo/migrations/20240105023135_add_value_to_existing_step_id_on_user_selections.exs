@@ -1,10 +1,10 @@
-defmodule Uneebee.Repo.Migrations.AddValueToExistingStepIdOnUserSelections do
+defmodule Zoonk.Repo.Migrations.AddValueToExistingStepIdOnUserSelections do
   use Ecto.Migration
 
   import Ecto.Query
 
-  alias Uneebee.Content.UserSelection
-  alias Uneebee.Repo
+  alias Zoonk.Content.UserSelection
+  alias Zoonk.Repo
 
   def change do
     # Add a default value to the `step_id` on existing records.

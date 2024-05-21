@@ -1,4 +1,4 @@
-defmodule UneebeeWeb.Plugs.ActivePage do
+defmodule ZoonkWeb.Plugs.ActivePage do
   @moduledoc """
   This module is used to set the active page to the socket.
   """

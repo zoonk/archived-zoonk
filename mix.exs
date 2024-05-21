@@ -1,9 +1,9 @@
-defmodule Uneebee.MixProject do
+defmodule Zoonk.MixProject do
   use Mix.Project
 
   def project do
     [
-      app: :uneebee,
+      app: :zoonk,
       version: "0.1.0",
       elixir: "~> 1.15",
       elixirc_paths: elixirc_paths(Mix.env()),
@@ -23,7 +23,7 @@ defmodule Uneebee.MixProject do
   # Type `mix help compile.app` for more information.
   def application do
     [
-      mod: {Uneebee.Application, []},
+      mod: {Zoonk.Application, []},
       extra_applications: [:logger, :runtime_tools]
     ]
   end

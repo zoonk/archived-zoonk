@@ -1,4 +1,4 @@
-defmodule Uneebee.Billing.StripeHandler do
+defmodule Zoonk.Billing.StripeHandler do
   @moduledoc """
   This module is responsible for handling Stripe events.
 
@@ -8,9 +8,9 @@ defmodule Uneebee.Billing.StripeHandler do
   @behaviour Stripe.WebhookHandler
 
   alias Stripe.Checkout.Session
-  alias Uneebee.Billing
-  alias Uneebee.Billing.Subscription
-  alias Uneebee.Organizations
+  alias Zoonk.Billing
+  alias Zoonk.Billing.Subscription
+  alias Zoonk.Organizations
 
   @impl Stripe.WebhookHandler
   def handle_event(%Stripe.Event{type: "checkout.session.completed"} = event) do

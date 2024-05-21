@@ -1,4 +1,4 @@
-defmodule Uneebee.Repo.Migrations.AddAnswerAndStepIdFieldsToUserSelections do
+defmodule Zoonk.Repo.Migrations.AddAnswerAndStepIdFieldsToUserSelections do
   use Ecto.Migration
 
   def change do

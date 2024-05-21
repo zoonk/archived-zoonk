@@ -1,8 +1,8 @@
-defmodule UneebeeWeb.DashboardSchoolListTest do
-  use UneebeeWeb.ConnCase, async: true
+defmodule ZoonkWeb.DashboardSchoolListTest do
+  use ZoonkWeb.ConnCase, async: true
 
   import Phoenix.LiveViewTest
-  import Uneebee.Fixtures.Organizations
+  import Zoonk.Fixtures.Organizations
 
   describe "/dashboard/schools (non-authenticated users)" do
     setup :set_school

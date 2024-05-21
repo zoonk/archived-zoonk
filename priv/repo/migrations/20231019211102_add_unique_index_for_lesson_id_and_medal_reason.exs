@@ -1,4 +1,4 @@
-defmodule Uneebee.Repo.Migrations.AddUniqueIndexForLessonIdAndMedalReason do
+defmodule Zoonk.Repo.Migrations.AddUniqueIndexForLessonIdAndMedalReason do
   use Ecto.Migration
 
   def change do

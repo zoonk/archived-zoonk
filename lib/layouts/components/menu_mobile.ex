@@ -1,9 +1,9 @@
 # credo:disable-for-this-file Credo.Check.Readability.Specs
-defmodule UneebeeWeb.Components.Layouts.MenuMobile do
+defmodule ZoonkWeb.Components.Layouts.MenuMobile do
   @moduledoc false
-  use UneebeeWeb, :html
+  use ZoonkWeb, :html
 
-  import UneebeeWeb.Layouts.MenuUtils
+  import ZoonkWeb.Layouts.MenuUtils
 
   def menu_mobile(assigns) do
     ~H"""

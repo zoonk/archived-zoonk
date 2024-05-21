@@ -1,9 +1,9 @@
-defmodule UneebeeWeb.TrophyListLiveTest do
-  use UneebeeWeb.ConnCase, async: true
+defmodule ZoonkWeb.TrophyListLiveTest do
+  use ZoonkWeb.ConnCase, async: true
 
   import Phoenix.LiveViewTest
-  import Uneebee.Fixtures.Content
-  import Uneebee.Fixtures.Gamification
+  import Zoonk.Fixtures.Content
+  import Zoonk.Fixtures.Gamification
 
   describe "trophies list (not authenticated)" do
     test "redirects to the login page", %{conn: conn} do

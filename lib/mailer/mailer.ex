@@ -1,11 +1,11 @@
-defmodule Uneebee.Mailer do
+defmodule Zoonk.Mailer do
   @moduledoc false
-  use Swoosh.Mailer, otp_app: :uneebee
+  use Swoosh.Mailer, otp_app: :zoonk
 
   import Swoosh.Email
 
-  alias Uneebee.Mailer
-  alias Uneebee.Organizations.School
+  alias Zoonk.Mailer
+  alias Zoonk.Organizations.School
 
   @type t :: {:ok, Swoosh.Email.t()} | {:error, any()}
 
@@ -39,8 +39,8 @@ defmodule Uneebee.Mailer do
   end
 
   defp get_school_name(%School{name: name}), do: name
-  defp get_school_name(_school), do: "UneeBee"
+  defp get_school_name(_school), do: "Zoonk"
 
   defp get_school_email(%School{email: email}), do: email
-  defp get_school_email(_school), do: "noreply@uneebee.com"
+  defp get_school_email(_school), do: "noreply@zoonk.org"
 end

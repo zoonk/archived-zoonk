@@ -1,14 +1,14 @@
-defmodule Uneebee.Content.CourseUtils do
+defmodule Zoonk.Content.CourseUtils do
   @moduledoc """
   Reusable configuration and utilities for courses.
   """
 
-  import UneebeeWeb.Gettext
+  import ZoonkWeb.Gettext
 
-  alias Uneebee.Accounts.User
-  alias Uneebee.Content.CourseUser
-  alias Uneebee.Content.Lesson
-  alias Uneebee.Content.UserLesson
+  alias Zoonk.Accounts.User
+  alias Zoonk.Content.CourseUser
+  alias Zoonk.Content.Lesson
+  alias Zoonk.Content.UserLesson
 
   @spec max_length(atom()) :: non_neg_integer()
   def max_length(:option_feedback), do: 280

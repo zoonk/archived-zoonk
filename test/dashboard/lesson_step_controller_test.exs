@@ -1,9 +1,9 @@
-defmodule UneebeeWeb.LessonStepControllerTest do
-  use UneebeeWeb.ConnCase, async: true
+defmodule ZoonkWeb.LessonStepControllerTest do
+  use ZoonkWeb.ConnCase, async: true
 
-  import Uneebee.Fixtures.Content
+  import Zoonk.Fixtures.Content
 
-  alias Uneebee.Content
+  alias Zoonk.Content
 
   describe "add suggested course (non-authenticated users)" do
     setup :set_school

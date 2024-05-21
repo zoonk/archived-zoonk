@@ -1,9 +1,9 @@
-defmodule UneebeeWeb.Live.MissionList do
+defmodule ZoonkWeb.Live.MissionList do
   @moduledoc false
-  use UneebeeWeb, :live_view
+  use ZoonkWeb, :live_view
 
-  alias Uneebee.Gamification
-  alias Uneebee.Gamification.MissionUtils
+  alias Zoonk.Gamification
+  alias Zoonk.Gamification.MissionUtils
 
   @impl Phoenix.LiveView
   def mount(_params, _session, socket) do

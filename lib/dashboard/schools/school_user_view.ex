@@ -1,13 +1,13 @@
-defmodule UneebeeWeb.Live.Dashboard.SchoolUserView do
+defmodule ZoonkWeb.Live.Dashboard.SchoolUserView do
   @moduledoc false
-  use UneebeeWeb, :live_view
+  use ZoonkWeb, :live_view
 
   alias Phoenix.LiveView.Socket
-  alias Uneebee.Accounts
-  alias Uneebee.Accounts.UserUtils
-  alias Uneebee.Organizations
-  alias Uneebee.Organizations.School
-  alias Uneebee.Organizations.SchoolUtils
+  alias Zoonk.Accounts
+  alias Zoonk.Accounts.UserUtils
+  alias Zoonk.Organizations
+  alias Zoonk.Organizations.School
+  alias Zoonk.Organizations.SchoolUtils
 
   @impl Phoenix.LiveView
   def mount(params, _session, socket) do
@@ -16,7 +16,7 @@ defmodule UneebeeWeb.Live.Dashboard.SchoolUserView do
     school_user = Organizations.get_school_user(school.slug, params["username"], preload: :user)
 
     # Prevent from viewing users who aren't enrolled in this school.
-    if is_nil(school_user), do: raise(UneebeeWeb.PermissionError, code: :not_enrolled)
+    if is_nil(school_user), do: raise(ZoonkWeb.PermissionError, code: :not_enrolled)
 
     full_name = UserUtils.full_name(school_user.user)
 

@@ -1,18 +1,18 @@
-defmodule Uneebee.Fixtures.Content do
+defmodule Zoonk.Fixtures.Content do
   @moduledoc """
-  This module defines test helpers for creating entities via the `Uneebee.Content` context.
+  This module defines test helpers for creating entities via the `Zoonk.Content` context.
   """
 
-  import Uneebee.Fixtures.Accounts
-  import Uneebee.Fixtures.Organizations
+  import Zoonk.Fixtures.Accounts
+  import Zoonk.Fixtures.Organizations
 
-  alias Uneebee.Content
-  alias Uneebee.Content.Course
-  alias Uneebee.Content.CourseUser
-  alias Uneebee.Content.Lesson
-  alias Uneebee.Content.UserLesson
-  alias Uneebee.Repo
-  alias UneebeeWeb.Plugs.Translate
+  alias Zoonk.Content
+  alias Zoonk.Content.Course
+  alias Zoonk.Content.CourseUser
+  alias Zoonk.Content.Lesson
+  alias Zoonk.Content.UserLesson
+  alias Zoonk.Repo
+  alias ZoonkWeb.Plugs.Translate
 
   @doc """
   Get valid attributes for a course.

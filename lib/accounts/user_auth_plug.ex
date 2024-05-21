@@ -1,25 +1,25 @@
-defmodule UneebeeWeb.Plugs.UserAuth do
+defmodule ZoonkWeb.Plugs.UserAuth do
   @moduledoc false
-  use UneebeeWeb, :verified_routes
+  use ZoonkWeb, :verified_routes
 
   import Phoenix.Controller
   import Plug.Conn
-  import UneebeeWeb.Gettext
+  import ZoonkWeb.Gettext
 
   alias Phoenix.Component
   alias Phoenix.LiveView
   alias Phoenix.Socket
-  alias Uneebee.Accounts
-  alias Uneebee.Accounts.User
-  alias Uneebee.Gamification
-  alias Uneebee.Gamification.MissionUtils
-  alias Uneebee.Organizations.School
+  alias Zoonk.Accounts
+  alias Zoonk.Accounts.User
+  alias Zoonk.Gamification
+  alias Zoonk.Gamification.MissionUtils
+  alias Zoonk.Organizations.School
 
   # Make the remember me cookie valid for 60 days.
   # If you want bump or reduce this value, also change
   # the token expiry itself in UserToken.
   @max_age 60 * 60 * 24 * 60
-  @remember_me_cookie "_uneebee_web_user_remember_me"
+  @remember_me_cookie "_zoonk_web_user_remember_me"
   @remember_me_options [sign: true, max_age: @max_age, same_site: "Lax"]
 
   @doc """
@@ -87,7 +87,7 @@ defmodule UneebeeWeb.Plugs.UserAuth do
     user_token && Accounts.delete_user_session_token(user_token)
 
     if live_socket_id = get_session(conn, :live_socket_id) do
-      UneebeeWeb.Endpoint.broadcast(live_socket_id, "disconnect", %{})
+      ZoonkWeb.Endpoint.broadcast(live_socket_id, "disconnect", %{})
     end
 
     conn
@@ -148,16 +148,16 @@ defmodule UneebeeWeb.Plugs.UserAuth do
   Use the `on_mount` lifecycle macro in LiveViews to mount or authenticate
   the current_user:
 
-      defmodule UneebeeWeb.PageLive do
-        use UneebeeWeb, :live_view
+      defmodule ZoonkWeb.PageLive do
+        use ZoonkWeb, :live_view
 
-        on_mount {UneebeeWeb.Plugs.UserAuth, :mount_current_user}
+        on_mount {ZoonkWeb.Plugs.UserAuth, :mount_current_user}
         ...
       end
 
   Or use the `live_session` of your router to invoke the on_mount callback:
 
-      live_session :authenticated, on_mount: [{UneebeeWeb.Plugs.UserAuth, :ensure_authenticated}] do
+      live_session :authenticated, on_mount: [{ZoonkWeb.Plugs.UserAuth, :ensure_authenticated}] do
         live "/profile", ProfileLive, :index
       end
   """

@@ -1,8 +1,8 @@
-defmodule UneebeeWeb.MissionListLiveTest do
-  use UneebeeWeb.ConnCase, async: true
+defmodule ZoonkWeb.MissionListLiveTest do
+  use ZoonkWeb.ConnCase, async: true
 
   import Phoenix.LiveViewTest
-  import Uneebee.Fixtures.Gamification
+  import Zoonk.Fixtures.Gamification
 
   describe "missions list (not authenticated)" do
     test "redirects to the login page", %{conn: conn} do

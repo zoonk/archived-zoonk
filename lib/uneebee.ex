@@ -1,6 +1,6 @@
-defmodule Uneebee do
+defmodule Zoonk do
   @moduledoc """
-  Uneebee keeps the contexts that define your domain
+  Zoonk keeps the contexts that define your domain
   and business logic.
 
   Contexts are also responsible for managing your data, regardless

@@ -1,4 +1,4 @@
-defmodule Uneebee.Content.LessonStep do
+defmodule Zoonk.Content.LessonStep do
   @moduledoc """
   LessonStep schema.
   """
@@ -6,10 +6,10 @@ defmodule Uneebee.Content.LessonStep do
 
   import Ecto.Changeset
 
-  alias Uneebee.Content.CourseUtils
-  alias Uneebee.Content.Lesson
-  alias Uneebee.Content.StepOption
-  alias Uneebee.Content.StepSuggestedCourse
+  alias Zoonk.Content.CourseUtils
+  alias Zoonk.Content.Lesson
+  alias Zoonk.Content.StepOption
+  alias Zoonk.Content.StepSuggestedCourse
 
   @type t :: %__MODULE__{}
 

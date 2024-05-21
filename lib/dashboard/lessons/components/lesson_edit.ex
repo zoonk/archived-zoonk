@@ -1,9 +1,9 @@
-defmodule UneebeeWeb.Components.Dashboard.LessonEdit do
+defmodule ZoonkWeb.Components.Dashboard.LessonEdit do
   @moduledoc false
-  use UneebeeWeb, :live_component
+  use ZoonkWeb, :live_component
 
-  alias Uneebee.Content
-  alias Uneebee.Content.Lesson
+  alias Zoonk.Content
+  alias Zoonk.Content.Lesson
 
   @impl Phoenix.LiveComponent
   def render(assigns) do

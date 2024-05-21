@@ -1,4 +1,4 @@
-defmodule UneebeeWeb.Shared.Age do
+defmodule ZoonkWeb.Shared.Age do
   @moduledoc """
   Utilies for managing a user's age.
   """
@@ -8,7 +8,7 @@ defmodule UneebeeWeb.Shared.Age do
 
   ## Examples
 
-      iex> UneebeeWeb.Shared.Age.age(~D[1990-01-01])
+      iex> ZoonkWeb.Shared.Age.age(~D[1990-01-01])
       30
   """
   @spec age(Date.t()) :: integer()

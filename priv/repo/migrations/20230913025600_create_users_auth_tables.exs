@@ -1,4 +1,4 @@
-defmodule Uneebee.Repo.Migrations.CreateUsersAuthTables do
+defmodule Zoonk.Repo.Migrations.CreateUsersAuthTables do
   use Ecto.Migration
 
   def change do

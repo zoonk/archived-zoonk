@@ -1,9 +1,9 @@
-defmodule UneebeeWeb.Controller.UserSession do
+defmodule ZoonkWeb.Controller.UserSession do
   @moduledoc false
-  use UneebeeWeb, :controller
+  use ZoonkWeb, :controller
 
-  alias Uneebee.Accounts
-  alias UneebeeWeb.Plugs.UserAuth
+  alias Zoonk.Accounts
+  alias ZoonkWeb.Plugs.UserAuth
 
   @spec create(Plug.Conn.t(), map()) :: Plug.Conn.t()
   @spec create(Plug.Conn.t(), map(), String.t() | nil) :: Plug.Conn.t()

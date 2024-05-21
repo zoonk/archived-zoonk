@@ -1,12 +1,12 @@
-defmodule UneebeeWeb.UserConfirmationLiveTest do
+defmodule ZoonkWeb.UserConfirmationLiveTest do
   @moduledoc false
-  use UneebeeWeb.ConnCase, async: true
+  use ZoonkWeb.ConnCase, async: true
 
   import Phoenix.LiveViewTest
-  import Uneebee.Fixtures.Accounts
+  import Zoonk.Fixtures.Accounts
 
-  alias Uneebee.Accounts
-  alias Uneebee.Repo
+  alias Zoonk.Accounts
+  alias Zoonk.Repo
 
   setup :set_school
 

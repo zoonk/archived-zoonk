@@ -1,11 +1,11 @@
-defmodule Uneebee.Accounts.UserToken do
+defmodule Zoonk.Accounts.UserToken do
   @moduledoc false
   use Ecto.Schema
 
   import Ecto.Query
 
-  alias Uneebee.Accounts.User
-  alias Uneebee.Accounts.UserToken
+  alias Zoonk.Accounts.User
+  alias Zoonk.Accounts.UserToken
 
   @type t() :: %__MODULE__{}
 
@@ -23,7 +23,7 @@ defmodule Uneebee.Accounts.UserToken do
     field :token, :binary
     field :context, :string
     field :sent_to, :string
-    belongs_to :user, Uneebee.Accounts.User
+    belongs_to :user, Zoonk.Accounts.User
 
     timestamps(updated_at: false)
   end

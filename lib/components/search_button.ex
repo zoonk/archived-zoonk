@@ -1,10 +1,10 @@
-defmodule UneebeeWeb.Components.SearchButton do
+defmodule ZoonkWeb.Components.SearchButton do
   @moduledoc """
   Renders a search button.
 
   This navigates to a search page/modal when clicked or using Cmd/Ctrl + K.
   """
-  use UneebeeWeb, :live_component
+  use ZoonkWeb, :live_component
 
   attr :class, :string, default: nil, doc: "the optional additional classes to add to the button element"
   attr :patch, :string, required: true, doc: "the path to patch to when the button is clicked"

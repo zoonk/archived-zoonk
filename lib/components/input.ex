@@ -1,12 +1,12 @@
 # credo:disable-for-this-file Credo.Check.Readability.Specs
 
-defmodule UneebeeWeb.Components.Input do
+defmodule ZoonkWeb.Components.Input do
   @moduledoc """
   Input components.
   """
   use Phoenix.Component
 
-  import UneebeeWeb.Components.Icon
+  import ZoonkWeb.Components.Icon
 
   alias Phoenix.HTML.Form
   alias Phoenix.HTML.FormField
@@ -191,9 +191,9 @@ defmodule UneebeeWeb.Components.Input do
     # with our gettext backend as first argument. Translations are
     # available in the errors.po file (as we use the "errors" domain).
     if count = opts[:count] do
-      Gettext.dngettext(UneebeeWeb.Gettext, "errors", msg, msg, count, opts)
+      Gettext.dngettext(ZoonkWeb.Gettext, "errors", msg, msg, count, opts)
     else
-      Gettext.dgettext(UneebeeWeb.Gettext, "errors", msg, opts)
+      Gettext.dgettext(ZoonkWeb.Gettext, "errors", msg, opts)
     end
   end
 end

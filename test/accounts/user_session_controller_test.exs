@@ -1,7 +1,7 @@
-defmodule UneebeeWeb.UserSessionControllerTest do
-  use UneebeeWeb.ConnCase, async: true
+defmodule ZoonkWeb.UserSessionControllerTest do
+  use ZoonkWeb.ConnCase, async: true
 
-  import Uneebee.Fixtures.Accounts
+  import Zoonk.Fixtures.Accounts
 
   setup do
     %{user: user_fixture()}
@@ -24,7 +24,7 @@ defmodule UneebeeWeb.UserSessionControllerTest do
     test "logs the user in with remember me", %{conn: conn, user: user} do
       conn = post(conn, ~p"/users/login", %{"user" => %{"email" => user.email, "password" => valid_user_password(), "remember_me" => "true"}})
 
-      assert conn.resp_cookies["_uneebee_web_user_remember_me"]
+      assert conn.resp_cookies["_zoonk_web_user_remember_me"]
       assert redirected_to(conn) == ~p"/"
     end
 

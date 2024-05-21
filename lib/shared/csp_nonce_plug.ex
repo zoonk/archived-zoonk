@@ -1,4 +1,4 @@
-defmodule UneebeeWeb.Plugs.CspNonce do
+defmodule ZoonkWeb.Plugs.CspNonce do
   @moduledoc """
   Set a CSP nonce for the current request.
   """

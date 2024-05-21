@@ -1,12 +1,12 @@
 # credo:disable-for-this-file Credo.Check.Readability.Specs
 
-defmodule UneebeeWeb.Components.Badge do
+defmodule ZoonkWeb.Components.Badge do
   @moduledoc """
   Badge components.
   """
   use Phoenix.Component
 
-  import UneebeeWeb.Components.Icon
+  import ZoonkWeb.Components.Icon
 
   @doc """
   Renders a badge.

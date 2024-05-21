@@ -1,6 +1,6 @@
 # credo:disable-for-this-file Credo.Check.Readability.Specs
 
-defmodule UneebeeWeb.Components.AwardBadge do
+defmodule ZoonkWeb.Components.AwardBadge do
   @moduledoc """
   Award badges.
 
@@ -8,11 +8,11 @@ defmodule UneebeeWeb.Components.AwardBadge do
   """
   use Phoenix.Component
 
-  import UneebeeWeb.Components.Badge
-  import UneebeeWeb.Components.Icon
-  import UneebeeWeb.Gettext
+  import ZoonkWeb.Components.Badge
+  import ZoonkWeb.Components.Icon
+  import ZoonkWeb.Gettext
 
-  alias Uneebee.Gamification.Mission
+  alias Zoonk.Gamification.Mission
 
   @doc """
   Renders a badge for learning days.

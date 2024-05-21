@@ -1,14 +1,14 @@
-defmodule UneebeeWeb.DashboardLessonEditorLiveTest do
-  use UneebeeWeb.ConnCase, async: true
+defmodule ZoonkWeb.DashboardLessonEditorLiveTest do
+  use ZoonkWeb.ConnCase, async: true
 
   import Phoenix.LiveViewTest
-  import Uneebee.Fixtures.Accounts
-  import Uneebee.Fixtures.Content
-  import UneebeeWeb.TestHelpers.Upload
+  import Zoonk.Fixtures.Accounts
+  import Zoonk.Fixtures.Content
+  import ZoonkWeb.TestHelpers.Upload
 
-  alias Uneebee.Content
-  alias Uneebee.Content.CourseUtils
-  alias Uneebee.Content.LessonStep
+  alias Zoonk.Content
+  alias Zoonk.Content.CourseUtils
+  alias Zoonk.Content.LessonStep
 
   @lesson_form "#lesson-form"
 
@@ -138,7 +138,7 @@ defmodule UneebeeWeb.DashboardLessonEditorLiveTest do
       lv |> element("button", "Remove step") |> render_click()
 
       refute has_element?(lv, ~s|a:fl-contains("Text step 2")|)
-      assert_raise Ecto.NoResultsError, fn -> Uneebee.Repo.get!(LessonStep, lesson_step.id) end
+      assert_raise Ecto.NoResultsError, fn -> Zoonk.Repo.get!(LessonStep, lesson_step.id) end
     end
 
     test "deletes a lesson", %{conn: conn, course: course, lesson: lesson1} do

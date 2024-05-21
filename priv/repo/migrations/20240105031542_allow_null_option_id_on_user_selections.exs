@@ -1,4 +1,4 @@
-defmodule Uneebee.Repo.Migrations.AllowNullOptionIdOnUserSelections do
+defmodule Zoonk.Repo.Migrations.AllowNullOptionIdOnUserSelections do
   use Ecto.Migration
 
   def change do

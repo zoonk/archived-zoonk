@@ -1,10 +1,10 @@
-defmodule Uneebee.Gamification.MissionUtils do
+defmodule Zoonk.Gamification.MissionUtils do
   @moduledoc """
   Utility functions for missions.
   """
-  import UneebeeWeb.Gettext
+  import ZoonkWeb.Gettext
 
-  alias Uneebee.Gamification.Mission
+  alias Zoonk.Gamification.Mission
 
   @doc """
   Returns a list of supported missions.

@@ -1,9 +1,9 @@
-defmodule UneebeeWeb.MyCoursesLiveTest do
-  use UneebeeWeb.ConnCase, async: true
+defmodule ZoonkWeb.MyCoursesLiveTest do
+  use ZoonkWeb.ConnCase, async: true
 
   import Phoenix.LiveViewTest
-  import Uneebee.Fixtures.Content
-  import Uneebee.Fixtures.Organizations
+  import Zoonk.Fixtures.Content
+  import Zoonk.Fixtures.Organizations
 
   describe "my courses (non-authenticated users)" do
     setup :set_school

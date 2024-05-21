@@ -1,8 +1,8 @@
-defmodule UneebeeWeb.TestHelpers.Upload do
+defmodule ZoonkWeb.TestHelpers.Upload do
   @moduledoc """
   Upload helper functions for tests.
   """
-  use UneebeeWeb.ConnCase, async: true
+  use ZoonkWeb.ConnCase, async: true
 
   import Phoenix.LiveViewTest
 
@@ -22,7 +22,7 @@ defmodule UneebeeWeb.TestHelpers.Upload do
       %{
         name: "robot.png",
         content:
-          [:code.priv_dir(:uneebee), "static", "uploads", "seed", "courses", "robot.png"]
+          [:code.priv_dir(:zoonk), "static", "uploads", "seed", "courses", "robot.png"]
           |> Path.join()
           |> File.read!()
       }

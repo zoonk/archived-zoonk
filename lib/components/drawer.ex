@@ -1,13 +1,13 @@
 # credo:disable-for-this-file Credo.Check.Readability.Specs
 
-defmodule UneebeeWeb.Components.Drawer do
+defmodule ZoonkWeb.Components.Drawer do
   @moduledoc """
   Drawer components.
   """
   use Phoenix.Component
 
-  import UneebeeWeb.Components.Icon
-  import UneebeeWeb.Gettext
+  import ZoonkWeb.Components.Icon
+  import ZoonkWeb.Gettext
 
   alias Phoenix.LiveView.JS
 

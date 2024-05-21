@@ -1,4 +1,4 @@
-defmodule Uneebee.Repo.Migrations.AddGuestFieldToUsers do
+defmodule Zoonk.Repo.Migrations.AddGuestFieldToUsers do
   use Ecto.Migration
 
   def change do

@@ -1,4 +1,4 @@
-defmodule Uneebee.Gamification.Mission do
+defmodule Zoonk.Gamification.Mission do
   @moduledoc """
   Struct for defining a mission.
 

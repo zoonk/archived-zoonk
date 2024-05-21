@@ -1,11 +1,11 @@
-defmodule UneebeeWeb.StripeHandlerTest do
-  use UneebeeWeb.ConnCase, async: true
+defmodule ZoonkWeb.StripeHandlerTest do
+  use ZoonkWeb.ConnCase, async: true
 
-  import Uneebee.Fixtures.Billing
-  import Uneebee.Fixtures.Organizations
+  import Zoonk.Fixtures.Billing
+  import Zoonk.Fixtures.Organizations
 
-  alias Uneebee.Billing
-  alias Uneebee.Billing.StripeHandler
+  alias Zoonk.Billing
+  alias Zoonk.Billing.StripeHandler
 
   describe "checkout.session.completed" do
     test "creates a subscription if a school doesn't have one yet" do

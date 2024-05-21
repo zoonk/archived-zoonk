@@ -1,14 +1,14 @@
-defmodule UneebeeWeb.ErrorHTMLTest do
-  use UneebeeWeb.ConnCase, async: true
+defmodule ZoonkWeb.ErrorHTMLTest do
+  use ZoonkWeb.ConnCase, async: true
 
   # Bring render_to_string/4 for testing custom views
   import Phoenix.Template
 
   test "renders 404.html" do
-    assert render_to_string(UneebeeWeb.ErrorHTML, "404", "html", []) == "Not Found"
+    assert render_to_string(ZoonkWeb.ErrorHTML, "404", "html", []) == "Not Found"
   end
 
   test "renders 500.html" do
-    assert render_to_string(UneebeeWeb.ErrorHTML, "500", "html", []) == "Internal Server Error"
+    assert render_to_string(ZoonkWeb.ErrorHTML, "500", "html", []) == "Internal Server Error"
   end
 end

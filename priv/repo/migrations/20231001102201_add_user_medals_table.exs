@@ -1,4 +1,4 @@
-defmodule Uneebee.Repo.Migrations.AddUserMedalsTable do
+defmodule Zoonk.Repo.Migrations.AddUserMedalsTable do
   use Ecto.Migration
 
   def change do

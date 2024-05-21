@@ -1,4 +1,4 @@
-defmodule Uneebee.Gamification.Trophy do
+defmodule Zoonk.Gamification.Trophy do
   @moduledoc """
   Struct for defining a trophy.
 

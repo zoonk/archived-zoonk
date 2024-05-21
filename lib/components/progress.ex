@@ -1,5 +1,5 @@
 # credo:disable-for-this-file Credo.Check.Readability.Specs
-defmodule UneebeeWeb.Components.Progress do
+defmodule ZoonkWeb.Components.Progress do
   @moduledoc false
   use Phoenix.Component
 

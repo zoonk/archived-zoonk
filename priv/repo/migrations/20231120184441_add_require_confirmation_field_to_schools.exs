@@ -1,4 +1,4 @@
-defmodule Uneebee.Repo.Migrations.AddRequireConfirmationFieldToSchools do
+defmodule Zoonk.Repo.Migrations.AddRequireConfirmationFieldToSchools do
   use Ecto.Migration
 
   def change do

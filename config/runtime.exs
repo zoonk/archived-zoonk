@@ -12,12 +12,12 @@ import Config
 # If you use `mix release`, you need to explicitly enable the server
 # by passing the PHX_SERVER=true when you start it:
 #
-#     PHX_SERVER=true bin/uneebee start
+#     PHX_SERVER=true bin/zoonk start
 #
 # Alternatively, you can use `mix phx.gen.release` to generate a `bin/server`
 # script that automatically sets the env var above.
 if System.get_env("PHX_SERVER") do
-  config :uneebee, UneebeeWeb.Endpoint, server: true
+  config :zoonk, ZoonkWeb.Endpoint, server: true
 end
 
 if config_env() in [:prod, :dev] do
@@ -26,7 +26,7 @@ if config_env() in [:prod, :dev] do
     webhook_secret: System.get_env("STRIPE_WEBHOOK_SECRET")
 
   # Cloudflare images
-  config :uneebee, :cloudflare,
+  config :zoonk, :cloudflare,
     account_id: System.get_env("CLOUDFLARE_ACCOUNT_ID"),
     api_token: System.get_env("CLOUDFLARE_API_TOKEN"),
     account_hash: System.get_env("CLOUDFLARE_ACCOUNT_HASH")
@@ -39,7 +39,7 @@ if config_env() == :prod do
       environment variable DATABASE_HOST is missing.
       """
 
-  config :uneebee, Uneebee.Repo,
+  config :zoonk, Zoonk.Repo,
     database: System.fetch_env!("DATABASE_NAME"),
     username: System.fetch_env!("DATABASE_USERNAME"),
     password: System.fetch_env!("DATABASE_PASSWORD"),
@@ -74,7 +74,7 @@ if config_env() == :prod do
   # To get SSL working, you will need to add the `https` key
   # to your endpoint configuration:
   #
-  #     config :uneebee, UneebeeWeb.Endpoint,
+  #     config :zoonk, ZoonkWeb.Endpoint,
   #       https: [
   #         ...,
   #         port: 443,
@@ -96,15 +96,15 @@ if config_env() == :prod do
   # We also recommend setting `force_ssl` in your endpoint, ensuring
   # no data is ever sent via http, always redirecting to https:
   #
-  #     config :uneebee, UneebeeWeb.Endpoint,
+  #     config :zoonk, ZoonkWeb.Endpoint,
   #       force_ssl: [hsts: true]
   #
   # Check `Plug.SSL` for all available options in `force_ssl`.
-  host = System.get_env("PHX_HOST") || "app.uneebee.com"
+  host = System.get_env("PHX_HOST")
   port = String.to_integer(System.get_env("PORT") || "8080")
   check_origin = ["https://*.#{System.get_env("PHX_HOST")}"]
 
-  config :uneebee, UneebeeWeb.Endpoint,
+  config :zoonk, ZoonkWeb.Endpoint,
     url: [host: host, port: 443, scheme: "https"],
     check_origin: check_origin,
     http: [
@@ -118,7 +118,7 @@ if config_env() == :prod do
     secret_key_base: secret_key_base
 
   ## Configuring the mailer
-  config :uneebee, Uneebee.Mailer,
+  config :zoonk, Zoonk.Mailer,
     adapter: Resend.Swoosh.Adapter,
     api_key: System.get_env("RESEND_API_KEY")
 

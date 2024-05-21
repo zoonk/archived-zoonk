@@ -1,5 +1,5 @@
-defmodule Uneebee.Repo do
+defmodule Zoonk.Repo do
   use Ecto.Repo,
-    otp_app: :uneebee,
+    otp_app: :zoonk,
     adapter: Ecto.Adapters.Postgres
 end

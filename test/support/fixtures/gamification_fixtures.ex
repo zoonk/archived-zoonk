@@ -1,15 +1,15 @@
-defmodule Uneebee.Fixtures.Gamification do
+defmodule Zoonk.Fixtures.Gamification do
   @moduledoc """
-  This module defines test helpers for creating entities via the `Uneebee.Gamification` context.
+  This module defines test helpers for creating entities via the `Zoonk.Gamification` context.
   """
-  import Uneebee.Fixtures.Accounts
-  import Uneebee.Fixtures.Content
+  import Zoonk.Fixtures.Accounts
+  import Zoonk.Fixtures.Content
 
-  alias Uneebee.Gamification
-  alias Uneebee.Gamification.UserMedal
-  alias Uneebee.Gamification.UserMission
-  alias Uneebee.Gamification.UserTrophy
-  alias Uneebee.Repo
+  alias Zoonk.Gamification
+  alias Zoonk.Gamification.UserMedal
+  alias Zoonk.Gamification.UserMission
+  alias Zoonk.Gamification.UserTrophy
+  alias Zoonk.Repo
 
   @doc """
   Generates a user medal.

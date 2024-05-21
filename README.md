@@ -4,14 +4,18 @@
   <img alt="UneeBee Banner" src="https://github.com/zoonk/uneebee/assets/4393133/cd481f3b-0700-47b6-a529-19d9226689d5">
 </picture>
 
+---
+
+**WARNING:** This software is still in development and not ready for production. I'm making several changes to it. DO NOT USE IT IN PRODUCTION YET. The current version will break when v1.0 is released. I'll update this README when it's ready for production.
+
+---
+
 <p align="center">
   Open-source alternative to create interactive courses like Duolingo.
   <br />
-  <a href="https://uneebee.com"><strong>Learn more »</strong></a>
+  <a href="https://zoonk.org"><strong>Learn more »</strong></a>
   <br />
   <br />
-  <a href="https://zoonk.org">Cloud</a>
-  .
   <a href="https://github.com/orgs/zoonk/projects/11">Roadmap</a>
   .
   <a href="https://github.com/orgs/zoonk/discussions">Community</a>
@@ -21,7 +25,7 @@
 
 Interactive learning is [more effective](https://www.sciencedaily.com/releases/2021/09/210930140710.htm) than traditional methods. [Learners remember](https://www.linkedin.com/pulse/how-does-interactive-learning-boost-outcomes/) 10% of what they hear, 20% of what they read but 80% of what they see and do. That's why 34 hours of Duolingo [are equivalent](https://support.duolingo.com/hc/en-us/articles/115000035183-Are-there-official-studies-about-Duolingo-) to a full university semester of language education.
 
-We love Duolingo. We think those kind of interactive experiences should be used in more fields. That's why we're building UneeBee, an open-source platform to create interactive courses like Duolingo. You can use it at your [organization](https://wikaro.com), [school](https://educasso.com), or using [our marketplace](https://mywisek.com) to share your experience in a fun way.
+We love Duolingo. We think those kind of interactive experiences should be used in more fields. That's why we're building Zoonk, an open-source platform to create interactive courses like Duolingo.
 
 ## Tech stack
 
@@ -36,7 +40,7 @@ We're deploying our cloud products to [Fly](https://fly.io/) and [Neon](https://
 
 ## Getting started
 
-Follow the instructions below to get UneeBee up and running on your local machine. We have a `Dockerfile` but that's used for deploying our demo app to [Fly](https://fly.io/). We don't have a Docker setup for local development yet. PRs are welcome!
+Follow the instructions below to get Zoonk up and running on your local machine. We have a `Dockerfile` but that's used for deploying our demo app to [Fly](https://fly.io/). We don't have a Docker setup for local development yet. PRs are welcome!
 
 ### Requirements
 
@@ -61,12 +65,12 @@ Follow the instructions below to get UneeBee up and running on your local machin
 Prefer to do local development using SSL to resemble production as much as possible. You can use [mkcert](https://github.com/FiloSottile/mkcert) to generate a certificate. After you install `mkcert`, follow the steps below:
 
 - Create a `cert` directory under `priv`: `mkdir priv/cert`.
-- Generate a new certificate: `mkcert -key-file priv/cert/selfsigned_key.pem -cert-file priv/cert/selfsigned.pem localhost uneebee.test "*.uneebee.test" apple.test`.
+- Generate a new certificate: `mkcert -key-file priv/cert/selfsigned_key.pem -cert-file priv/cert/selfsigned.pem localhost zoonk.test "*.zoonk.test" apple.test`.
 - Run `mkcert -install` to install the certificate in the system trust store.
 - You may also need to enable `Allow invalid certificates for resources loaded from localhost` on [Google Chrome flags](chrome://flags/#allow-insecure-localhost).
 - Restart your local server: `mix phx.server`. You may also need to restart your browser.
 
-  You also need to make sure your machine maps `localhost` to a test domain (we're using `uneebee.test` for this guide). `dnsmasq` allows you to resolve domains to your local machine without having to change your `/etc/hosts` file. To install `dnsmasq`:
+  You also need to make sure your machine maps `localhost` to a test domain (we're using `zoonk.test` for this guide). `dnsmasq` allows you to resolve domains to your local machine without having to change your `/etc/hosts` file. To install `dnsmasq`:
 
 ```sh
 brew install dnsmasq
@@ -75,13 +79,13 @@ brew install dnsmasq
 mkdir -pv $(brew --prefix)/etc/
 
 # Set up your domains
-echo 'address=/uneebee.test/127.0.0.1' >> $(brew --prefix)/etc/dnsmasq.conf
-echo 'address=/.uneebee.test/127.0.0.1' >> $(brew --prefix)/etc/dnsmasq.conf
+echo 'address=/zoonk.test/127.0.0.1' >> $(brew --prefix)/etc/dnsmasq.conf
+echo 'address=/.zoonk.test/127.0.0.1' >> $(brew --prefix)/etc/dnsmasq.conf
 echo 'address=/apple.test/127.0.0.1' >> $(brew --prefix)/etc/dnsmasq.conf
 
 # Add dnsmasq to your resolver
 sudo mkdir -v /etc/resolver
-sudo bash -c 'echo "nameserver 127.0.0.1" > /etc/resolver/uneebee.test'
+sudo bash -c 'echo "nameserver 127.0.0.1" > /etc/resolver/zoonk.test'
 sudo bash -c 'echo "nameserver 127.0.0.1" > /etc/resolver/apple.test'
 
 # Start dnsmasq
@@ -90,8 +94,8 @@ sudo brew services start dnsmasq
 
 That's it! You can now start your local server (`mix phx.server`) and test your domains using:
 
-- https://uneebee.test:4001
-- https://rug.uneebee.test:4001 (each school slug can be used as a subdomain of `uneebee.test`).
+- https://zoonk.test:4001
+- https://rug.zoonk.test:4001 (each school slug can be used as a subdomain of `zoonk.test`).
 - Or any other domain you added before.
 
 ## Mailer
@@ -115,7 +119,7 @@ We use Stripe for processing payments. If you want to enable subscriptions, you 
 - `STRIPE_API_KEY`: Your Stripe API key.
 - `STRIPE_WEBHOOK_SECRET`: Your Stripe webhook secret.
 
-Plus, you need to create a product for your subscription. We call this plan `flexible` and you can't customize plans at the moment. We fetch the price from the Stripe API, so make sure you add the `uneebee_flexible` [lookup key](https://stripe.com/docs/products-prices/manage-prices#lookup-keys) to your price.
+Plus, you need to create a product for your subscription. We call this plan `flexible` and you can't customize plans at the moment. We fetch the price from the Stripe API, so make sure you add the `zoonk_flexible` [lookup key](https://stripe.com/docs/products-prices/manage-prices#lookup-keys) to your price.
 
 Stripe can only be enabled for `saas` and `marketplace` apps. Make sure to choose one of those options when you first run this app.
 

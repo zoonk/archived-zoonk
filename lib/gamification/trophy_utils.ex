@@ -1,10 +1,10 @@
-defmodule Uneebee.Gamification.TrophyUtils do
+defmodule Zoonk.Gamification.TrophyUtils do
   @moduledoc """
   Trophy configuration and utilities.
   """
-  import UneebeeWeb.Gettext
+  import ZoonkWeb.Gettext
 
-  alias Uneebee.Gamification.Trophy
+  alias Zoonk.Gamification.Trophy
 
   @doc """
   Supported reasons for receiving a trophy.

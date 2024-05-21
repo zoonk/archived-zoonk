@@ -1,13 +1,13 @@
-defmodule UneebeeWeb.Controller.SchoolSubscription do
+defmodule ZoonkWeb.Controller.SchoolSubscription do
   @moduledoc """
   Creates a new subscription for a school.
 
   It creates a new Stripe Checkout Session and redirects the user to the checkout page.
   """
-  use UneebeeWeb, :controller
+  use ZoonkWeb, :controller
 
   alias Stripe.Checkout.Session
-  alias Uneebee.Billing
+  alias Zoonk.Billing
 
   @spec show(Plug.Conn.t(), map()) :: Plug.Conn.t()
   def show(conn, params) do

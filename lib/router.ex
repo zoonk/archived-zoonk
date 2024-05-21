@@ -1,20 +1,20 @@
-defmodule UneebeeWeb.Router do
-  use UneebeeWeb, :router
+defmodule ZoonkWeb.Router do
+  use ZoonkWeb, :router
 
-  import UneebeeWeb.Plugs.Course
-  import UneebeeWeb.Plugs.School
-  import UneebeeWeb.Plugs.Translate
-  import UneebeeWeb.Plugs.UserAuth
+  import ZoonkWeb.Plugs.Course
+  import ZoonkWeb.Plugs.School
+  import ZoonkWeb.Plugs.Translate
+  import ZoonkWeb.Plugs.UserAuth
 
   @nonce 10 |> :crypto.strong_rand_bytes() |> Base.url_encode64(padding: false)
-  @csp_connect_src Application.compile_env(:uneebee, :csp)[:connect_src]
-  @cdn_url Application.compile_env(:uneebee, :cdn)[:url]
+  @csp_connect_src Application.compile_env(:zoonk, :csp)[:connect_src]
+  @cdn_url Application.compile_env(:zoonk, :cdn)[:url]
 
   pipeline :browser do
     plug :accepts, ["html"]
     plug :fetch_session
     plug :fetch_live_flash
-    plug :put_root_layout, html: {UneebeeWeb.Layouts, :root}
+    plug :put_root_layout, html: {ZoonkWeb.Layouts, :root}
     plug :protect_from_forgery
 
     plug :put_secure_browser_headers, %{
@@ -33,7 +33,7 @@ defmodule UneebeeWeb.Router do
     plug :accepts, ["html"]
     plug :fetch_session
     plug :protect_from_forgery
-    plug UneebeeWeb.Plugs.CspNonce, nonce: @nonce
+    plug ZoonkWeb.Plugs.CspNonce, nonce: @nonce
     plug :put_secure_browser_headers, %{"content-security-policy" => "style-src 'self' 'nonce-#{@nonce}'"}
   end
 
@@ -47,21 +47,21 @@ defmodule UneebeeWeb.Router do
   end
 
   # We don't have an actual home page. It redirects to the most recent course or the course list.
-  scope "/", UneebeeWeb.Controller do
+  scope "/", ZoonkWeb.Controller do
     pipe_through :browser
     get "/", Home, :index
   end
 
   ## Authentication routes
-  scope "/", UneebeeWeb.Live do
+  scope "/", ZoonkWeb.Live do
     pipe_through [:browser, :redirect_if_user_is_authenticated]
 
     live_session :redirect_if_user_is_authenticated,
-      layout: {UneebeeWeb.Layouts, :auth},
+      layout: {ZoonkWeb.Layouts, :auth},
       on_mount: [
-        {UneebeeWeb.Plugs.UserAuth, :redirect_if_user_is_authenticated},
-        {UneebeeWeb.Plugs.School, :mount_school},
-        {UneebeeWeb.Plugs.Translate, :set_locale_from_session}
+        {ZoonkWeb.Plugs.UserAuth, :redirect_if_user_is_authenticated},
+        {ZoonkWeb.Plugs.School, :mount_school},
+        {ZoonkWeb.Plugs.Translate, :set_locale_from_session}
       ] do
       live "/users/register", Registration, :new
       live "/users/login", Login, :new
@@ -70,22 +70,22 @@ defmodule UneebeeWeb.Router do
     end
   end
 
-  scope "/", UneebeeWeb.Live do
+  scope "/", ZoonkWeb.Live do
     pipe_through [:browser]
 
     live_session :public_routes,
-      layout: {UneebeeWeb.Layouts, :auth},
+      layout: {ZoonkWeb.Layouts, :auth},
       on_mount: [
-        {UneebeeWeb.Plugs.UserAuth, :mount_current_user},
-        {UneebeeWeb.Plugs.School, :mount_school},
-        {UneebeeWeb.Plugs.Translate, :set_locale_from_session}
+        {ZoonkWeb.Plugs.UserAuth, :mount_current_user},
+        {ZoonkWeb.Plugs.School, :mount_school},
+        {ZoonkWeb.Plugs.Translate, :set_locale_from_session}
       ] do
       live "/users/confirm/:token", UserConfirmation, :edit
       live "/users/confirm", ConfirmationInstructions, :new
     end
   end
 
-  scope "/", UneebeeWeb.Live do
+  scope "/", ZoonkWeb.Live do
     pipe_through [
       :browser,
       :require_authenticated_user,
@@ -97,11 +97,11 @@ defmodule UneebeeWeb.Router do
 
     live_session :requires_authentication,
       on_mount: [
-        {UneebeeWeb.Plugs.UserAuth, :ensure_authenticated},
-        {UneebeeWeb.Plugs.School, :mount_school},
-        {UneebeeWeb.Plugs.Translate, :set_locale_from_session},
-        {UneebeeWeb.Plugs.Course, :mount_course},
-        {UneebeeWeb.Plugs.Course, :mount_lesson}
+        {ZoonkWeb.Plugs.UserAuth, :ensure_authenticated},
+        {ZoonkWeb.Plugs.School, :mount_school},
+        {ZoonkWeb.Plugs.Translate, :set_locale_from_session},
+        {ZoonkWeb.Plugs.Course, :mount_course},
+        {ZoonkWeb.Plugs.Course, :mount_lesson}
       ] do
       live "/contact", Contact
 
@@ -126,26 +126,26 @@ defmodule UneebeeWeb.Router do
     end
   end
 
-  scope "/", UneebeeWeb.Controller do
+  scope "/", ZoonkWeb.Controller do
     pipe_through [:browser, :redirect_if_user_is_authenticated]
     post "/users/login", UserSession, :create
   end
 
-  scope "/", UneebeeWeb.Controller do
+  scope "/", ZoonkWeb.Controller do
     pipe_through [:browser]
     delete "/users/logout", UserSession, :delete
   end
 
   # Routes visible to school managers only.
-  scope "/dashboard", UneebeeWeb.Live do
+  scope "/dashboard", ZoonkWeb.Live do
     pipe_through [:browser, :require_authenticated_user, :require_manager]
 
     live_session :school_dashboard,
-      layout: {UneebeeWeb.Layouts, :dashboard_school},
+      layout: {ZoonkWeb.Layouts, :dashboard_school},
       on_mount: [
-        {UneebeeWeb.Plugs.UserAuth, :ensure_authenticated},
-        {UneebeeWeb.Plugs.School, :mount_school},
-        {UneebeeWeb.Plugs.Translate, :set_locale_from_session}
+        {ZoonkWeb.Plugs.UserAuth, :ensure_authenticated},
+        {ZoonkWeb.Plugs.School, :mount_school},
+        {ZoonkWeb.Plugs.Translate, :set_locale_from_session}
       ] do
       live "/", Dashboard.Home
       live "/edit/logo", Dashboard.SchoolEdit, :logo
@@ -164,36 +164,36 @@ defmodule UneebeeWeb.Router do
     end
   end
 
-  scope "/dashboard", UneebeeWeb.Controller do
+  scope "/dashboard", ZoonkWeb.Controller do
     pipe_through [:browser, :require_authenticated_user, :require_manager]
 
     get "/billing/:from/:to/:currency/:price_id", SchoolSubscription, :show
   end
 
   # These routes are only available to managers and teachers.
-  scope "/dashboard", UneebeeWeb.Controller.Dashboard do
+  scope "/dashboard", ZoonkWeb.Controller.Dashboard do
     pipe_through [:browser, :require_authenticated_user, :fetch_course, :require_manager_or_teacher]
 
     get "/courses", Courses, :index
   end
 
-  scope "/dashboard", UneebeeWeb.Controller do
+  scope "/dashboard", ZoonkWeb.Controller do
     pipe_through [:browser, :require_authenticated_user, :fetch_course, :require_manager_or_teacher]
 
     get "/c/:course_slug/l/:lesson_id/s/:step_order/suggested_course/:course_id", LessonStep, :add_suggested_course
   end
 
-  scope "/dashboard", UneebeeWeb.Live.Dashboard do
+  scope "/dashboard", ZoonkWeb.Live.Dashboard do
     pipe_through [:browser, :require_authenticated_user, :fetch_course, :require_manager_or_teacher]
 
     live_session :course_dashboard,
-      layout: {UneebeeWeb.Layouts, :dashboard_course},
+      layout: {ZoonkWeb.Layouts, :dashboard_course},
       on_mount: [
-        {UneebeeWeb.Plugs.UserAuth, :ensure_authenticated},
-        {UneebeeWeb.Plugs.School, :mount_school},
-        {UneebeeWeb.Plugs.Translate, :set_locale_from_session},
-        {UneebeeWeb.Plugs.Course, :mount_course},
-        {UneebeeWeb.Plugs.Course, :mount_lesson}
+        {ZoonkWeb.Plugs.UserAuth, :ensure_authenticated},
+        {ZoonkWeb.Plugs.School, :mount_school},
+        {ZoonkWeb.Plugs.Translate, :set_locale_from_session},
+        {ZoonkWeb.Plugs.Course, :mount_course},
+        {ZoonkWeb.Plugs.Course, :mount_lesson}
       ] do
       live "/courses/new", CourseNew
 
@@ -218,12 +218,12 @@ defmodule UneebeeWeb.Router do
   end
 
   # Other scopes may use custom stacks.
-  # scope "/api", UneebeeWeb do
+  # scope "/api", ZoonkWeb do
   #   pipe_through :api
   # end
 
   # Enable LiveDashboard and Swoosh mailbox preview in development
-  if Application.compile_env(:uneebee, :dev_routes) do
+  if Application.compile_env(:zoonk, :dev_routes) do
     # If you want to use the LiveDashboard in production, you should put
     # it behind authentication and allow only admins to access it.
     # If your application does not have an admins-only section yet,
@@ -233,7 +233,7 @@ defmodule UneebeeWeb.Router do
 
     scope "/dev/dashboard" do
       pipe_through :dev_dashboard
-      live_dashboard "/", metrics: UneebeeWeb.Telemetry, csp_nonce_assign_key: :csp_nonce
+      live_dashboard "/", metrics: ZoonkWeb.Telemetry, csp_nonce_assign_key: :csp_nonce
     end
 
     scope "/dev/mailbox" do

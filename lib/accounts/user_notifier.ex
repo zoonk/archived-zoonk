@@ -1,11 +1,11 @@
-defmodule Uneebee.Accounts.UserNotifier do
+defmodule Zoonk.Accounts.UserNotifier do
   @moduledoc false
-  import UneebeeWeb.Gettext
+  import ZoonkWeb.Gettext
 
-  alias Uneebee.Accounts.User
-  alias Uneebee.Accounts.UserUtils
-  alias Uneebee.Mailer
-  alias Uneebee.Organizations.School
+  alias Zoonk.Accounts.User
+  alias Zoonk.Accounts.UserUtils
+  alias Zoonk.Mailer
+  alias Zoonk.Organizations.School
 
   @doc """
   Deliver instructions to confirm account.

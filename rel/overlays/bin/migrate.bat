@@ -1,1 +1,1 @@
-call "%~dp0\uneebee" eval Uneebee.Release.migrate
+call "%~dp0\zoonk" eval Zoonk.Release.migrate

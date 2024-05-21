@@ -1,9 +1,9 @@
-defmodule UneebeeWeb.HomeControllerTest do
+defmodule ZoonkWeb.HomeControllerTest do
   @moduledoc false
-  use UneebeeWeb.ConnCase, async: true
+  use ZoonkWeb.ConnCase, async: true
 
-  import Uneebee.Fixtures.Content
-  import Uneebee.Fixtures.Organizations
+  import Zoonk.Fixtures.Content
+  import Zoonk.Fixtures.Organizations
 
   describe "GET / (public school, logged in)" do
     setup :app_setup

@@ -1,9 +1,9 @@
-defmodule UneebeeWeb.Live.Dashboard.SchoolList do
+defmodule ZoonkWeb.Live.Dashboard.SchoolList do
   @moduledoc false
-  use UneebeeWeb, :live_view
-  use UneebeeWeb.Shared.Paginate, as: :schools
+  use ZoonkWeb, :live_view
+  use ZoonkWeb.Shared.Paginate, as: :schools
 
-  alias Uneebee.Organizations
+  alias Zoonk.Organizations
 
   @impl Phoenix.LiveView
   def mount(_params, _session, socket) do

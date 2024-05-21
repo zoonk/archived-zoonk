@@ -1,4 +1,4 @@
-defmodule Uneebee.Content.UserLesson do
+defmodule Zoonk.Content.UserLesson do
   @moduledoc """
   User lesson schema.
 
@@ -8,8 +8,8 @@ defmodule Uneebee.Content.UserLesson do
 
   import Ecto.Changeset
 
-  alias Uneebee.Accounts.User
-  alias Uneebee.Content.Lesson
+  alias Zoonk.Accounts.User
+  alias Zoonk.Content.Lesson
 
   @type t :: %__MODULE__{}
 

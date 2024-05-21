@@ -1,10 +1,10 @@
 # credo:disable-for-this-file Credo.Check.Readability.Specs
-defmodule Uneebee.Release do
+defmodule Zoonk.Release do
   @moduledoc """
   Used for executing DB release tasks when run in production without Mix
   installed.
   """
-  @app :uneebee
+  @app :zoonk
 
   def migrate do
     load_app()

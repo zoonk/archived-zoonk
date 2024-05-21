@@ -1,13 +1,13 @@
-defmodule Uneebee.Support do
+defmodule Zoonk.Support do
   @moduledoc """
   Support context.
 
   This module defines functions to be used on support pages.
   """
-  import UneebeeWeb.Gettext
+  import ZoonkWeb.Gettext
 
-  alias Uneebee.Mailer
-  alias Uneebee.Organizations.School
+  alias Zoonk.Mailer
+  alias Zoonk.Organizations.School
 
   @doc """
   Send a feedback message to the school support email.

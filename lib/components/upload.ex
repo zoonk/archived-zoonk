@@ -1,10 +1,10 @@
-defmodule UneebeeWeb.Components.Upload do
+defmodule ZoonkWeb.Components.Upload do
   @moduledoc """
   Reusable file upload component.
   """
-  use UneebeeWeb, :live_component
+  use ZoonkWeb, :live_component
 
-  alias UneebeeWeb.Shared.ImageOptimizer
+  alias ZoonkWeb.Shared.ImageOptimizer
 
   attr :current_img, :string, default: nil
   attr :label, :string, default: nil
@@ -95,7 +95,7 @@ defmodule UneebeeWeb.Components.Upload do
 
   # sobelow_skip ["Traversal.FileModule"]
   defp consume_entry(%{path: path}, _entry) do
-    dest = Path.join([:code.priv_dir(:uneebee), "static", "uploads", Path.basename(path)])
+    dest = Path.join([:code.priv_dir(:zoonk), "static", "uploads", Path.basename(path)])
 
     File.cp!(path, dest)
     file_name = Path.basename(dest)

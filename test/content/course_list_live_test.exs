@@ -1,12 +1,12 @@
-defmodule UneebeeWeb.CourseListLiveTest do
+defmodule ZoonkWeb.CourseListLiveTest do
   @moduledoc false
-  use UneebeeWeb.ConnCase, async: true
+  use ZoonkWeb.ConnCase, async: true
 
   import Phoenix.LiveViewTest
-  import Uneebee.Fixtures.Content
-  import Uneebee.Fixtures.Organizations
+  import Zoonk.Fixtures.Content
+  import Zoonk.Fixtures.Organizations
 
-  alias Uneebee.Accounts
+  alias Zoonk.Accounts
 
   describe "/courses (non-authenticated users)" do
     setup :set_school

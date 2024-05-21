@@ -1,10 +1,10 @@
-defmodule UneebeeWeb.Live.Contact do
+defmodule ZoonkWeb.Live.Contact do
   @moduledoc false
-  use UneebeeWeb, :live_view
+  use ZoonkWeb, :live_view
 
-  alias Uneebee.Accounts.User
-  alias Uneebee.Accounts.UserUtils
-  alias Uneebee.Support
+  alias Zoonk.Accounts.User
+  alias Zoonk.Accounts.UserUtils
+  alias Zoonk.Support
 
   @impl Phoenix.LiveView
   def mount(_params, _session, socket) do

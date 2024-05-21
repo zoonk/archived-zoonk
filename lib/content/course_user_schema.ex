@@ -1,4 +1,4 @@
-defmodule Uneebee.Content.CourseUser do
+defmodule Zoonk.Content.CourseUser do
   @moduledoc """
   Schema for the relationship between courses and users.
   """
@@ -6,8 +6,8 @@ defmodule Uneebee.Content.CourseUser do
 
   import Ecto.Changeset
 
-  alias Uneebee.Accounts.User
-  alias Uneebee.Content.Course
+  alias Zoonk.Accounts.User
+  alias Zoonk.Content.Course
 
   @type t :: %__MODULE__{}
 

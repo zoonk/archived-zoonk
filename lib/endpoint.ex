@@ -1,13 +1,13 @@
-defmodule UneebeeWeb.Endpoint do
+defmodule ZoonkWeb.Endpoint do
   use Sentry.PlugCapture
-  use Phoenix.Endpoint, otp_app: :uneebee
+  use Phoenix.Endpoint, otp_app: :zoonk
 
   # The session will be stored in the cookie and signed,
   # this means its contents can be read but not tampered with.
   # Set :encryption_salt if you would also like to encrypt it.
   @session_options [
     store: :cookie,
-    key: "_uneebee_key",
+    key: "_zoonk_key",
     signing_salt: "7W3uBzEK",
     same_site: "Lax"
   ]
@@ -20,9 +20,9 @@ defmodule UneebeeWeb.Endpoint do
   # when deploying your static files in production.
   plug Plug.Static,
     at: "/",
-    from: :uneebee,
+    from: :zoonk,
     gzip: true,
-    only: UneebeeWeb.static_paths()
+    only: ZoonkWeb.static_paths()
 
   # Code reloading can be explicitly enabled under the
   # :code_reloader configuration of your endpoint.
@@ -30,14 +30,14 @@ defmodule UneebeeWeb.Endpoint do
     socket "/phoenix/live_reload/socket", Phoenix.LiveReloader.Socket
     plug Phoenix.LiveReloader
     plug Phoenix.CodeReloader
-    plug Phoenix.Ecto.CheckRepoStatus, otp_app: :uneebee
+    plug Phoenix.Ecto.CheckRepoStatus, otp_app: :zoonk
   end
 
   # Since Plug.Parsers removes the raw request_body in body_parsers
   # we need to parse out the Stripe webhooks before this
   plug Stripe.WebhookPlug,
     at: "/webhook/stripe",
-    handler: Uneebee.Billing.StripeHandler,
+    handler: Zoonk.Billing.StripeHandler,
     secret: {Application, :get_env, [:stripity_stripe, :webhook_secret]}
 
   plug Phoenix.LiveDashboard.RequestLogger,
@@ -56,5 +56,5 @@ defmodule UneebeeWeb.Endpoint do
   plug Plug.MethodOverride
   plug Plug.Head
   plug Plug.Session, @session_options
-  plug UneebeeWeb.Router
+  plug ZoonkWeb.Router
 end

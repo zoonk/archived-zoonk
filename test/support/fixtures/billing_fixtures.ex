@@ -1,12 +1,12 @@
-defmodule Uneebee.Fixtures.Billing do
+defmodule Zoonk.Fixtures.Billing do
   @moduledoc """
-  This module defines test helpers for creating entities via the `Uneebee.Billing` context.
+  This module defines test helpers for creating entities via the `Zoonk.Billing` context.
   """
 
-  import Uneebee.Fixtures.Organizations
+  import Zoonk.Fixtures.Organizations
 
-  alias Uneebee.Billing
-  alias Uneebee.Billing.Subscription
+  alias Zoonk.Billing
+  alias Zoonk.Billing.Subscription
 
   @doc """
   Generate a subscription with valid attributes.

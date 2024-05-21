@@ -1,12 +1,12 @@
 # credo:disable-for-this-file Credo.Check.Readability.Specs
 
-defmodule UneebeeWeb.Components.Avatar do
+defmodule ZoonkWeb.Components.Avatar do
   @moduledoc """
   Image components.
   """
   use Phoenix.Component
 
-  import UneebeeWeb.Shared.Utilities
+  import ZoonkWeb.Shared.Utilities
 
   @doc """
   Renders an avatar element.

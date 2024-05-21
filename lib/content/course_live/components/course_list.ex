@@ -1,10 +1,10 @@
 # credo:disable-for-this-file Credo.Check.Readability.Specs
 
-defmodule UneebeeWeb.Components.Content.CourseList do
+defmodule ZoonkWeb.Components.Content.CourseList do
   @moduledoc false
-  use UneebeeWeb, :html
+  use ZoonkWeb, :html
 
-  alias Uneebee.Content.CourseUtils
+  alias Zoonk.Content.CourseUtils
 
   attr :id, :string, required: true
   attr :courses, :list, required: true

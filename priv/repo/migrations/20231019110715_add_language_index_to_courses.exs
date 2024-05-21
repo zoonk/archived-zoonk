@@ -1,4 +1,4 @@
-defmodule Uneebee.Repo.Migrations.AddLanguageIndexToCourses do
+defmodule Zoonk.Repo.Migrations.AddLanguageIndexToCourses do
   use Ecto.Migration
 
   def change do

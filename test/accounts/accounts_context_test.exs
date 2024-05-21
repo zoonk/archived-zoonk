@@ -1,16 +1,16 @@
-defmodule Uneebee.AccountsTest do
-  use Uneebee.DataCase, async: true
+defmodule Zoonk.AccountsTest do
+  use Zoonk.DataCase, async: true
 
-  import Uneebee.Fixtures.Accounts
-  import Uneebee.Fixtures.Content
-  import Uneebee.Fixtures.Gamification
-  import Uneebee.Fixtures.Organizations
+  import Zoonk.Fixtures.Accounts
+  import Zoonk.Fixtures.Content
+  import Zoonk.Fixtures.Gamification
+  import Zoonk.Fixtures.Organizations
 
-  alias Uneebee.Accounts
-  alias Uneebee.Accounts.User
-  alias Uneebee.Accounts.UserToken
-  alias Uneebee.Content
-  alias Uneebee.Gamification
+  alias Zoonk.Accounts
+  alias Zoonk.Accounts.User
+  alias Zoonk.Accounts.UserToken
+  alias Zoonk.Content
+  alias Zoonk.Gamification
 
   describe "get_user_by_email/1" do
     test "does not return the user if the email does not exist" do

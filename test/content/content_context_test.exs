@@ -1,26 +1,26 @@
-defmodule Uneebee.ContentTest do
+defmodule Zoonk.ContentTest do
   @moduledoc false
-  use Uneebee.DataCase, async: true
+  use Zoonk.DataCase, async: true
 
-  import Uneebee.Fixtures.Accounts
-  import Uneebee.Fixtures.Content
-  import Uneebee.Fixtures.Gamification
-  import Uneebee.Fixtures.Organizations
+  import Zoonk.Fixtures.Accounts
+  import Zoonk.Fixtures.Content
+  import Zoonk.Fixtures.Gamification
+  import Zoonk.Fixtures.Organizations
 
-  alias Uneebee.Content
-  alias Uneebee.Content.Course
-  alias Uneebee.Content.CourseData
-  alias Uneebee.Content.CourseUser
-  alias Uneebee.Content.CourseUtils
-  alias Uneebee.Content.Lesson
-  alias Uneebee.Content.LessonStep
-  alias Uneebee.Content.StepOption
-  alias Uneebee.Content.StepSuggestedCourse
-  alias Uneebee.Content.UserLesson
-  alias Uneebee.Content.UserSelection
-  alias Uneebee.Gamification
-  alias Uneebee.Organizations
-  alias Uneebee.Repo
+  alias Zoonk.Content
+  alias Zoonk.Content.Course
+  alias Zoonk.Content.CourseData
+  alias Zoonk.Content.CourseUser
+  alias Zoonk.Content.CourseUtils
+  alias Zoonk.Content.Lesson
+  alias Zoonk.Content.LessonStep
+  alias Zoonk.Content.StepOption
+  alias Zoonk.Content.StepSuggestedCourse
+  alias Zoonk.Content.UserLesson
+  alias Zoonk.Content.UserSelection
+  alias Zoonk.Gamification
+  alias Zoonk.Organizations
+  alias Zoonk.Repo
 
   describe "change_course/2" do
     test "returns a course changeset" do
@@ -830,7 +830,7 @@ defmodule Uneebee.ContentTest do
       lesson_step_fixture(%{lesson: lesson})
       lesson_step = lesson_step_fixture(%{lesson: lesson})
       assert {:ok, %LessonStep{}} = Content.delete_lesson_step(lesson_step.id)
-      assert_raise Ecto.NoResultsError, fn -> Uneebee.Repo.get!(LessonStep, lesson_step.id) end
+      assert_raise Ecto.NoResultsError, fn -> Zoonk.Repo.get!(LessonStep, lesson_step.id) end
     end
 
     test "cannot delete the only lesson step" do
@@ -997,7 +997,7 @@ defmodule Uneebee.ContentTest do
     test "deletes a step option" do
       step_option = step_option_fixture()
       assert {:ok, %StepOption{}} = Content.delete_step_option(step_option.id)
-      assert_raise Ecto.NoResultsError, fn -> Uneebee.Repo.get!(StepOption, step_option.id) end
+      assert_raise Ecto.NoResultsError, fn -> Zoonk.Repo.get!(StepOption, step_option.id) end
     end
   end
 
@@ -1440,7 +1440,7 @@ defmodule Uneebee.ContentTest do
       {:ok, %StepSuggestedCourse{} = step_suggested_course} = Content.add_step_suggested_course(%{lesson_step_id: step.id, course_id: course.id})
 
       assert {:ok, %StepSuggestedCourse{}} = Content.delete_step_suggested_course(step_suggested_course.id)
-      assert_raise Ecto.NoResultsError, fn -> Uneebee.Repo.get!(StepSuggestedCourse, step.id) end
+      assert_raise Ecto.NoResultsError, fn -> Zoonk.Repo.get!(StepSuggestedCourse, step.id) end
     end
   end
 

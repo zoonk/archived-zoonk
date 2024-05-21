@@ -1,14 +1,14 @@
-defmodule Uneebee.GamificationTest do
-  use Uneebee.DataCase, async: true
+defmodule Zoonk.GamificationTest do
+  use Zoonk.DataCase, async: true
 
-  import Uneebee.Fixtures.Accounts
-  import Uneebee.Fixtures.Content
-  import Uneebee.Fixtures.Gamification
+  import Zoonk.Fixtures.Accounts
+  import Zoonk.Fixtures.Content
+  import Zoonk.Fixtures.Gamification
 
-  alias Uneebee.Gamification
-  alias Uneebee.Gamification.UserMedal
-  alias Uneebee.Gamification.UserMission
-  alias Uneebee.Gamification.UserTrophy
+  alias Zoonk.Gamification
+  alias Zoonk.Gamification.UserMedal
+  alias Zoonk.Gamification.UserMission
+  alias Zoonk.Gamification.UserTrophy
 
   describe "learning_days_count/1" do
     test "calculates how many learning days a user has completed" do

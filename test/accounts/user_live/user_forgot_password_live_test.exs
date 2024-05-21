@@ -1,11 +1,11 @@
-defmodule UneebeeWeb.UserForgotPasswordLiveTest do
-  use UneebeeWeb.ConnCase, async: true
+defmodule ZoonkWeb.UserForgotPasswordLiveTest do
+  use ZoonkWeb.ConnCase, async: true
 
   import Phoenix.LiveViewTest
-  import Uneebee.Fixtures.Accounts
+  import Zoonk.Fixtures.Accounts
 
-  alias Uneebee.Accounts
-  alias Uneebee.Repo
+  alias Zoonk.Accounts
+  alias Zoonk.Repo
 
   describe "Forgot password page" do
     test "renders email page", %{conn: conn} do

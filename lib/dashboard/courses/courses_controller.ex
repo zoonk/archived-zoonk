@@ -1,8 +1,8 @@
-defmodule UneebeeWeb.Controller.Dashboard.Courses do
+defmodule ZoonkWeb.Controller.Dashboard.Courses do
   @moduledoc false
-  use UneebeeWeb, :controller
+  use ZoonkWeb, :controller
 
-  alias Uneebee.Content
+  alias Zoonk.Content
 
   @spec index(Plug.Conn.t(), map()) :: Plug.Conn.t()
   def index(conn, params) do

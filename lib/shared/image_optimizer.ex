@@ -1,4 +1,4 @@
-defmodule UneebeeWeb.Shared.ImageOptimizer do
+defmodule ZoonkWeb.Shared.ImageOptimizer do
   @moduledoc """
   Uploads an image to [Cloudflare Images](https://www.cloudflare.com/developer-platform/cloudflare-images/).
 
@@ -58,7 +58,7 @@ defmodule UneebeeWeb.Shared.ImageOptimizer do
   end
 
   defp api_url, do: "https://api.cloudflare.com/client/v4/accounts/#{account_id()}/images/v1"
-  defp account_id, do: Application.get_env(:uneebee, :cloudflare)[:account_id]
-  defp bearer_token, do: Application.get_env(:uneebee, :cloudflare)[:api_token]
-  defp account_hash, do: Application.get_env(:uneebee, :cloudflare)[:account_hash]
+  defp account_id, do: Application.get_env(:zoonk, :cloudflare)[:account_id]
+  defp bearer_token, do: Application.get_env(:zoonk, :cloudflare)[:api_token]
+  defp account_hash, do: Application.get_env(:zoonk, :cloudflare)[:account_hash]
 end

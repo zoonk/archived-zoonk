@@ -1,4 +1,4 @@
-defmodule Uneebee.Repo.Migrations.AddIndexToUserLessons do
+defmodule Zoonk.Repo.Migrations.AddIndexToUserLessons do
   use Ecto.Migration
 
   def change do

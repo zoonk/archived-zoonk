@@ -1,6 +1,6 @@
 # credo:disable-for-this-file Credo.Check.Readability.Specs
 
-defmodule UneebeeWeb.Components.Utils do
+defmodule ZoonkWeb.Components.Utils do
   @moduledoc """
   Utils to be used in function components.
   """

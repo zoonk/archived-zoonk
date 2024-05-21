@@ -1,4 +1,4 @@
-defmodule Uneebee.Repo.Migrations.AddDomainAndSchoolIdFieldsToSchools do
+defmodule Zoonk.Repo.Migrations.AddDomainAndSchoolIdFieldsToSchools do
   use Ecto.Migration
 
   def change do

@@ -1,5 +1,5 @@
 defmodule Seed do
-  alias UneebeeWeb.Shared.Utilities
+  alias ZoonkWeb.Shared.Utilities
 
   def get_kind(args) do
     args

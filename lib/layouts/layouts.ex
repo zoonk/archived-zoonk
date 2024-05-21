@@ -1,18 +1,18 @@
-defmodule UneebeeWeb.Layouts do
+defmodule ZoonkWeb.Layouts do
   @moduledoc false
-  use UneebeeWeb, :html
+  use ZoonkWeb, :html
 
-  import UneebeeWeb.Components.Layouts.AppMenu
-  import UneebeeWeb.Components.Layouts.DashboardMenuItem
-  import UneebeeWeb.Components.Layouts.GamificationMenu
-  import UneebeeWeb.Components.Layouts.MenuDesktop
-  import UneebeeWeb.Components.Layouts.MenuMobile
-  import UneebeeWeb.Layouts.MenuUtils
+  import ZoonkWeb.Components.Layouts.AppMenu
+  import ZoonkWeb.Components.Layouts.DashboardMenuItem
+  import ZoonkWeb.Components.Layouts.GamificationMenu
+  import ZoonkWeb.Components.Layouts.MenuDesktop
+  import ZoonkWeb.Components.Layouts.MenuMobile
+  import ZoonkWeb.Layouts.MenuUtils
 
-  alias Uneebee.Organizations.School
-  alias Uneebee.Organizations.SchoolUser
-  alias UneebeeWeb.Components.Layouts.CourseSelect
-  alias UneebeeWeb.Components.Layouts.LessonSelect
+  alias Zoonk.Organizations.School
+  alias Zoonk.Organizations.SchoolUser
+  alias ZoonkWeb.Components.Layouts.CourseSelect
+  alias ZoonkWeb.Components.Layouts.LessonSelect
 
   embed_templates "templates/*"
 

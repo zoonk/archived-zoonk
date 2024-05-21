@@ -1,4 +1,4 @@
-defmodule Uneebee.Organizations.School do
+defmodule Zoonk.Organizations.School do
   @moduledoc """
   School schema.
   """
@@ -6,14 +6,14 @@ defmodule Uneebee.Organizations.School do
 
   import Ecto.Changeset
   import Ecto.Query
-  import UneebeeWeb.Gettext
-  import UneebeeWeb.Shared.Validators
+  import ZoonkWeb.Gettext
+  import ZoonkWeb.Shared.Validators
 
-  alias Uneebee.Accounts.User
-  alias Uneebee.Organizations.School
-  alias Uneebee.Organizations.SchoolUser
-  alias Uneebee.Organizations.SchoolUtils
-  alias Uneebee.Repo
+  alias Zoonk.Accounts.User
+  alias Zoonk.Organizations.School
+  alias Zoonk.Organizations.SchoolUser
+  alias Zoonk.Organizations.SchoolUtils
+  alias Zoonk.Repo
 
   @type t :: %__MODULE__{}
 
@@ -94,7 +94,7 @@ defmodule Uneebee.Organizations.School do
 
   defp validate_unique_slug(changeset) do
     changeset
-    |> unsafe_validate_unique(:slug, Uneebee.Repo)
+    |> unsafe_validate_unique(:slug, Zoonk.Repo)
     |> unique_constraint(:slug)
   end
 
@@ -129,9 +129,9 @@ defmodule Uneebee.Organizations.School do
   end
 
   # In some cases the domain (`host`) could have multiple paths creating conflicts with existing domains.
-  # For example: `science.app.uneebee.com`, `app.uneebee.com` all have the same `uneebee.com` domain.
+  # For example: `science.app.zoonk.io`, `app.zoonk.io` all have the same `zoonk.io` domain.
   # This is a problem because we use the school's username as a subdomain.
-  # So, if a school sets `science.app.uneebee.com` as their custom domain, this would cause a conflict with schools using the `science` username.
+  # So, if a school sets `science.app.zoonk.io` as their custom domain, this would cause a conflict with schools using the `science` username.
   # Hence, we drop the first part of the domain to see if the last parts match any custom domains other schools have.
   defp extract_domain(changeset) do
     custom_domain = get_change(changeset, :custom_domain)
@@ -139,7 +139,7 @@ defmodule Uneebee.Organizations.School do
 
     domain_parts
     # Only drop the first part for domains that have more than one part.
-    # Otherwise, we could drop the `uneebee` part from `uneebee.com`, for example.
+    # Otherwise, we could drop the `zoonk` part from `zoonk.io`, for example.
     |> Enum.drop(if(length(domain_parts) > 2, do: 1, else: 0))
     |> Enum.join(".")
   end

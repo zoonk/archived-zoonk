@@ -1,9 +1,9 @@
 # credo:disable-for-this-file Credo.Check.Readability.Specs
-defmodule UneebeeWeb.Components.Layouts.CourseSelect do
+defmodule ZoonkWeb.Components.Layouts.CourseSelect do
   @moduledoc false
-  use UneebeeWeb, :live_component
+  use ZoonkWeb, :live_component
 
-  alias Uneebee.Content
+  alias Zoonk.Content
 
   @impl Phoenix.LiveComponent
   def render(assigns) do

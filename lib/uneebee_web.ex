@@ -1,13 +1,13 @@
 # credo:disable-for-this-file Credo.Check.Readability.Specs
-defmodule UneebeeWeb do
+defmodule ZoonkWeb do
   @moduledoc """
   The entrypoint for defining your web interface, such
   as controllers, components, channels, and so on.
 
   This can be used in your application as:
 
-      use UneebeeWeb, :controller
-      use UneebeeWeb, :html
+      use ZoonkWeb, :controller
+      use ZoonkWeb, :html
 
   The definitions below will be executed for every controller,
   component, etc, so keep them short and clean, focused
@@ -41,10 +41,10 @@ defmodule UneebeeWeb do
     quote do
       use Phoenix.Controller,
         formats: [:html, :json],
-        layouts: [html: UneebeeWeb.Layouts]
+        layouts: [html: ZoonkWeb.Layouts]
 
       import Plug.Conn
-      import UneebeeWeb.Gettext
+      import ZoonkWeb.Gettext
 
       unquote(verified_routes())
     end
@@ -52,10 +52,10 @@ defmodule UneebeeWeb do
 
   def live_view do
     quote do
-      use Phoenix.LiveView, layout: {UneebeeWeb.Layouts, :app}
+      use Phoenix.LiveView, layout: {ZoonkWeb.Layouts, :app}
 
-      on_mount UneebeeWeb.Flash
-      on_mount UneebeeWeb.Plugs.ActivePage
+      on_mount ZoonkWeb.Flash
+      on_mount ZoonkWeb.Plugs.ActivePage
 
       unquote(html_helpers())
     end
@@ -65,7 +65,7 @@ defmodule UneebeeWeb do
     quote do
       use Phoenix.LiveComponent
 
-      import UneebeeWeb.Flash, only: [put_flash!: 3]
+      import ZoonkWeb.Flash, only: [put_flash!: 3]
 
       unquote(html_helpers())
     end
@@ -90,26 +90,26 @@ defmodule UneebeeWeb do
       import Phoenix.HTML
 
       # UI components
-      import UneebeeWeb.Components.Avatar
-      import UneebeeWeb.Components.AwardBadge
-      import UneebeeWeb.Components.Badge
-      import UneebeeWeb.Components.Button
-      import UneebeeWeb.Components.Drawer
-      import UneebeeWeb.Components.Flash
-      import UneebeeWeb.Components.Form
-      import UneebeeWeb.Components.Header
-      import UneebeeWeb.Components.Icon
-      import UneebeeWeb.Components.Input
-      import UneebeeWeb.Components.Link
-      import UneebeeWeb.Components.Menu
-      import UneebeeWeb.Components.Modal
-      import UneebeeWeb.Components.Progress
-      import UneebeeWeb.Components.SearchBox
-      import UneebeeWeb.Components.Utils
+      import ZoonkWeb.Components.Avatar
+      import ZoonkWeb.Components.AwardBadge
+      import ZoonkWeb.Components.Badge
+      import ZoonkWeb.Components.Button
+      import ZoonkWeb.Components.Drawer
+      import ZoonkWeb.Components.Flash
+      import ZoonkWeb.Components.Form
+      import ZoonkWeb.Components.Header
+      import ZoonkWeb.Components.Icon
+      import ZoonkWeb.Components.Input
+      import ZoonkWeb.Components.Link
+      import ZoonkWeb.Components.Menu
+      import ZoonkWeb.Components.Modal
+      import ZoonkWeb.Components.Progress
+      import ZoonkWeb.Components.SearchBox
+      import ZoonkWeb.Components.Utils
 
       # i18n
-      import UneebeeWeb.Gettext
-      import UneebeeWeb.Shared.Utilities
+      import ZoonkWeb.Gettext
+      import ZoonkWeb.Shared.Utilities
 
       alias Phoenix.LiveView.JS
 
@@ -123,9 +123,9 @@ defmodule UneebeeWeb do
   def verified_routes do
     quote do
       use Phoenix.VerifiedRoutes,
-        endpoint: UneebeeWeb.Endpoint,
-        router: UneebeeWeb.Router,
-        statics: UneebeeWeb.static_paths()
+        endpoint: ZoonkWeb.Endpoint,
+        router: ZoonkWeb.Router,
+        statics: ZoonkWeb.static_paths()
     end
   end
 

@@ -1,16 +1,16 @@
-defmodule UneebeeWeb.Live.Dashboard.LessonEditor do
+defmodule ZoonkWeb.Live.Dashboard.LessonEditor do
   @moduledoc false
-  use UneebeeWeb, :live_view
+  use ZoonkWeb, :live_view
 
-  import UneebeeWeb.Components.Dashboard.StepImage
+  import ZoonkWeb.Components.Dashboard.StepImage
 
-  alias Uneebee.Content
-  alias UneebeeWeb.Components.Dashboard.LessonEdit
-  alias UneebeeWeb.Components.Dashboard.LessonPublish
-  alias UneebeeWeb.Components.Dashboard.OptionList
-  alias UneebeeWeb.Components.Dashboard.StepContent
-  alias UneebeeWeb.Components.Dashboard.StepSwitch
-  alias UneebeeWeb.Components.Upload
+  alias Zoonk.Content
+  alias ZoonkWeb.Components.Dashboard.LessonEdit
+  alias ZoonkWeb.Components.Dashboard.LessonPublish
+  alias ZoonkWeb.Components.Dashboard.OptionList
+  alias ZoonkWeb.Components.Dashboard.StepContent
+  alias ZoonkWeb.Components.Dashboard.StepSwitch
+  alias ZoonkWeb.Components.Upload
 
   @impl Phoenix.LiveView
   def mount(_params, _session, socket) do

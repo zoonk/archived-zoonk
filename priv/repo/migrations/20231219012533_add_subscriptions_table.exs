@@ -1,4 +1,4 @@
-defmodule Uneebee.Repo.Migrations.AddSubscriptionsTable do
+defmodule Zoonk.Repo.Migrations.AddSubscriptionsTable do
   use Ecto.Migration
 
   def change do

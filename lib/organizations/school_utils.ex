@@ -1,10 +1,10 @@
-defmodule Uneebee.Organizations.SchoolUtils do
+defmodule Zoonk.Organizations.SchoolUtils do
   @moduledoc """
   Reusable configuration and utilities for schools.
   """
-  import UneebeeWeb.Gettext
+  import ZoonkWeb.Gettext
 
-  alias Uneebee.Organizations.SchoolUser
+  alias Zoonk.Organizations.SchoolUser
 
   @blocked_subdomains ["www", "mail", "smtp", "pop", "ftp", "api", "admin", "ns1", "ns2", "webmail", "autodiscover", "test", "localhost", "support"]
 

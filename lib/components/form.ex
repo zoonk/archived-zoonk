@@ -1,6 +1,6 @@
 # credo:disable-for-this-file Credo.Check.Readability.Specs
 
-defmodule UneebeeWeb.Components.Form do
+defmodule ZoonkWeb.Components.Form do
   @moduledoc """
   Form components.
   """

@@ -1,13 +1,13 @@
-defmodule UneebeeWeb.LessonCompletedLiveTest do
-  use UneebeeWeb.ConnCase, async: true
+defmodule ZoonkWeb.LessonCompletedLiveTest do
+  use ZoonkWeb.ConnCase, async: true
 
   import Phoenix.LiveViewTest
-  import Uneebee.Fixtures.Content
+  import Zoonk.Fixtures.Content
 
-  alias Uneebee.Accounts
-  alias Uneebee.Content
-  alias Uneebee.Gamification.UserTrophy
-  alias Uneebee.Repo
+  alias Zoonk.Accounts
+  alias Zoonk.Content
+  alias Zoonk.Gamification.UserTrophy
+  alias Zoonk.Repo
 
   describe "completed view (non-authenticated user)" do
     setup :set_school

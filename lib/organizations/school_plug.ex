@@ -1,24 +1,24 @@
-defmodule UneebeeWeb.Plugs.School do
+defmodule ZoonkWeb.Plugs.School do
   @moduledoc """
   This is a multi-tenant app where we assign schools depending on the `host` value.
 
   ### Examples
 
-  - `uneebee.com` -> `uneebee` school
-  - `davinci.uneebee.com` -> `davinci` school using the slug as the subdomain
+  - `zoonk.io` -> `zoonk` school
+  - `davinci.zoonk.io` -> `davinci` school using the slug as the subdomain
   - `interactive.harvard.edu` -> `harvard` school using a custom domain
 
   This means we need to fetch the app school's data when starting this application.
   """
-  use UneebeeWeb, :verified_routes
+  use ZoonkWeb, :verified_routes
 
   import Plug.Conn
 
   alias Phoenix.Controller
   alias Phoenix.LiveView
   alias Phoenix.LiveView.Socket
-  alias Uneebee.Organizations
-  alias Uneebee.Organizations.School
+  alias Zoonk.Organizations
+  alias Zoonk.Organizations.School
 
   @doc """
   Fetches the school's data from the database.
@@ -46,7 +46,7 @@ defmodule UneebeeWeb.Plugs.School do
   def check_school_setup(conn, _opts), do: conn
 
   # If the school is already configured, we don't want to show the configuration page.
-  defp check_school_setup(_conn, _opts, %School{kind: :white_label}), do: raise(UneebeeWeb.PermissionError, code: :school_already_configured)
+  defp check_school_setup(_conn, _opts, %School{kind: :white_label}), do: raise(ZoonkWeb.PermissionError, code: :school_already_configured)
   defp check_school_setup(conn, _opts, _school), do: conn
 
   @doc """
@@ -87,7 +87,7 @@ defmodule UneebeeWeb.Plugs.School do
   defp require_subscription_for_private_schools(conn, false, school_user) when school_user.approved?, do: conn
 
   # If the user is not approved? (doesn't have subscription) and school is private, then they don't have access.
-  defp require_subscription_for_private_schools(_conn, false, _school_user), do: raise(UneebeeWeb.PermissionError, code: :pending_approval)
+  defp require_subscription_for_private_schools(_conn, false, _school_user), do: raise(ZoonkWeb.PermissionError, code: :pending_approval)
 
   @doc """
   Requires `manager` permissions to access a certain route.
@@ -104,7 +104,7 @@ defmodule UneebeeWeb.Plugs.School do
   defp require_manager(conn, _opts, true, :manager), do: conn
 
   # If the user is not a manager, then they don't have access.
-  defp require_manager(_conn, _opts, _approved?, _role), do: raise(UneebeeWeb.PermissionError, code: :require_manager)
+  defp require_manager(_conn, _opts, _approved?, _role), do: raise(ZoonkWeb.PermissionError, code: :require_manager)
 
   @doc """
   Requires `manager` or `teacher` permissions to access a certain route.
@@ -127,11 +127,11 @@ defmodule UneebeeWeb.Plugs.School do
   defp require_manager_or_teacher(conn, _opts, true, :teacher), do: conn
 
   # If the user is not a manager or teacher, then they don't have access.
-  defp require_manager_or_teacher(_conn, _opts, _approved?, _role), do: raise(UneebeeWeb.PermissionError, code: :require_manager_or_teacher)
+  defp require_manager_or_teacher(_conn, _opts, _approved?, _role), do: raise(ZoonkWeb.PermissionError, code: :require_manager_or_teacher)
 
   defp require_manager_or_course_teacher(conn, %{role: :manager, approved?: true}, _cu), do: conn
   defp require_manager_or_course_teacher(conn, _su, %{role: :teacher, approved?: true}), do: conn
-  defp require_manager_or_course_teacher(_conn, _su, _cu), do: raise(UneebeeWeb.PermissionError, code: :require_manager_or_teacher)
+  defp require_manager_or_course_teacher(_conn, _su, _cu), do: raise(ZoonkWeb.PermissionError, code: :require_manager_or_teacher)
 
   @doc """
   Handles mounting the school data to a LiveView.

@@ -1,15 +1,15 @@
-defmodule UneebeeWeb.UserSettingsLiveTest do
-  use UneebeeWeb.ConnCase, async: true
+defmodule ZoonkWeb.UserSettingsLiveTest do
+  use ZoonkWeb.ConnCase, async: true
 
   import Phoenix.LiveViewTest
-  import Uneebee.Fixtures.Accounts
-  import Uneebee.Fixtures.Gamification
-  import Uneebee.Fixtures.Organizations
-  import UneebeeWeb.TestHelpers.Upload
+  import Zoonk.Fixtures.Accounts
+  import Zoonk.Fixtures.Gamification
+  import Zoonk.Fixtures.Organizations
+  import ZoonkWeb.TestHelpers.Upload
 
-  alias Uneebee.Accounts
-  alias Uneebee.Gamification
-  alias Uneebee.Organizations
+  alias Zoonk.Accounts
+  alias Zoonk.Gamification
+  alias Zoonk.Organizations
 
   @form "#settings-form"
 

@@ -1,11 +1,11 @@
-defmodule UneebeeWeb.ErrorJSONTest do
-  use UneebeeWeb.ConnCase, async: true
+defmodule ZoonkWeb.ErrorJSONTest do
+  use ZoonkWeb.ConnCase, async: true
 
   test "renders 404" do
-    assert UneebeeWeb.ErrorJSON.render("404.json", %{}) == %{errors: %{detail: "Not Found"}}
+    assert ZoonkWeb.ErrorJSON.render("404.json", %{}) == %{errors: %{detail: "Not Found"}}
   end
 
   test "renders 500" do
-    assert UneebeeWeb.ErrorJSON.render("500.json", %{}) == %{errors: %{detail: "Internal Server Error"}}
+    assert ZoonkWeb.ErrorJSON.render("500.json", %{}) == %{errors: %{detail: "Internal Server Error"}}
   end
 end

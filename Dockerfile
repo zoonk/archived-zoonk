@@ -92,7 +92,7 @@ ENV MIX_ENV="prod"
 ENV CERT_PATH="/etc/ssl/certs/ca-certificates.crt"
 
 # Only copy the final release from the build stage
-COPY --from=builder --chown=nobody:root /app/_build/${MIX_ENV}/rel/uneebee ./
+COPY --from=builder --chown=nobody:root /app/_build/${MIX_ENV}/rel/zoonk ./
 
 USER nobody
 

@@ -1,7 +1,7 @@
-defmodule UneebeeWeb.SharedUtilitiesTest do
-  use Uneebee.DataCase, async: true
+defmodule ZoonkWeb.SharedUtilitiesTest do
+  use Zoonk.DataCase, async: true
 
-  import UneebeeWeb.Shared.Utilities
+  import ZoonkWeb.Shared.Utilities
 
   describe "round_currency/1" do
     test "rounds a currency when the decimal is 0" do

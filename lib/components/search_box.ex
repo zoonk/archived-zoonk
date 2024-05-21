@@ -1,13 +1,13 @@
 # credo:disable-for-this-file Credo.Check.Readability.Specs
 
-defmodule UneebeeWeb.Components.SearchBox do
+defmodule ZoonkWeb.Components.SearchBox do
   @moduledoc """
   Search box components.
   """
   use Phoenix.Component
 
-  import UneebeeWeb.Components.Utils
-  import UneebeeWeb.Gettext
+  import ZoonkWeb.Components.Utils
+  import ZoonkWeb.Gettext
 
   alias Phoenix.LiveView.JS
 

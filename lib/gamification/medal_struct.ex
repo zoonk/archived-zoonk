@@ -1,4 +1,4 @@
-defmodule Uneebee.Gamification.Medal do
+defmodule Zoonk.Gamification.Medal do
   @moduledoc """
   Struct for defining a medal.
 

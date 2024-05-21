@@ -1,12 +1,12 @@
-defmodule UneebeeWeb.UserRegistrationLiveTest do
-  use UneebeeWeb.ConnCase, async: true
+defmodule ZoonkWeb.UserRegistrationLiveTest do
+  use ZoonkWeb.ConnCase, async: true
 
   import Phoenix.LiveViewTest
-  import Uneebee.Fixtures.Accounts
-  import Uneebee.Fixtures.Organizations
+  import Zoonk.Fixtures.Accounts
+  import Zoonk.Fixtures.Organizations
 
-  alias Uneebee.Accounts
-  alias Uneebee.Organizations
+  alias Zoonk.Accounts
+  alias Zoonk.Organizations
 
   describe "Registration page (school not configured)" do
     test "renders registration page", %{conn: conn} do

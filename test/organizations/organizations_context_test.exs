@@ -1,16 +1,16 @@
-defmodule Uneebee.OrganizationsTest do
-  use Uneebee.DataCase, async: true
+defmodule Zoonk.OrganizationsTest do
+  use Zoonk.DataCase, async: true
 
-  import Uneebee.Fixtures.Accounts
-  import Uneebee.Fixtures.Billing
-  import Uneebee.Fixtures.Content
-  import Uneebee.Fixtures.Organizations
+  import Zoonk.Fixtures.Accounts
+  import Zoonk.Fixtures.Billing
+  import Zoonk.Fixtures.Content
+  import Zoonk.Fixtures.Organizations
 
-  alias Uneebee.Billing
-  alias Uneebee.Content
-  alias Uneebee.Organizations
-  alias Uneebee.Organizations.School
-  alias Uneebee.Organizations.SchoolUser
+  alias Zoonk.Billing
+  alias Zoonk.Content
+  alias Zoonk.Organizations
+  alias Zoonk.Organizations.School
+  alias Zoonk.Organizations.SchoolUser
 
   describe "change_school/2" do
     test "returns a school changeset" do
@@ -152,7 +152,7 @@ defmodule Uneebee.OrganizationsTest do
     end
 
     test "allow creating multiple domains with the same extension" do
-      school_fixture(%{custom_domain: "uneebee.com"})
+      school_fixture(%{custom_domain: "zoonk.io"})
       attrs = valid_school_attributes(%{custom_domain: "khan.org"})
 
       assert {:ok, %School{} = school} = Organizations.create_school(attrs)
@@ -160,10 +160,10 @@ defmodule Uneebee.OrganizationsTest do
     end
 
     test "cannot use a custom domain with a subdomain from another organization" do
-      school_fixture(%{custom_domain: "uneebee.com"})
+      school_fixture(%{custom_domain: "zoonk.io"})
       school_fixture(%{custom_domain: "learning.harvard.edu"})
 
-      attrs1 = valid_school_attributes(%{custom_domain: "nested.uneebee.com"})
+      attrs1 = valid_school_attributes(%{custom_domain: "nested.zoonk.io"})
       attrs2 = valid_school_attributes(%{custom_domain: "science.learning.harvard.edu"})
 
       assert {:error, %Ecto.Changeset{}} = Organizations.create_school(attrs1)
@@ -477,39 +477,39 @@ defmodule Uneebee.OrganizationsTest do
 
   describe "get_school_by_host!/1" do
     test "returns the school depending on the subdomain value" do
-      school1 = school_fixture(%{custom_domain: "uneebee.com"})
+      school1 = school_fixture(%{custom_domain: "zoonk.io"})
       school2 = school_fixture(%{slug: "unisc", school_id: school1.id})
 
-      assert Organizations.get_school_by_host!("unisc.uneebee.com") == school2
+      assert Organizations.get_school_by_host!("unisc.zoonk.io") == school2
     end
 
     test "ignores blocked subdomains from the subdomain" do
-      school1 = school_fixture(%{custom_domain: "uneebee.com"})
+      school1 = school_fixture(%{custom_domain: "zoonk.io"})
       school2 = school_fixture(%{slug: "unisc", school_id: school1.id})
 
-      assert Organizations.get_school_by_host!("www.uneebee.com") == school1
-      assert Organizations.get_school_by_host!("www.unisc.uneebee.com") == school2
-      assert Organizations.get_school_by_host!("mail.uneebee.com") == school1
-      assert Organizations.get_school_by_host!("smtp.uneebee.com") == school1
-      assert Organizations.get_school_by_host!("pop.uneebee.com") == school1
-      assert Organizations.get_school_by_host!("ftp.uneebee.com") == school1
-      assert Organizations.get_school_by_host!("api.uneebee.com") == school1
-      assert Organizations.get_school_by_host!("admin.uneebee.com") == school1
-      assert Organizations.get_school_by_host!("ns1.uneebee.com") == school1
-      assert Organizations.get_school_by_host!("ns2.uneebee.com") == school1
-      assert Organizations.get_school_by_host!("webmail.uneebee.com") == school1
-      assert Organizations.get_school_by_host!("autodiscover.uneebee.com") == school1
-      assert Organizations.get_school_by_host!("test.uneebee.com") == school1
-      assert Organizations.get_school_by_host!("localhost.uneebee.com") == school1
-      assert Organizations.get_school_by_host!("support.uneebee.com") == school1
+      assert Organizations.get_school_by_host!("www.zoonk.io") == school1
+      assert Organizations.get_school_by_host!("www.unisc.zoonk.io") == school2
+      assert Organizations.get_school_by_host!("mail.zoonk.io") == school1
+      assert Organizations.get_school_by_host!("smtp.zoonk.io") == school1
+      assert Organizations.get_school_by_host!("pop.zoonk.io") == school1
+      assert Organizations.get_school_by_host!("ftp.zoonk.io") == school1
+      assert Organizations.get_school_by_host!("api.zoonk.io") == school1
+      assert Organizations.get_school_by_host!("admin.zoonk.io") == school1
+      assert Organizations.get_school_by_host!("ns1.zoonk.io") == school1
+      assert Organizations.get_school_by_host!("ns2.zoonk.io") == school1
+      assert Organizations.get_school_by_host!("webmail.zoonk.io") == school1
+      assert Organizations.get_school_by_host!("autodiscover.zoonk.io") == school1
+      assert Organizations.get_school_by_host!("test.zoonk.io") == school1
+      assert Organizations.get_school_by_host!("localhost.zoonk.io") == school1
+      assert Organizations.get_school_by_host!("support.zoonk.io") == school1
     end
 
     test "raises if the slug doesn't match the parent school" do
-      school_fixture(%{custom_domain: "uneebee.com"})
+      school_fixture(%{custom_domain: "zoonk.io"})
       school2 = school_fixture(%{custom_domain: "harvard.edu"})
       school3 = school_fixture(%{slug: "unisc", school_id: school2.id})
 
-      assert_raise Ecto.NoResultsError, fn -> Organizations.get_school_by_host!("unisc.uneebee.com") end
+      assert_raise Ecto.NoResultsError, fn -> Organizations.get_school_by_host!("unisc.zoonk.io") end
       assert Organizations.get_school_by_host!("unisc.harvard.edu") == school3
     end
 
@@ -528,8 +528,8 @@ defmodule Uneebee.OrganizationsTest do
     end
 
     test "returns nil when the custom domain doesn't exist but it matches a slug" do
-      school_fixture(%{slug: "uneebee", custom_domain: "uneebee.com"})
-      assert Organizations.get_school_by_host!("uneebee.test") == nil
+      school_fixture(%{slug: "zoonk", custom_domain: "zoonk.io"})
+      assert Organizations.get_school_by_host!("zoonk.test") == nil
     end
   end
 

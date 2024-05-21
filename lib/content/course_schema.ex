@@ -1,17 +1,17 @@
-defmodule Uneebee.Content.Course do
+defmodule Zoonk.Content.Course do
   @moduledoc """
   Course schema.
   """
   use Ecto.Schema
 
   import Ecto.Changeset
-  import UneebeeWeb.Shared.Validators
+  import ZoonkWeb.Shared.Validators
 
-  alias Uneebee.Content.CourseUser
-  alias Uneebee.Content.CourseUtils
-  alias Uneebee.Content.Lesson
-  alias Uneebee.Organizations.School
-  alias UneebeeWeb.Plugs.Translate
+  alias Zoonk.Content.CourseUser
+  alias Zoonk.Content.CourseUtils
+  alias Zoonk.Content.Lesson
+  alias Zoonk.Organizations.School
+  alias ZoonkWeb.Plugs.Translate
 
   @type t :: %__MODULE__{}
 
@@ -40,7 +40,7 @@ defmodule Uneebee.Content.Course do
     |> cast(attrs, [:cover, :description, :language, :level, :name, :public?, :published?, :school_id, :slug])
     |> validate_required([:description, :language, :name, :school_id, :slug])
     |> validate_slug(:slug)
-    |> unsafe_validate_unique([:slug, :school_id], Uneebee.Repo)
+    |> unsafe_validate_unique([:slug, :school_id], Zoonk.Repo)
     |> unique_constraint([:slug, :school_id])
   end
 end

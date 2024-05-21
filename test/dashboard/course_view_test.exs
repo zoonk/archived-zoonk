@@ -1,11 +1,11 @@
-defmodule UneebeeWeb.DashboardCourseViewLiveTest do
-  use UneebeeWeb.ConnCase, async: true
+defmodule ZoonkWeb.DashboardCourseViewLiveTest do
+  use ZoonkWeb.ConnCase, async: true
 
   import Phoenix.LiveViewTest
-  import Uneebee.Fixtures.Accounts
-  import Uneebee.Fixtures.Content
+  import Zoonk.Fixtures.Accounts
+  import Zoonk.Fixtures.Content
 
-  alias Uneebee.Content
+  alias Zoonk.Content
 
   @select_form "#select-course"
 

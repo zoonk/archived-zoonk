@@ -1,13 +1,13 @@
-defmodule Uneebee.Fixtures.Organizations do
+defmodule Zoonk.Fixtures.Organizations do
   @moduledoc """
-  This module defines test helpers for creating entities via the `Uneebee.Organizations` context.
+  This module defines test helpers for creating entities via the `Zoonk.Organizations` context.
   """
-  import Uneebee.Fixtures.Accounts
+  import Zoonk.Fixtures.Accounts
 
-  alias Uneebee.Organizations
-  alias Uneebee.Organizations.School
-  alias Uneebee.Organizations.SchoolUser
-  alias Uneebee.Repo
+  alias Zoonk.Organizations
+  alias Zoonk.Organizations.School
+  alias Zoonk.Organizations.SchoolUser
+  alias Zoonk.Repo
 
   defp unique_school_slug, do: "school-#{System.unique_integer()}"
   defp unique_school_custom_domain, do: "custom_#{System.unique_integer()}.org"
@@ -52,7 +52,7 @@ defmodule Uneebee.Fixtures.Organizations do
 
     school_user_attrs = Enum.into(attrs, %{approved?: true, approved_at: DateTime.utc_now(), approved_by_id: user.id, role: :student})
 
-    {:ok, school_user} = Uneebee.Organizations.create_school_user(school, user, school_user_attrs)
+    {:ok, school_user} = Zoonk.Organizations.create_school_user(school, user, school_user_attrs)
 
     Repo.preload(school_user, preload)
   end

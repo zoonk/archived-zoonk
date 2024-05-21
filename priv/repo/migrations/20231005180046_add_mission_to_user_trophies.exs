@@ -1,4 +1,4 @@
-defmodule Uneebee.Repo.Migrations.AddMissionToUserTrophies do
+defmodule Zoonk.Repo.Migrations.AddMissionToUserTrophies do
   use Ecto.Migration
 
   def change do

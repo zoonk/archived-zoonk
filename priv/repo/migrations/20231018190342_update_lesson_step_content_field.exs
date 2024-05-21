@@ -1,4 +1,4 @@
-defmodule Uneebee.Repo.Migrations.UpdateLessonStepContentField do
+defmodule Zoonk.Repo.Migrations.UpdateLessonStepContentField do
   use Ecto.Migration
 
   def change do

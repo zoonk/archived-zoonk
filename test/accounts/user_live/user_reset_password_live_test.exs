@@ -1,10 +1,10 @@
-defmodule UneebeeWeb.UserResetPasswordLiveTest do
-  use UneebeeWeb.ConnCase, async: true
+defmodule ZoonkWeb.UserResetPasswordLiveTest do
+  use ZoonkWeb.ConnCase, async: true
 
   import Phoenix.LiveViewTest
-  import Uneebee.Fixtures.Accounts
+  import Zoonk.Fixtures.Accounts
 
-  alias Uneebee.Accounts
+  alias Zoonk.Accounts
 
   setup do
     user = user_fixture()

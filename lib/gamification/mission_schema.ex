@@ -1,4 +1,4 @@
-defmodule Uneebee.Gamification.UserMission do
+defmodule Zoonk.Gamification.UserMission do
   @moduledoc """
   UserMission schema.
 
@@ -9,8 +9,8 @@ defmodule Uneebee.Gamification.UserMission do
 
   import Ecto.Changeset
 
-  alias Uneebee.Accounts.User
-  alias Uneebee.Gamification.MissionUtils
+  alias Zoonk.Accounts.User
+  alias Zoonk.Gamification.MissionUtils
 
   @type t :: %__MODULE__{}
 

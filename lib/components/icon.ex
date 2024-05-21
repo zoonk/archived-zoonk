@@ -1,6 +1,6 @@
 # credo:disable-for-this-file Credo.Check.Readability.Specs
 
-defmodule UneebeeWeb.Components.Icon do
+defmodule ZoonkWeb.Components.Icon do
   @moduledoc """
   Icon components.
   """

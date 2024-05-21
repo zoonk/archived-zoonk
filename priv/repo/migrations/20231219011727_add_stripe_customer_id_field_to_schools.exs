@@ -1,4 +1,4 @@
-defmodule Uneebee.Repo.Migrations.AddStripeCustomerIdFieldToSchools do
+defmodule Zoonk.Repo.Migrations.AddStripeCustomerIdFieldToSchools do
   use Ecto.Migration
 
   def change do
