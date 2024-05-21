@@ -1,9 +1,3 @@
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://github.com/zoonk/uneebee/assets/4393133/35b230e5-97cb-4de1-997b-92b2c9201f01">
-  <source media="(prefers-color-scheme: light)" srcset="https://github.com/zoonk/uneebee/assets/4393133/cd481f3b-0700-47b6-a529-19d9226689d5">
-  <img alt="UneeBee Banner" src="https://github.com/zoonk/uneebee/assets/4393133/cd481f3b-0700-47b6-a529-19d9226689d5">
-</picture>
-
 ---
 
 **WARNING:** This software is still in development and not ready for production. I'm making several changes to it. DO NOT USE IT IN PRODUCTION YET. The current version will break when v1.0 is released. I'll update this README when it's ready for production.
