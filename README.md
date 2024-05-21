@@ -1,5 +1,3 @@
----
-
 **WARNING:** This software is still in development and not ready for production. I'm making several changes to it. DO NOT USE IT IN PRODUCTION YET. The current version will break when v1.0 is released. I'll update this README when it's ready for production.
 
 ---
