@@ -1,3 +1,9 @@
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://github.com/zoonk/.github/assets/4393133/5ed8820d-e54f-4e51-8d6d-9aee69ba7ac4">
+  <source media="(prefers-color-scheme: light)" srcset="https://github.com/zoonk/.github/assets/4393133/16521c67-b891-4513-a83d-077b55e4c2db">
+  <img alt="Zoonk Banner" src="https://github.com/zoonk/.github/assets/4393133/16521c67-b891-4513-a83d-077b55e4c2db">
+</picture>
+
 **WARNING:** This software is still in development and not ready for production. I'm making several changes to it. DO NOT USE IT IN PRODUCTION YET. The current version will break when v1.0 is released. I'll update this README when it's ready for production.
 
 ---
@@ -8,7 +14,7 @@
   <a href="https://zoonk.org"><strong>Learn more »</strong></a>
   <br />
   <br />
-  <a href="https://github.com/orgs/zoonk/projects/11">Roadmap</a>
+  <a href="https://github.com/orgs/zoonk/projects">Roadmap</a>
   .
   <a href="https://github.com/orgs/zoonk/discussions">Community</a>
 </p>
