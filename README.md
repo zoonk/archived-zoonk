@@ -1,7 +1,7 @@
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://github.com/zoonk/.github/assets/4393133/5ed8820d-e54f-4e51-8d6d-9aee69ba7ac4">
-  <source media="(prefers-color-scheme: light)" srcset="https://github.com/zoonk/.github/assets/4393133/16521c67-b891-4513-a83d-077b55e4c2db">
-  <img alt="Zoonk Banner" src="https://github.com/zoonk/.github/assets/4393133/16521c67-b891-4513-a83d-077b55e4c2db">
+  <source media="(prefers-color-scheme: dark)" srcset="https://github.com/zoonk/.github/assets/4393133/3a24c5e9-dc8e-4491-9aeb-95dd6f7283c8">
+  <source media="(prefers-color-scheme: light)" srcset="https://github.com/zoonk/.github/assets/4393133/ddbb2208-feac-4a58-adac-f769cff4dc7f">
+  <img alt="Zoonk Banner" src="https://github.com/zoonk/.github/assets/4393133/ddbb2208-feac-4a58-adac-f769cff4dc7f">
 </picture>
 
 **WARNING:** This software is still in development and not ready for production. I'm making several changes to it. DO NOT USE IT IN PRODUCTION YET. The current version will break when v1.0 is released. I'll update this README when it's ready for production.
