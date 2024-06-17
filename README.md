@@ -14,7 +14,7 @@
   <a href="https://zoonk.org"><strong>Learn more »</strong></a>
   <br />
   <br />
-  <a href="https://github.com/orgs/zoonk/projects">Roadmap</a>
+  <a href="https://github.com/zoonk/.github/blob/main/roadmap.md">Roadmap</a>
   .
   <a href="https://github.com/orgs/zoonk/discussions">Community</a>
 </p>
