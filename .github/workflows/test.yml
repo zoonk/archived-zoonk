@@ -43,7 +43,7 @@ jobs:
 
       - name: Restore dependencies cache
         id: cache-deps
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         env:
           cache-name: cache-elixir-deps
         with:
@@ -54,7 +54,7 @@ jobs:
 
       - name: Restore build cache
         id: cache-build
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         env:
           cache-name: cache-compiled-build
         with:
@@ -67,7 +67,7 @@ jobs:
       # Don't cache PLTs based on mix.lock hash, as Dialyzer can incrementally update even old ones
       # Cache key based on Elixir & Erlang version (also useful when running in matrix)
       - name: Restore PLT cache
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         id: plt_cache
         with:
           key: |
