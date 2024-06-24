@@ -105,10 +105,6 @@ defmodule ZoonkWeb.Router do
       ] do
       live "/contact", Contact
 
-      live "/missions", MissionList
-      live "/trophies", TrophyList
-      live "/medals", MedalList
-
       live "/users/settings", UserSettings, :profile
       live "/users/settings/avatar", UserSettings, :avatar
       live "/users/settings/email", UserSettings, :email

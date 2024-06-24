@@ -42,11 +42,11 @@ defmodule ZoonkWeb.CourseListLiveTest do
       refute has_element?(lv, ~s|a:fl-icontains("update your email address")|)
     end
 
-    test "displays warning after a user completes three learning days", %{conn: conn} do
+    test "displays warning after a user completes three lessons", %{conn: conn} do
       conn = get(conn, ~p"/courses")
       token = conn.private[:plug_session]["user_token"]
       user = Accounts.get_user_by_session_token(token)
-      Enum.each(1..3, fn idx -> generate_user_lesson(user.id, -idx) end)
+      generate_user_lesson(user.id, 0, number_of_lessons: 3)
 
       {:ok, lv, _html} = live(conn, ~p"/courses")
       assert has_element?(lv, ~s|a:fl-icontains("update your email address")|)
@@ -56,15 +56,15 @@ defmodule ZoonkWeb.CourseListLiveTest do
   describe "/courses (guest user)" do
     setup :set_school_with_guest_user
 
-    test "displays warning after a user three learning days", %{conn: conn, user: user} do
-      Enum.each(1..3, fn idx -> generate_user_lesson(user.id, -idx) end)
+    test "displays warning after a user completes three lessons", %{conn: conn, user: user} do
+      generate_user_lesson(user.id, 0, number_of_lessons: 3)
 
       {:ok, lv, _html} = live(conn, ~p"/courses")
       assert has_element?(lv, ~s|a:fl-icontains("update your email address")|)
     end
 
     test "doesn't display warning after completing only two lessons", %{conn: conn, user: user} do
-      Enum.each(1..2, fn idx -> generate_user_lesson(user.id, -idx) end)
+      generate_user_lesson(user.id, 0, number_of_lessons: 2)
 
       {:ok, lv, _html} = live(conn, ~p"/courses")
       refute has_element?(lv, ~s|a:fl-icontains("update your email address")|)

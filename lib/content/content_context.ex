@@ -5,7 +5,6 @@ defmodule Zoonk.Content do
   import Ecto.Query, warn: false
   import ZoonkWeb.Gettext
 
-  alias Zoonk.Accounts
   alias Zoonk.Accounts.User
   alias Zoonk.Content.Course
   alias Zoonk.Content.CourseData
@@ -17,7 +16,6 @@ defmodule Zoonk.Content do
   alias Zoonk.Content.StepSuggestedCourse
   alias Zoonk.Content.UserLesson
   alias Zoonk.Content.UserSelection
-  alias Zoonk.Gamification
   alias Zoonk.Organizations
   alias Zoonk.Organizations.School
   alias Zoonk.Organizations.SchoolUser
@@ -1036,10 +1034,7 @@ defmodule Zoonk.Content do
   """
   @spec add_user_lesson(map()) :: user_lesson_changeset()
   def add_user_lesson(attrs \\ %{}) do
-    case Repo.transaction(fn -> save_lesson(attrs) end) do
-      {:ok, user_lesson} -> add_awards_after_lesson(user_lesson)
-      {:error, error} -> error
-    end
+    save_lesson(attrs)
   end
 
   defp add_user_lesson(attrs, nil) do
@@ -1056,29 +1051,7 @@ defmodule Zoonk.Content do
     lesson_id = Map.get(attrs, :lesson_id)
     user_lesson = get_user_lesson(user_id, lesson_id)
 
-    correct = Map.get(attrs, :correct)
-    total = Map.get(attrs, :total)
-    perfect? = correct == total
-    first_try? = is_nil(user_lesson)
-
-    Gamification.award_medal_for_lesson(%{user_id: user_id, lesson_id: lesson_id, perfect?: perfect?, first_try?: first_try?})
-
     add_user_lesson(attrs, user_lesson)
-  end
-
-  defp add_awards_after_lesson({:ok, user_lesson} = attrs) do
-    user = Accounts.get_user!(user_lesson.user_id)
-    lesson = Lesson |> Repo.get!(user_lesson.lesson_id) |> Repo.preload(:course)
-    lesson_count = count_user_lessons(user.id)
-    perfect_lesson_count = count_user_perfect_lessons(user.id)
-
-    Repo.transaction(fn ->
-      Gamification.maybe_award_trophy(%{user: user, course: lesson.course})
-      Gamification.complete_lesson_mission(user, lesson_count)
-      Gamification.complete_perfect_lesson_mission(user, perfect_lesson_count)
-    end)
-
-    attrs
   end
 
   @doc """
@@ -1141,32 +1114,6 @@ defmodule Zoonk.Content do
     lessons = list_published_lessons(course, user)
     progress = CourseUtils.course_progress(lessons, user)
     progress == 100
-  end
-
-  @doc """
-  Count how many lessons a user has completed.
-
-  ## Examples
-
-      iex> count_user_lessons(user_id)
-      1
-  """
-  @spec count_user_lessons(non_neg_integer()) :: non_neg_integer()
-  def count_user_lessons(user_id) do
-    UserLesson |> where([ul], ul.user_id == ^user_id) |> Repo.aggregate(:count)
-  end
-
-  @doc """
-  Count how many perfect lessons a user has completed.
-
-  ## Examples
-
-      iex> count_user_perfect_lessons(user_id)
-      1
-  """
-  @spec count_user_perfect_lessons(non_neg_integer()) :: non_neg_integer()
-  def count_user_perfect_lessons(user_id) do
-    UserLesson |> where([ul], ul.user_id == ^user_id and ul.correct == ul.total) |> Repo.aggregate(:count)
   end
 
   @doc """

@@ -46,17 +46,18 @@ msgstr "E-mail da escola"
 msgid "School name"
 msgstr "Nome da escola"
 
-#: lib/dashboard/schools/school_edit.ex:36
+#: lib/dashboard/schools/school_edit.ex:96
+#: lib/dashboard/schools/school_edit.ex:97
 #, elixir-autogen, elixir-format, fuzzy
 msgid "School updated successfully"
 msgstr "Escola atualizada"
 
-#: lib/dashboard/schools/school_edit.ex:53
+#: lib/dashboard/schools/school_edit.ex:57
 #, elixir-autogen, elixir-format
 msgid "Could not update logo!"
 msgstr "Não foi possível atualizar o logo!"
 
-#: lib/dashboard/schools/school_edit.ex:49
+#: lib/dashboard/schools/school_edit.ex:53
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Logo updated successfully!"
 msgstr "Logo atualizado!"
@@ -174,7 +175,7 @@ msgstr "Criar curso"
 msgid "Dashboard"
 msgstr "Painel de controle"
 
-#: lib/dashboard/courses/course_edit.html.heex:34
+#: lib/dashboard/courses/course_edit.html.heex:23
 #: lib/dashboard/courses/course_new.html.heex:14
 #, elixir-autogen, elixir-format
 msgid "Level"
@@ -220,7 +221,7 @@ msgstr "Todas as respostas estavam corretas."
 msgid "Check this option if this is the correct answer."
 msgstr "Marque esta alternativa se ela for a resposta correta."
 
-#: lib/dashboard/lessons/lesson_editor.ex:85
+#: lib/dashboard/lessons/lesson_editor.ex:87
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Could not add option!"
 msgstr "Não foi possível adicionar a alternativa!"
@@ -251,7 +252,7 @@ msgstr "Não foi possível criar a etapa!"
 msgid "Could not delete course!"
 msgstr "Não foi possível excluir o curso!"
 
-#: lib/dashboard/lessons/lesson_editor.ex:111
+#: lib/dashboard/lessons/lesson_editor.ex:113
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Could not delete lesson!"
 msgstr "Não foi possível excluir a aula!"
@@ -261,14 +262,14 @@ msgstr "Não foi possível excluir a aula!"
 msgid "Could not delete option!"
 msgstr "Não foi possível excluir a alternativa!"
 
-#: lib/dashboard/lessons/lesson_editor.ex:66
+#: lib/dashboard/lessons/lesson_editor.ex:68
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Could not delete step!"
 msgstr "Não foi possível excluir a etapa!"
 
 #: lib/dashboard/courses/course_edit.ex:78
 #: lib/dashboard/lessons/lesson_cover.ex:28
-#: lib/dashboard/lessons/lesson_editor.ex:175
+#: lib/dashboard/lessons/lesson_editor.ex:177
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Could not update cover!"
 msgstr "Não foi possível atualizar a capa!"
@@ -280,7 +281,7 @@ msgid "Could not update lesson!"
 msgstr "Não foi possível atualizar a aula!"
 
 #: lib/dashboard/lessons/components/option_list.ex:153
-#: lib/dashboard/lessons/lesson_editor.ex:151
+#: lib/dashboard/lessons/lesson_editor.ex:153
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Could not update option!"
 msgstr "Não foi possível atualizar a alternativa!"
@@ -290,19 +291,19 @@ msgstr "Não foi possível atualizar a alternativa!"
 msgid "Course deleted successfully!"
 msgstr "Curso excluído com sucesso!"
 
-#: lib/dashboard/courses/course_edit.html.heex:38
+#: lib/dashboard/courses/course_edit.html.heex:24
 #: lib/dashboard/courses/course_new.html.heex:13
 #, elixir-autogen, elixir-format
 msgid "Course description"
 msgstr "Descrição do curso"
 
-#: lib/dashboard/courses/course_edit.html.heex:25
+#: lib/dashboard/courses/course_edit.html.heex:18
 #: lib/dashboard/courses/course_new.html.heex:19
 #, elixir-autogen, elixir-format
 msgid "Course slug"
 msgstr "URL do curso"
 
-#: lib/dashboard/courses/course_edit.html.heex:19
+#: lib/dashboard/courses/course_edit.html.heex:12
 #: lib/dashboard/courses/course_new.html.heex:12
 #, elixir-autogen, elixir-format
 msgid "Course title"
@@ -315,7 +316,7 @@ msgstr "Curso atualizado com sucesso!"
 
 #: lib/dashboard/courses/course_edit.ex:74
 #: lib/dashboard/lessons/lesson_cover.ex:22
-#: lib/dashboard/lessons/lesson_editor.ex:169
+#: lib/dashboard/lessons/lesson_editor.ex:171
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Cover updated successfully!"
 msgstr "Capa atualizada com sucesso!"
@@ -330,7 +331,7 @@ msgstr "Apagar aula"
 msgid "Delete option"
 msgstr "Apagar alternativa"
 
-#: lib/content/content_context.ex:74
+#: lib/content/content_context.ex:72
 #: lib/dashboard/courses/course_view.ex:32
 #: lib/layouts/components/lesson_select.ex:30
 #, elixir-autogen, elixir-format
@@ -354,7 +355,7 @@ msgstr "Arraste as aulas para alterar a ordem"
 msgid "Edit course"
 msgstr "Editar curso"
 
-#: lib/dashboard/courses/course_edit.html.heex:26
+#: lib/dashboard/courses/course_edit.html.heex:19
 #: lib/dashboard/courses/course_new.html.heex:20
 #, elixir-autogen, elixir-format
 msgid "Friendly identifier used to access your course. I.e. my-course-name"
@@ -365,12 +366,12 @@ msgstr "Identificador amigável usado para acessar o curso. Ex: meu-nome-de-curs
 msgid "Is correct?"
 msgstr "Está correto?"
 
-#: lib/dashboard/courses/course_edit.html.heex:44
+#: lib/dashboard/courses/course_edit.html.heex:30
 #, elixir-autogen, elixir-format
 msgid "Is public?"
 msgstr "É público?"
 
-#: lib/content/content_context.ex:73
+#: lib/content/content_context.ex:71
 #: lib/dashboard/courses/course_view.ex:31
 #: lib/layouts/components/lesson_select.ex:29
 #, elixir-autogen, elixir-format
@@ -424,7 +425,7 @@ msgstr "Remover etapa"
 msgid "Unpublish"
 msgstr "Despublicar"
 
-#: lib/dashboard/lessons/lesson_editor.ex:78
+#: lib/dashboard/lessons/lesson_editor.ex:80
 #, elixir-autogen, elixir-format
 msgid "Untitled option"
 msgstr "Alternativa sem título"
@@ -439,7 +440,7 @@ msgstr "Atualizar alternativa"
 msgid "Feedback message displayed after a user answers this question. You can provide some additional context on why this is wrong or correct."
 msgstr "Menagem de feedback exibida após o usuário responder esta pergunta. Você pode fornecer algum contexto adicional sobre o porquê de estar errado ou correto."
 
-#: lib/dashboard/courses/course_edit.html.heex:46
+#: lib/dashboard/courses/course_edit.html.heex:32
 #, elixir-autogen, elixir-format
 msgid "When checked this course will be visible to all students from your school. Keep it unchecked if you want this course to be visible only to invited students."
 msgstr "Ao marcar esta opção, este curso será visível para todos os alunos da sua escola. Mantenha desmarcada se você quiser que o curso seja visível apenas para os alunos convidados."
@@ -459,7 +460,7 @@ msgstr "Link dos termos de uso"
 msgid "Drag the steps to change their order:"
 msgstr "Arraste as etapas para alterar a ordem:"
 
-#: lib/content/content_context.ex:476
+#: lib/content/content_context.ex:474
 #: lib/dashboard/lessons/components/step_switch.ex:52
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Untitled step"
@@ -480,7 +481,7 @@ msgstr "Adicionar imagem à etapa"
 msgid "Click to add an image to this step."
 msgstr "Clique para adicionar uma imagem a esta etapa."
 
-#: lib/dashboard/lessons/lesson_editor.ex:136
+#: lib/dashboard/lessons/lesson_editor.ex:138
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Could not update image!"
 msgstr "Não foi possível atualizar a imagem!"
@@ -936,7 +937,7 @@ msgstr "Melhorar plano"
 msgid "Delete"
 msgstr "Apagar"
 
-#: lib/dashboard/schools/school_edit.ex:79
+#: lib/dashboard/schools/school_edit.ex:83
 #: lib/dashboard/schools/school_view.ex:89
 #, elixir-autogen, elixir-format, fuzzy
 msgid "School could not be deleted"
@@ -952,12 +953,12 @@ msgstr "Escola excluída"
 msgid "You're going to delete this school and all its associated data"
 msgstr "Você está prestes a excluir esta escola e todos os seus dados associados"
 
-#: lib/dashboard/schools/school_edit.ex:66
+#: lib/dashboard/schools/school_edit.ex:70
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Could not update icon!"
 msgstr "Não foi possível atualizar o ícone!"
 
-#: lib/dashboard/schools/school_edit.ex:62
+#: lib/dashboard/schools/school_edit.ex:66
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Icon updated successfully!"
 msgstr "Ícone atualizado com sucesso!"
@@ -967,7 +968,7 @@ msgstr "Ícone atualizado com sucesso!"
 msgid "Add courses that are relevant to this step. This will help students find the right course for them."
 msgstr "Adicione cursos que sejam relevantes para esta etapa. Isso ajudará os alunos a encontrar o curso ideal."
 
-#: lib/dashboard/lessons/lesson_editor.ex:123
+#: lib/dashboard/lessons/lesson_editor.ex:125
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Could not delete suggested course!"
 msgstr "Não foi possível excluir o curso sugerido!"
@@ -1002,12 +1003,12 @@ msgstr "Você gostaria de remover este curso da lista de cursos sugeridos?"
 msgid "Answer type"
 msgstr "Tipo de resposta"
 
-#: lib/dashboard/lessons/lesson_editor.ex:97
+#: lib/dashboard/lessons/lesson_editor.ex:99
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Could not update step kind!"
 msgstr "Não foi possível atualizar o tipo de etapa!"
 
-#: lib/dashboard/lessons/lesson_editor.ex:201
+#: lib/dashboard/lessons/lesson_editor.ex:203
 #, elixir-autogen, elixir-format
 msgid "Open-ended"
 msgstr "Aberta"
@@ -1017,17 +1018,17 @@ msgstr "Aberta"
 msgid "Open-ended question"
 msgstr "Pergunta aberta"
 
-#: lib/dashboard/lessons/lesson_editor.ex:195
+#: lib/dashboard/lessons/lesson_editor.ex:197
 #, elixir-autogen, elixir-format
 msgid "Quiz"
 msgstr "Quiz"
 
-#: lib/dashboard/lessons/lesson_editor.ex:189
+#: lib/dashboard/lessons/lesson_editor.ex:191
 #, elixir-autogen, elixir-format
 msgid "Read-only"
 msgstr "Somente leitura"
 
-#: lib/dashboard/lessons/lesson_editor.ex:190
+#: lib/dashboard/lessons/lesson_editor.ex:192
 #, elixir-autogen, elixir-format
 msgid "Users can only read the content. No options are displayed."
 msgstr "Os usuários só podem ler o conteúdo. Nenhuma alternativa é exibida."
@@ -1037,12 +1038,12 @@ msgstr "Os usuários só podem ler o conteúdo. Nenhuma alternativa é exibida."
 msgid "Users can write in their own answer to this step."
 msgstr "Os usuários podem escrever sua própria resposta."
 
-#: lib/dashboard/lessons/lesson_editor.ex:202
+#: lib/dashboard/lessons/lesson_editor.ex:204
 #, elixir-autogen, elixir-format
 msgid "Users can write their own answer."
 msgstr "Os usuários podem escrever sua própria resposta."
 
-#: lib/dashboard/lessons/lesson_editor.ex:196
+#: lib/dashboard/lessons/lesson_editor.ex:198
 #, elixir-autogen, elixir-format
 msgid "You can add multiple options and users can select one of them."
 msgstr "Você pode adicionar várias alternativas e os usuários podem selecionar uma delas."

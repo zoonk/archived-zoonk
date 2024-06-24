@@ -33,16 +33,10 @@
       <span class="sr-only"><% gettext("Open sidebar") %></span>
       <.icon name="tabler-layout-sidebar-left-expand" class="h-6 w-6" />
     </button>
-
-    <div class="h-6 w-px bg-gray-200 lg:hidden" aria-hidden="true" />
-
-    <div class="flex flex-1 justify-end gap-x-4 lg:gap-x-6">
-      <.gamification_menu learning_days={@learning_days} mission_progress={@mission_progress} trophies={@trophies} medals={@medals} />
-    </div>
   </header>
 
   <div
-    :if={@current_user.guest? && !user_settings?(@active_page) && @learning_days > 2}
+    :if={@should_warn_guest_user? && !user_settings?(@active_page)}
     class="sticky top-16 z-40 bg-pink-50 px-4 py-4 text-center text-xs text-pink-600 sm:gap-x-6 sm:px-6 lg:px-8"
     role="alert"
   >

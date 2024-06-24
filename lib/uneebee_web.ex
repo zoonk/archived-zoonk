@@ -91,7 +91,6 @@ defmodule ZoonkWeb do
 
       # UI components
       import ZoonkWeb.Components.Avatar
-      import ZoonkWeb.Components.AwardBadge
       import ZoonkWeb.Components.Badge
       import ZoonkWeb.Components.Button
       import ZoonkWeb.Components.Drawer

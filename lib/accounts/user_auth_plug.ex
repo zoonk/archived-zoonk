@@ -11,8 +11,6 @@ defmodule ZoonkWeb.Plugs.UserAuth do
   alias Phoenix.Socket
   alias Zoonk.Accounts
   alias Zoonk.Accounts.User
-  alias Zoonk.Gamification
-  alias Zoonk.Gamification.MissionUtils
   alias Zoonk.Organizations.School
 
   # Make the remember me cookie valid for 60 days.
@@ -193,17 +191,11 @@ defmodule ZoonkWeb.Plugs.UserAuth do
 
   defp mount_current_user(socket, session) do
     user = get_user_by_session_token(session)
-    learning_days = get_learning_days(user)
-    medals = get_user_medals(user)
-    trophies = get_user_trophies(user)
-    mission_progress = mission_progress(user)
+    should_warn_guest_user? = Accounts.should_warn_guest_user?(user)
 
     socket
     |> Component.assign_new(:current_user, fn -> user end)
-    |> Component.assign(:learning_days, learning_days)
-    |> Component.assign(:medals, medals)
-    |> Component.assign(:trophies, trophies)
-    |> Component.assign(:mission_progress, mission_progress)
+    |> Component.assign(:should_warn_guest_user?, should_warn_guest_user?)
   end
 
   defp get_user_by_session_token(session) do
@@ -211,22 +203,6 @@ defmodule ZoonkWeb.Plugs.UserAuth do
       Accounts.get_user_by_session_token(user_token)
     end
   end
-
-  defp get_learning_days(nil), do: nil
-  defp get_learning_days(user), do: Gamification.learning_days_count(user.id)
-
-  defp get_user_medals(nil), do: nil
-  defp get_user_medals(user), do: Gamification.count_user_medals(user.id)
-
-  defp get_user_trophies(nil), do: nil
-  defp get_user_trophies(user), do: Gamification.count_user_trophies(user.id)
-
-  defp get_user_missions(user), do: Gamification.count_completed_missions(user.id)
-
-  defp mission_progress(nil), do: 0
-  defp mission_progress(user), do: user |> get_user_missions() |> Kernel./(supported_missions_count()) |> Kernel.*(100) |> round()
-
-  defp supported_missions_count, do: length(MissionUtils.supported_missions())
 
   @doc """
   Used for routes that require the user to not be authenticated.

@@ -42,7 +42,7 @@ msgstr "fechar"
 #: lib/accounts/user_live/registration.html.heex:16
 #: lib/accounts/user_live/user_settings.html.heex:45
 #: lib/accounts/user_live/user_settings.html.heex:80
-#: lib/layouts/templates/app.html.heex:72
+#: lib/layouts/templates/app.html.heex:66
 #: lib/support/contact_live/contact.html.heex:12
 #, elixir-autogen, elixir-format
 msgid "Email"
@@ -51,7 +51,7 @@ msgstr "E-mail"
 #: lib/accounts/user_live/registration.html.heex:15
 #: lib/accounts/user_live/user_settings.html.heex:27
 #: lib/accounts/user_live/user_settings.html.heex:78
-#: lib/dashboard/courses/course_edit.html.heex:15
+#: lib/dashboard/courses/course_edit.html.heex:11
 #: lib/dashboard/courses/course_new.html.heex:11
 #, elixir-autogen, elixir-format
 msgid "Language"
@@ -86,14 +86,14 @@ msgid "Username"
 msgstr "Nome de usuário"
 
 #: lib/layouts/components/app_menu.ex:14
-#: lib/layouts/templates/app.html.heex:56
+#: lib/layouts/templates/app.html.heex:50
 #: lib/layouts/templates/dashboard_course.html.heex:18
 #: lib/layouts/templates/dashboard_school.html.heex:18
 #, elixir-autogen, elixir-format
 msgid "Home"
 msgstr "Início"
 
-#: lib/dashboard/schools/school_edit.ex:88
+#: lib/dashboard/schools/school_edit.ex:92
 #: lib/dashboard/schools/school_edit.html.heex:1
 #: lib/layouts/menu_utils.ex:98
 #: lib/layouts/templates/auth.html.heex:3
@@ -108,14 +108,14 @@ msgstr "Logo"
 msgid "Sending..."
 msgstr ""
 
-#: lib/layouts/templates/app.html.heex:80
+#: lib/layouts/templates/app.html.heex:74
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Logout"
 msgstr "Sair"
 
 #: lib/accounts/user_live/user_settings.ex:192
 #: lib/dashboard/courses/course_edit.html.heex:5
-#: lib/dashboard/schools/school_edit.ex:87
+#: lib/dashboard/schools/school_edit.ex:91
 #: lib/layouts/components/app_menu.ex:40
 #: lib/layouts/menu_utils.ex:100
 #: lib/layouts/templates/dashboard_course.html.heex:42
@@ -148,7 +148,7 @@ msgstr "Salvar"
 msgid "Name"
 msgstr "Nome"
 
-#: lib/layouts/templates/app.html.heex:64
+#: lib/layouts/templates/app.html.heex:58
 #, elixir-autogen, elixir-format
 msgid "Profile"
 msgstr "Perfil"
@@ -261,9 +261,9 @@ msgstr "Fechar barra lateral"
 #: lib/accounts/user_live/user_settings.ex:191
 #: lib/components/delete_item.ex:17
 #: lib/components/delete_item.ex:21
-#: lib/dashboard/schools/school_edit.ex:89
+#: lib/dashboard/schools/school_edit.ex:93
 #: lib/layouts/menu_utils.ex:102
-#: lib/layouts/templates/app.html.heex:84
+#: lib/layouts/templates/app.html.heex:78
 #: lib/layouts/templates/dashboard_course.html.heex:50
 #, elixir-autogen, elixir-format
 msgid "Delete"
@@ -293,7 +293,7 @@ msgstr "Visão geral"
 #: lib/accounts/user_live/login.html.heex:6
 #: lib/accounts/user_live/registration.html.heex:18
 #: lib/accounts/user_live/user_settings.html.heex:81
-#: lib/layouts/templates/app.html.heex:76
+#: lib/layouts/templates/app.html.heex:70
 #, elixir-autogen, elixir-format
 msgid "Password"
 msgstr "Senha"
@@ -311,7 +311,7 @@ msgstr "Pendente"
 
 #: lib/accounts/user_live/user_settings.ex:190
 #: lib/accounts/user_live/user_settings.html.heex:1
-#: lib/layouts/templates/app.html.heex:68
+#: lib/layouts/templates/app.html.heex:62
 #, elixir-autogen, elixir-format
 msgid "Avatar"
 msgstr "Avatar"
@@ -331,12 +331,12 @@ msgstr "Não foi possível atualizar o avatar!"
 msgid "Create school"
 msgstr "Criar escola"
 
-#: lib/layouts/templates/app.html.heex:49
+#: lib/layouts/templates/app.html.heex:43
 #, elixir-autogen, elixir-format
 msgid "Don't lose your progress. "
 msgstr "Não perca o seu progresso. "
 
-#: lib/layouts/templates/app.html.heex:50
+#: lib/layouts/templates/app.html.heex:44
 #, elixir-autogen, elixir-format
 msgid "Update your email address"
 msgstr "Atualize o endereço de e-mail"
@@ -391,12 +391,12 @@ msgstr "Houve um erro ao enviar sua mensagem. Por favor, tente novamente."
 msgid "Your school manager needs to renew their subscription. Please, contact them."
 msgstr "A sua escola precisa renovar a assinatura. Por favor, entre em contato com eles."
 
-#: lib/layouts/templates/app.html.heex:60
+#: lib/layouts/templates/app.html.heex:54
 #, elixir-autogen, elixir-format
 msgid "Setup"
 msgstr "Configuração"
 
-#: lib/dashboard/schools/school_edit.ex:90
+#: lib/dashboard/schools/school_edit.ex:94
 #: lib/dashboard/schools/school_edit.html.heex:2
 #: lib/layouts/menu_utils.ex:99
 #, elixir-autogen, elixir-format

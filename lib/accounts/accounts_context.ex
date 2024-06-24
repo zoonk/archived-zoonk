@@ -8,7 +8,7 @@ defmodule Zoonk.Accounts do
   alias Zoonk.Accounts.User
   alias Zoonk.Accounts.UserNotifier
   alias Zoonk.Accounts.UserToken
-  alias Zoonk.Gamification
+  alias Zoonk.Content.UserLesson
   alias Zoonk.Mailer
   alias Zoonk.Organizations.School
   alias Zoonk.Repo
@@ -250,16 +250,7 @@ defmodule Zoonk.Accounts do
   """
   @spec update_user_settings(User.t(), map()) :: user_changeset
   def update_user_settings(%User{} = user, attrs \\ %{}) do
-    changeset = change_user_settings(user, attrs)
-
-    Ecto.Multi.new()
-    |> Ecto.Multi.update(:user, changeset)
-    |> Ecto.Multi.run(:mission, fn _repo, %{user: user} -> Gamification.complete_user_mission(user, :profile) end)
-    |> Repo.transaction()
-    |> case do
-      {:ok, %{user: user}} -> {:ok, user}
-      {:error, :user, changeset, _error} -> {:error, changeset}
-    end
+    user |> User.settings_changeset(attrs) |> Repo.update()
   end
 
   @doc """
@@ -540,5 +531,25 @@ defmodule Zoonk.Accounts do
       {:ok, %{user: user}} -> {:ok, user}
       {:error, :user, changeset, _error} -> {:error, changeset}
     end
+  end
+
+  @doc """
+  Checks if we should display a warning for guest users.
+
+  When guest users have completed multiple lessons, it may be useful for them to create an account.
+  Otherwise, they may lose their progress if they clear their browser cache/cookies.
+
+  ## Examples
+
+      iex> should_warn_guest_user?(user)
+      true
+  """
+  @spec should_warn_guest_user?(User.t() | nil) :: boolean()
+  def should_warn_guest_user?(nil), do: false
+  def should_warn_guest_user?(%User{guest?: false}), do: false
+
+  def should_warn_guest_user?(%User{} = user) do
+    user_lessons = UserLesson |> where(user_id: ^user.id) |> limit(3) |> Repo.all()
+    Enum.count(user_lessons) > 2
   end
 end

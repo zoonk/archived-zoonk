@@ -3,12 +3,10 @@ defmodule ZoonkWeb.UserSettingsLiveTest do
 
   import Phoenix.LiveViewTest
   import Zoonk.Fixtures.Accounts
-  import Zoonk.Fixtures.Gamification
   import Zoonk.Fixtures.Organizations
   import ZoonkWeb.TestHelpers.Upload
 
   alias Zoonk.Accounts
-  alias Zoonk.Gamification
   alias Zoonk.Organizations
 
   @form "#settings-form"
@@ -124,62 +122,6 @@ defmodule ZoonkWeb.UserSettingsLiveTest do
 
       assert has_element?(lv, ~s|input[name="user[first_name]"][value="#{new_first_name}"]|)
       assert has_element?(lv, ~s|input[name="user[last_name]"][value="#{new_last_name}"]|)
-    end
-
-    test "completes a mission when the first name is added", %{conn: conn, user: user} do
-      Accounts.update_user_settings(user, %{first_name: nil, last_name: nil})
-
-      assert Gamification.get_user_mission(:profile_name, user.id) == nil
-
-      {:ok, lv, _html} = live(conn, ~p"/users/settings")
-
-      new_first_name = "New first name"
-
-      assert {:ok, _lv, html} =
-               lv
-               |> form(@form, user: %{first_name: new_first_name, last_name: nil})
-               |> render_submit()
-               |> follow_redirect(conn, ~p"/users/settings")
-
-      assert html =~ "Settings updated successfully"
-
-      assert Gamification.get_user_mission(:profile_name, user.id) != nil
-    end
-
-    test "completes a mission when the last name is added", %{conn: conn, user: user} do
-      Accounts.update_user_settings(user, %{first_name: nil, last_name: nil})
-
-      assert Gamification.get_user_mission(:profile_name, user.id) == nil
-
-      {:ok, lv, _html} = live(conn, ~p"/users/settings")
-
-      new_last_name = "New last name"
-
-      assert {:ok, _lv, html} =
-               lv
-               |> form(@form, user: %{first_name: nil, last_name: new_last_name})
-               |> render_submit()
-               |> follow_redirect(conn, ~p"/users/settings")
-
-      assert html =~ "Settings updated successfully"
-
-      assert Gamification.get_user_mission(:profile_name, user.id) != nil
-    end
-
-    test "removes a mission if both the first and last name are removed", %{conn: conn, user: user} do
-      user_mission_fixture(%{user: user, reason: :profile_name})
-
-      {:ok, lv, _html} = live(conn, ~p"/users/settings")
-
-      assert {:ok, _lv, html} =
-               lv
-               |> form(@form, user: %{first_name: nil, last_name: nil})
-               |> render_submit()
-               |> follow_redirect(conn, ~p"/users/settings")
-
-      assert html =~ "Settings updated successfully"
-
-      assert Gamification.get_user_mission(:profile_name, user.id) == nil
     end
   end
 

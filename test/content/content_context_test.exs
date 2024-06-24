@@ -4,7 +4,6 @@ defmodule Zoonk.ContentTest do
 
   import Zoonk.Fixtures.Accounts
   import Zoonk.Fixtures.Content
-  import Zoonk.Fixtures.Gamification
   import Zoonk.Fixtures.Organizations
 
   alias Zoonk.Content
@@ -18,7 +17,6 @@ defmodule Zoonk.ContentTest do
   alias Zoonk.Content.StepSuggestedCourse
   alias Zoonk.Content.UserLesson
   alias Zoonk.Content.UserSelection
-  alias Zoonk.Gamification
   alias Zoonk.Organizations
   alias Zoonk.Repo
 
@@ -272,16 +270,6 @@ defmodule Zoonk.ContentTest do
       assert length(Content.list_lessons(course.id)) == 1
       Content.delete_course(course)
       assert Content.list_lessons(course.id) == []
-    end
-
-    test "removes all trophies" do
-      user = user_fixture()
-      course = course_fixture()
-      user_trophy_fixture(%{course: course, user: user})
-
-      assert Gamification.count_user_trophies(user.id) == 1
-      Content.delete_course(course)
-      assert Gamification.count_user_trophies(user.id) == 0
     end
   end
 
@@ -540,17 +528,6 @@ defmodule Zoonk.ContentTest do
       assert length(Content.list_user_selections_by_lesson(user.id, lesson.id, 1)) == 1
       Content.delete_lesson(lesson)
       assert Content.list_user_selections_by_lesson(user.id, lesson.id, 1) == []
-    end
-
-    test "deletes all medals" do
-      user = user_fixture()
-      lesson = lesson_fixture()
-      lesson_fixture(%{course_id: lesson.course_id})
-      user_medal_fixture(%{lesson: lesson, user: user})
-
-      assert Gamification.count_user_medals(user.id) == 1
-      Content.delete_lesson(lesson)
-      assert Gamification.count_user_medals(user.id) == 0
     end
 
     test "updates the order field of the remaining lessons" do
@@ -1126,121 +1103,6 @@ defmodule Zoonk.ContentTest do
       assert user_lesson.correct == 5
       assert user_lesson.total == 10
     end
-
-    test "awards a gold medal when a lesson is completed without errors on the first try" do
-      user = user_fixture()
-      lesson = lesson_fixture()
-      attrs = %{user_id: user.id, lesson_id: lesson.id, attempts: 1, correct: 4, total: 4}
-
-      assert Gamification.count_user_medals(user.id, :gold) == 0
-
-      Content.add_user_lesson(attrs)
-
-      assert Gamification.count_user_medals(user.id, :gold) == 1
-    end
-
-    test "awards a silver medal when a lesson is completed without errors on a second try" do
-      user = user_fixture()
-      lesson = lesson_fixture()
-      attrs = %{user_id: user.id, lesson_id: lesson.id, attempts: 1, correct: 4, total: 4}
-
-      Content.add_user_lesson(attrs)
-
-      assert Gamification.count_user_medals(user.id, :gold) == 1
-      assert Gamification.count_user_medals(user.id, :silver) == 0
-
-      Content.add_user_lesson(attrs)
-
-      assert Gamification.count_user_medals(user.id, :gold) == 1
-      assert Gamification.count_user_medals(user.id, :silver) == 1
-    end
-
-    test "awards a bronze medal when a lesson has errors on first try" do
-      user = user_fixture()
-      lesson = lesson_fixture()
-      attrs = %{user_id: user.id, lesson_id: lesson.id, attempts: 1, correct: 3, total: 4}
-
-      assert Gamification.count_user_medals(user.id, :bronze) == 0
-
-      Content.add_user_lesson(attrs)
-
-      assert Gamification.count_user_medals(user.id, :bronze) == 1
-    end
-
-    test "doesn't award a medal when a lesson has errors on second try" do
-      user = user_fixture()
-      lesson = lesson_fixture()
-      attrs = %{user_id: user.id, lesson_id: lesson.id, attempts: 1, correct: 3, total: 4}
-
-      Content.add_user_lesson(attrs)
-
-      assert Gamification.count_user_medals(user.id) == 1
-
-      Content.add_user_lesson(attrs)
-
-      assert Gamification.count_user_medals(user.id) == 1
-    end
-
-    test "awards a trophy if the course is completed" do
-      user = user_fixture()
-      lesson = lesson_fixture()
-      attrs = %{user_id: user.id, lesson_id: lesson.id, attempts: 1, correct: 4, total: 4}
-
-      assert {:ok, %UserLesson{}} = Content.add_user_lesson(attrs)
-      assert Gamification.get_course_completed_trophy(user.id, lesson.course_id) != nil
-    end
-
-    test "doesn't award a trophy if the course is not completed" do
-      user = user_fixture()
-      course = course_fixture()
-      lessons = Enum.map(1..3, fn _idx -> lesson_fixture(%{course_id: course.id}) end)
-      attrs = %{user_id: user.id, lesson_id: Enum.at(lessons, 0).id, attempts: 1, correct: 3, total: 4}
-
-      assert {:ok, %UserLesson{}} = Content.add_user_lesson(attrs)
-      assert Gamification.get_course_completed_trophy(user.id, course.id) == nil
-    end
-
-    test "adds a mission when the first lesson is completed" do
-      user = user_fixture()
-      course = course_fixture()
-      lesson = lesson_fixture(%{course_id: course.id})
-      attrs = %{user_id: user.id, lesson_id: lesson.id, attempts: 1, correct: 3, total: 4}
-
-      assert {:ok, %UserLesson{}} = Content.add_user_lesson(attrs)
-      assert Gamification.get_user_mission(:lesson_1, user.id) != nil
-    end
-
-    test "adds a mission when 5 lessons are completed" do
-      user = user_fixture()
-      course = course_fixture()
-      generate_user_lesson(user.id, 0, number_of_lessons: 4)
-      lesson = lesson_fixture(%{course_id: course.id})
-      attrs = %{user_id: user.id, lesson_id: lesson.id, attempts: 1, correct: 3, total: 4}
-
-      assert {:ok, %UserLesson{}} = Content.add_user_lesson(attrs)
-      assert Gamification.get_user_mission(:lesson_5, user.id) != nil
-    end
-
-    test "adds a mission when a user completes their first perfect lesson" do
-      user = user_fixture()
-      course = course_fixture()
-      lesson = lesson_fixture(%{course_id: course.id})
-      attrs = %{user_id: user.id, lesson_id: lesson.id, attempts: 1, correct: 4, total: 4}
-
-      assert {:ok, %UserLesson{}} = Content.add_user_lesson(attrs)
-      assert Gamification.get_user_mission(:perfect_lesson_1, user.id) != nil
-    end
-
-    test "adds a mission when a user completes their 10th perfect lesson" do
-      user = user_fixture()
-      course = course_fixture()
-      generate_user_lesson(user.id, 0, number_of_lessons: 9, correct: 4, total: 4)
-      lesson = lesson_fixture(%{course_id: course.id})
-      attrs = %{user_id: user.id, lesson_id: lesson.id, attempts: 1, correct: 4, total: 4}
-
-      assert {:ok, %UserLesson{}} = Content.add_user_lesson(attrs)
-      assert Gamification.get_user_mission(:perfect_lesson_10, user.id) != nil
-    end
   end
 
   describe "get_user_lesson/2" do
@@ -1298,25 +1160,6 @@ defmodule Zoonk.ContentTest do
       lesson_fixture(%{course: course, published?: true})
 
       assert Content.course_completed?(user, course) == false
-    end
-  end
-
-  describe "count_user_lesson/1" do
-    test "returns the number of user lessons" do
-      user = user_fixture()
-      generate_user_lesson(user.id, 0, number_of_lessons: 5)
-
-      assert Content.count_user_lessons(user.id) == 5
-    end
-  end
-
-  describe "count_user_perfect_lessons/1" do
-    test "returns the number of user lessons" do
-      user = user_fixture()
-      generate_user_lesson(user.id, 0, number_of_lessons: 5, correct: 4, total: 4)
-      generate_user_lesson(user.id, 0, correct: 3, total: 4)
-
-      assert Content.count_user_perfect_lessons(user.id) == 5
     end
   end
 

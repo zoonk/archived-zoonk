@@ -21,7 +21,7 @@ msgstr "Uma solicitação de matrícula foi enviada ao professor do curso."
 msgid "Advanced"
 msgstr "Avançado"
 
-#: lib/content/course_live/lesson_completed.html.heex:32
+#: lib/content/course_live/lesson_completed.html.heex:19
 #, elixir-autogen, elixir-format
 msgid "Back to the course"
 msgstr "Voltar ao curso"
@@ -41,7 +41,7 @@ msgstr "Confirmando..."
 msgid "Enrolled successfully!"
 msgstr "Matriculado com sucesso!"
 
-#: lib/content/course_live/lesson_completed.ex:41
+#: lib/content/course_live/lesson_completed.ex:27
 #, elixir-autogen, elixir-format
 msgid "Excellent!"
 msgstr "Excelente!"
@@ -56,7 +56,7 @@ msgstr "Especialista"
 msgid "Failed to enroll"
 msgstr "Falha ao se matricular"
 
-#: lib/content/course_live/lesson_completed.ex:43
+#: lib/content/course_live/lesson_completed.ex:29
 #, elixir-autogen, elixir-format
 msgid "Good!"
 msgstr "Bom!"
@@ -76,12 +76,12 @@ msgstr "Intermediário"
 msgid "Next step"
 msgstr "Próxima etapa"
 
-#: lib/content/course_live/lesson_completed.ex:44
+#: lib/content/course_live/lesson_completed.ex:30
 #, elixir-autogen, elixir-format
 msgid "Not bad!"
 msgstr "Nada mal!"
 
-#: lib/content/course_live/lesson_completed.ex:40
+#: lib/content/course_live/lesson_completed.ex:26
 #, elixir-autogen, elixir-format
 msgid "Perfect!"
 msgstr "Perfeito!"
@@ -96,7 +96,7 @@ msgstr "Pedir para participar"
 msgid "That's incorrect."
 msgstr "Está incorreto."
 
-#: lib/content/course_live/lesson_completed.ex:45
+#: lib/content/course_live/lesson_completed.ex:31
 #, elixir-autogen, elixir-format
 msgid "There's room for improvement"
 msgstr "Tem espaço para melhorar"
@@ -111,7 +111,7 @@ msgstr "Não foi possível concluir a aula"
 msgid "Unable to select option"
 msgstr "Não foi possível selecionar a alternativa"
 
-#: lib/content/course_live/lesson_completed.ex:42
+#: lib/content/course_live/lesson_completed.ex:28
 #, elixir-autogen, elixir-format
 msgid "Very good!"
 msgstr "Muito bem!"

@@ -3,14 +3,12 @@ defmodule Zoonk.AccountsTest do
 
   import Zoonk.Fixtures.Accounts
   import Zoonk.Fixtures.Content
-  import Zoonk.Fixtures.Gamification
   import Zoonk.Fixtures.Organizations
 
   alias Zoonk.Accounts
   alias Zoonk.Accounts.User
   alias Zoonk.Accounts.UserToken
   alias Zoonk.Content
-  alias Zoonk.Gamification
 
   describe "get_user_by_email/1" do
     test "does not return the user if the email does not exist" do
@@ -403,33 +401,6 @@ defmodule Zoonk.AccountsTest do
       refute Accounts.get_user_by_email(user.email)
     end
 
-    test "deletes all medals a user earned" do
-      user = user_fixture()
-      user_medal_fixture(%{user: user})
-
-      assert Gamification.count_user_medals(user.id) == 1
-      Accounts.delete_user(user)
-      assert Gamification.count_user_medals(user.id) == 0
-    end
-
-    test "deletes all trophies a user earned" do
-      user = user_fixture()
-      user_trophy_fixture(%{user: user})
-
-      assert Gamification.count_user_trophies(user.id) == 1
-      Accounts.delete_user(user)
-      assert Gamification.count_user_trophies(user.id) == 0
-    end
-
-    test "deletes all missions a user earned" do
-      user = user_fixture()
-      user_mission_fixture(%{user: user})
-
-      assert Gamification.count_completed_missions(user.id) == 1
-      Accounts.delete_user(user)
-      assert Gamification.count_completed_missions(user.id) == 0
-    end
-
     test "deletes all courses a user has joined" do
       user = user_fixture()
       course_user = course_user_fixture(%{user: user})
@@ -443,9 +414,9 @@ defmodule Zoonk.AccountsTest do
       user = user_fixture()
       generate_user_lesson(user.id, 0, number_of_lessons: 1)
 
-      assert Content.count_user_lessons(user.id) == 1
+      assert Repo.get_by(Content.UserLesson, user_id: user.id) != nil
       Accounts.delete_user(user)
-      assert Content.count_user_lessons(user.id) == 0
+      assert Repo.get_by(Content.UserLesson, user_id: user.id) == nil
     end
 
     test "deletes all user selections" do

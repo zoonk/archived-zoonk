@@ -103,8 +103,8 @@ msgstr "E-mail ou senha inválidos."
 msgid "Password updated successfully!"
 msgstr "Senha atualizada com sucesso!"
 
-#: lib/accounts/user_auth_plug.ex:177
-#: lib/accounts/user_auth_plug.ex:266
+#: lib/accounts/user_auth_plug.ex:175
+#: lib/accounts/user_auth_plug.ex:242
 #, elixir-autogen, elixir-format
 msgid "You must log in to access this page."
 msgstr "É necessário estar logado para acessar esta página."

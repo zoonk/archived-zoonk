@@ -15,19 +15,6 @@
     <.badge color={badge_color(score)}><%= score %></.badge>
   </div>
 
-  <div class="flex-1 md:flex-none">
-    <div class={["grid gap-4 pt-4", @award_count == 1 && "grid-cols-1", @award_count == 2 && "grid-cols-1 md:grid-cols-2"]}>
-      <.trophy_badge
-        :if={completed_course_recently?(@course_completed_trophy)}
-        title={trophy(@course_completed_trophy).label}
-        description={trophy(@course_completed_trophy).description}
-      />
-
-      <.learning_days_badge :if={@first_lesson_today?} days={@learning_days} />
-      <.medal_badge :if={@medal} id={"medal-#{@medal.key}"} prize={@medal.medal} title={@medal.label} description={@medal.description} />
-    </div>
-  </div>
-
   <.link_button color={:primary} class="mt-8 w-full" navigate={~p"/c/#{@course.slug}"}>
     <%= dgettext("courses", "Back to the course") %>
   </.link_button>

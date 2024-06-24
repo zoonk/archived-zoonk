@@ -181,12 +181,12 @@ msgstr "Ihre Anmeldung muss noch genehmigt werden"
 msgid "must start with https://"
 msgstr "muss mit https:// beginnen"
 
-#: lib/content/content_context.ex:759
+#: lib/content/content_context.ex:757
 #, elixir-autogen, elixir-format, fuzzy
 msgid "cannot delete the only step"
 msgstr "Der einzige Schritt kann nicht gelöscht werden"
 
-#: lib/content/content_context.ex:518
+#: lib/content/content_context.ex:516
 #, elixir-autogen, elixir-format, fuzzy
 msgid "cannot delete the only lesson"
 msgstr "Die einzige Lektion kann nicht gelöscht werden"

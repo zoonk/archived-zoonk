@@ -4,7 +4,6 @@ defmodule ZoonkWeb.Layouts do
 
   import ZoonkWeb.Components.Layouts.AppMenu
   import ZoonkWeb.Components.Layouts.DashboardMenuItem
-  import ZoonkWeb.Components.Layouts.GamificationMenu
   import ZoonkWeb.Components.Layouts.MenuDesktop
   import ZoonkWeb.Components.Layouts.MenuMobile
   import ZoonkWeb.Layouts.MenuUtils
