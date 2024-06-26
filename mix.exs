@@ -60,7 +60,7 @@ defmodule Zoonk.MixProject do
       {:phoenix, "~> 1.7.14"},
       {:plug_cowboy, "~> 2.7"},
       {:postgrex, "~> 0.17.5"},
-      {:req, "~> 0.4.12"},
+      {:req, "~> 0.5.1"},
       {:resend, "~> 0.4.2"},
       {:sentry, "~> 10.6.1"},
       {:sobelow, "~> 0.13.0", only: [:dev, :test], runtime: false},
