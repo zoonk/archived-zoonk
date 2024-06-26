@@ -39,7 +39,7 @@ defmodule Zoonk.MixProject do
     [
       {:aws_signature, "~> 0.3.2"},
       {:bcrypt_elixir, "~> 3.0"},
-      {:credo, "~> 1.7.5", only: [:dev, :test], runtime: false},
+      {:credo, "~> 1.7.7", only: [:dev, :test], runtime: false},
       {:dialyxir, "~> 1.4.3", only: [:dev, :test], runtime: false},
       {:ecto_sql, "~> 3.11.1"},
       {:esbuild, "~> 0.8.1", runtime: Mix.env() == :dev},
