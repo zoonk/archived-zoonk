@@ -44,7 +44,7 @@ defmodule Zoonk.MixProject do
       {:ecto_sql, "~> 3.11.3"},
       {:esbuild, "~> 0.8.1", runtime: Mix.env() == :dev},
       {:finch, "~> 0.18"},
-      {:floki, "~> 0.36.0", only: :test},
+      {:floki, "~> 0.36.2", only: :test},
       {:gettext, "~> 0.24.0"},
       {:hackney, "~> 1.20.1"},
       {:jason, "~> 1.2"},
