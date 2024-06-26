@@ -66,7 +66,7 @@ defmodule Zoonk.MixProject do
       {:sobelow, "~> 0.13.0", only: [:dev, :test], runtime: false},
       {:stripity_stripe, "~> 3.2.0"},
       {:styler, "~> 0.11.9", only: [:dev, :test], runtime: false},
-      {:swoosh, "~> 1.16.5"},
+      {:swoosh, "~> 1.16.9"},
       {:tailwind, "~> 0.2.3", runtime: Mix.env() == :dev},
       {:tailwind_formatter, "~> 0.4.0", only: [:dev, :test], runtime: false},
       {:telemetry_metrics, "~> 1.0.0"},
