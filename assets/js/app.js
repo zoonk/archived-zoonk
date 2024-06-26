@@ -21,9 +21,11 @@ import "phoenix_html";
 import { Socket } from "phoenix";
 import { LiveSocket } from "phoenix_live_view";
 import topbar from "../vendor/topbar";
-import Sortable from "../vendor/sortable";
+import Sortable from "./hooks/sortable";
 
-let Hooks = {};
+let Hooks = {
+  Sortable,
+};
 
 let correctSound = new Audio("/audios/correct.mp3");
 let incorrectSound = new Audio("/audios/incorrect.mp3");
@@ -36,32 +38,6 @@ function playSound(isCorrect) {
 Hooks.LessonSoundEffect = {
   mounted() {
     this.handleEvent("option-selected", ({ isCorrect }) => playSound(isCorrect));
-  },
-};
-
-Hooks.Sortable = {
-  mounted() {
-    let group = this.el.dataset.group;
-    let isDragging = false;
-    this.el.addEventListener("focusout", (e) => isDragging && e.stopImmediatePropagation());
-    let sorter = new Sortable(this.el, {
-      group: group ? { name: group, pull: true, put: true } : undefined,
-      animation: 150,
-      filter: ".filtered",
-      dragClass: "drag-item",
-      ghostClass: "drag-ghost",
-      onStart: (e) => (isDragging = true), // prevent phx-blur from firing while dragging
-      onEnd: (e) => {
-        isDragging = false;
-        let params = {
-          old: e.oldIndex,
-          new: e.newIndex,
-          to: e.to.dataset,
-          ...e.item.dataset,
-        };
-        this.pushEventTo(this.el, this.el.dataset["drop"] || "reposition", params);
-      },
-    });
   },
 };
 
