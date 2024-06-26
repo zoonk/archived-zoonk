@@ -59,7 +59,7 @@ defmodule Zoonk.MixProject do
       {:phoenix_live_view, "~> 0.20.12"},
       {:phoenix, "~> 1.7.14"},
       {:plug_cowboy, "~> 2.7"},
-      {:postgrex, "~> 0.17.5"},
+      {:postgrex, "~> 0.18.0"},
       {:req, "~> 0.5.1"},
       {:resend, "~> 0.4.2"},
       {:sentry, "~> 10.6.1"},

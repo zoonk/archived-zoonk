@@ -46,16 +46,7 @@ if config_env() == :prod do
     hostname: database_host,
     timeout: 30_000,
     queue_target: 5_000,
-    ssl: true,
-    ssl_opts: [
-      cacertfile: System.fetch_env!("CERT_PATH"),
-      server_name_indication: to_charlist(database_host),
-      verify: :verify_peer,
-      customize_hostname_check: [
-        # By default, Erlang does not support wildcard certificates. This function supports validating wildcard hosts
-        match_fun: :public_key.pkix_verify_hostname_match_fun(:https)
-      ]
-    ]
+    ssl: [cacerts: :public_key.cacerts_get()]
 
   # The secret key base is used to sign/encrypt cookies and other secrets.
   # A default value is used in config/dev.exs and config/test.exs but you
