@@ -141,6 +141,18 @@ defmodule ZoonkWeb.DashboardCourseViewLiveTest do
 
       assert has_element?(updated_lv, "h1", "Create course")
     end
+
+    test "reorder lessons", %{conn: conn, course: course} do
+      lessons = Enum.map(1..3, fn idx -> lesson_fixture(%{course_id: course.id, name: "lesson#{idx}"}) end)
+
+      {:ok, lv, html} = live(conn, "/dashboard/c/#{course.slug}")
+
+      Enum.each(lessons, fn lesson -> assert has_element?(lv, "dt", lesson.name) end)
+      assert get_lesson_titles(html) == ["lesson1", "lesson2", "lesson3"]
+
+      updated_html = render_hook(lv, :reposition, %{"new" => 1, "old" => 3})
+      assert get_lesson_titles(updated_html) == ["lesson3", "lesson1", "lesson2"]
+    end
   end
 
   defp assert_course_view(conn, course) do
@@ -157,5 +169,16 @@ defmodule ZoonkWeb.DashboardCourseViewLiveTest do
       assert has_element?(lv, "dt", lesson.name)
       assert has_element?(lv, ~s|#lesson-#{lesson.id} span:fl-contains("3")|)
     end)
+  end
+
+  # Get the title of each created lesson on the right order.
+  # This is useful when testing if the reordering of lessons is working.
+  defp get_lesson_titles(html) do
+    html
+    |> Floki.parse_document!()
+    |> Floki.find("#lesson-list a dt")
+    |> Enum.map(&Floki.text/1)
+    # We don't want the first element because it's created dynamically, so it's hard to test it
+    |> tl()
   end
 end

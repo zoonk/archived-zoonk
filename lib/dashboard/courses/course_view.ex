@@ -43,9 +43,12 @@ defmodule ZoonkWeb.Live.Dashboard.CourseView do
 
   @impl Phoenix.LiveView
   def handle_event("reposition", %{"new" => new_index, "old" => old_index}, socket) when new_index != old_index do
-    case Content.update_lesson_order(socket.assigns.course.id, old_index, new_index) do
-      {:ok, lessons} ->
-        {:noreply, assign(socket, :lessons, lessons)}
+    %{course: course} = socket.assigns
+
+    case Content.update_lesson_order(course.id, old_index, new_index) do
+      {:ok, _lessons} ->
+        updated_lessons = Content.list_lessons_with_stats(course.id)
+        {:noreply, assign(socket, :lessons, updated_lessons)}
 
       {:error, _changeset} ->
         {:noreply, put_flash(socket, :error, dgettext("orgs", "Could not change the lesson order!"))}
