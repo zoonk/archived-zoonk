@@ -22,24 +22,14 @@ import { Socket } from "phoenix";
 import { LiveSocket } from "phoenix_live_view";
 import topbar from "../vendor/topbar";
 
+import ClearFlash from "./hooks/clear_flash";
 import LessonSoundEffect from "./hooks/lesson_sound_effect";
 import Sortable from "./hooks/sortable";
 
 let Hooks = {
+  ClearFlash,
   LessonSoundEffect,
   Sortable,
-};
-
-Hooks.ClearFlash = {
-  mounted() {
-    const kind = this.el.dataset.kind;
-    const delay = 5000;
-
-    setTimeout(() => this.el.classList.add("opacity-0"), delay);
-
-    // Make sure we also clear the flash. Otherwise, it will be displayed for other items too.
-    setTimeout(() => this.pushEventTo("#" + this.el.id, "lv:clear-flash", { key: kind }), delay + 1000);
-  },
 };
 
 let Uploaders = {};
