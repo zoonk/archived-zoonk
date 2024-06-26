@@ -21,24 +21,13 @@ import "phoenix_html";
 import { Socket } from "phoenix";
 import { LiveSocket } from "phoenix_live_view";
 import topbar from "../vendor/topbar";
+
+import LessonSoundEffect from "./hooks/lesson_sound_effect";
 import Sortable from "./hooks/sortable";
 
 let Hooks = {
+  LessonSoundEffect,
   Sortable,
-};
-
-let correctSound = new Audio("/audios/correct.mp3");
-let incorrectSound = new Audio("/audios/incorrect.mp3");
-
-function playSound(isCorrect) {
-  const sound = isCorrect ? correctSound : incorrectSound;
-  sound.play();
-}
-
-Hooks.LessonSoundEffect = {
-  mounted() {
-    this.handleEvent("option-selected", ({ isCorrect }) => playSound(isCorrect));
-  },
 };
 
 Hooks.ClearFlash = {

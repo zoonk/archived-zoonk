@@ -1,25 +1,35 @@
+import Sortable from "../../vendor/sortable";
+
 /**
  * Hook for reordering elements using drag and drop.
  *
  * This hook uses the Sortable library to make list elements sortable.
  *
- * @example
+ * ## Usage
+ *
+ * Add `phx-hook="Sortable"` to the element you want to make sortable.
+ * You'll also need to add a `data-group` attribute to the element.
+ *
+ * ```eex
  * <ul phx-hook="Sortable" id="lesson-list" data-group="lesson-list">
- *  <li :for={{lesson} <- @lessons}>
+ *  <li :for={{lesson} <- lessons}>
  *    <%= lesson.title %>
  *  </li>
  * </ul>
+ * ```
  *
- * def handle_event("reposition", %{"new" => new_index, "old_index" => old_index}, socket) do
+ * Then, you'll need to handle the reposition event in your LiveView
+ * using the `reposition` event.
+ *
+ * ```elixir
+ * def handle_event("reposition", %{"new" => new_index, "old" => old_index}, socket) do
  *  # Handle the reordering of the elements here.
  * end
+ * ```
  */
-
-import Sortable from "../../vendor/sortable";
-
 export default {
   mounted() {
-    let group = this.el.dataset.group;
+    const group = this.el.dataset.group;
     let isDragging = false;
 
     this.el.addEventListener("focusout", (e) => isDragging && e.stopImmediatePropagation());
@@ -34,7 +44,7 @@ export default {
       onEnd: (e) => {
         isDragging = false;
 
-        let params = {
+        const params = {
           old: e.oldIndex,
           new: e.newIndex,
           to: e.to.dataset,
