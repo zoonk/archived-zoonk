@@ -52,7 +52,7 @@ defmodule Zoonk.MixProject do
       {:multipart, "~> 0.4.0"},
       {:mock, "~> 0.3.0", only: :test},
       {:money, "~> 1.12.4"},
-      {:phoenix_ecto, "~> 4.5.0"},
+      {:phoenix_ecto, "~> 4.6.1"},
       {:phoenix_html, "~> 4.1.1"},
       {:phoenix_live_dashboard, "~> 0.8.4"},
       {:phoenix_live_reload, "~> 1.5.1", only: :dev},
