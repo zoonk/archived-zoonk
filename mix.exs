@@ -57,7 +57,7 @@ defmodule Zoonk.MixProject do
       {:phoenix_live_dashboard, "~> 0.8.3"},
       {:phoenix_live_reload, "~> 1.5.1", only: :dev},
       {:phoenix_live_view, "~> 0.20.12"},
-      {:phoenix, "~> 1.7.11"},
+      {:phoenix, "~> 1.7.14"},
       {:plug_cowboy, "~> 2.7"},
       {:postgrex, "~> 0.17.5"},
       {:req, "~> 0.4.12"},
