@@ -42,7 +42,7 @@ Follow the instructions below to get Zoonk up and running on your local machine.
 
 ### Requirements
 
-- You need `Elixir 1.15` or later and `Erlang 26` or later. Run `elixir -v` to find your current version for [Elixir](https://elixir-lang.org/install.html)
+- You need `Elixir 1.17` or later and `Erlang 26` or later. Run `elixir -v` to find your current version for [Elixir](https://elixir-lang.org/install.html)
   and [Erlang](https://elixir-lang.org/install.html#installing-erlang).
 - Install [Hex](https://hex.pm/): `mix local.hex`.
 - Install `Phoenix`: `mix archive.install hex phx_new`.

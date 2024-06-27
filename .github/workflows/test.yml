@@ -8,8 +8,8 @@ on:
 
 env:
   MIX_ENV: test
-  ELIXIR_VERSION: 1.15.6
-  OTP_VERSION: 26.0.2
+  ELIXIR_VERSION: 1.17.1
+  OTP_VERSION: 26.2.5
 
 jobs:
   test:
