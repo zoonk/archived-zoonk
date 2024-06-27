@@ -14,6 +14,7 @@ config :zoonk,
 # Configures the endpoint
 config :zoonk, ZoonkWeb.Endpoint,
   url: [host: "localhost"],
+  adapter: Bandit.PhoenixAdapter,
   render_errors: [
     formats: [html: ZoonkWeb.ErrorHTML, json: ZoonkWeb.ErrorJSON],
     layout: false
