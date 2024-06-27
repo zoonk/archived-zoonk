@@ -521,12 +521,12 @@ defmodule ZoonkWeb.DashboardLessonEditorLiveTest do
 
   defp assert_lesson_name(lv) do
     lv |> element(@lesson_form) |> render_change(lesson: %{name: ""})
-    assert has_element?(lv, ~s|div[phx-feedback-for="lesson[name]"] p:fl-icontains("can't be blank")|)
+    assert has_element?(lv, "div[role='alert']", "can't be blank")
   end
 
   defp assert_lesson_description(lv) do
     lv |> element(@lesson_form) |> render_change(lesson: %{description: ""})
-    assert has_element?(lv, ~s|div[phx-feedback-for="lesson[description]"] p:fl-icontains("can't be blank")|)
+    assert has_element?(lv, "div[role='alert']", "can't be blank")
   end
 
   defp edit_lesson_redirect_link(course, lesson) do

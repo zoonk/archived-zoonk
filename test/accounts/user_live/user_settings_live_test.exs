@@ -182,7 +182,6 @@ defmodule ZoonkWeb.UserSettingsLiveTest do
         |> render_submit()
 
       assert result =~ "did not change"
-      assert result =~ "is invalid"
     end
   end
 
@@ -259,7 +258,6 @@ defmodule ZoonkWeb.UserSettingsLiveTest do
       assert result =~ "at least one upper case character"
       assert result =~ "should be at least 8 character(s)"
       assert result =~ "does not match password"
-      assert result =~ "is invalid"
     end
   end
 

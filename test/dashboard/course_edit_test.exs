@@ -71,10 +71,10 @@ defmodule ZoonkWeb.DashboardCourseEditLiveTest do
       lv |> form(@course_form, course: attrs) |> render_submit()
       lv |> form(@course_form) |> render_change(course: %{name: "test"})
 
-      refute has_element?(lv, ~s|div[phx-feedback-for="course[slug]"] p:fl-icontains("has already been taken")|)
+      refute has_element?(lv, "#course_slug-error", "has already been taken")
 
       lv |> form(@course_form) |> render_change(course: %{slug: existing_course.slug})
-      assert has_element?(lv, ~s|div[phx-feedback-for="course[slug]"] p:fl-icontains("has already been taken")|)
+      assert has_element?(lv, "#course_slug-error", "has already been taken")
     end
   end
 
@@ -177,12 +177,12 @@ defmodule ZoonkWeb.DashboardCourseEditLiveTest do
 
   defp assert_course_name(lv) do
     lv |> element(@course_form) |> render_change(course: %{name: ""})
-    assert has_element?(lv, ~s|div[phx-feedback-for="course[name]"] p:fl-icontains("can't be blank")|)
+    assert has_element?(lv, "#course_name-error", "can't be blank")
   end
 
   defp assert_course_description(lv) do
     lv |> element(@course_form) |> render_change(course: %{description: ""})
-    assert has_element?(lv, ~s|div[phx-feedback-for="course[description]"] p:fl-icontains("can't be blank")|)
+    assert has_element?(lv, "#course_description-error", "can't be blank")
   end
 
   defp assert_course_slug(lv, school) do
@@ -197,6 +197,6 @@ defmodule ZoonkWeb.DashboardCourseEditLiveTest do
 
   defp assert_slug_el(lv, slug, expected) do
     lv |> element(@course_form) |> render_change(course: %{slug: slug})
-    assert has_element?(lv, ~s|div[phx-feedback-for="course[slug]"] p:fl-icontains("#{expected}")|)
+    assert has_element?(lv, "#course_slug-error", expected)
   end
 end

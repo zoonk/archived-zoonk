@@ -29,6 +29,7 @@ defmodule ZoonkWeb.Components.Input do
   attr :value, :any, doc: "the value of the input"
   attr :helper, :string, default: nil, doc: "a helper text to be displayed with the input"
   attr :mt, :boolean, default: true, doc: "whether to add a top margin to the input"
+  attr :aria_describedby, :string, default: nil, doc: "the aria-describedby attribute for the input"
 
   attr :type, :string, default: "text", values: ~w(checkbox color date datetime-local email file hidden month number password
                range radio search select tel text textarea time url week)
@@ -46,9 +47,13 @@ defmodule ZoonkWeb.Components.Input do
   slot :inner_block, doc: "the inner block of the input"
 
   def input(%{field: %FormField{} = field} = assigns) do
+    errors = if Phoenix.Component.used_input?(field), do: field.errors, else: []
+    aria_describedby = if errors != [], do: "#{field.id}-error"
+
     assigns
     |> assign(field: nil, id: assigns.id || field.id)
-    |> assign(:errors, Enum.map(field.errors, &translate_error(&1)))
+    |> assign(:errors, Enum.map(errors, &translate_error(&1)))
+    |> assign(:aria_describedby, aria_describedby)
     |> assign_new(:name, fn -> if assigns.multiple, do: field.name <> "[]", else: field.name end)
     |> assign_new(:value, fn -> field.value end)
     |> input()
@@ -58,21 +63,33 @@ defmodule ZoonkWeb.Components.Input do
     assigns = assign_new(assigns, :checked, fn -> Form.normalize_value("checkbox", value) end)
 
     ~H"""
-    <div phx-feedback-for={@name} hidden={@type == "hidden"}>
+    <div hidden={@type == "hidden"}>
       <label class="flex items-start gap-2 text-sm text-gray-700 disabled:opacity-10" for={@id}>
         <input type="hidden" name={@name} value="false" />
-        <input type="checkbox" id={@id} name={@name} value="true" checked={@checked} class="peer rounded border-gray-200 text-gray-700 focus:ring-0" {@rest} />
+        <input
+          type="checkbox"
+          id={@id}
+          name={@name}
+          value="true"
+          checked={@checked}
+          aria-describedby={@aria_describedby}
+          class="peer rounded border-gray-200 text-gray-700 focus:ring-0"
+          {@rest}
+        />
         <span class="flex flex-col gap-2 peer-disabled:cursor-not-allowed peer-disabled:opacity-30"><span class="font-semibold"><%= @label %></span>
           <span class="text-gray-500"><%= @helper %></span></span>
       </label>
-      <.error :for={msg <- @errors}><%= msg %></.error>
+
+      <div id={@aria_describedby} role="alert">
+        <.error :for={msg <- @errors}><%= msg %></.error>
+      </div>
     </div>
     """
   end
 
   def input(%{type: "select"} = assigns) do
     ~H"""
-    <div phx-feedback-for={@name} hidden={@type == "hidden"}>
+    <div hidden={@type == "hidden"}>
       <.label for={@id}><%= @label %></.label>
       <.helper :if={@helper}><%= @helper %></.helper>
       <select
@@ -80,24 +97,29 @@ defmodule ZoonkWeb.Components.Input do
         name={@name}
         class={["block w-full rounded-md border border-gray-200 bg-white text-gray-900 focus:border-indigo-500 focus:ring-0 sm:text-sm", @mt && "mt-2"]}
         multiple={@multiple}
+        aria-describedby={@aria_describedby}
         {@rest}
       >
         <option :if={@prompt} value=""><%= @prompt %></option>
         <%= Form.options_for_select(@options, @value) %>
       </select>
-      <.error :for={msg <- @errors}><%= msg %></.error>
+
+      <div id={@aria_describedby} role="alert">
+        <.error :for={msg <- @errors}><%= msg %></.error>
+      </div>
     </div>
     """
   end
 
   def input(%{type: "textarea"} = assigns) do
     ~H"""
-    <div phx-feedback-for={@name}>
+    <div>
       <.label for={@id}><%= @label %></.label>
       <.helper :if={@helper}><%= @helper %></.helper>
       <textarea
         id={@id}
         name={@name}
+        aria-describedby={@aria_describedby}
         class={[
           "min-h-[6rem] py-[7px] px-[11px] block w-full rounded-lg",
           "text-gray-700 focus:ring-gray-700/5 focus:border-indigo-500 focus:outline-none focus:ring-4 sm:text-sm sm:leading-6",
@@ -107,7 +129,10 @@ defmodule ZoonkWeb.Components.Input do
         ]}
         {@rest}
       ><%= Form.normalize_value("textarea", @value) %></textarea>
-      <.error :for={msg <- @errors}><%= msg %></.error>
+
+      <div id={@aria_describedby} role="alert">
+        <.error :for={msg <- @errors}><%= msg %></.error>
+      </div>
     </div>
     """
   end
@@ -115,7 +140,7 @@ defmodule ZoonkWeb.Components.Input do
   # All other inputs text, datetime-local, url, password, etc. are handled here...
   def input(assigns) do
     ~H"""
-    <div phx-feedback-for={@name} hidden={@type == "hidden"}>
+    <div hidden={@type == "hidden"}>
       <.label :if={@type != "hidden"} for={@id}><%= @label %></.label>
       <.helper :if={@helper}><%= @helper %></.helper>
       <input
@@ -123,6 +148,7 @@ defmodule ZoonkWeb.Components.Input do
         name={@name}
         id={@id}
         value={Form.normalize_value(@type, @value)}
+        aria-describedby={@aria_describedby}
         class={[
           "block w-full rounded-lg px-3 py-2",
           "text-gray-900 focus:outline-none focus:ring-4 sm:text-sm sm:leading-6",
@@ -132,7 +158,10 @@ defmodule ZoonkWeb.Components.Input do
         ]}
         {@rest}
       />
-      <.error :for={msg <- @errors}><%= msg %></.error>
+
+      <div id={@aria_describedby} role="alert">
+        <.error :for={msg <- @errors}><%= msg %></.error>
+      </div>
     </div>
     """
   end
@@ -169,7 +198,7 @@ defmodule ZoonkWeb.Components.Input do
 
   def error(assigns) do
     ~H"""
-    <p class="mt-3 flex gap-3 text-sm leading-6 text-pink-500 phx-no-feedback:hidden">
+    <p class="mt-3 flex gap-3 text-sm leading-6 text-pink-500">
       <.icon name="tabler-alert-circle-filled" class="mt-0.5 h-5 w-5 flex-none" />
       <%= render_slot(@inner_block) %>
     </p>

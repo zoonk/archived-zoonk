@@ -18,6 +18,7 @@ defmodule Zoonk.Accounts.User do
     field :first_name, :string
     field :guest?, :boolean, default: false
     field :hashed_password, :string, redact: true
+    field :current_password, :string, virtual: true, redact: true
     field :language, Ecto.Enum, values: Translate.supported_locales(), default: :en
     field :last_name, :string
     field :password, :string, virtual: true, redact: true
@@ -181,6 +182,8 @@ defmodule Zoonk.Accounts.User do
   """
   @spec validate_current_password(Ecto.Changeset.t(), String.t()) :: Ecto.Changeset.t()
   def validate_current_password(changeset, password) do
+    changeset = cast(changeset, %{current_password: password}, [:current_password])
+
     if valid_password?(changeset.data, password) do
       changeset
     else

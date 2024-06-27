@@ -250,6 +250,6 @@ defmodule ZoonkWeb.UserRegistrationLiveTest do
 
   defp assert_field_error(lv, field, value, message) do
     lv |> element("#registration_form") |> render_change(user: %{field => value})
-    assert has_element?(lv, ~s|div[phx-feedback-for="user[#{field}]"] p:fl-icontains("#{message}")|)
+    assert has_element?(lv, "#user_#{field}-error", message)
   end
 end
