@@ -8,7 +8,8 @@
 import Config
 
 config :zoonk,
-  ecto_repos: [Zoonk.Repo]
+  ecto_repos: [Zoonk.Repo],
+  generators: [timestamp_type: :utc_datetime_usec]
 
 # Configures the endpoint
 config :zoonk, ZoonkWeb.Endpoint,
