@@ -44,8 +44,6 @@ defmodule ZoonkWeb.Components.Input do
   attr :rest, :global, include: ~w(autocomplete cols disabled form max maxlength min minlength
                                    pattern placeholder readonly required rows size step)
 
-  slot :inner_block, doc: "the inner block of the input"
-
   def input(%{field: %FormField{} = field} = assigns) do
     errors = if Phoenix.Component.used_input?(field), do: field.errors, else: []
     aria_describedby = if errors != [], do: "#{field.id}-error"
