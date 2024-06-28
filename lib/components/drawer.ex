@@ -65,9 +65,9 @@ defmodule ZoonkWeb.Components.Drawer do
   def show_drawer(js \\ %JS{}, id) do
     js
     |> JS.show(to: "##{id}")
-    |> JS.show(to: "##{id}-backdrop", transition: {"transition-opacity ease-linear duration-300", "opacity-0", "opacity-100"})
-    |> JS.show(to: "##{id}-container", transition: {"transition ease-in-out duration-300 transform", "-translate-x-full", "translate-x-0"}, display: "flex")
-    |> JS.show(to: "##{id}-close", transition: {"ease-in-out duration-300", "opacity-0", "opacity-100"}, display: "flex")
+    |> JS.show(to: "##{id}-backdrop", time: 300, transition: {"transition-opacity ease-linear duration-300", "opacity-0", "opacity-100"})
+    |> JS.show(to: "##{id}-container", time: 300, transition: {"transition ease-in-out duration-300 transform", "-translate-x-full", "translate-x-0"}, display: "flex")
+    |> JS.show(to: "##{id}-close", time: 300, transition: {"ease-in-out duration-300", "opacity-0", "opacity-100"}, display: "flex")
     |> JS.add_class("overflow-hidden", to: "body")
     |> JS.focus_first(to: "##{id}-content")
   end
@@ -77,9 +77,9 @@ defmodule ZoonkWeb.Components.Drawer do
   """
   def hide_drawer(js \\ %JS{}, id) do
     js
-    |> JS.hide(to: "##{id}-backdrop", transition: {"transition-opacity ease-linear duration-300", "opacity-100", "opacity-0"})
-    |> JS.hide(to: "##{id}-container", transition: {"transition ease-in-out duration-300 transform", "translate-x-0", "-translate-x-full"})
-    |> JS.hide(to: "##{id}-close", transition: {"ease-in-out duration-300", "opacity-100", "opacity-0"})
+    |> JS.hide(to: "##{id}-backdrop", time: 300, transition: {"transition-opacity ease-linear duration-300", "opacity-100", "opacity-0"})
+    |> JS.hide(to: "##{id}-container", time: 300, transition: {"transition ease-in-out duration-300 transform", "translate-x-0", "-translate-x-full"})
+    |> JS.hide(to: "##{id}-close", time: 300, transition: {"ease-in-out duration-300", "opacity-100", "opacity-0"})
     |> JS.hide(to: "##{id}", transition: {"block", "block", "hidden"})
     |> JS.remove_class("overflow-hidden", to: "body")
     |> JS.pop_focus()
