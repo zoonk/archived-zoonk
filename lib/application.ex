@@ -12,6 +12,7 @@ defmodule Zoonk.Application do
       ZoonkWeb.Telemetry,
       # Start the Ecto repository
       Zoonk.Repo,
+      {DNSCluster, query: Application.get_env(:zoonk, :dns_cluster_query) || :ignore},
       # Start the PubSub system
       {Phoenix.PubSub, name: Zoonk.PubSub},
       # Start Finch
