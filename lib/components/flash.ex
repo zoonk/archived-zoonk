@@ -20,7 +20,7 @@ defmodule ZoonkWeb.Components.Flash do
       <.flash kind={:info} flash={@flash} />
       <.flash kind={:info} phx-mounted={show("#flash")}>Welcome Back!</.flash>
   """
-  attr :id, :string, default: "flash", doc: "the optional id of flash container"
+  attr :id, :string, doc: "the optional id of flash container"
   attr :flash, :map, default: %{}, doc: "the map of flash messages to display"
   attr :title, :string, default: nil
   attr :kind, :atom, values: [:info, :error], doc: "used for styling and flash lookup"
@@ -70,11 +70,34 @@ defmodule ZoonkWeb.Components.Flash do
 
   def flash_group(assigns) do
     ~H"""
-    <.flash kind={:info} title={gettext("Success!")} flash={@flash} />
-    <.flash kind={:error} title={gettext("Error!")} flash={@flash} />
-    <.flash id="disconnected" kind={:error} title={gettext("We can't find the internet")} phx-disconnected={show("#disconnected")} phx-connected={hide("#disconnected")} hidden>
-      <%= gettext("Attempting to reconnect") %> <.icon name="tabler-refresh" class="ml-1 h-3 w-3 animate-spin" />
-    </.flash>
+    <div>
+      <.flash kind={:info} title={gettext("Success!")} flash={@flash} />
+      <.flash kind={:error} title={gettext("Error!")} flash={@flash} />
+
+      <.flash
+        id="client-error"
+        kind={:error}
+        title={gettext("We can't find the internet")}
+        phx-disconnected={show(".phx-client-error #client-error")}
+        phx-connected={hide("#client-error")}
+        hidden
+      >
+        <%= gettext("Attempting to reconnect") %>
+        <.icon name="tabler-refresh" class="ml-1 h-3 w-3 animate-spin" />
+      </.flash>
+
+      <.flash
+        id="server-error"
+        kind={:error}
+        title={gettext("Something went wrong!")}
+        phx-disconnected={show(".phx-server-error #server-error")}
+        phx-connected={hide("#server-error")}
+        hidden
+      >
+        <%= gettext("Hang in there while we get back on track") %>
+        <.icon name="tabler-refresh" class="ml-1 h-3 w-3 animate-spin" />
+      </.flash>
+    </div>
     """
   end
 end

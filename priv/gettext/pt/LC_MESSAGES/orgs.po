@@ -226,7 +226,7 @@ msgstr "Marque esta alternativa se ela for a resposta correta."
 msgid "Could not add option!"
 msgstr "Não foi possível adicionar a alternativa!"
 
-#: lib/dashboard/courses/course_view.ex:51
+#: lib/dashboard/courses/course_view.ex:54
 #, elixir-autogen, elixir-format
 msgid "Could not change the lesson order!"
 msgstr "Não foi possível alterar a ordem da aula!"

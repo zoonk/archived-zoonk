@@ -21,7 +21,7 @@ msgid "has already been taken"
 msgstr "ist bereits vergeben"
 
 ## From Ecto.Changeset.put_change/3
-#: lib/accounts/user_schema.ex:187
+#: lib/accounts/user_schema.ex:190
 #, elixir-autogen
 msgid "is invalid"
 msgstr "ist ungültig"
@@ -120,27 +120,27 @@ msgstr "muss gleich %{number} sein"
 msgid "can only contain letters, numbers, dashes and underscores"
 msgstr "darf nur Buchstaben, Zahlen, Bindestriche und Unterstriche enthalten"
 
-#: lib/accounts/user_schema.ex:76
+#: lib/accounts/user_schema.ex:77
 #, elixir-autogen, elixir-format
 msgid "at least one digit or punctuation character"
 msgstr "mindestens eine Ziffer oder ein Satzzeichen"
 
-#: lib/accounts/user_schema.ex:74
+#: lib/accounts/user_schema.ex:75
 #, elixir-autogen, elixir-format
 msgid "at least one lower case character"
 msgstr "mindestens ein Kleinbuchstabe"
 
-#: lib/accounts/user_schema.ex:75
+#: lib/accounts/user_schema.ex:76
 #, elixir-autogen, elixir-format
 msgid "at least one upper case character"
 msgstr "mindestens ein Großbuchstabe"
 
-#: lib/accounts/user_schema.ex:119
+#: lib/accounts/user_schema.ex:120
 #, elixir-autogen, elixir-format
 msgid "did not change"
 msgstr "hat sich nicht verändert"
 
-#: lib/accounts/user_schema.ex:150
+#: lib/accounts/user_schema.ex:151
 #, elixir-autogen, elixir-format
 msgid "does not match password"
 msgstr "stimmt nicht mit dem Passwort überein"

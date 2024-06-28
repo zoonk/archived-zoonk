@@ -11,27 +11,27 @@ msgstr ""
 "Language: en\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: lib/components/flash.ex:74
+#: lib/components/flash.ex:85
 #, elixir-autogen, elixir-format
 msgid "Attempting to reconnect"
 msgstr ""
 
-#: lib/components/flash.ex:72
+#: lib/components/flash.ex:75
 #, elixir-autogen, elixir-format
 msgid "Error!"
 msgstr ""
 
-#: lib/components/flash.ex:71
+#: lib/components/flash.ex:74
 #, elixir-autogen, elixir-format
 msgid "Success!"
 msgstr ""
 
-#: lib/components/flash.ex:73
+#: lib/components/flash.ex:80
 #, elixir-autogen, elixir-format
 msgid "We can't find the internet"
 msgstr ""
 
-#: lib/components/flash.ex:53
+#: lib/components/flash.ex:55
 #: lib/components/modal.ex:53
 #, elixir-autogen, elixir-format
 msgid "close"
@@ -402,3 +402,13 @@ msgstr ""
 #, elixir-autogen, elixir-format
 msgid "Icon"
 msgstr ""
+
+#: lib/components/flash.ex:97
+#, elixir-autogen, elixir-format
+msgid "Hang in there while we get back on track"
+msgstr "Hang in there while we get back on track"
+
+#: lib/components/flash.ex:92
+#, elixir-autogen, elixir-format
+msgid "Something went wrong!"
+msgstr "Something went wrong!"

@@ -226,7 +226,7 @@ msgstr "如果這是正確答案，請選擇此選項。"
 msgid "Could not add option!"
 msgstr "無法新增選項！"
 
-#: lib/dashboard/courses/course_view.ex:51
+#: lib/dashboard/courses/course_view.ex:54
 #, elixir-autogen, elixir-format
 msgid "Could not change the lesson order!"
 msgstr "無法更改課程順序！"
