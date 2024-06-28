@@ -93,11 +93,10 @@ if config_env() == :prod do
   # Check `Plug.SSL` for all available options in `force_ssl`.
   host = System.get_env("PHX_HOST")
   port = String.to_integer(System.get_env("PORT") || "8080")
-  check_origin = ["https://*.#{System.get_env("PHX_HOST")}"]
 
   config :zoonk, ZoonkWeb.Endpoint,
     url: [host: host, port: 443, scheme: "https"],
-    check_origin: check_origin,
+    check_origin: :conn,
     http: [
       # Enable IPv6 and bind on all interfaces.
       # Set it to  {0, 0, 0, 0, 0, 0, 0, 1} for local network only access.
