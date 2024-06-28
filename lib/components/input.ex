@@ -65,7 +65,7 @@ defmodule ZoonkWeb.Components.Input do
     ~H"""
     <div hidden={@type == "hidden"}>
       <label class="flex items-start gap-2 text-sm text-gray-700 disabled:opacity-10" for={@id}>
-        <input type="hidden" name={@name} value="false" />
+        <input type="hidden" name={@name} value="false" disabled={@rest[:disabled]} />
         <input
           type="checkbox"
           id={@id}
