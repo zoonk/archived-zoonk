@@ -24,6 +24,9 @@ erl_crash.dump
 .DS_Store
 .elixir_ls
 
+# Ignore package tarball (built via "mix hex.build").
+zoonk-*.tar
+
 # Ignore assets that are produced by build tools.
 /priv/static/assets/
 
