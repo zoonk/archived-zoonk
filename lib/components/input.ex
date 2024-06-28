@@ -59,8 +59,8 @@ defmodule ZoonkWeb.Components.Input do
     |> input()
   end
 
-  def input(%{type: "checkbox", value: value} = assigns) do
-    assigns = assign_new(assigns, :checked, fn -> Form.normalize_value("checkbox", value) end)
+  def input(%{type: "checkbox"} = assigns) do
+    assigns = assign_new(assigns, :checked, fn -> Form.normalize_value("checkbox", assigns[:value]) end)
 
     ~H"""
     <div hidden={@type == "hidden"}>
