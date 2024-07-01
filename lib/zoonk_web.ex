@@ -56,6 +56,7 @@ defmodule ZoonkWeb do
 
       on_mount ZoonkWeb.Flash
       on_mount ZoonkWeb.Plugs.ActivePage
+      on_mount Sentry.LiveViewHook
 
       unquote(html_helpers())
     end
