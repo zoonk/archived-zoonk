@@ -123,5 +123,6 @@ Stripe can only be enabled for `saas` and `marketplace` apps. Make sure to choos
 
 ## Sponsors
 
+- [Gustavo A. Castillo](https://github.com/guscastilloa)
 - [@adriy-be](https://github.com/adriy-be)
 - Add your name or brand here by [sponsoring our project](https://github.com/sponsors/wceolin).
