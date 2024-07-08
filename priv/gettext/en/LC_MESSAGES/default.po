@@ -412,3 +412,13 @@ msgstr "Hang in there while we get back on track"
 #, elixir-autogen, elixir-format
 msgid "Something went wrong!"
 msgstr "Something went wrong!"
+
+#: lib/components/upload.ex:49
+#, elixir-autogen, elixir-format
+msgid "Processing file..."
+msgstr ""
+
+#: lib/components/upload.ex:48
+#, elixir-autogen, elixir-format
+msgid "Uploading: %{progress}%"
+msgstr ""

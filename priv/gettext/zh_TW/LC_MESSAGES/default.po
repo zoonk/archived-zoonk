@@ -412,3 +412,13 @@ msgstr "請耐心等待，我們會恢復正常"
 #, elixir-autogen, elixir-format
 msgid "Something went wrong!"
 msgstr "出了些問題！"
+
+#: lib/components/upload.ex:49
+#, elixir-autogen, elixir-format
+msgid "Processing file..."
+msgstr "處理檔案中..."
+
+#: lib/components/upload.ex:48
+#, elixir-autogen, elixir-format
+msgid "Uploading: %{progress}%"
+msgstr "上傳中：%{progress}%"

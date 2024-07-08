@@ -412,3 +412,13 @@ msgstr "Aguarde enquanto voltamos ao normal"
 #, elixir-autogen, elixir-format
 msgid "Something went wrong!"
 msgstr "Algo deu errado!"
+
+#: lib/components/upload.ex:49
+#, elixir-autogen, elixir-format
+msgid "Processing file..."
+msgstr "Processando arquivo..."
+
+#: lib/components/upload.ex:48
+#, elixir-autogen, elixir-format
+msgid "Uploading: %{progress}%"
+msgstr "Enviando: %{progress}%"

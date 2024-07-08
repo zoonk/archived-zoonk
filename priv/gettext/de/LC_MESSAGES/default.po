@@ -412,3 +412,13 @@ msgstr "Halten Sie durch, während wir wieder auf Kurs kommen"
 #, elixir-autogen, elixir-format
 msgid "Something went wrong!"
 msgstr "Etwas ist schief gelaufen!"
+
+#: lib/components/upload.ex:49
+#, elixir-autogen, elixir-format
+msgid "Processing file..."
+msgstr "Datei wird verarbeitet..."
+
+#: lib/components/upload.ex:48
+#, elixir-autogen, elixir-format
+msgid "Uploading: %{progress}%"
+msgstr "Hochladen: %{progress}%"

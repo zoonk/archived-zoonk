@@ -25,6 +25,8 @@ defmodule ZoonkWeb.Components.Upload do
         </div>
       </div>
 
+      <% entry = get_entry(@uploads.file.entries) %>
+
       <div class="container flex flex-col space-y-8">
         <div class="flex items-center space-x-6">
           <img :if={is_binary(@current_img)} alt={@label} src={get_image_url(@current_img, "thumbnail")} class="w-16 rounded-xl object-cover" />
@@ -41,6 +43,12 @@ defmodule ZoonkWeb.Components.Upload do
             ]}
           />
         </div>
+
+        <div :if={entry}>
+          <p :if={not entry.done?} class="text-gray-500"><%= gettext("Uploading: %{progress}%", progress: entry.progress) %></p>
+          <p :if={entry.done? and @uploading?} class="text-gray-500"><%= gettext("Processing file...") %></p>
+          <p :for={err <- upload_errors(@uploads.file, entry)} class="text-pink-600"><%= error_to_string(err) %></p>
+        </div>
       </div>
     </form>
     """
@@ -48,7 +56,18 @@ defmodule ZoonkWeb.Components.Upload do
 
   @impl Phoenix.LiveComponent
   def mount(socket) do
-    {:ok, allow_upload(socket, :file, accept: ~w(.jpg .jpeg .png .avif .gif .webp), max_entries: 1, max_file_size: 2_056_392, auto_upload: true, progress: &handle_progress/3)}
+    socket =
+      socket
+      |> assign(:uploading?, false)
+      |> allow_upload(
+        :file,
+        accept: ~w(.jpg .jpeg .png .avif .gif .webp),
+        max_entries: 1,
+        auto_upload: true,
+        progress: &handle_progress/3
+      )
+
+    {:ok, socket}
   end
 
   @impl Phoenix.LiveComponent
@@ -66,14 +85,18 @@ defmodule ZoonkWeb.Components.Upload do
     :ok
   end
 
-  defp handle_progress(_image_key, entry, socket) do
-    if entry.done? do
-      if ImageOptimizer.enabled?(), do: cloud_upload(socket), else: local_upload(socket)
-      {:noreply, socket}
-    else
-      {:noreply, socket}
-    end
+  # Only upload a file to the cloud after the progress is done.
+  defp handle_progress(_key, %{done?: true}, socket) do
+    file_upload(socket, ImageOptimizer.enabled?())
+    {:noreply, assign(socket, uploading?: false)}
   end
+
+  defp handle_progress(_key, _entry, socket) do
+    {:noreply, assign(socket, uploading?: true)}
+  end
+
+  defp file_upload(socket, true), do: cloud_upload(socket)
+  defp file_upload(socket, false), do: local_upload(socket)
 
   # sobelow_skip ["Traversal.FileModule"]
   defp cloud_upload(socket) do
@@ -102,4 +125,12 @@ defmodule ZoonkWeb.Components.Upload do
 
     {:ok, ~p"/uploads/#{file_name}"}
   end
+
+  # Since we only allow uploading one file, we only care about the first entry.
+  defp get_entry([]), do: nil
+  defp get_entry([entry | _]), do: entry
+
+  defp error_to_string(:too_large), do: dgettext("errors", "Too large")
+  defp error_to_string(:not_accepted), do: dgettext("errors", "You have selected an unacceptable file type")
+  defp error_to_string(:too_many_files), do: dgettext("errors", "You have selected too many files")
 end
