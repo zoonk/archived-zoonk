@@ -10,6 +10,8 @@ defmodule Zoonk.Fixtures.Content do
   alias Zoonk.Content.Course
   alias Zoonk.Content.CourseUser
   alias Zoonk.Content.Lesson
+  alias Zoonk.Content.LessonStep
+  alias Zoonk.Content.StepOption
   alias Zoonk.Content.UserLesson
   alias Zoonk.Repo
   alias ZoonkWeb.Plugs.Translate
