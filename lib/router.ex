@@ -8,7 +8,6 @@ defmodule ZoonkWeb.Router do
 
   @nonce 10 |> :crypto.strong_rand_bytes() |> Base.url_encode64(padding: false)
   @csp_connect_src Application.compile_env(:zoonk, :csp)[:connect_src]
-  @cdn_url Application.compile_env(:zoonk, :cdn)[:url]
 
   pipeline :browser do
     plug :accepts, ["html"]
@@ -19,7 +18,7 @@ defmodule ZoonkWeb.Router do
 
     plug :put_secure_browser_headers, %{
       "content-security-policy" =>
-        "default-src 'self'; script-src-elem 'self' https://plausible.io; connect-src 'self' https://plausible.io #{@csp_connect_src}; img-src 'self' #{@cdn_url} imagedelivery.net data: blob:;"
+        "default-src 'self'; script-src-elem 'self' https://plausible.io; connect-src 'self' https://plausible.io #{@csp_connect_src}; img-src 'self' imagedelivery.net data: blob:;"
     }
 
     plug :fetch_current_user

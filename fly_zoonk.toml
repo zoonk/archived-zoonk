@@ -17,9 +17,6 @@ swap_size_mb = 512
   PHX_HOST = "zoonk.io"
   PORT = "8080"
 
-[build.args]
-  CDN_URL = "https://cdn.zoonk.io"
-
 [http_service]
   internal_port = 8080
   force_https = true
