@@ -44,3 +44,5 @@ config :stripity_stripe,
   api_key: "sk_test_thisisaboguskey",
   webhook_secret: "whsec_thisisaboguskey",
   api_base_url: "http://localhost:12111"
+
+config :stripity_stripe, :retries, max_attempts: 5, base_backoff: 500, max_backoff: 2_000
