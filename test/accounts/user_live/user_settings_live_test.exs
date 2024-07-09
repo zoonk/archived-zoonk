@@ -317,6 +317,8 @@ defmodule ZoonkWeb.UserSettingsLiveTest do
       |> form("#delete-form", %{confirmation: "CONFIRM"})
       |> render_submit()
 
+      assert_redirect(lv, ~p"/users/register")
+
       assert_raise Ecto.NoResultsError, fn -> Accounts.get_user!(user.id) end
     end
 

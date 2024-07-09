@@ -128,6 +128,8 @@ defmodule ZoonkWeb.DashboardCourseEditLiveTest do
 
       lv |> form("#delete-form", %{confirmation: "CONFIRM"}) |> render_submit()
 
+      assert_redirect(lv, ~p"/dashboard/courses")
+
       assert_raise Ecto.NoResultsError, fn -> Content.get_course_by_slug!(course.slug, school.id) end
     end
 

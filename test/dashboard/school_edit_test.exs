@@ -177,6 +177,8 @@ defmodule ZoonkWeb.SchoolUpdateLiveTest do
       |> form("#delete-form", %{confirmation: "CONFIRM"})
       |> render_submit()
 
+      assert_redirect(lv, "https://#{school.custom_domain}")
+
       assert_raise Ecto.NoResultsError, fn -> Organizations.get_school!(child_school.id) end
     end
 
