@@ -31,7 +31,7 @@ defmodule Zoonk.Billing do
         customer.id
 
       {:error, error} ->
-        raise error
+        raise error.message
     end
   end
 
