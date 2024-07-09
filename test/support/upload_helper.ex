@@ -14,7 +14,7 @@ defmodule ZoonkWeb.TestHelpers.Upload do
     files = get_files()
     input = file_input(lv, "#upload-form-#{id}", :file, files)
 
-    render_upload(input, "robot.png")
+    assert render_upload(input, "robot.png")
   end
 
   defp get_files do
