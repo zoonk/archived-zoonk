@@ -466,7 +466,7 @@ msgstr "Ziehe die Schritte, um ihre Reihenfolge zu ändern:"
 msgid "Untitled step"
 msgstr "Unbenannter Schritt"
 
-#: lib/dashboard/lessons/components/step_content.ex:29
+#: lib/dashboard/lessons/components/step_content.ex:32
 #, elixir-autogen, elixir-format
 msgid "A lesson has multiple steps. Use them to tell a story, explain a concept or ask a question. Keep them short and simple."
 msgstr "Eine Lektion hat mehrere Schritte. Verwende sie, um eine Geschichte zu erzählen, ein Konzept zu erklären oder eine Frage zu stellen. Halte sie kurz und einfach."
@@ -486,17 +486,17 @@ msgstr "Klicken, um ein Bild zu diesem Schritt hinzuzufügen."
 msgid "Could not update image!"
 msgstr "Konnte Bild nicht aktualisieren!"
 
-#: lib/dashboard/lessons/components/step_content.ex:72
+#: lib/dashboard/lessons/components/step_content.ex:75
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Could not update step!"
 msgstr "Konnte Schritt nicht aktualisieren!"
 
-#: lib/dashboard/lessons/components/step_content.ex:20
+#: lib/dashboard/lessons/components/step_content.ex:21
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Edit step"
 msgstr "Schritt bearbeiten"
 
-#: lib/dashboard/lessons/components/step_content.ex:28
+#: lib/dashboard/lessons/components/step_content.ex:31
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Update step"
 msgstr "Schritt Aktualisieren"

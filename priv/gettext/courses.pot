@@ -91,7 +91,7 @@ msgstr ""
 msgid "Request to join"
 msgstr ""
 
-#: lib/content/course_live/components/lesson_step.ex:34
+#: lib/content/course_live/components/lesson_step.ex:37
 #, elixir-autogen, elixir-format
 msgid "That's incorrect."
 msgstr ""
@@ -116,7 +116,7 @@ msgstr ""
 msgid "Very good!"
 msgstr ""
 
-#: lib/content/course_live/components/lesson_step.ex:34
+#: lib/content/course_live/components/lesson_step.ex:37
 #, elixir-autogen, elixir-format
 msgid "Well done!"
 msgstr ""

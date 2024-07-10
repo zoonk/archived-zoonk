@@ -6,6 +6,7 @@ defmodule ZoonkWeb.Components.Dashboard.StepContent do
   alias Zoonk.Content.Course
   alias Zoonk.Content.Lesson
   alias Zoonk.Content.LessonStep
+  alias ZoonkWeb.Shared.YouTube
 
   attr :action, :atom, default: nil
   attr :course, Course, required: true
@@ -17,8 +18,10 @@ defmodule ZoonkWeb.Components.Dashboard.StepContent do
     ~H"""
     <div>
       <.link class="mb-4 flex items-center gap-1" id={"step-edit-#{@step.id}"} patch={~p"/dashboard/c/#{@course.slug}/l/#{@lesson.id}/s/#{@step.order}/edit"}>
-        <span class="whitespace-pre-wrap"><%= @step.content %></span> <.icon name="tabler-edit" title={dgettext("orgs", "Edit step")} />
+        <span class="whitespace-pre-wrap"><%= YouTube.remove_from_string(@step.content) %></span> <.icon name="tabler-edit" title={dgettext("orgs", "Edit step")} />
       </.link>
+
+      <.youtube content={@step.content} />
 
       <.modal :if={@action == :edit} show id="edit-step" on_cancel={JS.patch(~p"/dashboard/c/#{@course.slug}/l/#{@lesson.id}/s/#{@step.order}")}>
         <.simple_form for={@step_form} id="step-form" phx-change="validate-step" phx-target={@myself} phx-submit="update-step" class="space-y-8" unstyled>

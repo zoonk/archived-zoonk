@@ -218,12 +218,12 @@ msgstr "Enviar"
 msgid "Are you sure?"
 msgstr "Tem certeza?"
 
-#: lib/dashboard/lessons/components/step_content.ex:34
+#: lib/dashboard/lessons/components/step_content.ex:37
 #, elixir-autogen, elixir-format
 msgid "Update"
 msgstr "Atualizar"
 
-#: lib/dashboard/lessons/components/step_content.ex:34
+#: lib/dashboard/lessons/components/step_content.ex:37
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Updating..."
 msgstr "Atualizando..."
@@ -422,3 +422,8 @@ msgstr "Processando arquivo..."
 #, elixir-autogen, elixir-format
 msgid "Uploading: %{progress}%"
 msgstr "Enviando: %{progress}%"
+
+#: lib/components/youtube.ex:23
+#, elixir-autogen, elixir-format
+msgid "YouTube video player"
+msgstr "Reprodutor de vídeo do YouTube"

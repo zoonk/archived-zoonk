@@ -106,6 +106,7 @@ defmodule ZoonkWeb do
       import ZoonkWeb.Components.Progress
       import ZoonkWeb.Components.SearchBox
       import ZoonkWeb.Components.Utils
+      import ZoonkWeb.Components.YouTube
 
       # i18n
       import ZoonkWeb.Gettext

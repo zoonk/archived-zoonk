@@ -6,6 +6,7 @@ defmodule ZoonkWeb.Components.Content.LessonStep do
 
   alias Zoonk.Content.LessonStep
   alias Zoonk.Content.StepOption
+  alias ZoonkWeb.Shared.YouTube
 
   attr :step, LessonStep, required: true
   attr :selected, StepOption, default: nil
@@ -16,8 +17,10 @@ defmodule ZoonkWeb.Components.Content.LessonStep do
       <img :if={@step.image} src={get_image_url(@step.image, "lessonStep")} class="w-full" />
 
       <blockquote class="w-fit rounded-2xl bg-gray-50 p-4 text-sm leading-6 text-gray-900 sm:text-lg">
-        <p><%= @step.content %></p>
+        <p><%= YouTube.remove_from_string(@step.content) %></p>
       </blockquote>
+
+      <.youtube content={@step.content} />
     </div>
     """
   end

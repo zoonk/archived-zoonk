@@ -153,6 +153,17 @@ defmodule ZoonkWeb.PlayViewLiveTest do
       assert has_element?(lv, "h1", "Subscription expired")
     end
 
+    test "embeds youtube videos when available", %{conn: conn, course: course} do
+      lesson = lesson_fixture(%{course_id: course.id})
+      lesson_step_fixture(%{lesson_id: lesson.id, content: "watch the video: https://www.youtube.com/watch?v=12345678901"})
+
+      {:ok, lv, _html} = live(conn, ~p"/c/#{course.slug}/#{lesson.id}")
+
+      assert has_element?(lv, "p", "watch the video:")
+      refute has_element?(lv, "p", "https://www.youtube.com/watch?v=12345678901")
+      assert has_element?(lv, "iframe[src='https://www.youtube-nocookie.com/embed/12345678901']")
+    end
+
     test "displays suggested courses when available", %{conn: conn, school: school, course: course1} do
       course2 = course_fixture(%{school_id: school.id})
       course3 = course_fixture(%{school_id: school.id})

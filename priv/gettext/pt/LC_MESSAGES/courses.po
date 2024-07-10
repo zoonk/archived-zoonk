@@ -91,7 +91,7 @@ msgstr "Perfeito!"
 msgid "Request to join"
 msgstr "Pedir para participar"
 
-#: lib/content/course_live/components/lesson_step.ex:34
+#: lib/content/course_live/components/lesson_step.ex:37
 #, elixir-autogen, elixir-format
 msgid "That's incorrect."
 msgstr "Está incorreto."
@@ -116,7 +116,7 @@ msgstr "Não foi possível selecionar a alternativa"
 msgid "Very good!"
 msgstr "Muito bem!"
 
-#: lib/content/course_live/components/lesson_step.ex:34
+#: lib/content/course_live/components/lesson_step.ex:37
 #, elixir-autogen, elixir-format
 msgid "Well done!"
 msgstr "Boa!"

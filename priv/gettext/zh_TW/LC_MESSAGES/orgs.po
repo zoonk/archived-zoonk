@@ -466,7 +466,7 @@ msgstr "拖動步驟以更改其順序："
 msgid "Untitled step"
 msgstr "無標題步驟"
 
-#: lib/dashboard/lessons/components/step_content.ex:29
+#: lib/dashboard/lessons/components/step_content.ex:32
 #, elixir-autogen, elixir-format
 msgid "A lesson has multiple steps. Use them to tell a story, explain a concept or ask a question. Keep them short and simple."
 msgstr "一堂課有多個步驟。使用它們來講故事，解釋概念或提問。保持簡短和簡單。"
@@ -486,17 +486,17 @@ msgstr "點選以為此步驟新增圖片。"
 msgid "Could not update image!"
 msgstr "無法更新圖片！"
 
-#: lib/dashboard/lessons/components/step_content.ex:72
+#: lib/dashboard/lessons/components/step_content.ex:75
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Could not update step!"
 msgstr "無法更新步驟！"
 
-#: lib/dashboard/lessons/components/step_content.ex:20
+#: lib/dashboard/lessons/components/step_content.ex:21
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Edit step"
 msgstr "編輯步驟"
 
-#: lib/dashboard/lessons/components/step_content.ex:28
+#: lib/dashboard/lessons/components/step_content.ex:31
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Update step"
 msgstr "更新步驟"

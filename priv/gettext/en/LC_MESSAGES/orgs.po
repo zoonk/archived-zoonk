@@ -466,7 +466,7 @@ msgstr ""
 msgid "Untitled step"
 msgstr ""
 
-#: lib/dashboard/lessons/components/step_content.ex:29
+#: lib/dashboard/lessons/components/step_content.ex:32
 #, elixir-autogen, elixir-format
 msgid "A lesson has multiple steps. Use them to tell a story, explain a concept or ask a question. Keep them short and simple."
 msgstr ""
@@ -486,17 +486,17 @@ msgstr ""
 msgid "Could not update image!"
 msgstr ""
 
-#: lib/dashboard/lessons/components/step_content.ex:72
+#: lib/dashboard/lessons/components/step_content.ex:75
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Could not update step!"
 msgstr ""
 
-#: lib/dashboard/lessons/components/step_content.ex:20
+#: lib/dashboard/lessons/components/step_content.ex:21
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Edit step"
 msgstr ""
 
-#: lib/dashboard/lessons/components/step_content.ex:28
+#: lib/dashboard/lessons/components/step_content.ex:31
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Update step"
 msgstr ""

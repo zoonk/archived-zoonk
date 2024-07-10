@@ -91,7 +91,7 @@ msgstr "完美！"
 msgid "Request to join"
 msgstr "請求加入"
 
-#: lib/content/course_live/components/lesson_step.ex:34
+#: lib/content/course_live/components/lesson_step.ex:37
 #, elixir-autogen, elixir-format
 msgid "That's incorrect."
 msgstr "這是不正確的。"
@@ -116,7 +116,7 @@ msgstr "無法選擇選項"
 msgid "Very good!"
 msgstr "非常好！"
 
-#: lib/content/course_live/components/lesson_step.ex:34
+#: lib/content/course_live/components/lesson_step.ex:37
 #, elixir-autogen, elixir-format
 msgid "Well done!"
 msgstr "做得好！"

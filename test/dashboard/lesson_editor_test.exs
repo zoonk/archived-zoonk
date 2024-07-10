@@ -511,6 +511,17 @@ defmodule ZoonkWeb.DashboardLessonEditorLiveTest do
       assert has_element?(lv, "h3", "Open-ended question")
       assert Content.get_lesson_step_by_order(lesson.id, 1).kind == :open_ended
     end
+
+    test "embeds youtube video", %{conn: conn, course: course} do
+      lesson = lesson_fixture(%{course_id: course.id})
+      lesson_step_fixture(%{lesson_id: lesson.id, order: 2, content: "watch video: https://www.youtube.com/watch?v=12345678901"})
+
+      {:ok, lv, _html} = live(conn, ~p"/dashboard/c/#{course.slug}/l/#{lesson.id}/s/2")
+
+      assert has_element?(lv, "iframe[src='https://www.youtube-nocookie.com/embed/12345678901']")
+      assert has_element?(lv, "span", "watch video:")
+      refute has_element?(lv, "span", "https://www.youtube.com/watch?v=12345678901")
+    end
   end
 
   defp assert_403(conn, course) do

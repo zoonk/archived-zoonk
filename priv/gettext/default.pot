@@ -218,12 +218,12 @@ msgstr ""
 msgid "Are you sure?"
 msgstr ""
 
-#: lib/dashboard/lessons/components/step_content.ex:34
+#: lib/dashboard/lessons/components/step_content.ex:37
 #, elixir-autogen, elixir-format
 msgid "Update"
 msgstr ""
 
-#: lib/dashboard/lessons/components/step_content.ex:34
+#: lib/dashboard/lessons/components/step_content.ex:37
 #, elixir-autogen, elixir-format
 msgid "Updating..."
 msgstr ""
@@ -421,4 +421,9 @@ msgstr ""
 #: lib/components/upload.ex:48
 #, elixir-autogen, elixir-format
 msgid "Uploading: %{progress}%"
+msgstr ""
+
+#: lib/components/youtube.ex:23
+#, elixir-autogen, elixir-format
+msgid "YouTube video player"
 msgstr ""
