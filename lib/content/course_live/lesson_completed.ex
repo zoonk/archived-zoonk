@@ -22,7 +22,7 @@ defmodule ZoonkWeb.Live.LessonCompleted do
   end
 
   # for readonly steps, correct and total will be 0, so we want to display a 10 score
-  defp get_score(%UserLesson{correct: 0, total: 0}) , do: 10.0
+  defp get_score(%UserLesson{correct: 0, total: 0}), do: 10.0
   defp get_score(%UserLesson{correct: correct, total: total}), do: Float.round(correct / total * 10, 1)
 
   defp score_title(score) when score == 10.0, do: dgettext("courses", "Perfect!")
