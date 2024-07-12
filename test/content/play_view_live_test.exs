@@ -197,6 +197,23 @@ defmodule ZoonkWeb.PlayViewLiveTest do
       assert has_element?(lv, "blockquote p", "step 2 question")
       assert Repo.get_by(UserSelection, user_id: user.id, step_id: step.id).answer == "answer!"
     end
+
+    test "displays a 10 score when the lesson has only one readonly step", %{conn: conn, course: course} do
+      lesson = lesson_fixture(%{course_id: course.id})
+      lesson_step_fixture(%{lesson_id: lesson.id, content: "read only step", kind: :readonly})
+
+      {:ok, lv, _html} = live(conn, ~p"/c/#{course.slug}/#{lesson.id}")
+
+      assert has_element?(lv, "blockquote p", "read only step")
+      lv |> form(@select_form) |> render_submit()
+      assert_redirected(lv, ~p"/c/#{course.slug}/#{lesson.id}/completed")
+
+      {:ok, view, _html} = live(conn, ~p"/c/#{course.slug}/#{lesson.id}/completed")
+
+      assert has_element?(view, "h1", "Perfect!")
+      assert has_element?(view, "span", "10.0")
+      assert has_element?(view, "p", "You got all the answers correct!")
+    end
   end
 
   defp assert_403(conn, course) do

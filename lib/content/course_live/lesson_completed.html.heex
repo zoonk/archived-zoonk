@@ -1,5 +1,6 @@
 <article class="min-h-dvh m-auto my-4 flex max-w-sm flex-col bg-white p-8 md:justify-center">
   <% score = get_score(@user_lesson) %>
+  <% perfect? = score == 10.0 %>
 
   <img src={score_image(score)} alt={dgettext("courses", "Illustration of a green alien")} class="w-1/4" />
 
@@ -7,9 +8,10 @@
     <div>
       <h1 class="font-semibold text-gray-900"><%= score_title(score) %></h1>
 
-      <p class="text-sm text-gray-500">
-        <%= dgettext("courses", "You got %{correct} out of %{total} answers right.", correct: @user_lesson.correct, total: @user_lesson.total) %>
-      </p>
+      <div class="text-sm text-gray-500">
+        <p :if={perfect?}><%= dgettext("courses", "You got all the answers correct!") %></p>
+        <p :if={!perfect?}><%= dgettext("courses", "You got %{correct} out of %{total} answers right.", correct: @user_lesson.correct, total: @user_lesson.total) %></p>
+      </div>
     </div>
 
     <.badge color={badge_color(score)}><%= score %></.badge>
