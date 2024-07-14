@@ -22,7 +22,6 @@ defmodule Zoonk.Organizations.School do
     field :currency, :string
     field :custom_domain, :string
     field :email, :string
-    field :kind, Ecto.Enum, values: [:marketplace, :saas, :white_label], default: :white_label
     field :icon, :string
     field :logo, :string
     field :name, :string
@@ -44,7 +43,7 @@ defmodule Zoonk.Organizations.School do
   @spec create_changeset(Ecto.Schema.t(), map()) :: Ecto.Changeset.t()
   def create_changeset(school, attrs) do
     school
-    |> cast(attrs, [:kind | shared_cast_fields()])
+    |> cast(attrs, shared_cast_fields())
     |> default_changeset()
   end
 
@@ -67,7 +66,6 @@ defmodule Zoonk.Organizations.School do
     |> validate_slug(:slug)
     |> validate_unique_slug()
     |> validate_custom_domain()
-    |> validate_kind()
     |> validate_allow_guests()
   end
 
@@ -101,18 +99,6 @@ defmodule Zoonk.Organizations.School do
     public? = get_field(changeset, :public?)
     allow_guests? = if public?, do: get_field(changeset, :allow_guests?), else: false
     put_change(changeset, :allow_guests?, allow_guests?)
-  end
-
-  # Child schools must have a `white_label` kind. A school has a parent school when `school_id` is not `nil`.
-  defp validate_kind(changeset) do
-    kind = get_field(changeset, :kind)
-    school_id = get_field(changeset, :school_id)
-
-    if school_id && kind != :white_label do
-      add_error(changeset, :kind, dgettext("errors", "must be white_label"))
-    else
-      changeset
-    end
   end
 
   # Don't allow to add a subdomain as `custom_domain` if that domain already exists.

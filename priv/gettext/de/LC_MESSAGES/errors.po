@@ -15,7 +15,7 @@ msgid "can't be blank"
 msgstr "darf nicht leer sein"
 
 ## From Ecto.Changeset.unique_constraint/3
-#: lib/organizations/school_schema.ex:125
+#: lib/organizations/school_schema.ex:109
 #, elixir-autogen
 msgid "has already been taken"
 msgstr "ist bereits vergeben"
@@ -175,8 +175,8 @@ msgstr "Sie sind für diesen Kurs nicht eingeschrieben"
 msgid "Your enrollment is pending approval"
 msgstr "Ihre Anmeldung muss noch genehmigt werden"
 
-#: lib/organizations/school_schema.ex:66
-#: lib/organizations/school_schema.ex:67
+#: lib/organizations/school_schema.ex:64
+#: lib/organizations/school_schema.ex:65
 #, elixir-autogen, elixir-format, fuzzy
 msgid "must start with https://"
 msgstr "muss mit https:// beginnen"
@@ -196,17 +196,12 @@ msgstr "Die einzige Lektion kann nicht gelöscht werden"
 msgid "must have a domain name"
 msgstr "muss einen Domänennamen haben"
 
-#: lib/organizations/school_schema.ex:114
-#, elixir-autogen, elixir-format
-msgid "must be white_label"
-msgstr "muss white_label sein"
-
 #: lib/error/permission_error.ex:15
 #, elixir-autogen, elixir-format
 msgid "Permission denied"
 msgstr "Zugriff verweigert"
 
-#: lib/organizations/school_schema.ex:65
+#: lib/organizations/school_schema.ex:63
 #, elixir-autogen, elixir-format
 msgid "is not allowed"
 msgstr "ist nicht erlaubt"

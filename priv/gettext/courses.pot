@@ -21,7 +21,7 @@ msgstr ""
 msgid "Advanced"
 msgstr ""
 
-#: lib/content/course_live/lesson_completed.html.heex:19
+#: lib/content/course_live/lesson_completed.html.heex:21
 #, elixir-autogen, elixir-format
 msgid "Back to the course"
 msgstr ""
@@ -31,7 +31,7 @@ msgstr ""
 msgid "Beginner"
 msgstr ""
 
-#: lib/content/course_live/lesson_play.html.heex:95
+#: lib/content/course_live/lesson_play.html.heex:94
 #, elixir-autogen, elixir-format
 msgid "Confirming..."
 msgstr ""
@@ -41,7 +41,7 @@ msgstr ""
 msgid "Enrolled successfully!"
 msgstr ""
 
-#: lib/content/course_live/lesson_completed.ex:27
+#: lib/content/course_live/lesson_completed.ex:29
 #, elixir-autogen, elixir-format
 msgid "Excellent!"
 msgstr ""
@@ -56,12 +56,12 @@ msgstr ""
 msgid "Failed to enroll"
 msgstr ""
 
-#: lib/content/course_live/lesson_completed.ex:29
+#: lib/content/course_live/lesson_completed.ex:31
 #, elixir-autogen, elixir-format
 msgid "Good!"
 msgstr ""
 
-#: lib/content/course_live/lesson_completed.html.heex:4
+#: lib/content/course_live/lesson_completed.html.heex:5
 #, elixir-autogen, elixir-format
 msgid "Illustration of a green alien"
 msgstr ""
@@ -71,17 +71,17 @@ msgstr ""
 msgid "Intermediate"
 msgstr ""
 
-#: lib/content/course_live/lesson_play.html.heex:99
+#: lib/content/course_live/lesson_play.html.heex:98
 #, elixir-autogen, elixir-format
 msgid "Next step"
 msgstr ""
 
-#: lib/content/course_live/lesson_completed.ex:30
+#: lib/content/course_live/lesson_completed.ex:32
 #, elixir-autogen, elixir-format
 msgid "Not bad!"
 msgstr ""
 
-#: lib/content/course_live/lesson_completed.ex:26
+#: lib/content/course_live/lesson_completed.ex:28
 #, elixir-autogen, elixir-format
 msgid "Perfect!"
 msgstr ""
@@ -96,22 +96,22 @@ msgstr ""
 msgid "That's incorrect."
 msgstr ""
 
-#: lib/content/course_live/lesson_completed.ex:31
+#: lib/content/course_live/lesson_completed.ex:33
 #, elixir-autogen, elixir-format
 msgid "There's room for improvement"
 msgstr ""
 
-#: lib/content/course_live/lesson_play.ex:93
+#: lib/content/course_live/lesson_play.ex:90
 #, elixir-autogen, elixir-format
 msgid "Unable to complete lesson"
 msgstr ""
 
-#: lib/content/course_live/lesson_play.ex:56
+#: lib/content/course_live/lesson_play.ex:53
 #, elixir-autogen, elixir-format
 msgid "Unable to select option"
 msgstr ""
 
-#: lib/content/course_live/lesson_completed.ex:28
+#: lib/content/course_live/lesson_completed.ex:30
 #, elixir-autogen, elixir-format
 msgid "Very good!"
 msgstr ""
@@ -121,7 +121,7 @@ msgstr ""
 msgid "Well done!"
 msgstr ""
 
-#: lib/content/course_live/lesson_completed.html.heex:11
+#: lib/content/course_live/lesson_completed.html.heex:13
 #, elixir-autogen, elixir-format
 msgid "You got %{correct} out of %{total} answers right."
 msgstr ""
@@ -131,7 +131,7 @@ msgstr ""
 msgid "Lesson cover"
 msgstr ""
 
-#: lib/content/course_live/lesson_play.html.heex:16
+#: lib/content/course_live/lesson_play.html.heex:15
 #, elixir-autogen, elixir-format
 msgid "Your progress in this lesson will be lost. Would you like to quit?"
 msgstr ""
@@ -151,7 +151,12 @@ msgstr ""
 msgid "No courses"
 msgstr ""
 
-#: lib/content/course_live/lesson_play.ex:79
+#: lib/content/course_live/lesson_play.ex:76
 #, elixir-autogen, elixir-format
 msgid "Unable to send answer"
+msgstr ""
+
+#: lib/content/course_live/lesson_completed.html.heex:12
+#, elixir-autogen, elixir-format
+msgid "You got all the answers correct!"
 msgstr ""

@@ -90,10 +90,10 @@ defmodule ZoonkWeb.Layouts.MenuUtils do
   def home_page?(_active_page, _course, _last_course_slug), do: false
 
   @spec dashboard_school_menu(School.t()) :: list()
-  def dashboard_school_menu(%School{kind: kind, school_id: school_id}) do
+  def dashboard_school_menu(%School{school_id: school_id}) do
     [
       %{link: ~p"/dashboard", view: [:dashboard_home], title: gettext("Overview"), visible?: true},
-      %{link: ~p"/dashboard/schools", view: [:dashboard_schoollist, :dashboard_schoolview], title: gettext("Schools"), visible?: kind != :white_label},
+      %{link: ~p"/dashboard/schools", view: [:dashboard_schoollist, :dashboard_schoolview], title: gettext("Schools"), visible?: is_nil(school_id)},
       %{link: ~p"/dashboard/users", view: [:dashboard_schooluserlist, :dashboard_schooluserview], title: dgettext("orgs", "Users"), visible?: true},
       %{link: ~p"/dashboard/edit/logo", view: [:dashboard_schooledit_logo], title: gettext("Logo"), visible?: true},
       %{link: ~p"/dashboard/edit/icon", view: [:dashboard_schooledit_icon], title: gettext("Icon"), visible?: true},

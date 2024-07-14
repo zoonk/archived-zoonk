@@ -42,15 +42,10 @@ defmodule SchoolSeed do
   Seeds the database with schools.
   """
   def seed(args \\ %{}) do
-    kind = Map.get(args, :kind, :white_label)
     multiple? = Map.get(args, :multiple?, false)
-
-    app = create_app(kind)
-
-    if kind != :white_label do
-      schools = generate_school_attrs(multiple?)
-      Enum.each(schools, fn attrs -> create_school(attrs, app, multiple?: multiple?) end)
-    end
+    app = create_app()
+    schools = generate_school_attrs(multiple?)
+    Enum.each(schools, fn attrs -> create_school(attrs, app, multiple?: multiple?) end)
   end
 
   defp generate_school_attrs(false), do: @schools
@@ -83,9 +78,9 @@ defmodule SchoolSeed do
     create_students(school, multiple?)
   end
 
-  defp create_app(kind) do
+  defp create_app() do
     manager = Accounts.get_user_by_username(Enum.at(@app.managers, 0))
-    attrs = Map.merge(@app, %{created_by_id: manager.id, kind: kind})
+    attrs = Map.merge(@app, %{created_by_id: manager.id})
     {:ok, school} = Organizations.create_school(attrs)
     create_school_users(school, attrs)
     school

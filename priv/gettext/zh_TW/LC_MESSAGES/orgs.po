@@ -11,20 +11,20 @@ msgstr ""
 "Language: zh_TW\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: lib/organizations/school_live/school_new.html.heex:8
+#: lib/organizations/school_live/school_new.html.heex:7
 #, elixir-autogen, elixir-format
 msgid "Choose a nickname to acess your school profile"
 msgstr "選擇一個暱稱以存取您的學校資料"
 
 #: lib/organizations/school_live/school_new.ex:12
 #: lib/organizations/school_live/school_new.html.heex:3
-#: lib/organizations/school_live/school_new.html.heex:11
+#: lib/organizations/school_live/school_new.html.heex:10
 #, elixir-autogen, elixir-format
 msgid "Create school"
 msgstr "建立學校"
 
 #: lib/dashboard/schools/school_edit.html.heex:12
-#: lib/organizations/school_live/school_new.html.heex:8
+#: lib/organizations/school_live/school_new.html.heex:7
 #, elixir-autogen, elixir-format
 msgid "Nickname"
 msgstr "暱稱"
@@ -35,13 +35,13 @@ msgid "School could not be created"
 msgstr "無法建立學校"
 
 #: lib/dashboard/schools/school_edit.html.heex:14
-#: lib/organizations/school_live/school_new.html.heex:7
+#: lib/organizations/school_live/school_new.html.heex:6
 #, elixir-autogen, elixir-format
 msgid "School email"
 msgstr "學校電子郵件"
 
 #: lib/dashboard/schools/school_edit.html.heex:13
-#: lib/organizations/school_live/school_new.html.heex:6
+#: lib/organizations/school_live/school_new.html.heex:5
 #, elixir-autogen, elixir-format
 msgid "School name"
 msgstr "學校名稱"
@@ -104,7 +104,6 @@ msgstr "無法拒絕使用者！"
 msgid "Could not remove user!"
 msgstr "無法移除使用者！"
 
-#: lib/billing/billing_utils.ex:60
 #: lib/dashboard/courses/course_user_list.html.heex:26
 #: lib/dashboard/schools/school_user_list.html.heex:25
 #, elixir-autogen, elixir-format
@@ -607,26 +606,6 @@ msgstr "需要電子郵件確認？"
 msgid "When checked, users will be required to confirm their email address before they can log in."
 msgstr "勾選後，使用者在登入前必須確認他們的電子郵件地址。"
 
-#: lib/organizations/school_live/school_new.html.heex:5
-#, elixir-autogen, elixir-format
-msgid "App type"
-msgstr "應用程式類型"
-
-#: lib/organizations/school_live/school_new.ex:53
-#, elixir-autogen, elixir-format
-msgid "Marketplace"
-msgstr "市場"
-
-#: lib/organizations/school_live/school_new.ex:53
-#, elixir-autogen, elixir-format
-msgid "SaaS"
-msgstr "軟體作為服務"
-
-#: lib/organizations/school_live/school_new.ex:53
-#, elixir-autogen, elixir-format
-msgid "White label"
-msgstr "白色標籤"
-
 #: lib/dashboard/schools/school_edit.html.heex:22
 #, elixir-autogen, elixir-format
 msgid "Allow anyone to sign up?"
@@ -753,197 +732,18 @@ msgstr "學校角色"
 msgid "Search users"
 msgstr "搜尋使用者"
 
-#: lib/billing/billing_utils.ex:12
-#, elixir-autogen, elixir-format
-msgid "%{count} users"
-msgstr "%{count} 使用者"
-
-#: lib/dashboard/schools/school_billing.html.heex:62
-#, elixir-autogen, elixir-format
-msgid "* Dedicated infrastructure is optional and it may have an extra cost depending on your needs."
-msgstr "* 專用基礎架構是可選的，並且根據您的需求可能會有額外的費用。"
-
-#: lib/dashboard/schools/school_billing.html.heex:30
-#, elixir-autogen, elixir-format
-msgid "/month per user"
-msgstr "/月 每位使用者"
-
-#: lib/billing/billing_utils.ex:28
-#, elixir-autogen, elixir-format
-msgid "25% off add-ons"
-msgstr "25% 折扣附加元件"
-
-#: lib/dashboard/schools/school_billing.ex:25
-#: lib/layouts/menu_utils.ex:101
-#, elixir-autogen, elixir-format
-msgid "Billing"
-msgstr "帳單"
-
-#: lib/billing/billing_utils.ex:21
-#, elixir-autogen, elixir-format
-msgid "Cancel anytime"
-msgstr "隨時取消"
-
-#: lib/billing/billing_utils.ex:59
-#, elixir-autogen, elixir-format
-msgid "Confirmed"
-msgstr "已確認"
-
-#: lib/dashboard/schools/school_billing.ex:38
-#, elixir-autogen, elixir-format
-msgid "Contact us"
-msgstr "聯絡我們"
-
-#: lib/dashboard/schools/school_billing.ex:44
-#: lib/dashboard/schools/school_billing.ex:45
-#: lib/dashboard/schools/school_billing.ex:49
-#: lib/dashboard/schools/school_billing.ex:54
-#: lib/dashboard/schools/school_billing.html.heex:18
-#: lib/dashboard/schools/school_view.html.heex:46
-#, elixir-autogen, elixir-format
-msgid "Current plan"
-msgstr "目前方案"
-
-#: lib/billing/billing_utils.ex:15
-#, elixir-autogen, elixir-format
-msgid "Custom domain"
-msgstr "自訂網域"
-
-#: lib/billing/billing_utils.ex:14
-#, elixir-autogen, elixir-format
-msgid "Custom logo"
-msgstr "自訂標誌"
-
-#: lib/billing/billing_utils.ex:27
-#, elixir-autogen, elixir-format
-msgid "Dedicated infrastructure *"
-msgstr "專用基礎架構 *"
-
-#: lib/billing/billing_utils.ex:25
-#, elixir-autogen, elixir-format
-msgid "Discounted pricing for 1,000+ users"
-msgstr "1,000+ 使用者的折扣價格"
-
-#: lib/dashboard/schools/school_billing.ex:46
-#: lib/dashboard/schools/school_billing.ex:51
-#, elixir-autogen, elixir-format
-msgid "Downgrade"
-msgstr "降級"
-
-#: lib/billing/billing_utils.ex:44
-#, elixir-autogen, elixir-format
-msgid "Enterprise"
-msgstr "企業"
-
-#: lib/billing/billing_utils.ex:24
-#, elixir-autogen, elixir-format
-msgid "Everything in Flexible"
-msgstr "Flexible 中的所有內容"
-
-#: lib/billing/billing_utils.ex:18
-#, elixir-autogen, elixir-format
-msgid "Everything in Hobby"
-msgstr "Hobby 中的所有內容"
-
-#: lib/billing/billing_utils.ex:61
-#, elixir-autogen, elixir-format
-msgid "Failed"
-msgstr "失敗"
-
-#: lib/billing/billing_utils.ex:20
-#, elixir-autogen, elixir-format
-msgid "Faster support"
-msgstr "更快的支援"
-
-#: lib/billing/billing_utils.ex:41
-#, elixir-autogen, elixir-format
-msgid "Flexible"
-msgstr "Flexible"
-
-#: lib/dashboard/schools/school_billing.ex:36
-#, elixir-autogen, elixir-format
-msgid "Free"
-msgstr "免費"
-
-#: lib/billing/billing_utils.ex:40
-#, elixir-autogen, elixir-format
-msgid "Get started for free."
-msgstr "免費開始。"
-
-#: lib/billing/billing_utils.ex:40
-#, elixir-autogen, elixir-format
-msgid "Hobby"
-msgstr "Hobby"
-
-#: lib/billing/billing_utils.ex:41
-#, elixir-autogen, elixir-format
-msgid "Pay as you go."
-msgstr "按使用量付費。"
-
-#: lib/dashboard/schools/school_view.html.heex:47
-#, elixir-autogen, elixir-format
-msgid "Payment status"
-msgstr "付款狀態"
-
-#: lib/billing/billing_utils.ex:26
-#, elixir-autogen, elixir-format
-msgid "Priority support"
-msgstr "優先支援"
-
-#: lib/billing/billing_utils.ex:45
-#, elixir-autogen, elixir-format
-msgid "Priority support and dedicated infrastructure."
-msgstr "優先支援和專用基礎架構。"
-
-#: lib/dashboard/schools/school_billing.html.heex:3
-#, elixir-autogen, elixir-format
-msgid "Select your currency"
-msgstr "選擇您的貨幣"
-
-#: lib/dashboard/schools/school_view.html.heex:42
-#, elixir-autogen, elixir-format
-msgid "Subscription"
-msgstr "訂閱"
-
-#: lib/dashboard/schools/school_view.ex:49
-#: lib/dashboard/schools/school_view.ex:67
-#, elixir-autogen, elixir-format
-msgid "Subscription updated"
-msgstr "訂閱已更新"
-
-#: lib/billing/billing_utils.ex:13
-#, elixir-autogen, elixir-format
-msgid "Unlimited lessons"
-msgstr "無限課程"
-
-#: lib/billing/billing_utils.ex:19
-#, elixir-autogen, elixir-format
-msgid "Unlimited users"
-msgstr "無限使用者"
-
-#: lib/dashboard/schools/school_view.html.heex:51
-#, elixir-autogen, elixir-format, fuzzy
-msgid "Update subscription"
-msgstr "更新訂閱"
-
-#: lib/dashboard/schools/school_billing.ex:48
-#: lib/dashboard/schools/school_billing.ex:50
-#, elixir-autogen, elixir-format
-msgid "Upgrade"
-msgstr "升級"
-
 #: lib/dashboard/schools/school_view.html.heex:37
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Delete"
 msgstr "刪除"
 
 #: lib/dashboard/schools/school_edit.ex:83
-#: lib/dashboard/schools/school_view.ex:89
+#: lib/dashboard/schools/school_view.ex:42
 #, elixir-autogen, elixir-format, fuzzy
 msgid "School could not be deleted"
 msgstr "無法刪除學校"
 
-#: lib/dashboard/schools/school_view.ex:83
+#: lib/dashboard/schools/school_view.ex:36
 #, elixir-autogen, elixir-format
 msgid "School deleted"
 msgstr "學校已刪除"

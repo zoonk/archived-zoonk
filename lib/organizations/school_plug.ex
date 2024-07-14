@@ -45,8 +45,8 @@ defmodule ZoonkWeb.Plugs.School do
   def check_school_setup(%{request_path: "/schools/new"} = conn, opts), do: check_school_setup(conn, opts, conn.assigns.school)
   def check_school_setup(conn, _opts), do: conn
 
-  # If the school is already configured, we don't want to show the configuration page.
-  defp check_school_setup(_conn, _opts, %School{kind: :white_label}), do: raise(ZoonkWeb.PermissionError, code: :school_already_configured)
+  # We don't want to show the creation page for child schools.
+  defp check_school_setup(_conn, _opts, %School{} = school) when school.school_id != nil, do: raise(ZoonkWeb.PermissionError, code: :school_already_configured)
   defp check_school_setup(conn, _opts, _school), do: conn
 
   @doc """

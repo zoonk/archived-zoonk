@@ -11,20 +11,20 @@ msgstr ""
 "Language: pt\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: lib/organizations/school_live/school_new.html.heex:8
+#: lib/organizations/school_live/school_new.html.heex:7
 #, elixir-autogen, elixir-format
 msgid "Choose a nickname to acess your school profile"
 msgstr "Escolha um apelido para acessar o perfil da sua escola"
 
 #: lib/organizations/school_live/school_new.ex:12
 #: lib/organizations/school_live/school_new.html.heex:3
-#: lib/organizations/school_live/school_new.html.heex:11
+#: lib/organizations/school_live/school_new.html.heex:10
 #, elixir-autogen, elixir-format
 msgid "Create school"
 msgstr "Criar escola"
 
 #: lib/dashboard/schools/school_edit.html.heex:12
-#: lib/organizations/school_live/school_new.html.heex:8
+#: lib/organizations/school_live/school_new.html.heex:7
 #, elixir-autogen, elixir-format
 msgid "Nickname"
 msgstr "Apelido"
@@ -35,13 +35,13 @@ msgid "School could not be created"
 msgstr "Não foi possível criar a escola"
 
 #: lib/dashboard/schools/school_edit.html.heex:14
-#: lib/organizations/school_live/school_new.html.heex:7
+#: lib/organizations/school_live/school_new.html.heex:6
 #, elixir-autogen, elixir-format
 msgid "School email"
 msgstr "E-mail da escola"
 
 #: lib/dashboard/schools/school_edit.html.heex:13
-#: lib/organizations/school_live/school_new.html.heex:6
+#: lib/organizations/school_live/school_new.html.heex:5
 #, elixir-autogen, elixir-format
 msgid "School name"
 msgstr "Nome da escola"
@@ -104,7 +104,6 @@ msgstr "Não foi possível rejeitar o usuário!"
 msgid "Could not remove user!"
 msgstr "Não foi possível remover o usuário!"
 
-#: lib/billing/billing_utils.ex:60
 #: lib/dashboard/courses/course_user_list.html.heex:26
 #: lib/dashboard/schools/school_user_list.html.heex:25
 #, elixir-autogen, elixir-format
@@ -607,26 +606,6 @@ msgstr "Exigir confirmação de e-mail?"
 msgid "When checked, users will be required to confirm their email address before they can log in."
 msgstr "Ao marcar, os usuários deverão confirmar o endereço de e-mail antes de poderem fazer login."
 
-#: lib/organizations/school_live/school_new.html.heex:5
-#, elixir-autogen, elixir-format
-msgid "App type"
-msgstr "Tipo do aplicativo"
-
-#: lib/organizations/school_live/school_new.ex:53
-#, elixir-autogen, elixir-format
-msgid "Marketplace"
-msgstr "Loja virtual"
-
-#: lib/organizations/school_live/school_new.ex:53
-#, elixir-autogen, elixir-format
-msgid "SaaS"
-msgstr "SaaS"
-
-#: lib/organizations/school_live/school_new.ex:53
-#, elixir-autogen, elixir-format
-msgid "White label"
-msgstr "White label"
-
 #: lib/dashboard/schools/school_edit.html.heex:22
 #, elixir-autogen, elixir-format
 msgid "Allow anyone to sign up?"
@@ -753,197 +732,18 @@ msgstr "Função na escola"
 msgid "Search users"
 msgstr "Pesquisar usuários"
 
-#: lib/billing/billing_utils.ex:12
-#, elixir-autogen, elixir-format
-msgid "%{count} users"
-msgstr "%{count} usuários"
-
-#: lib/dashboard/schools/school_billing.html.heex:62
-#, elixir-autogen, elixir-format
-msgid "* Dedicated infrastructure is optional and it may have an extra cost depending on your needs."
-msgstr "* A infraestrutura dedicada é opcional e pode ter um custo extra dependendo das suas necessidades."
-
-#: lib/dashboard/schools/school_billing.html.heex:30
-#, elixir-autogen, elixir-format
-msgid "/month per user"
-msgstr "/mês por usuário"
-
-#: lib/billing/billing_utils.ex:28
-#, elixir-autogen, elixir-format
-msgid "25% off add-ons"
-msgstr "25% de desconto em complementos"
-
-#: lib/dashboard/schools/school_billing.ex:25
-#: lib/layouts/menu_utils.ex:101
-#, elixir-autogen, elixir-format
-msgid "Billing"
-msgstr "Faturamento"
-
-#: lib/billing/billing_utils.ex:21
-#, elixir-autogen, elixir-format
-msgid "Cancel anytime"
-msgstr "Cancele a qualquer momento"
-
-#: lib/billing/billing_utils.ex:59
-#, elixir-autogen, elixir-format
-msgid "Confirmed"
-msgstr "Confirmado"
-
-#: lib/dashboard/schools/school_billing.ex:38
-#, elixir-autogen, elixir-format
-msgid "Contact us"
-msgstr "Fale conosco"
-
-#: lib/dashboard/schools/school_billing.ex:44
-#: lib/dashboard/schools/school_billing.ex:45
-#: lib/dashboard/schools/school_billing.ex:49
-#: lib/dashboard/schools/school_billing.ex:54
-#: lib/dashboard/schools/school_billing.html.heex:18
-#: lib/dashboard/schools/school_view.html.heex:46
-#, elixir-autogen, elixir-format
-msgid "Current plan"
-msgstr "Plano atual"
-
-#: lib/billing/billing_utils.ex:15
-#, elixir-autogen, elixir-format
-msgid "Custom domain"
-msgstr "Domínio personalizado"
-
-#: lib/billing/billing_utils.ex:14
-#, elixir-autogen, elixir-format
-msgid "Custom logo"
-msgstr "Logotipo personalizado"
-
-#: lib/billing/billing_utils.ex:27
-#, elixir-autogen, elixir-format
-msgid "Dedicated infrastructure *"
-msgstr "Infraestrutura dedicada *"
-
-#: lib/billing/billing_utils.ex:25
-#, elixir-autogen, elixir-format
-msgid "Discounted pricing for 1,000+ users"
-msgstr "Preços com desconto para mais de 1.000 usuários"
-
-#: lib/dashboard/schools/school_billing.ex:46
-#: lib/dashboard/schools/school_billing.ex:51
-#, elixir-autogen, elixir-format
-msgid "Downgrade"
-msgstr "Diminuir plano"
-
-#: lib/billing/billing_utils.ex:44
-#, elixir-autogen, elixir-format
-msgid "Enterprise"
-msgstr "Corporativo"
-
-#: lib/billing/billing_utils.ex:24
-#, elixir-autogen, elixir-format
-msgid "Everything in Flexible"
-msgstr "Tudo do Flexível"
-
-#: lib/billing/billing_utils.ex:18
-#, elixir-autogen, elixir-format
-msgid "Everything in Hobby"
-msgstr "Tudo do Hobby"
-
-#: lib/billing/billing_utils.ex:61
-#, elixir-autogen, elixir-format
-msgid "Failed"
-msgstr "Falhou"
-
-#: lib/billing/billing_utils.ex:20
-#, elixir-autogen, elixir-format
-msgid "Faster support"
-msgstr "Suporte mais rápido"
-
-#: lib/billing/billing_utils.ex:41
-#, elixir-autogen, elixir-format
-msgid "Flexible"
-msgstr "Flexível"
-
-#: lib/dashboard/schools/school_billing.ex:36
-#, elixir-autogen, elixir-format
-msgid "Free"
-msgstr "Gratuito"
-
-#: lib/billing/billing_utils.ex:40
-#, elixir-autogen, elixir-format
-msgid "Get started for free."
-msgstr "Comece gratuitamente."
-
-#: lib/billing/billing_utils.ex:40
-#, elixir-autogen, elixir-format
-msgid "Hobby"
-msgstr "Hobby"
-
-#: lib/billing/billing_utils.ex:41
-#, elixir-autogen, elixir-format
-msgid "Pay as you go."
-msgstr "Pagamento conforme o uso."
-
-#: lib/dashboard/schools/school_view.html.heex:47
-#, elixir-autogen, elixir-format
-msgid "Payment status"
-msgstr "Status do pagamento"
-
-#: lib/billing/billing_utils.ex:26
-#, elixir-autogen, elixir-format
-msgid "Priority support"
-msgstr "Suporte prioritário"
-
-#: lib/billing/billing_utils.ex:45
-#, elixir-autogen, elixir-format
-msgid "Priority support and dedicated infrastructure."
-msgstr "Suporte prioritário e infraestrutura dedicada."
-
-#: lib/dashboard/schools/school_billing.html.heex:3
-#, elixir-autogen, elixir-format
-msgid "Select your currency"
-msgstr "Selecione a moeda"
-
-#: lib/dashboard/schools/school_view.html.heex:42
-#, elixir-autogen, elixir-format
-msgid "Subscription"
-msgstr "Assinatura"
-
-#: lib/dashboard/schools/school_view.ex:49
-#: lib/dashboard/schools/school_view.ex:67
-#, elixir-autogen, elixir-format
-msgid "Subscription updated"
-msgstr "Assinatura atualizada"
-
-#: lib/billing/billing_utils.ex:13
-#, elixir-autogen, elixir-format
-msgid "Unlimited lessons"
-msgstr "Aulas ilimitadas"
-
-#: lib/billing/billing_utils.ex:19
-#, elixir-autogen, elixir-format
-msgid "Unlimited users"
-msgstr "Usuários ilimitados"
-
-#: lib/dashboard/schools/school_view.html.heex:51
-#, elixir-autogen, elixir-format, fuzzy
-msgid "Update subscription"
-msgstr "Atualizar assinatura"
-
-#: lib/dashboard/schools/school_billing.ex:48
-#: lib/dashboard/schools/school_billing.ex:50
-#, elixir-autogen, elixir-format
-msgid "Upgrade"
-msgstr "Melhorar plano"
-
 #: lib/dashboard/schools/school_view.html.heex:37
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Delete"
 msgstr "Apagar"
 
 #: lib/dashboard/schools/school_edit.ex:83
-#: lib/dashboard/schools/school_view.ex:89
+#: lib/dashboard/schools/school_view.ex:42
 #, elixir-autogen, elixir-format, fuzzy
 msgid "School could not be deleted"
 msgstr "Não foi possível excluir a escola"
 
-#: lib/dashboard/schools/school_view.ex:83
+#: lib/dashboard/schools/school_view.ex:36
 #, elixir-autogen, elixir-format
 msgid "School deleted"
 msgstr "Escola excluída"

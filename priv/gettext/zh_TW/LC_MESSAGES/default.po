@@ -73,7 +73,7 @@ msgstr "哎呀，出了些問題！請檢查以下的錯誤。"
 #: lib/dashboard/lessons/components/option_list.ex:95
 #: lib/dashboard/schools/school_edit.html.heex:8
 #: lib/dashboard/schools/school_user_list.html.heex:68
-#: lib/organizations/school_live/school_new.html.heex:10
+#: lib/organizations/school_live/school_new.html.heex:9
 #, elixir-autogen, elixir-format
 msgid "Saving..."
 msgstr "儲存中..."
@@ -153,7 +153,7 @@ msgstr "名稱"
 msgid "Profile"
 msgstr "個人資料"
 
-#: lib/content/course_live/lesson_play.html.heex:99
+#: lib/content/course_live/lesson_play.html.heex:98
 #, elixir-autogen, elixir-format
 msgid "Confirm"
 msgstr "確認"
@@ -197,7 +197,7 @@ msgstr "重設中..."
 msgid "Username or email address"
 msgstr "使用者名稱或電子郵件地址"
 
-#: lib/content/course_live/lesson_play.html.heex:19
+#: lib/content/course_live/lesson_play.html.heex:18
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Close"
 msgstr "關閉"
@@ -262,7 +262,7 @@ msgstr "關閉側邊欄"
 #: lib/components/delete_item.ex:17
 #: lib/components/delete_item.ex:21
 #: lib/dashboard/schools/school_edit.ex:93
-#: lib/layouts/menu_utils.ex:102
+#: lib/layouts/menu_utils.ex:101
 #: lib/layouts/templates/app.html.heex:78
 #: lib/layouts/templates/dashboard_course.html.heex:50
 #, elixir-autogen, elixir-format
@@ -357,13 +357,6 @@ msgstr "搜尋..."
 msgid "No results found."
 msgstr "找不到結果。"
 
-#: lib/content/course_live/lesson_play.html.heex:113
-#, elixir-autogen, elixir-format
-msgid "Contact school"
-msgstr "聯絡學校"
-
-#: lib/dashboard/schools/school_billing.ex:53
-#: lib/dashboard/schools/school_billing.ex:55
 #: lib/layouts/components/app_menu.ex:39
 #: lib/support/contact_live/contact.ex:15
 #: lib/support/contact_live/contact.html.heex:3
@@ -376,20 +369,10 @@ msgstr "聯絡我們"
 msgid "Message sent!"
 msgstr "訊息已傳送！"
 
-#: lib/content/course_live/lesson_play.html.heex:106
-#, elixir-autogen, elixir-format
-msgid "Subscription expired"
-msgstr "訂閱已到期"
-
 #: lib/support/contact_live/contact.ex:29
 #, elixir-autogen, elixir-format, fuzzy
 msgid "There was an error sending your message. Please try again."
 msgstr "傳送您的訊息時發生錯誤。請再試一次。"
-
-#: lib/content/course_live/lesson_play.html.heex:109
-#, elixir-autogen, elixir-format
-msgid "Your school manager needs to renew their subscription. Please, contact them."
-msgstr "您的學校管理員需要更新他們的訂閱。請聯絡他們。"
 
 #: lib/layouts/templates/app.html.heex:54
 #, elixir-autogen, elixir-format

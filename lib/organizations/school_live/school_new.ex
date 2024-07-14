@@ -49,10 +49,6 @@ defmodule ZoonkWeb.Live.SchoolNew do
     end
   end
 
-  defp school_kind_options do
-    [{dgettext("orgs", "White label"), "white_label"}, {dgettext("orgs", "SaaS"), "saas"}, {dgettext("orgs", "Marketplace"), "marketplace"}]
-  end
-
   defp redirect_to_dashboard(socket, _new_school, nil), do: redirect(socket, to: ~p"/dashboard")
 
   defp redirect_to_dashboard(socket, %School{} = new_school, %School{} = app), do: redirect(socket, external: "https://#{new_school.slug}.#{app.custom_domain}/dashboard")

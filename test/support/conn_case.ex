@@ -113,10 +113,9 @@ defmodule ZoonkWeb.ConnCase do
   def app_setup(%{conn: conn}, opts \\ []) do
     public_school? = Keyword.get(opts, :public_school?, true)
     school_id = Keyword.get(opts, :school_id, nil)
-    school_kind = Keyword.get(opts, :school_kind, :white_label)
     allow_guests? = Keyword.get(opts, :allow_guests?, false)
 
-    school_attrs = %{public?: public_school?, allow_guests?: allow_guests?, school_id: school_id, kind: school_kind}
+    school_attrs = %{public?: public_school?, allow_guests?: allow_guests?, school_id: school_id}
     school_user_attrs = opts |> Keyword.get(:school_user, :student) |> get_user_attrs()
 
     %{conn: register_conn, user: user, password: password} = register_and_log_in_user(%{conn: conn})

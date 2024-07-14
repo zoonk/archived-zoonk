@@ -30,7 +30,7 @@ defmodule ZoonkWeb.DashboardSchoolViewTest do
 
   describe "/dashboard/schools/:id (managers)" do
     setup do
-      app_setup(%{conn: build_conn()}, school_user: :manager, school_kind: :saas)
+      app_setup(%{conn: build_conn()}, school_user: :manager)
     end
 
     test "displays school", %{conn: conn, school: school} do

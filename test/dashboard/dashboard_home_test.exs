@@ -57,34 +57,21 @@ defmodule ZoonkWeb.DashboardHomeLiveTest do
     end
   end
 
-  describe "/dashboard (saas)" do
+  describe "/dashboard (main app)" do
     setup do
-      app_setup(%{conn: build_conn()}, school_user: :manager, school_kind: :saas)
+      app_setup(%{conn: build_conn()}, school_user: :manager)
     end
 
     test "renders the schools menu", %{conn: conn} do
       {:ok, lv, _html} = live(conn, ~p"/dashboard")
       assert has_element?(lv, schools_el())
     end
-  end
 
-  describe "/dashboard (marketplace)" do
-    setup do
-      app_setup(%{conn: build_conn()}, school_user: :manager, school_kind: :marketplace)
-    end
+    test "doesn't render the schools menu for child schools", %{conn: conn, school: school, user: user} do
+      child_school = school_fixture(%{school_id: school.id})
+      school_user_fixture(%{user: user, school: child_school, role: :manager})
+      conn = Map.put(conn, :host, "#{child_school.slug}.#{school.custom_domain}")
 
-    test "renders the schools menu", %{conn: conn} do
-      {:ok, lv, _html} = live(conn, ~p"/dashboard")
-      assert has_element?(lv, schools_el())
-    end
-  end
-
-  describe "/dashboard (white label)" do
-    setup do
-      app_setup(%{conn: build_conn()}, school_user: :manager, school_kind: :white_label)
-    end
-
-    test "renders the schools menu", %{conn: conn} do
       {:ok, lv, _html} = live(conn, ~p"/dashboard")
       refute has_element?(lv, schools_el())
     end

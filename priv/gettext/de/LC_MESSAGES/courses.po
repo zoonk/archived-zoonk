@@ -21,7 +21,7 @@ msgstr "Ein Antrag auf Einschreibung wurde an den Kursleiter geschickt."
 msgid "Advanced"
 msgstr "Erweitert"
 
-#: lib/content/course_live/lesson_completed.html.heex:19
+#: lib/content/course_live/lesson_completed.html.heex:21
 #, elixir-autogen, elixir-format
 msgid "Back to the course"
 msgstr "Zurück zum Kurs"
@@ -31,7 +31,7 @@ msgstr "Zurück zum Kurs"
 msgid "Beginner"
 msgstr "Anfänger"
 
-#: lib/content/course_live/lesson_play.html.heex:95
+#: lib/content/course_live/lesson_play.html.heex:94
 #, elixir-autogen, elixir-format
 msgid "Confirming..."
 msgstr "Bestätigen..."
@@ -41,7 +41,7 @@ msgstr "Bestätigen..."
 msgid "Enrolled successfully!"
 msgstr "Erfolgreich eingeschrieben!"
 
-#: lib/content/course_live/lesson_completed.ex:27
+#: lib/content/course_live/lesson_completed.ex:29
 #, elixir-autogen, elixir-format
 msgid "Excellent!"
 msgstr "Ausgezeichnet!"
@@ -56,12 +56,12 @@ msgstr "Experte"
 msgid "Failed to enroll"
 msgstr "Einschreibung fehlgeschlagen"
 
-#: lib/content/course_live/lesson_completed.ex:29
+#: lib/content/course_live/lesson_completed.ex:31
 #, elixir-autogen, elixir-format
 msgid "Good!"
 msgstr "Gut!"
 
-#: lib/content/course_live/lesson_completed.html.heex:4
+#: lib/content/course_live/lesson_completed.html.heex:5
 #, elixir-autogen, elixir-format
 msgid "Illustration of a green alien"
 msgstr "Illustration eines grünen Außerirdischen"
@@ -71,17 +71,17 @@ msgstr "Illustration eines grünen Außerirdischen"
 msgid "Intermediate"
 msgstr "Zwischenbericht"
 
-#: lib/content/course_live/lesson_play.html.heex:99
+#: lib/content/course_live/lesson_play.html.heex:98
 #, elixir-autogen, elixir-format
 msgid "Next step"
 msgstr "Nächster Schritt"
 
-#: lib/content/course_live/lesson_completed.ex:30
+#: lib/content/course_live/lesson_completed.ex:32
 #, elixir-autogen, elixir-format
 msgid "Not bad!"
 msgstr "Nicht schlecht!"
 
-#: lib/content/course_live/lesson_completed.ex:26
+#: lib/content/course_live/lesson_completed.ex:28
 #, elixir-autogen, elixir-format
 msgid "Perfect!"
 msgstr "Perfekt!"
@@ -96,22 +96,22 @@ msgstr "Antrag auf Beitritt"
 msgid "That's incorrect."
 msgstr "Das ist nicht richtig."
 
-#: lib/content/course_live/lesson_completed.ex:31
+#: lib/content/course_live/lesson_completed.ex:33
 #, elixir-autogen, elixir-format
 msgid "There's room for improvement"
 msgstr "Es gibt Raum für Verbesserungen"
 
-#: lib/content/course_live/lesson_play.ex:93
+#: lib/content/course_live/lesson_play.ex:90
 #, elixir-autogen, elixir-format
 msgid "Unable to complete lesson"
 msgstr "Lektion kann nicht abgeschlossen werden"
 
-#: lib/content/course_live/lesson_play.ex:56
+#: lib/content/course_live/lesson_play.ex:53
 #, elixir-autogen, elixir-format
 msgid "Unable to select option"
 msgstr "Option kann nicht ausgewählt werden"
 
-#: lib/content/course_live/lesson_completed.ex:28
+#: lib/content/course_live/lesson_completed.ex:30
 #, elixir-autogen, elixir-format
 msgid "Very good!"
 msgstr "Sehr gut!"
@@ -121,7 +121,7 @@ msgstr "Sehr gut!"
 msgid "Well done!"
 msgstr "Gut gemacht!"
 
-#: lib/content/course_live/lesson_completed.html.heex:11
+#: lib/content/course_live/lesson_completed.html.heex:13
 #, elixir-autogen, elixir-format
 msgid "You got %{correct} out of %{total} answers right."
 msgstr "Du hast %{correct} von %{total} der Antworten richtig."
@@ -131,7 +131,7 @@ msgstr "Du hast %{correct} von %{total} der Antworten richtig."
 msgid "Lesson cover"
 msgstr "Lektions Cover"
 
-#: lib/content/course_live/lesson_play.html.heex:16
+#: lib/content/course_live/lesson_play.html.heex:15
 #, elixir-autogen, elixir-format
 msgid "Your progress in this lesson will be lost. Would you like to quit?"
 msgstr "Ihr Fortschritt in dieser Lektion wird verloren gehen. Möchten Sie aufhören?"
@@ -151,7 +151,12 @@ msgstr "Beginnen Sie mit der Teilnahme an einem Kurs."
 msgid "No courses"
 msgstr "Keine Kurse"
 
-#: lib/content/course_live/lesson_play.ex:79
+#: lib/content/course_live/lesson_play.ex:76
 #, elixir-autogen, elixir-format
 msgid "Unable to send answer"
 msgstr "Senden der Antwort fehlgeschlagen"
+
+#: lib/content/course_live/lesson_completed.html.heex:12
+#, elixir-autogen, elixir-format
+msgid "You got all the answers correct!"
+msgstr "Du hast alle Antworten richtig!"

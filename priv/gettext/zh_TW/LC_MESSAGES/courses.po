@@ -21,7 +21,7 @@ msgstr "已向教師報名課程。"
 msgid "Advanced"
 msgstr "進階"
 
-#: lib/content/course_live/lesson_completed.html.heex:19
+#: lib/content/course_live/lesson_completed.html.heex:21
 #, elixir-autogen, elixir-format
 msgid "Back to the course"
 msgstr "返回課程"
@@ -31,7 +31,7 @@ msgstr "返回課程"
 msgid "Beginner"
 msgstr "初級"
 
-#: lib/content/course_live/lesson_play.html.heex:95
+#: lib/content/course_live/lesson_play.html.heex:94
 #, elixir-autogen, elixir-format
 msgid "Confirming..."
 msgstr "確認中..."
@@ -41,7 +41,7 @@ msgstr "確認中..."
 msgid "Enrolled successfully!"
 msgstr "成功報名！"
 
-#: lib/content/course_live/lesson_completed.ex:27
+#: lib/content/course_live/lesson_completed.ex:29
 #, elixir-autogen, elixir-format
 msgid "Excellent!"
 msgstr "優秀！"
@@ -56,12 +56,12 @@ msgstr "專家"
 msgid "Failed to enroll"
 msgstr "報名失敗"
 
-#: lib/content/course_live/lesson_completed.ex:29
+#: lib/content/course_live/lesson_completed.ex:31
 #, elixir-autogen, elixir-format
 msgid "Good!"
 msgstr "好！"
 
-#: lib/content/course_live/lesson_completed.html.heex:4
+#: lib/content/course_live/lesson_completed.html.heex:5
 #, elixir-autogen, elixir-format
 msgid "Illustration of a green alien"
 msgstr "綠色外星人的插圖"
@@ -71,17 +71,17 @@ msgstr "綠色外星人的插圖"
 msgid "Intermediate"
 msgstr "中級"
 
-#: lib/content/course_live/lesson_play.html.heex:99
+#: lib/content/course_live/lesson_play.html.heex:98
 #, elixir-autogen, elixir-format
 msgid "Next step"
 msgstr "下一步"
 
-#: lib/content/course_live/lesson_completed.ex:30
+#: lib/content/course_live/lesson_completed.ex:32
 #, elixir-autogen, elixir-format
 msgid "Not bad!"
 msgstr "不錯！"
 
-#: lib/content/course_live/lesson_completed.ex:26
+#: lib/content/course_live/lesson_completed.ex:28
 #, elixir-autogen, elixir-format
 msgid "Perfect!"
 msgstr "完美！"
@@ -96,22 +96,22 @@ msgstr "請求加入"
 msgid "That's incorrect."
 msgstr "這是不正確的。"
 
-#: lib/content/course_live/lesson_completed.ex:31
+#: lib/content/course_live/lesson_completed.ex:33
 #, elixir-autogen, elixir-format
 msgid "There's room for improvement"
 msgstr "有改進的空間"
 
-#: lib/content/course_live/lesson_play.ex:93
+#: lib/content/course_live/lesson_play.ex:90
 #, elixir-autogen, elixir-format
 msgid "Unable to complete lesson"
 msgstr "無法完成課程"
 
-#: lib/content/course_live/lesson_play.ex:56
+#: lib/content/course_live/lesson_play.ex:53
 #, elixir-autogen, elixir-format
 msgid "Unable to select option"
 msgstr "無法選擇選項"
 
-#: lib/content/course_live/lesson_completed.ex:28
+#: lib/content/course_live/lesson_completed.ex:30
 #, elixir-autogen, elixir-format
 msgid "Very good!"
 msgstr "非常好！"
@@ -121,7 +121,7 @@ msgstr "非常好！"
 msgid "Well done!"
 msgstr "做得好！"
 
-#: lib/content/course_live/lesson_completed.html.heex:11
+#: lib/content/course_live/lesson_completed.html.heex:13
 #, elixir-autogen, elixir-format
 msgid "You got %{correct} out of %{total} answers right."
 msgstr "您的答案中有 %{correct} 個是正確的，總共有 %{total} 個問題。"
@@ -131,7 +131,7 @@ msgstr "您的答案中有 %{correct} 個是正確的，總共有 %{total} 個�
 msgid "Lesson cover"
 msgstr "課程封面"
 
-#: lib/content/course_live/lesson_play.html.heex:16
+#: lib/content/course_live/lesson_play.html.heex:15
 #, elixir-autogen, elixir-format
 msgid "Your progress in this lesson will be lost. Would you like to quit?"
 msgstr "您在這堂課的進度將會遺失。您想要退出嗎？"
@@ -151,7 +151,12 @@ msgstr "加入課程開始學習。"
 msgid "No courses"
 msgstr "沒有課程"
 
-#: lib/content/course_live/lesson_play.ex:79
+#: lib/content/course_live/lesson_play.ex:76
 #, elixir-autogen, elixir-format
 msgid "Unable to send answer"
 msgstr "無法傳送答案"
+
+#: lib/content/course_live/lesson_completed.html.heex:12
+#, elixir-autogen, elixir-format
+msgid "You got all the answers correct!"
+msgstr "您全部答對了！"

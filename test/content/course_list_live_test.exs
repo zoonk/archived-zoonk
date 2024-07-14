@@ -156,19 +156,9 @@ defmodule ZoonkWeb.CourseListLiveTest do
     end
   end
 
-  describe "/courses (marketplace school)" do
+  describe "/courses (main app)" do
     setup do
-      app_setup(%{conn: build_conn()}, school_kind: :marketplace)
-    end
-
-    test "displays the create school menu", %{conn: conn} do
-      assert_create_school_menu(conn)
-    end
-  end
-
-  describe "/courses (saas school)" do
-    setup do
-      app_setup(%{conn: build_conn()}, school_kind: :saas)
+      app_setup(%{conn: build_conn()})
     end
 
     test "displays the create school menu", %{conn: conn} do
@@ -176,7 +166,7 @@ defmodule ZoonkWeb.CourseListLiveTest do
     end
 
     test "doesn't display the create school menu for a child school", %{conn: conn, school: school} do
-      child_school = school_fixture(%{school_id: school.id, kind: :white_label})
+      child_school = school_fixture(%{school_id: school.id})
       host = "#{child_school.slug}.#{school.custom_domain}"
       conn = Map.put(conn, :host, host)
       {:ok, lv, _html} = live(conn, ~p"/courses")
@@ -184,21 +174,10 @@ defmodule ZoonkWeb.CourseListLiveTest do
     end
 
     test "doesn't display courses from child schools", %{conn: conn, school: school} do
-      child_school = school_fixture(%{school_id: school.id, kind: :white_label})
+      child_school = school_fixture(%{school_id: school.id})
       course = course_fixture(%{school_id: child_school.id, published?: true})
       {:ok, lv, _html} = live(conn, ~p"/courses")
       refute has_element?(lv, get_course_el(course))
-    end
-  end
-
-  describe "/courses (white label school)" do
-    setup do
-      app_setup(%{conn: build_conn()}, school_kind: :white_label)
-    end
-
-    test "doesn't display the create school menu", %{conn: conn} do
-      {:ok, lv, _html} = live(conn, ~p"/courses")
-      refute has_element?(lv, ~s|li a:fl-icontains("create school")|)
     end
   end
 
