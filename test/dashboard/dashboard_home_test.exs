@@ -88,15 +88,6 @@ defmodule ZoonkWeb.DashboardHomeLiveTest do
       {:ok, lv, _html} = live(conn, ~p"/dashboard")
       refute has_element?(lv, schools_el())
     end
-
-    test "hides billing menu if the application doesn't support Stripe", %{conn: conn} do
-      Application.put_env(:stripity_stripe, :api_key, nil)
-
-      assert {:ok, lv, _html} = live(conn, ~p"/dashboard")
-      refute has_element?(lv, "li", "Billing")
-
-      Application.put_env(:stripity_stripe, :api_key, "sk_test_thisisaboguskey")
-    end
   end
 
   defp assert_dashboard(lv, school, host) do

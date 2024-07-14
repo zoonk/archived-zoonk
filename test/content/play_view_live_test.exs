@@ -3,12 +3,10 @@ defmodule ZoonkWeb.PlayViewLiveTest do
 
   import Phoenix.LiveViewTest
   import Zoonk.Fixtures.Content
-  import Zoonk.Fixtures.Organizations
 
   alias Zoonk.Accounts
   alias Zoonk.Content
   alias Zoonk.Content.UserSelection
-  alias Zoonk.Organizations
   alias Zoonk.Repo
 
   @select_form "#play"
@@ -136,21 +134,6 @@ defmodule ZoonkWeb.PlayViewLiveTest do
       {:ok, lv, _html} = live(conn, ~p"/c/#{course.slug}/#{lesson.id}")
 
       assert has_element?(lv, ~s|form[phx-hook="LessonSoundEffect"]|)
-    end
-
-    test "doesn't show the play page if the school doesn't have a subscription", %{conn: conn, school: school, course: course} do
-      parent_school = school_fixture(%{school_id: school.id})
-      Organizations.update_school(school, %{school_id: parent_school.id})
-
-      Enum.each(1..3, fn _idx -> school_user_fixture(%{school: school}) end)
-
-      lesson = lesson_fixture(%{course_id: course.id})
-      generate_steps(lesson)
-
-      {:ok, lv, _html} = live(conn, ~p"/c/#{course.slug}/#{lesson.id}")
-
-      refute has_element?(lv, "blockquote p", "step 1!")
-      assert has_element?(lv, "h1", "Subscription expired")
     end
 
     test "embeds youtube videos when available", %{conn: conn, course: course} do

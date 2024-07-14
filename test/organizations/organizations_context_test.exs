@@ -2,11 +2,9 @@ defmodule Zoonk.OrganizationsTest do
   use Zoonk.DataCase, async: true
 
   import Zoonk.Fixtures.Accounts
-  import Zoonk.Fixtures.Billing
   import Zoonk.Fixtures.Content
   import Zoonk.Fixtures.Organizations
 
-  alias Zoonk.Billing
   alias Zoonk.Content
   alias Zoonk.Organizations
   alias Zoonk.Organizations.School
@@ -194,7 +192,6 @@ defmodule Zoonk.OrganizationsTest do
       child_school = school_fixture(%{school_id: school.id})
       school_user = school_user_fixture(%{school: school})
       course = course_fixture(%{school_id: school.id})
-      subscription_fixture(%{school_id: school.id})
 
       assert {:ok, _deleted} = Organizations.delete_school(school)
 
@@ -202,7 +199,6 @@ defmodule Zoonk.OrganizationsTest do
       assert_raise Ecto.NoResultsError, fn -> Organizations.get_school!(child_school.id) end
       assert_raise Ecto.NoResultsError, fn -> Organizations.get_school_user!(school_user.id) end
       assert_raise Ecto.NoResultsError, fn -> Content.get_course!(course.id) end
-      refute Billing.get_subscription_by_school_id(school.id)
     end
   end
 
@@ -381,15 +377,6 @@ defmodule Zoonk.OrganizationsTest do
 
       school_user = Organizations.get_school_user(school.slug, user.username)
       assert school_user.role == :teacher
-    end
-
-    test "only updates stripe record if stripe is enabled" do
-      parent_school = school_fixture()
-      school = school_fixture(%{school_id: parent_school.id})
-      user = user_fixture()
-      subscription_fixture(%{school_id: school.id, stripe_subscription_item_id: nil})
-
-      assert {:ok, %SchoolUser{}} = Organizations.create_school_user(school, user, %{role: :student})
     end
 
     test "adds a user to the parent school too" do

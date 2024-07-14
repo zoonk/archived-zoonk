@@ -98,10 +98,7 @@ defmodule ZoonkWeb.Layouts.MenuUtils do
       %{link: ~p"/dashboard/edit/logo", view: [:dashboard_schooledit_logo], title: gettext("Logo"), visible?: true},
       %{link: ~p"/dashboard/edit/icon", view: [:dashboard_schooledit_icon], title: gettext("Icon"), visible?: true},
       %{link: ~p"/dashboard/edit/settings", view: [:dashboard_schooledit_settings], title: gettext("Settings"), visible?: true},
-      %{link: ~p"/dashboard/billing", view: [:dashboard_schoolbilling], title: dgettext("orgs", "Billing"), visible?: kind == :white_label and stripe_enabled?()},
       %{link: ~p"/dashboard/edit/delete", view: [:dashboard_schooledit_delete], title: gettext("Delete"), visible?: !is_nil(school_id)}
     ]
   end
-
-  defp stripe_enabled?, do: Application.get_env(:stripity_stripe, :api_key) != nil
 end

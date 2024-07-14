@@ -89,7 +89,7 @@ defmodule ZoonkWeb.Router do
       :browser,
       :require_authenticated_user,
       :prevent_guest_to_create_school,
-      :require_subscription_for_private_schools,
+      :require_approval_for_private_schools,
       :fetch_course,
       :require_course_user_for_lesson
     ]
@@ -148,8 +148,6 @@ defmodule ZoonkWeb.Router do
       live "/edit/settings", Dashboard.SchoolEdit, :settings
       live "/edit/delete", Dashboard.SchoolEdit, :delete
 
-      live "/billing", Dashboard.SchoolBilling
-
       live "/users", Dashboard.SchoolUserList
       live "/users/search", Dashboard.SchoolUserList, :search
       live "/u/:username", Dashboard.SchoolUserView
@@ -157,12 +155,6 @@ defmodule ZoonkWeb.Router do
       live "/schools", Dashboard.SchoolList
       live "/schools/:id", Dashboard.SchoolView
     end
-  end
-
-  scope "/dashboard", ZoonkWeb.Controller do
-    pipe_through [:browser, :require_authenticated_user, :require_manager]
-
-    get "/billing/:from/:to/:currency/:price_id", SchoolSubscription, :show
   end
 
   # These routes are only available to managers and teachers.

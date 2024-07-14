@@ -5,8 +5,6 @@ defmodule Zoonk.Organizations do
   import Ecto.Query, warn: false
 
   alias Zoonk.Accounts.User
-  alias Zoonk.Billing
-  alias Zoonk.Billing.Subscription
   alias Zoonk.Content.Course
   alias Zoonk.Content.CourseUser
   alias Zoonk.Organizations.School
@@ -158,7 +156,6 @@ defmodule Zoonk.Organizations do
     multi =
       Ecto.Multi.new()
       |> Ecto.Multi.insert(:school_user, SchoolUser.changeset(%SchoolUser{}, school_user_attrs))
-      |> Ecto.Multi.run(:usage, fn _repo, _su -> update_stripe_usage_record(school) end)
       |> Ecto.Multi.run(:parent_su, fn _repo, _su -> maybe_add_parent_school_user(parent_school_user_attrs) end)
 
     case Repo.transaction(multi) do
@@ -174,24 +171,6 @@ defmodule Zoonk.Organizations do
   defp maybe_add_parent_school_user(attrs) do
     attrs = Map.put(attrs, :role, :student)
     %SchoolUser{} |> SchoolUser.changeset(attrs) |> Repo.insert(on_conflict: :nothing)
-  end
-
-  # Don't do anything if the school is the main app school.
-  defp update_stripe_usage_record(%School{school_id: nil}), do: {:ok, nil}
-
-  # If there's a parent school, then check if they have a subscription.
-  defp update_stripe_usage_record(school), do: update_stripe_usage_record(school, Billing.get_subscription_by_school_id(school.id))
-
-  # If there's no subscription, then don't do anything.
-  defp update_stripe_usage_record(_school, nil), do: {:ok, nil}
-
-  # If Stripe isn't enable, then don't do anything.
-  defp update_stripe_usage_record(_school, %Subscription{stripe_subscription_item_id: nil}), do: {:ok, nil}
-
-  # If there's a subscription, then update the usage record.
-  defp update_stripe_usage_record(_school, %Subscription{} = subscription) do
-    school_users = get_school_users_count(subscription.school_id)
-    Stripe.UsageRecord.create(subscription.stripe_subscription_item_id, %{quantity: school_users})
   end
 
   @doc """
@@ -455,7 +434,6 @@ defmodule Zoonk.Organizations do
     Repo.transaction(fn ->
       Repo.delete(school_user)
       delete_course_users(school_user.user_id, school_user.school_id)
-      update_stripe_usage_record(get_school!(school_user.school_id))
     end)
   end
 

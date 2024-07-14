@@ -39,7 +39,6 @@ defmodule ZoonkWeb.DashboardSchoolViewTest do
 
       {:ok, lv, _html} = live(conn, "/dashboard/schools/#{child_school.id}")
 
-      refute has_element?(lv, "li", "Billing")
       assert has_element?(lv, "h1", child_school.name)
       assert has_element?(lv, "h1", child_school.slug)
       assert has_element?(lv, "p", child_school.custom_domain)

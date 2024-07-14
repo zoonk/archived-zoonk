@@ -5,7 +5,6 @@ defmodule ZoonkWeb.Live.LessonPlay do
   import ZoonkWeb.Components.Content.LessonStep
 
   alias Zoonk.Accounts.User
-  alias Zoonk.Billing
   alias Zoonk.Content
   alias Zoonk.Content.Lesson
   alias Zoonk.Content.LessonStep
@@ -13,11 +12,10 @@ defmodule ZoonkWeb.Live.LessonPlay do
 
   @impl Phoenix.LiveView
   def mount(_params, _session, socket) do
-    %{lesson: %Lesson{} = lesson, school: school} = socket.assigns
+    %{lesson: %Lesson{} = lesson} = socket.assigns
 
     step_count = Content.count_lesson_steps(lesson.id)
     current_step = Content.get_next_step(lesson, 0)
-    active_subscription? = Billing.active_subscription?(school)
 
     socket =
       socket
@@ -28,7 +26,6 @@ defmodule ZoonkWeb.Live.LessonPlay do
       |> assign(:options, shuffle_options(current_step))
       |> assign(:lesson_start, DateTime.utc_now())
       |> assign(:step_start, DateTime.utc_now())
-      |> assign(:active_subscription?, active_subscription?)
 
     {:ok, socket}
   end

@@ -30,7 +30,6 @@ defmodule Zoonk.Organizations.School do
     field :public?, :boolean, default: false
     field :require_confirmation?, :boolean, default: false
     field :slug, :string
-    field :stripe_customer_id, :string
     field :terms_of_use, :string
 
     belongs_to :created_by, User
@@ -87,8 +86,7 @@ defmodule Zoonk.Organizations.School do
       :require_confirmation?,
       :terms_of_use,
       :school_id,
-      :slug,
-      :stripe_customer_id
+      :slug
     ]
   end
 

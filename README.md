@@ -110,17 +110,6 @@ By default, we upload files to your local server and store them in the `priv/sta
 - `CLOUDFLARE_ACCOUNT_HASH`: Your Cloudflare account hash. You can find it on `Cloudflare Dashboard > Images > Overview`.
 - `CLOUDFLARE_API_TOKEN`: Your Cloudflare API token. You can create a token on `Cloudflare Dashboard > My Profile > API Tokens`.
 
-## Stripe
-
-We use Stripe for processing payments. If you want to enable subscriptions, you need to set the following environment variables on your server:
-
-- `STRIPE_API_KEY`: Your Stripe API key.
-- `STRIPE_WEBHOOK_SECRET`: Your Stripe webhook secret.
-
-Plus, you need to create a product for your subscription. We call this plan `flexible` and you can't customize plans at the moment. We fetch the price from the Stripe API, so make sure you add the `zoonk_flexible` [lookup key](https://stripe.com/docs/products-prices/manage-prices#lookup-keys) to your price.
-
-Stripe can only be enabled for `saas` and `marketplace` apps. Make sure to choose one of those options when you first run this app.
-
 ## Sponsors
 
 - [Gustavo A. Castillo](https://github.com/guscastilloa)

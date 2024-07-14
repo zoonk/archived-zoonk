@@ -35,13 +35,6 @@ defmodule ZoonkWeb.Endpoint do
     plug Phoenix.Ecto.CheckRepoStatus, otp_app: :zoonk
   end
 
-  # Since Plug.Parsers removes the raw request_body in body_parsers
-  # we need to parse out the Stripe webhooks before this
-  plug Stripe.WebhookPlug,
-    at: "/webhook/stripe",
-    handler: Zoonk.Billing.StripeHandler,
-    secret: {Application, :get_env, [:stripity_stripe, :webhook_secret]}
-
   plug Phoenix.LiveDashboard.RequestLogger,
     param_key: "request_logger",
     cookie_key: "request_logger"

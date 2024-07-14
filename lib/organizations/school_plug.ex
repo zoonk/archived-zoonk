@@ -71,23 +71,23 @@ defmodule ZoonkWeb.Plugs.School do
   @doc """
   Requires a subscription for private schools.
   """
-  @spec require_subscription_for_private_schools(Plug.Conn.t(), Keyword.t()) :: Plug.Conn.t()
-  @spec require_subscription_for_private_schools(Plug.Conn.t(), boolean(), map()) :: Plug.Conn.t()
-  def require_subscription_for_private_schools(%Plug.Conn{assigns: %{school: nil}} = conn, _opts), do: conn
+  @spec require_approval_for_private_schools(Plug.Conn.t(), Keyword.t()) :: Plug.Conn.t()
+  @spec require_approval_for_private_schools(Plug.Conn.t(), boolean(), map()) :: Plug.Conn.t()
+  def require_approval_for_private_schools(%Plug.Conn{assigns: %{school: nil}} = conn, _opts), do: conn
 
-  def require_subscription_for_private_schools(conn, _opts) do
+  def require_approval_for_private_schools(conn, _opts) do
     %{school: school, school_user: school_user} = conn.assigns
-    require_subscription_for_private_schools(conn, school.public?, school_user)
+    require_approval_for_private_schools(conn, school.public?, school_user)
   end
 
   # If the school is public, then we don't need to check for a subscription.
-  defp require_subscription_for_private_schools(conn, true, _school_user), do: conn
+  defp require_approval_for_private_schools(conn, true, _school_user), do: conn
 
   # If the user is approved? (has subscription), then they have access.
-  defp require_subscription_for_private_schools(conn, false, school_user) when school_user.approved?, do: conn
+  defp require_approval_for_private_schools(conn, false, school_user) when school_user.approved?, do: conn
 
   # If the user is not approved? (doesn't have subscription) and school is private, then they don't have access.
-  defp require_subscription_for_private_schools(_conn, false, _school_user), do: raise(ZoonkWeb.PermissionError, code: :pending_approval)
+  defp require_approval_for_private_schools(_conn, false, _school_user), do: raise(ZoonkWeb.PermissionError, code: :pending_approval)
 
   @doc """
   Requires `manager` permissions to access a certain route.
