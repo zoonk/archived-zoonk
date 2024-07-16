@@ -23,13 +23,10 @@ end
 # Remove the https:// from the beginning of the AWS_ENDPOINT_URL_S3
 aws_endpoint_url = String.replace(System.get_env("AWS_ENDPOINT_URL_S3"), "https://", "")
 
-if config_env() in [:prod, :dev] do
-  # Cloudflare images
-  config :zoonk, :cloudflare,
-    account_id: System.get_env("CLOUDFLARE_ACCOUNT_ID"),
-    api_token: System.get_env("CLOUDFLARE_API_TOKEN"),
-    account_hash: System.get_env("CLOUDFLARE_ACCOUNT_HASH")
+# When the cdn url isn't configured, use the s3 endpoint url
+cdn_url = System.get_env("AWS_CDN_URL") || aws_endpoint_url
 
+if config_env() in [:prod, :dev] do
   # AWS configuration
   config :ex_aws,
     debug_requests: true,
@@ -44,7 +41,7 @@ if config_env() in [:prod, :dev] do
 
   config :zoonk, :storage,
     bucket: System.get_env("AWS_BUCKET"),
-    domain: System.get_env("AWS_CDN_URL")
+    domain: cdn_url
 end
 
 if config_env() == :prod do
