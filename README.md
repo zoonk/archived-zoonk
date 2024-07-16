@@ -4,7 +4,7 @@
   <img alt="Zoonk Banner" src="https://github.com/zoonk/.github/assets/4393133/ddbb2208-feac-4a58-adac-f769cff4dc7f">
 </picture>
 
-**WARNING:** This software is still in development and not ready for production. I'm making several changes to it. DO NOT USE IT IN PRODUCTION YET. The current version will break when v1.0 is released. I'll update this README when it's ready for production.
+> **WARNING:** This software is still in development and not ready for production. DO NOT USE IT IN PRODUCTION YET. The current version will break when v1.0 is released. This README will be updated when it's ready for production.
 
 ---
 
@@ -15,47 +15,58 @@
   <br />
   <br />
   <a href="https://github.com/zoonk/.github/blob/main/roadmap.md">Roadmap</a>
-  .
+  ·
   <a href="https://github.com/orgs/zoonk/discussions">Community</a>
 </p>
+
+## Table of Contents
+
+- [About this project](#about-this-project)
+- [Tech stack](#tech-stack)
+- [Getting started](#getting-started)
+  - [Requirements](#requirements)
+  - [Local development](#local-development)
+- [SSL on localhost](#ssl-on-localhost)
+- [Mailer](#mailer)
+- [Storage](#storage)
+- [Sponsors](#sponsors)
 
 ## About this project
 
 Interactive learning is [more effective](https://www.sciencedaily.com/releases/2021/09/210930140710.htm) than traditional methods. [Learners remember](https://www.linkedin.com/pulse/how-does-interactive-learning-boost-outcomes/) 10% of what they hear, 20% of what they read but 80% of what they see and do. That's why 34 hours of Duolingo [are equivalent](https://support.duolingo.com/hc/en-us/articles/115000035183-Are-there-official-studies-about-Duolingo-) to a full university semester of language education.
 
-We love Duolingo. We think those kind of interactive experiences should be used in more fields. That's why we're building Zoonk, an open-source platform to create interactive courses like Duolingo.
+We love Duolingo. We think those kinds of interactive experiences should be used in more fields. That's why we're building Zoonk, an open-source platform to create interactive courses like Duolingo.
 
 ## Tech stack
 
-- Backend: [Phoenix](https://www.phoenixframework.org/)
-- Frontend: [Phoenix LiveView](https://hexdocs.pm/phoenix_live_view)
-- Database: [Postgres](https://www.postgresql.org)
-- CSS: [Tailwind CSS](https://tailwindcss.com/)
-- Email: [Resend](https://resend.com/)
-- Storage: [Tigris](https://tigrisdata.com/)
+- **Backend**: [Phoenix](https://www.phoenixframework.org/)
+- **Frontend**: [Phoenix LiveView](https://hexdocs.pm/phoenix_live_view)
+- **Database**: [Postgres](https://www.postgresql.org)
+- **CSS**: [Tailwind CSS](https://tailwindcss.com/)
+- **Email**: [Resend](https://resend.com/)
+- **Storage**: [Tigris](https://tigrisdata.com/)
 
 We're deploying our cloud products to [Fly](https://fly.io/).
 
 ## Getting started
 
-Follow the instructions below to get Zoonk up and running on your local machine. We have a `Dockerfile` but that's used for deploying our demo app to [Fly](https://fly.io/). We don't have a Docker setup for local development yet. PRs are welcome!
+Follow the instructions below to get Zoonk up and running on your local machine. We have a `Dockerfile` for deploying our demo app to [Fly](https://fly.io/). For using Docker locally, [see this](./local/README.md).
 
 ### Requirements
 
-- You need `Elixir 1.17` or later and `Erlang 26` or later. Run `elixir -v` to find your current version for [Elixir](https://elixir-lang.org/install.html)
-  and [Erlang](https://elixir-lang.org/install.html#installing-erlang).
+- **Elixir 1.17+** and **Erlang 26+**. Run `elixir -v` to find your current version for [Elixir](https://elixir-lang.org/install.html) and [Erlang](https://elixir-lang.org/install.html#installing-erlang).
 - Install [Hex](https://hex.pm/): `mix local.hex`.
 - Install `Phoenix`: `mix archive.install hex phx_new`.
-- [PostgreSQL 15+](https://www.postgresql.org/).
+- **PostgreSQL 15+**: [PostgreSQL](https://www.postgresql.org/).
 - (Linux users only): [inotify-tools](https://github.com/inotify-tools/inotify-tools/wiki).
 
 ### Local development
 
-- Run `mix setup` to install both dependencies and set up both the database and assets.
-- Run `mix seed` to fetch some initial data to the database ([See options](./priv/repo/seed/README.md)).
+- Run `mix setup` to install dependencies and set up the database and assets.
+- Run `mix seed` to fetch initial data to the database ([See options](./priv/repo/seed/README.md)).
 - Run `mix phx.server` to start a development server.
 - Run `mix test` to run tests.
-- Run `mix ci` to run our code quality checks.
+- Run `mix ci` to run code quality checks.
 - Run `mix locale` to update translation files.
 
 ## SSL on localhost
@@ -68,7 +79,7 @@ Prefer to do local development using SSL to resemble production as much as possi
 - You may also need to enable `Allow invalid certificates for resources loaded from localhost` on [Google Chrome flags](chrome://flags/#allow-insecure-localhost).
 - Restart your local server: `mix phx.server`. You may also need to restart your browser.
 
-  You also need to make sure your machine maps `localhost` to a test domain (we're using `zoonk.test` for this guide). `dnsmasq` allows you to resolve domains to your local machine without having to change your `/etc/hosts` file. To install `dnsmasq`:
+You also need to make sure your machine maps `localhost` to a test domain (we're using `zoonk.test` for this guide). `dnsmasq` allows you to resolve domains to your local machine without having to change your `/etc/hosts` file. To install `dnsmasq`:
 
 ```sh
 brew install dnsmasq
@@ -104,7 +115,7 @@ We're using [Resend](https://resend.com) to send emails. To make it work in prod
 
 ## Storage
 
-You need to use a S3-compatible storage service to store your files. At Zoonk, we're using [Tigris](https://tigrisdata.com/). You need to add the following environment variables:
+You need to use an S3-compatible storage service to store your files. At Zoonk, we're using [Tigris](https://tigrisdata.com/). You need to add the following environment variables:
 
 - `AWS_ACCESS_KEY_ID`: Your AWS access key ID.
 - `AWS_SECRET_ACCESS_KEY`: Your AWS secret access key.
