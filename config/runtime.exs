@@ -20,12 +20,31 @@ if System.get_env("PHX_SERVER") do
   config :zoonk, ZoonkWeb.Endpoint, server: true
 end
 
+# Remove the https:// from the beginning of the AWS_ENDPOINT_URL_S3
+aws_endpoint_url = String.replace(System.get_env("AWS_ENDPOINT_URL_S3"), "https://", "")
+
 if config_env() in [:prod, :dev] do
   # Cloudflare images
   config :zoonk, :cloudflare,
     account_id: System.get_env("CLOUDFLARE_ACCOUNT_ID"),
     api_token: System.get_env("CLOUDFLARE_API_TOKEN"),
     account_hash: System.get_env("CLOUDFLARE_ACCOUNT_HASH")
+
+  # AWS configuration
+  config :ex_aws,
+    debug_requests: true,
+    json_coded: Jason,
+    access_key_id: {:system, "AWS_ACCESS_KEY_ID"},
+    secret_access_key: {:system, "AWS_SECRET_ACCESS_KEY"}
+
+  config :ex_aws, :s3,
+    scheme: "https://",
+    host: aws_endpoint_url,
+    region: System.get_env("AWS_REGION")
+
+  config :zoonk, :storage,
+    bucket: System.get_env("AWS_BUCKET"),
+    domain: System.get_env("AWS_CDN_URL")
 end
 
 if config_env() == :prod do

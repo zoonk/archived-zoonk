@@ -4,6 +4,7 @@ defmodule ZoonkWeb.Layouts.MenuUtils do
 
   alias Zoonk.Content.Course
   alias Zoonk.Organizations.School
+  alias ZoonkWeb.Shared.Storage
 
   @spec school_name(School.t() | nil) :: String.t()
   def school_name(nil), do: "Zoonk"
@@ -13,15 +14,15 @@ defmodule ZoonkWeb.Layouts.MenuUtils do
   def school_logo(nil, _app), do: ~p"/images/logo.svg"
   def school_logo(%School{logo: nil}, nil), do: school_logo(nil, nil)
   def school_logo(%School{logo: nil}, %School{logo: nil}), do: school_logo(nil, nil)
-  def school_logo(%School{logo: nil}, %School{logo: logo}), do: get_image_url(logo, "logo")
-  def school_logo(%School{} = school, _app), do: get_image_url(school.logo, "logo")
+  def school_logo(%School{logo: nil}, %School{logo: logo}), do: Storage.get_url(logo)
+  def school_logo(%School{} = school, _app), do: Storage.get_url(school.logo)
 
   @spec school_icon(School.t() | nil, School.t() | nil, non_neg_integer()) :: String.t()
   def school_icon(nil, _app, size), do: "/favicon/#{size}.png"
   def school_icon(%School{icon: nil}, nil, size), do: school_icon(nil, nil, size)
   def school_icon(%School{icon: nil}, %School{icon: nil}, size), do: school_icon(nil, nil, size)
-  def school_icon(%School{icon: nil}, %School{icon: icon}, size), do: get_image_url(icon, size, flexible: true)
-  def school_icon(%School{} = school, _app, size), do: get_image_url(school.icon, size, flexible: true)
+  def school_icon(%School{icon: nil}, %School{icon: icon}, _size), do: Storage.get_url(icon)
+  def school_icon(%School{} = school, _app, _size), do: Storage.get_url(school.icon)
 
   @spec user_settings?(atom()) :: boolean()
   def user_settings?(active_page) do

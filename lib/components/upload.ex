@@ -4,7 +4,7 @@ defmodule ZoonkWeb.Components.Upload do
   """
   use ZoonkWeb, :live_component
 
-  alias ZoonkWeb.Shared.ImageOptimizer
+  alias ZoonkWeb.Shared.Storage
 
   attr :current_img, :string, default: nil
   attr :label, :string, default: nil
@@ -29,7 +29,7 @@ defmodule ZoonkWeb.Components.Upload do
 
       <div class="container flex flex-col space-y-8">
         <div class="flex items-center space-x-6">
-          <img :if={is_binary(@current_img)} alt={@label} src={get_image_url(@current_img, "thumbnail")} class="w-16 rounded-xl object-cover" />
+          <img :if={is_binary(@current_img)} alt={@label} src={Storage.get_url(@current_img)} class="w-16 rounded-xl object-cover" />
 
           <.live_file_input
             upload={@uploads.file}
@@ -87,43 +87,25 @@ defmodule ZoonkWeb.Components.Upload do
 
   # Only upload a file to the cloud after the progress is done.
   defp handle_progress(_key, %{done?: true}, socket) do
-    file_upload(socket, ImageOptimizer.enabled?())
+    [file | _] =
+      consume_uploaded_entries(socket, :file, fn %{path: path}, _entry ->
+        file_name = Path.basename(path)
+
+        path
+        |> ExAws.S3.Upload.stream_file()
+        |> ExAws.S3.upload(get_bucket(), file_name)
+        |> ExAws.request!()
+
+        {:ok, file_name}
+      end)
+
+    notify_parent(socket, file)
+
     {:noreply, assign(socket, uploading?: false)}
   end
 
   defp handle_progress(_key, _entry, socket) do
     {:noreply, assign(socket, uploading?: true)}
-  end
-
-  defp file_upload(socket, true), do: cloud_upload(socket)
-  defp file_upload(socket, false), do: local_upload(socket)
-
-  # sobelow_skip ["Traversal.FileModule"]
-  defp cloud_upload(socket) do
-    result =
-      consume_uploaded_entries(socket, :file, fn %{path: path}, entry ->
-        byte_content = File.read!(path)
-        ImageOptimizer.upload(entry.client_name, byte_content)
-      end)
-
-    notify_parent(socket, Enum.at(result, 0))
-  end
-
-  defp local_upload(socket) do
-    case consume_uploaded_entries(socket, :file, &consume_entry/2) do
-      [] -> :ok
-      [upload_path] -> notify_parent(socket, upload_path)
-    end
-  end
-
-  # sobelow_skip ["Traversal.FileModule"]
-  defp consume_entry(%{path: path}, _entry) do
-    dest = Path.join([:code.priv_dir(:zoonk), "static", "uploads", Path.basename(path)])
-
-    File.cp!(path, dest)
-    file_name = Path.basename(dest)
-
-    {:ok, ~p"/uploads/#{file_name}"}
   end
 
   # Since we only allow uploading one file, we only care about the first entry.
@@ -133,4 +115,6 @@ defmodule ZoonkWeb.Components.Upload do
   defp error_to_string(:too_large), do: dgettext("errors", "Too large")
   defp error_to_string(:not_accepted), do: dgettext("errors", "You have selected an unacceptable file type")
   defp error_to_string(:too_many_files), do: dgettext("errors", "You have selected too many files")
+
+  defp get_bucket, do: Application.get_env(:zoonk, :storage)[:bucket]
 end

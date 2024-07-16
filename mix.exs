@@ -45,6 +45,8 @@ defmodule Zoonk.MixProject do
       {:dns_cluster, "~> 0.1.3"},
       {:ecto_sql, "~> 3.11.3"},
       {:esbuild, "~> 0.8.1", runtime: Mix.env() == :dev},
+      {:ex_aws, "~> 2.5.4"},
+      {:ex_aws_s3, "~> 2.5.3"},
       {:finch, "~> 0.18"},
       {:floki, "~> 0.36.2", only: :test},
       {:gettext, "~> 0.24.0"},
@@ -66,6 +68,8 @@ defmodule Zoonk.MixProject do
       {:sentry, "~> 10.6.1"},
       {:sobelow, "~> 0.13.0", only: [:dev, :test], runtime: false},
       {:styler, "~> 0.11.9", only: [:dev, :test], runtime: false},
+      # required by ex_aws_s3
+      {:sweet_xml, "~> 0.7.4"},
       {:swoosh, "~> 1.16.9"},
       {:tabler_icons, github: "tabler/tabler-icons", tag: "v3.10.0", sparse: "icons", app: false, compile: false, depth: 1},
       {:tailwind, "~> 0.2.3", runtime: Mix.env() == :dev},

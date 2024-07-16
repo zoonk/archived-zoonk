@@ -7,6 +7,7 @@ defmodule ZoonkWeb.Components.Dashboard.StepImage do
   alias Zoonk.Content.Course
   alias Zoonk.Content.Lesson
   alias Zoonk.Content.LessonStep
+  alias ZoonkWeb.Shared.Storage
 
   attr :course, Course, required: true
   attr :lesson, Lesson, required: true
@@ -22,7 +23,7 @@ defmodule ZoonkWeb.Components.Dashboard.StepImage do
         patch={~p"/dashboard/c/#{@course.slug}/l/#{@lesson.id}/s/#{@step.order}/image"}
         class="block"
       >
-        <img src={get_image_url(@step.image, "lessonStep")} class="aspect-square w-full object-cover sm:w-[250px]" />
+        <img src={Storage.get_url(@step.image)} class="aspect-square w-full object-cover sm:w-[250px]" />
       </.link>
 
       <.link
