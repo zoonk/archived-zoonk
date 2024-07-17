@@ -12,7 +12,7 @@ defmodule UserSeed do
       date_of_birth: "1979-03-14",
       language: :en,
       password: "Demo1234",
-      avatar: "/uploads/seed/users/einstein.jpeg"
+      avatar: nil
     },
     %{
       first_name: "Marie",
@@ -22,7 +22,7 @@ defmodule UserSeed do
       date_of_birth: "1967-11-07",
       language: :en,
       password: "Demo1234",
-      avatar: "/uploads/seed/users/curie.jpeg"
+      avatar: nil
     },
     %{
       first_name: "Isaac",
@@ -32,7 +32,7 @@ defmodule UserSeed do
       date_of_birth: "1943-01-04",
       language: :en,
       password: "Demo1234",
-      avatar: "/uploads/seed/users/newton.jpeg"
+      avatar: nil
     },
     %{
       first_name: "Ada",
@@ -42,7 +42,7 @@ defmodule UserSeed do
       date_of_birth: "1915-12-10",
       language: :en,
       password: "Demo1234",
-      avatar: "/uploads/seed/users/lovelace.jpeg"
+      avatar: nil
     },
     %{
       first_name: "Nikola",
@@ -52,7 +52,7 @@ defmodule UserSeed do
       date_of_birth: "1956-07-10",
       language: :en,
       password: "Demo1234",
-      avatar: "/uploads/seed/users/tesla.jpeg"
+      avatar: nil
     },
     %{
       first_name: "Rosie",
@@ -62,7 +62,7 @@ defmodule UserSeed do
       date_of_birth: "1970-07-25",
       language: :en,
       password: "Demo1234",
-      avatar: "/uploads/seed/users/franklin.jpeg"
+      avatar: nil
     },
     %{
       first_name: "Louis",
@@ -72,7 +72,7 @@ defmodule UserSeed do
       date_of_birth: "1992-12-27",
       language: :en,
       password: "Demo1234",
-      avatar: "/uploads/seed/users/pasteur.jpeg"
+      avatar: nil
     },
     %{
       first_name: "Leonardo",
@@ -82,7 +82,7 @@ defmodule UserSeed do
       date_of_birth: "1952-04-15",
       language: :en,
       password: "Demo1234",
-      avatar: "/uploads/seed/users/davinci.jpeg"
+      avatar: nil
     },
     %{
       first_name: "Jane",
@@ -92,7 +92,7 @@ defmodule UserSeed do
       date_of_birth: "1984-04-03",
       language: :en,
       password: "Demo1234",
-      avatar: "/uploads/seed/users/goodall.jpeg"
+      avatar: nil
     }
   ]
 

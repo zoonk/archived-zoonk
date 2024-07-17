@@ -89,14 +89,8 @@ defmodule ZoonkWeb.Components.Upload do
   defp handle_progress(_key, %{done?: true}, socket) do
     [file | _] =
       consume_uploaded_entries(socket, :file, fn %{path: path}, _entry ->
-        file_name = Path.basename(path)
-
-        path
-        |> ExAws.S3.Upload.stream_file()
-        |> ExAws.S3.upload(get_bucket(), file_name)
-        |> ExAws.request!()
-
-        {:ok, file_name}
+        Storage.upload(path)
+        {:ok, Path.basename(path)}
       end)
 
     notify_parent(socket, file)
@@ -115,6 +109,4 @@ defmodule ZoonkWeb.Components.Upload do
   defp error_to_string(:too_large), do: dgettext("errors", "Too large")
   defp error_to_string(:not_accepted), do: dgettext("errors", "You have selected an unacceptable file type")
   defp error_to_string(:too_many_files), do: dgettext("errors", "You have selected too many files")
-
-  defp get_bucket, do: Application.get_env(:zoonk, :storage)[:bucket]
 end

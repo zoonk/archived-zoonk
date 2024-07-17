@@ -19,7 +19,6 @@ ARG RUNNER_IMAGE="debian:${DEBIAN_VERSION}"
 
 FROM ${BUILDER_IMAGE} as builder
 
-ARG CSP_CONNECT_SRC
 ARG SENTRY_DSN
 
 # install build dependencies
@@ -35,7 +34,6 @@ RUN mix local.hex --force && \
 
 # set build ENV
 ENV MIX_ENV="prod"
-ENV CSP_CONNECT_SRC="${CSP_CONNECT_SRC}"
 ENV SENTRY_DSN="${SENTRY_DSN}"
 
 # install mix dependencies

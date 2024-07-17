@@ -14,7 +14,6 @@ defmodule CourseSeed do
     %{
       name: "Zoonk for learners",
       description: "Learn how you can use Zoonk to learn new skills.",
-      cover: "/uploads/seed/courses/zoonk_for_learners.avif",
       language: :en,
       level: :beginner,
       public?: true,
@@ -25,7 +24,6 @@ defmodule CourseSeed do
     %{
       name: "Accounting processes",
       description: "Learn how to manage accounting processes.",
-      cover: "/uploads/seed/courses/accounting_processes.avif",
       language: :en,
       level: :advanced,
       public?: false,
@@ -36,7 +34,7 @@ defmodule CourseSeed do
     %{
       name: "GDPR",
       description: "Learn how to manage GDPR.",
-      cover: "/uploads/seed/courses/gdpr.avif",
+      cover: nil,
       language: :en,
       level: :intermediate,
       public?: false,
@@ -70,14 +68,14 @@ defmodule CourseSeed do
 
   @lessons [
     %{
-      cover: "/uploads/seed/courses/robot.png",
+      cover: nil,
       description: "This is the example of the first lesson",
       name: "First lesson",
       order: 1,
       published?: true
     },
     %{
-      cover: "/uploads/seed/courses/mars.png",
+      cover: nil,
       description: "This is the example of the second lesson",
       name: "Second lesson",
       order: 2,
@@ -96,7 +94,7 @@ defmodule CourseSeed do
     %{
       content: "We can also have images:",
       kind: :quiz,
-      image: "/uploads/seed/courses/robot.png",
+      image: nil,
       order: 2
     },
     %{content: "Now should we ask users a question?", kind: :quiz, order: 3},
@@ -107,12 +105,12 @@ defmodule CourseSeed do
     %{
       feedback: "Oops... Try again!",
       title: "Wrong answer",
-      image: "/uploads/seed/courses/robot.png"
+      image: nil
     },
     %{
       feedback: "Great job!",
       title: "Correct answer",
-      image: "/uploads/seed/courses/mars.png",
+      image: nil,
       correct?: true
     }
   ]

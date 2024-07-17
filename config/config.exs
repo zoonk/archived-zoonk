@@ -38,7 +38,7 @@ config :zoonk, ZoonkWeb.Gettext, default_locale: "en", locales: ~w(en pt)
 config :esbuild,
   version: "0.21.5",
   default: [
-    args: ~w(js/app.js --bundle --target=es2017 --outdir=../priv/static/assets --external:/fonts/* --external:/audios/* --external:/images/* --external:/uploads/*),
+    args: ~w(js/app.js --bundle --target=es2017 --outdir=../priv/static/assets --external:/fonts/* --external:/audios/* --external:/images/*),
     cd: Path.expand("../assets", __DIR__),
     env: %{"NODE_PATH" => Path.expand("../deps", __DIR__)}
   ]
@@ -62,6 +62,11 @@ config :logger, :console,
 
 # Use Jason for JSON parsing in Phoenix
 config :phoenix, :json_library, Jason
+
+# Storage config
+config :zoonk, :storage,
+  bucket: System.get_env("AWS_BUCKET"),
+  domain: System.get_env("AWS_CDN_URL") || System.get_env("AWS_ENDPOINT_URL_S3")
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.

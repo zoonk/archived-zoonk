@@ -21,10 +21,8 @@ if System.get_env("PHX_SERVER") do
 end
 
 # Remove the https:// from the beginning of the AWS_ENDPOINT_URL_S3
-aws_endpoint_url = String.replace(System.get_env("AWS_ENDPOINT_URL_S3"), "https://", "")
-
-# When the cdn url isn't configured, use the s3 endpoint url
-cdn_url = System.get_env("AWS_CDN_URL") || aws_endpoint_url
+aws_endpoint_url = System.get_env("AWS_ENDPOINT_URL_S3")
+aws_host = if aws_endpoint_url, do: String.replace(aws_endpoint_url, "https://", "")
 
 if config_env() in [:prod, :dev] do
   # AWS configuration
@@ -36,12 +34,8 @@ if config_env() in [:prod, :dev] do
 
   config :ex_aws, :s3,
     scheme: "https://",
-    host: aws_endpoint_url,
+    host: aws_host,
     region: System.get_env("AWS_REGION")
-
-  config :zoonk, :storage,
-    bucket: System.get_env("AWS_BUCKET"),
-    domain: cdn_url
 end
 
 if config_env() == :prod do

@@ -35,7 +35,17 @@ defmodule ZoonkWeb.Shared.Storage do
   @spec get_url(String.t()) :: String.t()
   def get_url(key), do: "#{bucket_url()}/#{key}"
 
+  @doc """
+  Gets the CDN domain of the storage service.
+
+  ## Examples
+
+      iex> Storage.get_domain()
+      "https://cdn.zoonk.io"
+  """
+  @spec get_domain() :: String.t()
+  def get_domain, do: Application.get_env(:zoonk, :storage)[:domain]
+
   defp get_bucket, do: Application.get_env(:zoonk, :storage)[:bucket]
-  defp get_domain, do: Application.get_env(:zoonk, :storage)[:domain]
   defp bucket_url, do: "#{get_domain()}/#{get_bucket()}"
 end
