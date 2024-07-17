@@ -46,7 +46,7 @@ defmodule ZoonkWeb.Components.Input do
 
   def input(%{field: %FormField{} = field} = assigns) do
     errors = if Phoenix.Component.used_input?(field), do: field.errors, else: []
-    aria_describedby = if errors != [], do: "#{field.id}-error"
+    aria_describedby = unless errors == [], do: "#{field.id}-error"
 
     assigns
     |> assign(field: nil, id: assigns.id || field.id)

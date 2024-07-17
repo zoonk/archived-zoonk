@@ -75,13 +75,6 @@
           {Credo.Check.Consistency.SpaceInParentheses, []},
           {Credo.Check.Consistency.TabsOrSpaces, []},
 
-          #
-          ## Design Checks
-          #
-          # You can customize the priority of any check
-          # Priority values are: `low, normal, high, higher`
-          #
-          {Credo.Check.Design.AliasUsage, [priority: :low, if_nested_deeper_than: 2, if_called_more_often_than: 0]},
           # You can also customize the exit_status of each check.
           # If you don't want TODO comments to cause `mix credo` to fail, just
           # set this value to 0 (zero).
@@ -100,7 +93,6 @@
           {Credo.Check.Readability.RedundantBlankLines, []},
           {Credo.Check.Readability.Semicolons, []},
           {Credo.Check.Readability.SpaceAfterCommas, []},
-          {Credo.Check.Readability.StringSigils, []},
           {Credo.Check.Readability.TrailingBlankLine, []},
           {Credo.Check.Readability.TrailingWhiteSpace, []},
           {Credo.Check.Readability.VariableNames, []},
@@ -172,8 +164,6 @@
           #   and be sure to use `mix credo --strict` to see low priority checks)
           #
 
-          # {Credo.Check.Refactor.MapInto, []},
-
           #
           # Custom checks can be created using `mix credo.gen.check`.
           #
@@ -183,30 +173,40 @@
           {Credo.Check.Refactor.AppendSingleItem, []},
           {Credo.Check.Refactor.NegatedIsNil, []},
 
-          # These checks are already done using Styler, so we can safely disable them:
-          {Credo.Check.Consistency.MultiAliasImportRequireUse, []},
-          {Credo.Check.Consistency.ParameterPatternMatching, []},
-          {Credo.Check.Readability.AliasOrder, []},
-          {Credo.Check.Readability.BlockPipe, []},
-          {Credo.Check.Readability.LargeNumbers, []},
-          {Credo.Check.Readability.MaxLineLength, []},
-          {Credo.Check.Readability.ModuleDoc, []},
-          {Credo.Check.Readability.MultiAlias, []},
-          {Credo.Check.Readability.ParenthesesOnZeroArityDefs, []},
-          {Credo.Check.Readability.PipeIntoAnonymousFunctions, []},
-          {Credo.Check.Readability.PreferImplicitTry, []},
-          {Credo.Check.Readability.SinglePipe, []},
-          {Credo.Check.Readability.StrictModuleLayout, []},
-          {Credo.Check.Readability.UnnecessaryAliasExpansion, []},
-          {Credo.Check.Readability.WithSingleClause, []},
-          {Credo.Check.Refactor.CondStatements, []},
-          {Credo.Check.Refactor.MapJoin, []},
-          {Credo.Check.Refactor.NegatedConditionsInUnless, []},
-          {Credo.Check.Refactor.NegatedConditionsWithElse, []},
-          {Credo.Check.Refactor.PipeChainStart, []},
-          {Credo.Check.Refactor.RedundantWithClauseResult, []},
-          {Credo.Check.Refactor.UnlessWithElse, []},
-          {Credo.Check.Refactor.WithClauses, []}
+          # Styler Rewrites
+          #
+          # The following rules are automatically rewritten by Styler and so disabled here to save time
+          # Some of the rules have `priority: :high`, meaning Credo runs them unless we explicitly disable them
+          # (removing them from this file wouldn't be enough, the `false` is required)
+          #
+          {Credo.Check.Consistency.MultiAliasImportRequireUse, false},
+          {Credo.Check.Consistency.ParameterPatternMatching, false},
+          {Credo.Check.Design.AliasUsage, false},
+          {Credo.Check.Readability.AliasOrder, false},
+          {Credo.Check.Readability.BlockPipe, false},
+          {Credo.Check.Readability.LargeNumbers, false},
+          {Credo.Check.Readability.ModuleDoc, false},
+          {Credo.Check.Readability.MultiAlias, false},
+          {Credo.Check.Readability.OneArityFunctionInPipe, false},
+          {Credo.Check.Readability.ParenthesesOnZeroArityDefs, false},
+          {Credo.Check.Readability.PipeIntoAnonymousFunctions, false},
+          {Credo.Check.Readability.PreferImplicitTry, false},
+          {Credo.Check.Readability.SinglePipe, false},
+          {Credo.Check.Readability.StrictModuleLayout, false},
+          {Credo.Check.Readability.StringSigils, false},
+          {Credo.Check.Readability.UnnecessaryAliasExpansion, false},
+          {Credo.Check.Readability.WithSingleClause, false},
+          {Credo.Check.Refactor.CaseTrivialMatches, false},
+          {Credo.Check.Refactor.CondStatements, false},
+          {Credo.Check.Refactor.FilterCount, false},
+          {Credo.Check.Refactor.MapInto, false},
+          {Credo.Check.Refactor.MapJoin, false},
+          {Credo.Check.Refactor.NegatedConditionsInUnless, false},
+          {Credo.Check.Refactor.NegatedConditionsWithElse, false},
+          {Credo.Check.Refactor.PipeChainStart, false},
+          {Credo.Check.Refactor.RedundantWithClauseResult, false},
+          {Credo.Check.Refactor.UnlessWithElse, false},
+          {Credo.Check.Refactor.WithClauses, false}
         ]
       }
     }
