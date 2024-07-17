@@ -142,7 +142,6 @@
           {Credo.Check.Warning.UnsafeExec, []},
 
           # Controversial
-          {Credo.Check.Consistency.UnusedVariableNames, [force: :meaningful]},
           {Credo.Check.Design.DuplicatedCode, []},
           {Credo.Check.Design.SkipTestWithoutComment, []},
           {Credo.Check.Readability.AliasAs, []},
@@ -178,6 +177,7 @@
           #
           # Custom checks can be created using `mix credo.gen.check`.
           #
+          {Credo.Check.Consistency.UnusedVariableNames, []},
           {Credo.Check.Refactor.ModuleDependencies, []},
           {Credo.Check.Warning.LazyLogging, []},
           {Credo.Check.Refactor.AppendSingleItem, []},
