@@ -25,6 +25,24 @@ defmodule ZoonkWeb.Shared.Storage do
   end
 
   @doc """
+  Deletes a file from the storage service.
+
+  ## Examples
+
+      iex> Storage.delete("key")
+      {:ok, %{}}
+
+      iex> Storage.delete("key")
+      {:error, %{}}
+  """
+  @spec delete(String.t()) :: {:ok, term()} | {:error, term()}
+  def delete(key) do
+    get_bucket()
+    |> S3.delete_object(key)
+    |> ExAws.request()
+  end
+
+  @doc """
   Gets the URL of a file from the storage service.
 
   ## Examples

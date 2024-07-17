@@ -76,8 +76,14 @@ defmodule ZoonkWeb.Components.Upload do
   end
 
   def handle_event("remove", _params, socket) do
-    notify_parent(socket, nil)
-    {:noreply, socket}
+    case Storage.delete(socket.assigns.current_img) do
+      {:ok, _} ->
+        notify_parent(socket, nil)
+        {:noreply, socket}
+
+      {:error, _} ->
+        {:noreply, put_flash(socket, :error, dgettext("errors", "Failed to remove file"))}
+    end
   end
 
   defp notify_parent(socket, upload_path) do
