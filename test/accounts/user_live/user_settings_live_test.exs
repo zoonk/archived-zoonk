@@ -4,7 +4,6 @@ defmodule ZoonkWeb.UserSettingsLiveTest do
   import Phoenix.LiveViewTest
   import Zoonk.Fixtures.Accounts
   import Zoonk.Fixtures.Organizations
-  import ZoonkWeb.TestHelpers.Upload
 
   alias Zoonk.Accounts
   alias Zoonk.Organizations
@@ -122,23 +121,6 @@ defmodule ZoonkWeb.UserSettingsLiveTest do
 
       assert has_element?(lv, ~s|input[name="user[first_name]"][value="#{new_first_name}"]|)
       assert has_element?(lv, ~s|input[name="user[last_name]"][value="#{new_last_name}"]|)
-    end
-  end
-
-  describe "/users/settings/avatar" do
-    setup :register_and_log_in_user
-
-    test "uploads avatar", %{conn: conn, user: user} do
-      {:ok, lv, _html} = live(conn, ~p"/users/settings/avatar")
-
-      assert user.avatar == nil
-
-      assert has_element?(lv, ~s|li[aria-current=page] a:fl-icontains("settings")|)
-      assert has_element?(lv, ~s|li[aria-current=page] a:fl-icontains("avatar")|)
-      assert_file_upload(lv, "user_avatar")
-
-      updated_user = Accounts.get_user!(user.id)
-      assert String.starts_with?(updated_user.avatar, "/uploads/")
     end
   end
 

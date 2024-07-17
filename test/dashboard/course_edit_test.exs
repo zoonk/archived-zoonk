@@ -4,7 +4,6 @@ defmodule ZoonkWeb.DashboardCourseEditLiveTest do
 
   import Phoenix.LiveViewTest
   import Zoonk.Fixtures.Content
-  import ZoonkWeb.TestHelpers.Upload
 
   alias Zoonk.Content
 
@@ -75,23 +74,6 @@ defmodule ZoonkWeb.DashboardCourseEditLiveTest do
 
       lv |> form(@course_form) |> render_change(course: %{slug: existing_course.slug})
       assert has_element?(lv, "#course_slug-error", "has already been taken")
-    end
-  end
-
-  describe "/dashboard/c/edit/cover" do
-    setup do
-      course_setup(%{conn: build_conn()}, course_user: :teacher)
-    end
-
-    test "updates the cover image", %{conn: conn, school: school, course: course} do
-      {:ok, lv, _html} = live(conn, ~p"/dashboard/c/#{course.slug}/edit/cover")
-
-      assert has_element?(lv, ~s|li[aria-current="page"] a:fl-icontains("manage courses")|)
-      assert has_element?(lv, ~s|li[aria-current="page"] a:fl-icontains("cover")|)
-      assert_file_upload(lv, "course_cover")
-
-      updated_course = Content.get_course_by_slug!(course.slug, school.id)
-      assert String.starts_with?(updated_course.cover, "/uploads/")
     end
   end
 

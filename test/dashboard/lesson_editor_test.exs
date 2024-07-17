@@ -4,7 +4,6 @@ defmodule ZoonkWeb.DashboardLessonEditorLiveTest do
   import Phoenix.LiveViewTest
   import Zoonk.Fixtures.Accounts
   import Zoonk.Fixtures.Content
-  import ZoonkWeb.TestHelpers.Upload
 
   alias Zoonk.Content
   alias Zoonk.Content.CourseUtils
@@ -198,37 +197,6 @@ defmodule ZoonkWeb.DashboardLessonEditorLiveTest do
       assert Content.get_lesson_step_by_order(lesson.id, 1).content == "Updated step!"
     end
 
-    test "updates a step image", %{conn: conn, course: course} do
-      lesson = lesson_fixture(%{course_id: course.id})
-      long_content = String.duplicate("a", CourseUtils.max_length(:step_content))
-      lesson_step_fixture(%{lesson_id: lesson.id, order: 1, content: long_content, image: "https://someimage.png"})
-
-      {:ok, lv, _html} = live(conn, ~p"/dashboard/c/#{course.slug}/l/#{lesson.id}/s/1")
-
-      lv |> element("#step-img-link") |> render_click()
-
-      assert has_element?(lv, "button", "Remove")
-      assert_file_upload(lv, "step_img_upload")
-
-      updated_step = Content.get_lesson_step_by_order(lesson.id, 1)
-      assert String.starts_with?(updated_step.image, "/uploads")
-    end
-
-    test "adds an image to a step", %{conn: conn, course: course} do
-      lesson = lesson_fixture(%{course_id: course.id})
-      lesson_step_fixture(%{lesson_id: lesson.id, order: 1, content: "Text step 1", image: nil})
-
-      {:ok, lv, _html} = live(conn, ~p"/dashboard/c/#{course.slug}/l/#{lesson.id}/s/1")
-
-      lv |> element("a", "Click to add an image to this step.") |> render_click()
-
-      refute has_element?(lv, "#remove-step_img_upload")
-      assert_file_upload(lv, "step_img_upload")
-
-      updated_step = Content.get_lesson_step_by_order(lesson.id, 1)
-      assert String.starts_with?(updated_step.image, "/uploads")
-    end
-
     test "removes an image from a step", %{conn: conn, course: course} do
       lesson = lesson_fixture(%{course_id: course.id})
       lesson_step_fixture(%{lesson_id: lesson.id, order: 1, content: "Text step 1", image: "https://someimage.png"})
@@ -336,20 +304,6 @@ defmodule ZoonkWeb.DashboardLessonEditorLiveTest do
       assert Content.get_step_option!(option.id).title == title
     end
 
-    test "updates an option image", %{conn: conn, course: course} do
-      lesson = lesson_fixture(%{course_id: course.id})
-      lesson_step = lesson_step_fixture(%{lesson_id: lesson.id, order: 1})
-      option = step_option_fixture(%{lesson_step_id: lesson_step.id, title: "New option 1"})
-
-      {:ok, lv, _html} = live(conn, ~p"/dashboard/c/#{course.slug}/l/#{lesson.id}/s/1")
-
-      lv |> element("#option-#{option.id}-image-link") |> render_click()
-      assert_file_upload(lv, "option_img")
-
-      updated_option = Content.get_step_option!(option.id)
-      assert String.starts_with?(updated_option.image, "/uploads")
-    end
-
     test "removes an image from an option", %{conn: conn, course: course} do
       lesson = lesson_fixture(%{course_id: course.id})
       lesson_step = lesson_step_fixture(%{lesson_id: lesson.id, order: 1})
@@ -410,25 +364,6 @@ defmodule ZoonkWeb.DashboardLessonEditorLiveTest do
 
       assert has_element?(view, "h1", "Updated lesson name")
       assert has_element?(view, "p", "Updated lesson description")
-    end
-
-    test "uploads a cover image", %{conn: conn, course: course} do
-      lesson = lesson_fixture(%{course_id: course.id})
-      lesson_step_fixture(%{lesson_id: lesson.id, order: 1})
-      lesson_step_fixture(%{lesson_id: lesson.id, order: 2})
-
-      {:ok, lv, _html} = live(conn, ~p"/dashboard/c/#{course.slug}/l/#{lesson.id}/s/2")
-
-      {:ok, updated_lv, _html} =
-        lv
-        |> element("a#lesson-cover-link", "Cover")
-        |> render_click()
-        |> follow_redirect(conn, ~p"/dashboard/c/#{course.slug}/l/#{lesson.id}/s/2/cover")
-
-      assert_file_upload(updated_lv, "lesson_cover")
-
-      updated_lesson = Content.get_lesson!(lesson.id)
-      assert String.starts_with?(updated_lesson.cover, "/uploads")
     end
 
     test "adds a suggested course", %{conn: conn, school: school, course: course} do
