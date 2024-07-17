@@ -6,7 +6,7 @@ defmodule ZoonkWeb.Components.Avatar do
   """
   use Phoenix.Component
 
-  alias ZoonkWeb.Shared.Storage
+  alias Zoonk.Storage
 
   @doc """
   Renders an avatar element.

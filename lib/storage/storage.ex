@@ -1,4 +1,4 @@
-defmodule ZoonkWeb.Shared.Storage do
+defmodule Zoonk.Storage do
   @moduledoc """
   Provides a way to upload files to the storage service.
   """
@@ -86,7 +86,7 @@ end
 defmodule Zoonk.ExternalStorageAPI do
   @moduledoc false
   alias ExAws.S3
-  alias ZoonkWeb.Shared.Storage
+  alias Zoonk.Storage
 
   @spec upload(String.t()) :: {:ok, term()} | {:error, term()}
   def upload(file_path) do

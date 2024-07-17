@@ -7,7 +7,7 @@ defmodule ZoonkWeb.Components.Dashboard.StepImage do
   alias Zoonk.Content.Course
   alias Zoonk.Content.Lesson
   alias Zoonk.Content.LessonStep
-  alias ZoonkWeb.Shared.Storage
+  alias Zoonk.Storage
 
   attr :course, Course, required: true
   attr :lesson, Lesson, required: true

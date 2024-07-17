@@ -5,7 +5,7 @@ defmodule ZoonkWeb.Components.Content.CourseList do
   use ZoonkWeb, :html
 
   alias Zoonk.Content.CourseUtils
-  alias ZoonkWeb.Shared.Storage
+  alias Zoonk.Storage
 
   attr :id, :string, required: true
   attr :courses, :list, required: true

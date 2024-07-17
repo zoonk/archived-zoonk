@@ -6,7 +6,7 @@ defmodule ZoonkWeb.Components.Content.LessonStep do
 
   alias Zoonk.Content.LessonStep
   alias Zoonk.Content.StepOption
-  alias ZoonkWeb.Shared.Storage
+  alias Zoonk.Storage
   alias ZoonkWeb.Shared.YouTube
 
   attr :step, LessonStep, required: true

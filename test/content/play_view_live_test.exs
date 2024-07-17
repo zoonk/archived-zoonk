@@ -8,7 +8,7 @@ defmodule ZoonkWeb.PlayViewLiveTest do
   alias Zoonk.Content
   alias Zoonk.Content.UserSelection
   alias Zoonk.Repo
-  alias ZoonkWeb.Shared.Storage
+  alias Zoonk.Storage
 
   @select_form "#play"
 

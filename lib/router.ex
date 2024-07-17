@@ -6,11 +6,11 @@ defmodule ZoonkWeb.Router do
   import ZoonkWeb.Plugs.Translate
   import ZoonkWeb.Plugs.UserAuth
 
+  alias Zoonk.Storage
   alias ZoonkWeb.Plugs.Course
   alias ZoonkWeb.Plugs.School
   alias ZoonkWeb.Plugs.Translate
   alias ZoonkWeb.Plugs.UserAuth
-  alias ZoonkWeb.Shared.Storage
 
   @nonce 10 |> :crypto.strong_rand_bytes() |> Base.url_encode64(padding: false)
 

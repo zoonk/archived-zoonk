@@ -4,7 +4,7 @@ defmodule ZoonkWeb.Live.CourseView do
 
   alias Zoonk.Content
   alias Zoonk.Content.CourseUtils
-  alias ZoonkWeb.Shared.Storage
+  alias Zoonk.Storage
 
   @impl Phoenix.LiveView
   def mount(_params, _session, socket) do

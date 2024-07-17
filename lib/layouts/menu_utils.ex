@@ -4,7 +4,7 @@ defmodule ZoonkWeb.Layouts.MenuUtils do
 
   alias Zoonk.Content.Course
   alias Zoonk.Organizations.School
-  alias ZoonkWeb.Shared.Storage
+  alias Zoonk.Storage
 
   @spec school_name(School.t() | nil) :: String.t()
   def school_name(nil), do: "Zoonk"

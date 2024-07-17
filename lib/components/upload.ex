@@ -4,7 +4,7 @@ defmodule ZoonkWeb.Components.Upload do
   """
   use ZoonkWeb, :live_component
 
-  alias ZoonkWeb.Shared.Storage
+  alias Zoonk.Storage
 
   attr :current_img, :string, default: nil
   attr :label, :string, default: nil

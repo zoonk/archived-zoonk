@@ -5,7 +5,7 @@ defmodule ZoonkWeb.UserLoginLiveTest do
   import Zoonk.Fixtures.Accounts
   import Zoonk.Fixtures.Organizations
 
-  alias ZoonkWeb.Shared.Storage
+  alias Zoonk.Storage
 
   describe "Log in page" do
     test "renders log in page", %{conn: conn} do
