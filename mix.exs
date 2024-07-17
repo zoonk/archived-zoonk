@@ -37,7 +37,6 @@ defmodule Zoonk.MixProject do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
-      {:aws_signature, "~> 0.3.2"},
       {:bandit, "~> 1.5.5"},
       {:bcrypt_elixir, "~> 3.0"},
       {:credo, "~> 1.7.7", only: [:dev, :test], runtime: false},
@@ -53,9 +52,8 @@ defmodule Zoonk.MixProject do
       {:hackney, "~> 1.20.1"},
       {:jason, "~> 1.2"},
       {:mix_audit, "~> 2.1.2", only: [:dev, :test], runtime: false},
-      {:multipart, "~> 0.4.0"},
-      {:mock, "~> 0.3.0", only: :test},
       {:money, "~> 1.12.4"},
+      {:mox, "~> 1.1.0", only: :test},
       {:phoenix_ecto, "~> 4.6.1"},
       {:phoenix_html, "~> 4.1.1"},
       {:phoenix_live_dashboard, "~> 0.8.4"},

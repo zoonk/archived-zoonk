@@ -1,6 +1,7 @@
 defmodule ZoonkWeb.DashboardLessonEditorLiveTest do
   use ZoonkWeb.ConnCase, async: true
 
+  import Mox
   import Phoenix.LiveViewTest
   import Zoonk.Fixtures.Accounts
   import Zoonk.Fixtures.Content
@@ -10,6 +11,8 @@ defmodule ZoonkWeb.DashboardLessonEditorLiveTest do
   alias Zoonk.Content.LessonStep
 
   @lesson_form "#lesson-form"
+
+  setup :verify_on_exit!
 
   describe "lesson view (non-authenticated user)" do
     setup :set_school
@@ -198,6 +201,8 @@ defmodule ZoonkWeb.DashboardLessonEditorLiveTest do
     end
 
     test "removes an image from a step", %{conn: conn, course: course} do
+      expect(Zoonk.MockStorage, :delete, fn _key -> {:ok, %{}} end)
+
       lesson = lesson_fixture(%{course_id: course.id})
       lesson_step_fixture(%{lesson_id: lesson.id, order: 1, content: "Text step 1", image: "https://someimage.png"})
 
@@ -305,6 +310,8 @@ defmodule ZoonkWeb.DashboardLessonEditorLiveTest do
     end
 
     test "removes an image from an option", %{conn: conn, course: course} do
+      expect(Zoonk.MockStorage, :delete, fn _key -> {:ok, %{}} end)
+
       lesson = lesson_fixture(%{course_id: course.id})
       lesson_step = lesson_step_fixture(%{lesson_id: lesson.id, order: 1})
       option = step_option_fixture(%{lesson_step_id: lesson_step.id, title: "New option 1", image: "https://someimage.png"})
