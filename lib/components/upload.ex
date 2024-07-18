@@ -4,7 +4,8 @@ defmodule ZoonkWeb.Components.Upload do
   """
   use ZoonkWeb, :live_component
 
-  alias Zoonk.Storage
+  alias Zoonk.Storage.ImageOptimizer
+  alias Zoonk.Storage.StorageAPI
 
   attr :current_img, :string, default: nil
   attr :label, :string, default: nil
@@ -29,7 +30,7 @@ defmodule ZoonkWeb.Components.Upload do
 
       <div class="container flex flex-col space-y-8">
         <div class="flex items-center space-x-6">
-          <img :if={is_binary(@current_img)} alt={@label} src={Storage.get_url(@current_img)} class="w-16 rounded-xl object-cover" />
+          <img :if={is_binary(@current_img)} alt={@label} src={StorageAPI.get_url(@current_img)} class="w-16 rounded-xl object-cover" />
 
           <.live_file_input
             upload={@uploads.file}
@@ -76,7 +77,7 @@ defmodule ZoonkWeb.Components.Upload do
   end
 
   def handle_event("remove", _params, socket) do
-    case Storage.delete(socket.assigns.current_img) do
+    case StorageAPI.delete(socket.assigns.current_img) do
       {:ok, _} ->
         notify_parent(socket, nil)
         {:noreply, socket}
@@ -94,11 +95,15 @@ defmodule ZoonkWeb.Components.Upload do
   # Only upload a file to the cloud after the progress is done.
   defp handle_progress(_key, %{done?: true}, socket) do
     [file | _] =
-      consume_uploaded_entries(socket, :file, fn %{path: path}, _entry ->
-        Storage.upload(path)
+      consume_uploaded_entries(socket, :file, fn %{path: path}, entry ->
+        StorageAPI.upload(path, entry.client_type)
         {:ok, Path.basename(path)}
       end)
 
+    # Optimize the image in the background.
+    %{key: file} |> ImageOptimizer.new() |> Oban.insert!()
+
+    # Notify the parent component that the upload is done.
     notify_parent(socket, file)
 
     {:noreply, assign(socket, uploading?: false)}

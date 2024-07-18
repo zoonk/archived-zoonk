@@ -5,7 +5,7 @@ defmodule ZoonkWeb.Components.Content.CourseList do
   use ZoonkWeb, :html
 
   alias Zoonk.Content.CourseUtils
-  alias Zoonk.Storage
+  alias Zoonk.Storage.StorageAPI
 
   attr :id, :string, required: true
   attr :courses, :list, required: true
@@ -27,7 +27,7 @@ defmodule ZoonkWeb.Components.Content.CourseList do
         class="h-60 shadow hover:shadow-lg rounded-2xl relative focus:outline-offset-4 focus:outline-2 focus:outline-indigo-500"
       >
         <% course = if @my_courses, do: course_data, else: course_data.data %>
-        <img :if={course.cover} src={Storage.get_url(course.cover)} class="h-full w-full rounded-2xl object-cover" />
+        <img :if={course.cover} src={StorageAPI.get_url(course.cover)} class="h-full w-full rounded-2xl object-cover" />
         <div :if={is_nil(course.cover)} class="h-full w-full rounded-2xl bg-gradient-to-br from-pink-50 to-cyan-50" />
 
         <div class="absolute right-4 bottom-4 left-4 flex min-w-0 flex-col justify-between rounded-2xl bg-white p-4 pb-1 text-sm">

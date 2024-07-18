@@ -50,6 +50,7 @@ defmodule Zoonk.MixProject do
       {:floki, "~> 0.36.2", only: :test},
       {:gettext, "~> 0.24.0"},
       {:hackney, "~> 1.20.1"},
+      {:image, "~> 0.53.0"},
       {:jason, "~> 1.2"},
       {:mix_audit, "~> 2.1.2", only: [:dev, :test], runtime: false},
       {:money, "~> 1.12.4"},

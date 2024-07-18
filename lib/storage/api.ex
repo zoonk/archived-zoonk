@@ -1,10 +1,10 @@
-defmodule Zoonk.Storage do
+defmodule Zoonk.Storage.StorageAPI do
   @moduledoc """
   Provides a way to upload files to the storage service.
   """
   alias ExAws.S3
 
-  @callback upload(String.t()) :: {:ok, term()} | {:error, term()}
+  @callback upload(String.t(), String.t()) :: {:ok, term()} | {:error, term()}
   @callback delete(String.t()) :: {:ok, term()} | {:error, term()}
 
   @doc """
@@ -12,24 +12,24 @@ defmodule Zoonk.Storage do
 
   ## Examples
 
-      iex> Storage.upload("path/to/file")
+      iex> StorageAPI.upload("path/to/file", "image/webp")
       {:ok, %{}}
 
-      iex> Storage.upload("path/to/file")
+      iex> StorageAPI.upload("path/to/file", "image/webp")
       {:error, %{}}
   """
-  @spec upload(String.t()) :: {:ok, term()} | {:error, term()}
-  def upload(file_path), do: impl().upload(file_path)
+  @spec upload(String.t(), String.t()) :: {:ok, term()} | {:error, term()}
+  def upload(file_path, content_type), do: impl().upload(file_path, content_type)
 
   @doc """
   Deletes a file from the storage service.
 
   ## Examples
 
-      iex> Storage.delete("key")
+      iex> StorageAPI.delete("key")
       {:ok, %{}}
 
-      iex> Storage.delete("key")
+      iex> StorageAPI.delete("key")
       {:error, %{}}
   """
   @spec delete(String.t()) :: {:ok, term()} | {:error, term()}
@@ -40,7 +40,7 @@ defmodule Zoonk.Storage do
 
   ## Examples
 
-      iex> Storage.get_url("key")
+      iex> StorageAPI.get_url("key")
       "https://cdn.zoonk.io/bucket/key"
   """
   @spec get_url(String.t()) :: String.t()
@@ -51,7 +51,7 @@ defmodule Zoonk.Storage do
 
   ## Examples
 
-      iex> Storage.get_domain()
+      iex> StorageAPI.get_domain()
       "https://cdn.zoonk.io"
   """
   @spec get_domain() :: String.t()
@@ -62,7 +62,7 @@ defmodule Zoonk.Storage do
 
   ## Examples
 
-      iex> Storage.get_bucket()
+      iex> StorageAPI.get_bucket()
       "zoonkdev"
   """
   @spec get_bucket() :: String.t()
@@ -73,7 +73,7 @@ defmodule Zoonk.Storage do
 
   ## Examples
 
-      iex> Storage.bucket_url()
+      iex> StorageAPI.bucket_url()
       "https://cdn.zoonk.io/zoonkdev"
   """
   @spec bucket_url() :: String.t()
@@ -86,19 +86,19 @@ end
 defmodule Zoonk.ExternalStorageAPI do
   @moduledoc false
   alias ExAws.S3
-  alias Zoonk.Storage
+  alias Zoonk.Storage.StorageAPI
 
-  @spec upload(String.t()) :: {:ok, term()} | {:error, term()}
-  def upload(file_path) do
+  @spec upload(String.t(), String.t()) :: {:ok, term()} | {:error, term()}
+  def upload(file_path, content_type) do
     file_path
     |> S3.Upload.stream_file()
-    |> S3.upload(Storage.get_bucket(), Path.basename(file_path))
+    |> S3.upload(StorageAPI.get_bucket(), Path.basename(file_path), content_type: content_type)
     |> ExAws.request()
   end
 
   @spec delete(String.t()) :: {:ok, term()} | {:error, term()}
   def delete(key) do
-    Storage.get_bucket()
+    StorageAPI.get_bucket()
     |> S3.delete_object(key)
     |> ExAws.request()
   end

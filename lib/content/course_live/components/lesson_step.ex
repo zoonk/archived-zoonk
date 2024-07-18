@@ -6,7 +6,7 @@ defmodule ZoonkWeb.Components.Content.LessonStep do
 
   alias Zoonk.Content.LessonStep
   alias Zoonk.Content.StepOption
-  alias Zoonk.Storage
+  alias Zoonk.Storage.StorageAPI
   alias ZoonkWeb.Shared.YouTube
 
   attr :step, LessonStep, required: true
@@ -15,7 +15,7 @@ defmodule ZoonkWeb.Components.Content.LessonStep do
   def lesson_step(assigns) do
     ~H"""
     <div class="flex w-full flex-col items-center justify-center gap-4">
-      <img :if={@step.image} src={Storage.get_url(@step.image)} class="w-full" />
+      <img :if={@step.image} src={StorageAPI.get_url(@step.image)} class="w-full" />
 
       <blockquote class="w-fit rounded-2xl bg-gray-50 p-4 text-sm leading-6 text-gray-900 sm:text-lg">
         <p><%= YouTube.remove_from_string(@step.content) %></p>

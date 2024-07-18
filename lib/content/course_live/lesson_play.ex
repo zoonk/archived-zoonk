@@ -9,7 +9,7 @@ defmodule ZoonkWeb.Live.LessonPlay do
   alias Zoonk.Content.Lesson
   alias Zoonk.Content.LessonStep
   alias Zoonk.Content.StepOption
-  alias Zoonk.Storage
+  alias Zoonk.Storage.StorageAPI
 
   @impl Phoenix.LiveView
   def mount(_params, _session, socket) do
