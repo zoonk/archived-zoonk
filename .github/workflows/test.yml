@@ -80,7 +80,7 @@ jobs:
       # so we separate the cache restore and save steps in case running dialyzer fails.
       - name: Save PLT cache
         id: plt_cache_save
-        uses: actions/cache/save@v3
+        uses: actions/cache/save@v4
         if: steps.plt_cache.outputs.cache-hit != 'true'
         with:
           key: |
