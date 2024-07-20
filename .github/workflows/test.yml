@@ -71,6 +71,13 @@ jobs:
           path: |
             priv/plts
 
+      - name: Install dependencies
+        run: mix deps.get
+        shell: bash
+
+      - name: Compile app
+        run: mix compile --all-warnings --warnings-as-errors
+
       # Create PLTs if no cache was found
       - name: Create PLTs
         if: steps.plt_cache.outputs.cache-hit != 'true'
@@ -87,13 +94,6 @@ jobs:
             plt-${{ runner.os }}-${{ env.OTP_VERSION }}-${{ env.ELIXIR_VERSION }}-${{ hashFiles('**/mix.lock') }}
           path: |
             priv/plts
-
-      - name: Install dependencies
-        run: mix deps.get
-        shell: bash
-
-      - name: Compile app
-        run: mix compile --all-warnings --warnings-as-errors
 
       - name: Check formatter
         run: mix format --check-formatted
