@@ -58,10 +58,11 @@ config :zoonk, ZoonkWeb.Endpoint,
 
 # Configure translation
 config :zoonk, ZoonkWeb.Gettext, default_locale: "en", locales: ~w(en pt)
-# Import environment specific config. This must remain at the bottom
-# of this file so it overrides the configuration defined above.
+
 config :zoonk,
   ecto_repos: [Zoonk.Repo],
   generators: [timestamp_type: :utc_datetime_usec]
 
+# Import environment specific config. This must remain at the bottom
+# of this file so it overrides the configuration defined above.
 import_config "#{config_env()}.exs"
