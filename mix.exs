@@ -66,7 +66,8 @@ defmodule Zoonk.MixProject do
       {:sobelow, "~> 0.13.0", only: [:dev, :test], runtime: false},
       {:styler, "~> 1.0.0-rc.2", only: [:dev, :test], runtime: false},
       {:swoosh, "~> 1.16.9"},
-      {:tabler_icons, github: "tabler/tabler-icons", tag: "v3.10.0", sparse: "icons", app: false, compile: false, depth: 1},
+      # Using the main branch instead of tags because of the size. Using the tag had over 1gb. Using a branch has less than 60mb.
+      {:tabler_icons, github: "tabler/tabler-icons", branch: "main", sparse: "icons", app: false, compile: false, depth: 1},
       {:tailwind, "~> 0.2.3", runtime: Mix.env() == :dev},
       {:tailwind_formatter, "~> 0.4.0", only: [:dev, :test], runtime: false},
       {:telemetry_metrics, "~> 1.0.0"},
