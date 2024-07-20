@@ -13,6 +13,7 @@ defmodule Zoonk.MixProject do
       dialyzer: [
         plt_add_apps: [:mix],
         plt_file: {:no_warn, "priv/plts/dialyzer.plt"},
+        plt_core_path: "priv/plts/core.plt",
         ignore_warnings: ".dialyzer_ignore.exs"
       ]
     ]

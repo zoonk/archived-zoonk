@@ -1,15 +1,13 @@
 name: Test
 
 on:
-  push:
-    branches:
-      - main
-  pull_request:
+  - push
+  - pull_request
 
 env:
   MIX_ENV: test
-  ELIXIR_VERSION: 1.17.1
   OTP_VERSION: 26.2.5
+  ELIXIR_VERSION: 1.17.1
 
 jobs:
   test:
@@ -61,16 +59,32 @@ jobs:
             ${{ runner.os }}-mix-${{ env.cache-name }}-
             ${{ runner.os }}-mix-
 
-      # Don't cache PLTs based on mix.lock hash, as Dialyzer can incrementally update even old ones
-      # Cache key based on Elixir & Erlang version (also useful when running in matrix)
+      # Cache key based on Erlang/Elixir version and the mix.lock hash
       - name: Restore PLT cache
-        uses: actions/cache@v4
+        uses: actions/cache/restore@v4
         id: plt_cache
         with:
           key: |
-            ${{ runner.os }}-${{ env.ELIXIR_VERSION }}-${{ env.OTP_VERSION }}-plt
+            plt-${{ runner.os }}-${{ env.OTP_VERSION }}-${{ env.ELIXIR_VERSION }}-${{ hashFiles('**/mix.lock') }}
           restore-keys: |
-            ${{ runner.os }}-${{ env.ELIXIR_VERSION }}-${{ env.OTP_VERSION }}-plt
+            plt-${{ runner.os }}-${{ env.OTP_VERSION }}-${{ env.ELIXIR_VERSION }}
+          path: |
+            priv/plts
+
+      # Create PLTs if no cache was found
+      - name: Create PLTs
+        if: steps.plt_cache.outputs.cache-hit != 'true'
+        run: mix dialyzer --plt
+
+      # By default, the GitHub Cache action will only save the cache if all steps in the job succeed,
+      # so we separate the cache restore and save steps in case running dialyzer fails.
+      - name: Save PLT cache
+        id: plt_cache_save
+        uses: actions/cache/save@v3
+        if: steps.plt_cache.outputs.cache-hit != 'true'
+        with:
+          key: |
+            plt-${{ runner.os }}-${{ env.OTP_VERSION }}-${{ env.ELIXIR_VERSION }}-${{ hashFiles('**/mix.lock') }}
           path: |
             priv/plts
 
@@ -98,11 +112,6 @@ jobs:
 
       - name: Scan retired dependencies
         run: mix hex.audit
-
-      # Create PLTs if no cache was found
-      - name: Create PLTs
-        if: steps.plt_cache.outputs.cache-hit != 'true'
-        run: mix dialyzer --plt
 
       - name: Run dialyzer
         run: mix dialyzer --format github
