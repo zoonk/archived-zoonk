@@ -90,6 +90,9 @@ jobs:
       - name: Scan security vulnerabilities
         run: mix sobelow -i Config.HTTPS --skip --exit
 
+      - name: Check unused dependencies
+        run: mix deps.unlock --check-unused
+
       - name: Audit dependencies
         run: mix deps.audit
 
