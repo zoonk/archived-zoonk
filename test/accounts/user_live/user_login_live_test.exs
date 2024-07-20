@@ -42,7 +42,7 @@ defmodule ZoonkWeb.UserLoginLiveTest do
       {:ok, lv, html} = live(conn, ~p"/users/login")
 
       assert has_element?(lv, ~s|img[src="/m_icon.png"]|)
-      assert html =~ "sizes=\"16x16\" href=\"/m_icon.png\"/>"
+      assert html =~ ~s(sizes="16x16" href="/m_icon.png"/>)
     end
   end
 

@@ -65,7 +65,7 @@ defmodule Zoonk.MixProject do
       {:resend, "~> 0.4.2"},
       {:sentry, "~> 10.6.1"},
       {:sobelow, "~> 0.13.0", only: [:dev, :test], runtime: false},
-      {:styler, "~> 0.11.9", only: [:dev, :test], runtime: false},
+      {:styler, "~> 1.0.0-rc.2", only: [:dev, :test], runtime: false},
       {:swoosh, "~> 1.16.9"},
       {:tabler_icons, github: "tabler/tabler-icons", tag: "v3.10.0", sparse: "icons", app: false, compile: false, depth: 1},
       {:tailwind, "~> 0.2.3", runtime: Mix.env() == :dev},

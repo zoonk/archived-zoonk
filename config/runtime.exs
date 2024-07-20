@@ -38,12 +38,6 @@ if config_env() == :prod do
 
   maybe_ipv6 = if System.get_env("ECTO_IPV6") in ~w(true 1), do: [:inet6], else: []
 
-  config :zoonk, Zoonk.Repo,
-    url: database_url,
-    pool_size: String.to_integer(System.get_env("POOL_SIZE") || "10"),
-    socket_options: maybe_ipv6,
-    ssl: [cacerts: :public_key.cacerts_get()]
-
   # The secret key base is used to sign/encrypt cookies and other secrets.
   # A default value is used in config/dev.exs and config/test.exs but you
   # want to use a different value for prod and you most likely don't want
@@ -90,7 +84,24 @@ if config_env() == :prod do
   host = System.get_env("PHX_HOST")
   port = String.to_integer(System.get_env("PORT") || "8080")
 
-  config :zoonk, :dns_cluster_query, System.get_env("DNS_CLUSTER_QUERY")
+  # Sentry configuration
+  config :sentry,
+    dsn: System.get_env("SENTRY_DSN"),
+    environment_name: :prod,
+    enable_source_code_context: true,
+    root_source_code_paths: [File.cwd!()],
+    tags: %{env: :prod}
+
+  ## Configuring the mailer
+  config :zoonk, Zoonk.Mailer,
+    adapter: Resend.Swoosh.Adapter,
+    api_key: System.get_env("RESEND_API_KEY")
+
+  config :zoonk, Zoonk.Repo,
+    url: database_url,
+    pool_size: String.to_integer(System.get_env("POOL_SIZE") || "10"),
+    socket_options: maybe_ipv6,
+    ssl: [cacerts: :public_key.cacerts_get()]
 
   config :zoonk, ZoonkWeb.Endpoint,
     url: [host: host, port: 443, scheme: "https"],
@@ -104,16 +115,5 @@ if config_env() == :prod do
     ],
     secret_key_base: secret_key_base
 
-  ## Configuring the mailer
-  config :zoonk, Zoonk.Mailer,
-    adapter: Resend.Swoosh.Adapter,
-    api_key: System.get_env("RESEND_API_KEY")
-
-  # Sentry configuration
-  config :sentry,
-    dsn: System.get_env("SENTRY_DSN"),
-    environment_name: :prod,
-    enable_source_code_context: true,
-    root_source_code_paths: [File.cwd!()],
-    tags: %{env: :prod}
+  config :zoonk, :dns_cluster_query, System.get_env("DNS_CLUSTER_QUERY")
 end

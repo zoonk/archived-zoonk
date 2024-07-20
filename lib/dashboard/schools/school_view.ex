@@ -10,7 +10,7 @@ defmodule ZoonkWeb.Live.Dashboard.SchoolView do
 
     current_school = Organizations.get_school!(params["id"])
 
-    if school.id != current_school.school_id, do: raise(ZoonkWeb.PermissionError, code: :permission_denied)
+    unless school.id == current_school.school_id, do: raise(ZoonkWeb.PermissionError, code: :permission_denied)
 
     user_count = Organizations.get_school_users_count(current_school.id)
     managers = Organizations.list_school_users(current_school.id, role: :manager)

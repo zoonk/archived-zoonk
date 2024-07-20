@@ -273,7 +273,7 @@ defmodule ZoonkWeb.PlayViewLiveTest do
       step = lesson_step_fixture(%{lesson_id: lesson.id, kind: kind, content: content, image: image, order: order})
 
       # Make sure it works even when the last step doesn't have options.
-      if order != 4, do: generate_options(step, order)
+      unless order == 4, do: generate_options(step, order)
     end)
   end
 
@@ -282,7 +282,7 @@ defmodule ZoonkWeb.PlayViewLiveTest do
   defp generate_options(step, _step_order) do
     Enum.each(1..4, fn order ->
       image = if order == 2, do: "/uploads/img.png"
-      feedback = if order != 1, do: "feedback #{order}!"
+      feedback = unless order == 1, do: "feedback #{order}!"
       correct? = order == 1 or order == 4
 
       step_option_fixture(%{lesson_step_id: step.id, correct?: correct?, image: image, feedback: feedback, title: "option #{order}!"})

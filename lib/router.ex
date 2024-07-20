@@ -6,6 +6,11 @@ defmodule ZoonkWeb.Router do
   import ZoonkWeb.Plugs.Translate
   import ZoonkWeb.Plugs.UserAuth
 
+  alias ZoonkWeb.Plugs.Course
+  alias ZoonkWeb.Plugs.School
+  alias ZoonkWeb.Plugs.Translate
+  alias ZoonkWeb.Plugs.UserAuth
+
   @nonce 10 |> :crypto.strong_rand_bytes() |> Base.url_encode64(padding: false)
   @csp_connect_src Application.compile_env(:zoonk, :csp)[:connect_src]
 
@@ -58,9 +63,9 @@ defmodule ZoonkWeb.Router do
     live_session :redirect_if_user_is_authenticated,
       layout: {ZoonkWeb.Layouts, :auth},
       on_mount: [
-        {ZoonkWeb.Plugs.UserAuth, :redirect_if_user_is_authenticated},
-        {ZoonkWeb.Plugs.School, :mount_school},
-        {ZoonkWeb.Plugs.Translate, :set_locale_from_session}
+        {UserAuth, :redirect_if_user_is_authenticated},
+        {School, :mount_school},
+        {Translate, :set_locale_from_session}
       ] do
       live "/users/register", Registration, :new
       live "/users/login", Login, :new
@@ -75,9 +80,9 @@ defmodule ZoonkWeb.Router do
     live_session :public_routes,
       layout: {ZoonkWeb.Layouts, :auth},
       on_mount: [
-        {ZoonkWeb.Plugs.UserAuth, :mount_current_user},
-        {ZoonkWeb.Plugs.School, :mount_school},
-        {ZoonkWeb.Plugs.Translate, :set_locale_from_session}
+        {UserAuth, :mount_current_user},
+        {School, :mount_school},
+        {Translate, :set_locale_from_session}
       ] do
       live "/users/confirm/:token", UserConfirmation, :edit
       live "/users/confirm", ConfirmationInstructions, :new
@@ -96,11 +101,11 @@ defmodule ZoonkWeb.Router do
 
     live_session :requires_authentication,
       on_mount: [
-        {ZoonkWeb.Plugs.UserAuth, :ensure_authenticated},
-        {ZoonkWeb.Plugs.School, :mount_school},
-        {ZoonkWeb.Plugs.Translate, :set_locale_from_session},
-        {ZoonkWeb.Plugs.Course, :mount_course},
-        {ZoonkWeb.Plugs.Course, :mount_lesson}
+        {UserAuth, :ensure_authenticated},
+        {School, :mount_school},
+        {Translate, :set_locale_from_session},
+        {Course, :mount_course},
+        {Course, :mount_lesson}
       ] do
       live "/contact", Contact
 
@@ -138,9 +143,9 @@ defmodule ZoonkWeb.Router do
     live_session :school_dashboard,
       layout: {ZoonkWeb.Layouts, :dashboard_school},
       on_mount: [
-        {ZoonkWeb.Plugs.UserAuth, :ensure_authenticated},
-        {ZoonkWeb.Plugs.School, :mount_school},
-        {ZoonkWeb.Plugs.Translate, :set_locale_from_session}
+        {UserAuth, :ensure_authenticated},
+        {School, :mount_school},
+        {Translate, :set_locale_from_session}
       ] do
       live "/", Dashboard.Home
       live "/edit/logo", Dashboard.SchoolEdit, :logo
@@ -176,11 +181,11 @@ defmodule ZoonkWeb.Router do
     live_session :course_dashboard,
       layout: {ZoonkWeb.Layouts, :dashboard_course},
       on_mount: [
-        {ZoonkWeb.Plugs.UserAuth, :ensure_authenticated},
-        {ZoonkWeb.Plugs.School, :mount_school},
-        {ZoonkWeb.Plugs.Translate, :set_locale_from_session},
-        {ZoonkWeb.Plugs.Course, :mount_course},
-        {ZoonkWeb.Plugs.Course, :mount_lesson}
+        {UserAuth, :ensure_authenticated},
+        {School, :mount_school},
+        {Translate, :set_locale_from_session},
+        {Course, :mount_course},
+        {Course, :mount_lesson}
       ] do
       live "/courses/new", CourseNew
 
