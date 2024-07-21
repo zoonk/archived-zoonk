@@ -77,10 +77,10 @@ config :zoonk, :storage,
   bucket: System.get_env("AWS_BUCKET"),
   domain: System.get_env("AWS_CDN_URL") || System.get_env("AWS_ENDPOINT_URL_S3")
 
-# Import environment specific config. This must remain at the bottom
-# of this file so it overrides the configuration defined above.
 config :zoonk,
   ecto_repos: [Zoonk.Repo],
   generators: [timestamp_type: :utc_datetime_usec]
 
+# Import environment specific config. This must remain at the bottom
+# of this file so it overrides the configuration defined above.
 import_config "#{config_env()}.exs"
