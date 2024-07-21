@@ -2,16 +2,38 @@ defmodule ZoonkWeb.SchoolUpdateLiveTest do
   @moduledoc false
   use ZoonkWeb.ConnCase, async: true
 
+  import Mox
   import Phoenix.LiveViewTest
   import Zoonk.Fixtures.Organizations
+  import ZoonkWeb.TestHelpers.Upload
 
   alias Zoonk.Organizations
 
   @school_form "#school-form"
 
+  setup :verify_on_exit!
+
   describe "Edit school data" do
     setup do
       app_setup(%{conn: build_conn()}, school_user: :manager)
+    end
+
+    test "updates logo", %{conn: conn, school: school} do
+      mock_storage()
+
+      {:ok, lv, _html} = live(conn, ~p"/dashboard/edit/logo")
+      assert_file_upload(lv, "school_logo")
+
+      assert Organizations.get_school_by_slug!(school.slug).logo == uploaded_file_name()
+    end
+
+    test "updates icon", %{conn: conn, school: school} do
+      mock_storage()
+
+      {:ok, lv, _html} = live(conn, ~p"/dashboard/edit/icon")
+      assert_file_upload(lv, "school_icon")
+
+      assert Organizations.get_school_by_slug!(school.slug).icon == uploaded_file_name()
     end
 
     test "updates slug", %{conn: conn, school: school} do

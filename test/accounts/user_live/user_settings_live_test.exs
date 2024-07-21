@@ -1,14 +1,18 @@
 defmodule ZoonkWeb.UserSettingsLiveTest do
   use ZoonkWeb.ConnCase, async: true
 
+  import Mox
   import Phoenix.LiveViewTest
   import Zoonk.Fixtures.Accounts
   import Zoonk.Fixtures.Organizations
+  import ZoonkWeb.TestHelpers.Upload
 
   alias Zoonk.Accounts
   alias Zoonk.Organizations
 
   @form "#settings-form"
+
+  setup :verify_on_exit!
 
   describe "/users/settings (not authenticated)" do
     test "redirects if user is not logged in", %{conn: conn} do
@@ -121,6 +125,24 @@ defmodule ZoonkWeb.UserSettingsLiveTest do
 
       assert has_element?(lv, ~s|input[name="user[first_name]"][value="#{new_first_name}"]|)
       assert has_element?(lv, ~s|input[name="user[last_name]"][value="#{new_last_name}"]|)
+    end
+  end
+
+  describe "/users/settings/avatar" do
+    setup :register_and_log_in_user
+
+    test "uploads avatar", %{conn: conn, user: user} do
+      mock_storage()
+
+      {:ok, lv, _html} = live(conn, ~p"/users/settings/avatar")
+
+      assert user.avatar == nil
+
+      assert has_element?(lv, ~s|li[aria-current=page] a:fl-icontains("settings")|)
+      assert has_element?(lv, ~s|li[aria-current=page] a:fl-icontains("avatar")|)
+      assert_file_upload(lv, "user_avatar")
+
+      assert Accounts.get_user!(user.id).avatar == uploaded_file_name()
     end
   end
 

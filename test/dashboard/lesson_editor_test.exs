@@ -5,6 +5,7 @@ defmodule ZoonkWeb.DashboardLessonEditorLiveTest do
   import Phoenix.LiveViewTest
   import Zoonk.Fixtures.Accounts
   import Zoonk.Fixtures.Content
+  import ZoonkWeb.TestHelpers.Upload
 
   alias Zoonk.Content
   alias Zoonk.Content.CourseUtils
@@ -395,6 +396,26 @@ defmodule ZoonkWeb.DashboardLessonEditorLiveTest do
       {:ok, updated_lv, _html} = live(conn, ~p"/dashboard/c/#{course.slug}/l/#{lesson.id}/s/1")
 
       assert has_element?(updated_lv, "dt", course2.name)
+    end
+
+    test "uploads a cover image", %{conn: conn, course: course} do
+      mock_storage()
+
+      lesson = lesson_fixture(%{course_id: course.id})
+      lesson_step_fixture(%{lesson_id: lesson.id, order: 1})
+      lesson_step_fixture(%{lesson_id: lesson.id, order: 2})
+
+      {:ok, lv, _html} = live(conn, ~p"/dashboard/c/#{course.slug}/l/#{lesson.id}/s/2")
+
+      {:ok, updated_lv, _html} =
+        lv
+        |> element("a#lesson-cover-link", "Cover")
+        |> render_click()
+        |> follow_redirect(conn, ~p"/dashboard/c/#{course.slug}/l/#{lesson.id}/s/2/cover")
+
+      assert_file_upload(updated_lv, "lesson_cover")
+
+      assert Content.get_lesson!(lesson.id).cover == uploaded_file_name()
     end
 
     test "removes a suggested course", %{conn: conn, school: school, course: course} do
