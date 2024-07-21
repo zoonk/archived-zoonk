@@ -36,6 +36,19 @@ config :tailwind,
     cd: Path.expand("../assets", __DIR__)
   ]
 
+# Oban config
+config :zoonk, Oban,
+  engine: Oban.Engines.Basic,
+  repo: Zoonk.Repo,
+  queues: [default: 10],
+  shutdown_grace_period: :timer.seconds(60),
+  plugins: [
+    # Delete jobs after 7 days
+    {Oban.Plugins.Pruner, max_age: 60 * 60 * 24 * 7},
+    # Automatically move failed jobs back to available so they can run again
+    {Oban.Plugins.Lifeline, rescue_after: :timer.minutes(30)}
+  ]
+
 # Configures the mailer
 #
 # By default it uses the "Local" adapter which stores the emails

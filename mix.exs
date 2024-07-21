@@ -53,6 +53,7 @@ defmodule Zoonk.MixProject do
       {:mix_audit, "~> 2.1.2", only: [:dev, :test], runtime: false},
       {:multipart, "~> 0.4.0"},
       {:money, "~> 1.12.4"},
+      {:oban, "~> 2.17.12"},
       {:phoenix_ecto, "~> 4.6.1"},
       {:phoenix_html, "~> 4.1.1"},
       {:phoenix_live_dashboard, "~> 0.8.4"},

@@ -5,13 +5,20 @@ defmodule Zoonk.Application do
 
   use Application
 
+  alias Oban.Telemetry
+  alias Zoonk.Jobs.Reporter
+
   @impl Application
   def start(_type, _args) do
+    Telemetry.attach_default_logger()
+    Reporter.attach()
+
     children = [
       # Start the Telemetry supervisor
       ZoonkWeb.Telemetry,
       # Start the Ecto repository
       Zoonk.Repo,
+      {Oban, Application.fetch_env!(:zoonk, Oban)},
       {DNSCluster, query: Application.get_env(:zoonk, :dns_cluster_query) || :ignore},
       # Start the PubSub system
       {Phoenix.PubSub, name: Zoonk.PubSub},
