@@ -5,7 +5,7 @@ defmodule ZoonkWeb.UserLoginLiveTest do
   import Zoonk.Fixtures.Accounts
   import Zoonk.Fixtures.Organizations
 
-  alias Zoonk.Storage.StorageAPI
+  alias Zoonk.Storage
 
   describe "Log in page" do
     test "renders log in page", %{conn: conn} do
@@ -40,7 +40,7 @@ defmodule ZoonkWeb.UserLoginLiveTest do
     test "displays the icon from the app school when it has one", %{conn: conn, school: school} do
       child_school = school_fixture(%{school_id: school.id, logo: nil})
       conn = Map.put(conn, :host, "#{child_school.slug}.#{school.custom_domain}")
-      file_url = StorageAPI.get_url(school.icon)
+      file_url = Storage.get_url(school.icon)
 
       {:ok, lv, html} = live(conn, ~p"/users/login")
 

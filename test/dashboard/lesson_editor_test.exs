@@ -9,6 +9,7 @@ defmodule ZoonkWeb.DashboardLessonEditorLiveTest do
   alias Zoonk.Content
   alias Zoonk.Content.CourseUtils
   alias Zoonk.Content.LessonStep
+  alias Zoonk.Storage.StorageAPIMock
 
   @lesson_form "#lesson-form"
 
@@ -201,7 +202,7 @@ defmodule ZoonkWeb.DashboardLessonEditorLiveTest do
     end
 
     test "removes an image from a step", %{conn: conn, course: course} do
-      expect(Zoonk.MockStorage, :delete, fn _key -> {:ok, %{}} end)
+      expect(StorageAPIMock, :delete, fn _key -> {:ok, %{}} end)
 
       lesson = lesson_fixture(%{course_id: course.id})
       lesson_step_fixture(%{lesson_id: lesson.id, order: 1, content: "Text step 1", image: "https://someimage.png"})
@@ -310,7 +311,7 @@ defmodule ZoonkWeb.DashboardLessonEditorLiveTest do
     end
 
     test "removes an image from an option", %{conn: conn, course: course} do
-      expect(Zoonk.MockStorage, :delete, fn _key -> {:ok, %{}} end)
+      expect(StorageAPIMock, :delete, fn _key -> {:ok, %{}} end)
 
       lesson = lesson_fixture(%{course_id: course.id})
       lesson_step = lesson_step_fixture(%{lesson_id: lesson.id, order: 1})

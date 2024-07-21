@@ -6,7 +6,7 @@ defmodule ZoonkWeb.Router do
   import ZoonkWeb.Plugs.Translate
   import ZoonkWeb.Plugs.UserAuth
 
-  alias Zoonk.Storage.StorageAPI
+  alias Zoonk.Storage
   alias ZoonkWeb.Plugs.ContentSecurityPolicy
   alias ZoonkWeb.Plugs.Course
   alias ZoonkWeb.Plugs.School
@@ -24,7 +24,7 @@ defmodule ZoonkWeb.Router do
 
     plug :put_secure_browser_headers, %{
       "content-security-policy" =>
-        "default-src 'self'; script-src-elem 'self' https://plausible.io; connect-src 'self' https://plausible.io #{ContentSecurityPolicy.get_connect_src()}; img-src 'self' #{StorageAPI.get_domain()} data: blob:; frame-src 'self' www.youtube-nocookie.com;"
+        "default-src 'self'; script-src-elem 'self' https://plausible.io; connect-src 'self' https://plausible.io #{ContentSecurityPolicy.get_connect_src()}; img-src 'self' #{Storage.get_domain()} data: blob:; frame-src 'self' www.youtube-nocookie.com;"
     }
 
     plug :fetch_current_user

@@ -6,7 +6,7 @@ defmodule ZoonkWeb.Components.Avatar do
   """
   use Phoenix.Component
 
-  alias Zoonk.Storage.StorageAPI
+  alias Zoonk.Storage
 
   @doc """
   Renders an avatar element.
@@ -31,7 +31,7 @@ defmodule ZoonkWeb.Components.Avatar do
   # Handle the case where the image is available.
   def avatar(%{src: src} = assigns) when is_binary(src) do
     ~H"""
-    <img src={StorageAPI.get_url(@src)} class={avatar_class(@size, @class)} alt={@alt} />
+    <img src={Storage.get_url(@src)} class={avatar_class(@size, @class)} alt={@alt} />
     """
   end
 

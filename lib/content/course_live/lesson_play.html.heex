@@ -69,7 +69,7 @@
             @selected_option && option.correct? && "shadow-b-teal border-teal-100"
           ]}
         >
-          <img :if={option.image} src={StorageAPI.get_url(option.image)} alt={option.title} class="h-16 w-16 object-cover" />
+          <img :if={option.image} src={Storage.get_url(option.image)} alt={option.title} class="h-16 w-16 object-cover" />
           <%= option.title %>
         </label>
       </div>

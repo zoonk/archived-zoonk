@@ -4,8 +4,8 @@ defmodule ZoonkWeb.Components.Upload do
   """
   use ZoonkWeb, :live_component
 
+  alias Zoonk.Storage
   alias Zoonk.Storage.ImageOptimizer
-  alias Zoonk.Storage.StorageAPI
 
   attr :current_img, :string, default: nil
   attr :label, :string, default: nil
@@ -30,7 +30,7 @@ defmodule ZoonkWeb.Components.Upload do
 
       <div class="container flex flex-col space-y-8">
         <div class="flex items-center space-x-6">
-          <img :if={is_binary(@current_img)} alt={@label} src={StorageAPI.get_url(@current_img)} class="w-16 rounded-xl object-cover" />
+          <img :if={is_binary(@current_img)} alt={@label} src={Storage.get_url(@current_img)} class="w-16 rounded-xl object-cover" />
 
           <.live_file_input
             upload={@uploads.file}
@@ -77,7 +77,7 @@ defmodule ZoonkWeb.Components.Upload do
   end
 
   def handle_event("remove", _params, socket) do
-    case StorageAPI.delete(socket.assigns.current_img) do
+    case Storage.delete(socket.assigns.current_img) do
       {:ok, _} ->
         notify_parent(socket, nil)
         {:noreply, socket}
@@ -93,7 +93,7 @@ defmodule ZoonkWeb.Components.Upload do
   end
 
   defp presign_upload(entry, socket) do
-    {url, key} = StorageAPI.presigned_url(entry)
+    {url, key} = Storage.presigned_url(entry)
     {:ok, %{uploader: "S3", key: key, url: url}, assign(socket, :uploaded_file_key, key)}
   end
 

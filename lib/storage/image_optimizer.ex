@@ -5,7 +5,7 @@ defmodule Zoonk.Storage.ImageOptimizer do
   use Oban.Worker
 
   alias ExAws.S3
-  alias Zoonk.Storage.StorageAPI
+  alias Zoonk.Storage
 
   require Logger
 
@@ -23,12 +23,12 @@ defmodule Zoonk.Storage.ImageOptimizer do
     upload_image!(thumbnail, key)
   end
 
-  defp download_image!(key), do: StorageAPI.get_bucket() |> S3.get_object(key) |> ExAws.request!()
+  defp download_image!(key), do: Storage.get_bucket() |> S3.get_object(key) |> ExAws.request!()
 
   defp upload_image!(thumbnail, key) do
     thumbnail
     |> Image.stream!(suffix: ".webp")
-    |> S3.upload(StorageAPI.get_bucket(), key, content_type: "image/webp")
+    |> S3.upload(Storage.get_bucket(), key, content_type: "image/webp")
     |> ExAws.request!()
   end
 end

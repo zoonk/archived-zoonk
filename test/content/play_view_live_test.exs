@@ -8,7 +8,7 @@ defmodule ZoonkWeb.PlayViewLiveTest do
   alias Zoonk.Content
   alias Zoonk.Content.UserSelection
   alias Zoonk.Repo
-  alias Zoonk.Storage.StorageAPI
+  alias Zoonk.Storage
 
   @select_form "#play"
 
@@ -246,7 +246,7 @@ defmodule ZoonkWeb.PlayViewLiveTest do
     assert has_element?(lv, ~s|blockquote p:fl-icontains("step 3!")|)
 
     step = Enum.at(lessons, 2)
-    file_url = StorageAPI.get_url(step.image)
+    file_url = Storage.get_url(step.image)
 
     assert has_element?(lv, ~s|img[src="#{file_url}"]|)
   end
