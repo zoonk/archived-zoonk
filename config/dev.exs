@@ -1,17 +1,25 @@
 import Config
 
+# Do not include metadata nor timestamps in development logs
 config :logger, :console, format: "[$level] $message\n"
 
+# Initialize plugs at runtime for faster development compilation
 config :phoenix, :plug_init_mode, :runtime
+
+# Set a higher stacktrace during development. Avoid configuring such
+# in production as building large stacktraces may be expensive.
 config :phoenix, :stacktrace_depth, 20
 
 config :phoenix_live_view,
-  # Configure your database
+  # Include HEEx debug annotations as HTML comments in rendered markup
   debug_heex_annotations: true,
+  # Enable helpful, but potentially expensive runtime checks
   enable_expensive_runtime_checks: true
 
+# Disable swoosh api client as it is only required for production adapters.
 config :swoosh, :api_client, false
 
+# Configure your database
 config :zoonk, Zoonk.Repo,
   username: "postgres",
   password: "postgres",
@@ -58,14 +66,3 @@ config :zoonk, ZoonkWeb.Endpoint,
 
 # Enable dev routes for dashboard and mailbox
 config :zoonk, dev_routes: true
-
-# Do not include metadata nor timestamps in development logs
-
-# Set a higher stacktrace during development. Avoid configuring such
-# in production as building large stacktraces may be expensive.
-
-# Initialize plugs at runtime for faster development compilation
-# Include HEEx debug annotations as HTML comments in rendered markup
-# Enable helpful, but potentially expensive runtime checks
-
-# Disable swoosh api client as it is only required for production adapters.

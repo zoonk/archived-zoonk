@@ -13,6 +13,7 @@ defmodule Zoonk.MixProject do
       dialyzer: [
         plt_add_apps: [:mix],
         plt_file: {:no_warn, "priv/plts/dialyzer.plt"},
+        plt_core_path: "priv/plts/core.plt",
         ignore_warnings: ".dialyzer_ignore.exs"
       ]
     ]
@@ -71,7 +72,8 @@ defmodule Zoonk.MixProject do
       # required by ex_aws_s3
       {:sweet_xml, "~> 0.7.4"},
       {:swoosh, "~> 1.16.9"},
-      {:tabler_icons, github: "tabler/tabler-icons", tag: "v3.10.0", sparse: "icons", app: false, compile: false, depth: 1},
+      # Using the main branch instead of tags because of the size. Using the tag had over 1gb. Using a branch has less than 60mb.
+      {:tabler_icons, github: "tabler/tabler-icons", branch: "main", sparse: "icons", app: false, compile: false, depth: 1},
       {:tailwind, "~> 0.2.3", runtime: Mix.env() == :dev},
       {:tailwind_formatter, "~> 0.4.0", only: [:dev, :test], runtime: false},
       {:telemetry_metrics, "~> 1.0.0"},
@@ -102,6 +104,7 @@ defmodule Zoonk.MixProject do
         "credo --strict",
         "sobelow -i Config.HTTPS --skip --exit",
         "deps.audit",
+        "deps.unlock --check-unused",
         "dialyzer"
       ]
     ]

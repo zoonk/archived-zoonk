@@ -13,9 +13,6 @@ config :phoenix, :plug_init_mode, :runtime
 config :swoosh, :api_client, false
 
 # Prevent Oban from running jobs in tests
-# Configure your database
-#
-# The MIX_TEST_PARTITION environment variable can be used
 config :zoonk, Oban, testing: :inline
 
 # In test we don't send emails.
@@ -23,16 +20,19 @@ config :zoonk, Oban, testing: :inline
 # Run `mix help test` for more information.
 config :zoonk, Zoonk.Mailer, adapter: Swoosh.Adapters.Test
 
+# Configure your database
+#
+# The MIX_TEST_PARTITION environment variable can be used
 config :zoonk, Zoonk.Repo,
   username: "postgres",
   password: "postgres",
   hostname: "localhost",
   database: "zoonk_test#{System.get_env("MIX_TEST_PARTITION")}",
   pool: Ecto.Adapters.SQL.Sandbox,
-  # We don't run a server during test. If one is required,
-  # you can enable the server option below.
   pool_size: System.schedulers_online() * 2
 
+# We don't run a server during test. If one is required,
+# you can enable the server option below.
 config :zoonk, ZoonkWeb.Endpoint,
   http: [ip: {127, 0, 0, 1}, port: 4002],
   secret_key_base: "8K9cBY8N762b1KPu0OW/5vEmwdUQd1k/OPM7VXVm4bNH9ujtWOLZMaDiBhG/MtfS",
