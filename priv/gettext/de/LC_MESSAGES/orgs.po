@@ -475,7 +475,7 @@ msgstr "Eine Lektion hat mehrere Schritte. Verwende sie, um eine Geschichte zu e
 msgid "Add image to step"
 msgstr "Bild zum Schritt hinzufügen"
 
-#: lib/dashboard/lessons/components/step_image.ex:33
+#: lib/dashboard/lessons/components/step_image.ex:34
 #, elixir-autogen, elixir-format
 msgid "Click to add an image to this step."
 msgstr "Klicken, um ein Bild zu diesem Schritt hinzuzufügen."
@@ -505,7 +505,7 @@ msgstr "Schritt Aktualisieren"
 msgid "Edit image"
 msgstr "Bild bearbeiten"
 
-#: lib/dashboard/lessons/components/step_image.ex:21
+#: lib/dashboard/lessons/components/step_image.ex:22
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Edit step image"
 msgstr "Schritt Bild bearbeiten"
@@ -678,7 +678,7 @@ msgstr "Lehrer"
 #: lib/dashboard/courses/course_user_list.html.heex:2
 #: lib/dashboard/schools/school_user_list.ex:76
 #: lib/dashboard/schools/school_user_list.html.heex:2
-#: lib/layouts/menu_utils.ex:97
+#: lib/layouts/menu_utils.ex:98
 #: lib/layouts/templates/dashboard_course.html.heex:38
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Users"

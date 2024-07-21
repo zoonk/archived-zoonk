@@ -72,6 +72,9 @@ config :zoonk, ZoonkWeb.Endpoint,
 # Configure translation
 config :zoonk, ZoonkWeb.Gettext, default_locale: "en", locales: ~w(en pt)
 
+# Content security policy
+config :zoonk, :csp, connect_src: System.get_env("CSP_CONNECT_SRC")
+
 # Storage config
 config :zoonk, :storage,
   bucket: System.get_env("AWS_BUCKET"),

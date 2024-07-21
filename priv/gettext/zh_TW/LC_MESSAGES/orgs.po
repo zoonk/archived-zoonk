@@ -475,7 +475,7 @@ msgstr "一堂課有多個步驟。使用它們來講故事，解釋概念或提
 msgid "Add image to step"
 msgstr "為步驟新增圖片"
 
-#: lib/dashboard/lessons/components/step_image.ex:33
+#: lib/dashboard/lessons/components/step_image.ex:34
 #, elixir-autogen, elixir-format
 msgid "Click to add an image to this step."
 msgstr "點選以為此步驟新增圖片。"
@@ -505,7 +505,7 @@ msgstr "更新步驟"
 msgid "Edit image"
 msgstr "編輯圖片"
 
-#: lib/dashboard/lessons/components/step_image.ex:21
+#: lib/dashboard/lessons/components/step_image.ex:22
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Edit step image"
 msgstr "編輯步驟圖片"
@@ -678,7 +678,7 @@ msgstr "老師"
 #: lib/dashboard/courses/course_user_list.html.heex:2
 #: lib/dashboard/schools/school_user_list.ex:76
 #: lib/dashboard/schools/school_user_list.html.heex:2
-#: lib/layouts/menu_utils.ex:97
+#: lib/layouts/menu_utils.ex:98
 #: lib/layouts/templates/dashboard_course.html.heex:38
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Users"

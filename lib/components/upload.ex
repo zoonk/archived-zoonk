@@ -47,7 +47,6 @@ defmodule ZoonkWeb.Components.Upload do
 
         <div :if={entry}>
           <p :if={not entry.done?} class="text-gray-500"><%= gettext("Uploading: %{progress}%", progress: entry.progress) %></p>
-          <p :if={entry.done? and @uploading?} class="text-gray-500"><%= gettext("Processing file...") %></p>
           <p :for={err <- upload_errors(@uploads.file, entry)} class="text-pink-600"><%= error_to_string(err) %></p>
         </div>
       </div>
@@ -59,14 +58,15 @@ defmodule ZoonkWeb.Components.Upload do
   def mount(socket) do
     socket =
       socket
-      |> assign(:uploading?, false)
       |> allow_upload(
         :file,
         accept: ~w(.jpg .jpeg .png .avif .gif .webp),
         max_entries: 1,
         auto_upload: true,
+        external: &presign_upload/2,
         progress: &handle_progress/3
       )
+      |> assign(:uploaded_file_key, nil)
 
     {:ok, socket}
   end
@@ -92,25 +92,35 @@ defmodule ZoonkWeb.Components.Upload do
     :ok
   end
 
-  # Only upload a file to the cloud after the progress is done.
+  defp presign_upload(entry, socket) do
+    config = ExAws.Config.new(:s3)
+    bucket = StorageAPI.get_bucket()
+    timestamp = DateTime.to_unix(DateTime.utc_now())
+    key = "#{timestamp}_#{entry.client_name}"
+
+    {:ok, url} =
+      ExAws.S3.presigned_url(config, :put, bucket, key,
+        expires_in: 3600,
+        query_params: [{"Content-Type", entry.client_type}]
+      )
+
+    {:ok, %{uploader: "S3", key: key, url: url}, assign(socket, :uploaded_file_key, key)}
+  end
+
   defp handle_progress(_key, %{done?: true}, socket) do
-    [file | _] =
-      consume_uploaded_entries(socket, :file, fn %{path: path}, entry ->
-        StorageAPI.upload(path, entry.client_type)
-        {:ok, Path.basename(path)}
-      end)
+    %{uploaded_file_key: key} = socket.assigns
 
     # Optimize the image in the background.
-    %{key: file} |> ImageOptimizer.new() |> Oban.insert!()
+    %{key: key} |> ImageOptimizer.new() |> Oban.insert!()
 
     # Notify the parent component that the upload is done.
-    notify_parent(socket, file)
+    notify_parent(socket, key)
 
-    {:noreply, assign(socket, uploading?: false)}
+    {:noreply, socket}
   end
 
   defp handle_progress(_key, _entry, socket) do
-    {:noreply, assign(socket, uploading?: true)}
+    {:noreply, socket}
   end
 
   # Since we only allow uploading one file, we only care about the first entry.

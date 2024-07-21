@@ -123,6 +123,7 @@ You need to use an S3-compatible storage service to store your files. At Zoonk, 
 - `AWS_BUCKET`: Your AWS bucket name.
 - `AWS_ENDPOINT_URL_S3`: Your AWS endpoint URL.
 - `AWS_CDN_URL`: Your AWS CDN URL (optional. If missing, we'll use the S3 endpoint URL).
+- `CSP_CONNECT_SRC`: Your S3 domain (i.e. `https://fly.storage.tigris.dev`).
 
 ## Sponsors
 

@@ -11,7 +11,7 @@ msgstr ""
 "Language: de\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: lib/content/course_live/course_view.ex:59
+#: lib/content/course_live/course_view.ex:60
 #, elixir-autogen, elixir-format
 msgid "A request to enroll has been sent to the course teacher."
 msgstr "Ein Antrag auf Einschreibung wurde an den Kursleiter geschickt."
@@ -36,7 +36,7 @@ msgstr "Anfänger"
 msgid "Confirming..."
 msgstr "Bestätigen..."
 
-#: lib/content/course_live/course_view.ex:58
+#: lib/content/course_live/course_view.ex:59
 #, elixir-autogen, elixir-format
 msgid "Enrolled successfully!"
 msgstr "Erfolgreich eingeschrieben!"
@@ -51,7 +51,7 @@ msgstr "Ausgezeichnet!"
 msgid "Expert"
 msgstr "Experte"
 
-#: lib/content/course_live/course_view.ex:43
+#: lib/content/course_live/course_view.ex:44
 #, elixir-autogen, elixir-format
 msgid "Failed to enroll"
 msgstr "Einschreibung fehlgeschlagen"
@@ -91,7 +91,7 @@ msgstr "Perfekt!"
 msgid "Request to join"
 msgstr "Antrag auf Beitritt"
 
-#: lib/content/course_live/components/lesson_step.ex:37
+#: lib/content/course_live/components/lesson_step.ex:38
 #, elixir-autogen, elixir-format
 msgid "That's incorrect."
 msgstr "Das ist nicht richtig."
@@ -101,12 +101,12 @@ msgstr "Das ist nicht richtig."
 msgid "There's room for improvement"
 msgstr "Es gibt Raum für Verbesserungen"
 
-#: lib/content/course_live/lesson_play.ex:90
+#: lib/content/course_live/lesson_play.ex:91
 #, elixir-autogen, elixir-format
 msgid "Unable to complete lesson"
 msgstr "Lektion kann nicht abgeschlossen werden"
 
-#: lib/content/course_live/lesson_play.ex:53
+#: lib/content/course_live/lesson_play.ex:54
 #, elixir-autogen, elixir-format
 msgid "Unable to select option"
 msgstr "Option kann nicht ausgewählt werden"
@@ -116,7 +116,7 @@ msgstr "Option kann nicht ausgewählt werden"
 msgid "Very good!"
 msgstr "Sehr gut!"
 
-#: lib/content/course_live/components/lesson_step.ex:37
+#: lib/content/course_live/components/lesson_step.ex:38
 #, elixir-autogen, elixir-format
 msgid "Well done!"
 msgstr "Gut gemacht!"
@@ -151,7 +151,7 @@ msgstr "Beginnen Sie mit der Teilnahme an einem Kurs."
 msgid "No courses"
 msgstr "Keine Kurse"
 
-#: lib/content/course_live/lesson_play.ex:76
+#: lib/content/course_live/lesson_play.ex:77
 #, elixir-autogen, elixir-format
 msgid "Unable to send answer"
 msgstr "Senden der Antwort fehlgeschlagen"

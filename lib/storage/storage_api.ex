@@ -4,22 +4,7 @@ defmodule Zoonk.Storage.StorageAPI do
   """
   alias ExAws.S3
 
-  @callback upload(String.t(), String.t()) :: {:ok, term()} | {:error, term()}
   @callback delete(String.t()) :: {:ok, term()} | {:error, term()}
-
-  @doc """
-  Uploads a file to the storage service.
-
-  ## Examples
-
-      iex> StorageAPI.upload("path/to/file", "image/webp")
-      {:ok, %{}}
-
-      iex> StorageAPI.upload("path/to/file", "image/webp")
-      {:error, %{}}
-  """
-  @spec upload(String.t(), String.t()) :: {:ok, term()} | {:error, term()}
-  def upload(file_path, content_type), do: impl().upload(file_path, content_type)
 
   @doc """
   Deletes a file from the storage service.
@@ -87,14 +72,6 @@ defmodule Zoonk.ExternalStorageAPI do
   @moduledoc false
   alias ExAws.S3
   alias Zoonk.Storage.StorageAPI
-
-  @spec upload(String.t(), String.t()) :: {:ok, term()} | {:error, term()}
-  def upload(file_path, content_type) do
-    file_path
-    |> S3.Upload.stream_file()
-    |> S3.upload(StorageAPI.get_bucket(), Path.basename(file_path), content_type: content_type)
-    |> ExAws.request()
-  end
 
   @spec delete(String.t()) :: {:ok, term()} | {:error, term()}
   def delete(key) do
