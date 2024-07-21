@@ -41,12 +41,11 @@ We love Duolingo. We think those kinds of interactive experiences should be used
 
 - **Backend**: [Phoenix](https://www.phoenixframework.org/)
 - **Frontend**: [Phoenix LiveView](https://hexdocs.pm/phoenix_live_view)
-- **Database**: [Postgres](https://www.postgresql.org)
+- **Database**: [Postgres](https://www.postgresql.org) - [Neon](https://neon.tech/)
 - **CSS**: [Tailwind CSS](https://tailwindcss.com/)
 - **Email**: [Resend](https://resend.com/)
 - **Storage**: [Tigris](https://tigrisdata.com/)
-
-We're deploying our cloud products to [Fly](https://fly.io/).
+- **Hosting**: [Fly](https://fly.io/)
 
 ## Getting started
 
@@ -55,8 +54,8 @@ Follow the instructions below to get Zoonk up and running on your local machine.
 ### Requirements
 
 - **Elixir 1.17+** and **Erlang 26+**. Run `elixir -v` to find your current version for [Elixir](https://elixir-lang.org/install.html) and [Erlang](https://elixir-lang.org/install.html#installing-erlang).
-- Install [Hex](https://hex.pm/): `mix local.hex`.
-- Install `Phoenix`: `mix archive.install hex phx_new`.
+- **Hex**: `mix local.hex`.
+- **Phoenix**: `mix archive.install hex phx_new`.
 - **PostgreSQL 15+**: [PostgreSQL](https://www.postgresql.org/).
 - (Linux users only): [inotify-tools](https://github.com/inotify-tools/inotify-tools/wiki).
 
@@ -104,7 +103,7 @@ sudo brew services start dnsmasq
 That's it! You can now start your local server (`mix phx.server`) and test your domains using:
 
 - https://zoonk.test:4001
-- https://rug.zoonk.test:4001 (each school slug can be used as a subdomain of `zoonk.test`).
+- https://apple.zoonk.test:4001 (each school slug can be used as a subdomain of `zoonk.test`).
 - Or any other domain you added before.
 
 ## Mailer
