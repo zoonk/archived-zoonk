@@ -138,5 +138,13 @@ defmodule Zoonk.Storage do
   @spec bucket_url() :: String.t()
   def bucket_url, do: "#{get_domain()}/#{get_bucket()}"
 
+  @doc """
+  Optimize an image.
+  """
+  @spec optimize!(String.t(), integer()) :: term()
+  def optimize!(key, size) do
+    storage_module().optimize!(key, size)
+  end
+
   defp storage_module, do: Application.get_env(:zoonk, :storage_api, Zoonk.Storage.StorageAPI)
 end

@@ -4,6 +4,7 @@ defmodule Zoonk.Storage.StorageAPIBehaviour do
 
   @callback delete(String.t()) :: {:ok, term()} | {:error, term()}
   @callback presigned_url(UploadEntry.t()) :: {String.t(), String.t()}
+  @callback optimize!(String.t(), integer()) :: term()
 end
 
 defmodule Zoonk.Storage.StorageAPI do
@@ -34,5 +35,25 @@ defmodule Zoonk.Storage.StorageAPI do
       )
 
     {url, key}
+  end
+
+  @spec optimize!(String.t(), integer()) :: term()
+  def optimize!(key, size) do
+    %{body: body} = download_image!(key)
+    thumbnail = body |> Image.from_binary!() |> Image.thumbnail!(size)
+    upload_image!(thumbnail, key)
+  end
+
+  defp download_image!(key) do
+    Zoonk.Storage.get_bucket()
+    |> S3.get_object(key)
+    |> ExAws.request!()
+  end
+
+  defp upload_image!(thumbnail, key) do
+    thumbnail
+    |> Image.stream!(suffix: ".webp")
+    |> S3.upload(Zoonk.Storage.get_bucket(), key, content_type: "image/webp")
+    |> ExAws.request!()
   end
 end
