@@ -26,7 +26,12 @@ defmodule Zoonk.Storage.StorageAPI do
     config = ExAws.Config.new(:s3)
     bucket = Zoonk.Storage.get_bucket()
     timestamp = DateTime.to_unix(DateTime.utc_now())
-    key = "#{folder}/#{timestamp}_#{client_name}"
+    file_name = "#{folder}/#{timestamp}_#{client_name}"
+
+    # replace the current file extension with .webp instead of the original one
+    # we do this because we use webp on the optimization step later on and we don't
+    # want to update the filename in the database
+    key = String.replace_suffix(file_name, Path.extname(client_name), ".webp")
 
     {:ok, url} =
       ExAws.S3.presigned_url(config, :put, bucket, key,
