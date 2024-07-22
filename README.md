@@ -119,7 +119,7 @@ You need to use an S3-compatible storage service to store your files. At Zoonk, 
 - `AWS_ACCESS_KEY_ID`: Your AWS access key ID.
 - `AWS_SECRET_ACCESS_KEY`: Your AWS secret access key.
 - `AWS_REGION`: Your AWS region.
-- `AWS_BUCKET`: Your AWS bucket name.
+- `BUCKET_NAME`: Your AWS bucket name.
 - `AWS_ENDPOINT_URL_S3`: Your AWS endpoint URL.
 - `AWS_CDN_URL`: Your AWS CDN URL (optional. If missing, we'll use the S3 endpoint URL).
 - `CSP_CONNECT_SRC`: Your S3 domain (i.e. `https://fly.storage.tigris.dev`).

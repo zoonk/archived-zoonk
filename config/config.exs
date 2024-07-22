@@ -77,7 +77,7 @@ config :zoonk, :csp, connect_src: System.get_env("CSP_CONNECT_SRC")
 
 # Storage config
 config :zoonk, :storage,
-  bucket: System.get_env("AWS_BUCKET"),
+  bucket: System.get_env("BUCKET_NAME"),
   domain: System.get_env("AWS_CDN_URL") || System.get_env("AWS_ENDPOINT_URL_S3")
 
 config :zoonk,
