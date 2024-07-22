@@ -1,5 +1,20 @@
-<.live_component :if={@live_action == :logo} module={Upload} folder={"#{@school.id}/schools/logo"} id={:school_logo} current_img={@school.logo} label={gettext("Logo")} />
-<.live_component :if={@live_action == :icon} module={Upload} folder={"#{@school.id}/schools/icon"} id={:school_icon} current_img={@school.icon} label={gettext("Icon")} />
+<.live_component
+  :if={@live_action == :logo}
+  module={Upload}
+  folder={Storage.generate_folder_name(@school.id, "schools", @school.id, "logo")}
+  id={:school_logo}
+  current_img={@school.logo}
+  label={gettext("Logo")}
+/>
+
+<.live_component
+  :if={@live_action == :icon}
+  module={Upload}
+  folder={Storage.generate_folder_name(@school.id, "schools", @school.id, "icon")}
+  id={:school_icon}
+  current_img={@school.icon}
+  label={gettext("Icon")}
+/>
 
 <.simple_form :if={@live_action == :settings} for={@form} id="school-form" phx-change="validate" unstyled phx-submit="save">
   <div class="top-[57px] sticky flex flex-wrap items-center gap-2 bg-gray-50 p-4 sm:flex-nowrap sm:px-6 lg:px-8">

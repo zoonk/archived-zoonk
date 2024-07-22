@@ -3,6 +3,7 @@ defmodule ZoonkWeb.Live.Dashboard.SchoolEdit do
   use ZoonkWeb, :live_view
 
   alias Zoonk.Organizations
+  alias Zoonk.Storage
   alias ZoonkWeb.Components.DeleteItem
   alias ZoonkWeb.Components.Upload
 

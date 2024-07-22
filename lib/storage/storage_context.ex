@@ -93,11 +93,20 @@ defmodule Zoonk.Storage do
   ## Examples
 
       iex> Storage.presigned_url(%UploadEntry{}, "123/schools/logo")
-      "https://..."
+      {"https://...", "123/schools/logo/123.webp"}
   """
   @spec presigned_url(Phoenix.LiveView.UploadEntry.t(), String.t()) :: {String.t(), String.t()}
   def presigned_url(entry, folder) do
-    storage_module().presigned_url(entry, folder)
+    {url, key} = storage_module().presigned_url(entry, folder)
+
+    file_attrs = %{key: key, content_type: entry.client_type, size_kb: div(entry.client_size, 1024)}
+
+    # get the correct table and id that should be used when adding a school object
+    db_attrs = folder |> String.split("/") |> school_object_attrs_from_folder()
+
+    db_attrs |> Map.merge(file_attrs) |> create_school_object()
+
+    {url, key}
   end
 
   @doc """
@@ -134,6 +143,22 @@ defmodule Zoonk.Storage do
   def get_bucket, do: Application.get_env(:zoonk, :storage)[:bucket]
 
   @doc """
+  Generates folder name.
+
+  We use a standard format for folder names to avoid conflicts and make it easier to manage,
+  especially when we need to update school objects.
+
+  ## Examples
+
+      iex> Storage.generate_folder_name(1, "table_name", 456, "column_name")
+      "1/table_name/456/column_name"
+  """
+  @spec generate_folder_name(non_neg_integer(), String.t(), non_neg_integer(), String.t()) :: String.t()
+  def generate_folder_name(school_id, table_name, item_id, column_name) do
+    "#{school_id}/#{table_name}/#{item_id}/#{column_name}"
+  end
+
+  @doc """
   Gets the bucket URL of the storage service.
 
   ## Examples
@@ -151,6 +176,12 @@ defmodule Zoonk.Storage do
   def optimize!(key, size) do
     storage_module().optimize!(key, size)
   end
+
+  defp school_object_attrs_from_folder([school_id, "courses", course_id, _column]), do: %{school_id: school_id, course_id: course_id}
+  defp school_object_attrs_from_folder([school_id, "lessons", lesson_id, _column]), do: %{school_id: school_id, lesson_id: lesson_id}
+  defp school_object_attrs_from_folder([school_id, "lesson_steps", lesson_step_id, _column]), do: %{school_id: school_id, lesson_step_id: lesson_step_id}
+  defp school_object_attrs_from_folder([school_id, "step_options", step_option_id, _column]), do: %{school_id: school_id, step_option_id: step_option_id}
+  defp school_object_attrs_from_folder([school_id, _table, _id, _column]), do: %{school_id: school_id}
 
   defp storage_module, do: Application.get_env(:zoonk, :storage_api, Zoonk.Storage.StorageAPI)
 end

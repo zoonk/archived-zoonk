@@ -3,6 +3,7 @@ defmodule ZoonkWeb.Live.Dashboard.CourseEdit do
   use ZoonkWeb, :live_view
 
   alias Zoonk.Content
+  alias Zoonk.Storage
   alias ZoonkWeb.Components.DeleteItem
   alias ZoonkWeb.Components.Upload
 

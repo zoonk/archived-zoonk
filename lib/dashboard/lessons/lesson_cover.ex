@@ -3,6 +3,7 @@ defmodule ZoonkWeb.Live.Dashboard.LessonCover do
   use ZoonkWeb, :live_view
 
   alias Zoonk.Content
+  alias Zoonk.Storage
   alias ZoonkWeb.Components.Upload
 
   @impl Phoenix.LiveView

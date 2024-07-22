@@ -2,6 +2,7 @@ defmodule Zoonk.StorageContextTest do
   use Zoonk.DataCase, async: true
 
   import Mox
+  import Zoonk.Fixtures.Content
   import Zoonk.Fixtures.Organizations
   import Zoonk.Fixtures.Storage
 
@@ -85,6 +86,44 @@ defmodule Zoonk.StorageContextTest do
 
       school_object = school_object_fixture()
       assert {:error, %{}} = Storage.delete_object(school_object.key)
+    end
+  end
+
+  describe "presigned_url/2" do
+    test "returns a presigned url" do
+      school = school_fixture()
+      file_name = "#{System.unique_integer()}.png"
+      entry = %{client_name: file_name, client_type: "image/png", client_size: 456_123}
+      folder = "#{school.id}/schools/#{school.id}/logo"
+      key = "#{folder}/#{file_name}"
+
+      expect(StorageAPIMock, :presigned_url, fn _entry, _folder -> {"https://...", key} end)
+
+      {url, returned_key} = Storage.presigned_url(entry, folder)
+      assert url == "https://..."
+      assert returned_key == key
+    end
+
+    test "creates a school object after presigned url" do
+      course = course_fixture()
+      file_name = "#{System.unique_integer()}.png"
+      entry = %{client_name: file_name, client_type: "image/png", client_size: 456_123}
+      folder = "#{course.school_id}/courses/#{course.id}/logo"
+      key = "#{folder}/#{file_name}"
+
+      expect(StorageAPIMock, :presigned_url, fn _entry, _folder -> {"https://...", key} end)
+
+      assert {url, returned_key} = Storage.presigned_url(entry, folder)
+      assert url == "https://..."
+      assert returned_key == key
+
+      school_object = Repo.get_by(SchoolObject, key: key)
+
+      assert school_object.content_type == "image/png"
+      assert school_object.size_kb == div(456_123, 1024)
+      assert school_object.key == key
+      assert school_object.school_id == course.school_id
+      assert school_object.course_id == course.id
     end
   end
 end
