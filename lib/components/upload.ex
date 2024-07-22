@@ -8,6 +8,7 @@ defmodule ZoonkWeb.Components.Upload do
   alias Zoonk.Storage.ImageOptimizer
 
   attr :current_img, :string, default: nil
+  attr :folder, :string, required: true
   attr :label, :string, default: nil
   attr :subtitle, :string, default: nil
   attr :unstyled, :boolean, default: false
@@ -93,7 +94,7 @@ defmodule ZoonkWeb.Components.Upload do
   end
 
   defp presign_upload(entry, socket) do
-    {url, key} = Storage.presigned_url(entry)
+    {url, key} = Storage.presigned_url(entry, socket.assigns.folder)
     {:ok, %{uploader: "S3", key: key, url: url}, assign(socket, :uploaded_file_key, key)}
   end
 

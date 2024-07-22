@@ -1,4 +1,11 @@
-<.live_component :if={@live_action == :cover} module={Upload} id={:course_cover} current_img={@course.cover} label={dgettext("orgs", "Cover")} />
+<.live_component
+  :if={@live_action == :cover}
+  module={Upload}
+  folder={"#{@school.id}/courses/cover"}
+  id={:course_cover}
+  current_img={@course.cover}
+  label={dgettext("orgs", "Cover")}
+/>
 
 <.simple_form :if={@live_action not in [:cover, :delete]} for={@form} unstyled id="course-form" phx-change="validate" phx-submit="save">
   <div class="top-[128px] sticky flex flex-wrap items-center gap-2 bg-gray-50 p-4 sm:flex-nowrap sm:px-6 lg:px-8">

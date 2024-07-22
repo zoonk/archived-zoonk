@@ -1,4 +1,11 @@
-<.live_component :if={@live_action == :avatar} module={Upload} id={:user_avatar} current_img={@current_user.avatar} label={gettext("Avatar")} />
+<.live_component
+  :if={@live_action == :avatar}
+  module={Upload}
+  folder={"#{@school.id}/users/avatar"}
+  id={:user_avatar}
+  current_img={@current_user.avatar}
+  label={gettext("Avatar")}
+/>
 
 <.simple_form
   :if={@live_action not in [:avatar, :delete] and !@current_user.guest?}

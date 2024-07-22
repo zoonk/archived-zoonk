@@ -3,7 +3,7 @@ defmodule Zoonk.Storage.StorageAPIBehaviour do
   alias Phoenix.LiveView.UploadEntry
 
   @callback delete(String.t()) :: {:ok, term()} | {:error, term()}
-  @callback presigned_url(UploadEntry.t()) :: {String.t(), String.t()}
+  @callback presigned_url(UploadEntry.t(), String.t()) :: {String.t(), String.t()}
   @callback optimize!(String.t(), integer()) :: term()
 end
 
@@ -21,12 +21,12 @@ defmodule Zoonk.Storage.StorageAPI do
     |> ExAws.request()
   end
 
-  @spec presigned_url(UploadEntry.t()) :: {String.t(), String.t()}
-  def presigned_url(%UploadEntry{client_name: client_name, client_type: client_type}) do
+  @spec presigned_url(UploadEntry.t(), String.t()) :: {String.t(), String.t()}
+  def presigned_url(%UploadEntry{client_name: client_name, client_type: client_type}, folder) do
     config = ExAws.Config.new(:s3)
     bucket = Zoonk.Storage.get_bucket()
     timestamp = DateTime.to_unix(DateTime.utc_now())
-    key = "#{timestamp}_#{client_name}"
+    key = "#{folder}/#{timestamp}_#{client_name}"
 
     {:ok, url} =
       ExAws.S3.presigned_url(config, :put, bucket, key,

@@ -27,7 +27,7 @@ defmodule ZoonkWeb.TestHelpers.Upload do
   """
   @spec mock_storage() :: :ok
   def mock_storage do
-    expect(StorageAPIMock, :presigned_url, fn _entry -> {"https://test.com", @file_name} end)
+    expect(StorageAPIMock, :presigned_url, fn _entry, _folder -> {"https://test.com", @file_name} end)
     expect(StorageAPIMock, :optimize!, fn _key, _size -> :ok end)
   end
 

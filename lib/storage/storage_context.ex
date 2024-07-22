@@ -86,12 +86,12 @@ defmodule Zoonk.Storage do
 
   ## Examples
 
-      iex> Storage.presigned_url(%UploadEntry{})
+      iex> Storage.presigned_url(%UploadEntry{}, "123/schools/logo")
       "https://..."
   """
-  @spec presigned_url(Phoenix.LiveView.UploadEntry.t()) :: {String.t(), String.t()}
-  def presigned_url(entry) do
-    storage_module().presigned_url(entry)
+  @spec presigned_url(Phoenix.LiveView.UploadEntry.t(), String.t()) :: {String.t(), String.t()}
+  def presigned_url(entry, folder) do
+    storage_module().presigned_url(entry, folder)
   end
 
   @doc """

@@ -129,7 +129,7 @@ defmodule ZoonkWeb.UserSettingsLiveTest do
   end
 
   describe "/users/settings/avatar" do
-    setup :register_and_log_in_user
+    setup :app_setup
 
     test "uploads avatar", %{conn: conn, user: user} do
       mock_storage()
