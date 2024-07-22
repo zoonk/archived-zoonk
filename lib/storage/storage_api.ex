@@ -5,6 +5,7 @@ defmodule Zoonk.Storage.StorageAPIBehaviour do
   @callback delete(String.t()) :: {:ok, term()} | {:error, term()}
   @callback presigned_url(UploadEntry.t(), String.t()) :: {String.t(), String.t()}
   @callback optimize!(String.t(), integer()) :: term()
+  @callback get_object_size_in_kb!(String.t()) :: integer()
 end
 
 defmodule Zoonk.Storage.StorageAPI do
@@ -47,6 +48,14 @@ defmodule Zoonk.Storage.StorageAPI do
     %{body: body} = download_image!(key)
     thumbnail = body |> Image.from_binary!() |> Image.thumbnail!(size)
     upload_image!(thumbnail, key)
+  end
+
+  @spec get_object_size_in_kb!(String.t()) :: integer()
+  def get_object_size_in_kb!(key) do
+    %{body: _body, headers: headers} = download_image!(key)
+    {_key, content_length_header} = Enum.find(headers, fn {k, _v} -> k == "Content-Length" end)
+    file_bytes = String.to_integer(content_length_header)
+    div(file_bytes, 1000)
   end
 
   defp download_image!(key) do

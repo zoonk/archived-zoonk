@@ -120,10 +120,22 @@ defmodule Zoonk.StorageContextTest do
       school_object = Repo.get_by(SchoolObject, key: key)
 
       assert school_object.content_type == "image/png"
-      assert school_object.size_kb == div(456_123, 1024)
+      assert school_object.size_kb == div(456_123, 1000)
       assert school_object.key == key
       assert school_object.school_id == course.school_id
       assert school_object.course_id == course.id
+    end
+  end
+
+  describe "optimize!/2" do
+    test "returns an optimized image" do
+      expect(StorageAPIMock, :optimize!, fn _key, _size -> Image.new!(64, 64) end)
+      expect(StorageAPIMock, :get_object_size_in_kb!, fn _key -> 2 end)
+
+      school_object = school_object_fixture(%{size_kb: 1000})
+      Storage.optimize!(school_object.key, 16)
+
+      assert Repo.get_by(SchoolObject, key: school_object.key).size_kb == 2
     end
   end
 end
