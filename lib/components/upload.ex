@@ -99,7 +99,12 @@ defmodule ZoonkWeb.Components.Upload do
   end
 
   defp handle_progress(_key, %{done?: true}, socket) do
-    %{uploaded_file_key: key} = socket.assigns
+    %{uploaded_file_key: key, current_img: current_img} = socket.assigns
+
+    # When there's an existing image, then remove it from storage service.
+    if current_img do
+      Storage.delete_object(current_img)
+    end
 
     # Optimize the image in the background.
     %{key: key} |> ImageOptimizer.new() |> Oban.insert!()
