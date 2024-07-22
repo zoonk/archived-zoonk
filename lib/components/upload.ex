@@ -78,7 +78,7 @@ defmodule ZoonkWeb.Components.Upload do
   end
 
   def handle_event("remove", _params, socket) do
-    case Storage.delete(socket.assigns.current_img) do
+    case Storage.delete_object(socket.assigns.current_img) do
       {:ok, _} ->
         notify_parent(socket, nil)
         {:noreply, socket}

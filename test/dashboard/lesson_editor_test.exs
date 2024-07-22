@@ -5,11 +5,14 @@ defmodule ZoonkWeb.DashboardLessonEditorLiveTest do
   import Phoenix.LiveViewTest
   import Zoonk.Fixtures.Accounts
   import Zoonk.Fixtures.Content
+  import Zoonk.Fixtures.Storage
   import ZoonkWeb.TestHelpers.Upload
 
   alias Zoonk.Content
   alias Zoonk.Content.CourseUtils
   alias Zoonk.Content.LessonStep
+  alias Zoonk.Repo
+  alias Zoonk.Storage.SchoolObject
   alias Zoonk.Storage.StorageAPIMock
 
   @lesson_form "#lesson-form"
@@ -205,15 +208,19 @@ defmodule ZoonkWeb.DashboardLessonEditorLiveTest do
     test "removes an image from a step", %{conn: conn, course: course} do
       expect(StorageAPIMock, :delete, fn _key -> {:ok, %{}} end)
 
+      school_object = school_object_fixture(%{school_id: course.school_id})
+
       lesson = lesson_fixture(%{course_id: course.id})
-      lesson_step_fixture(%{lesson_id: lesson.id, order: 1, content: "Text step 1", image: "https://someimage.png"})
+      lesson_step_fixture(%{lesson_id: lesson.id, order: 1, content: "Text step 1", image: school_object.key})
 
       {:ok, lv, _html} = live(conn, ~p"/dashboard/c/#{course.slug}/l/#{lesson.id}/s/1/image")
 
       lv |> element("#remove-step_img_upload") |> render_click()
 
-      updated_step = Content.get_lesson_step_by_order(lesson.id, 1)
-      assert updated_step.image == nil
+      assert Content.get_lesson_step_by_order(lesson.id, 1).image == nil
+
+      # the image should have been removed from the school object table too
+      assert Repo.get_by(SchoolObject, key: school_object.key) == nil
     end
 
     test "adds a text step", %{conn: conn, course: course} do
@@ -314,16 +321,20 @@ defmodule ZoonkWeb.DashboardLessonEditorLiveTest do
     test "removes an image from an option", %{conn: conn, course: course} do
       expect(StorageAPIMock, :delete, fn _key -> {:ok, %{}} end)
 
+      school_object = school_object_fixture(%{school_id: course.school_id})
+
       lesson = lesson_fixture(%{course_id: course.id})
       lesson_step = lesson_step_fixture(%{lesson_id: lesson.id, order: 1})
-      option = step_option_fixture(%{lesson_step_id: lesson_step.id, title: "New option 1", image: "https://someimage.png"})
+      option = step_option_fixture(%{lesson_step_id: lesson_step.id, title: "New option 1", image: school_object.key})
 
       {:ok, lv, _html} = live(conn, ~p"/dashboard/c/#{course.slug}/l/#{lesson.id}/s/1/o/#{option.id}/image")
 
       lv |> element("button", "Remove") |> render_click()
 
-      updated_option = Content.get_step_option!(option.id)
-      assert updated_option.image == nil
+      assert Content.get_step_option!(option.id).image == nil
+
+      # the image should have been removed from the school object table too
+      assert Repo.get_by(SchoolObject, key: school_object.key) == nil
     end
 
     test "edits a lesson information", %{conn: conn, course: course} do

@@ -70,15 +70,21 @@ defmodule Zoonk.Storage do
 
   ## Examples
 
-      iex> Storage.delete("key")
+      iex> Storage.delete_object("key")
       {:ok, %{}}
 
-      iex> Storage.delete("key")
+      iex> Storage.delete_object("key")
       {:error, %{}}
   """
-  @spec delete(String.t()) :: {:ok, term()} | {:error, term()}
-  def delete(key) do
-    storage_module().delete(key)
+  @spec delete_object(String.t()) :: {:ok, term()} | {:error, term()} | school_object_changeset()
+  def delete_object(key) do
+    case storage_module().delete(key) do
+      {:ok, _} ->
+        delete_school_object(key)
+
+      {:error, error} ->
+        {:error, error}
+    end
   end
 
   @doc """

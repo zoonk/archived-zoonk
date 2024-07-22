@@ -1,10 +1,15 @@
 defmodule Zoonk.StorageContextTest do
   use Zoonk.DataCase, async: true
 
+  import Mox
   import Zoonk.Fixtures.Organizations
+  import Zoonk.Fixtures.Storage
 
   alias Zoonk.Storage
   alias Zoonk.Storage.SchoolObject
+  alias Zoonk.Storage.StorageAPIMock
+
+  setup :verify_on_exit!
 
   describe "storage context" do
     test "create_school_object/1" do
@@ -63,6 +68,23 @@ defmodule Zoonk.StorageContextTest do
 
       assert {:ok, %SchoolObject{}} = Storage.delete_school_object(attrs.key)
       assert Repo.get(SchoolObject, id) == nil
+    end
+  end
+
+  describe "delete/1" do
+    test "deletes the school_object after removing an image" do
+      expect(StorageAPIMock, :delete, fn _ -> {:ok, %{}} end)
+
+      school_object = school_object_fixture()
+      assert {:ok, %SchoolObject{}} = Storage.delete_object(school_object.key)
+      assert Repo.get(SchoolObject, school_object.id) == nil
+    end
+
+    test "returns an error if the storage api returns an error" do
+      expect(StorageAPIMock, :delete, fn _ -> {:error, %{}} end)
+
+      school_object = school_object_fixture()
+      assert {:error, %{}} = Storage.delete_object(school_object.key)
     end
   end
 end
