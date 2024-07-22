@@ -175,7 +175,7 @@ defmodule Zoonk.Storage do
   @spec optimize!(String.t(), integer()) :: term()
   def optimize!(key, size) do
     storage_module().optimize!(key, size)
-    update_school_object(key, %{size_kb: storage_module().get_object_size_in_kb!(key)})
+    update_school_object(key, %{size_kb: storage_module().get_object_size_in_kb!(key), content_type: "image/webp"})
   end
 
   defp school_object_attrs_from_folder([school_id, "courses", course_id, _column]), do: %{school_id: school_id, course_id: course_id}
