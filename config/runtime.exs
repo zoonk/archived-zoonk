@@ -94,6 +94,24 @@ if config_env() == :prod do
   host = System.get_env("PHX_HOST")
   port = String.to_integer(System.get_env("PORT") || "8080")
 
+  # Start a new server using FLAME and Fly
+  config :flame, FLAME.FlyBackend,
+    cpu_kind: "performance",
+    cpus: 4,
+    token: System.get_env("FLY_API_TOKEN"),
+    memory_mb: 8192,
+    env: %{
+      "AWS_ACCESS_KEY_ID" => System.get_env("AWS_ACCESS_KEY_ID"),
+      "AWS_SECRET_ACCESS_KEY" => System.get_env("AWS_SECRET_ACCESS_KEY"),
+      "AWS_REGION" => System.get_env("AWS_REGION"),
+      "BUCKET_NAME" => System.get_env("BUCKET_NAME"),
+      "AWS_ENDPOINT_URL_S3" => System.get_env("AWS_ENDPOINT_URL_S3"),
+      "AWS_CDN_URL" => System.get_env("AWS_CDN_URL") || System.get_env("AWS_ENDPOINT_URL_S3"),
+      "DATABASE_URL" => database_url
+    }
+
+  config :flame, :backend, FLAME.FlyBackend
+
   # Sentry configuration
   config :sentry,
     dsn: System.get_env("SENTRY_DSN"),

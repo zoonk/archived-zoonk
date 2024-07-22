@@ -10,6 +10,8 @@ defmodule Zoonk.Application do
 
   @impl Application
   def start(_type, _args) do
+    flame_parent = FLAME.Parent.get()
+
     Telemetry.attach_default_logger()
     Reporter.attach()
 
@@ -19,15 +21,17 @@ defmodule Zoonk.Application do
       # Start the Ecto repository
       Zoonk.Repo,
       {Oban, Application.fetch_env!(:zoonk, Oban)},
-      {DNSCluster, query: Application.get_env(:zoonk, :dns_cluster_query) || :ignore},
+      !flame_parent && {DNSCluster, query: Application.get_env(:zoonk, :dns_cluster_query) || :ignore},
       # Start the PubSub system
       {Phoenix.PubSub, name: Zoonk.PubSub},
       # Start Finch
       {Finch, name: Zoonk.Finch},
       # Start the Endpoint (http/https)
-      ZoonkWeb.Endpoint
+      !flame_parent && ZoonkWeb.Endpoint,
       # Start a worker by calling: Zoonk.Worker.start_link(arg)
       # {Zoonk.Worker, arg}
+      # FLAME pool
+      {FLAME.Pool, name: Zoonk.FLAME.ImageOptimization, min: 0, max: 10}
     ]
 
     # Sentry logging
@@ -36,7 +40,7 @@ defmodule Zoonk.Application do
     # See https://hexdocs.pm/elixir/Supervisor.html
     # for other strategies and supported options
     opts = [strategy: :one_for_one, name: Zoonk.Supervisor]
-    Supervisor.start_link(children, opts)
+    children |> Enum.filter(& &1) |> Supervisor.start_link(opts)
   end
 
   # Tell Phoenix to update the endpoint configuration

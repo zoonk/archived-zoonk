@@ -48,6 +48,7 @@ defmodule Zoonk.MixProject do
       {:ex_aws, "~> 2.5.4"},
       {:ex_aws_s3, "~> 2.5.3"},
       {:finch, "~> 0.18"},
+      {:flame, "~> 0.2.0"},
       {:floki, "~> 0.36.2", only: :test},
       {:gettext, "~> 0.24.0"},
       {:hackney, "~> 1.20.1"},
