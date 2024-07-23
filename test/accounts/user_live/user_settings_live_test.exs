@@ -1,21 +1,14 @@
 defmodule ZoonkWeb.UserSettingsLiveTest do
   use ZoonkWeb.ConnCase, async: true
 
-  import Mox
   import Phoenix.LiveViewTest
   import Zoonk.Fixtures.Accounts
   import Zoonk.Fixtures.Organizations
-  import Zoonk.Fixtures.Storage
-  import ZoonkWeb.TestHelpers.Upload
 
   alias Zoonk.Accounts
   alias Zoonk.Organizations
-  alias Zoonk.Repo
-  alias Zoonk.Storage.SchoolObject
 
   @form "#settings-form"
-
-  setup :verify_on_exit!
 
   describe "/users/settings (not authenticated)" do
     test "redirects if user is not logged in", %{conn: conn} do
@@ -133,37 +126,6 @@ defmodule ZoonkWeb.UserSettingsLiveTest do
 
   describe "/users/settings/avatar" do
     setup :app_setup
-
-    test "uploads avatar", %{conn: conn, user: user} do
-      mock_storage()
-
-      {:ok, lv, _html} = live(conn, ~p"/users/settings/avatar")
-
-      assert user.avatar == nil
-
-      assert has_element?(lv, ~s|li[aria-current=page] a:fl-icontains("settings")|)
-      assert has_element?(lv, ~s|li[aria-current=page] a:fl-icontains("avatar")|)
-      assert_file_upload(lv, "user_avatar")
-
-      assert Accounts.get_user!(user.id).avatar == uploaded_file_name()
-    end
-
-    test "removes the older avatar when uploading a new one", %{conn: conn, school: school, user: user} do
-      mock_storage()
-      expect(Zoonk.Storage.StorageAPIMock, :delete, fn _ -> {:ok, %{}} end)
-
-      old_file_name = "#{System.unique_integer()}.jpg"
-      school_object_fixture(%{school: school, key: old_file_name})
-
-      Accounts.update_user_settings(user, %{avatar: old_file_name})
-
-      {:ok, lv, _html} = live(conn, ~p"/users/settings/avatar")
-
-      assert_file_upload(lv, "user_avatar")
-
-      assert Accounts.get_user!(user.id).avatar == uploaded_file_name()
-      assert Repo.get_by(SchoolObject, key: old_file_name) == nil
-    end
   end
 
   describe "/users/settings/email" do

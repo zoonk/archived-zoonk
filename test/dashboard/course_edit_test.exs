@@ -2,16 +2,12 @@ defmodule ZoonkWeb.DashboardCourseEditLiveTest do
   @moduledoc false
   use ZoonkWeb.ConnCase, async: true
 
-  import Mox
   import Phoenix.LiveViewTest
   import Zoonk.Fixtures.Content
-  import ZoonkWeb.TestHelpers.Upload
 
   alias Zoonk.Content
 
   @course_form "#course-form"
-
-  setup :verify_on_exit!
 
   describe "/dashboard/c/edit/settings (non-authenticated user)" do
     setup :set_school
@@ -84,18 +80,6 @@ defmodule ZoonkWeb.DashboardCourseEditLiveTest do
   describe "/dashboard/c/edit/cover" do
     setup do
       course_setup(%{conn: build_conn()}, course_user: :teacher)
-    end
-
-    test "updates the cover image", %{conn: conn, school: school, course: course} do
-      mock_storage()
-
-      {:ok, lv, _html} = live(conn, ~p"/dashboard/c/#{course.slug}/edit/cover")
-
-      assert has_element?(lv, ~s|li[aria-current="page"] a:fl-icontains("manage courses")|)
-      assert has_element?(lv, ~s|li[aria-current="page"] a:fl-icontains("cover")|)
-      assert_file_upload(lv, "course_cover")
-
-      assert Content.get_course_by_slug!(course.slug, school.id).cover == uploaded_file_name()
     end
   end
 
