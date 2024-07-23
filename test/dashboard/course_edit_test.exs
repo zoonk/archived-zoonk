@@ -2,12 +2,15 @@ defmodule ZoonkWeb.DashboardCourseEditLiveTest do
   @moduledoc false
   use ZoonkWeb.ConnCase, async: true
 
+  import Mox
   import Phoenix.LiveViewTest
   import Zoonk.Fixtures.Content
 
   alias Zoonk.Content
 
   @course_form "#course-form"
+
+  setup :verify_on_exit!
 
   describe "/dashboard/c/edit/settings (non-authenticated user)" do
     setup :set_school

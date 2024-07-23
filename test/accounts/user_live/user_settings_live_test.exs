@@ -1,14 +1,19 @@
 defmodule ZoonkWeb.UserSettingsLiveTest do
   use ZoonkWeb.ConnCase, async: true
 
+  import Mox
   import Phoenix.LiveViewTest
   import Zoonk.Fixtures.Accounts
   import Zoonk.Fixtures.Organizations
 
   alias Zoonk.Accounts
   alias Zoonk.Organizations
+  alias Zoonk.Repo
+  alias Zoonk.Storage.SchoolObject
 
   @form "#settings-form"
+
+  setup :verify_on_exit!
 
   describe "/users/settings (not authenticated)" do
     test "redirects if user is not logged in", %{conn: conn} do

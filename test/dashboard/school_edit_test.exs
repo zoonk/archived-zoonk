@@ -2,12 +2,15 @@ defmodule ZoonkWeb.SchoolUpdateLiveTest do
   @moduledoc false
   use ZoonkWeb.ConnCase, async: true
 
+  import Mox
   import Phoenix.LiveViewTest
   import Zoonk.Fixtures.Organizations
 
   alias Zoonk.Organizations
 
   @school_form "#school-form"
+
+  setup :verify_on_exit!
 
   describe "Edit school data" do
     setup do
