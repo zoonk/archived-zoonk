@@ -8,8 +8,6 @@ defmodule ZoonkWeb.UserSettingsLiveTest do
 
   alias Zoonk.Accounts
   alias Zoonk.Organizations
-  alias Zoonk.Repo
-  alias Zoonk.Storage.SchoolObject
 
   @form "#settings-form"
 
