@@ -95,7 +95,7 @@ msgstr "Startseite"
 
 #: lib/dashboard/schools/school_edit.ex:92
 #: lib/dashboard/schools/school_edit.html.heex:1
-#: lib/layouts/menu_utils.ex:98
+#: lib/layouts/menu_utils.ex:99
 #: lib/layouts/templates/auth.html.heex:3
 #, elixir-autogen, elixir-format
 msgid "Logo"
@@ -117,7 +117,7 @@ msgstr "Abmelden"
 #: lib/dashboard/courses/course_edit.html.heex:5
 #: lib/dashboard/schools/school_edit.ex:91
 #: lib/layouts/components/app_menu.ex:40
-#: lib/layouts/menu_utils.ex:100
+#: lib/layouts/menu_utils.ex:101
 #: lib/layouts/templates/dashboard_course.html.heex:42
 #, elixir-autogen, elixir-format
 msgid "Settings"
@@ -228,7 +228,7 @@ msgstr "Aktualisieren"
 msgid "Updating..."
 msgstr "Aktualisiert..."
 
-#: lib/components/upload.ex:23
+#: lib/components/upload.ex:24
 #, elixir-autogen, elixir-format
 msgid "Remove"
 msgstr "Entfernen"
@@ -262,7 +262,7 @@ msgstr "Seitenleiste schließen"
 #: lib/components/delete_item.ex:17
 #: lib/components/delete_item.ex:21
 #: lib/dashboard/schools/school_edit.ex:93
-#: lib/layouts/menu_utils.ex:101
+#: lib/layouts/menu_utils.ex:102
 #: lib/layouts/templates/app.html.heex:78
 #: lib/layouts/templates/dashboard_course.html.heex:50
 #, elixir-autogen, elixir-format
@@ -284,7 +284,7 @@ msgstr "Neu"
 msgid "Open sidebar"
 msgstr "Seitenleiste öffnen"
 
-#: lib/layouts/menu_utils.ex:95
+#: lib/layouts/menu_utils.ex:96
 #: lib/layouts/templates/dashboard_course.html.heex:26
 #, elixir-autogen, elixir-format
 msgid "Overview"
@@ -341,7 +341,7 @@ msgstr "Verliere deinen Fortschritt nicht. "
 msgid "Update your email address"
 msgstr "Aktualisiere deine E-Mail Adresse"
 
-#: lib/layouts/menu_utils.ex:96
+#: lib/layouts/menu_utils.ex:97
 #, elixir-autogen, elixir-format
 msgid "Schools"
 msgstr "Schulen"
@@ -381,7 +381,7 @@ msgstr "Einrichtung"
 
 #: lib/dashboard/schools/school_edit.ex:94
 #: lib/dashboard/schools/school_edit.html.heex:2
-#: lib/layouts/menu_utils.ex:99
+#: lib/layouts/menu_utils.ex:100
 #, elixir-autogen, elixir-format
 msgid "Icon"
 msgstr "Icon"
@@ -397,11 +397,6 @@ msgid "Something went wrong!"
 msgstr "Etwas ist schief gelaufen!"
 
 #: lib/components/upload.ex:49
-#, elixir-autogen, elixir-format
-msgid "Processing file..."
-msgstr "Datei wird verarbeitet..."
-
-#: lib/components/upload.ex:48
 #, elixir-autogen, elixir-format
 msgid "Uploading: %{progress}%"
 msgstr "Hochladen: %{progress}%"

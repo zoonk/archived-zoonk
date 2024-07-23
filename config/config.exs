@@ -11,7 +11,7 @@ import Config
 config :esbuild,
   version: "0.21.5",
   default: [
-    args: ~w(js/app.js --bundle --target=es2017 --outdir=../priv/static/assets --external:/fonts/* --external:/audios/* --external:/images/* --external:/uploads/*),
+    args: ~w(js/app.js --bundle --target=es2017 --outdir=../priv/static/assets --external:/fonts/* --external:/audios/* --external:/images/*),
     cd: Path.expand("../assets", __DIR__),
     env: %{"NODE_PATH" => Path.expand("../deps", __DIR__)}
   ]
@@ -71,6 +71,14 @@ config :zoonk, ZoonkWeb.Endpoint,
 
 # Configure translation
 config :zoonk, ZoonkWeb.Gettext, default_locale: "en", locales: ~w(en pt)
+
+# Content security policy
+config :zoonk, :csp, connect_src: System.get_env("CSP_CONNECT_SRC")
+
+# Storage config
+config :zoonk, :storage,
+  bucket: System.get_env("BUCKET_NAME"),
+  domain: System.get_env("AWS_CDN_URL") || System.get_env("AWS_ENDPOINT_URL_S3")
 
 config :zoonk,
   ecto_repos: [Zoonk.Repo],

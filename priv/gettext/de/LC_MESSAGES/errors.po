@@ -206,17 +206,22 @@ msgstr "Zugriff verweigert"
 msgid "is not allowed"
 msgstr "ist nicht erlaubt"
 
-#: lib/components/upload.ex:133
+#: lib/components/upload.ex:130
 #, elixir-autogen, elixir-format
 msgid "Too large"
 msgstr "Zu groß"
 
-#: lib/components/upload.ex:134
+#: lib/components/upload.ex:131
 #, elixir-autogen, elixir-format
 msgid "You have selected an unacceptable file type"
 msgstr "Sie haben einen nicht akzeptablen Dateityp ausgewählt"
 
-#: lib/components/upload.ex:135
+#: lib/components/upload.ex:132
 #, elixir-autogen, elixir-format
 msgid "You have selected too many files"
 msgstr "Sie haben zu viele Dateien ausgewählt"
+
+#: lib/components/upload.ex:86
+#, elixir-autogen, elixir-format
+msgid "Failed to remove file"
+msgstr "Datei konnte nicht gelöscht werden"

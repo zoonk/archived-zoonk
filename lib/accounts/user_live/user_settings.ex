@@ -3,6 +3,7 @@ defmodule ZoonkWeb.Live.UserSettings do
   use ZoonkWeb, :live_view
 
   alias Zoonk.Accounts
+  alias Zoonk.Storage
   alias ZoonkWeb.Components.DeleteItem
   alias ZoonkWeb.Components.Upload
 

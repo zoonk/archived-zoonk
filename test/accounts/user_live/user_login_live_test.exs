@@ -5,6 +5,8 @@ defmodule ZoonkWeb.UserLoginLiveTest do
   import Zoonk.Fixtures.Accounts
   import Zoonk.Fixtures.Organizations
 
+  alias Zoonk.Storage
+
   describe "Log in page" do
     test "renders log in page", %{conn: conn} do
       {:ok, _lv, html} = live(conn, ~p"/users/login")
@@ -27,7 +29,7 @@ defmodule ZoonkWeb.UserLoginLiveTest do
 
   describe "login page (with school configured)" do
     setup do
-      set_school(%{conn: build_conn()}, %{allow_guests?: true, logo: "/m_logo.png", icon: "/m_icon.png"})
+      set_school(%{conn: build_conn()}, %{allow_guests?: true, icon: "m_icon.png"})
     end
 
     test "renders the page even when guests are allowed", %{conn: conn} do
@@ -35,14 +37,15 @@ defmodule ZoonkWeb.UserLoginLiveTest do
       assert html =~ "Sign in to your account"
     end
 
-    test "displays the logo and icon from the app school when it has one", %{conn: conn, school: school} do
+    test "displays the icon from the app school when it has one", %{conn: conn, school: school} do
       child_school = school_fixture(%{school_id: school.id, logo: nil})
       conn = Map.put(conn, :host, "#{child_school.slug}.#{school.custom_domain}")
+      file_url = Storage.get_url(school.icon)
 
       {:ok, lv, html} = live(conn, ~p"/users/login")
 
-      assert has_element?(lv, ~s|img[src="/m_icon.png"]|)
-      assert html =~ ~s(sizes="16x16" href="/m_icon.png"/>)
+      assert has_element?(lv, ~s|img[src="#{file_url}"]|)
+      assert html =~ ~s(sizes="16x16" href="#{file_url}"/>)
     end
   end
 

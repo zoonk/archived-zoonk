@@ -4,7 +4,12 @@ defmodule ZoonkWeb.TestHelpers.Upload do
   """
   use ZoonkWeb.ConnCase, async: true
 
+  import Mox
   import Phoenix.LiveViewTest
+
+  alias Zoonk.Storage.StorageAPIMock
+
+  @file_name "16.png"
 
   @doc """
   Asserts a file is being uploaded.
@@ -14,15 +19,31 @@ defmodule ZoonkWeb.TestHelpers.Upload do
     files = get_files()
     input = file_input(lv, "#upload-form-#{id}", :file, files)
 
-    assert render_upload(input, "robot.png")
+    assert render_upload(input, @file_name)
   end
+
+  @doc """
+  Mocks the storage API for tests.
+  """
+  @spec mock_storage() :: :ok
+  def mock_storage do
+    expect(StorageAPIMock, :presigned_url, fn _entry, _folder -> {"https://test.com", @file_name} end)
+    expect(StorageAPIMock, :optimize!, fn _key, _size -> :ok end)
+    expect(StorageAPIMock, :get_object_size_in_kb!, fn _key -> 2 end)
+  end
+
+  @doc """
+  Returns the mock file name
+  """
+  @spec uploaded_file_name() :: String.t()
+  def uploaded_file_name, do: @file_name
 
   defp get_files do
     [
       %{
-        name: "robot.png",
+        name: @file_name,
         content:
-          [:code.priv_dir(:zoonk), "static", "uploads", "seed", "courses", "robot.png"]
+          [:code.priv_dir(:zoonk), "static", "favicon", @file_name]
           |> Path.join()
           |> File.read!()
       }

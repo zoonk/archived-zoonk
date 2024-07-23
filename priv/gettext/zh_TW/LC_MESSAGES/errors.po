@@ -206,17 +206,22 @@ msgstr "權限不足"
 msgid "is not allowed"
 msgstr "不允許"
 
-#: lib/components/upload.ex:133
+#: lib/components/upload.ex:130
 #, elixir-autogen, elixir-format
 msgid "Too large"
 msgstr "太大"
 
-#: lib/components/upload.ex:134
+#: lib/components/upload.ex:131
 #, elixir-autogen, elixir-format
 msgid "You have selected an unacceptable file type"
 msgstr "您選擇了一個不可接受的檔案類型"
 
-#: lib/components/upload.ex:135
+#: lib/components/upload.ex:132
 #, elixir-autogen, elixir-format
 msgid "You have selected too many files"
 msgstr "您選擇了太多檔案"
+
+#: lib/components/upload.ex:86
+#, elixir-autogen, elixir-format
+msgid "Failed to remove file"
+msgstr "刪除檔案失敗"

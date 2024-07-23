@@ -5,6 +5,7 @@ defmodule ZoonkWeb.Live.Dashboard.LessonEditor do
   import ZoonkWeb.Components.Dashboard.StepImage
 
   alias Zoonk.Content
+  alias Zoonk.Storage
   alias ZoonkWeb.Components.Dashboard.LessonEdit
   alias ZoonkWeb.Components.Dashboard.LessonPublish
   alias ZoonkWeb.Components.Dashboard.OptionList

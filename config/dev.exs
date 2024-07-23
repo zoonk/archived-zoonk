@@ -59,8 +59,6 @@ config :zoonk, ZoonkWeb.Endpoint,
 config :zoonk, ZoonkWeb.Endpoint,
   live_reload: [
     patterns: [
-      ## Ignore user uploads
-      ~r"priv/static/[^uploads].*(js|css|png|jpeg|jpg|gif|svg)$",
       ~r"priv/gettext/.*(po)$",
       ~r"lib/(.*)/.*(ex|heex)$"
     ]

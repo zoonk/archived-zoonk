@@ -11,7 +11,7 @@ msgstr ""
 "Language: zh_TW\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: lib/content/course_live/course_view.ex:59
+#: lib/content/course_live/course_view.ex:60
 #, elixir-autogen, elixir-format
 msgid "A request to enroll has been sent to the course teacher."
 msgstr "已向教師報名課程。"
@@ -36,7 +36,7 @@ msgstr "初級"
 msgid "Confirming..."
 msgstr "確認中..."
 
-#: lib/content/course_live/course_view.ex:58
+#: lib/content/course_live/course_view.ex:59
 #, elixir-autogen, elixir-format
 msgid "Enrolled successfully!"
 msgstr "成功報名！"
@@ -51,7 +51,7 @@ msgstr "優秀！"
 msgid "Expert"
 msgstr "專家"
 
-#: lib/content/course_live/course_view.ex:43
+#: lib/content/course_live/course_view.ex:44
 #, elixir-autogen, elixir-format
 msgid "Failed to enroll"
 msgstr "報名失敗"
@@ -91,7 +91,7 @@ msgstr "完美！"
 msgid "Request to join"
 msgstr "請求加入"
 
-#: lib/content/course_live/components/lesson_step.ex:37
+#: lib/content/course_live/components/lesson_step.ex:38
 #, elixir-autogen, elixir-format
 msgid "That's incorrect."
 msgstr "這是不正確的。"
@@ -101,12 +101,12 @@ msgstr "這是不正確的。"
 msgid "There's room for improvement"
 msgstr "有改進的空間"
 
-#: lib/content/course_live/lesson_play.ex:90
+#: lib/content/course_live/lesson_play.ex:91
 #, elixir-autogen, elixir-format
 msgid "Unable to complete lesson"
 msgstr "無法完成課程"
 
-#: lib/content/course_live/lesson_play.ex:53
+#: lib/content/course_live/lesson_play.ex:54
 #, elixir-autogen, elixir-format
 msgid "Unable to select option"
 msgstr "無法選擇選項"
@@ -116,7 +116,7 @@ msgstr "無法選擇選項"
 msgid "Very good!"
 msgstr "非常好！"
 
-#: lib/content/course_live/components/lesson_step.ex:37
+#: lib/content/course_live/components/lesson_step.ex:38
 #, elixir-autogen, elixir-format
 msgid "Well done!"
 msgstr "做得好！"
@@ -151,7 +151,7 @@ msgstr "加入課程開始學習。"
 msgid "No courses"
 msgstr "沒有課程"
 
-#: lib/content/course_live/lesson_play.ex:76
+#: lib/content/course_live/lesson_play.ex:77
 #, elixir-autogen, elixir-format
 msgid "Unable to send answer"
 msgstr "無法傳送答案"

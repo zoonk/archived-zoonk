@@ -8,6 +8,7 @@ defmodule ZoonkWeb.PlayViewLiveTest do
   alias Zoonk.Content
   alias Zoonk.Content.UserSelection
   alias Zoonk.Repo
+  alias Zoonk.Storage
 
   @select_form "#play"
 
@@ -245,8 +246,9 @@ defmodule ZoonkWeb.PlayViewLiveTest do
     assert has_element?(lv, ~s|blockquote p:fl-icontains("step 3!")|)
 
     step = Enum.at(lessons, 2)
+    file_url = Storage.get_url(step.image)
 
-    assert has_element?(lv, ~s|img[src="#{step.image}"]|)
+    assert has_element?(lv, ~s|img[src="#{file_url}"]|)
   end
 
   defp assert_fourth_step(conn, lv, lessons, course) do
@@ -267,7 +269,7 @@ defmodule ZoonkWeb.PlayViewLiveTest do
   defp generate_steps(lesson) do
     Enum.each(1..4, fn order ->
       content = "step #{order}!"
-      image = if order == 3, do: "/uploads/img.png"
+      image = if order == 3, do: "img.png"
       kind = if order == 4, do: :readonly, else: :quiz
 
       step = lesson_step_fixture(%{lesson_id: lesson.id, kind: kind, content: content, image: image, order: order})
@@ -281,7 +283,7 @@ defmodule ZoonkWeb.PlayViewLiveTest do
 
   defp generate_options(step, _step_order) do
     Enum.each(1..4, fn order ->
-      image = if order == 2, do: "/uploads/img.png"
+      image = if order == 2, do: "img.png"
       feedback = unless order == 1, do: "feedback #{order}!"
       correct? = order == 1 or order == 4
 

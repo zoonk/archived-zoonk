@@ -11,7 +11,7 @@ msgstr ""
 "Language: en\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: lib/content/course_live/course_view.ex:59
+#: lib/content/course_live/course_view.ex:60
 #, elixir-autogen, elixir-format
 msgid "A request to enroll has been sent to the course teacher."
 msgstr ""
@@ -36,7 +36,7 @@ msgstr ""
 msgid "Confirming..."
 msgstr ""
 
-#: lib/content/course_live/course_view.ex:58
+#: lib/content/course_live/course_view.ex:59
 #, elixir-autogen, elixir-format
 msgid "Enrolled successfully!"
 msgstr ""
@@ -51,7 +51,7 @@ msgstr ""
 msgid "Expert"
 msgstr ""
 
-#: lib/content/course_live/course_view.ex:43
+#: lib/content/course_live/course_view.ex:44
 #, elixir-autogen, elixir-format
 msgid "Failed to enroll"
 msgstr ""
@@ -91,7 +91,7 @@ msgstr ""
 msgid "Request to join"
 msgstr ""
 
-#: lib/content/course_live/components/lesson_step.ex:37
+#: lib/content/course_live/components/lesson_step.ex:38
 #, elixir-autogen, elixir-format
 msgid "That's incorrect."
 msgstr ""
@@ -101,12 +101,12 @@ msgstr ""
 msgid "There's room for improvement"
 msgstr ""
 
-#: lib/content/course_live/lesson_play.ex:90
+#: lib/content/course_live/lesson_play.ex:91
 #, elixir-autogen, elixir-format
 msgid "Unable to complete lesson"
 msgstr ""
 
-#: lib/content/course_live/lesson_play.ex:53
+#: lib/content/course_live/lesson_play.ex:54
 #, elixir-autogen, elixir-format
 msgid "Unable to select option"
 msgstr ""
@@ -116,7 +116,7 @@ msgstr ""
 msgid "Very good!"
 msgstr ""
 
-#: lib/content/course_live/components/lesson_step.ex:37
+#: lib/content/course_live/components/lesson_step.ex:38
 #, elixir-autogen, elixir-format
 msgid "Well done!"
 msgstr ""
@@ -151,7 +151,7 @@ msgstr ""
 msgid "No courses"
 msgstr ""
 
-#: lib/content/course_live/lesson_play.ex:76
+#: lib/content/course_live/lesson_play.ex:77
 #, elixir-autogen, elixir-format
 msgid "Unable to send answer"
 msgstr ""

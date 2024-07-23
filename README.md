@@ -114,11 +114,15 @@ We're using [Resend](https://resend.com) to send emails. To make it work in prod
 
 ## Storage
 
-By default, we upload files to your local server and store them in the `priv/static/uploads` directory. However, we also support uploading files to [Cloudflare Images](https://www.cloudflare.com/developer-platform/cloudflare-images). To use Cloudflare Images, you'll need to set the following environment variables on your server:
+You need to use an S3-compatible storage service to store your files. At Zoonk, we're using [Tigris](https://tigrisdata.com/). You need to add the following environment variables:
 
-- `CLOUDFLARE_ACCOUNT_ID`: Your Cloudflare account ID. You can find it on `Cloudflare Dashboard > Images > Overview`.
-- `CLOUDFLARE_ACCOUNT_HASH`: Your Cloudflare account hash. You can find it on `Cloudflare Dashboard > Images > Overview`.
-- `CLOUDFLARE_API_TOKEN`: Your Cloudflare API token. You can create a token on `Cloudflare Dashboard > My Profile > API Tokens`.
+- `AWS_ACCESS_KEY_ID`: Your AWS access key ID.
+- `AWS_SECRET_ACCESS_KEY`: Your AWS secret access key.
+- `AWS_REGION`: Your AWS region.
+- `BUCKET_NAME`: Your AWS bucket name.
+- `AWS_ENDPOINT_URL_S3`: Your AWS endpoint URL.
+- `AWS_CDN_URL`: Your AWS CDN URL (optional. If missing, we'll use the S3 endpoint URL).
+- `CSP_CONNECT_SRC`: Your S3 domain (i.e. `https://fly.storage.tigris.dev`).
 
 ## Sponsors
 

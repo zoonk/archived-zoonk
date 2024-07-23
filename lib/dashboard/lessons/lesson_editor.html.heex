@@ -120,6 +120,7 @@
   <.modal :if={@live_action == :step_img} show id="img-step-modal" on_cancel={JS.patch(step_link(@course, @lesson, @selected_step.order))}>
     <.live_component
       module={Upload}
+      folder={Storage.generate_folder_name(@school.id, "lesson_steps", @selected_step.id, "image")}
       id={:step_img_upload}
       current_img={@selected_step.image}
       unstyled
@@ -131,6 +132,7 @@
   <.modal :if={@live_action == :option_img} show id="option-img-modal" on_cancel={JS.patch(step_link(@course, @lesson, @selected_step.order))}>
     <.live_component
       module={Upload}
+      folder={Storage.generate_folder_name(@school.id, "step_options", @selected_option.id, "image")}
       id={:option_img}
       current_img={@selected_option.image}
       label={dgettext("orgs", "Add image to option")}
@@ -140,7 +142,14 @@
   </.modal>
 
   <.modal :if={@live_action == :cover} show id="cover-modal" on_cancel={JS.patch(step_link(@course, @lesson, @selected_step.order))}>
-    <.live_component module={Upload} id={:lesson_cover} current_img={@lesson.cover} unstyled label={dgettext("orgs", "Cover")} />
+    <.live_component
+      module={Upload}
+      folder={Storage.generate_folder_name(@school.id, "lessons", @lesson.id, "cover")}
+      id={:lesson_cover}
+      current_img={@lesson.cover}
+      unstyled
+      label={dgettext("orgs", "Cover")}
+    />
   </.modal>
 
   <.search_box

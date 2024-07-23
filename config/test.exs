@@ -12,7 +12,7 @@ config :phoenix, :plug_init_mode, :runtime
 # Disable swoosh api client as it is only required for production adapters.
 config :swoosh, :api_client, false
 
-# Prevent Oban from running jobs in tests
+# Jobs execute immediately within the calling process and without touching the database
 config :zoonk, Oban, testing: :inline
 
 # In test we don't send emails.
