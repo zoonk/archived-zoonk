@@ -4,7 +4,7 @@
 
     <.input type="text" field={@form[:name]} label={dgettext("orgs", "School name")} required />
     <.input type="email" field={@form[:email]} label={dgettext("orgs", "School email")} required />
-    <.input type="text" field={@form[:slug]} label={dgettext("orgs", "Nickname")} helper={dgettext("orgs", "Choose a nickname to acess your school profile")} required />
+    <.input type="text" field={@form[:slug]} label={dgettext("orgs", "Nickname")} helper={dgettext("orgs", "Choose a nickname to access your school profile")} required />
 
     <.button icon="tabler-school" type="submit" phx-disable-with={gettext("Saving...")}>
       <%= dgettext("orgs", "Create school") %>

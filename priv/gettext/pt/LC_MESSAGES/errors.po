@@ -94,7 +94,7 @@ msgid "must be less than %{number}"
 msgstr "deve ser menor que %{number}"
 
 msgid "must be greater than %{number}"
-msgstr "devem ser maior que %{number}"
+msgstr "deve ser maior que %{number}"
 
 msgid "must be less than or equal to %{number}"
 msgstr "deve ser menor ou igual a %{number}"
@@ -118,7 +118,7 @@ msgstr "pelo menos um dígito ou sinal de pontuação"
 #: lib/accounts/user_schema.ex:75
 #, elixir-autogen, elixir-format
 msgid "at least one lower case character"
-msgstr "pelo menos uma letra minúsculo"
+msgstr "pelo menos uma letra minúscula"
 
 #: lib/accounts/user_schema.ex:76
 #, elixir-autogen, elixir-format
@@ -148,7 +148,7 @@ msgstr "Apenas gestores e professores podem ver esta página"
 #: lib/error/permission_error.ex:11
 #, elixir-autogen, elixir-format
 msgid "Only managers can view this page"
-msgstr "Apens gestores podem ver esta página"
+msgstr "Apenas gestores podem ver esta página"
 
 #: lib/error/permission_error.ex:10
 #, elixir-autogen, elixir-format
@@ -196,22 +196,22 @@ msgstr "Permissão negada"
 msgid "is not allowed"
 msgstr "não é permitido"
 
-#: lib/components/upload.ex:130
+#: lib/components/upload.ex:126
 #, elixir-autogen, elixir-format
 msgid "Too large"
 msgstr "Muito grande"
 
-#: lib/components/upload.ex:131
+#: lib/components/upload.ex:127
 #, elixir-autogen, elixir-format
 msgid "You have selected an unacceptable file type"
 msgstr "Você selecionou um tipo de arquivo incompatível"
 
-#: lib/components/upload.ex:132
+#: lib/components/upload.ex:128
 #, elixir-autogen, elixir-format
 msgid "You have selected too many files"
 msgstr "Você selecionou muitos arquivos"
 
-#: lib/components/upload.ex:86
+#: lib/components/upload.ex:87
 #, elixir-autogen, elixir-format
 msgid "Failed to remove file"
 msgstr "Falha ao remover arquivo"

@@ -4,7 +4,8 @@
   <img alt="Zoonk Banner" src="https://github.com/zoonk/.github/assets/4393133/ddbb2208-feac-4a58-adac-f769cff4dc7f">
 </picture>
 
-> **WARNING:** This software is still in development and not ready for production. DO NOT USE IT IN PRODUCTION YET. The current version will break when v1.0 is released. This README will be updated when it's ready for production.
+> [!WARNING]
+> This software is still in development and not ready for production. DO NOT USE IT IN PRODUCTION YET. The current version will break when v1.0 is released. This README will be updated when it's ready for production.
 
 ---
 
@@ -123,6 +124,15 @@ You need to use an S3-compatible storage service to store your files. At Zoonk, 
 - `AWS_ENDPOINT_URL_S3`: Your AWS endpoint URL.
 - `AWS_CDN_URL`: Your AWS CDN URL (optional. If missing, we'll use the S3 endpoint URL).
 - `CSP_CONNECT_SRC`: Your S3 domain (i.e. `https://fly.storage.tigris.dev`).
+
+## Translations
+
+Follow the steps below to add a new language to Zoonk:
+
+1. Copy the `priv/gettext/en` directory to `priv/gettext/<language_code>`.
+2. Translate the `*.po` files.
+3. Add the language code to the `locales` list in [config/config.exs](config/config.exs).
+4. Add the language name to `@supported_locales` in [lib/translate/translate_plug.ex](lib/translate/translate_plug.ex).
 
 ## Sponsors
 

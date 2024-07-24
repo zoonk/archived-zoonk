@@ -70,7 +70,7 @@ config :zoonk, ZoonkWeb.Endpoint,
   live_view: [signing_salt: "18a5Hr6d"]
 
 # Configure translation
-config :zoonk, ZoonkWeb.Gettext, default_locale: "en", locales: ~w(en pt)
+config :zoonk, ZoonkWeb.Gettext, default_locale: "en", locales: ~w(de en pt zh_TW)
 
 # Content security policy
 config :zoonk, :csp, connect_src: System.get_env("CSP_CONNECT_SRC")

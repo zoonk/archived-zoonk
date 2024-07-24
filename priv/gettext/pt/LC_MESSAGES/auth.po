@@ -110,44 +110,44 @@ msgid "You must log in to access this page."
 msgstr "É necessário estar logado para acessar esta página."
 
 #: lib/accounts/user_live/reset_password.html.heex:10
-#: lib/accounts/user_live/user_settings.html.heex:60
+#: lib/accounts/user_live/user_settings.html.heex:67
 #, elixir-autogen, elixir-format
 msgid "Confirm new password"
 msgstr "Confirmar nova senha"
 
-#: lib/accounts/user_live/user_settings.html.heex:54
+#: lib/accounts/user_live/user_settings.html.heex:61
 #, elixir-autogen, elixir-format
 msgid "Current password"
 msgstr "Senha atual"
 
 #: lib/accounts/user_live/reset_password.html.heex:9
-#: lib/accounts/user_live/user_settings.html.heex:59
+#: lib/accounts/user_live/user_settings.html.heex:66
 #, elixir-autogen, elixir-format
 msgid "New password"
 msgstr "Nova senha"
 
-#: lib/accounts/user_live/user_settings.ex:80
-#: lib/accounts/user_live/user_settings.ex:128
+#: lib/accounts/user_live/user_settings.ex:81
+#: lib/accounts/user_live/user_settings.ex:129
 #, elixir-autogen, elixir-format
 msgid "A link to confirm your email change has been sent to the new address."
 msgstr "Enviamos um link para confirmar a alteração do seu e-mail para o novo endereço."
 
-#: lib/accounts/user_live/user_settings.ex:17
+#: lib/accounts/user_live/user_settings.ex:18
 #, elixir-autogen, elixir-format
 msgid "Email change link is invalid or it has expired."
 msgstr "O link para alterar o e-mail é inválido ou expirou."
 
-#: lib/accounts/user_live/user_settings.ex:16
+#: lib/accounts/user_live/user_settings.ex:17
 #, elixir-autogen, elixir-format
 msgid "Email changed successfully."
 msgstr "E-mail alterado."
 
-#: lib/accounts/user_live/user_settings.ex:113
+#: lib/accounts/user_live/user_settings.ex:114
 #, elixir-autogen, elixir-format
 msgid "Error updating settings"
 msgstr "Erro ao atualizar configurações"
 
-#: lib/accounts/user_live/user_settings.ex:105
+#: lib/accounts/user_live/user_settings.ex:106
 #, elixir-autogen, elixir-format
 msgid "Settings updated successfully"
 msgstr "Configurações atualizadas"
@@ -212,27 +212,27 @@ msgstr "política de privacidade"
 msgid "terms of use"
 msgstr "termos de uso"
 
-#: lib/accounts/user_live/user_settings.html.heex:75
+#: lib/accounts/user_live/user_settings.html.heex:82
 #, elixir-autogen, elixir-format
 msgid "You have a guest account. To convert it into a regular account, update your email address below:"
 msgstr "Você tem uma conta de convidado. Para convertê-la em uma conta comum, atualize o endereço de e-mail abaixo:"
 
-#: lib/accounts/user_live/user_settings.html.heex:41
+#: lib/accounts/user_live/user_settings.html.heex:48
 #, elixir-autogen, elixir-format
 msgid "Enable sound effects?"
 msgstr "Habilitar efeitos sonoros?"
 
-#: lib/accounts/user_live/user_settings.html.heex:42
+#: lib/accounts/user_live/user_settings.html.heex:49
 #, elixir-autogen, elixir-format
 msgid "When checked, courses may play sound effects when you answer questions correctly or incorrectly."
 msgstr "Ao marcar, os cursos podem reproduzir efeitos sonoros quando você responder corretamente ou incorretamente as perguntas."
 
-#: lib/accounts/user_live/user_settings.ex:174
+#: lib/accounts/user_live/user_settings.ex:175
 #, elixir-autogen, elixir-format
 msgid "Unable to delete your account"
 msgstr "Não foi possível excluir sua conta"
 
-#: lib/accounts/user_live/user_settings.ex:85
+#: lib/accounts/user_live/user_settings.ex:86
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Error setting up account"
 msgstr "Erro ao configurar a conta"

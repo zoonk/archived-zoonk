@@ -11,11 +11,6 @@ msgstr ""
 "Language: zh_TW\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: lib/organizations/school_live/school_new.html.heex:7
-#, elixir-autogen, elixir-format
-msgid "Choose a nickname to acess your school profile"
-msgstr "選擇一個暱稱以存取您的學校資料"
-
 #: lib/organizations/school_live/school_new.ex:12
 #: lib/organizations/school_live/school_new.html.heex:3
 #: lib/organizations/school_live/school_new.html.heex:10
@@ -23,7 +18,7 @@ msgstr "選擇一個暱稱以存取您的學校資料"
 msgid "Create school"
 msgstr "建立學校"
 
-#: lib/dashboard/schools/school_edit.html.heex:12
+#: lib/dashboard/schools/school_edit.html.heex:27
 #: lib/organizations/school_live/school_new.html.heex:7
 #, elixir-autogen, elixir-format
 msgid "Nickname"
@@ -34,30 +29,30 @@ msgstr "暱稱"
 msgid "School could not be created"
 msgstr "無法建立學校"
 
-#: lib/dashboard/schools/school_edit.html.heex:14
+#: lib/dashboard/schools/school_edit.html.heex:29
 #: lib/organizations/school_live/school_new.html.heex:6
 #, elixir-autogen, elixir-format
 msgid "School email"
 msgstr "學校電子郵件"
 
-#: lib/dashboard/schools/school_edit.html.heex:13
+#: lib/dashboard/schools/school_edit.html.heex:28
 #: lib/organizations/school_live/school_new.html.heex:5
 #, elixir-autogen, elixir-format
 msgid "School name"
 msgstr "學校名稱"
 
-#: lib/dashboard/schools/school_edit.ex:96
 #: lib/dashboard/schools/school_edit.ex:97
+#: lib/dashboard/schools/school_edit.ex:98
 #, elixir-autogen, elixir-format, fuzzy
 msgid "School updated successfully"
 msgstr "學校更新成功"
 
-#: lib/dashboard/schools/school_edit.ex:57
+#: lib/dashboard/schools/school_edit.ex:58
 #, elixir-autogen, elixir-format
 msgid "Could not update logo!"
 msgstr "無法更新標誌！"
 
-#: lib/dashboard/schools/school_edit.ex:53
+#: lib/dashboard/schools/school_edit.ex:54
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Logo updated successfully!"
 msgstr "標誌更新成功！"
@@ -149,11 +144,11 @@ msgstr "確認"
 msgid "Confirmation message does not match. You typed: %{confirmation} but you need to type %{message}."
 msgstr "確認訊息不符。您輸入的是：%{confirmation}，但您需要輸入：%{message}。"
 
-#: lib/dashboard/courses/course_edit.html.heex:1
+#: lib/dashboard/courses/course_edit.html.heex:7
 #: lib/dashboard/lessons/components/lesson_edit.ex:14
-#: lib/dashboard/lessons/lesson_cover.ex:10
-#: lib/dashboard/lessons/lesson_cover.html.heex:1
-#: lib/dashboard/lessons/lesson_editor.html.heex:143
+#: lib/dashboard/lessons/lesson_cover.ex:11
+#: lib/dashboard/lessons/lesson_cover.html.heex:6
+#: lib/dashboard/lessons/lesson_editor.html.heex:151
 #, elixir-autogen, elixir-format
 msgid "Cover"
 msgstr "封面"
@@ -174,7 +169,7 @@ msgstr "建立課程"
 msgid "Dashboard"
 msgstr "儀錶板"
 
-#: lib/dashboard/courses/course_edit.html.heex:23
+#: lib/dashboard/courses/course_edit.html.heex:30
 #: lib/dashboard/courses/course_new.html.heex:14
 #, elixir-autogen, elixir-format
 msgid "Level"
@@ -200,7 +195,7 @@ msgstr "未發布"
 msgid "+ Lesson"
 msgstr "+ 課程"
 
-#: lib/dashboard/lessons/lesson_editor.html.heex:136
+#: lib/dashboard/lessons/lesson_editor.html.heex:138
 #, elixir-autogen, elixir-format
 msgid "Add image to option"
 msgstr "為選項新增圖片"
@@ -220,7 +215,7 @@ msgstr "所有答案都是正確的。"
 msgid "Check this option if this is the correct answer."
 msgstr "如果這是正確答案，請選擇此選項。"
 
-#: lib/dashboard/lessons/lesson_editor.ex:87
+#: lib/dashboard/lessons/lesson_editor.ex:88
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Could not add option!"
 msgstr "無法新增選項！"
@@ -246,12 +241,12 @@ msgstr "無法建立課程！"
 msgid "Could not create step!"
 msgstr "無法建立步驟！"
 
-#: lib/dashboard/courses/course_edit.ex:64
+#: lib/dashboard/courses/course_edit.ex:65
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Could not delete course!"
 msgstr "無法刪除課程！"
 
-#: lib/dashboard/lessons/lesson_editor.ex:113
+#: lib/dashboard/lessons/lesson_editor.ex:114
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Could not delete lesson!"
 msgstr "無法刪除課程！"
@@ -261,14 +256,14 @@ msgstr "無法刪除課程！"
 msgid "Could not delete option!"
 msgstr "無法刪除選項！"
 
-#: lib/dashboard/lessons/lesson_editor.ex:68
+#: lib/dashboard/lessons/lesson_editor.ex:69
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Could not delete step!"
 msgstr "無法刪除步驟！"
 
-#: lib/dashboard/courses/course_edit.ex:78
-#: lib/dashboard/lessons/lesson_cover.ex:28
-#: lib/dashboard/lessons/lesson_editor.ex:177
+#: lib/dashboard/courses/course_edit.ex:79
+#: lib/dashboard/lessons/lesson_cover.ex:29
+#: lib/dashboard/lessons/lesson_editor.ex:178
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Could not update cover!"
 msgstr "無法更新封面！"
@@ -280,42 +275,42 @@ msgid "Could not update lesson!"
 msgstr "無法更新課程！"
 
 #: lib/dashboard/lessons/components/option_list.ex:153
-#: lib/dashboard/lessons/lesson_editor.ex:153
+#: lib/dashboard/lessons/lesson_editor.ex:154
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Could not update option!"
 msgstr "無法更新選項！"
 
-#: lib/dashboard/courses/course_edit.ex:58
+#: lib/dashboard/courses/course_edit.ex:59
 #, elixir-autogen, elixir-format
 msgid "Course deleted successfully!"
 msgstr "課程已成功刪除！"
 
-#: lib/dashboard/courses/course_edit.html.heex:24
+#: lib/dashboard/courses/course_edit.html.heex:31
 #: lib/dashboard/courses/course_new.html.heex:13
 #, elixir-autogen, elixir-format
 msgid "Course description"
 msgstr "課程描述"
 
-#: lib/dashboard/courses/course_edit.html.heex:18
+#: lib/dashboard/courses/course_edit.html.heex:25
 #: lib/dashboard/courses/course_new.html.heex:19
 #, elixir-autogen, elixir-format
 msgid "Course slug"
 msgstr "課程縮寫"
 
-#: lib/dashboard/courses/course_edit.html.heex:12
+#: lib/dashboard/courses/course_edit.html.heex:19
 #: lib/dashboard/courses/course_new.html.heex:12
 #, elixir-autogen, elixir-format
 msgid "Course title"
 msgstr "課程標題"
 
-#: lib/dashboard/courses/course_edit.ex:40
+#: lib/dashboard/courses/course_edit.ex:41
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Course updated successfully!"
 msgstr "課程已成功更新！"
 
-#: lib/dashboard/courses/course_edit.ex:74
-#: lib/dashboard/lessons/lesson_cover.ex:22
-#: lib/dashboard/lessons/lesson_editor.ex:171
+#: lib/dashboard/courses/course_edit.ex:75
+#: lib/dashboard/lessons/lesson_cover.ex:23
+#: lib/dashboard/lessons/lesson_editor.ex:172
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Cover updated successfully!"
 msgstr "封面已成功更新！"
@@ -349,12 +344,12 @@ msgstr "詳情"
 msgid "Drag the lessons to change their order"
 msgstr "拖動課程以更改其順序"
 
-#: lib/dashboard/courses/course_edit.ex:16
+#: lib/dashboard/courses/course_edit.ex:17
 #, elixir-autogen, elixir-format
 msgid "Edit course"
 msgstr "編輯課程"
 
-#: lib/dashboard/courses/course_edit.html.heex:19
+#: lib/dashboard/courses/course_edit.html.heex:26
 #: lib/dashboard/courses/course_new.html.heex:20
 #, elixir-autogen, elixir-format
 msgid "Friendly identifier used to access your course. I.e. my-course-name"
@@ -365,7 +360,7 @@ msgstr "用於存取您的課程的友善識別名稱。例如：my-course-name"
 msgid "Is correct?"
 msgstr "是否正確？"
 
-#: lib/dashboard/courses/course_edit.html.heex:30
+#: lib/dashboard/courses/course_edit.html.heex:37
 #, elixir-autogen, elixir-format
 msgid "Is public?"
 msgstr "是否公開？"
@@ -424,7 +419,7 @@ msgstr "移除步驟"
 msgid "Unpublish"
 msgstr "取消發布"
 
-#: lib/dashboard/lessons/lesson_editor.ex:80
+#: lib/dashboard/lessons/lesson_editor.ex:81
 #, elixir-autogen, elixir-format
 msgid "Untitled option"
 msgstr "無標題選項"
@@ -439,17 +434,17 @@ msgstr "更新選項"
 msgid "Feedback message displayed after a user answers this question. You can provide some additional context on why this is wrong or correct."
 msgstr "使用者回答此問題後顯示的回饋訊息。您可以提供一些額外的上下文，解釋為什麼這是錯誤或正確的。"
 
-#: lib/dashboard/courses/course_edit.html.heex:32
+#: lib/dashboard/courses/course_edit.html.heex:39
 #, elixir-autogen, elixir-format
 msgid "When checked this course will be visible to all students from your school. Keep it unchecked if you want this course to be visible only to invited students."
 msgstr "勾選此選項，您的學校的所有學生都可以看到這門課程。如果您希望只有被邀請的學生能看到這門課程，請不要勾選。"
 
-#: lib/dashboard/schools/school_edit.html.heex:16
+#: lib/dashboard/schools/school_edit.html.heex:31
 #, elixir-autogen, elixir-format
 msgid "Privacy policy URL"
 msgstr "隱私政策網址"
 
-#: lib/dashboard/schools/school_edit.html.heex:15
+#: lib/dashboard/schools/school_edit.html.heex:30
 #, elixir-autogen, elixir-format
 msgid "Terms of use URL"
 msgstr "使用條款網址"
@@ -470,7 +465,7 @@ msgstr "無標題步驟"
 msgid "A lesson has multiple steps. Use them to tell a story, explain a concept or ask a question. Keep them short and simple."
 msgstr "一堂課有多個步驟。使用它們來講故事，解釋概念或提問。保持簡短和簡單。"
 
-#: lib/dashboard/lessons/lesson_editor.html.heex:126
+#: lib/dashboard/lessons/lesson_editor.html.heex:127
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Add image to step"
 msgstr "為步驟新增圖片"
@@ -480,7 +475,7 @@ msgstr "為步驟新增圖片"
 msgid "Click to add an image to this step."
 msgstr "點選以為此步驟新增圖片。"
 
-#: lib/dashboard/lessons/lesson_editor.ex:138
+#: lib/dashboard/lessons/lesson_editor.ex:139
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Could not update image!"
 msgstr "無法更新圖片！"
@@ -515,7 +510,7 @@ msgstr "編輯步驟圖片"
 msgid "Could not update course!"
 msgstr "無法更新課程！"
 
-#: lib/dashboard/lessons/lesson_editor.html.heex:137
+#: lib/dashboard/lessons/lesson_editor.html.heex:139
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Your image should be 64x64px (or use a 1:1 proportion)."
 msgstr "您的圖片應為 64x64px（或使用 1:1 的比例）。"
@@ -530,7 +525,7 @@ msgstr "管理課程"
 msgid "Manage school"
 msgstr "管理學校"
 
-#: lib/dashboard/lessons/lesson_editor.html.heex:127
+#: lib/dashboard/lessons/lesson_editor.html.heex:128
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Your image should be 250x250px (or use a 1:1 proportion)."
 msgstr "您的圖片應為 250x250px（或使用 1:1 的比例）。"
@@ -596,32 +591,32 @@ msgstr "停用分析"
 msgid "Enable analytics"
 msgstr "啟用分析"
 
-#: lib/dashboard/schools/school_edit.html.heex:35
+#: lib/dashboard/schools/school_edit.html.heex:50
 #, elixir-autogen, elixir-format
 msgid "Require email confirmation?"
 msgstr "需要電子郵件確認？"
 
-#: lib/dashboard/schools/school_edit.html.heex:36
+#: lib/dashboard/schools/school_edit.html.heex:51
 #, elixir-autogen, elixir-format
 msgid "When checked, users will be required to confirm their email address before they can log in."
 msgstr "勾選後，使用者在登入前必須確認他們的電子郵件地址。"
 
-#: lib/dashboard/schools/school_edit.html.heex:22
+#: lib/dashboard/schools/school_edit.html.heex:37
 #, elixir-autogen, elixir-format
 msgid "Allow anyone to sign up?"
 msgstr "允許任何人註冊？"
 
-#: lib/dashboard/schools/school_edit.html.heex:44
+#: lib/dashboard/schools/school_edit.html.heex:59
 #, elixir-autogen, elixir-format
 msgid "Allow guest users?"
 msgstr "允許訪客使用者？"
 
-#: lib/dashboard/schools/school_edit.html.heex:24
+#: lib/dashboard/schools/school_edit.html.heex:39
 #, elixir-autogen, elixir-format
 msgid "When checked, anyone can create an account. When unchecked, they can still sign up but you will have to approve their account before they can use it."
 msgstr "勾選後，任何人都可以建立帳戶。取消勾選後，他們仍然可以註冊，但您必須在他們使用帳戶之前批准他們的帳戶。"
 
-#: lib/dashboard/schools/school_edit.html.heex:45
+#: lib/dashboard/schools/school_edit.html.heex:60
 #, elixir-autogen, elixir-format
 msgid "When checked, users won't need to create an account to play your courses. Keep it unchecked if you want users to create an account first."
 msgstr "勾選後，使用者不需要建立帳戶來玩您的課程。如果您希望使用者先建立帳戶，請不要勾選。"
@@ -737,7 +732,7 @@ msgstr "搜尋使用者"
 msgid "Delete"
 msgstr "刪除"
 
-#: lib/dashboard/schools/school_edit.ex:83
+#: lib/dashboard/schools/school_edit.ex:84
 #: lib/dashboard/schools/school_view.ex:42
 #, elixir-autogen, elixir-format, fuzzy
 msgid "School could not be deleted"
@@ -753,12 +748,12 @@ msgstr "學校已刪除"
 msgid "You're going to delete this school and all its associated data"
 msgstr "您將刪除此學校及其所有相關資料"
 
-#: lib/dashboard/schools/school_edit.ex:70
+#: lib/dashboard/schools/school_edit.ex:71
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Could not update icon!"
 msgstr "無法更新標誌！"
 
-#: lib/dashboard/schools/school_edit.ex:66
+#: lib/dashboard/schools/school_edit.ex:67
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Icon updated successfully!"
 msgstr "標誌已成功更新！"
@@ -768,7 +763,7 @@ msgstr "標誌已成功更新！"
 msgid "Add courses that are relevant to this step. This will help students find the right course for them."
 msgstr "新增與此步驟相關的課程。這將幫助學生找到適合他們的正確課程。"
 
-#: lib/dashboard/lessons/lesson_editor.ex:125
+#: lib/dashboard/lessons/lesson_editor.ex:126
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Could not delete suggested course!"
 msgstr "無法刪除課程！"
@@ -803,12 +798,12 @@ msgstr "您是否要將此課程從建議課程列表中移除？"
 msgid "Answer type"
 msgstr "答案類型"
 
-#: lib/dashboard/lessons/lesson_editor.ex:99
+#: lib/dashboard/lessons/lesson_editor.ex:100
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Could not update step kind!"
 msgstr "無法更新步驟！"
 
-#: lib/dashboard/lessons/lesson_editor.ex:203
+#: lib/dashboard/lessons/lesson_editor.ex:204
 #, elixir-autogen, elixir-format
 msgid "Open-ended"
 msgstr "開放式"
@@ -818,17 +813,17 @@ msgstr "開放式"
 msgid "Open-ended question"
 msgstr "開放式問題"
 
-#: lib/dashboard/lessons/lesson_editor.ex:197
+#: lib/dashboard/lessons/lesson_editor.ex:198
 #, elixir-autogen, elixir-format
 msgid "Quiz"
 msgstr "測驗"
 
-#: lib/dashboard/lessons/lesson_editor.ex:191
+#: lib/dashboard/lessons/lesson_editor.ex:192
 #, elixir-autogen, elixir-format
 msgid "Read-only"
 msgstr "唯讀"
 
-#: lib/dashboard/lessons/lesson_editor.ex:192
+#: lib/dashboard/lessons/lesson_editor.ex:193
 #, elixir-autogen, elixir-format
 msgid "Users can only read the content. No options are displayed."
 msgstr "使用者只能閱讀內容。不顯示任何選項。"
@@ -838,12 +833,17 @@ msgstr "使用者只能閱讀內容。不顯示任何選項。"
 msgid "Users can write in their own answer to this step."
 msgstr "使用者可以在此步驟中撰寫自己的答案。"
 
-#: lib/dashboard/lessons/lesson_editor.ex:204
+#: lib/dashboard/lessons/lesson_editor.ex:205
 #, elixir-autogen, elixir-format
 msgid "Users can write their own answer."
 msgstr "使用者可以撰寫自己的答案。"
 
-#: lib/dashboard/lessons/lesson_editor.ex:198
+#: lib/dashboard/lessons/lesson_editor.ex:199
 #, elixir-autogen, elixir-format
 msgid "You can add multiple options and users can select one of them."
 msgstr "您可以新增多個選項，使用者可以選擇其中一個。"
+
+#: lib/organizations/school_live/school_new.html.heex:7
+#, elixir-autogen, elixir-format, fuzzy
+msgid "Choose a nickname to access your school profile"
+msgstr "選擇一個暱稱以存取您的學校資料"

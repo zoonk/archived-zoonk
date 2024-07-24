@@ -110,44 +110,44 @@ msgid "You must log in to access this page."
 msgstr "您必須登入才能存取此頁面。"
 
 #: lib/accounts/user_live/reset_password.html.heex:10
-#: lib/accounts/user_live/user_settings.html.heex:60
+#: lib/accounts/user_live/user_settings.html.heex:67
 #, elixir-autogen, elixir-format
 msgid "Confirm new password"
 msgstr "確認新密碼"
 
-#: lib/accounts/user_live/user_settings.html.heex:54
+#: lib/accounts/user_live/user_settings.html.heex:61
 #, elixir-autogen, elixir-format
 msgid "Current password"
 msgstr "目前的密碼"
 
 #: lib/accounts/user_live/reset_password.html.heex:9
-#: lib/accounts/user_live/user_settings.html.heex:59
+#: lib/accounts/user_live/user_settings.html.heex:66
 #, elixir-autogen, elixir-format
 msgid "New password"
 msgstr "新密碼"
 
-#: lib/accounts/user_live/user_settings.ex:80
-#: lib/accounts/user_live/user_settings.ex:128
+#: lib/accounts/user_live/user_settings.ex:81
+#: lib/accounts/user_live/user_settings.ex:129
 #, elixir-autogen, elixir-format
 msgid "A link to confirm your email change has been sent to the new address."
 msgstr "已向新地址傳送確認電子郵件更改的連結。"
 
-#: lib/accounts/user_live/user_settings.ex:17
+#: lib/accounts/user_live/user_settings.ex:18
 #, elixir-autogen, elixir-format
 msgid "Email change link is invalid or it has expired."
 msgstr "電子郵件更改連結無效或已過期。"
 
-#: lib/accounts/user_live/user_settings.ex:16
+#: lib/accounts/user_live/user_settings.ex:17
 #, elixir-autogen, elixir-format
 msgid "Email changed successfully."
 msgstr "電子郵件更改成功。"
 
-#: lib/accounts/user_live/user_settings.ex:113
+#: lib/accounts/user_live/user_settings.ex:114
 #, elixir-autogen, elixir-format
 msgid "Error updating settings"
 msgstr "更新設定時出錯"
 
-#: lib/accounts/user_live/user_settings.ex:105
+#: lib/accounts/user_live/user_settings.ex:106
 #, elixir-autogen, elixir-format
 msgid "Settings updated successfully"
 msgstr "設定更新成功"
@@ -212,27 +212,27 @@ msgstr "隱私政策"
 msgid "terms of use"
 msgstr "使用條款"
 
-#: lib/accounts/user_live/user_settings.html.heex:75
+#: lib/accounts/user_live/user_settings.html.heex:82
 #, elixir-autogen, elixir-format
 msgid "You have a guest account. To convert it into a regular account, update your email address below:"
 msgstr "您有一個訪客帳戶。若要將其轉換為常規帳戶，請在下方更新您的電子郵件地址："
 
-#: lib/accounts/user_live/user_settings.html.heex:41
+#: lib/accounts/user_live/user_settings.html.heex:48
 #, elixir-autogen, elixir-format
 msgid "Enable sound effects?"
 msgstr "啟用音效？"
 
-#: lib/accounts/user_live/user_settings.html.heex:42
+#: lib/accounts/user_live/user_settings.html.heex:49
 #, elixir-autogen, elixir-format
 msgid "When checked, courses may play sound effects when you answer questions correctly or incorrectly."
 msgstr "勾選時，當您正確或不正確地回答問題時，課程可能會播放音效。"
 
-#: lib/accounts/user_live/user_settings.ex:174
+#: lib/accounts/user_live/user_settings.ex:175
 #, elixir-autogen, elixir-format
 msgid "Unable to delete your account"
 msgstr "無法刪除您的帳戶"
 
-#: lib/accounts/user_live/user_settings.ex:85
+#: lib/accounts/user_live/user_settings.ex:86
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Error setting up account"
 msgstr "設定帳戶時出錯"
