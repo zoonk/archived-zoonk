@@ -16,13 +16,13 @@ config :swoosh, :api_client, false
 config :zoonk, Oban, testing: :inline
 
 # In test we don't send emails.
-# to provide built-in test partitioning in CI environment.
-# Run `mix help test` for more information.
 config :zoonk, Zoonk.Mailer, adapter: Swoosh.Adapters.Test
 
 # Configure your database
 #
 # The MIX_TEST_PARTITION environment variable can be used
+# to provide built-in test partitioning in CI environment.
+# Run `mix help test` for more information.
 config :zoonk, Zoonk.Repo,
   username: "postgres",
   password: "postgres",
