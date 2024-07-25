@@ -8,7 +8,7 @@ defmodule ZoonkWeb.Components.YouTube do
 
   import ZoonkWeb.Gettext
 
-  alias ZoonkWeb.Shared.YouTube
+  alias Zoonk.Shared.YouTube
 
   @doc """
   Renders a YouTube video player.

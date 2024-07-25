@@ -4,7 +4,7 @@ defmodule ZoonkWeb.CourseNewLiveTest do
 
   import Phoenix.LiveViewTest
   import Zoonk.Fixtures.Content
-  import ZoonkWeb.Shared.Slug
+  import Zoonk.Shared.Slug
 
   alias Zoonk.Accounts
   alias Zoonk.Content

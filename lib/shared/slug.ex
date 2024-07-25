@@ -1,4 +1,4 @@
-defmodule ZoonkWeb.Shared.Slug do
+defmodule Zoonk.Shared.Slug do
   @moduledoc """
   Slug module for generating slugs.
 

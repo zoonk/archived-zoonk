@@ -1,12 +1,12 @@
 # credo:disable-for-this-file Credo.Check.Readability.Specs
 
-defmodule ZoonkWeb.Shared.Paginate do
+defmodule ZoonkWeb.Live.Paginate do
   @moduledoc """
   Reusable module for paginating items in a LiveView.
 
   ## Usage
 
-      use ZoonkWeb.Shared.Paginate, as: :schools
+      use ZoonkWeb.Live.Paginate, as: :schools
 
       def mount(_params, _session, socket) do
         {:ok, add_pagination(socket)}

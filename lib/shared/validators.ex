@@ -1,4 +1,4 @@
-defmodule ZoonkWeb.Shared.Validators do
+defmodule Zoonk.Shared.Validators do
   @moduledoc """
   Shared validators to be used with Ecto changesets.
   """

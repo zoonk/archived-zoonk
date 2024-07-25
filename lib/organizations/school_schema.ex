@@ -6,8 +6,8 @@ defmodule Zoonk.Organizations.School do
 
   import Ecto.Changeset
   import Ecto.Query
+  import Zoonk.Shared.Validators
   import ZoonkWeb.Gettext
-  import ZoonkWeb.Shared.Validators
 
   alias Zoonk.Accounts.User
   alias Zoonk.Organizations.School

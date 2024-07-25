@@ -1,4 +1,4 @@
-defmodule ZoonkWeb.Shared.Utilities do
+defmodule Zoonk.Shared.Utilities do
   @moduledoc """
   Shared utilities for common use cases.
   """

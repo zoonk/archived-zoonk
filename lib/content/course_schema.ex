@@ -5,7 +5,7 @@ defmodule Zoonk.Content.Course do
   use Ecto.Schema
 
   import Ecto.Changeset
-  import ZoonkWeb.Shared.Validators
+  import Zoonk.Shared.Validators
 
   alias Zoonk.Content.CourseUser
   alias Zoonk.Content.CourseUtils

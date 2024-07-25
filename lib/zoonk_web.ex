@@ -54,7 +54,7 @@ defmodule ZoonkWeb do
     quote do
       use Phoenix.LiveView, layout: {ZoonkWeb.Layouts, :app}
 
-      on_mount ZoonkWeb.Flash
+      on_mount ZoonkWeb.Live.Flash
       on_mount ZoonkWeb.Plugs.ActivePage
       on_mount Sentry.LiveViewHook
 
@@ -66,7 +66,7 @@ defmodule ZoonkWeb do
     quote do
       use Phoenix.LiveComponent
 
-      import ZoonkWeb.Flash, only: [put_flash!: 3]
+      import ZoonkWeb.Live.Flash, only: [put_flash!: 3]
 
       unquote(html_helpers())
     end
@@ -89,6 +89,7 @@ defmodule ZoonkWeb do
     quote do
       # HTML escaping functionality
       import Phoenix.HTML
+      import Zoonk.Shared.Utilities
 
       # UI components
       import ZoonkWeb.Components.Avatar
@@ -110,7 +111,6 @@ defmodule ZoonkWeb do
 
       # i18n
       import ZoonkWeb.Gettext
-      import ZoonkWeb.Shared.Utilities
 
       alias Phoenix.LiveView.JS
 

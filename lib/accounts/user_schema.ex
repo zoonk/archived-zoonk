@@ -3,8 +3,8 @@ defmodule Zoonk.Accounts.User do
   use Ecto.Schema
 
   import Ecto.Changeset
+  import Zoonk.Shared.Validators
   import ZoonkWeb.Gettext
-  import ZoonkWeb.Shared.Validators
 
   alias ZoonkWeb.Plugs.Translate
 

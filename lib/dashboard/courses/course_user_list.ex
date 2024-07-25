@@ -1,7 +1,7 @@
 defmodule ZoonkWeb.Live.Dashboard.CourseUserList do
   @moduledoc false
   use ZoonkWeb, :live_view
-  use ZoonkWeb.Shared.Paginate, as: :users
+  use ZoonkWeb.Live.Paginate, as: :users
 
   import ZoonkWeb.Components.Dashboard.UserListHeader
 

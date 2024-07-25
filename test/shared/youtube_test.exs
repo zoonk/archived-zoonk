@@ -1,7 +1,7 @@
 defmodule ZoonkWeb.SharedYoutubeTest do
   use Zoonk.DataCase, async: true
 
-  import ZoonkWeb.Shared.YouTube
+  import Zoonk.Shared.YouTube
 
   describe "extract_video_id/1" do
     test "extracts the YouTube video ID from a URL" do

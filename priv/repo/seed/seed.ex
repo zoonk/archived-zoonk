@@ -1,5 +1,5 @@
 defmodule Seed do
-  alias ZoonkWeb.Shared.Utilities
+  alias Zoonk.Shared.Utilities
 
   # Generate multiple items. This is ideal for testing infinite scroll.
   def multiple?(args) do

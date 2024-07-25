@@ -6,7 +6,7 @@ defmodule ZoonkWeb.Components.Dashboard.StepContent do
   alias Zoonk.Content.Course
   alias Zoonk.Content.Lesson
   alias Zoonk.Content.LessonStep
-  alias ZoonkWeb.Shared.YouTube
+  alias Zoonk.Shared.YouTube
 
   attr :action, :atom, default: nil
   attr :course, Course, required: true

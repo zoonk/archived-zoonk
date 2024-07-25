@@ -12,7 +12,7 @@ defmodule Zoonk.Accounts do
   alias Zoonk.Mailer
   alias Zoonk.Organizations.School
   alias Zoonk.Repo
-  alias ZoonkWeb.Shared.Utilities
+  alias Zoonk.Shared.Utilities
 
   @type user_changeset :: {:ok, User.t()} | {:error, Ecto.Changeset.t()}
 

@@ -1,4 +1,4 @@
-defmodule ZoonkWeb.Shared.YouTube do
+defmodule Zoonk.Shared.YouTube do
   @moduledoc """
   Handle YouTube videos.
   """

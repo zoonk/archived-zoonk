@@ -1,7 +1,7 @@
 defmodule ZoonkWeb.SharedUtilitiesTest do
   use Zoonk.DataCase, async: true
 
-  import ZoonkWeb.Shared.Utilities
+  import Zoonk.Shared.Utilities
 
   describe "round_currency/1" do
     test "rounds a currency when the decimal is 0" do

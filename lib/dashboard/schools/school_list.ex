@@ -1,7 +1,7 @@
 defmodule ZoonkWeb.Live.Dashboard.SchoolList do
   @moduledoc false
   use ZoonkWeb, :live_view
-  use ZoonkWeb.Shared.Paginate, as: :schools
+  use ZoonkWeb.Live.Paginate, as: :schools
 
   alias Zoonk.Organizations
 
