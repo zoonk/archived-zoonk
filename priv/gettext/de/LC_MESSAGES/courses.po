@@ -101,15 +101,10 @@ msgstr "Das ist nicht richtig."
 msgid "There's room for improvement"
 msgstr "Es gibt Raum für Verbesserungen"
 
-#: lib/content/course_live/lesson_play.ex:91
+#: lib/content/course_live/lesson_play.ex:92
 #, elixir-autogen, elixir-format
 msgid "Unable to complete lesson"
 msgstr "Lektion kann nicht abgeschlossen werden"
-
-#: lib/content/course_live/lesson_play.ex:54
-#, elixir-autogen, elixir-format
-msgid "Unable to select option"
-msgstr "Option kann nicht ausgewählt werden"
 
 #: lib/content/course_live/lesson_completed.ex:30
 #, elixir-autogen, elixir-format
@@ -151,7 +146,7 @@ msgstr "Beginnen Sie mit der Teilnahme an einem Kurs."
 msgid "No courses"
 msgstr "Keine Kurse"
 
-#: lib/content/course_live/lesson_play.ex:77
+#: lib/content/course_live/lesson_play.ex:78
 #, elixir-autogen, elixir-format
 msgid "Unable to send answer"
 msgstr "Senden der Antwort fehlgeschlagen"

@@ -101,15 +101,10 @@ msgstr "這是不正確的。"
 msgid "There's room for improvement"
 msgstr "有改進的空間"
 
-#: lib/content/course_live/lesson_play.ex:91
+#: lib/content/course_live/lesson_play.ex:92
 #, elixir-autogen, elixir-format
 msgid "Unable to complete lesson"
 msgstr "無法完成課程"
-
-#: lib/content/course_live/lesson_play.ex:54
-#, elixir-autogen, elixir-format
-msgid "Unable to select option"
-msgstr "無法選擇選項"
 
 #: lib/content/course_live/lesson_completed.ex:30
 #, elixir-autogen, elixir-format
@@ -151,7 +146,7 @@ msgstr "加入課程開始學習。"
 msgid "No courses"
 msgstr "沒有課程"
 
-#: lib/content/course_live/lesson_play.ex:77
+#: lib/content/course_live/lesson_play.ex:78
 #, elixir-autogen, elixir-format
 msgid "Unable to send answer"
 msgstr "無法傳送答案"
