@@ -259,11 +259,15 @@ defmodule ZoonkWeb.PlayViewLiveTest do
 
     step = Enum.at(lessons, 3)
 
-    assert {:ok, _lv, _html} =
+    assert {:ok, updated_lv, _html} =
              lv
              |> form(@select_form)
              |> render_submit()
              |> follow_redirect(conn, ~p"/c/#{course.slug}/#{step.lesson_id}/completed")
+
+    assert has_element?(updated_lv, "h1", "Good!")
+    assert has_element?(updated_lv, "span", "7.5")
+    assert has_element?(updated_lv, "p", "You got 3 out of 4 answers right.")
   end
 
   defp generate_steps(lesson) do
