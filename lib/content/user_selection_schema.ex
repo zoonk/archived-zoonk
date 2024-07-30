@@ -2,7 +2,28 @@ defmodule Zoonk.Content.UserSelection do
   @moduledoc """
   User selection schema.
 
-  Keeps track of user selections when playing courses. For example: which steps they played and what options they've selected.
+  Keeps track of user selections when playing courses.
+  For example: which steps they played and what options they've selected.
+
+  ## Fields
+
+    * `:duration` - How long it took for a user to complete a step.
+    * `:answer` - Users can select multiple answers for some steps.
+    * `:correct` - The count of correct answers.
+    * `:total` - The total amount of possible correct answers.
+
+  For some steps like drag-and-drop and word search, the user can select multiple answers.
+  This means a selection can have both correct and incorrect answers in the same step.
+
+  By keeping track of the `correct` and `total` number of possible answers,
+  we can easily calculate a lesson score by querying the `user_selections` table.
+
+  ## Associations
+
+    * `:user` - The user making the selection.
+    * `:lesson` - The lesson associated with the selection.
+    * `:step` - The step in the lesson.
+    * `:option` - The option selected in the step.
   """
   use Ecto.Schema
 
@@ -39,6 +60,7 @@ defmodule Zoonk.Content.UserSelection do
     |> validate_correct_total()
   end
 
+  # We need to ensure that the `correct` value is not greater than the `total` value.
   defp validate_correct_total(changeset) do
     correct = get_field(changeset, :correct)
     total = get_field(changeset, :total)
