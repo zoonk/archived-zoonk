@@ -621,9 +621,8 @@ defmodule Zoonk.Content do
   defp maybe_preload_user_selections(query, user_id, true) do
     user_selections_query =
       UserSelection
-      |> join(:left, [us], o in assoc(us, :option))
-      |> where([us, o], us.user_id == ^user_id)
-      |> where([us, o], not is_nil(us.answer) or not o.correct?)
+      |> where([us], us.user_id == ^user_id)
+      |> where([us], not is_nil(us.answer) or us.total > us.correct)
       |> preload([:step, :option])
 
     preload(query, [l], user_selections: ^user_selections_query)
@@ -818,7 +817,7 @@ defmodule Zoonk.Content do
   end
 
   @doc """
-  Count how many times all options from a lesson step have been selected.
+  Count how many times each option from a lesson step have been selected.
 
   ## Examples
 
@@ -833,24 +832,6 @@ defmodule Zoonk.Content do
     |> group_by([so, us], so.id)
     |> select([so, us], %{option_id: so.id, selections: count(us.id)})
     |> Repo.all()
-  end
-
-  @doc """
-  Get the count of steps containing at least one option.
-
-  ## Examples
-
-      iex> count_lesson_steps_with_options(lesson_id)
-      1
-  """
-  @spec count_lesson_steps_with_options(non_neg_integer()) :: non_neg_integer()
-  def count_lesson_steps_with_options(lesson_id) do
-    LessonStep
-    |> where([ls], ls.lesson_id == ^lesson_id)
-    |> preload(:options)
-    |> Repo.all()
-    |> Enum.filter(fn ls -> Enum.count(ls.options) > 0 end)
-    |> length()
   end
 
   @doc """
@@ -993,12 +974,9 @@ defmodule Zoonk.Content do
   def list_user_selections_by_lesson(user_id, lesson_id, steps) do
     UserSelection
     |> where([us], us.user_id == ^user_id)
-    |> join(:inner, [us], so in assoc(us, :option))
-    |> join(:inner, [us, so], ls in assoc(so, :lesson_step))
-    |> where([us, so, ls], ls.lesson_id == ^lesson_id)
+    |> where([us], us.lesson_id == ^lesson_id)
     |> order_by([us], desc: us.inserted_at)
     |> limit(^steps)
-    |> preload([:option])
     |> Repo.all()
   end
 
@@ -1090,15 +1068,22 @@ defmodule Zoonk.Content do
   """
   @spec mark_lesson_as_completed(non_neg_integer(), non_neg_integer(), non_neg_integer()) :: user_lesson_changeset()
   def mark_lesson_as_completed(user_id, lesson_id, duration) do
-    steps = count_lesson_steps_with_options(lesson_id)
+    steps = count_lesson_steps(lesson_id)
     selections = list_user_selections_by_lesson(user_id, lesson_id, steps)
-    correct = get_correct_selections(selections)
-    attrs = %{user_id: user_id, lesson_id: lesson_id, attempts: 1, correct: correct, total: steps, duration: duration}
+    correct = sum_correct_selections(selections)
+    total = sum_total_selections(selections)
+    attrs = %{user_id: user_id, lesson_id: lesson_id, attempts: 1, correct: correct, total: total, duration: duration}
     add_user_lesson(attrs)
   end
 
-  defp get_correct_selections(selections) do
-    Enum.count(selections, fn selection -> selection.option.correct? end)
+  # sum all correct answers a user has given in a lesson
+  defp sum_correct_selections(selections) do
+    Enum.reduce(selections, 0, fn selection, acc -> acc + selection.correct end)
+  end
+
+  # sum all total answers a user has given in a lesson
+  defp sum_total_selections(selections) do
+    Enum.reduce(selections, 0, fn selection, acc -> acc + selection.total end)
   end
 
   @doc """

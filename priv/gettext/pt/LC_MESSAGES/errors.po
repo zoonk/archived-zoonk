@@ -171,7 +171,7 @@ msgstr "A sua matrícula está pendente de aprovação"
 msgid "must start with https://"
 msgstr "deve começar com https://"
 
-#: lib/content/content_context.ex:757
+#: lib/content/content_context.ex:756
 #, elixir-autogen, elixir-format, fuzzy
 msgid "cannot delete the only step"
 msgstr "não pode excluir a única etapa"
@@ -215,3 +215,8 @@ msgstr "Você selecionou muitos arquivos"
 #, elixir-autogen, elixir-format
 msgid "Failed to remove file"
 msgstr "Falha ao remover arquivo"
+
+#: lib/content/user_selection_schema.ex:71
+#, elixir-autogen, elixir-format
+msgid "cannot be larger than total"
+msgstr "não pode ser maior que o total"

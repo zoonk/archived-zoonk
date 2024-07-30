@@ -523,7 +523,7 @@ defmodule Zoonk.ContentTest do
       user = user_fixture()
       lesson_step = lesson_step_fixture(%{lesson: lesson})
       step_option = step_option_fixture(%{lesson_step: lesson_step})
-      Content.add_user_selection(%{duration: 5, user_id: user.id, option_id: step_option.id, lesson_id: lesson.id, step_id: lesson_step.id})
+      Content.add_user_selection(%{duration: 5, correct: 1, total: 1, user_id: user.id, option_id: step_option.id, lesson_id: lesson.id, step_id: lesson_step.id})
 
       assert length(Content.list_user_selections_by_lesson(user.id, lesson.id, 1)) == 1
       Content.delete_lesson(lesson)
@@ -658,14 +658,10 @@ defmodule Zoonk.ContentTest do
       lesson_step2 = lesson_step_fixture(%{lesson_id: lesson2.id, order: 1})
       lesson_step3 = lesson_step_fixture(%{lesson_id: lesson2.id, order: 2, kind: :open_ended})
 
-      option1 = step_option_fixture(%{lesson_step_id: lesson_step1.id, correct?: true})
-      option2 = step_option_fixture(%{lesson_step_id: lesson_step1.id, correct?: false})
-      option3 = step_option_fixture(%{lesson_step_id: lesson_step2.id, correct?: true})
-
-      Content.add_user_selection(%{duration: 5, user_id: user.id, option_id: option1.id, lesson_id: lesson1.id, step_id: lesson_step1.id})
-      Content.add_user_selection(%{duration: 5, user_id: user.id, option_id: option2.id, lesson_id: lesson1.id, step_id: lesson_step1.id})
-      Content.add_user_selection(%{duration: 5, user_id: user.id, option_id: option3.id, lesson_id: lesson2.id, step_id: lesson_step2.id})
-      Content.add_user_selection(%{duration: 5, user_id: user.id, answer: "test", lesson_id: lesson2.id, step_id: lesson_step3.id})
+      Content.add_user_selection(%{duration: 5, user_id: user.id, correct: 1, total: 1, lesson_id: lesson1.id, step_id: lesson_step1.id})
+      Content.add_user_selection(%{duration: 5, user_id: user.id, correct: 0, total: 1, lesson_id: lesson1.id, step_id: lesson_step1.id})
+      Content.add_user_selection(%{duration: 5, user_id: user.id, correct: 1, total: 1, lesson_id: lesson2.id, step_id: lesson_step2.id})
+      Content.add_user_selection(%{duration: 5, user_id: user.id, correct: 1, total: 1, answer: ["test"], lesson_id: lesson2.id, step_id: lesson_step3.id})
 
       Content.add_user_lesson(%{duration: 5, user_id: user.id, lesson_id: lesson1.id, attempts: 1, correct: 3, total: 5})
       Content.add_user_lesson(%{duration: 5, user_id: user.id, lesson_id: lesson2.id, attempts: 1, correct: 3, total: 5})
@@ -675,7 +671,7 @@ defmodule Zoonk.ContentTest do
       second_lesson = Enum.at(lessons, 1)
 
       assert length(first_lesson.user_selections) == 1
-      assert Enum.at(second_lesson.user_selections, 0).answer == "test"
+      assert Enum.at(second_lesson.user_selections, 0).answer == ["test"]
 
       assert length(first_lesson.user_lessons) == 1
       assert length(second_lesson.user_lessons) == 1
@@ -882,7 +878,7 @@ defmodule Zoonk.ContentTest do
   end
 
   describe "count_selections_by_lesson_step/1" do
-    test "returns the number for each options of a lesson step" do
+    test "returns the number of times each option was selected" do
       user = user_fixture()
       lesson = lesson_fixture()
       lesson_step = lesson_step_fixture(%{lesson_id: lesson.id})
@@ -890,9 +886,17 @@ defmodule Zoonk.ContentTest do
       step_option2 = step_option_fixture(%{lesson_step_id: lesson_step.id})
       step_option3 = step_option_fixture(%{lesson_step_id: lesson_step.id})
 
-      Enum.each(1..3, fn _idx -> Content.add_user_selection(%{duration: 5, user_id: user.id, option_id: step_option1.id, lesson_id: lesson.id, step_id: lesson_step.id}) end)
-      Enum.each(1..2, fn _idx -> Content.add_user_selection(%{duration: 5, user_id: user.id, option_id: step_option2.id, lesson_id: lesson.id, step_id: lesson_step.id}) end)
-      Enum.each(1..1, fn _idx -> Content.add_user_selection(%{duration: 5, user_id: user.id, option_id: step_option3.id, lesson_id: lesson.id, step_id: lesson_step.id}) end)
+      Enum.each(1..3, fn _idx ->
+        Content.add_user_selection(%{duration: 5, user_id: user.id, correct: 1, total: 1, lesson_id: lesson.id, option_id: step_option1.id, step_id: lesson_step.id})
+      end)
+
+      Enum.each(1..2, fn _idx ->
+        Content.add_user_selection(%{duration: 5, user_id: user.id, correct: 0, total: 1, lesson_id: lesson.id, option_id: step_option2.id, step_id: lesson_step.id})
+      end)
+
+      Enum.each(1..1, fn _idx ->
+        Content.add_user_selection(%{duration: 5, user_id: user.id, correct: 1, total: 1, lesson_id: lesson.id, option_id: step_option3.id, step_id: lesson_step.id})
+      end)
 
       selections = Content.count_selections_by_lesson_step(lesson_step.id)
       option1 = Enum.find(selections, fn selection -> selection.option_id == step_option1.id end)
@@ -902,17 +906,6 @@ defmodule Zoonk.ContentTest do
       assert option1.selections == 3
       assert option2.selections == 2
       assert option3.selections == 1
-    end
-  end
-
-  describe "count_lesson_steps_with_options/1" do
-    test "returns the number of lesson steps with options" do
-      lesson = lesson_fixture()
-      Enum.each(1..3, fn order -> lesson_step_fixture(%{lesson_id: lesson.id, order: order}) end)
-      lesson_step = lesson_step_fixture(%{lesson_id: lesson.id, order: 4, preload: :options})
-      Enum.each(1..3, fn order -> step_option_fixture(%{lesson_step_id: lesson_step.id, order: order}) end)
-
-      assert Content.count_lesson_steps_with_options(lesson.id) == 1
     end
   end
 
@@ -1028,11 +1021,18 @@ defmodule Zoonk.ContentTest do
     test "adds a user selection" do
       user = user_fixture()
       option = step_option_fixture(%{preload: :lesson_step})
-      attrs = %{duration: 5, user_id: user.id, option_id: option.id, lesson_id: option.lesson_step.lesson_id, step_id: option.lesson_step_id}
+      attrs = %{duration: 5, correct: 1, total: 1, user_id: user.id, option_id: option.id, lesson_id: option.lesson_step.lesson_id, step_id: option.lesson_step_id}
       assert {:ok, %UserSelection{} = user_selection} = Content.add_user_selection(attrs)
 
       assert user_selection.user_id == user.id
       assert user_selection.option_id == option.id
+    end
+
+    test "number of correct answers cannot be larger than total" do
+      user = user_fixture()
+      option = step_option_fixture(%{preload: :lesson_step})
+      attrs = %{duration: 5, correct: 2, total: 1, user_id: user.id, option_id: option.id, lesson_id: option.lesson_step.lesson_id, step_id: option.lesson_step_id}
+      assert {:error, %Ecto.Changeset{}} = Content.add_user_selection(attrs)
     end
   end
 
@@ -1043,30 +1043,106 @@ defmodule Zoonk.ContentTest do
       lesson_steps1 = Enum.map(1..3, fn idx -> lesson_step_fixture(%{lesson_id: lesson1.id, order: idx}) end)
       options1 = Enum.map(0..2, fn idx -> step_option_fixture(%{lesson_step_id: Enum.at(lesson_steps1, idx).id}) end)
 
-      Content.add_user_selection(%{duration: 5, user_id: user.id, option_id: Enum.at(options1, 0).id, lesson_id: lesson1.id, step_id: Enum.at(lesson_steps1, 0).id})
-      Content.add_user_selection(%{duration: 5, user_id: user.id, option_id: Enum.at(options1, 1).id, lesson_id: lesson1.id, step_id: Enum.at(lesson_steps1, 1).id})
-      Content.add_user_selection(%{duration: 5, user_id: user.id, option_id: Enum.at(options1, 2).id, lesson_id: lesson1.id, step_id: Enum.at(lesson_steps1, 2).id})
+      Content.add_user_selection(%{
+        duration: 5,
+        correct: 1,
+        total: 1,
+        user_id: user.id,
+        option_id: Enum.at(options1, 0).id,
+        lesson_id: lesson1.id,
+        step_id: Enum.at(lesson_steps1, 0).id
+      })
+
+      Content.add_user_selection(%{
+        duration: 5,
+        correct: 1,
+        total: 1,
+        user_id: user.id,
+        option_id: Enum.at(options1, 1).id,
+        lesson_id: lesson1.id,
+        step_id: Enum.at(lesson_steps1, 1).id
+      })
+
+      Content.add_user_selection(%{
+        duration: 5,
+        correct: 1,
+        total: 1,
+        user_id: user.id,
+        option_id: Enum.at(options1, 2).id,
+        lesson_id: lesson1.id,
+        step_id: Enum.at(lesson_steps1, 2).id
+      })
 
       {:ok, us1} =
-        Content.add_user_selection(%{duration: 5, user_id: user.id, option_id: Enum.at(options1, 0).id, lesson_id: lesson1.id, step_id: Enum.at(lesson_steps1, 0).id})
+        Content.add_user_selection(%{
+          duration: 5,
+          correct: 1,
+          total: 1,
+          user_id: user.id,
+          option_id: Enum.at(options1, 0).id,
+          lesson_id: lesson1.id,
+          step_id: Enum.at(lesson_steps1, 0).id
+        })
 
       {:ok, us2} =
-        Content.add_user_selection(%{duration: 5, user_id: user.id, option_id: Enum.at(options1, 1).id, lesson_id: lesson1.id, step_id: Enum.at(lesson_steps1, 1).id})
+        Content.add_user_selection(%{
+          duration: 5,
+          correct: 1,
+          total: 1,
+          user_id: user.id,
+          option_id: Enum.at(options1, 1).id,
+          lesson_id: lesson1.id,
+          step_id: Enum.at(lesson_steps1, 1).id
+        })
 
       {:ok, us3} =
-        Content.add_user_selection(%{duration: 5, user_id: user.id, option_id: Enum.at(options1, 2).id, lesson_id: lesson1.id, step_id: Enum.at(lesson_steps1, 2).id})
+        Content.add_user_selection(%{
+          duration: 5,
+          correct: 1,
+          total: 1,
+          user_id: user.id,
+          option_id: Enum.at(options1, 2).id,
+          lesson_id: lesson1.id,
+          step_id: Enum.at(lesson_steps1, 2).id
+        })
 
       lesson2 = lesson_fixture()
       lesson_steps2 = Enum.map(1..3, fn idx -> lesson_step_fixture(%{lesson_id: lesson2.id, order: idx}) end)
       options2 = Enum.map(0..2, fn idx -> step_option_fixture(%{lesson_step_id: Enum.at(lesson_steps2, idx).id}) end)
 
-      Content.add_user_selection(%{duration: 5, user_id: user.id, option_id: Enum.at(options2, 0).id, lesson_id: lesson2.id, step_id: Enum.at(lesson_steps2, 0).id})
-      Content.add_user_selection(%{duration: 5, user_id: user.id, option_id: Enum.at(options2, 1).id, lesson_id: lesson2.id, step_id: Enum.at(lesson_steps2, 1).id})
-      Content.add_user_selection(%{duration: 5, user_id: user.id, option_id: Enum.at(options2, 2).id, lesson_id: lesson2.id, step_id: Enum.at(lesson_steps2, 2).id})
+      Content.add_user_selection(%{
+        duration: 5,
+        correct: 1,
+        total: 1,
+        user_id: user.id,
+        option_id: Enum.at(options2, 0).id,
+        lesson_id: lesson2.id,
+        step_id: Enum.at(lesson_steps2, 0).id
+      })
 
-      user_selection1 = UserSelection |> Repo.get(us1.id) |> Repo.preload(:option)
-      user_selection2 = UserSelection |> Repo.get(us2.id) |> Repo.preload(:option)
-      user_selection3 = UserSelection |> Repo.get(us3.id) |> Repo.preload(:option)
+      Content.add_user_selection(%{
+        duration: 5,
+        correct: 1,
+        total: 1,
+        user_id: user.id,
+        option_id: Enum.at(options2, 1).id,
+        lesson_id: lesson2.id,
+        step_id: Enum.at(lesson_steps2, 1).id
+      })
+
+      Content.add_user_selection(%{
+        duration: 5,
+        correct: 1,
+        total: 1,
+        user_id: user.id,
+        option_id: Enum.at(options2, 2).id,
+        lesson_id: lesson2.id,
+        step_id: Enum.at(lesson_steps2, 2).id
+      })
+
+      user_selection1 = Repo.get(UserSelection, us1.id)
+      user_selection2 = Repo.get(UserSelection, us2.id)
+      user_selection3 = Repo.get(UserSelection, us3.id)
 
       assert Content.list_user_selections_by_lesson(user.id, lesson1.id, 3) == [user_selection3, user_selection2, user_selection1]
     end
@@ -1125,21 +1201,17 @@ defmodule Zoonk.ContentTest do
       user = user_fixture()
       lesson1 = lesson_fixture()
       lesson_steps1 = Enum.map(1..3, fn idx -> lesson_step_fixture(%{lesson_id: lesson1.id, order: idx}) end)
-      lesson_step_fixture(%{lesson_id: lesson1.id, order: 4, content: "Step without options"})
 
-      options1 = Enum.map(0..2, fn idx -> step_option_fixture(%{correct?: false, lesson_step_id: Enum.at(lesson_steps1, idx).id}) end)
-      options2 = Enum.map(0..2, fn idx -> step_option_fixture(%{correct?: true, lesson_step_id: Enum.at(lesson_steps1, idx).id}) end)
-
-      Content.add_user_selection(%{duration: 5, user_id: user.id, option_id: Enum.at(options2, 0).id, lesson_id: lesson1.id, step_id: Enum.at(lesson_steps1, 0).id})
-      Content.add_user_selection(%{duration: 5, user_id: user.id, option_id: Enum.at(options1, 1).id, lesson_id: lesson1.id, step_id: Enum.at(lesson_steps1, 1).id})
-      Content.add_user_selection(%{duration: 5, user_id: user.id, option_id: Enum.at(options2, 2).id, lesson_id: lesson1.id, step_id: Enum.at(lesson_steps1, 2).id})
+      Content.add_user_selection(%{duration: 5, correct: 1, total: 3, user_id: user.id, lesson_id: lesson1.id, step_id: Enum.at(lesson_steps1, 0).id})
+      Content.add_user_selection(%{duration: 5, correct: 2, total: 2, user_id: user.id, lesson_id: lesson1.id, step_id: Enum.at(lesson_steps1, 1).id})
+      Content.add_user_selection(%{duration: 5, correct: 0, total: 1, user_id: user.id, lesson_id: lesson1.id, step_id: Enum.at(lesson_steps1, 2).id})
 
       assert {:ok, %UserLesson{} = user_lesson} = Content.mark_lesson_as_completed(user.id, lesson1.id, 20)
       assert user_lesson.user_id == user.id
       assert user_lesson.lesson_id == lesson1.id
       assert user_lesson.attempts == 1
-      assert user_lesson.correct == 2
-      assert user_lesson.total == 3
+      assert user_lesson.correct == 3
+      assert user_lesson.total == 6
       assert user_lesson.duration == 20
     end
   end

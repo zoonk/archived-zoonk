@@ -181,7 +181,7 @@ msgstr "您的註冊正在等待批准"
 msgid "must start with https://"
 msgstr "必須以 https:// 開頭"
 
-#: lib/content/content_context.ex:757
+#: lib/content/content_context.ex:756
 #, elixir-autogen, elixir-format, fuzzy
 msgid "cannot delete the only step"
 msgstr "不能刪除唯一的步驟"
@@ -225,3 +225,8 @@ msgstr "您選擇了太多檔案"
 #, elixir-autogen, elixir-format
 msgid "Failed to remove file"
 msgstr "刪除檔案失敗"
+
+#: lib/content/user_selection_schema.ex:71
+#, elixir-autogen, elixir-format
+msgid "cannot be larger than total"
+msgstr "不能大於總數"

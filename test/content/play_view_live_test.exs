@@ -99,7 +99,8 @@ defmodule ZoonkWeb.PlayViewLiveTest do
       assert_first_step(lv, lessons)
       assert_second_step(lv, lessons)
       assert_third_step(lv, lessons)
-      assert_fourth_step(conn, lv, lessons, course)
+      assert_fourth_step(lv, lessons)
+      assert_fifth_step(conn, lv, lessons, course)
     end
 
     test "returns an error if trying to play a lesson from another course", %{conn: conn, course: course} do
@@ -179,7 +180,7 @@ defmodule ZoonkWeb.PlayViewLiveTest do
       lv |> form(@select_form, %{answer: "answer!"}) |> render_submit()
 
       assert has_element?(lv, "blockquote p", "step 2 question")
-      assert Repo.get_by(UserSelection, user_id: user.id, step_id: step.id).answer == "answer!"
+      assert Repo.get_by(UserSelection, user_id: user.id, step_id: step.id).answer == ["answer!"]
     end
 
     test "displays a 10 score when the lesson has only one readonly step", %{conn: conn, course: course} do
@@ -215,20 +216,33 @@ defmodule ZoonkWeb.PlayViewLiveTest do
     assert has_element?(lv, ~s|input[id="select-option-#{first_option.id}"]|)
     refute has_element?(lv, "textarea")
 
-    lv |> form(@select_form, %{selected_option: get_correct_option(step.options)}) |> render_submit()
+    lv |> form(@select_form, %{selected_option: get_incorrect_option(step.options)}) |> render_submit()
 
-    assert has_element?(lv, ~s|div[role="alert"] h3:fl-icontains("well done!")|)
+    assert has_element?(lv, ~s|div[role="alert"] h4:fl-icontains("feedback 2!")|)
   end
 
-  # credo:disable-for-next-line Credo.Check.Refactor.ABCSize
   defp assert_second_step(lv, lessons) do
     lv |> form(@select_form) |> render_submit()
 
     refute has_element?(lv, ~s|blockquote p:fl-icontains("step 1!")|)
     assert has_element?(lv, ~s|blockquote p:fl-icontains("step 2!")|)
-    assert has_element?(lv, ~s|button *:fl-icontains("confirm")|)
 
     step = Enum.at(lessons, 1)
+    file_url = Storage.get_url(step.image)
+
+    assert has_element?(lv, ~s|img[src="#{file_url}"]|)
+  end
+
+  # credo:disable-for-next-line Credo.Check.Refactor.ABCSize
+  defp assert_third_step(lv, lessons) do
+    lv |> form(@select_form) |> render_submit()
+
+    refute has_element?(lv, ~s|blockquote p:fl-icontains("step 1!")|)
+    refute has_element?(lv, ~s|blockquote p:fl-icontains("step 2!")|)
+    assert has_element?(lv, ~s|blockquote p:fl-icontains("step 3!")|)
+    assert has_element?(lv, ~s|button *:fl-icontains("confirm")|)
+
+    step = Enum.at(lessons, 2)
     first_option = hd(step.options)
 
     assert has_element?(lv, ~s|input[id="select-option-#{first_option.id}"]|)
@@ -238,53 +252,64 @@ defmodule ZoonkWeb.PlayViewLiveTest do
     assert has_element?(lv, ~s|div[role="alert"] h4:fl-icontains("feedback 2!")|)
   end
 
-  defp assert_third_step(lv, lessons) do
+  # credo:disable-for-next-line Credo.Check.Refactor.ABCSize
+  defp assert_fourth_step(lv, lessons) do
     lv |> form(@select_form) |> render_submit()
 
     refute has_element?(lv, ~s|blockquote p:fl-icontains("step 1!")|)
     refute has_element?(lv, ~s|blockquote p:fl-icontains("step 2!")|)
-    assert has_element?(lv, ~s|blockquote p:fl-icontains("step 3!")|)
-
-    step = Enum.at(lessons, 2)
-    file_url = Storage.get_url(step.image)
-
-    assert has_element?(lv, ~s|img[src="#{file_url}"]|)
-  end
-
-  defp assert_fourth_step(conn, lv, lessons, course) do
-    lv |> form(@select_form) |> render_submit()
-
+    refute has_element?(lv, ~s|blockquote p:fl-icontains("step 3!")|)
     assert has_element?(lv, ~s|blockquote p:fl-icontains("step 4!")|)
-    assert has_element?(lv, ~s|button *:fl-icontains("next step")|)
+    assert has_element?(lv, ~s|button *:fl-icontains("confirm")|)
 
     step = Enum.at(lessons, 3)
+    first_option = hd(step.options)
 
-    assert {:ok, _lv, _html} =
+    assert has_element?(lv, ~s|input[id="select-option-#{first_option.id}"]|)
+
+    lv |> form(@select_form, %{selected_option: get_correct_option(step.options)}) |> render_submit()
+
+    assert has_element?(lv, ~s|div[role="alert"] h3:fl-icontains("well done!")|)
+  end
+
+  defp assert_fifth_step(conn, lv, lessons, course) do
+    lv |> form(@select_form) |> render_submit()
+
+    assert has_element?(lv, ~s|blockquote p:fl-icontains("step 5!")|)
+    assert has_element?(lv, ~s|button *:fl-icontains("next step")|)
+
+    step = Enum.at(lessons, 4)
+
+    assert {:ok, updated_lv, _html} =
              lv
              |> form(@select_form)
              |> render_submit()
              |> follow_redirect(conn, ~p"/c/#{course.slug}/#{step.lesson_id}/completed")
+
+    assert has_element?(updated_lv, "h1", "Not bad!")
+    assert has_element?(updated_lv, "span", "6.0")
+    assert has_element?(updated_lv, "p", "You got 3 out of 5 answers right.")
   end
 
   defp generate_steps(lesson) do
-    Enum.each(1..4, fn order ->
+    Enum.each(1..5, fn order ->
       content = "step #{order}!"
-      image = if order == 3, do: "img.png"
-      kind = if order == 4, do: :readonly, else: :quiz
+      image = if order == 2, do: "img.png"
+      kind = if order == 5, do: :readonly, else: :quiz
 
       step = lesson_step_fixture(%{lesson_id: lesson.id, kind: kind, content: content, image: image, order: order})
 
       # Make sure it works even when the last step doesn't have options.
-      unless order == 4, do: generate_options(step, order)
+      unless order == 5, do: generate_options(step, order)
     end)
   end
 
-  defp generate_options(_step, 3), do: nil
+  defp generate_options(_step, 2), do: nil
 
   defp generate_options(step, _step_order) do
-    Enum.each(1..4, fn order ->
+    Enum.each(1..5, fn order ->
       image = if order == 2, do: "img.png"
-      feedback = unless order == 1, do: "feedback #{order}!"
+      feedback = unless order == 4, do: "feedback #{order}!"
       correct? = order == 1 or order == 4
 
       step_option_fixture(%{lesson_step_id: step.id, correct?: correct?, image: image, feedback: feedback, title: "option #{order}!"})

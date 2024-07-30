@@ -2,6 +2,7 @@ defmodule ZoonkWeb.Live.LessonPlay do
   @moduledoc false
   use ZoonkWeb, :live_view
 
+  import Zoonk.Shared.Utilities, only: [boolean_to_integer: 1]
   import ZoonkWeb.Components.Content.LessonStep
 
   alias Zoonk.Accounts.User
@@ -33,34 +34,34 @@ defmodule ZoonkWeb.Live.LessonPlay do
 
   @impl Phoenix.LiveView
   def handle_event("next", %{"selected_option" => selected_option}, socket) when is_nil(socket.assigns.selected_option) do
-    %{current_user: user, lesson: lesson, current_step: step, step_start: step_start} = socket.assigns
+    %{current_step: step} = socket.assigns
 
-    step_duration = DateTime.diff(DateTime.utc_now(), step_start, :second)
     option_id = String.to_integer(selected_option)
-    attrs = %{user_id: user.id, option_id: option_id, lesson_id: lesson.id, step_id: step.id, duration: step_duration}
+    selected_option = get_option(step.options, option_id)
 
-    case Content.add_user_selection(attrs) do
-      {:ok, _} ->
-        selected_option = get_option(step.options, option_id)
+    socket =
+      socket
+      |> maybe_play_sound_effect(selected_option.correct?)
+      |> assign(:selected_option, selected_option)
 
-        socket =
-          socket
-          |> maybe_play_sound_effect(selected_option.correct?)
-          |> assign(:selected_option, selected_option)
-
-        {:noreply, socket}
-
-      {:error, _} ->
-        {:noreply, put_flash(socket, :error, dgettext("courses", "Unable to select option"))}
-    end
+    {:noreply, socket}
   end
 
   def handle_event("next", params, socket) do
-    %{current_user: user, lesson: lesson, current_step: current_step, step_start: step_start} = socket.assigns
+    %{current_user: user, lesson: lesson, current_step: current_step, step_start: step_start, selected_option: selected_option} = socket.assigns
     step_duration = DateTime.diff(DateTime.utc_now(), step_start, :second)
     next_step = Content.get_next_step(lesson, current_step.order)
 
-    attrs = %{user_id: user.id, lesson_id: lesson.id, step_id: current_step.id, answer: params["answer"], duration: step_duration}
+    attrs = %{
+      user_id: user.id,
+      correct: get_correct_value(selected_option),
+      total: 1,
+      lesson_id: lesson.id,
+      step_id: current_step.id,
+      option_id: get_selected_option_id(selected_option),
+      answer: [params["answer"]],
+      duration: step_duration
+    }
 
     case Content.add_user_selection(attrs) do
       {:ok, _} ->
@@ -95,6 +96,12 @@ defmodule ZoonkWeb.Live.LessonPlay do
   defp handle_lesson_completed(socket, _next_step), do: assign(socket, :step_start, DateTime.utc_now())
 
   defp get_option(options, option_id), do: Enum.find(options, &(&1.id == option_id))
+
+  defp get_selected_option_id(nil), do: nil
+  defp get_selected_option_id(selected_option), do: selected_option.id
+
+  defp get_correct_value(nil), do: 1
+  defp get_correct_value(selected_option), do: boolean_to_integer(selected_option.correct?)
 
   defp user_selected_wrong_option?(%StepOption{correct?: false} = selected, option) when selected.id == option.id, do: true
   defp user_selected_wrong_option?(_selected, _option), do: false

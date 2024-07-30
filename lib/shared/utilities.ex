@@ -23,6 +23,21 @@ defmodule Zoonk.Shared.Utilities do
   def string_to_boolean(_str), do: true
 
   @doc """
+  Converts a boolean to an integer.
+
+  ## Examples
+
+      iex> boolean_to_integer(true)
+      1
+
+      iex> boolean_to_integer(false)
+      0
+  """
+  @spec boolean_to_integer(boolean()) :: integer()
+  def boolean_to_integer(true), do: 1
+  def boolean_to_integer(false), do: 0
+
+  @doc """
   Generates a random password.
 
   It generates a random password that meets the following criteria:

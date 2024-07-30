@@ -181,7 +181,7 @@ msgstr "Ihre Anmeldung muss noch genehmigt werden"
 msgid "must start with https://"
 msgstr "muss mit https:// beginnen"
 
-#: lib/content/content_context.ex:757
+#: lib/content/content_context.ex:756
 #, elixir-autogen, elixir-format, fuzzy
 msgid "cannot delete the only step"
 msgstr "Der einzige Schritt kann nicht gelöscht werden"
@@ -225,3 +225,8 @@ msgstr "Sie haben zu viele Dateien ausgewählt"
 #, elixir-autogen, elixir-format
 msgid "Failed to remove file"
 msgstr "Datei konnte nicht gelöscht werden"
+
+#: lib/content/user_selection_schema.ex:71
+#, elixir-autogen, elixir-format
+msgid "cannot be larger than total"
+msgstr "darf nicht größer sein als total"

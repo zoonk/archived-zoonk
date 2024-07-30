@@ -178,7 +178,7 @@ msgstr ""
 msgid "must start with https://"
 msgstr ""
 
-#: lib/content/content_context.ex:757
+#: lib/content/content_context.ex:756
 #, elixir-autogen, elixir-format
 msgid "cannot delete the only step"
 msgstr ""
@@ -221,4 +221,9 @@ msgstr ""
 #: lib/components/upload.ex:87
 #, elixir-autogen, elixir-format
 msgid "Failed to remove file"
+msgstr ""
+
+#: lib/content/user_selection_schema.ex:71
+#, elixir-autogen, elixir-format
+msgid "cannot be larger than total"
 msgstr ""
