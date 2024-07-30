@@ -179,7 +179,7 @@ defmodule ZoonkWeb.PlayViewLiveTest do
       lv |> form(@select_form, %{answer: "answer!"}) |> render_submit()
 
       assert has_element?(lv, "blockquote p", "step 2 question")
-      assert Repo.get_by(UserSelection, user_id: user.id, step_id: step.id).answer == "answer!"
+      assert Repo.get_by(UserSelection, user_id: user.id, step_id: step.id).answer == ["answer!"]
     end
 
     test "displays a 10 score when the lesson has only one readonly step", %{conn: conn, course: course} do

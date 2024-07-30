@@ -152,10 +152,10 @@ defmodule ZoonkWeb.DashboardCourseStudentViewLiveTest do
     Content.add_user_lesson(%{duration: 5, user_id: user.id, lesson_id: lesson1.id, attempts: 1, correct: 3, total: 10})
     Content.add_user_lesson(%{duration: 5, user_id: user.id, lesson_id: lesson2.id, attempts: 1, correct: 7, total: 10})
 
-    Content.add_user_selection(%{duration: 5, user_id: user.id, option_id: option1.id, lesson_id: lesson1.id, step_id: lesson_step1.id})
-    Content.add_user_selection(%{duration: 5, user_id: user.id, option_id: option2.id, lesson_id: lesson1.id, step_id: lesson_step1.id})
-    Content.add_user_selection(%{duration: 5, user_id: user.id, option_id: option3.id, lesson_id: lesson2.id, step_id: lesson_step2.id})
-    Content.add_user_selection(%{duration: 5, user_id: user.id, answer: "test answer", lesson_id: lesson1.id, step_id: lesson_step3.id})
+    Content.add_user_selection(%{duration: 5, correct: 1, total: 1, user_id: user.id, option_id: option1.id, lesson_id: lesson1.id, step_id: lesson_step1.id})
+    Content.add_user_selection(%{duration: 5, correct: 0, total: 1, user_id: user.id, option_id: option2.id, lesson_id: lesson1.id, step_id: lesson_step1.id})
+    Content.add_user_selection(%{duration: 5, correct: 1, total: 1, user_id: user.id, option_id: option3.id, lesson_id: lesson2.id, step_id: lesson_step2.id})
+    Content.add_user_selection(%{duration: 5, correct: 1, total: 1, user_id: user.id, answer: ["test answer"], lesson_id: lesson1.id, step_id: lesson_step3.id})
 
     [lesson1, lesson2]
   end

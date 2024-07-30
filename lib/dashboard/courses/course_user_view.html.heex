@@ -74,7 +74,7 @@
         <div class="w-fit rounded-2xl bg-gray-50 p-4 leading-6 text-gray-900">
           <%= step.content %>
 
-          <p :if={selection.answer} class="mt-2 font-semibold text-indigo-900"><%= selection.answer %></p>
+          <p :if={selection.answer} class="mt-2 font-semibold text-indigo-900"><%= hd(selection.answer) %></p>
 
           <p :if={selection.option} class="mt-2 font-semibold text-pink-700"><%= selection.option.title %></p>
         </div>

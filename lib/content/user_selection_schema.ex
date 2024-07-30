@@ -7,6 +7,7 @@ defmodule Zoonk.Content.UserSelection do
   use Ecto.Schema
 
   import Ecto.Changeset
+  import ZoonkWeb.Gettext
 
   alias Zoonk.Accounts.User
   alias Zoonk.Content.Lesson
@@ -17,7 +18,9 @@ defmodule Zoonk.Content.UserSelection do
 
   schema "user_selections" do
     field :duration, :integer
-    field :answer, :string
+    field :answer, {:array, :string}
+    field :correct, :integer
+    field :total, :integer
 
     belongs_to :user, User
     belongs_to :lesson, Lesson
@@ -31,7 +34,20 @@ defmodule Zoonk.Content.UserSelection do
   @spec changeset(Ecto.Schema.t(), map()) :: Ecto.Changeset.t()
   def changeset(user_selection, attrs \\ %{}) do
     user_selection
-    |> cast(attrs, [:answer, :duration, :user_id, :option_id, :lesson_id, :step_id])
-    |> validate_required([:duration, :user_id, :lesson_id, :step_id])
+    |> cast(attrs, [:answer, :correct, :total, :duration, :user_id, :option_id, :lesson_id, :step_id])
+    |> validate_required([:duration, :correct, :total, :user_id, :lesson_id, :step_id])
+    |> validate_correct_total()
   end
+
+  defp validate_correct_total(changeset) do
+    correct = get_field(changeset, :correct)
+    total = get_field(changeset, :total)
+    validate_correct_total(changeset, correct, total)
+  end
+
+  defp validate_correct_total(changeset, correct, total) when correct > total do
+    add_error(changeset, :correct, dgettext("errors", "cannot be larger than total"))
+  end
+
+  defp validate_correct_total(changeset, _correct, _total), do: changeset
 end

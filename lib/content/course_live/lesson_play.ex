@@ -2,6 +2,7 @@ defmodule ZoonkWeb.Live.LessonPlay do
   @moduledoc false
   use ZoonkWeb, :live_view
 
+  import Zoonk.Shared.Utilities, only: [boolean_to_integer: 1]
   import ZoonkWeb.Components.Content.LessonStep
 
   alias Zoonk.Accounts.User
@@ -37,12 +38,20 @@ defmodule ZoonkWeb.Live.LessonPlay do
 
     step_duration = DateTime.diff(DateTime.utc_now(), step_start, :second)
     option_id = String.to_integer(selected_option)
-    attrs = %{user_id: user.id, option_id: option_id, lesson_id: lesson.id, step_id: step.id, duration: step_duration}
+    selected_option = get_option(step.options, option_id)
+
+    attrs = %{
+      user_id: user.id,
+      correct: boolean_to_integer(selected_option.correct?),
+      total: 1,
+      option_id: option_id,
+      lesson_id: lesson.id,
+      step_id: step.id,
+      duration: step_duration
+    }
 
     case Content.add_user_selection(attrs) do
       {:ok, _} ->
-        selected_option = get_option(step.options, option_id)
-
         socket =
           socket
           |> maybe_play_sound_effect(selected_option.correct?)
@@ -60,7 +69,15 @@ defmodule ZoonkWeb.Live.LessonPlay do
     step_duration = DateTime.diff(DateTime.utc_now(), step_start, :second)
     next_step = Content.get_next_step(lesson, current_step.order)
 
-    attrs = %{user_id: user.id, lesson_id: lesson.id, step_id: current_step.id, answer: params["answer"], duration: step_duration}
+    attrs = %{
+      user_id: user.id,
+      correct: 1,
+      total: 1,
+      lesson_id: lesson.id,
+      step_id: current_step.id,
+      answer: [params["answer"]],
+      duration: step_duration
+    }
 
     case Content.add_user_selection(attrs) do
       {:ok, _} ->
