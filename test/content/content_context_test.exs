@@ -774,6 +774,14 @@ defmodule Zoonk.ContentTest do
       assert lesson_step.lesson_id == attrs.lesson_id
     end
 
+    test "allow fill steps to have long segments" do
+      text = String.duplicate("a", 1000)
+      attrs = valid_lesson_step_attributes(%{kind: :fill, content: nil, segments: [text]})
+      assert {:ok, %LessonStep{} = lesson_step} = Content.create_lesson_step(attrs)
+      assert lesson_step.segments == [text]
+      assert lesson_step.content == nil
+    end
+
     test "returns an error changeset" do
       attrs = valid_lesson_step_attributes(%{content: ""})
       assert {:error, %Ecto.Changeset{} = changeset} = Content.create_lesson_step(attrs)

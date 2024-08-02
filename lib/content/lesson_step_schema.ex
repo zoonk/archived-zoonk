@@ -16,8 +16,9 @@ defmodule Zoonk.Content.LessonStep do
   schema "lesson_steps" do
     field :content, :string
     field :image, :string
-    field :kind, Ecto.Enum, values: [:readonly, :quiz, :open_ended], default: :readonly
+    field :kind, Ecto.Enum, values: [:readonly, :fill, :quiz, :open_ended], default: :readonly
     field :order, :integer
+    field :segments, {:array, :string}
 
     belongs_to :lesson, Lesson
     has_many :options, StepOption
@@ -28,6 +29,12 @@ defmodule Zoonk.Content.LessonStep do
 
   @doc false
   @spec changeset(Ecto.Schema.t(), map()) :: Ecto.Changeset.t()
+  def changeset(lesson_step, %{kind: :fill} = attrs) do
+    lesson_step
+    |> cast(attrs, [:kind, :image, :lesson_id, :order, :segments])
+    |> validate_required([:kind, :lesson_id, :order, :segments])
+  end
+
   def changeset(lesson_step, attrs) do
     lesson_step
     |> cast(attrs, [:content, :image, :kind, :lesson_id, :order])
