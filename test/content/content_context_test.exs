@@ -969,6 +969,12 @@ defmodule Zoonk.ContentTest do
       assert {:error, %Ecto.Changeset{} = changeset} = Content.create_step_option(attrs)
       assert "can't be blank" in errors_on(changeset).title
     end
+
+    test "creates an option for fill steps" do
+      attrs = %{kind: :fill, segment: 1, title: "Option 1", lesson_step_id: lesson_step_fixture().id}
+      assert {:ok, %StepOption{} = step_option} = Content.create_step_option(attrs)
+      assert step_option.segment == attrs.segment
+    end
   end
 
   describe "delete_step_option/1" do

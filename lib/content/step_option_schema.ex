@@ -16,6 +16,7 @@ defmodule Zoonk.Content.StepOption do
     field :correct?, :boolean, default: false
     field :feedback, :string
     field :image, :string
+    field :segment, :integer
     field :title, :string
 
     belongs_to :lesson_step, LessonStep
@@ -26,6 +27,12 @@ defmodule Zoonk.Content.StepOption do
 
   @doc false
   @spec changeset(Ecto.Schema.t(), map()) :: Ecto.Changeset.t()
+  def changeset(step_option, %{kind: :fill} = attrs) do
+    step_option
+    |> cast(attrs, [:segment, :title, :lesson_step_id])
+    |> validate_required([:segment, :title, :lesson_step_id])
+  end
+
   def changeset(step_option, attrs) do
     step_option
     |> cast(attrs, [:correct?, :feedback, :image, :title, :lesson_step_id])
