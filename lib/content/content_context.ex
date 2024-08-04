@@ -762,6 +762,39 @@ defmodule Zoonk.Content do
   end
 
   @doc """
+  Updates a lesson step segment.
+
+  Take an index and a segment, and updates the segment at the given index.
+  When making a segment empty, it also adds a draft option associated to it.
+  When the segment is not empty, it also deletes any options associated to it.
+
+  ## Examples
+
+      iex> update_step_segment(%LessonStep{}, 1, "This is a")
+      {:ok, %{}}
+  """
+  @spec update_step_segment(LessonStep.t(), non_neg_integer(), String.t()) :: {:ok, map()} | {:error, any()} | Ecto.Multi.failure()
+  def update_step_segment(%LessonStep{} = lesson_step, index, "") do
+    updated_step = change_lesson_step(lesson_step, %{kind: :fill, segments: List.replace_at(lesson_step.segments, index, nil)})
+    option_attrs = %{kind: :fill, lesson_step_id: lesson_step.id, segment: index, title: dgettext("orgs", "draft option")}
+
+    Ecto.Multi.new()
+    |> Ecto.Multi.update(:lesson_step, updated_step)
+    |> Ecto.Multi.insert(:option, change_step_option(%StepOption{}, option_attrs))
+    |> Repo.transaction()
+  end
+
+  def update_step_segment(%LessonStep{} = lesson_step, index, segment) do
+    updated_step = change_lesson_step(lesson_step, %{kind: :fill, segments: List.replace_at(lesson_step.segments, index, segment)})
+    query = StepOption |> where(lesson_step_id: ^lesson_step.id) |> where(segment: ^index)
+
+    Ecto.Multi.new()
+    |> Ecto.Multi.update(:lesson_step, updated_step)
+    |> Ecto.Multi.delete_all(:options, query)
+    |> Repo.transaction()
+  end
+
+  @doc """
   Deletes a lesson step.
 
   ## Examples

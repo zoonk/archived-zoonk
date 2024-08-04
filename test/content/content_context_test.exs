@@ -829,6 +829,25 @@ defmodule Zoonk.ContentTest do
     end
   end
 
+  describe "update_step_segment/3" do
+    test "updates a step segment" do
+      lesson_step = lesson_step_fixture(%{kind: :fill, segments: ["This is a", nil, "step."]})
+      assert {:ok, _updated} = Content.update_step_segment(lesson_step, 2, "")
+      assert Repo.get(LessonStep, lesson_step.id).segments == ["This is a", nil, nil]
+
+      option = StepOption |> where(lesson_step_id: ^lesson_step.id) |> where(segment: 2) |> Repo.one()
+      assert option.title == "draft option"
+    end
+
+    test "when a text is added, deletes any options associated with this segment" do
+      lesson_step = lesson_step_fixture(%{kind: :fill, segments: ["This is a", nil, "step."]})
+      step_option = step_option_fixture(%{kind: :fill, lesson_step_id: lesson_step.id, segment: 1})
+      assert {:ok, _updated} = Content.update_step_segment(lesson_step, 1, "new")
+      assert Repo.get(LessonStep, lesson_step.id).segments == ["This is a", "new", "step."]
+      assert Repo.get(StepOption, step_option.id) == nil
+    end
+  end
+
   describe "delete_lesson_step/1" do
     test "deletes a lesson step" do
       lesson = lesson_fixture()
