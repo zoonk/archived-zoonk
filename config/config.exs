@@ -84,6 +84,12 @@ config :zoonk,
   ecto_repos: [Zoonk.Repo],
   generators: [timestamp_type: :utc_datetime_usec]
 
+if Mix.env() == :dev do
+  config :mix_test_watch,
+    tasks: ["test", "credo --strict"],
+    clear: true
+end
+
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{config_env()}.exs"

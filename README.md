@@ -65,7 +65,7 @@ Follow the instructions below to get Zoonk up and running on your local machine.
 - Run `mix setup` to install dependencies and set up the database and assets.
 - Run `mix seed` to fetch initial data to the database ([See options](./priv/repo/seed/README.md)).
 - Run `mix phx.server` to start a development server.
-- Run `mix test` to run tests.
+- Run `mix test` to run tests or `mix test.watch` to run tests and watch for changes.
 - Run `mix ci` to run code quality checks.
 - Run `mix locale` to update translation files.
 

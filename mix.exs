@@ -55,6 +55,7 @@ defmodule Zoonk.MixProject do
       {:image, "~> 0.53.0"},
       {:jason, "~> 1.2"},
       {:mix_audit, "~> 2.1.2", only: [:dev, :test], runtime: false},
+      {:mix_test_watch, "~> 1.2.0", only: [:dev, :test]},
       {:money, "~> 1.13.1"},
       {:mox, "~> 1.1.0", only: :test},
       {:oban, "~> 2.18.0"},
