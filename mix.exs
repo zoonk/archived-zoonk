@@ -47,7 +47,6 @@ defmodule Zoonk.MixProject do
       {:esbuild, "~> 0.8.1", runtime: Mix.env() == :dev},
       {:ex_aws, "~> 2.5.4"},
       {:ex_aws_s3, "~> 2.5.3"},
-      {:finch, "~> 0.18"},
       {:flame, "~> 0.3.0"},
       {:floki, "~> 0.36.2", only: :test},
       {:gettext, "~> 0.24.0"},

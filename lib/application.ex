@@ -24,8 +24,6 @@ defmodule Zoonk.Application do
       !flame_parent && {DNSCluster, query: Application.get_env(:zoonk, :dns_cluster_query) || :ignore},
       # Start the PubSub system
       {Phoenix.PubSub, name: Zoonk.PubSub},
-      # Start Finch
-      {Finch, name: Zoonk.Finch},
       # Start the Endpoint (http/https)
       !flame_parent && ZoonkWeb.Endpoint,
       # Start a worker by calling: Zoonk.Worker.start_link(arg)
