@@ -795,6 +795,28 @@ defmodule Zoonk.Content do
   end
 
   @doc """
+  Deletes a segment from a lesson step.
+
+  When deleting a segment, it also deletes any options associated with it.
+  It also updates options segments to match the new order.
+
+  ## Examples
+
+      iex> delete_step_segment(%LessonStep{}, 1)
+      {:ok, %{}}
+  """
+  @spec delete_step_segment(LessonStep.t(), non_neg_integer()) :: {:ok, map()} | {:error, any()} | Ecto.Multi.failure()
+  def delete_step_segment(%LessonStep{} = lesson_step, index) do
+    updated_step = change_lesson_step(lesson_step, %{kind: :fill, segments: List.delete_at(lesson_step.segments, index)})
+    query = StepOption |> where(lesson_step_id: ^lesson_step.id) |> where(segment: ^index)
+
+    Ecto.Multi.new()
+    |> Ecto.Multi.update(:lesson_step, updated_step)
+    |> Ecto.Multi.delete_all(:options, query)
+    |> Repo.transaction()
+  end
+
+  @doc """
   Deletes a lesson step.
 
   ## Examples
