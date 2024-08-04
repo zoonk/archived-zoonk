@@ -742,10 +742,19 @@ defmodule Zoonk.Content do
       iex> update_lesson_step_kind(%LessonStep{}, "fill")
       {:ok, %LessonStep{}}
   """
-  @spec update_lesson_step_kind(LessonStep.t(), String.t()) :: lesson_step_changeset()
+  @spec update_lesson_step_kind(LessonStep.t(), String.t()) :: {:ok, map()} | {:error, any()} | Ecto.Multi.failure()
   def update_lesson_step_kind(%LessonStep{} = lesson_step, "fill") do
     segments = [dgettext("orgs", "This is a"), nil, dgettext("orgs", "step.")]
-    lesson_step |> change_lesson_step(%{kind: :fill, segments: segments}) |> Repo.update()
+    changeset = change_lesson_step(lesson_step, %{kind: :fill, segments: segments})
+    option_attrs = %{kind: :fill, lesson_step_id: lesson_step.id}
+    correct_option = Map.merge(option_attrs, %{fragment: 0, title: dgettext("orgs", "fill in the blank")})
+    incorrect_option = Map.put(option_attrs, :title, dgettext("orgs", "incorrect option"))
+
+    Ecto.Multi.new()
+    |> Ecto.Multi.update(:lesson_step, changeset)
+    |> Ecto.Multi.insert(:opt1, change_step_option(%StepOption{}, correct_option))
+    |> Ecto.Multi.insert(:opt2, change_step_option(%StepOption{}, incorrect_option))
+    |> Repo.transaction()
   end
 
   def update_lesson_step_kind(%LessonStep{} = lesson_step, kind) do

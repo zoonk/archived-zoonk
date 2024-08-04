@@ -847,3 +847,33 @@ msgstr "Você pode adicionar várias alternativas e os usuários podem seleciona
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Choose a nickname to access your school profile"
 msgstr "Escolha um apelido para acessar o perfil da sua escola"
+
+#: lib/dashboard/lessons/lesson_editor.ex:210
+#, elixir-autogen, elixir-format
+msgid "Fill in the blank"
+msgstr "Preencher espaço"
+
+#: lib/content/content_context.ex:747
+#, elixir-autogen, elixir-format
+msgid "This is a"
+msgstr "Esta é uma etapa de"
+
+#: lib/dashboard/lessons/lesson_editor.ex:211
+#, elixir-autogen, elixir-format
+msgid "Users can fill in the blank space in a sentence."
+msgstr "Os usuários podem preencher o espaço em branco em uma frase."
+
+#: lib/content/content_context.ex:750
+#, elixir-autogen, elixir-format
+msgid "fill in the blank"
+msgstr "preencher o espaço"
+
+#: lib/content/content_context.ex:751
+#, elixir-autogen, elixir-format
+msgid "incorrect option"
+msgstr "opção incorreta"
+
+#: lib/content/content_context.ex:747
+#, elixir-autogen, elixir-format
+msgid "step."
+msgstr "em branco."

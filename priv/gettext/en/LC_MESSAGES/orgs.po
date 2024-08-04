@@ -847,3 +847,33 @@ msgstr ""
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Choose a nickname to access your school profile"
 msgstr ""
+
+#: lib/dashboard/lessons/lesson_editor.ex:210
+#, elixir-autogen, elixir-format
+msgid "Fill in the blank"
+msgstr ""
+
+#: lib/content/content_context.ex:747
+#, elixir-autogen, elixir-format
+msgid "This is a"
+msgstr ""
+
+#: lib/dashboard/lessons/lesson_editor.ex:211
+#, elixir-autogen, elixir-format
+msgid "Users can fill in the blank space in a sentence."
+msgstr ""
+
+#: lib/content/content_context.ex:750
+#, elixir-autogen, elixir-format
+msgid "fill in the blank"
+msgstr ""
+
+#: lib/content/content_context.ex:751
+#, elixir-autogen, elixir-format
+msgid "incorrect option"
+msgstr ""
+
+#: lib/content/content_context.ex:747
+#, elixir-autogen, elixir-format
+msgid "step."
+msgstr ""

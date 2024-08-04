@@ -847,3 +847,33 @@ msgstr "您可以新增多個選項，使用者可以選擇其中一個。"
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Choose a nickname to access your school profile"
 msgstr "選擇一個暱稱以存取您的學校資料"
+
+#: lib/dashboard/lessons/lesson_editor.ex:210
+#, elixir-autogen, elixir-format
+msgid "Fill in the blank"
+msgstr "填空"
+
+#: lib/content/content_context.ex:747
+#, elixir-autogen, elixir-format
+msgid "This is a"
+msgstr "這是"
+
+#: lib/dashboard/lessons/lesson_editor.ex:211
+#, elixir-autogen, elixir-format
+msgid "Users can fill in the blank space in a sentence."
+msgstr "使用者可以在句子中填入空白。"
+
+#: lib/content/content_context.ex:750
+#, elixir-autogen, elixir-format
+msgid "fill in the blank"
+msgstr "填空"
+
+#: lib/content/content_context.ex:751
+#, elixir-autogen, elixir-format
+msgid "incorrect option"
+msgstr "錯誤的選項"
+
+#: lib/content/content_context.ex:747
+#, elixir-autogen, elixir-format
+msgid "step."
+msgstr "步驟。"

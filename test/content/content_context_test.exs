@@ -2,6 +2,7 @@ defmodule Zoonk.ContentTest do
   @moduledoc false
   use Zoonk.DataCase, async: true
 
+  import Ecto.Query, warn: false
   import Zoonk.Fixtures.Accounts
   import Zoonk.Fixtures.Content
   import Zoonk.Fixtures.Organizations
@@ -813,10 +814,17 @@ defmodule Zoonk.ContentTest do
     end
 
     test "automatically adds segments for fill kind" do
-      lesson_step = lesson_step_fixture(%{kind: :readonly})
-      assert {:ok, %LessonStep{} = updated} = Content.update_lesson_step_kind(lesson_step, "fill")
-      assert updated.kind == :fill
-      assert updated.segments == ["This is a", nil, "step."]
+      lesson_step = lesson_step_fixture()
+      assert {:ok, _updated} = Content.update_lesson_step_kind(lesson_step, "fill")
+      assert Repo.get(LessonStep, lesson_step.id).segments == ["This is a", nil, "step."]
+    end
+
+    test "automatically adds options for fill kind" do
+      lesson_step = lesson_step_fixture()
+      assert {:ok, _updated} = Content.update_lesson_step_kind(lesson_step, "fill")
+
+      options = StepOption |> where(lesson_step_id: ^lesson_step.id) |> Repo.all()
+      assert length(options) == 2
     end
   end
 

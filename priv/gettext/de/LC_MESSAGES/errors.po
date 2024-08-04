@@ -181,7 +181,7 @@ msgstr "Ihre Anmeldung muss noch genehmigt werden"
 msgid "must start with https://"
 msgstr "muss mit https:// beginnen"
 
-#: lib/content/content_context.ex:756
+#: lib/content/content_context.ex:783
 #, elixir-autogen, elixir-format, fuzzy
 msgid "cannot delete the only step"
 msgstr "Der einzige Schritt kann nicht gelöscht werden"

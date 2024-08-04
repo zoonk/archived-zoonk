@@ -30,7 +30,7 @@ defmodule Zoonk.Content.StepOption do
   def changeset(step_option, %{kind: :fill} = attrs) do
     step_option
     |> cast(attrs, [:segment, :title, :lesson_step_id])
-    |> validate_required([:segment, :title, :lesson_step_id])
+    |> validate_required([:title, :lesson_step_id])
   end
 
   def changeset(step_option, attrs) do
