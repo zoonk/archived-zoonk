@@ -805,6 +805,21 @@ defmodule Zoonk.ContentTest do
     end
   end
 
+  describe "update_lesson_step_kind/2" do
+    test "updates the kind of a lesson step" do
+      lesson_step = lesson_step_fixture(%{kind: :readonly})
+      assert {:ok, %LessonStep{} = updated} = Content.update_lesson_step_kind(lesson_step, "quiz")
+      assert updated.kind == :quiz
+    end
+
+    test "automatically adds segments for fill kind" do
+      lesson_step = lesson_step_fixture(%{kind: :readonly})
+      assert {:ok, %LessonStep{} = updated} = Content.update_lesson_step_kind(lesson_step, "fill")
+      assert updated.kind == :fill
+      assert updated.segments == ["This is a", nil, "step."]
+    end
+  end
+
   describe "delete_lesson_step/1" do
     test "deletes a lesson step" do
       lesson = lesson_fixture()

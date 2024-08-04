@@ -735,6 +735,24 @@ defmodule Zoonk.Content do
   end
 
   @doc """
+  Updates a lesson step kind.
+
+  ## Examples
+
+      iex> update_lesson_step_kind(%LessonStep{}, "fill")
+      {:ok, %LessonStep{}}
+  """
+  @spec update_lesson_step_kind(LessonStep.t(), String.t()) :: lesson_step_changeset()
+  def update_lesson_step_kind(%LessonStep{} = lesson_step, "fill") do
+    segments = [dgettext("orgs", "This is a"), nil, dgettext("orgs", "step.")]
+    lesson_step |> change_lesson_step(%{kind: :fill, segments: segments}) |> Repo.update()
+  end
+
+  def update_lesson_step_kind(%LessonStep{} = lesson_step, kind) do
+    lesson_step |> change_lesson_step(%{kind: kind}) |> Repo.update()
+  end
+
+  @doc """
   Deletes a lesson step.
 
   ## Examples

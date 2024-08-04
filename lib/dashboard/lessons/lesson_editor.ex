@@ -203,6 +203,12 @@ defmodule ZoonkWeb.Live.Dashboard.LessonEditor do
         icon: "tabler-writing",
         title: dgettext("orgs", "Open-ended"),
         description: dgettext("orgs", "Users can write their own answer.")
+      },
+      %{
+        kind: :fill,
+        icon: "tabler-forms",
+        title: dgettext("orgs", "Fill in the blank"),
+        description: dgettext("orgs", "Users can fill in the blank space in a sentence.")
       }
     ]
   end
