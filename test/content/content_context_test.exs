@@ -856,6 +856,15 @@ defmodule Zoonk.ContentTest do
       assert Repo.get(LessonStep, lesson_step.id).segments == ["This is a", "step."]
       assert Repo.get(StepOption, step_option.id) == nil
     end
+
+    test "deleting a segment should update the index of the options" do
+      lesson_step = lesson_step_fixture(%{kind: :fill, segments: ["This is a", nil, nil]})
+      step_option1 = step_option_fixture(%{kind: :fill, lesson_step_id: lesson_step.id, segment: 1})
+      step_option2 = step_option_fixture(%{kind: :fill, lesson_step_id: lesson_step.id, segment: 2})
+      assert {:ok, _updated} = Content.delete_step_segment(lesson_step, 0)
+      assert Repo.get(StepOption, step_option1.id).segment == 0
+      assert Repo.get(StepOption, step_option2.id).segment == 1
+    end
   end
 
   describe "delete_lesson_step/1" do

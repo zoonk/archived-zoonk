@@ -808,12 +808,28 @@ defmodule Zoonk.Content do
   @spec delete_step_segment(LessonStep.t(), non_neg_integer()) :: {:ok, map()} | {:error, any()} | Ecto.Multi.failure()
   def delete_step_segment(%LessonStep{} = lesson_step, index) do
     updated_step = change_lesson_step(lesson_step, %{kind: :fill, segments: List.delete_at(lesson_step.segments, index)})
-    query = StepOption |> where(lesson_step_id: ^lesson_step.id) |> where(segment: ^index)
+    delete_query = StepOption |> where(lesson_step_id: ^lesson_step.id) |> where(segment: ^index)
+    indexes_requiring_update = segment_indexes_requiring_update(lesson_step.segments, index)
+
+    update_query =
+      StepOption
+      |> where(lesson_step_id: ^lesson_step.id)
+      |> where([so], so.segment in ^indexes_requiring_update)
 
     Ecto.Multi.new()
     |> Ecto.Multi.update(:lesson_step, updated_step)
-    |> Ecto.Multi.delete_all(:options, query)
+    |> Ecto.Multi.delete_all(:delete_options, delete_query)
+    |> Ecto.Multi.update_all(:update_options, update_query, inc: [segment: -1])
     |> Repo.transaction()
+  end
+
+  # given a list of segments, return a list of indexes where the segment is nil
+  # and the index argument is greater than the index of the nil segment
+  defp segment_indexes_requiring_update(segments, index) do
+    segments
+    |> Enum.with_index()
+    |> Enum.filter(fn {segment, i} -> is_nil(segment) and i > index end)
+    |> Enum.map(fn {_, index} -> index end)
   end
 
   @doc """
