@@ -824,7 +824,8 @@ defmodule Zoonk.ContentTest do
       assert {:ok, _updated} = Content.update_lesson_step_kind(lesson_step, "fill")
 
       options = StepOption |> where(lesson_step_id: ^lesson_step.id) |> Repo.all()
-      assert length(options) == 2
+      assert Enum.at(options, 0).segment == 1
+      assert Enum.at(options, 1).segment == nil
     end
   end
 

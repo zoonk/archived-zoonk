@@ -747,7 +747,7 @@ defmodule Zoonk.Content do
     segments = [dgettext("orgs", "This is a"), nil, dgettext("orgs", "step.")]
     changeset = change_lesson_step(lesson_step, %{kind: :fill, segments: segments})
     option_attrs = %{kind: :fill, lesson_step_id: lesson_step.id}
-    correct_option = Map.merge(option_attrs, %{fragment: 0, title: dgettext("orgs", "fill in the blank")})
+    correct_option = Map.merge(option_attrs, %{segment: 1, title: dgettext("orgs", "fill in the blank")})
     incorrect_option = Map.put(option_attrs, :title, dgettext("orgs", "incorrect option"))
 
     Ecto.Multi.new()
