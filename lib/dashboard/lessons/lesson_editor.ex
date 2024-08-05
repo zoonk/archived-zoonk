@@ -10,6 +10,7 @@ defmodule ZoonkWeb.Live.Dashboard.LessonEditor do
   alias ZoonkWeb.Components.Dashboard.LessonPublish
   alias ZoonkWeb.Components.Dashboard.OptionList
   alias ZoonkWeb.Components.Dashboard.StepContent
+  alias ZoonkWeb.Components.Dashboard.StepFill
   alias ZoonkWeb.Components.Dashboard.StepSwitch
   alias ZoonkWeb.Components.Upload
 
@@ -211,5 +212,12 @@ defmodule ZoonkWeb.Live.Dashboard.LessonEditor do
         description: dgettext("orgs", "Users can fill in the blank space in a sentence.")
       }
     ]
+  end
+
+  # Returns only options associated with a step segment
+  defp options_with_segments(options) do
+    options
+    |> Enum.filter(fn option -> option.segment end)
+    |> Enum.map(fn %{title: title, segment: segment} -> %{title: title, segment: segment} end)
   end
 end

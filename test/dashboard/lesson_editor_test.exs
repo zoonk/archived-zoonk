@@ -487,6 +487,7 @@ defmodule ZoonkWeb.DashboardLessonEditorLiveTest do
       assert Content.get_lesson_step_by_order(lesson.id, 1).kind == :fill
       refute has_element?(lv, "span", "Untitled step")
       assert has_element?(lv, "a", "This is a")
+      assert has_element?(lv, "a", "fill in the blank")
       assert has_element?(lv, "a", "step")
     end
 

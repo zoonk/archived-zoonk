@@ -44,7 +44,24 @@
 
   <div class="grid grid-cols-1 gap-4 py-8 sm:grid-cols-2">
     <div class="ring-gray-900/5 flex flex-col justify-between rounded-lg bg-gray-50 p-4 shadow-sm ring-1">
-      <.live_component module={StepContent} id={:step_content} action={@live_action} course={@course} lesson={@lesson} step={@selected_step} />
+      <.live_component
+        :if={@selected_step.kind != :fill}
+        module={StepContent}
+        id={:step_content}
+        action={@live_action}
+        course={@course}
+        lesson={@lesson}
+        step={@selected_step}
+      />
+
+      <.live_component
+        :if={@selected_step.kind == :fill}
+        module={StepFill}
+        id={:step_fill}
+        segments={@selected_step.segments}
+        options={options_with_segments(@selected_step.options)}
+      />
+
       <.step_image course={@course} lesson={@lesson} step={@selected_step} />
 
       <.button
