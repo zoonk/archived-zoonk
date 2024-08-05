@@ -103,7 +103,7 @@
       <p class="mt-2"><%= dgettext("orgs", "Users can write in their own answer to this step.") %></p>
     </div>
 
-    <div :if={@selected_step.kind == :quiz} class="ring-gray-900/5 flex flex-col justify-between rounded-lg p-4 shadow-sm ring-1">
+    <div :if={@selected_step.kind in [:quiz, :fill]} class="ring-gray-900/5 flex flex-col justify-between rounded-lg p-4 shadow-sm ring-1">
       <.live_component module={OptionList} id={:option_list} action={@live_action} option={@selected_option} course={@course} lesson={@lesson} step={@selected_step} />
 
       <.button phx-click="add-option" phx-value-step-id={@selected_step.id} class="mt-8" icon="tabler-layout-grid-add" color={:info_light}>

@@ -27,6 +27,7 @@ defmodule ZoonkWeb.Components.Dashboard.OptionList do
       <ul class="mt-8 space-y-2">
         <li :for={option <- @step.options} id={"option-#{option.id}"} class="flex items-center gap-2 text-sm">
           <.link
+            :if={@step.kind != :fill}
             id={"option-#{option.id}-image-link"}
             aria-label={dgettext("orgs", "Edit image")}
             patch={~p"/dashboard/c/#{@course.slug}/l/#{@lesson.id}/s/#{@step.order}/o/#{option.id}/image"}
@@ -78,6 +79,7 @@ defmodule ZoonkWeb.Components.Dashboard.OptionList do
           <.input type="text" field={@option_form[:title]} label={dgettext("orgs", "Option title")} required />
 
           <.input
+            :if={@step.kind != :fill}
             type="text"
             field={@option_form[:feedback]}
             label={dgettext("orgs", "Option feedback")}
@@ -85,6 +87,7 @@ defmodule ZoonkWeb.Components.Dashboard.OptionList do
           />
 
           <.input
+            :if={@step.kind != :fill}
             type="checkbox"
             field={@option_form[:correct?]}
             label={dgettext("orgs", "Is correct?")}

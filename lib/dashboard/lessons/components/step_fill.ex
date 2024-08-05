@@ -5,7 +5,7 @@ defmodule ZoonkWeb.Components.Dashboard.StepFill do
   @impl Phoenix.LiveComponent
   def render(assigns) do
     ~H"""
-    <div class="flex gap-2">
+    <div id="segments" class="flex gap-2">
       <.link :for={{segment, index} <- Enum.with_index(@segments)} class={["bg-white p-2 rounded-md shadow-sm", is_nil(segment) && "semibold text-teal-500"]}>
         <%= get_segment(segment, index, @options) %>
       </.link>
