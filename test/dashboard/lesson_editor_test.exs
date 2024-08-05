@@ -474,15 +474,20 @@ defmodule ZoonkWeb.DashboardLessonEditorLiveTest do
 
     test "updates a step to a fill kind", %{conn: conn, course: course} do
       lesson = lesson_fixture(%{course_id: course.id})
-      lesson_step_fixture(%{lesson_id: lesson.id, kind: :readonly, order: 1})
+      lesson_step_fixture(%{content: "Untitled step", lesson_id: lesson.id, kind: :readonly, order: 1})
 
       assert Content.get_lesson_step_by_order(lesson.id, 1).segments == nil
 
       {:ok, lv, _html} = live(conn, ~p"/dashboard/c/#{course.slug}/l/#{lesson.id}/s/1")
 
+      assert has_element?(lv, "span", "Untitled step")
+
       lv |> element("button", "Fill in the blank") |> render_click()
 
       assert Content.get_lesson_step_by_order(lesson.id, 1).kind == :fill
+      refute has_element?(lv, "span", "Untitled step")
+      assert has_element?(lv, "a", "This is a")
+      assert has_element?(lv, "a", "step")
     end
 
     test "embeds youtube video", %{conn: conn, course: course} do

@@ -92,7 +92,7 @@ defmodule ZoonkWeb.Live.Dashboard.LessonEditor do
   def handle_event("update-step-kind", %{"kind" => kind}, socket) do
     %{selected_step: step, course: course, lesson: lesson} = socket.assigns
 
-    case Content.update_lesson_step(step, %{kind: kind}) do
+    case Content.update_lesson_step_kind(step, kind) do
       {:ok, _lesson_step} ->
         {:noreply, push_patch(socket, to: step_link(course, lesson, step.order))}
 

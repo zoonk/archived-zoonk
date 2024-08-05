@@ -17,9 +17,20 @@ defmodule ZoonkWeb.Components.Dashboard.StepContent do
   def render(assigns) do
     ~H"""
     <div>
-      <.link class="mb-4 flex items-center gap-1" id={"step-edit-#{@step.id}"} patch={~p"/dashboard/c/#{@course.slug}/l/#{@lesson.id}/s/#{@step.order}/edit"}>
+      <.link
+        :if={@step.kind != :fill}
+        class="mb-4 flex items-center gap-1"
+        id={"step-edit-#{@step.id}"}
+        patch={~p"/dashboard/c/#{@course.slug}/l/#{@lesson.id}/s/#{@step.order}/edit"}
+      >
         <span class="whitespace-pre-wrap"><%= YouTube.remove_from_string(@step.content) %></span> <.icon name="tabler-edit" title={dgettext("orgs", "Edit step")} />
       </.link>
+
+      <div :if={@step.kind == :fill}>
+        <.link :for={segment <- @step.segments}>
+          <%= segment %>
+        </.link>
+      </div>
 
       <.youtube content={@step.content} />
 
