@@ -29,6 +29,7 @@ defmodule Zoonk.Content do
   @type step_suggested_course_changeset :: {:ok, StepSuggestedCourse.t()} | {:error, Ecto.Changeset.t()}
   @type user_lesson_changeset :: {:ok, UserLesson.t()} | {:error, Ecto.Changeset.t()}
   @type user_selection_changeset :: {:ok, UserSelection.t()} | {:error, Ecto.Changeset.t()}
+  @type transaction_result :: {:ok, map()} | {:error, any()} | Ecto.Multi.failure()
 
   @type lesson_stats :: %{users: non_neg_integer()}
 
@@ -742,7 +743,7 @@ defmodule Zoonk.Content do
       iex> update_lesson_step_kind(%LessonStep{}, "fill")
       {:ok, %LessonStep{}}
   """
-  @spec update_lesson_step_kind(LessonStep.t(), String.t()) :: {:ok, map()} | {:error, any()} | Ecto.Multi.failure()
+  @spec update_lesson_step_kind(LessonStep.t(), String.t()) :: transaction_result()
   def update_lesson_step_kind(%LessonStep{} = lesson_step, "fill") do
     segments = [dgettext("orgs", "This is a"), nil, dgettext("orgs", "step.")]
     changeset = change_lesson_step(lesson_step, %{kind: :fill, segments: segments})
@@ -773,7 +774,7 @@ defmodule Zoonk.Content do
       iex> update_step_segment(%LessonStep{}, 1, "This is a")
       {:ok, %{}}
   """
-  @spec update_step_segment(LessonStep.t(), non_neg_integer(), String.t()) :: {:ok, map()} | {:error, any()} | Ecto.Multi.failure()
+  @spec update_step_segment(LessonStep.t(), non_neg_integer(), String.t()) :: transaction_result()
   def update_step_segment(%LessonStep{} = lesson_step, index, "") do
     updated_step = change_lesson_step(lesson_step, %{kind: :fill, segments: List.replace_at(lesson_step.segments, index, nil)})
     option_attrs = %{kind: :fill, lesson_step_id: lesson_step.id, segment: index, title: dgettext("orgs", "draft option")}
@@ -805,7 +806,7 @@ defmodule Zoonk.Content do
       iex> delete_step_segment(%LessonStep{}, 1)
       {:ok, %{}}
   """
-  @spec delete_step_segment(LessonStep.t(), non_neg_integer()) :: {:ok, map()} | {:error, any()} | Ecto.Multi.failure()
+  @spec delete_step_segment(LessonStep.t(), non_neg_integer()) :: transaction_result()
   def delete_step_segment(%LessonStep{} = lesson_step, index) do
     updated_step = change_lesson_step(lesson_step, %{kind: :fill, segments: List.delete_at(lesson_step.segments, index)})
     delete_query = StepOption |> where(lesson_step_id: ^lesson_step.id) |> where(segment: ^index)
@@ -1005,9 +1006,23 @@ defmodule Zoonk.Content do
       iex> delete_step_option(123)
       {:error, %Ecto.Changeset{}}
   """
-  @spec delete_step_option(non_neg_integer()) :: step_option_changeset()
+  @spec delete_step_option(non_neg_integer()) :: transaction_result() | step_option_changeset()
   def delete_step_option(step_option_id) do
-    StepOption |> Repo.get!(step_option_id) |> Repo.delete()
+    step_option = Repo.get!(StepOption, step_option_id)
+    delete_step_option(step_option, step_option.segment)
+  end
+
+  defp delete_step_option(step_option, nil), do: Repo.delete(step_option)
+
+  defp delete_step_option(step_option, segment) do
+    lesson_step = Repo.get!(LessonStep, step_option.lesson_step_id)
+    segments = List.delete_at(lesson_step.segments, segment)
+    changeset = change_lesson_step(lesson_step, %{kind: lesson_step.kind, segments: segments})
+
+    Ecto.Multi.new()
+    |> Ecto.Multi.delete(:step_option, step_option)
+    |> Ecto.Multi.update(:lesson_step, changeset)
+    |> Repo.transaction()
   end
 
   @doc """

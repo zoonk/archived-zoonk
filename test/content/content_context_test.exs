@@ -1045,6 +1045,14 @@ defmodule Zoonk.ContentTest do
       assert {:ok, %StepOption{}} = Content.delete_step_option(step_option.id)
       assert_raise Ecto.NoResultsError, fn -> Zoonk.Repo.get!(StepOption, step_option.id) end
     end
+
+    test "deletes the segment associated with the step option" do
+      lesson_step = lesson_step_fixture(%{kind: :fill, segments: ["test", nil, "step"]})
+      step_option = step_option_fixture(%{kind: :fill, lesson_step_id: lesson_step.id, segment: 1})
+      assert lesson_step.segments == ["test", nil, "step"]
+      assert {:ok, _option} = Content.delete_step_option(step_option.id)
+      assert Repo.get(LessonStep, lesson_step.id).segments == ["test", "step"]
+    end
   end
 
   describe "update_step_option/2" do
