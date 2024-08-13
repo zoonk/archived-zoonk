@@ -1,7 +1,10 @@
 name: Test
 
 on:
-  - push
+  push:
+    branches: [main]
+  pull_request:
+    types: [opened, reopened, synchronize]
 
 env:
   MIX_ENV: test
