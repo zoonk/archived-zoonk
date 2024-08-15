@@ -736,6 +736,21 @@ defmodule Zoonk.Content do
   end
 
   @doc """
+  Adds a segment to a lesson step.
+
+  ## Examples
+
+      iex> add_segment_to_lesson_step(step_id)
+      {:ok, %LessonStep{}}
+  """
+  @spec add_segment_to_lesson_step(non_neg_integer()) :: lesson_step_changeset()
+  def add_segment_to_lesson_step(step_id) do
+    lesson_step = Repo.get!(LessonStep, step_id)
+    new_segments = lesson_step.segments ++ [dgettext("orgs", "untitled segment")]
+    update_lesson_step(lesson_step, %{kind: :fill, segments: new_segments})
+  end
+
+  @doc """
   Updates a lesson step kind.
 
   ## Examples

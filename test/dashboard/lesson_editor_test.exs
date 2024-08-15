@@ -538,6 +538,17 @@ defmodule ZoonkWeb.DashboardLessonEditorLiveTest do
       assert has_element?(lv, "span", "watch video:")
       refute has_element?(lv, "span", "https://www.youtube.com/watch?v=12345678901")
     end
+
+    test "adds a segment to a fill kind step", %{conn: conn, course: course} do
+      lesson = lesson_fixture(%{course_id: course.id})
+      lesson_step_fixture(%{lesson_id: lesson.id, kind: :fill, order: 1, segments: []})
+
+      {:ok, lv, _html} = live(conn, ~p"/dashboard/c/#{course.slug}/l/#{lesson.id}/s/1")
+
+      lv |> element("button", "Add segment") |> render_click()
+
+      assert has_element?(lv, "a", "untitled segment")
+    end
   end
 
   defp assert_403(conn, course) do

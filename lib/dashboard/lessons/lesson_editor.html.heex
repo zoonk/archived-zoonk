@@ -60,6 +60,7 @@
         id={:step_fill}
         segments={@selected_step.segments}
         options={options_with_segments(@selected_step.options)}
+        step_id={@selected_step.id}
       />
 
       <.step_image course={@course} lesson={@lesson} step={@selected_step} />
