@@ -207,6 +207,7 @@ defmodule ZoonkWeb.Router do
       live "/c/:course_slug/l/:lesson_id/s/:step_order/search", LessonEditor, :search
       live "/c/:course_slug/l/:lesson_id/s/:step_order/o/:option_id", LessonEditor, :option
       live "/c/:course_slug/l/:lesson_id/s/:step_order/o/:option_id/image", LessonEditor, :option_img
+      live "/c/:course_slug/l/:lesson_id/s/:step_order/segment/:segment_idx", LessonEditor, :segment
     end
   end
 

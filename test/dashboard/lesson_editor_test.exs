@@ -549,6 +549,20 @@ defmodule ZoonkWeb.DashboardLessonEditorLiveTest do
 
       assert has_element?(lv, "a", "untitled segment")
     end
+
+    test "updates a segment", %{conn: conn, course: course} do
+      lesson = lesson_fixture(%{course_id: course.id})
+      step = lesson_step_fixture(%{lesson_id: lesson.id, kind: :fill, order: 1, segments: ["test", nil, "fill step."]})
+      step_option_fixture(%{kind: :fill, lesson_step_id: step.id, segment: 1, title: "fill in the blank"})
+
+      {:ok, lv, _html} = live(conn, ~p"/dashboard/c/#{course.slug}/l/#{lesson.id}/s/1")
+
+      lv |> element("a", "fill step.") |> render_click()
+      lv |> form("#segment-edit-form") |> render_submit(%{segment: "step 1"})
+
+      assert has_element?(lv, "a", "step 1")
+      assert Repo.get_by(LessonStep, id: step.id).segments == ["test", nil, "step 1"]
+    end
   end
 
   defp assert_403(conn, course) do

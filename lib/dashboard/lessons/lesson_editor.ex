@@ -2,6 +2,7 @@ defmodule ZoonkWeb.Live.Dashboard.LessonEditor do
   @moduledoc false
   use ZoonkWeb, :live_view
 
+  import ZoonkWeb.Components.Dashboard.SegmentEdit
   import ZoonkWeb.Components.Dashboard.StepImage
 
   alias Zoonk.Content
@@ -45,6 +46,8 @@ defmodule ZoonkWeb.Live.Dashboard.LessonEditor do
       |> assign(:suggested_courses, suggested_courses)
       |> assign(:search_results, search_courses(school.id, params["term"]))
       |> assign(:lesson, updated_lesson)
+      |> assign(:segment, get_segment_by_index(step.segments, params["segment_idx"]))
+      |> assign(:segment_idx, params["segment_idx"])
 
     {:noreply, socket}
   end
@@ -128,6 +131,18 @@ defmodule ZoonkWeb.Live.Dashboard.LessonEditor do
     end
   end
 
+  def handle_event("update-segment", %{"segment" => segment}, socket) do
+    %{course: course, lesson: lesson, selected_step: step, segment_idx: segment_idx} = socket.assigns
+
+    case Content.update_step_segment(step, String.to_integer(segment_idx), segment) do
+      {:ok, _lesson_step} ->
+        {:noreply, push_patch(socket, to: step_link(course, lesson, step.order))}
+
+      {:error, _changeset} ->
+        {:noreply, put_flash(socket, :error, dgettext("orgs", "Could not update segment!"))}
+    end
+  end
+
   @impl Phoenix.LiveView
   def handle_info({Upload, :step_img_upload, new_path}, socket) do
     %{course: course, lesson: lesson, selected_step: selected_step} = socket.assigns
@@ -181,6 +196,7 @@ defmodule ZoonkWeb.Live.Dashboard.LessonEditor do
   end
 
   defp step_link(course, lesson, order), do: ~p"/dashboard/c/#{course.slug}/l/#{lesson.id}/s/#{order}"
+  defp segment_link(course, lesson, order, segment_idx), do: ~p"/dashboard/c/#{course.slug}/l/#{lesson.id}/s/#{order}/segment/#{segment_idx}"
 
   defp search_courses(_school_id, nil), do: []
   defp search_courses(school_id, term), do: Content.search_courses_by_school(school_id, term)
@@ -220,4 +236,7 @@ defmodule ZoonkWeb.Live.Dashboard.LessonEditor do
     |> Enum.filter(fn option -> option.segment end)
     |> Enum.map(fn %{title: title, segment: segment} -> %{title: title, segment: segment} end)
   end
+
+  def get_segment_by_index(_segments, nil), do: nil
+  def get_segment_by_index(segments, index), do: Enum.at(segments, String.to_integer(index))
 end

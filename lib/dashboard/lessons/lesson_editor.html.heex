@@ -61,6 +61,7 @@
         segments={@selected_step.segments}
         options={options_with_segments(@selected_step.options)}
         step_id={@selected_step.id}
+        segment_link={&segment_link(@course, @lesson, @selected_step.order, &1)}
       />
 
       <.step_image course={@course} lesson={@lesson} step={@selected_step} />
@@ -186,4 +187,8 @@
       name={course.name}
     />
   </.search_box>
+
+  <.modal :if={@live_action == :segment} show id="segment-modal" on_cancel={JS.patch(step_link(@course, @lesson, @selected_step.order))}>
+    <.segment_edit segment={@segment} />
+  </.modal>
 </div>

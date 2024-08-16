@@ -8,7 +8,11 @@ defmodule ZoonkWeb.Components.Dashboard.StepFill do
   def render(assigns) do
     ~H"""
     <div id="segments" class="flex flex-wrap items-center gap-2">
-      <.link :for={{segment, index} <- Enum.with_index(@segments)} class={["bg-white p-2 rounded-md shadow-sm", is_nil(segment) && "semibold text-teal-500"]}>
+      <.link
+        :for={{segment, index} <- Enum.with_index(@segments)}
+        patch={@segment_link.(index)}
+        class={["bg-white p-2 rounded-md shadow-sm", is_nil(segment) && "semibold text-teal-500"]}
+      >
         <%= get_segment(segment, index, @options) %>
       </.link>
 

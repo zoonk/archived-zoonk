@@ -58,7 +58,8 @@ defmodule ZoonkWeb.Layouts.MenuUtils do
         :dashboard_lessoneditor_step_img,
         :dashboard_lessoneditor_edit,
         :dashboard_lessoneditor_edit_step,
-        :dashboard_lessoneditor_cover
+        :dashboard_lessoneditor_cover,
+        :dashboard_lessoneditor_segment
       ]
 
     lesson_view_page? = active_page |> Atom.to_string() |> String.starts_with?("dashboard_lesson")
