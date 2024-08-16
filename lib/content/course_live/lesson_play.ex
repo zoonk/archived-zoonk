@@ -3,6 +3,8 @@ defmodule ZoonkWeb.Live.LessonPlay do
   use ZoonkWeb, :live_view
 
   import Zoonk.Shared.Utilities, only: [boolean_to_integer: 1]
+  import ZoonkWeb.Components.Content.FillOptions
+  import ZoonkWeb.Components.Content.FillStep
   import ZoonkWeb.Components.Content.LessonStep
 
   alias Zoonk.Accounts.User
@@ -28,11 +30,33 @@ defmodule ZoonkWeb.Live.LessonPlay do
       |> assign(:options, shuffle_options(current_step))
       |> assign(:lesson_start, DateTime.utc_now())
       |> assign(:step_start, DateTime.utc_now())
+      |> assign(:selected_segments, List.duplicate(nil, segment_count(current_step.segments)))
 
     {:ok, socket}
   end
 
   @impl Phoenix.LiveView
+  def handle_event("select-fill-option", %{"option-id" => option_id}, socket) do
+    %{current_step: step, selected_segments: selected_segments} = socket.assigns
+    option = get_option(step.options, String.to_integer(option_id))
+    segment_index = next_segment_index(step.segments, selected_segments)
+
+    socket =
+      assign(socket, :selected_segments, List.replace_at(selected_segments, segment_index, option))
+
+    {:noreply, socket}
+  end
+
+  def handle_event("remove-segment", %{"index" => index}, socket) do
+    %{selected_segments: selected_segments} = socket.assigns
+    segment_index = String.to_integer(index)
+
+    socket =
+      assign(socket, :selected_segments, List.replace_at(selected_segments, segment_index, nil))
+
+    {:noreply, socket}
+  end
+
   def handle_event("next", %{"selected_option" => selected_option}, socket) when is_nil(socket.assigns.selected_option) do
     %{current_step: step} = socket.assigns
 
@@ -116,4 +140,26 @@ defmodule ZoonkWeb.Live.LessonPlay do
 
   defp maybe_play_sound_effect(%{assigns: %User{sound_effects?: false}} = socket, _correct?), do: socket
   defp maybe_play_sound_effect(socket, correct?), do: push_event(socket, "option-selected", %{isCorrect: correct?})
+
+  defp segment_count(nil), do: 0
+  defp segment_count(segments), do: length(segments)
+
+  # Find the index from a segment not selected by the user
+  # We know a segment can be selected if it's nil.
+  # For example: ["this", nil, "a", nil]
+  # Users can select segments at index 1 and 3.
+  # If they haven't selected an option, then we can get the first nil segment.
+  # However, if they have selected an option, then we need to get the next nil segment.
+  # This is why we need to check if the same index at selected_segments is also nil.
+  defp next_segment_index(segments, selected_segments) do
+    segments
+    |> Enum.with_index()
+    |> Enum.find(fn {segment, index} ->
+      is_nil(segment) && is_nil(Enum.at(selected_segments, index))
+    end)
+    |> case do
+      {_, index} -> index
+      nil -> Enum.find_index(segments, &is_nil/1)
+    end
+  end
 end

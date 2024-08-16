@@ -21,7 +21,9 @@
   </header>
 
   <article class="mx-auto flex max-w-3xl flex-col items-center overflow-y-auto p-8 before:content-[''] before:flex-1 after:content-[''] after:flex-1 sm:px-16">
-    <.lesson_step step={@current_step} selected={@selected_option} />
+    <.lesson_step :if={@current_step.kind != :fill} step={@current_step} selected={@selected_option} />
+    <.fill_step :if={@current_step.kind == :fill} segments={@current_step.segments} selected_segments={@selected_segments} />
+    <.fill_options :if={@current_step.kind == :fill} options={@current_step.options} selected_segments={@selected_segments} />
 
     <section :if={@current_step.suggested_courses != []} class="grid grid-cols-2 gap-2 pt-8">
       <.link
