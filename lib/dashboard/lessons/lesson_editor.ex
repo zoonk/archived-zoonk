@@ -143,6 +143,18 @@ defmodule ZoonkWeb.Live.Dashboard.LessonEditor do
     end
   end
 
+  def handle_event("delete-segment", _params, socket) do
+    %{course: course, lesson: lesson, selected_step: step, segment_idx: segment_idx} = socket.assigns
+
+    case Content.delete_step_segment(step, String.to_integer(segment_idx)) do
+      {:ok, _lesson_step} ->
+        {:noreply, push_patch(socket, to: step_link(course, lesson, step.order))}
+
+      {:error, _changeset} ->
+        {:noreply, put_flash(socket, :error, dgettext("orgs", "Could not delete segment!"))}
+    end
+  end
+
   @impl Phoenix.LiveView
   def handle_info({Upload, :step_img_upload, new_path}, socket) do
     %{course: course, lesson: lesson, selected_step: selected_step} = socket.assigns
