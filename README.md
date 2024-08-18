@@ -5,7 +5,7 @@
 </picture>
 
 > [!WARNING]
-> This software is still in development and not ready for production. DO NOT USE IT IN PRODUCTION YET. The current version will break when v1.0 is released. This README will be updated when it's ready for production.
+> We're temporarily pausing development on this repository. We're working on a new version of the platform. Those changes will be merged back to this repository when they're ready. You can expect this to happen by the summer of 2025. In the meantime, we do not recommend using this repository for new projects since the new changes won't be compatible with the current version.
 
 ---
 
