@@ -30,7 +30,8 @@ defmodule ZoonkWeb.Live.LessonPlay do
       |> assign(:options, shuffle_options(current_step))
       |> assign(:lesson_start, DateTime.utc_now())
       |> assign(:step_start, DateTime.utc_now())
-      |> assign(:selected_segments, List.duplicate(nil, segment_count(current_step.segments)))
+      |> assign(:selected_segments, List.duplicate(nil, segment_count(current_step)))
+      |> assign(:answer, [])
 
     {:ok, socket}
   end
@@ -57,6 +58,21 @@ defmodule ZoonkWeb.Live.LessonPlay do
     {:noreply, socket}
   end
 
+  # confirm a selection for a fill in the blank step
+  def handle_event("next", _params, socket) when socket.assigns.current_step.kind == :fill and socket.assigns.answer == [] do
+    %{current_step: step, selected_segments: selected_segments} = socket.assigns
+    correct_option_titles = list_correct_option_titles(step.segments, step.options)
+    answer = list_segment_titles(selected_segments)
+    correct? = correct_option_titles == answer
+
+    socket =
+      socket
+      |> maybe_play_sound_effect(correct?)
+      |> assign(:answer, answer)
+
+    {:noreply, socket}
+  end
+
   def handle_event("next", %{"selected_option" => selected_option}, socket) when is_nil(socket.assigns.selected_option) do
     %{current_step: step} = socket.assigns
 
@@ -72,18 +88,20 @@ defmodule ZoonkWeb.Live.LessonPlay do
   end
 
   def handle_event("next", params, socket) do
-    %{current_user: user, lesson: lesson, current_step: current_step, step_start: step_start, selected_option: selected_option} = socket.assigns
+    %{current_user: user, lesson: lesson, current_step: current_step, step_start: step_start, selected_segments: selected_segments, selected_option: selected_option} =
+      socket.assigns
+
     step_duration = DateTime.diff(DateTime.utc_now(), step_start, :second)
     next_step = Content.get_next_step(lesson, current_step.order)
 
     attrs = %{
       user_id: user.id,
-      correct: get_correct_value(selected_option),
-      total: 1,
+      correct: get_correct_value(current_step, selected_option, selected_segments),
+      total: get_total_value(current_step),
       lesson_id: lesson.id,
       step_id: current_step.id,
       option_id: get_selected_option_id(selected_option),
-      answer: [params["answer"]],
+      answer: get_answer(params, socket.assigns),
       duration: step_duration
     }
 
@@ -94,6 +112,8 @@ defmodule ZoonkWeb.Live.LessonPlay do
           |> assign(:selected_option, nil)
           |> assign(:current_step, next_step)
           |> assign(:options, shuffle_options(next_step))
+          |> assign(:answer, [])
+          |> assign(:selected_segments, List.duplicate(nil, segment_count(next_step)))
           |> handle_lesson_completed(next_step)
 
         {:noreply, socket}
@@ -124,8 +144,17 @@ defmodule ZoonkWeb.Live.LessonPlay do
   defp get_selected_option_id(nil), do: nil
   defp get_selected_option_id(selected_option), do: selected_option.id
 
-  defp get_correct_value(nil), do: 1
-  defp get_correct_value(selected_option), do: boolean_to_integer(selected_option.correct?)
+  defp get_total_value(%LessonStep{kind: :fill, segments: segments}), do: empty_segment_count(segments)
+  defp get_total_value(_), do: 1
+
+  defp get_correct_value(%LessonStep{kind: :fill, segments: segments, options: options}, _option, selected_segments) do
+    correct_option_titles = list_correct_option_titles(segments, options)
+    answer = list_segment_titles(selected_segments)
+    count_matching_items(correct_option_titles, answer)
+  end
+
+  defp get_correct_value(_step, nil, _segments), do: 1
+  defp get_correct_value(_step, selected_option, _segments), do: boolean_to_integer(selected_option.correct?)
 
   defp user_selected_wrong_option?(%StepOption{correct?: false} = selected, option) when selected.id == option.id, do: true
   defp user_selected_wrong_option?(_selected, _option), do: false
@@ -142,7 +171,12 @@ defmodule ZoonkWeb.Live.LessonPlay do
   defp maybe_play_sound_effect(socket, correct?), do: push_event(socket, "option-selected", %{isCorrect: correct?})
 
   defp segment_count(nil), do: 0
-  defp segment_count(segments), do: length(segments)
+  defp segment_count(%LessonStep{segments: nil}), do: 0
+  defp segment_count(%LessonStep{segments: segments}), do: length(segments)
+
+  defp empty_segment_count(nil), do: 0
+  defp empty_segment_count(%LessonStep{segments: nil}), do: 0
+  defp empty_segment_count(%LessonStep{segments: segments}), do: Enum.count(segments, &is_nil/1)
 
   # Find the index from a segment not selected by the user
   # We know a segment can be selected if it's nil.
@@ -162,4 +196,31 @@ defmodule ZoonkWeb.Live.LessonPlay do
       nil -> Enum.find_index(segments, &is_nil/1)
     end
   end
+
+  # filters out the segments that are not nil and returns the titles
+  defp list_segment_titles(segments) do
+    segments
+    |> Enum.filter(&(!is_nil(&1)))
+    |> Enum.map(& &1.title)
+  end
+
+  # get the titles from correct options based on the segment index
+  defp list_correct_option_titles(segments, options) do
+    segments
+    |> Enum.with_index()
+    |> Enum.filter(fn {segment, _index} -> is_nil(segment) end)
+    |> Enum.map(fn {_segment, index} ->
+      options
+      |> Enum.find(&(&1.segment == index))
+      |> Map.get(:title)
+    end)
+  end
+
+  # given two lists count how many items are in the same position
+  defp count_matching_items(list1, list2) do
+    list1 |> Enum.with_index() |> Enum.count(fn {item, index} -> item == Enum.at(list2, index) end)
+  end
+
+  defp get_answer(%{"answer" => answer}, _assigns), do: [answer]
+  defp get_answer(_params, %{answer: answer}), do: answer
 end
