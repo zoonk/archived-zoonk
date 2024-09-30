@@ -4,8 +4,18 @@
   <img alt="Zoonk Banner" src="https://github.com/zoonk/.github/assets/4393133/ddbb2208-feac-4a58-adac-f769cff4dc7f">
 </picture>
 
-> [!WARNING]
-> We're temporarily pausing development on this repository. We're working on a new version of the platform. Those changes will be merged back to this repository when they're ready. You can expect this to happen by the summer of 2025. In the meantime, we do not recommend using this repository for new projects since the new changes won't be compatible with the current version.
+> [!CAUTION]
+> This project is no longer maintained.
+>
+> We're working on an improved learning platform that will have a different focus than this one. Therefore, we've decided it would be better to do it on a separate repository.
+> This will allow anyone using this project to continue using it or even fork it and implement new features.
+>
+> We'll change this repository's name to `archived-zoonk`, so we can use the `zoonk` name to the new project. Follow our [org on GitHub](https://github.com/zoonk) for updates when this new project launches.
+> We're not comitting to any deadline, though. The new project will launch once we feel confident we're releasing something that definitely improves how we learn things. This may take a while but we think it's going to be worth the wait.
+>
+> Unfortunately, we're not looking for contributors at this time we want to get a few things right before we open up for contributions. Once we feel confident we're on the right track and we have something nice to show, we'll open-source it at https://github.com/zoonk/zoonk
+>
+> Sorry for any inconvenience.
 
 ---
 
