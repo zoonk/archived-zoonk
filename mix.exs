@@ -38,7 +38,7 @@ defmodule Zoonk.MixProject do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
-      {:bandit, "~> 1.5.5"},
+      {:bandit, "~> 1.6.0"},
       {:bcrypt_elixir, "~> 3.0"},
       {:credo, "~> 1.7.7", only: [:dev, :test], runtime: false},
       {:dialyxir, "~> 1.4.3", only: [:dev, :test], runtime: false},
@@ -47,11 +47,11 @@ defmodule Zoonk.MixProject do
       {:esbuild, "~> 0.8.1", runtime: Mix.env() == :dev},
       {:ex_aws, "~> 2.5.4"},
       {:ex_aws_s3, "~> 2.5.3"},
-      {:flame, "~> 0.3.0"},
+      {:flame, "~> 0.5.1"},
       {:floki, "~> 0.36.2", only: :test},
-      {:gettext, "~> 0.24.0"},
+      {:gettext, "~> 0.26.2"},
       {:hackney, "~> 1.20.1"},
-      {:image, "~> 0.53.0"},
+      {:image, "~> 0.54.4"},
       {:jason, "~> 1.2"},
       {:mix_audit, "~> 2.1.2", only: [:dev, :test], runtime: false},
       {:mix_test_watch, "~> 1.2.0", only: [:dev, :test]},
@@ -64,10 +64,10 @@ defmodule Zoonk.MixProject do
       {:phoenix_live_reload, "~> 1.5.1", only: :dev},
       {:phoenix_live_view, "~> 1.0.0-rc.6", override: true},
       {:phoenix, "~> 1.7.14"},
-      {:postgrex, "~> 0.18.0"},
+      {:postgrex, "~> 0.19.3"},
       {:req, "~> 0.5.1"},
       {:resend, "~> 0.4.2"},
-      {:sentry, "~> 10.6.1"},
+      {:sentry, "~> 10.8.0"},
       {:sobelow, "~> 0.13.0", only: [:dev, :test], runtime: false},
       {:styler, "~> 1.0.0-rc.2", only: [:dev, :test], runtime: false},
       # required by ex_aws_s3
