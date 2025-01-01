@@ -48,7 +48,7 @@ defmodule Zoonk.MixProject do
       {:ex_aws, "~> 2.5.4"},
       {:ex_aws_s3, "~> 2.5.3"},
       {:flame, "~> 0.3.0"},
-      {:floki, "~> 0.36.2", only: :test},
+      {:floki, "~> 0.37.0", only: :test},
       {:gettext, "~> 0.24.0"},
       {:hackney, "~> 1.20.1"},
       {:image, "~> 0.53.0"},
@@ -69,7 +69,7 @@ defmodule Zoonk.MixProject do
       {:resend, "~> 0.4.2"},
       {:sentry, "~> 10.6.1"},
       {:sobelow, "~> 0.13.0", only: [:dev, :test], runtime: false},
-      {:styler, "~> 1.0.0-rc.2", only: [:dev, :test], runtime: false},
+      {:styler, "~> 1.2.1", only: [:dev, :test], runtime: false},
       # required by ex_aws_s3
       {:sweet_xml, "~> 0.7.4"},
       {:swoosh, "~> 1.16.9"},
