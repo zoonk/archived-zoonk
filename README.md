@@ -5,17 +5,14 @@
 </picture>
 
 > [!CAUTION]
-> This project is no longer maintained.
+> ## Project No Longer Maintained
 >
-> We're working on an improved learning platform that will have a different focus than this one. Therefore, we've decided it would be better to do it on a separate repository.
-> This will allow anyone using this project to continue using it or even fork it and implement new features.
+> Uneebee is no longer being maintained. I’m building a new platform, [Zoonk](https://github.com/zoonk/zoonk), with a different focus. Instead of continuing Uneebee, I’m restructuring everything from the ground up to create a better way to learn through interactive courses.
 >
-> We'll change this repository's name to `archived-zoonk`, so we can use the `zoonk` name to the new project. Follow our [org on GitHub](https://github.com/zoonk) for updates when this new project launches.
-> We're not comitting to any deadline, though. The new project will launch once we feel confident we're releasing something that definitely improves how we learn things. This may take a while but we think it's going to be worth the wait.
+> The new project will initially use LLMs for learning and later expand to allow course creation, similar to Uneebee but with a more refined approach.
 >
-> Unfortunately, we're not looking for contributors at this time we want to get a few things right before we open up for contributions. Once we feel confident we're on the right track and we have something nice to show, we'll open-source it at https://github.com/zoonk/zoonk
+> If you liked Uneebee, feel free to fork it. To follow the progress of Zoonk, [check out the new repo](https://github.com/zoonk/zoonk).
 >
-> Sorry for any inconvenience.
 
 ---
 
